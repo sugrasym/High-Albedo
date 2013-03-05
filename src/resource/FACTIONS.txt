@@ -1,0 +1,22 @@
+########The Player########
+[Faction]
+name=Player
+Player=10
+Ageiran Federation=0
+The Archers=-4
+[/Faction]
+
+########Ageiran Space########
+[Faction]
+name=Ageiran Federation
+Player=0
+Ageiran Federation=10
+The Archers=-10
+[/Faction]
+
+[Faction]
+name=The Archers
+Player=-4
+Ageiran Federation=-10
+The Archers=10
+[/Faction]

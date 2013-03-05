@@ -1,0 +1,74 @@
+#########Agerian Federation########
+
+#Light Fighters
+[Ship]
+type=Sparrow
+accel=43
+turning=4.3
+shield=12500
+shieldRecharge=180
+hull=2400
+fuel=26500
+mass=100
+sensor=2500
+cargo=250
+hardpoint=turret,10,8,3.925/turret,10,-8,5.495
+[/Ship]
+
+#Medium Fighters
+[Ship]
+type=Crow
+accel=31
+turning=3.9
+shield=14028
+shieldRecharge=224
+hull=2810
+fuel=29210
+mass=150
+sensor=2450
+cargo=300
+hardpoint=turret,20,8,3.925/turret,20,-8,5.495
+[/Ship]
+
+#Heavy Fighters
+[Ship]
+type=Raven
+accel=27
+turning=3.5
+shield=17000
+shieldRecharge=248
+hull=3302
+fuel=32600
+mass=200
+sensor=2425
+cargo=350
+hardpoint=turret,30,8,3.925/turret,30,-8,5.495/turret,30,0,0
+[/Ship]
+
+#Special
+
+[Ship]
+type=Mass Testing Brick
+accel=35
+turning=3.5
+shield=300
+shieldRecharge=10
+hull=40
+fuel=25000
+mass=500
+sensor=5000
+cargo=150000
+[/Ship]
+
+[Ship]
+type=Cargo Pod
+accel=0
+turning=0
+shield=0
+shieldRecharge=0
+hull=2000
+fuel=1
+mass=0
+sensor=0
+cargo=1
+[/Ship]

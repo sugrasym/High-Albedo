@@ -1,0 +1,13 @@
+[Process]
+name=HydrocarbonBurn
+cycle=60
+product=Standard Energy Unit,1000/Industrial Waste,3
+resource=Hydrocarbon,1
+[/Process]
+
+[Process]
+name=Scrap->ConsumerGoods
+cycle=120
+product=Consumer Goods,1
+resource=Scrap Metal,1
+[/Process]

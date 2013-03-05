@@ -1,0 +1,711 @@
+#New Game Smell
+[NewGame]
+ship=Crow
+system=Mal Canse
+near=Tetrel
+cash=8500
+install=Talon 1/Talon 1/Talon 1
+cargo=Long 9/Standard Energy Unit/Hydrocarbon/Hydrocarbon/Hydrocarbon/Hydrocarbon/Hydrocarbon/Hydrocarbon/Hydrocarbon/Hydrocarbon/Hydrocarbon/Hydrocarbon/Hydrocarbon/Hydrocarbon/Hydrocarbon/Hydrocarbon/Hydrocarbon/Hydrocarbon/Hydrocarbon/Hydrocarbon/Hydrocarbon/Scrap Metal/Scrap Metal/Scrap Metal/Consumer Goods
+faction=Player
+[/NewGame]
+
+#Mal Canse System
+[System]
+name=Mal Canse
+x=0
+y=0
+[/System]
+
+[Planet]
+name=Poilin
+system=Mal Canse
+texture=lava1.png
+x=0
+y=0
+d=1668
+[/Planet]
+
+[Jumphole]
+name=Ban Dali Gate
+system=Mal Canse
+out=Ban Dali/Mal Canse Gate
+x=-6000
+y=-2000
+[/Jumphole]
+
+[Station]
+ship=Ageiran Civilian Station
+name=Poilin Customs Depot
+faction=Ageiran Federation
+system=Mal Canse
+x=2900
+y=207
+[/Station]
+
+[Planet]
+name=Tetrel
+system=Mal Canse
+texture=terran1.png
+x=11200
+y=11200
+d=4200
+[/Planet]
+
+
+[Planet]
+name=Sani
+system=Mal Canse
+texture=lava2.png
+x=30000
+y=-45000
+d=1230
+[/Planet]
+
+[Planet]
+name=Mal Canse
+system=Mal Canse
+texture=redstar1.png
+x=50000
+y=50000
+d=11005
+[/Planet]
+
+[Planet]
+name=Unu
+system=Mal Canse
+texture=gasblue1.png
+x=300000
+y=300000
+d=5268
+[/Planet]
+
+[Ship]
+ship=Sparrow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=Ageiran Federation
+install=Talon 1/Talon 1/Talon 1
+[/Ship]
+
+[Ship]
+ship=Sparrow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=The Archers
+install=Arrow/Arrow
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=The Archers
+install=Catapult/Catapult
+[/Ship]
+
+[Ship]
+ship=Raven
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=The Archers
+install=Long 9/Long 9/Long 9
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+
+[Ship]
+ship=Raven
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=Ageiran Federation
+install=Talon 3/Talon 3/Talon 3
+[/Ship]
+
+########
+
+[Ship]
+ship=Sparrow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=Ageiran Federation
+install=Talon 1/Talon 1/Talon 1
+[/Ship]
+
+[Ship]
+ship=Sparrow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=The Archers
+install=Arrow/Arrow
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=The Archers
+install=Catapult/Catapult
+[/Ship]
+
+[Ship]
+ship=Raven
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=The Archers
+install=Long 9/Long 9/Long 9
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+
+[Ship]
+ship=Raven
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=Ageiran Federation
+install=Talon 3/Talon 3/Talon 3
+[/Ship]
+
+[Ship]
+ship=Sparrow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=Ageiran Federation
+install=Talon 1/Talon 1/Talon 1
+[/Ship]
+
+[Ship]
+ship=Sparrow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=The Archers
+install=Arrow/Arrow
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=The Archers
+install=Catapult/Catapult
+[/Ship]
+
+[Ship]
+ship=Raven
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=The Archers
+install=Long 9/Long 9/Long 9
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+
+[Ship]
+ship=Raven
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=Ageiran Federation
+install=Talon 3/Talon 3/Talon 3
+[/Ship]
+
+[Ship]
+ship=Sparrow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=Ageiran Federation
+install=Talon 1/Talon 1/Talon 1
+[/Ship]
+
+[Ship]
+ship=Sparrow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=The Archers
+install=Arrow/Arrow
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=The Archers
+install=Catapult/Catapult
+[/Ship]
+
+[Ship]
+ship=Raven
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=The Archers
+install=Long 9/Long 9/Long 9
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+
+[Ship]
+ship=Raven
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=Ageiran Federation
+install=Talon 3/Talon 3/Talon 3
+[/Ship]
+
+[Ship]
+ship=Sparrow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=Ageiran Federation
+install=Talon 1/Talon 1/Talon 1
+[/Ship]
+
+[Ship]
+ship=Sparrow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=The Archers
+install=Arrow/Arrow
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=The Archers
+install=Catapult/Catapult
+[/Ship]
+
+[Ship]
+ship=Raven
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=The Archers
+install=Long 9/Long 9/Long 9
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+
+[Ship]
+ship=Raven
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=Ageiran Federation
+install=Talon 3/Talon 3/Talon 3
+[/Ship]
+
+[Ship]
+ship=Sparrow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=Ageiran Federation
+install=Talon 1/Talon 1/Talon 1
+[/Ship]
+
+[Ship]
+ship=Sparrow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=The Archers
+install=Arrow/Arrow
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=The Archers
+install=Catapult/Catapult
+[/Ship]
+
+[Ship]
+ship=Raven
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=The Archers
+install=Long 9/Long 9/Long 9
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+
+[Ship]
+ship=Raven
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=Ageiran Federation
+install=Talon 3/Talon 3/Talon 3
+[/Ship]
+
+[Ship]
+ship=Sparrow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=Ageiran Federation
+install=Talon 1/Talon 1/Talon 1
+[/Ship]
+
+[Ship]
+ship=Sparrow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=The Archers
+install=Arrow/Arrow
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=The Archers
+install=Catapult/Catapult
+[/Ship]
+
+[Ship]
+ship=Raven
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=The Archers
+install=Long 9/Long 9/Long 9
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+
+[Ship]
+ship=Raven
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=Ageiran Federation
+install=Talon 3/Talon 3/Talon 3
+[/Ship]
+
+[Ship]
+ship=Sparrow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=Ageiran Federation
+install=Talon 1/Talon 1/Talon 1
+[/Ship]
+
+[Ship]
+ship=Sparrow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=The Archers
+install=Arrow/Arrow
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=The Archers
+install=Catapult/Catapult
+[/Ship]
+
+[Ship]
+ship=Raven
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=The Archers
+install=Long 9/Long 9/Long 9
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+
+[Ship]
+ship=Raven
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=Ageiran Federation
+install=Talon 3/Talon 3/Talon 3
+[/Ship]
+
+[Ship]
+ship=Sparrow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=Ageiran Federation
+install=Talon 1/Talon 1/Talon 1
+[/Ship]
+
+[Ship]
+ship=Sparrow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=The Archers
+install=Arrow/Arrow
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=The Archers
+install=Catapult/Catapult
+[/Ship]
+
+[Ship]
+ship=Raven
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=The Archers
+install=Long 9/Long 9/Long 9
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+
+[Ship]
+ship=Raven
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=Ageiran Federation
+install=Talon 3/Talon 3/Talon 3
+[/Ship]
+
+[Ship]
+ship=Sparrow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=Ageiran Federation
+install=Talon 1/Talon 1/Talon 1
+[/Ship]
+
+[Ship]
+ship=Sparrow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=The Archers
+install=Arrow/Arrow
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=The Archers
+install=Catapult/Catapult
+[/Ship]
+
+[Ship]
+ship=Raven
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=The Archers
+install=Long 9/Long 9/Long 9
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+
+[Ship]
+ship=Raven
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=Ageiran Federation
+install=Talon 3/Talon 3/Talon 3
+[/Ship]
+
+[Ship]
+ship=Sparrow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=Ageiran Federation
+install=Talon 1/Talon 1/Talon 1
+[/Ship]
+
+[Ship]
+ship=Sparrow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=The Archers
+install=Arrow/Arrow
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=The Archers
+install=Catapult/Catapult
+[/Ship]
+
+[Ship]
+ship=Raven
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=The Archers
+install=Long 9/Long 9/Long 9
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+
+[Ship]
+ship=Raven
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=Ageiran Federation
+install=Talon 3/Talon 3/Talon 3
+[/Ship]
+
+
+
+#Ban Dali System
+[System]
+name=Ban Dali
+x=1
+y=1
+[/System]
+
+[Planet]
+name=Vasadda
+system=Ban Dali
+texture=gasred1.png
+x=0
+y=0
+d=2500
+[/Planet]
+
+[Station]
+ship=Ageiran Civilian Station
+name=Vasadda Customs Depot
+faction=Ageiran Federation
+system=Ban Dali
+x=6000
+y=500
+[/Station]
+
+[Jumphole]
+name=Mal Canse Gate
+system=Ban Dali
+out=Mal Canse/Ban Dali Gate
+x=24500
+y=29000
+[/Jumphole]

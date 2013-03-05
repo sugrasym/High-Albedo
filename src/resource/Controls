@@ -1,0 +1,47 @@
+Time Dilation
+---------------------
+1 - TIDI = 0.25x
+2 - TIDI = 0.5x
+
+3 - TIDI = 1x
+
+4 - TIDI = 2x
+5 - TIDI = 4x
+
+Note to modders: Exceeding TIDI 4 is not a good idea. Go play X3R to see why.
+
+Navigation
+---------------------
+* Click on an object in space to target it.
+
+Up Arrow - Fire Rear Thruster
+Down Arrow - Fire Forward Thruster
+Left/Right Arrow - Rotate
+
+HOME - hold to decelerate
+
+D - dock with selected station / undock if docked
+
+Weapons/Equipment
+---------------------
+* Click on a piece of equipment in the equipment list to toggle it.
+
+SPACE - Fire onlined equipment.
+
+UI Components
+---------------------
+* Click on a window to focus it so you can send commands to it, click in empty space to deselect everything.
+
+F5 - Deselect all windows and return to flight mode
+F6 - Deselect all windows and hide them.
+
+S - toggle overview window
+E - toggle equipment and targeting window
+C - toggle cargo window
+T - toggle trade with station window (MUST BE DOCKED!)
+
+Overview Window
+---------------------
+PAGE UP - toggle show stations
+PAGE DOWN - toggle show ships
+END - cycle through sensor modes

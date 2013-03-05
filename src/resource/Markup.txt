@@ -1,0 +1,41 @@
+Markup style for data used in this game.
+
+Let's look at this for an example:
+
+[System]
+name=Carolia
+x=0
+y=1
+z=2
+[/System]
+
+[Grid]
+name=Empty Grid
+parent=Carolia
+x=553
+y=223
+z=200
+[/Grid]
+
+This defines a system named Carolia and a Grid inside that system. This is not
+XML, so you don't put children inside their parents. In fact, the relationship
+between the grid and the system is totally arbitrary.
+
+Here's how the parser sees that same data.
+
+[(entity type 'System')]
+(param 'Name')=(value 'Carolia')
+(param 'x') = (value '0')
+(param 'y') = (value '1')
+(param 'z') = (value '2')
+[(end entity type 'System')]
+
+The terms used in this file are meaningless until interpreted by some part of
+this program. There is no relationship of any kind between the "System" and the
+"Grid".
+
+[foo]
+~~~~
+[/foo]
+
+Defines a term called "foo" that contains the params and values "~~~~~~~".

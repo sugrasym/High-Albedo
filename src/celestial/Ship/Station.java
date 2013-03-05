@@ -1,0 +1,318 @@
+/*
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/*
+ * A space station
+ */
+package celestial.Ship;
+
+import cargo.Item;
+import java.awt.AlphaComposite;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.RenderingHints;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import javax.swing.ImageIcon;
+import lib.Parser;
+
+/**
+ *
+ * @author nwiehoff
+ */
+public class Station extends Ship {
+    //complex bound
+
+    protected ArrayList<Rectangle> boundDef = new ArrayList<>();
+    protected ArrayList<PortContainer> docks = new ArrayList<>();
+    //products and resources for production
+    protected ArrayList<Item> stationSelling = new ArrayList<>();
+    protected ArrayList<Item> stationBuying = new ArrayList<>();
+    //manufacturing
+    protected ArrayList<Process> processes = new ArrayList<>();
+
+    public Station(String name, String type) {
+        super(name, type);
+    }
+
+    @Override
+    public void alive() {
+        super.alive();
+        //check dockers
+        for (int a = 0; a < docks.size(); a++) {
+            docks.get(a).periodicUpdate(tpf);
+        }
+        //check processes
+        for (int a = 0; a < processes.size(); a++) {
+            processes.get(a).periodicUpdate(tpf);
+        }
+        //they never run out of fuel
+        fuel = maxFuel;
+        //don't move
+        theta = 0;
+        if (vx != 0 || vy != 0) {
+            decelerate();
+        }
+    }
+
+    @Override
+    protected void behaviorTest() {
+    }
+
+    @Override
+    protected void initStats() {
+        /*
+         * Loads the stats for this ship from the ships file.
+         */
+        //create parser
+        Parser parse = new Parser("STATIONS.txt");
+        //get the term with this ship's type
+        ArrayList<Parser.Term> terms = parse.getTermsOfType("Station");
+        Parser.Term relevant = null;
+        for (int a = 0; a < terms.size(); a++) {
+            String termName = terms.get(a).getValue("type");
+            if (termName.matches(getType())) {
+                //get the stats we want
+                relevant = terms.get(a);
+                //and end
+                break;
+            }
+        }
+        //now decode stats
+        accel = Double.parseDouble(relevant.getValue("accel"));
+        turning = Double.parseDouble(relevant.getValue("turning"));
+        maxShield = Double.parseDouble(relevant.getValue("shield"));
+        shieldRechargeRate = Double.parseDouble(relevant.getValue("shieldRecharge"));
+        maxHull = hull = Double.parseDouble(relevant.getValue("hull"));
+        maxFuel = fuel = Double.parseDouble(relevant.getValue("fuel"));
+        setMass(Double.parseDouble(relevant.getValue("mass")));
+        computeComplexRectangularBounds(relevant);
+        computeDockBounds(relevant);
+        computeProcesses(relevant);
+    }
+
+    protected void computeComplexRectangularBounds(Parser.Term relevant) throws NumberFormatException {
+        //do complex rectangular bounds (useful for stations)
+        {
+            /*
+             * WARNING: COMPLEX RECTANGULAR BOUNDS DO NOT GET ROTATED WHEN
+             * THE SHIP ROTATES! IF YOUR CELESTIAL IS GOING TO BE DOING
+             * A LOT OF ROTATING CONSIDER ANOTHER OPTION.
+             */
+            String complex = relevant.getValue("rectBound");
+            if (complex != null) {
+                String[] arr = complex.split("/");
+                for (int a = 0; a < arr.length; a++) {
+                    String[] re = arr[a].split(",");
+                    int bx0 = Integer.parseInt(re[0]);
+                    int by0 = Integer.parseInt(re[1]);
+                    int bx1 = Integer.parseInt(re[2]);
+                    int by1 = Integer.parseInt(re[3]);
+                    //calculate rectangular region
+                    int w = bx1 - bx0;
+                    int h = by1 - by0;
+                    Rectangle rect = new Rectangle(bx0, by0, w, h);
+                    boundDef.add(rect);
+                }
+            }
+        }
+    }
+
+    protected void computeDockBounds(Parser.Term relevant) throws NumberFormatException {
+        //do complex rectangular bounds (useful for stations)
+        {
+            /*
+             * WARNING: COMPLEX RECTANGULAR BOUNDS DO NOT GET ROTATED WHEN
+             * THE SHIP ROTATES! IF YOUR CELESTIAL IS GOING TO BE DOING
+             * A LOT OF ROTATING CONSIDER ANOTHER OPTION.
+             */
+            String complex = relevant.getValue("dock");
+            if (complex != null) {
+                String[] arr = complex.split("/");
+                for (int a = 0; a < arr.length; a++) {
+                    String[] re = arr[a].split(",");
+                    int bx0 = Integer.parseInt(re[0]);
+                    int by0 = Integer.parseInt(re[1]);
+                    int bx1 = Integer.parseInt(re[2]);
+                    int by1 = Integer.parseInt(re[3]);
+                    int ax = Integer.parseInt(re[4]);
+                    int ay = Integer.parseInt(re[5]);
+                    //calculate rectangular region
+                    int w = bx1 - bx0;
+                    int h = by1 - by0;
+                    docks.add(new PortContainer(this, bx0, by0, w, h, ax, ay));
+                }
+            }
+        }
+    }
+
+    protected void computeProcesses(Parser.Term relevant) throws NumberFormatException {
+        //generates the processes that were linked to this station
+        {
+            String raw = relevant.getValue("process");
+            String[] arr = raw.split("/");
+            for (int a = 0; a < arr.length; a++) {
+                Process p = new Process(this, arr[a], stationSelling, stationBuying);
+                if (p != null) {
+                    processes.add(p);
+                }
+            }
+        }
+    }
+
+    @Override
+    protected void updateBound() {
+        bound.clear();
+        if (boundDef.size() < 1) {
+            bound.add(new Rectangle((int) getX(), (int) getY(), getWidth(), getHeight()));
+        } else {
+            //create complex rectangular bounds
+            for (int a = 0; a < boundDef.size(); a++) {
+                Rectangle tmp = boundDef.get(a);
+                int bx = (int) getX() + tmp.x;
+                int by = (int) getY() + tmp.y;
+                bound.add(new Rectangle(bx, by, tmp.width, tmp.height));
+            }
+        }
+    }
+
+    public boolean canDock(Ship ship) {
+        for (int a = 0; a < docks.size(); a++) {
+            if (docks.get(a).canFit(ship) && docks.get(a).isAvailable()) {
+                if (ship.getStandingsToMe(this) > -2) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public PortContainer requestDockPort(Ship ship) {
+        /*
+         * Returns an available docking port if docking is permitted and there
+         * are ports available.
+         */
+        for (int a = 0; a < docks.size(); a++) {
+            if (docks.get(a).canFit(ship) && docks.get(a).isAvailable()) {
+                if (ship.getStandingsToMe(this) > -2) {
+                    docks.get(a).setClient(ship);
+                    return docks.get(a);
+                }
+            }
+        }
+        return null;
+    }
+
+    @Override
+    protected void initGraphics() {
+        //get the image
+        raw_tex = io.loadImage("station/" + type + ".png");
+        //create the usable version
+        ImageIcon icon = new ImageIcon(raw_tex);
+        setHeight(icon.getIconHeight());
+        setWidth(icon.getIconWidth());
+        tex = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
+        //bring the ship to life
+        state = State.ALIVE;
+    }
+
+    @Override
+    public synchronized void render(Graphics g, double dx, double dy) {
+        theta = 0;
+        if (tex != null) {
+            //setup the buffer's graphics
+            Graphics2D f = tex.createGraphics();
+            //clear the buffer
+            f.setComposite(AlphaComposite.getInstance(AlphaComposite.CLEAR, 0.0f));
+            f.fillRect(0, 0, getWidth(), getHeight());
+            f.setComposite(AlphaComposite.Src);
+            //enable anti aliasing
+            f.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+            f.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            //draw the updated version
+            {
+                //create an affine transform
+                AffineTransform rot = new AffineTransform();
+                rot.rotate(0, getWidth() / 2, getHeight() / 2);
+                //apply transform
+                f.transform(rot);
+                f.drawImage(raw_tex, 0, 0, null);
+                //draw docking reticles
+                for (int a = 0; a < docks.size(); a++) {
+                    docks.get(a).render(f);
+                }
+            }
+            drawHealthBars(g, dx, dy);
+            //draw the buffer onto the main frame
+            g.drawImage(tex, (int) (getX() - dx), (int) (getY() - dy), null);
+        }
+    }
+
+    @Override
+    protected void drawHealthBars(Graphics g, double dx, double dy) {
+        /*//draw the bounds
+         for (int a = 0; a < getBounds().size(); a++) {
+         double bx = getBounds().get(a).x;
+         double by = getBounds().get(a).y;
+         int bw = getBounds().get(a).width;
+         int bh = getBounds().get(a).height;
+         g.setColor(Color.PINK);
+         g.drawRect((int) (bx - dx), (int) (by - dy), bw, bh);
+         }*/
+        //draw health bars
+        double hullPercent = hull / maxHull;
+        double shieldPercent = shield / maxShield;
+        g.setColor(Color.RED);
+        g.fillRect((int) (getX() + getWidth() / 4 - dx), (int) (getY() + getHeight() / 4 - dy), (int) (getWidth() / 2 * hullPercent), 2);
+        g.setColor(Color.GREEN);
+        g.fillRect((int) (getX() + getWidth() / 4 - dx), (int) (getY() + getHeight() / 4 - dy), (int) (getWidth() / 2 * shieldPercent), 2);
+    }
+
+    @Override
+    public String toString() {
+        String ret = "";
+        {
+            ret = name + ", " + faction;
+        }
+        return ret;
+    }
+
+    public ArrayList<Item> getStationSelling() {
+        return stationSelling;
+    }
+
+    public void setStationSelling(ArrayList<Item> stationSelling) {
+        this.stationSelling = stationSelling;
+    }
+
+    public ArrayList<Item> getStationBuying() {
+        return stationBuying;
+    }
+
+    public void setStationBuying(ArrayList<Item> stationBuying) {
+        this.stationBuying = stationBuying;
+    }
+
+    public ArrayList<Process> getProcesses() {
+        return processes;
+    }
+
+    public void setProcesses(ArrayList<Process> processes) {
+        this.processes = processes;
+    }
+}

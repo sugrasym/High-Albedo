@@ -1,0 +1,174 @@
+########Commodities########
+[Item]
+name=Standard Energy Unit
+type=commodity
+volume=1
+mass=0.5
+HP=100
+minPrice=5
+maxPrice=25
+group=powercell
+description=A standardized energy unit produced by a power plant and moved to a more needed location. /br/ /br/ Energy units are stored in the cargo bay as a suspended static electric field which remains confined in the region it is placed by the compartmentalization of the cargo bay.
+[/Item]
+
+[Item]
+name=Hydrocarbon
+type=commodity
+volume=8
+mass=3
+HP=100
+minPrice=2500
+maxPrice=5000
+group=ore
+description=Since the dawn of man hydrocarbons have been burned in low tech reactors to generate energy. They have a much higher energy density than solar energy, but a lower energy density than nuclear fusion. One hydrocarbon unit can easily produce several hundred energy units, however hydrocarbon supplies are harder to locate than the extremely abundant solar energy.  /br/ /br/ Many stations are capable of using hydrocarbons to generate their power, and Ageiran Customs Offices will do the conversion as well so that the resulting energy can be sold at a profit to small scale traders.
+[/Item]
+
+[Item]
+name=Scrap Metal
+type=commodity
+volume=1
+mass=4
+HP=100
+minPrice=1
+maxPrice=10
+group=ore
+description=Scrap metal is often found in wreckage and waste disposal areas. These pieces of metal can be converted into a usable form by the correct factory. 
+[/Item]
+
+[Item]
+name=Industrial Waste
+type=commodity
+volume=1
+mass=0.5
+HP=100
+minPrice=0
+maxPrice=5
+group=ore
+description=When something is burned, built, or processed there are often toxic industrial wastes produced. These wastes are often reusable with the right equipment, creating a cottage industry of moving waste to refinement plants. When in doubt, however, waste is often just ejected. /br/ /br/ Industrial waste is a rare commodity in that it is often given away for free by factories so that a trader will take it off their hands so manufacturing can continue.
+[/Item]
+
+[Item]
+name=Consumer Goods
+type=commodity
+volume=1
+mass=2
+HP=100
+minPrice=20
+maxPrice=250
+group=ore
+description=Consumer goods are household items that are relatively easy to produce. Small personal fabrication devices are ubiquitous and capable of converting a sufficient quantity of input materials into a desired good. This process is so lightweight that it often doesn't require any additional energy beyond what all stations can generate internally, making consumer goods manufacturing an attractive option for light stations such as customs offices. 
+[/Item]
+
+########Weapon Entries#######
+#Ageiran Weapons
+[Item]
+name=Talon 1
+type=turret
+volume=10
+mass=10
+HP=100
+minPrice=500
+maxPrice=750
+group=weapon
+description=Ageiran medium range particle weapon designed to be mounted on light fighters. /br/ /br/ Ageiran weapons favor a balance of range, damage output, and speed since the Ageirans are concerned with good damage projection. Their weapons are outperformed in all areas by weapons from other factions, but few are as well rounded.
+[/Item]
+
+[Item]
+name=Talon 2
+type=turret
+volume=10
+mass=12
+HP=100
+minPrice=900
+maxPrice=1250
+group=weapon
+description=Ageiran medium range particle weapon designed to be mounted on light fighters. /br/ /br/ Ageiran weapons favor a balance of range, damage output, and speed since the Ageirans are concerned with good damage projection. Their weapons are outperformed in all areas by weapons from other factions, but few are as well rounded. /br/ /br/ This weapon features small improvements to all areas of the Talon 1's design.
+[/Item]
+
+[Item]
+name=Talon 3
+type=turret
+volume=10
+mass=15
+HP=100
+minPrice=1400
+maxPrice=1725
+group=weapon
+description=Ageiran medium range particle weapon designed to be mounted on light fighters. /br/ /br/ Ageiran weapons favor a balance of range, damage output, and speed since the Ageirans are concerned with good damage projection. Their weapons are outperformed in all areas by weapons from other factions, but few are as well rounded. /br/ /br/ This weapon is the most powerful particle weapon that the Ageiran Federation offers for fighters.
+[/Item]
+
+#Archer Weapons
+
+[Item]
+name=Catapult
+type=turret
+volume=20
+mass=9
+HP=150
+minPrice=2600
+maxPrice=4525
+group=weapon
+description=A weapon of the 'Archers' pirate faction. Designed to project high damage at range, this weapon trades projectile speed for long range punishment. /br/ /br/ Designed for use on light figters, this weapon allows for significant sustained firepower at extreme ranges. However, one must be skilled in maintaining range and adjusting the trajectory of the weapon to compensate for the slowness of the projectile.
+[/Item]
+
+[Item]
+name=Arrow
+type=turret
+volume=10
+mass=8
+HP=125
+minPrice=2400
+maxPrice=4800
+group=weapon
+description=A weapon of the 'Archers' pirate faction. Designed to out-kite long range opponents, this weapon trades damage for extremely long range and a high projectile speed. /br/ /br/ The Arrow was developed when the Archers decided their raiders needed the final word in beyond visual range combat.
+[/Item]
+
+[Item]
+name=Long 9
+type=turret
+volume=30
+mass=12
+HP=200
+minPrice=6400
+maxPrice=14800
+group=weapon
+description=A weapon of the 'Archers' pirate faction. Designed for precision strikes at range, this weapon does a massive amount of damage at long range but refires very slowly. /br/ /br/ The Long 9 fulfills the Archers' need for an effective long range siege platform.
+[/Item]
+
+########Special########
+
+[Item]
+name=NOTHING
+type=NOTHING
+volume=0
+mass=0
+HP=0
+minPrice=0
+maxPrice=0
+description=Empty space.
+[/Item]
+
+[Item]
+name=Ka Ka Ka
+type=turret
+volume=1
+mass=10
+HP=100
+minPrice=500
+maxPrice=750
+group=weapon
+description=Devtest weapon
+[/Item]
+
+########Plot Commodities########
+[Item]
+name=Exotic Matter
+type=commodity
+volume=-10
+mass=-10
+HP=100
+minPrice=50000000
+maxPrice=250000000
+group=exoticmatter
+description=In the 20th and 21st centuries it was theorized that one could create matter that had a negative rest mass, essentially violating some energy conditions in relativity and creating the most powerful thing in existence. This material would behave very, very, strangely in our universe and allow for things like wormholes, warp drive, and making things levitate without using power. /br/ /br/ Negative mass has been synthesized in a laboratory, but in small quantities and at extreme expense. It has vast applications making it a highly expensive and desired commodity. No natural sources are known, and the particle synthesis process to generate it is insanely expensive for most organizations. /br/ /br/ Negative mass was used to open wormholes to random locations in the universe during the Exodus project which created our civilization. Unfortunately the Exodus experiments proved that it was possible to make traversable wormholes, but impossible to target them to a specific location meaning anyone sent through would be, in all odds, lost in space forever. /br/ /br/ This variant of exotic matter also has a negative volume, since it causes space to expand in its presence. If the negative mass manages to cancel the mass of your craft, or make it negative, you will notice some interesting behavior when you collide with something.
+[/Item]
