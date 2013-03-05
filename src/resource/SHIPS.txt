@@ -45,7 +45,43 @@ cargo=350
 hardpoint=turret,30,8,3.925/turret,30,-8,5.495/turret,30,0,0
 [/Ship]
 
-#Special
+#########The Archers########
+
+#Light Fighters
+[Ship]
+type=Bowman
+accel=50
+turning=4.1
+shield=10000
+shieldRecharge=100
+hull=1700
+fuel=30500
+mass=80
+sensor=3000
+cargo=225
+hardpoint=turret,10,8,3.925/turret,10,-8,5.495
+[/Ship]
+
+#Medium Fighters
+
+[Ship]
+type=Cavalry
+accel=40
+turning=3.7
+shield=12000
+shieldRecharge=150
+hull=2000
+fuel=40000
+mass=125
+sensor=2700
+cargo=280
+hardpoint=turret,20,8,3.925/turret,20,-8,5.495/turret,30,0,0
+[/Ship]
+
+#Heavy Fighters
+#The archers do not have a HF
+
+#########Special########
 
 [Ship]
 type=Mass Testing Brick

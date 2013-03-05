@@ -93,7 +93,7 @@ public class Main extends JFrame {
         } catch (Exception e) {
             //fallback to a windowed mode
             setUndecorated(false);
-            setSize(1024, 600);
+            setSize(1024, 768);
             System.out.println("Athena: Failed to get full screen mode, falling back to windowed.");
         }
         //store size

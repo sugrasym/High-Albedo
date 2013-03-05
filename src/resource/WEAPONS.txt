@@ -48,7 +48,7 @@ type=turret
 #shell info
 damage=120
 range=1500
-speed=300
+speed=150
 mass=6
 refire=0.55
 [/Weapon]
@@ -66,7 +66,7 @@ refire=0.35
 [/Weapon]
 
 [Weapon]
-#weapon info
+#weapon info15/turret,30,0,0
 name=Long 9
 type=turret
 #shell info

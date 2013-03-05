@@ -404,6 +404,8 @@ public class Engine {
                     } else if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
                         playerShip.setRotateMinus(true);
                     } else if (ke.getKeyCode() == KeyEvent.VK_HOME) {
+                        playerShip.setAutopilot(Ship.Autopilot.NONE);
+                        playerShip.setBehavior(Ship.Behavior.NONE);
                         allStopPressed = true;
                     } else if (ke.getKeyCode() == KeyEvent.VK_SPACE) {
                         firing = true;

@@ -833,6 +833,10 @@ public class Ship extends Celestial {
     }
 
     protected void fightTarget() {
+        /*
+         * This is not to create classic dogfighting, but what I believe to be
+         * a more realistic way to fight in zero gravity.
+         */
         if (target != null) {
             if (target.state == State.ALIVE) {
                 double distance = distanceTo(target);
