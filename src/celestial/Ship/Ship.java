@@ -66,49 +66,6 @@ public class Ship extends Celestial {
     //wallet
     protected long cash = 5000;
 
-    public boolean isThrustForward() {
-        return thrustForward;
-    }
-
-    public void setThrustForward(boolean thrustForward) {
-        this.thrustForward = thrustForward;
-    }
-
-    public boolean isThrustRear() {
-        return thrustRear;
-    }
-
-    public void setThrustRear(boolean thrustRear) {
-        this.thrustRear = thrustRear;
-    }
-
-    public boolean isRotateMinus() {
-        return rotateMinus;
-    }
-
-    public void setRotateMinus(boolean rotateMinus) {
-        this.rotateMinus = rotateMinus;
-    }
-
-    public boolean isRotatePlus() {
-        return rotatePlus;
-    }
-
-    public void setRotatePlus(boolean rotatePlus) {
-        this.rotatePlus = rotatePlus;
-    }
-
-    protected double getFireLeadX() {
-        //get the center of the enemy
-        double enemyX = (getX() + width / 2 + vx) - (target.getX() + target.getWidth() / 2 + target.getVx());
-        return enemyX;
-    }
-
-    protected double getFireLeadY() {
-        double enemyY = (getY() + height / 2 + vy) - (target.getY() + target.getHeight() / 2 + target.getVy());
-        return enemyY;
-    }
-
     public enum Behavior {
 
         NONE,
@@ -161,14 +118,14 @@ public class Ship extends Celestial {
 
     @Override
     public void init(boolean loadedGame) {
-        initGraphics();
         if (!loadedGame) {
             initStats();
         }
         state = State.ALIVE;
     }
 
-    protected void initGraphics() {
+    @Override
+    public void initGraphics() {
         //get the image
         raw_tex = io.loadImage("ship/" + type + ".png");
         //create the usable version
@@ -182,6 +139,21 @@ public class Ship extends Celestial {
                 if (mount instanceof Weapon) {
                     Weapon tmp = (Weapon) mount;
                     tmp.initGraphics();
+                }
+            }
+        }
+    }
+
+    @Override
+    public void disposeGraphics() {
+        raw_tex = null;
+        tex = null;
+        for (int a = 0; a < hardpoints.size(); a++) {
+            Equipment mount = hardpoints.get(a).getMounted();
+            if (mount != null) {
+                if (mount instanceof Weapon) {
+                    Weapon tmp = (Weapon) mount;
+                    tmp.disposeGraphics();
                 }
             }
         }
@@ -222,6 +194,8 @@ public class Ship extends Celestial {
             installLoadout();
             //faction
             installFaction();
+            //bring the ship to life
+            state = State.ALIVE;
         } else {
             System.out.println("Hades: The item " + getName() + " does not exist in SHIPS.txt");
         }
@@ -382,7 +356,7 @@ public class Ship extends Celestial {
         //create a rectangle for testing ahead of the ship
         Rectangle thrustRect = getDodgeLine().getBounds();
         //get a list of all entities in my solar system
-        ArrayList<Entity> entities = getCurrentSystem().getCelestials();
+        ArrayList<Entity> entities = getCurrentSystem().getEntities();
         //we only care about celestials extending the Ship class that are not projectiles
         for (int a = 0; a < entities.size(); a++) {
             if (entities.get(a) instanceof Ship) {
@@ -768,7 +742,7 @@ public class Ship extends Celestial {
     public synchronized void targetNearestShip() {
         target = null;
         //get a list of all nearby ships
-        ArrayList<Entity> nearby = getCurrentSystem().getCelestials();
+        ArrayList<Entity> nearby = getCurrentSystem().getEntities();
         ArrayList<Ship> ships = new ArrayList<>();
         for (int a = 0; a < nearby.size(); a++) {
             if (nearby.get(a) instanceof Ship) {
@@ -806,7 +780,7 @@ public class Ship extends Celestial {
     public synchronized void targetNearestHostile() {
         target = null;
         //get a list of all nearby hostiles
-        ArrayList<Entity> nearby = getCurrentSystem().getCelestials();
+        ArrayList<Entity> nearby = getCurrentSystem().getEntities();
         ArrayList<Ship> hostiles = new ArrayList<>();
         for (int a = 0; a < nearby.size(); a++) {
             if (nearby.get(a) instanceof Ship) {
@@ -1115,6 +1089,8 @@ public class Ship extends Celestial {
              g.drawRect((int) (tmp2.getX() - dx), (int) (tmp2.getY() - dy), (int) tmp2.getWidth(), (int) tmp2.getHeight());*/
             //draw the buffer onto the main frame
             g.drawImage(tex, (int) (getX() - dx), (int) (getY() - dy), null);
+        } else {
+            initGraphics();
         }
     }
 
@@ -1257,7 +1233,11 @@ public class Ship extends Celestial {
 
     protected void updateBound() {
         bound.clear();
-        bound.add(new Rectangle((int) getX(), (int) getY(), getWidth(), getHeight()));
+        if (width != 0 && height != 0) {
+            bound.add(new Rectangle((int) getX(), (int) getY(), getWidth(), getHeight()));
+        } else {
+            bound.add(new Rectangle((int) getX(), (int) getY(), 1, 1));
+        }
     }
 
     public boolean addToCargoBay(Item item) {
@@ -1310,7 +1290,7 @@ public class Ship extends Celestial {
             pod.setVy(getVy() + pdy);
             pod.setCurrentSystem(currentSystem);
             //deploy
-            getCurrentSystem().getCelestials().add(pod);
+            getCurrentSystem().getEntities().add(pod);
         }
     }
 
@@ -1572,5 +1552,49 @@ public class Ship extends Celestial {
 
     public void setCash(long cash) {
         this.cash = cash;
+    }
+    
+    
+    public boolean isThrustForward() {
+        return thrustForward;
+    }
+
+    public void setThrustForward(boolean thrustForward) {
+        this.thrustForward = thrustForward;
+    }
+
+    public boolean isThrustRear() {
+        return thrustRear;
+    }
+
+    public void setThrustRear(boolean thrustRear) {
+        this.thrustRear = thrustRear;
+    }
+
+    public boolean isRotateMinus() {
+        return rotateMinus;
+    }
+
+    public void setRotateMinus(boolean rotateMinus) {
+        this.rotateMinus = rotateMinus;
+    }
+
+    public boolean isRotatePlus() {
+        return rotatePlus;
+    }
+
+    public void setRotatePlus(boolean rotatePlus) {
+        this.rotatePlus = rotatePlus;
+    }
+
+    protected double getFireLeadX() {
+        //get the center of the enemy
+        double enemyX = (getX() + width / 2 + vx) - (target.getX() + target.getWidth() / 2 + target.getVx());
+        return enemyX;
+    }
+
+    protected double getFireLeadY() {
+        double enemyY = (getY() + height / 2 + vy) - (target.getY() + target.getHeight() / 2 + target.getVy());
+        return enemyY;
     }
 }

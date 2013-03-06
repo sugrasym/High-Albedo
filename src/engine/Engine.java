@@ -351,7 +351,7 @@ public class Engine {
             if (!windowIntercepted) {
                 Rectangle mRect = new Rectangle((int) dx + me.getX(), (int) dy + me.getY(), 1, 1);
                 //check to see if it intersected any ships or objects
-                ArrayList<Entity> tmpE = playerShip.getCurrentSystem().getCelestials();
+                ArrayList<Entity> tmpE = playerShip.getCurrentSystem().getEntities();
                 for (int a = 0; a < tmpE.size(); a++) {
                     if (tmpE.get(a) instanceof Ship) {
                         Ship tmp = (Ship) tmpE.get(a);
@@ -607,17 +607,17 @@ public class Engine {
                 if (playerShip != null) {
                     SolarSystem current = playerShip.getCurrentSystem();
                     if (current != null) {
-                        for (int a = 0; a < current.getCelestials().size(); a++) {
-                            if (current.getCelestials().get(a).getState() != Entity.State.DEAD) {
-                                if (current.getCelestials().get(a).collideWith(view)) {
-                                    if (current.getCelestials().get(a) == playerShip.getTarget()) {
+                        for (int a = 0; a < current.getEntities().size(); a++) {
+                            if (current.getEntities().get(a).getState() != Entity.State.DEAD) {
+                                if (current.getEntities().get(a).collideWith(view)) {
+                                    if (current.getEntities().get(a) == playerShip.getTarget()) {
                                         renderTargetMarker();
                                     } else {
-                                        if (current.getCelestials().get(a) instanceof Ship) {
-                                            renderIFFMarker((Ship) current.getCelestials().get(a));
+                                        if (current.getEntities().get(a) instanceof Ship) {
+                                            renderIFFMarker((Ship) current.getEntities().get(a));
                                         }
                                     }
-                                    current.getCelestials().get(a).render(f, dx, dy);
+                                    current.getEntities().get(a).render(f, dx, dy);
                                 }
                             }
                         }
@@ -677,7 +677,7 @@ public class Engine {
              * 2. Collissions are only tested between entities in the same solar system.
              */
             for (int a = 0; a < universe.getSystems().size(); a++) {
-                ArrayList<Entity> objects = universe.getSystems().get(a).getCelestials();
+                ArrayList<Entity> objects = universe.getSystems().get(a).getEntities();
                 for (int b = 0; b < objects.size(); b++) {
                     if ((objects.get(b) instanceof Planet == false) || (objects.get(b) instanceof Jumphole)) {
                         for (int c = 0; c < objects.size(); c++) {

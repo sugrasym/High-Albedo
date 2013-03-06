@@ -49,11 +49,6 @@ public class Projectile extends Ship {
     }
 
     @Override
-    protected void initGraphics() {
-        //do nothing
-    }
-
-    @Override
     public void informOfCollisionWith(Entity target) {
         if (target instanceof Projectile) {
         } else if (target instanceof Ship) {

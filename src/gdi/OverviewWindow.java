@@ -126,7 +126,7 @@ public class OverviewWindow extends AstralWindow {
 
         private void fillRadar(Graphics2D gfx) {
             //get entity list
-            ArrayList<Entity> entities = sensorShip.getCurrentSystem().getCelestials();
+            ArrayList<Entity> entities = sensorShip.getCurrentSystem().getEntities();
             drawVectorLines(gfx);
             for (int a = 0; a < entities.size(); a++) {
                 //get sensor strength

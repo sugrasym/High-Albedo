@@ -104,6 +104,8 @@ public class Station extends Ship {
         computeComplexRectangularBounds(relevant);
         computeDockBounds(relevant);
         computeProcesses(relevant);
+        //bring the ship to life
+        state = State.ALIVE;
     }
 
     protected void computeComplexRectangularBounds(Parser.Term relevant) throws NumberFormatException {
@@ -219,7 +221,7 @@ public class Station extends Ship {
     }
 
     @Override
-    protected void initGraphics() {
+    public void initGraphics() {
         //get the image
         raw_tex = io.loadImage("station/" + type + ".png");
         //create the usable version
@@ -227,8 +229,12 @@ public class Station extends Ship {
         setHeight(icon.getIconHeight());
         setWidth(icon.getIconWidth());
         tex = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
-        //bring the ship to life
-        state = State.ALIVE;
+    }
+    
+    @Override
+    public void disposeGraphics() {
+        raw_tex = null;
+        tex = null;
     }
 
     @Override
@@ -260,6 +266,8 @@ public class Station extends Ship {
             drawHealthBars(g, dx, dy);
             //draw the buffer onto the main frame
             g.drawImage(tex, (int) (getX() - dx), (int) (getY() - dy), null);
+        } else {
+            initGraphics();
         }
     }
 

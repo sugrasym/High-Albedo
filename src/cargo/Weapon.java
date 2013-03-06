@@ -66,6 +66,11 @@ public class Weapon extends Equipment {
         width = (icon.getIconWidth());
         tex = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
     }
+    
+    public void disposeGraphics() {
+        raw_tex = null;
+        tex = null;
+    }
 
     private void init() {
         //get weapon stuff now
@@ -112,7 +117,6 @@ public class Weapon extends Equipment {
         } else {
             System.out.println("Hades: The item " + getName() + " does not exist in WEAPONS.txt");
         }
-        initGraphics();
     }
 
     @Override

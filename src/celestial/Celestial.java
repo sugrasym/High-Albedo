@@ -60,6 +60,14 @@ public class Celestial implements Serializable, Entity {
         name = System.currentTimeMillis() + "::generic";
     }
 
+    public void initGraphics() {
+        //
+    }
+
+    public void disposeGraphics() {
+        //
+    }
+
     @Override
     public void informOfCollisionWith(Entity target) {
         throw new UnsupportedOperationException("Hades: Not supported yet.");
@@ -83,10 +91,14 @@ public class Celestial implements Serializable, Entity {
     public synchronized boolean collideWith(Rectangle target) {
         try {
             ArrayList<Rectangle> myBox = getBounds();
-            for (int a = 0; a < myBox.size(); a++) {
-                if (myBox.get(a).intersects(target)) {
-                    return true;
+            if (myBox.size() > 0) {
+                for (int a = 0; a < myBox.size(); a++) {
+                    if (myBox.get(a).intersects(target)) {
+                        return true;
+                    }
                 }
+            } else {
+                return true;
             }
             return false;
         } catch (Exception e) {
@@ -113,7 +125,7 @@ public class Celestial implements Serializable, Entity {
     public double distanceTo(Celestial celestial) {
         double cx = celestial.getX() + celestial.getWidth() / 2;
         double cy = celestial.getY() + celestial.getHeight() / 2;
-        return Math.sqrt((cx - (x+width/2)) * (cx - (x+width/2)) + (cy - (y+height/2)) * (cy - (y+height/2)));
+        return Math.sqrt((cx - (x + width / 2)) * (cx - (x + width / 2)) + (cy - (y + height / 2)) * (cy - (y + height / 2)));
     }
 
     /*

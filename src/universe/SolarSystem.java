@@ -19,6 +19,7 @@
  */
 package universe;
 
+import celestial.Celestial;
 import celestial.Jumphole;
 import celestial.Planet;
 import celestial.Ship.Ship;
@@ -43,7 +44,7 @@ public class SolarSystem implements Entity, Serializable {
     int x;
     int y;
     //what it contains
-    private ArrayList<Entity> celestials = new ArrayList<>();
+    private ArrayList<Entity> entities = new ArrayList<>();
     //what contains it
     private Universe universe;
 
@@ -68,14 +69,14 @@ public class SolarSystem implements Entity, Serializable {
         for (int a = 0; a < planets.size(); a++) {
             if (planets.get(a).getValue("system").matches(getName())) {
                 //this planet needs to be created and stored
-                getCelestials().add(makePlanet(planets.get(a)));
+                getEntities().add(makePlanet(planets.get(a)));
             }
         }
         ArrayList<Term> ships = parse.getTermsOfType("Ship");
         for (int a = 0; a < ships.size(); a++) {
             if (ships.get(a).getValue("system").matches(getName())) {
                 //this planet needs to be created and stored
-                getCelestials().add(makeShip(ships.get(a)));
+                getEntities().add(makeShip(ships.get(a)));
             }
         }
 
@@ -83,7 +84,7 @@ public class SolarSystem implements Entity, Serializable {
         for (int a = 0; a < stations.size(); a++) {
             if (stations.get(a).getValue("system").matches(getName())) {
                 //this planet needs to be created and stored
-                getCelestials().add(makeStation(stations.get(a)));
+                getEntities().add(makeStation(stations.get(a)));
             }
         }
 
@@ -91,7 +92,7 @@ public class SolarSystem implements Entity, Serializable {
         for (int a = 0; a < jumpholes.size(); a++) {
             if (jumpholes.get(a).getValue("system").matches(getName())) {
                 //this planet needs to be created and stored
-                getCelestials().add(makeJumphole(jumpholes.get(a)));
+                getEntities().add(makeJumphole(jumpholes.get(a)));
             }
         }
     }
@@ -131,10 +132,10 @@ public class SolarSystem implements Entity, Serializable {
             ret.addInitialCargo(cargo);
             //put it in the right system next to the start object
             if (near != null) {
-                for (int b = 0; b < celestials.size(); b++) {
-                    if (celestials.get(b).getName().matches(near)) {
-                        ret.setX(celestials.get(b).getX() + rnd.nextInt(1600) - 800);
-                        ret.setY(celestials.get(b).getY() + rnd.nextInt(1900) - 800);
+                for (int b = 0; b < entities.size(); b++) {
+                    if (entities.get(b).getName().matches(near)) {
+                        ret.setX(entities.get(b).getX() + rnd.nextInt(1600) - 800);
+                        ret.setY(entities.get(b).getY() + rnd.nextInt(1900) - 800);
                         break;
                     }
                 }
@@ -171,10 +172,10 @@ public class SolarSystem implements Entity, Serializable {
             ret.setFaction(faction);
             //put it in the right system next to the start object
             if (near != null) {
-                for (int b = 0; b < celestials.size(); b++) {
-                    if (celestials.get(b).getName().matches(near)) {
-                        ret.setX(celestials.get(b).getX() + rnd.nextInt(1600) - 800);
-                        ret.setY(celestials.get(b).getY() + rnd.nextInt(1600) - 800);
+                for (int b = 0; b < entities.size(); b++) {
+                    if (entities.get(b).getName().matches(near)) {
+                        ret.setX(entities.get(b).getX() + rnd.nextInt(1600) - 800);
+                        ret.setY(entities.get(b).getY() + rnd.nextInt(1600) - 800);
                         break;
                     }
                 }
@@ -215,37 +216,59 @@ public class SolarSystem implements Entity, Serializable {
         return ret;
     }
 
-    public ArrayList<Entity> getCelestials() {
-        return celestials;
+    public ArrayList<Entity> getEntities() {
+        return entities;
     }
 
-    public void setCelestials(ArrayList<Entity> celestials) {
-        this.celestials = celestials;
+    public void setEntities(ArrayList<Entity> celestials) {
+        this.entities = celestials;
     }
 
     public void putEntityInSystem(Entity entity) {
-        celestials.add(entity);
+        entities.add(entity);
     }
 
     public void pullEntityFromSystem(Entity entity) {
-        celestials.remove(entity);
+        entities.remove(entity);
     }
 
     @Override
     public void init(boolean loadedGame) {
-        for (int a = 0; a < celestials.size(); a++) {
-            celestials.get(a).init(loadedGame);
+        for (int a = 0; a < entities.size(); a++) {
+            entities.get(a).init(loadedGame);
+        }
+    }
+
+    public void initGraphics() {
+        for (int a = 0; a < entities.size(); a++) {
+            if (entities.get(a) instanceof Celestial) {
+                Celestial tmp = (Celestial) entities.get(a);
+                tmp.initGraphics();
+            }
+        }
+    }
+
+    public void disposeGraphics() {
+        for (int a = 0; a < entities.size(); a++) {
+            if (entities.get(a) instanceof Celestial) {
+                Celestial tmp = (Celestial) entities.get(a);
+                tmp.disposeGraphics();
+            }
         }
     }
 
     @Override
     public void periodicUpdate(double tpf) {
-        for (int a = 0; a < celestials.size(); a++) {
-            celestials.get(a).periodicUpdate(tpf);
-            if (celestials.get(a).getState() == Entity.State.DEAD) {
+        for (int a = 0; a < entities.size(); a++) {
+            entities.get(a).periodicUpdate(tpf);
+            if (entities.get(a).getState() == Entity.State.DEAD) {
                 //remove the entity
-                celestials.remove(a);
+                entities.remove(a);
             }
+        }
+        //cleanup graphics if the player is not present
+        if (!entities.contains(universe.playerShip)) {
+            disposeGraphics();
         }
     }
 

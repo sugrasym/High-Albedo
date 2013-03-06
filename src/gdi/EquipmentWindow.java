@@ -68,7 +68,7 @@ public class EquipmentWindow extends AstralWindow {
         for (int a = 0; a < ship.getHardpoints().size(); a++) {
             weaponList.addToList(ship.getHardpoints().get(a));
         }
-        ArrayList<Entity> celestials = ship.getCurrentSystem().getCelestials();
+        ArrayList<Entity> celestials = ship.getCurrentSystem().getEntities();
         for (int a = 0; a < celestials.size(); a++) {
             if (celestials.get(a) instanceof Ship) {
                 if (!(celestials.get(a) instanceof Projectile)) {

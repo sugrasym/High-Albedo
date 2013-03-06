@@ -88,10 +88,10 @@ public class Universe implements Serializable {
             for (int a = 0; a < systems.size(); a++) {
                 if (systems.get(a).getName().matches(system)) {
                     systems.get(a).putEntityInSystem(player);
-                    for (int b = 0; b < systems.get(a).getCelestials().size(); b++) {
-                        if (systems.get(a).getCelestials().get(b).getName().matches(near)) {
-                            player.setX(systems.get(a).getCelestials().get(b).getX());
-                            player.setY(systems.get(a).getCelestials().get(b).getY());
+                    for (int b = 0; b < systems.get(a).getEntities().size(); b++) {
+                        if (systems.get(a).getEntities().get(b).getName().matches(near)) {
+                            player.setX(systems.get(a).getEntities().get(b).getX());
+                            player.setY(systems.get(a).getEntities().get(b).getY());
                             break;
                         }
                     }

@@ -45,10 +45,17 @@ public class Planet extends Celestial {
     @Override
     public void init(boolean loadedGame) {
         state = State.ALIVE;
+    }
+
+    public void initGraphics() {
         /*
          * Load the image for this planet and scale it
          */
         tex = io.loadImage("planet/" + texture);
+    }
+
+    public void disposeGraphics() {
+        tex = null;
     }
 
     @Override
@@ -65,8 +72,12 @@ public class Planet extends Celestial {
 
     @Override
     public synchronized void render(Graphics f, double dx, double dy) {
-        Graphics2D s = (Graphics2D) (f);
-        s.drawImage(tex, (int) (getX() - dx), (int) (getY() - dy), getDiameter(), getDiameter(), null);
+        if (tex != null) {
+            Graphics2D s = (Graphics2D) (f);
+            s.drawImage(tex, (int) (getX() - dx), (int) (getY() - dy), getDiameter(), getDiameter(), null);
+        } else {
+            initGraphics();
+        }
     }
 
     public int getDiameter() {
