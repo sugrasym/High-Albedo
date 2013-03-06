@@ -12,7 +12,7 @@ fuel=26500
 mass=100
 sensor=2500
 cargo=250
-hardpoint=turret,10,8,3.925/turret,10,-8,5.495
+hardpoint=cannon,10,8,3.925/cannon,10,-8,5.495
 [/Ship]
 
 #Medium Fighters
@@ -27,7 +27,7 @@ fuel=29210
 mass=150
 sensor=2450
 cargo=300
-hardpoint=turret,20,8,3.925/turret,20,-8,5.495
+hardpoint=cannon,20,8,3.925/cannon,20,-8,5.495
 [/Ship]
 
 #Heavy Fighters
@@ -42,7 +42,7 @@ fuel=32600
 mass=200
 sensor=2425
 cargo=350
-hardpoint=turret,30,8,3.925/turret,30,-8,5.495/turret,30,0,0
+hardpoint=cannon,30,8,3.925/cannon,30,-8,5.495/cannon,30,0,0
 [/Ship]
 
 #########The Archers########
@@ -59,7 +59,7 @@ fuel=30500
 mass=80
 sensor=3000
 cargo=225
-hardpoint=turret,10,8,3.925/turret,10,-8,5.495
+hardpoint=cannon,10,8,3.925/cannon,10,-8,5.495
 [/Ship]
 
 #Medium Fighters
@@ -75,7 +75,7 @@ fuel=40000
 mass=125
 sensor=2700
 cargo=280
-hardpoint=turret,20,8,3.925/turret,20,-8,5.495/turret,30,0,0
+hardpoint=cannon,20,8,3.925/cannon,20,-8,5.495/cannon,30,0,0
 [/Ship]
 
 #Heavy Fighters
@@ -95,7 +95,7 @@ fuel=21000
 mass=120
 sensor=2850
 cargo=255
-hardpoint=turret,15,12,3.925/turret,15,-12,5.495
+hardpoint=missile,15,12,3.925/missile,15,-12,5.495/cannon,15,0,0
 [/Ship]
 
 #Medium Fighters
@@ -111,7 +111,7 @@ fuel=25600
 mass=200
 sensor=3203
 cargo=282
-hardpoint=turret,24,12,3.925/turret,24,-12,5.495
+hardpoint=missile,24,12,3.925/missile,24,-12,5.495/cannon,15,0,0
 [/Ship]
 
 #Heavy Fighters
@@ -127,7 +127,7 @@ fuel=31550
 mass=300
 sensor=3510
 cargo=310
-hardpoint=turret,24,12,3.925/turret,24,-12,5.495/turret,28,6,3.925/turret,28,-6,5.495
+hardpoint=missile,24,12,3.925/missile,24,-12,5.495/cannon,28,6,3.925/cannon,28,-6,5.495
 [/Ship]
 
 

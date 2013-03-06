@@ -86,7 +86,7 @@ public class SolarSystem implements Entity, Serializable {
                 getCelestials().add(makeStation(stations.get(a)));
             }
         }
-        
+
         ArrayList<Term> jumpholes = parse.getTermsOfType("Jumphole");
         for (int a = 0; a < jumpholes.size(); a++) {
             if (jumpholes.get(a).getValue("system").matches(getName())) {
@@ -122,10 +122,13 @@ public class SolarSystem implements Entity, Serializable {
             String name = shipTerm.getValue("name");
             String loadout = shipTerm.getValue("install");
             String faction = shipTerm.getValue("faction");
+            String cargo = shipTerm.getValue("cargo");
             //create player
             ret = new Ship(name, ship);
             ret.setLoadout(loadout);
             ret.setFaction(faction);
+            ret.init(false);
+            ret.addInitialCargo(cargo);
             //put it in the right system next to the start object
             if (near != null) {
                 for (int b = 0; b < celestials.size(); b++) {
@@ -194,7 +197,7 @@ public class SolarSystem implements Entity, Serializable {
         }
         return ret;
     }
-    
+
     private Jumphole makeJumphole(Term planetTerm) {
         Jumphole ret = null;
         {

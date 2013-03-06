@@ -29,12 +29,15 @@ import java.awt.image.BufferedImage;
  * @author Nathan Wiehoff
  */
 public class Projectile extends Ship {
+    //basic weapon info
 
     protected double maxRange;
     protected double damage;
     protected Ship owner;
     protected double speed;
     private double traveled = 0;
+    //info for guided weapons
+    protected boolean guided = false;
 
     public Projectile(Ship owner, String name, String type, Image raw_tex, BufferedImage tex, int width, int height) {
         super(name, type);
@@ -53,11 +56,17 @@ public class Projectile extends Ship {
     @Override
     public void informOfCollisionWith(Entity target) {
         if (target instanceof Projectile) {
-        } else 
-            if (target instanceof Ship) {
-            Ship tmp = (Ship) target;
-            if (tmp != owner) {
-                state = State.DEAD;
+        } else if (target instanceof Ship) {
+            if (!guided) {
+                Ship tmp = (Ship) target;
+                if (tmp != owner) {
+                    state = State.DEAD;
+                }
+            } else {
+                Ship tmp = (Ship) target;
+                if (tmp == this.target) {
+                    state = State.DEAD;
+                }
             }
         } else {
             state = State.DEAD;
@@ -67,16 +76,52 @@ public class Projectile extends Ship {
     @Override
     public void alive() {
         super.alive();
+        if (guided) {
+            seek();
+        }
         //update range
-        traveled += speed * tpf;
+        if (!guided) {
+            traveled += speed * tpf;
+        } else {
+            traveled += accel * tpf;
+        }
         if (traveled > maxRange) {
             state = State.DEAD;
         }
     }
+
+    protected void seek() {
+        behavior = Behavior.NONE;
+        autopilot = Autopilot.NONE;
+        /*
+         * Go after the owner's current target.
+         */
+        target = owner.getTarget();
+        fightTarget();
+    }
+
+    public double getNearWeaponRange() {
+        /*
+         * Returns the range of the closest range onlined weapon.
+         */
+        return -1;
+    }
     
     @Override
+    protected double getFireLeadX() {
+        //get the center of the enemy
+        double enemyX = (getX()) - (target.getX());
+        return enemyX;
+    }
+
+    @Override
+    protected double getFireLeadY() {
+        double enemyY = (getY()) - (target.getY());
+        return enemyY;
+    }
+
+    @Override
     protected void behaviorTest() {
-        
     }
 
     @Override
@@ -119,5 +164,13 @@ public class Projectile extends Ship {
 
     public void setSpeed(double speed) {
         this.speed = speed;
+    }
+
+    public boolean isGuided() {
+        return guided;
+    }
+
+    public void setGuided(boolean guided) {
+        this.guided = guided;
     }
 }

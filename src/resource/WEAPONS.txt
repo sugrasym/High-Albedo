@@ -4,7 +4,7 @@
 [Weapon]
 #weapon info
 name=Talon 1
-type=turret
+type=cannon
 #shell info
 damage=105
 range=350
@@ -16,7 +16,7 @@ refire=0.35
 [Weapon]
 #weapon info
 name=Talon 2
-type=turret
+type=cannon
 #shell info
 damage=110
 range=375
@@ -28,7 +28,7 @@ refire=0.35
 [Weapon]
 #weapon info
 name=Talon 3
-type=turret
+type=cannon
 #shell info
 damage=120
 range=402
@@ -41,8 +41,26 @@ refire=0.34
 
 [Weapon]
 #weapon info
+name=Python Launcher
+type=missile
+#shell info
+damage=2500
+range=500
+speed=5
+mass=4
+refire=5
+#make it a seeker
+guided=true
+#it uses ammo
+ammo=Python Missile
+accel=175
+turning=3
+[/Weapon]
+
+[Weapon]
+#weapon info
 name=Venom Alpha
-type=turret
+type=cannon
 #shell info
 damage=100
 range=355
@@ -54,7 +72,7 @@ refire=0.33
 [Weapon]
 #weapon info
 name=Venom Beta
-type=turret
+type=cannon
 #shell info
 damage=105
 range=385
@@ -66,7 +84,7 @@ refire=0.32
 [Weapon]
 #weapon info
 name=Bask
-type=turret
+type=cannon
 #shell info
 damage=14
 range=350
@@ -78,7 +96,7 @@ refire=0.04
 [Weapon]
 #weapon info
 name=Frill
-type=turret
+type=cannon
 #shell info
 damage=6500
 range=350
@@ -95,7 +113,7 @@ refire=25
 [Weapon]
 #weapon info
 name=Catapult
-type=turret
+type=cannon
 #shell info
 damage=120
 range=1500
@@ -107,7 +125,7 @@ refire=0.55
 [Weapon]
 #weapon info
 name=Arrow
-type=turret
+type=cannon
 #shell info
 damage=35
 range=2000
@@ -119,7 +137,7 @@ refire=0.35
 [Weapon]
 #weapon info
 name=Long 9
-type=turret
+type=cannon
 #shell info
 damage=1400
 range=1300
@@ -132,7 +150,7 @@ refire=4.8
 [Weapon]
 #weapon info
 name=Ka Ka Ka
-type=turret
+type=cannon
 #shell info
 damage=35
 range=1500

@@ -193,7 +193,18 @@ public class CargoWindow extends AstralWindow {
             }
             optionList.addToList(" ");
         } else {
-            if (selected.getType().matches(Item.TYPE_TURRET)) {
+            /*
+             * Options for cannons
+             */
+            if (selected.getType().matches(Item.TYPE_CANNON)) {
+                optionList.addToList("--Setup--");
+                optionList.addToList(CMD_ASSEMBLE);
+                optionList.addToList(" ");
+            }
+            /*
+             * Options for missiles
+             */
+            if (selected.getType().matches(Item.TYPE_MISSILE)) {
                 optionList.addToList("--Setup--");
                 optionList.addToList(CMD_ASSEMBLE);
                 optionList.addToList(" ");

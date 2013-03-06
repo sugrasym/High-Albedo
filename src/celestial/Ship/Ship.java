@@ -98,6 +98,17 @@ public class Ship extends Celestial {
         this.rotatePlus = rotatePlus;
     }
 
+    protected double getFireLeadX() {
+        //get the center of the enemy
+        double enemyX = (getX() + width / 2 + vx) - (target.getX() + target.getWidth() / 2 + target.getVx());
+        return enemyX;
+    }
+
+    protected double getFireLeadY() {
+        double enemyY = (getY() + height / 2 + vy) - (target.getY() + target.getHeight() / 2 + target.getVy());
+        return enemyY;
+    }
+
     public enum Behavior {
 
         NONE,
@@ -882,17 +893,18 @@ public class Ship extends Celestial {
                     }
 
                 }
-                //get the center of the enemy
-                double enemyX = (getX() + width / 2 + vx) - (target.getX() + target.getWidth() / 2 + target.getVx());
-                double enemyY = (getY() + height / 2 + vy) - (target.getY() + target.getHeight() / 2 + target.getVy());
+                double enemyX = getFireLeadX();
+                double enemyY = getFireLeadY();
+                /*double enemyX = (getX()) - (target.getX());
+                 double enemyY = (getY()) - (target.getY());*/
                 double desired = Math.atan2(enemyY, enemyX);
                 desired = (desired + 2.0 * Math.PI) % (2.0 * Math.PI);
                 //rotate to face the enemy
                 if (Math.abs(theta - desired) > turning * tpf) {
                     if (distance > width && distance > height) {
-                        if (theta - desired > 0) {
+                        if (theta - desired > -0.05) {
                             rotateMinus();
-                        } else if (theta - desired < 0) {
+                        } else if (theta - desired < 0.05) {
                             rotatePlus();
                         }
                     }
@@ -1052,7 +1064,11 @@ public class Ship extends Celestial {
                 //is it owned by me? if not apply damage
                 Projectile tmp = (Projectile) target;
                 if (tmp.getOwner() != this) {
-                    dealDamage(tmp.getDamage());
+                    if (!tmp.isGuided()) {
+                        dealDamage(tmp.getDamage());
+                    } else if (tmp.getTarget() == this) {
+                        dealDamage(tmp.getDamage());
+                    }
                 }
             }
         }
@@ -1281,7 +1297,6 @@ public class Ship extends Celestial {
             pod.setX(x - width);
             pod.setY(y - height);
             //store position
-            Random rnd = new Random();
             double dT = rnd.nextInt() % (Math.PI * 2.0);
             double dx = width * 2 * Math.cos(dT);
             double dy = height * 2 * Math.sin(dT);
@@ -1326,6 +1341,15 @@ public class Ship extends Celestial {
         return cmass;
     }
 
+    public void addInitialCargo(String cargo) {
+        if (cargo != null) {
+            String[] stuff = cargo.split("/");
+            for (int a = 0; a < stuff.length; a++) {
+                addToCargoBay(new Item(stuff[a]));
+            }
+        }
+    }
+
     public boolean hasInCargo(Item item) {
         return cargoBay.contains(item);
     }
@@ -1361,7 +1385,10 @@ public class Ship extends Celestial {
             String[] arr = loadout.split("/");
             for (int a = 0; a < arr.length; a++) {
                 Item test = new Item(arr[a]);
-                if (test.getType().matches("turret")) {
+                /*
+                 * Cannons and launchers are both in the weapon class
+                 */
+                if (test.getType().matches("cannon") || test.getType().matches("missile")) {
                     Weapon wep = new Weapon(arr[a]);
                     fit(wep);
                 }
@@ -1381,9 +1408,11 @@ public class Ship extends Celestial {
             if (equipment.getQuantity() == 1) {
                 if (hardpoints.get(a).isEmpty()) {
                     if (hardpoints.get(a).getSize() >= equipment.getVolume()) {
-                        hardpoints.get(a).mount(equipment);
-                        cargoBay.remove(equipment);
-                        break;
+                        if (hardpoints.get(a).getType().matches(equipment.getType())) {
+                            hardpoints.get(a).mount(equipment);
+                            cargoBay.remove(equipment);
+                            break;
+                        }
                     }
                 }
             }
@@ -1510,7 +1539,7 @@ public class Ship extends Celestial {
         return ret;
     }
 
-    private synchronized double magnitude(double dx, double dy) {
+    public synchronized double magnitude(double dx, double dy) {
         return Math.sqrt((dx * dx) + (dy * dy));
     }
 

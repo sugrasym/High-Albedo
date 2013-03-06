@@ -14,7 +14,7 @@
  */
 
 /*
- * Now for some meat. This class represents a turret.
+ * Now for some meat. This class represents a cannon.
  */
 package cargo;
 
@@ -41,6 +41,11 @@ public class Weapon extends Equipment {
     //weapon properties
     protected double damage;
     protected double speed;
+    protected boolean guided;
+    protected Item ammoType;
+    //guided weapons
+    double accel;
+    double turning;
 
     public Weapon(String name) {
         super(name);
@@ -48,8 +53,13 @@ public class Weapon extends Equipment {
     }
 
     public void initGraphics() {
-        //get the image
-        raw_tex = new AstralIO().loadImage("projectile/" + getName() + ".png");
+        if (ammoType == null) {
+            //the projectile name is the image
+            raw_tex = new AstralIO().loadImage("projectile/" + getName() + ".png");
+        } else {
+            //the ammo type is the image
+            raw_tex = new AstralIO().loadImage("projectile/" + ammoType.getName() + ".png");
+        }
         //create the usable version
         ImageIcon icon = new ImageIcon(raw_tex);
         height = (icon.getIconHeight());
@@ -79,6 +89,26 @@ public class Weapon extends Equipment {
             setRange(Double.parseDouble(relevant.getValue("range")));
             setSpeed(Double.parseDouble(relevant.getValue("speed")));
             setCoolDown(Double.parseDouble(relevant.getValue("refire")));
+            //guided?
+            {
+                String test = relevant.getValue("guided");
+                if (test != null) {
+                    guided = Boolean.parseBoolean(test);
+                }
+                if (guided) {
+                    //retrieve all the stats
+                    accel = Double.parseDouble(relevant.getValue("accel"));
+                    turning = Double.parseDouble(relevant.getValue("turning"));
+                }
+            }
+            //ammo?
+            {
+                String test = relevant.getValue("ammo");
+                if (test != null) {
+                    //get the item
+                    ammoType = new Item(test);
+                }
+            }
         } else {
             System.out.println("Hades: The item " + getName() + " does not exist in WEAPONS.txt");
         }
@@ -95,34 +125,78 @@ public class Weapon extends Equipment {
 
     private void fire() {
         if (enabled) {
-            double theta = host.getTheta();
-            //create projectile
-            Projectile pro = new Projectile(host, getName(), getName(), raw_tex, tex, width, height);
-            pro.init(false);
-            //calculate relative position from hardpoint
-            double hT = getSocket().getT();
-            double hR = getSocket().getR();
-            double dx = Math.cos(hT + (theta) - Math.PI) * hR;
-            double dy = Math.sin(hT + (theta - Math.PI)) * hR;
-            //store position
-            pro.setX((host.getX() + host.getWidth() / 2) - pro.getWidth() / 2 + dx);
-            pro.setY((host.getY() + host.getHeight() / 2) - pro.getHeight() / 2 + dy);
-            //calculate speed
-            double pdx = speed * Math.cos(theta - Math.PI);
-            double pdy = speed * Math.sin(theta - Math.PI);
-            //add to host vector
-            pro.setVx(host.getVx() + pdx);
-            pro.setVy(host.getVy() + pdy);
-            //store angle
-            pro.setTheta(host.getTheta());
-            //store physics
-            pro.setDamage(damage);
-            pro.setMaxRange(getRange());
-            pro.setMass(getMass());
-            pro.setSpeed(speed);
-            //add to universe
-            pro.setCurrentSystem(host.getCurrentSystem());
-            host.getCurrentSystem().putEntityInSystem(pro);
+            if (hasAmmo()) {
+                double theta = host.getTheta();
+                //use any ammo
+                useAmmo();
+                //create projectile
+                Projectile pro = new Projectile(host, getName(), getName(), raw_tex, tex, width, height);
+                pro.init(false);
+                //calculate relative position from hardpoint
+                double hT = getSocket().getT();
+                double hR = getSocket().getR();
+                double dx = Math.cos(hT + (theta) - Math.PI) * hR;
+                double dy = Math.sin(hT + (theta - Math.PI)) * hR;
+                //store position
+                pro.setX((host.getX() + host.getWidth() / 2) - pro.getWidth() / 2 + dx);
+                pro.setY((host.getY() + host.getHeight() / 2) - pro.getHeight() / 2 + dy);
+                //calculate speed
+                double pdx = speed * Math.cos(theta - Math.PI);
+                double pdy = speed * Math.sin(theta - Math.PI);
+                //add to host vector
+                pro.setVx(host.getVx() + pdx);
+                pro.setVy(host.getVy() + pdy);
+                //store angle
+                pro.setTheta(host.getTheta());
+                //store physics
+                pro.setDamage(damage);
+                pro.setMaxRange(getRange());
+                pro.setMass(getMass());
+                pro.setSpeed(speed);
+                //store AI
+                pro.setGuided(guided);
+                if (guided) {
+                    pro.setFuel(Double.MAX_VALUE);
+                    pro.setMaxFuel(Double.MAX_VALUE);
+                    //store stats
+                    pro.setSensor(range);
+                    pro.setAccel(accel);
+                    pro.setTurning(turning);
+                }
+                //add to universe
+                pro.setCurrentSystem(host.getCurrentSystem());
+                host.getCurrentSystem().putEntityInSystem(pro);
+            }
+        }
+    }
+
+    public void useAmmo() {
+        if (ammoType != null) {
+            ArrayList<Item> cargo = host.getCargoBay();
+            for(int a = 0; a < cargo.size(); a++) {
+                Item tmp = cargo.get(a);
+                if(tmp.getName().matches(ammoType.getName())) {
+                    if(tmp.getGroup().matches(ammoType.getGroup())) {
+                        if(tmp.getType().matches(ammoType.getType())) {
+                            cargo.remove(tmp);
+                            tmp.setQuantity(0);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public boolean hasAmmo() {
+        if (ammoType != null) {
+            if (host.getNumInCargoBay(ammoType) > 0) {
+                //and return true;
+                return true;
+            }
+            return false;
+        } else {
+            return true;
         }
     }
 
@@ -141,4 +215,16 @@ public class Weapon extends Equipment {
     public void setSpeed(double speed) {
         this.speed = speed;
     }
+    
+    public String toString() {
+        String ret = "";
+        if(ammoType == null) {
+            ret = super.toString();
+        } else {
+            ret = super.toString();
+            ret += " <"+host.getNumInCargoBay(ammoType)+">";
+        }
+        return ret;
+    }
+    
 }

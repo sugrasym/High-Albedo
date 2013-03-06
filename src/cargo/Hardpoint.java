@@ -28,7 +28,7 @@ import java.io.Serializable;
  */
 public class Hardpoint implements Serializable {
 
-    String type;
+    protected String type;
     protected int size;
     protected Equipment mounted;
     Equipment empty = new Equipment("NOTHING");
@@ -53,8 +53,10 @@ public class Hardpoint implements Serializable {
 
     public final void mount(Equipment equipment) {
         if (equipment.getVolume() <= getSize()) {
-            setMounted(equipment);
-            getMounted().mount(host, this);
+            if (equipment.getType().matches(type) || equipment == empty) {
+                setMounted(equipment);
+                getMounted().mount(host, this);
+            }
         }
     }
 
@@ -109,7 +111,6 @@ public class Hardpoint implements Serializable {
     }
 
     private void setMounted(Equipment mounted) {
-        //THIS DAMN METHOD HAD BETTER FUCKING STAY PRIVATE
         this.mounted = mounted;
     }
 
@@ -127,5 +128,13 @@ public class Hardpoint implements Serializable {
         } else {
             return true;
         }
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

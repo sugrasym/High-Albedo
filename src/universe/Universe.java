@@ -82,7 +82,7 @@ public class Universe implements Serializable {
             player.setLoadout(loadout);
             player.setFaction(faction);
             player.init(false);
-            addInitialCargo(player, cargo);
+            player.addInitialCargo(cargo);
             player.setCash(Long.parseLong(cash));
             //put it in the right system next to the start object
             for (int a = 0; a < systems.size(); a++) {
@@ -101,13 +101,6 @@ public class Universe implements Serializable {
             }
             //store reference to player for quick access
             playerShip = player;
-        }
-    }
-    
-    private void addInitialCargo(Ship player, String cargo) {
-        String[] stuff = cargo.split("/");
-        for (int a = 0; a < stuff.length; a++) {
-            player.addToCargoBay(new Item(stuff[a]));
         }
     }
     

@@ -4,8 +4,8 @@ ship=Komodo
 system=Mal Canse
 near=Tetrel
 cash=8500
-install=Bask/Bask/Frill/Frill
-cargo=Long 9/Standard Energy Unit/Hydrocarbon/Hydrocarbon/Hydrocarbon/Hydrocarbon/Hydrocarbon/Hydrocarbon/Hydrocarbon/Hydrocarbon/Hydrocarbon/Hydrocarbon/Hydrocarbon/Hydrocarbon/Hydrocarbon/Hydrocarbon/Hydrocarbon/Hydrocarbon/Hydrocarbon/Hydrocarbon/Hydrocarbon/Scrap Metal/Scrap Metal/Scrap Metal/Consumer Goods
+install=Bask/Bask/Python Launcher/Python Launcher
+cargo=Python Launcher/Standard Energy Unit/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Scrap Metal/Scrap Metal/Scrap Metal/Consumer Goods
 faction=Player
 [/NewGame]
 
@@ -95,7 +95,8 @@ name=Probe Craft
 system=Mal Canse
 near=Tetrel
 faction=The Archers
-install=Venom Alpha/Venom Alpha
+install=Venom Alpha/Venom Alpha/Python Launcher
+cargo=Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile
 [/Ship]
 
 ########
@@ -115,7 +116,8 @@ name=Probe Craft
 system=Mal Canse
 near=Tetrel
 faction=The Archers
-install=Venom Alpha/Venom Alpha
+install=Venom Alpha/Venom Alpha/Python Launcher
+cargo=Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile
 [/Ship]
 
 [Ship]
@@ -133,7 +135,8 @@ name=Probe Craft
 system=Mal Canse
 near=Tetrel
 faction=The Archers
-install=Venom Alpha/Venom Alpha
+install=Venom Alpha/Venom Alpha/Python Launcher
+cargo=Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile
 [/Ship]
 
 [Ship]
@@ -151,7 +154,8 @@ name=Probe Craft
 system=Mal Canse
 near=Tetrel
 faction=The Archers
-install=Venom Alpha/Venom Alpha
+install=Venom Alpha/Venom Alpha/Python Launcher
+cargo=Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile
 [/Ship]
 
 [Ship]
@@ -169,7 +173,8 @@ name=Probe Craft
 system=Mal Canse
 near=Tetrel
 faction=The Archers
-install=Venom Alpha/Venom Alpha
+install=Venom Alpha/Venom Alpha/Python Launcher
+cargo=Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile
 [/Ship]
 
 [Ship]
@@ -187,7 +192,103 @@ name=Probe Craft
 system=Mal Canse
 near=Tetrel
 faction=The Archers
-install=Venom Alpha/Venom Alpha
+install=Venom Alpha/Venom Alpha/Python Launcher
+cargo=Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile
+[/Ship]
+
+[Ship]
+ship=Sparrow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=Ageiran Federation
+install=Talon 1/Talon 1
+[/Ship]
+
+[Ship]
+ship=Gecko
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=The Archers
+install=Venom Alpha/Venom Alpha/Python Launcher
+cargo=Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile
+[/Ship]
+
+[Ship]
+ship=Sparrow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=Ageiran Federation
+install=Talon 1/Talon 1
+[/Ship]
+
+[Ship]
+ship=Gecko
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=The Archers
+install=Venom Alpha/Venom Alpha/Python Launcher
+cargo=Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile
+[/Ship]
+
+[Ship]
+ship=Sparrow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=Ageiran Federation
+install=Talon 1/Talon 1
+[/Ship]
+
+[Ship]
+ship=Gecko
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=The Archers
+install=Venom Alpha/Venom Alpha/Python Launcher
+cargo=Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile
+[/Ship]
+
+[Ship]
+ship=Sparrow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=Ageiran Federation
+install=Talon 1/Talon 1
+[/Ship]
+
+[Ship]
+ship=Gecko
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=The Archers
+install=Venom Alpha/Venom Alpha/Python Launcher
+cargo=Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile
+[/Ship]
+
+[Ship]
+ship=Sparrow
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=Ageiran Federation
+install=Talon 1/Talon 1
+[/Ship]
+
+[Ship]
+ship=Gecko
+name=Probe Craft
+system=Mal Canse
+near=Tetrel
+faction=The Archers
+install=Venom Alpha/Venom Alpha/Python Launcher
+cargo=Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile/Python Missile
 [/Ship]
 
 

@@ -63,7 +63,7 @@ description=Consumer goods are household items that are relatively easy to produ
 #Ageiran Weapons
 [Item]
 name=Talon 1
-type=turret
+type=cannon
 volume=10
 mass=10
 HP=100
@@ -75,7 +75,7 @@ description=Ageiran medium range particle weapon designed to be mounted on light
 
 [Item]
 name=Talon 2
-type=turret
+type=cannon
 volume=10
 mass=12
 HP=100
@@ -87,7 +87,7 @@ description=Ageiran medium range particle weapon designed to be mounted on light
 
 [Item]
 name=Talon 3
-type=turret
+type=cannon
 volume=10
 mass=15
 HP=100
@@ -100,8 +100,20 @@ description=Ageiran medium range particle weapon designed to be mounted on light
 #Caina Weapons
 
 [Item]
+name=Python Launcher
+type=missile
+volume=13
+mass=8
+HP=85
+minPrice=850
+maxPrice=1050
+group=weapon
+description=Cainan missile technology delivers great reliability at medium range. /br/ /br/ The Python missile is a balanced, multirole, missile intended for Cainan light fighters.
+[/Item]
+
+[Item]
 name=Venom Alpha
-type=turret
+type=cannon
 volume=13
 mass=8
 HP=85
@@ -113,7 +125,7 @@ description=Advances in Cainan weapon technology were primarily in the field of 
 
 [Item]
 name=Venom Beta
-type=turret
+type=cannon
 volume=19
 mass=10
 HP=104
@@ -125,7 +137,7 @@ description=Advances in Cainan weapon technology were primarily in the field of 
 
 [Item]
 name=Bask
-type=turret
+type=cannon
 volume=22
 mass=18
 HP=200
@@ -137,7 +149,7 @@ description=Advances in Cainan weapon technology were primarily in the field of 
 
 [Item]
 name=Frill
-type=turret
+type=cannon
 volume=23
 mass=21
 HP=210
@@ -151,7 +163,7 @@ description=Advances in Cainan weapon technology were primarily in the field of 
 
 [Item]
 name=Catapult
-type=turret
+type=cannon
 volume=20
 mass=9
 HP=150
@@ -163,7 +175,7 @@ description=A weapon of the 'Archers' pirate faction. Designed to project high d
 
 [Item]
 name=Arrow
-type=turret
+type=cannon
 volume=10
 mass=8
 HP=125
@@ -175,7 +187,7 @@ description=A weapon of the 'Archers' pirate faction. Designed to out-kite long 
 
 [Item]
 name=Long 9
-type=turret
+type=cannon
 volume=30
 mass=12
 HP=200
@@ -183,6 +195,20 @@ minPrice=6400
 maxPrice=14800
 group=weapon
 description=A weapon of the 'Archers' pirate faction. Designed for precision strikes at range, this weapon does a massive amount of damage at long range but refires very slowly. /br/ /br/ The Long 9 fulfills the Archers' need for an effective long range siege platform.
+[/Item]
+
+########Ammo###########
+
+[Item]
+name=Python Missile
+type=commodity
+volume=15
+mass=5
+HP=100
+minPrice=5
+maxPrice=25
+group=ammo
+description=A standardized energy unit produced by a power plant and moved to a more needed location. /br/ /br/ Energy units are stored in the cargo bay as a suspended static electric field which remains confined in the region it is placed by the compartmentalization of the cargo bay.
 [/Item]
 
 ########Special########
@@ -200,7 +226,7 @@ description=Empty space.
 
 [Item]
 name=Ka Ka Ka
-type=turret
+type=cannon
 volume=1
 mass=10
 HP=100

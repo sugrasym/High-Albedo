@@ -26,7 +26,8 @@ import lib.Parser.Term;
 
 public class Item implements Serializable {
     //parameters
-    public static final String TYPE_TURRET = "turret";
+    public static final String TYPE_CANNON = "cannon";
+    public static final String TYPE_MISSILE = "missile";
     public static final String TYPE_COMMODITY = "commodity";
 
     private int volume;
