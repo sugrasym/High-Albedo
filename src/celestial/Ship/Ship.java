@@ -157,7 +157,6 @@ public class Ship extends Celestial {
     public Ship(String name, String type) {
         setName(name);
         setType(type);
-        behavior = Behavior.PATROL;
     }
 
     @Override

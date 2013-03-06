@@ -178,8 +178,11 @@ public class Weapon extends Equipment {
                 if(tmp.getName().matches(ammoType.getName())) {
                     if(tmp.getGroup().matches(ammoType.getGroup())) {
                         if(tmp.getType().matches(ammoType.getType())) {
-                            cargo.remove(tmp);
-                            tmp.setQuantity(0);
+                            if(tmp.getQuantity() > 1) {
+                                tmp.setQuantity(tmp.getQuantity()-1);
+                            } else {
+                                cargo.remove(tmp);
+                            }
                             break;
                         }
                     }
