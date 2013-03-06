@@ -37,6 +37,57 @@ mass=11
 refire=0.34
 [/Weapon]
 
+########Caina Weapons########
+
+[Weapon]
+#weapon info
+name=Venom Alpha
+type=turret
+#shell info
+damage=100
+range=355
+speed=405
+mass=4
+refire=0.33
+[/Weapon]
+
+[Weapon]
+#weapon info
+name=Venom Beta
+type=turret
+#shell info
+damage=105
+range=385
+speed=432
+mass=6
+refire=0.32
+[/Weapon]
+
+[Weapon]
+#weapon info
+name=Bask
+type=turret
+#shell info
+damage=14
+range=350
+speed=600
+mass=11
+refire=0.04
+[/Weapon]
+
+[Weapon]
+#weapon info
+name=Frill
+type=turret
+#shell info
+damage=6500
+range=350
+speed=150
+mass=8
+refire=25
+[/Weapon]
+
+
 ########Archer Weapons########
 
 #Archer weapons are pirate weapons focused on fighting at range but with many styles.
@@ -66,7 +117,7 @@ refire=0.35
 [/Weapon]
 
 [Weapon]
-#weapon info15/turret,30,0,0
+#weapon info
 name=Long 9
 type=turret
 #shell info

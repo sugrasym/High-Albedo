@@ -97,6 +97,56 @@ group=weapon
 description=Ageiran medium range particle weapon designed to be mounted on light fighters. /br/ /br/ Ageiran weapons favor a balance of range, damage output, and speed since the Ageirans are concerned with good damage projection. Their weapons are outperformed in all areas by weapons from other factions, but few are as well rounded. /br/ /br/ This weapon is the most powerful particle weapon that the Ageiran Federation offers for fighters.
 [/Item]
 
+#Caina Weapons
+
+[Item]
+name=Venom Alpha
+type=turret
+volume=13
+mass=8
+HP=85
+minPrice=850
+maxPrice=1050
+group=weapon
+description=Advances in Cainan weapon technology were primarily in the field of guided missiles, but they still equip cannons to their fighters to avoid running out of ammunition. This is a Cainan particle cannon and it is a fairly average weapon. It is intended to be equipped on Cainan light fighters.
+[/Item]
+
+[Item]
+name=Venom Beta
+type=turret
+volume=19
+mass=10
+HP=104
+minPrice=1800
+maxPrice=2475
+group=weapon
+description=Advances in Cainan weapon technology were primarily in the field of guided missiles, but they still equip cannons to their fighters to avoid running out of ammunition. This is a Cainan particle cannon and it is a fairly average weapon. It is intended to be equipped on Cainan medium fighters.
+[/Item]
+
+[Item]
+name=Bask
+type=turret
+volume=22
+mass=18
+HP=200
+minPrice=3100
+maxPrice=4500
+group=weapon
+description=Advances in Cainan weapon technology were primarily in the field of guided missiles, but they still equip cannons to their fighters to avoid running out of ammunition. The Bask is a pulse cannon which delivers a steady stream of damage. It is designed to be equipped to both medium and heavy Cainan fighters looking for an edge in close quarters combat.
+[/Item]
+
+[Item]
+name=Frill
+type=turret
+volume=23
+mass=21
+HP=210
+minPrice=3250
+maxPrice=4800
+group=weapon
+description=Advances in Cainan weapon technology were primarily in the field of guided missiles, but they still equip cannons to their fighters to avoid running out of ammunition. The Frill is a siege weapon that delivers substantial damage but refires very slowly. It is designed to be equipped to both medium and heavy Cainan fighters looking to attack hard targets.
+[/Item]
+
 #Archer Weapons
 
 [Item]

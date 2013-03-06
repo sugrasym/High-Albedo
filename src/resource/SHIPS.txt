@@ -81,6 +81,56 @@ hardpoint=turret,20,8,3.925/turret,20,-8,5.495/turret,30,0,0
 #Heavy Fighters
 #The archers do not have a HF
 
+#########Caina Fighters########
+
+#Light Fighters
+[Ship]
+type=Gecko
+accel=42
+turning=4.4
+shield=12650
+shieldRecharge=176
+hull=2515
+fuel=21000
+mass=120
+sensor=2850
+cargo=255
+hardpoint=turret,15,12,3.925/turret,15,-12,5.495
+[/Ship]
+
+#Medium Fighters
+
+[Ship]
+type=Monitor
+accel=36
+turning=3.6
+shield=15772
+shieldRecharge=210
+hull=2815
+fuel=25600
+mass=200
+sensor=3203
+cargo=282
+hardpoint=turret,24,12,3.925/turret,24,-12,5.495
+[/Ship]
+
+#Heavy Fighters
+
+[Ship]
+type=Komodo
+accel=32
+turning=3.1
+shield=19000
+shieldRecharge=235
+hull=3700
+fuel=31550
+mass=300
+sensor=3510
+cargo=310
+hardpoint=turret,24,12,3.925/turret,24,-12,5.495/turret,28,6,3.925/turret,28,-6,5.495
+[/Ship]
+
+
 #########Special########
 
 [Ship]

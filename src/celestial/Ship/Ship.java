@@ -249,11 +249,13 @@ public class Ship extends Celestial {
             state = State.DYING;
         } else {
             behave();
-            Ship obstruction = avoidCollission();
-            if (obstruction == null || isExemptFromAvoidance()) {
-                autopilot();
-            } else {
-                autopilotAvoidBlock(obstruction);
+            if (autopilot != Autopilot.NONE) {
+                Ship obstruction = avoidCollission();
+                if (obstruction == null || isExemptFromAvoidance()) {
+                    autopilot();
+                } else {
+                    autopilotAvoidBlock(obstruction);
+                }
             }
         }
     }
