@@ -126,21 +126,25 @@ public class Ship extends Celestial {
 
     @Override
     public void initGraphics() {
-        //get the image
-        raw_tex = io.loadImage("ship/" + type + ".png");
-        //create the usable version
-        ImageIcon icon = new ImageIcon(raw_tex);
-        setHeight(icon.getIconHeight());
-        setWidth(icon.getIconWidth());
-        tex = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
-        for (int a = 0; a < hardpoints.size(); a++) {
-            Equipment mount = hardpoints.get(a).getMounted();
-            if (mount != null) {
-                if (mount instanceof Weapon) {
-                    Weapon tmp = (Weapon) mount;
-                    tmp.initGraphics();
+        try {
+            //get the image
+            raw_tex = io.loadImage("ship/" + type + ".png");
+            //create the usable version
+            ImageIcon icon = new ImageIcon(raw_tex);
+            setHeight(icon.getIconHeight());
+            setWidth(icon.getIconWidth());
+            tex = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
+            for (int a = 0; a < hardpoints.size(); a++) {
+                Equipment mount = hardpoints.get(a).getMounted();
+                if (mount != null) {
+                    if (mount instanceof Weapon) {
+                        Weapon tmp = (Weapon) mount;
+                        tmp.initGraphics();
+                    }
                 }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -1290,7 +1294,7 @@ public class Ship extends Celestial {
             pod.setVy(getVy() + pdy);
             pod.setCurrentSystem(currentSystem);
             //deploy
-            getCurrentSystem().getEntities().add(pod);
+            getCurrentSystem().putEntityInSystem(pod);
         }
     }
 

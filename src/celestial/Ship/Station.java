@@ -222,15 +222,19 @@ public class Station extends Ship {
 
     @Override
     public void initGraphics() {
-        //get the image
-        raw_tex = io.loadImage("station/" + type + ".png");
-        //create the usable version
-        ImageIcon icon = new ImageIcon(raw_tex);
-        setHeight(icon.getIconHeight());
-        setWidth(icon.getIconWidth());
-        tex = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
+        try {
+            //get the image
+            raw_tex = io.loadImage("station/" + type + ".png");
+            //create the usable version
+            ImageIcon icon = new ImageIcon(raw_tex);
+            setHeight(icon.getIconHeight());
+            setWidth(icon.getIconWidth());
+            tex = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-    
+
     @Override
     public void disposeGraphics() {
         raw_tex = null;

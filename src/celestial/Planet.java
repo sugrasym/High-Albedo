@@ -51,7 +51,11 @@ public class Planet extends Celestial {
         /*
          * Load the image for this planet and scale it
          */
-        tex = io.loadImage("planet/" + texture);
+        try {
+            tex = io.loadImage("planet/" + texture);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void disposeGraphics() {

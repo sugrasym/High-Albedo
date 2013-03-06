@@ -1,10 +1,10 @@
 #New Game Smell
 [NewGame]
-ship=Crow
+ship=Cavalry
 system=Mal Canse
 near=Tetrel
 cash=8500
-install=Rayo Azul/Rayo Azul
+install=Arrow/Arrow/Long 9
 cargo=Scrap Metal~10/Standard Energy Unit
 faction=Player
 [/NewGame]
@@ -14,6 +14,7 @@ faction=Player
 name=Mal Canse
 x=0
 y=0
+back=black1.png
 [/System]
 
 [Planet]
@@ -107,6 +108,7 @@ cargo=Iguana Missile~20
 name=Ban Dali
 x=1
 y=1
+back=green0.png
 [/System]
 
 [Planet]

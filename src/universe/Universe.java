@@ -59,7 +59,9 @@ public class Universe implements Serializable {
         SolarSystem system = null;
         {
             String name = thisSystem.getValue("name");
+            String back = thisSystem.getValue("back");
             system = new SolarSystem(this, name, parse);
+            system.setBack(back);
             system.init(false);
         }
         System.out.println("Zeus: " + system.getName() + " solar system created. ");

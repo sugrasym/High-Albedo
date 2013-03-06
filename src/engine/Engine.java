@@ -43,8 +43,11 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import lib.AstralIO;
 import universe.SolarSystem;
 import universe.Universe;
@@ -109,7 +112,6 @@ public class Engine {
         entities = new ArrayList<>();
         //create components
         render = new Element();
-        render.generateBackdrop();
         //halt components
         stop();
     }
@@ -530,6 +532,7 @@ public class Engine {
         Graphics2D f = (Graphics2D) frame.getGraphics(); //graphics context for the frame
         //per system
         Image backplate;
+        String lastPlate;
         //the thread thing
         Thread th = new Thread(new Runnable() {
             @Override
@@ -562,7 +565,7 @@ public class Engine {
         }
 
         public void generateBackdrop() {
-            //generate the stock starry drop
+            //generate the backdrop
             createStars();
         }
 
@@ -571,22 +574,37 @@ public class Engine {
         }
 
         private void createStars() {
-            //determine aspect ratio
-            double aspect = getAspectRatio();
-            //determine whether we are closer to 16x9/16x10 or 4x3
-            String plateGroup = "";
-            if (Math.abs(aspect - STD) < Math.abs(aspect - WIDE)) {
-                //aproximately std ratio
-                plateGroup = "std";
-            } else {
-                //approximately wide ratio
-                plateGroup = "wide";
+            if (playerShip != null) {
+                //determine aspect ratio
+                double aspect = getAspectRatio();
+                //determine whether we are closer to 16x9/16x10 or 4x3
+                String plateGroup = "";
+                if (Math.abs(aspect - STD) < Math.abs(aspect - WIDE)) {
+                    //aproximately std ratio
+                    plateGroup = "std";
+                } else {
+                    //approximately wide ratio
+                    plateGroup = "wide";
+                }
+                //for safety reasons grab the generic plate first
+                Image stars = null;
+                try {
+                    stars = io.loadImage("plate/" + plateGroup + "/base_plate.png");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                //get base plate
+                try {
+                    Image test = io.loadImage("plate/" + plateGroup + "/" + playerShip.getCurrentSystem().getBack());
+                    stars = test;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                //scale backplate to screen size
+                stars = stars.getScaledInstance(uiX, uiY, Image.SCALE_SMOOTH);
+                backplate = stars;
+                lastPlate = playerShip.getCurrentSystem().getBack();
             }
-            //get base plate
-            Image stars = io.loadImage("plate/" + plateGroup + "/base_plate.png");
-            //scale backplate to screen size
-            stars = stars.getScaledInstance(uiX, uiY, Image.SCALE_SMOOTH);
-            backplate = stars;
         }
 
         /*
@@ -599,7 +617,15 @@ public class Engine {
             //setup graphics
             Graphics g = bf.getDrawGraphics();
             //backplate
-            f.drawImage(backplate, 0, 0, null);
+            if (lastPlate != null) {
+                if (lastPlate.matches(playerShip.getCurrentSystem().getBack())) {
+                    f.drawImage(backplate, 0, 0, null);
+                } else {
+                    render.generateBackdrop();
+                }
+            } else {
+                render.generateBackdrop();
+            }
             //update render view
             Rectangle view = new Rectangle((int) dx, (int) dy, uiX, uiY);
             //render entities in current solar system

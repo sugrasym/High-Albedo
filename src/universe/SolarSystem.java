@@ -43,6 +43,8 @@ public class SolarSystem implements Entity, Serializable {
     protected String name;
     int x;
     int y;
+    //backplate
+    private String back;
     //what it contains
     private ArrayList<Entity> entities = new ArrayList<>();
     //quick reference
@@ -357,5 +359,13 @@ public class SolarSystem implements Entity, Serializable {
 
     public ArrayList<Entity> getShipList() {
         return shipList;
+    }
+
+    public String getBack() {
+        return back;
+    }
+
+    public void setBack(String back) {
+        this.back = back;
     }
 }

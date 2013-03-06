@@ -53,20 +53,24 @@ public class Weapon extends Equipment {
     }
 
     public void initGraphics() {
-        if (ammoType == null) {
-            //the projectile name is the image
-            raw_tex = new AstralIO().loadImage("projectile/" + getName() + ".png");
-        } else {
-            //the ammo type is the image
-            raw_tex = new AstralIO().loadImage("projectile/" + ammoType.getName() + ".png");
+        try {
+            if (ammoType == null) {
+                //the projectile name is the image
+                raw_tex = new AstralIO().loadImage("projectile/" + getName() + ".png");
+            } else {
+                //the ammo type is the image
+                raw_tex = new AstralIO().loadImage("projectile/" + ammoType.getName() + ".png");
+            }
+            //create the usable version
+            ImageIcon icon = new ImageIcon(raw_tex);
+            height = (icon.getIconHeight());
+            width = (icon.getIconWidth());
+            tex = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        //create the usable version
-        ImageIcon icon = new ImageIcon(raw_tex);
-        height = (icon.getIconHeight());
-        width = (icon.getIconWidth());
-        tex = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
     }
-    
+
     public void disposeGraphics() {
         raw_tex = null;
         tex = null;
@@ -165,7 +169,7 @@ public class Weapon extends Equipment {
                     //store stats
                     pro.setSensor(range);
                     pro.setAccel(accel);
-                    pro.setMaxRange(getRange()*1.5);
+                    pro.setMaxRange(getRange() * 1.5);
                     pro.setTurning(turning);
                 }
                 //add to universe
@@ -178,13 +182,13 @@ public class Weapon extends Equipment {
     public void useAmmo() {
         if (ammoType != null) {
             ArrayList<Item> cargo = host.getCargoBay();
-            for(int a = 0; a < cargo.size(); a++) {
+            for (int a = 0; a < cargo.size(); a++) {
                 Item tmp = cargo.get(a);
-                if(tmp.getName().matches(ammoType.getName())) {
-                    if(tmp.getGroup().matches(ammoType.getGroup())) {
-                        if(tmp.getType().matches(ammoType.getType())) {
-                            if(tmp.getQuantity() > 1) {
-                                tmp.setQuantity(tmp.getQuantity()-1);
+                if (tmp.getName().matches(ammoType.getName())) {
+                    if (tmp.getGroup().matches(ammoType.getGroup())) {
+                        if (tmp.getType().matches(ammoType.getType())) {
+                            if (tmp.getQuantity() > 1) {
+                                tmp.setQuantity(tmp.getQuantity() - 1);
                             } else {
                                 cargo.remove(tmp);
                             }
@@ -223,16 +227,15 @@ public class Weapon extends Equipment {
     public void setSpeed(double speed) {
         this.speed = speed;
     }
-    
+
     public String toString() {
         String ret = "";
-        if(ammoType == null) {
+        if (ammoType == null) {
             ret = super.toString();
         } else {
             ret = super.toString();
-            ret += " <"+host.getNumInCargoBay(ammoType)+">";
+            ret += " <" + host.getNumInCargoBay(ammoType) + ">";
         }
         return ret;
     }
-    
 }

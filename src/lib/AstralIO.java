@@ -21,6 +21,7 @@ package lib;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
@@ -28,6 +29,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.net.URISyntaxException;
+import java.net.URL;
 import universe.Universe;
 
 public class AstralIO implements Serializable {
@@ -59,13 +62,17 @@ public class AstralIO implements Serializable {
         return ret;
     }
 
-    public Image loadImage(String target) {
+    public Image loadImage(String target) throws NullPointerException, URISyntaxException {
         Image tmp = null;
-        try {
+        {
             System.out.println("Loading image resource " + RESOURCE_DIR + target);
-            tmp = Toolkit.getDefaultToolkit().getImage(getClass().getResource(RESOURCE_DIR + target));
-        } catch (Exception e) {
-            e.printStackTrace();
+            URL url = getClass().getResource(RESOURCE_DIR + target);
+            File file = new File(url.toURI());
+            if (file.exists()) {
+                tmp = Toolkit.getDefaultToolkit().getImage(url);
+            } else {
+                throw new NullPointerException();
+            }
         }
         return tmp;
     }
