@@ -112,6 +112,30 @@ description=Cainan missile technology delivers great reliability at medium range
 [/Item]
 
 [Item]
+name=Anaconda Launcher
+type=missile
+volume=21
+mass=12
+HP=185
+minPrice=67850
+maxPrice=213050
+group=weapon
+description=Cainan missile technology delivers great reliability at medium range. /br/ /br/ The Anaconda missile is a siege missile that does devastating damage to slow moving or stationary targets.
+[/Item]
+
+[Item]
+name=Iguana Launcher
+type=missile
+volume=14
+mass=7
+HP=78
+minPrice=8000
+maxPrice=10000
+group=weapon
+description=Cainan missile technology delivers great reliability at medium range. /br/ /br/ The Iguana missile is a strong anti-fighter missile for dogfighting.
+[/Item]
+
+[Item]
 name=Venom Alpha
 type=cannon
 volume=13
@@ -197,6 +221,44 @@ group=weapon
 description=A weapon of the 'Archers' pirate faction. Designed for precision strikes at range, this weapon does a massive amount of damage at long range but refires very slowly. /br/ /br/ The Long 9 fulfills the Archers' need for an effective long range siege platform.
 [/Item]
 
+#Knights Weapons
+
+[Item]
+name=Rayo Azul
+type=cannon
+volume=15
+mass=14
+HP=100
+minPrice=7000
+maxPrice=15500
+group=weapon
+description=The Knights of Orin have weapons that perform fiercly well at close range but have no damage projection beyond that. /br/ /br/ 'Rayo Azul' is a wicked fast plasma bolt that does heavy damage but dissipates quickly.
+[/Item]
+
+[Item]
+name=Sangre Roja
+type=cannon
+volume=25
+mass=14
+HP=100
+minPrice=12000
+maxPrice=78100
+group=weapon
+description=The Knights of Orin have weapons that perform fiercly well at close range but have no damage projection beyond that. /br/ /br/ 'Sangre Roja' is an extremely powerful close range weapon, but using it requires closing to extremely close range.
+[/Item]
+
+[Item]
+name=Orgullo Negro
+type=cannon
+volume=10
+mass=8
+HP=142
+minPrice=3000
+maxPrice=5000
+group=weapon
+description=The Knights of Orin have weapons that perform fiercly well at close range but have no damage projection beyond that. /br/ /br/ 'Orgullo Negro' is a very powerful cannon when fed with 'Bala Negro' ammunition. It combines the destructive power the Knights are known for at close range with the ability to reach out and touch someone. It does burn through ammo quickly, however.
+[/Item]
+
 ########Ammo###########
 
 [Item]
@@ -208,7 +270,43 @@ HP=100
 minPrice=5
 maxPrice=25
 group=ammo
-description=A standardized energy unit produced by a power plant and moved to a more needed location. /br/ /br/ Energy units are stored in the cargo bay as a suspended static electric field which remains confined in the region it is placed by the compartmentalization of the cargo bay.
+description=Unarmed missile for use with a 'Python Launcher'. This is a Cainan multirole missile primarily used on light fighters. It does decent damage, but its guidance is sub par compared to dogfighting missiles.
+[/Item]
+
+[Item]
+name=Anaconda Missile
+type=commodity
+volume=20
+mass=10
+HP=300
+minPrice=1400
+maxPrice=3500
+group=ammo
+description=Unarmed missile for use with a 'Anaconda Launcher'. This Cainan torpedo is only effective against slow or stationary targets, but it packs a punch when it hits.
+[/Item]
+
+[Item]
+name=Iguana Missile
+type=commodity
+volume=10
+mass=4
+HP=50
+minPrice=200
+maxPrice=600
+group=ammo
+description=Unarmed missile for use with a 'Iguana Launcher'. This is a Cainan anti-fighter missile that is designed to get to the target quickly and accurately, but delivers less damage than a multi-role missile.
+[/Item]
+
+[Item]
+name=Bala Negro
+type=commodity
+volume=1
+mass=1
+HP=1
+minPrice=1
+maxPrice=5
+group=ammo
+description=Shell for use with a 'Orgullo Negro' cannon. When loaded into such a weapon this shell has impressive damage output and projection.
 [/Item]
 
 ########Special########

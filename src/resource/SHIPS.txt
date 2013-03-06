@@ -111,7 +111,7 @@ fuel=25600
 mass=200
 sensor=3203
 cargo=282
-hardpoint=missile,24,12,3.925/missile,24,-12,5.495/cannon,15,0,0
+hardpoint=missile,24,12,3.925/missile,24,-12,5.495/cannon,24,0,0
 [/Ship]
 
 #Heavy Fighters

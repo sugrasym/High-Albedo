@@ -4,6 +4,7 @@ name=Player
 Player=10
 Ageiran Federation=0
 The Archers=-4
+Caina Conglemerate=-1
 [/Faction]
 
 ########Ageiran Space########
@@ -12,6 +13,7 @@ name=Ageiran Federation
 Player=0
 Ageiran Federation=10
 The Archers=-10
+Caina Conglemerate=0
 [/Faction]
 
 [Faction]
@@ -19,4 +21,14 @@ name=The Archers
 Player=-4
 Ageiran Federation=-10
 The Archers=10
+Caina Conglemerate=0
+[/Faction]
+
+########Cainan Space########
+[Faction]
+name=Caina Conglemerate
+Player=-1
+Ageiran Federation=0
+The Archers=0
+Caina Conglemerate=10
 [/Faction]

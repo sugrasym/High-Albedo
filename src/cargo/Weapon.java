@@ -165,6 +165,7 @@ public class Weapon extends Equipment {
                     //store stats
                     pro.setSensor(range);
                     pro.setAccel(accel);
+                    pro.setMaxRange(getRange()*1.5);
                     pro.setTurning(turning);
                 }
                 //add to universe

@@ -45,7 +45,7 @@ name=Python Launcher
 type=missile
 #shell info
 damage=2500
-range=500
+range=700
 speed=5
 mass=4
 refire=5
@@ -55,6 +55,42 @@ guided=true
 ammo=Python Missile
 accel=175
 turning=3
+[/Weapon]
+
+[Weapon]
+#weapon info
+name=Anaconda Launcher
+type=missile
+#shell info
+damage=8500
+range=350
+speed=5
+mass=10
+refire=8
+#make it a seeker
+guided=true
+#it uses ammo
+ammo=Anaconda Missile
+accel=25
+turning=1
+[/Weapon]
+
+[Weapon]
+#weapon info
+name=Iguana Launcher
+type=missile
+#shell info
+damage=1500
+range=1000
+speed=7
+mass=3
+refire=4
+#make it a seeker
+guided=true
+#it uses ammo
+ammo=Iguana Missile
+accel=250
+turning=5
 [/Weapon]
 
 [Weapon]
@@ -144,6 +180,46 @@ range=1300
 speed=650
 mass=7
 refire=4.8
+[/Weapon]
+
+########Knights of Orin Weapons########
+
+[Weapon]
+#weapon info
+name=Rayo Azul
+type=cannon
+#shell info
+damage=450
+range=200
+speed=800
+mass=11
+refire=0.4
+[/Weapon]
+
+[Weapon]
+#weapon info
+name=Sangre Roja
+type=cannon
+#shell info
+damage=900
+range=150
+speed=300
+mass=13
+refire=0.38
+[/Weapon]
+
+[Weapon]
+#weapon info
+name=Orgullo Negro
+type=cannon
+#shell info
+damage=1000
+range=650
+speed=900
+mass=25
+refire=0.1
+#ammo
+ammo=Bala Negro
 [/Weapon]
 
 ########SPECIAL TEST WEAPONS########

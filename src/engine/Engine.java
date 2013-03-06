@@ -621,8 +621,6 @@ public class Engine {
                                 }
                             }
                         }
-                        //render player ship
-                        playerShip.render(f, dx, dy);
                     }
                 }
             } catch (Exception e) {

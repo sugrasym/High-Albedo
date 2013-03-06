@@ -1324,7 +1324,14 @@ public class Ship extends Celestial {
         if (cargo != null) {
             String[] stuff = cargo.split("/");
             for (int a = 0; a < stuff.length; a++) {
-                addToCargoBay(new Item(stuff[a]));
+                String[] tb = stuff[a].split("~");
+                int count = 1;
+                if (tb.length == 2) {
+                    count = Integer.parseInt(tb[1]);
+                }
+                for (int v = 0; v < count; v++) {
+                    addToCargoBay(new Item(tb[0]));
+                }
             }
         }
     }
@@ -1389,6 +1396,10 @@ public class Ship extends Celestial {
                     if (hardpoints.get(a).getSize() >= equipment.getVolume()) {
                         if (hardpoints.get(a).getType().matches(equipment.getType())) {
                             hardpoints.get(a).mount(equipment);
+                            //is this a weapon?
+                            Weapon wep = (Weapon) equipment;
+                            wep.initGraphics();
+                            //remove from cargo
                             cargoBay.remove(equipment);
                             break;
                         }
@@ -1553,8 +1564,7 @@ public class Ship extends Celestial {
     public void setCash(long cash) {
         this.cash = cash;
     }
-    
-    
+
     public boolean isThrustForward() {
         return thrustForward;
     }
