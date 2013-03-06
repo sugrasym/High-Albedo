@@ -607,17 +607,50 @@ public class Engine {
                 if (playerShip != null) {
                     SolarSystem current = playerShip.getCurrentSystem();
                     if (current != null) {
-                        for (int a = 0; a < current.getEntities().size(); a++) {
-                            if (current.getEntities().get(a).getState() != Entity.State.DEAD) {
-                                if (current.getEntities().get(a).collideWith(view)) {
-                                    if (current.getEntities().get(a) == playerShip.getTarget()) {
+                        ArrayList<Entity> celestialList = current.getCelestialList();
+                        ArrayList<Entity> stationList = current.getStationList();
+                        ArrayList<Entity> shipList = current.getShipList();
+
+                        /*
+                         * Render celestials first
+                         */
+
+                        for (int a = 0; a < celestialList.size(); a++) {
+                            if (celestialList.get(a).collideWith(view)) {
+                                celestialList.get(a).render(f, dx, dy);
+                            }
+                        }
+
+                        /*
+                         * Now render stations
+                         */
+
+                        for (int a = 0; a < stationList.size(); a++) {
+                            if (stationList.get(a).getState() != Entity.State.DEAD) {
+                                if (stationList.get(a).collideWith(view)) {
+                                    if (stationList.get(a) == playerShip.getTarget()) {
                                         renderTargetMarker();
                                     } else {
-                                        if (current.getEntities().get(a) instanceof Ship) {
-                                            renderIFFMarker((Ship) current.getEntities().get(a));
-                                        }
+                                        renderIFFMarker((Ship) stationList.get(a));
                                     }
-                                    current.getEntities().get(a).render(f, dx, dy);
+                                    stationList.get(a).render(f, dx, dy);
+                                }
+                            }
+                        }
+
+                        /*
+                         * Now render ships
+                         */
+
+                        for (int a = 0; a < shipList.size(); a++) {
+                            if (shipList.get(a).getState() != Entity.State.DEAD) {
+                                if (shipList.get(a).collideWith(view)) {
+                                    if (shipList.get(a) == playerShip.getTarget()) {
+                                        renderTargetMarker();
+                                    } else {
+                                        renderIFFMarker((Ship) shipList.get(a));
+                                    }
+                                    shipList.get(a).render(f, dx, dy);
                                 }
                             }
                         }

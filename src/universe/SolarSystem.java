@@ -45,6 +45,10 @@ public class SolarSystem implements Entity, Serializable {
     int y;
     //what it contains
     private ArrayList<Entity> entities = new ArrayList<>();
+    //quick reference
+    private ArrayList<Entity> celestialList = new ArrayList<>();
+    private ArrayList<Entity> stationList = new ArrayList<>();
+    private ArrayList<Entity> shipList = new ArrayList<>();
     //what contains it
     private Universe universe;
 
@@ -69,14 +73,14 @@ public class SolarSystem implements Entity, Serializable {
         for (int a = 0; a < planets.size(); a++) {
             if (planets.get(a).getValue("system").matches(getName())) {
                 //this planet needs to be created and stored
-                getEntities().add(makePlanet(planets.get(a)));
+                putEntityInSystem(makePlanet(planets.get(a)));
             }
         }
         ArrayList<Term> ships = parse.getTermsOfType("Ship");
         for (int a = 0; a < ships.size(); a++) {
             if (ships.get(a).getValue("system").matches(getName())) {
                 //this planet needs to be created and stored
-                getEntities().add(makeShip(ships.get(a)));
+                putEntityInSystem(makeShip(ships.get(a)));
             }
         }
 
@@ -84,7 +88,7 @@ public class SolarSystem implements Entity, Serializable {
         for (int a = 0; a < stations.size(); a++) {
             if (stations.get(a).getValue("system").matches(getName())) {
                 //this planet needs to be created and stored
-                getEntities().add(makeStation(stations.get(a)));
+                putEntityInSystem(makeStation(stations.get(a)));
             }
         }
 
@@ -92,7 +96,7 @@ public class SolarSystem implements Entity, Serializable {
         for (int a = 0; a < jumpholes.size(); a++) {
             if (jumpholes.get(a).getValue("system").matches(getName())) {
                 //this planet needs to be created and stored
-                getEntities().add(makeJumphole(jumpholes.get(a)));
+                putEntityInSystem(makeJumphole(jumpholes.get(a)));
             }
         }
     }
@@ -226,10 +230,21 @@ public class SolarSystem implements Entity, Serializable {
 
     public void putEntityInSystem(Entity entity) {
         entities.add(entity);
+        //put in the correct sublist
+        if(entity instanceof Station) {
+            stationList.add(entity);
+        } else if(entity instanceof Ship) {
+            shipList.add(entity);
+        } else if(entity instanceof Celestial) {
+            celestialList.add(entity);
+        }
     }
 
     public void pullEntityFromSystem(Entity entity) {
         entities.remove(entity);
+        stationList.remove(entity);
+        shipList.remove(entity);
+        celestialList.remove(entity);
     }
 
     @Override
@@ -330,5 +345,17 @@ public class SolarSystem implements Entity, Serializable {
     @Override
     public void informOfCollisionWith(Entity target) {
         //?!
+    }
+
+    public ArrayList<Entity> getCelestialList() {
+        return celestialList;
+    }
+
+    public ArrayList<Entity> getStationList() {
+        return stationList;
+    }
+
+    public ArrayList<Entity> getShipList() {
+        return shipList;
     }
 }
