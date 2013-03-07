@@ -120,10 +120,16 @@ public class AstralIO implements Serializable {
     }
 
     public void saveGame(Universe universe, String gameName) throws Exception {
+        String home = System.getProperty("user.home")+"/.highalbedo/";
+        //create the subfolder
+        File folder = new File(home);
+        if(!folder.exists()) {
+            folder.mkdir();
+        }
         //generate serializable universe
         Everything everything = new Everything(universe);
         //serialize universe
-        FileOutputStream fos = new FileOutputStream(gameName + ".txt");
+        FileOutputStream fos = new FileOutputStream(home + gameName + ".txt");
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(everything);
     }

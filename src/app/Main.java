@@ -55,20 +55,12 @@ public class Main extends JFrame {
         engineInit();
         //add listeners
         listenerInit();
-        //test
-        testInit();
+        //enter menu
+        engine.menu();
     }
 
     public static void main(String[] args) {
         Main eg = new Main();
-    }
-
-    /*
-     * TEST INIT PLEASE IGNORE
-     */
-    public final void testInit() {
-        //start engine
-        engine.start();
     }
 
     /*
@@ -200,31 +192,7 @@ public class Main extends JFrame {
 
     private void quickLoad() {
         engine.stop();
-        load("quicksave.txt");
+        engine.load("quicksave.txt");
         engine.start();
-    }
-
-    private void load(String savePath) {
-        try {
-            System.out.println("Athena: Starting Quickload.");
-            //get everything
-            Everything everything;
-            FileInputStream fis = new FileInputStream(savePath);
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            everything = (Everything) ois.readObject();
-            //unpack universe
-            Universe universe = everything.getUniverse();
-            //restore transient objects
-            loadUniverse(universe);
-            System.out.println("Athena: Quickload Complete.");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void loadUniverse(Universe universe) {
-        engine.suicide();
-        engine.setUniverse(universe);
-        engine.resurrect();
     }
 }

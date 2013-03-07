@@ -27,6 +27,7 @@ import gdi.CargoWindow;
 import gdi.EquipmentWindow;
 import gdi.FuelWindow;
 import gdi.HealthWindow;
+import gdi.MenuHomeWindow;
 import gdi.OverviewWindow;
 import gdi.TradeWindow;
 import gdi.component.AstralWindow;
@@ -42,12 +43,14 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
-import java.net.URISyntaxException;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Random;
 import lib.AstralIO;
+import lib.Parser;
+import lib.Parser.Term;
 import universe.SolarSystem;
 import universe.Universe;
 
@@ -64,7 +67,7 @@ public class Engine {
     BufferStrategy bf;
     Element render;
     //HUD
-    protected HUD hud = new HUD();
+    protected HUD hud = new HUD(this);
     //dimensions
     private int uiX;
     private int uiY;
@@ -95,10 +98,11 @@ public class Engine {
 
     enum State {
 
+        MENU,
         RUNNING,
         PAUSED
     }
-    State state = State.PAUSED;
+    State state = State.MENU;
     //io
     AstralIO io = new AstralIO();
 
@@ -163,14 +167,48 @@ public class Engine {
     }
 
     /*
-     * Begins execution
+     * Enters the menu state
      */
-    public final void start() {
-        state = State.RUNNING;
+    public final void menu() {
+        state = State.MENU;
+        hud.pack();
     }
 
     /*
-     * Pauses execution
+     * Begins execution of the simulation
+     */
+    public final void start() {
+        state = State.RUNNING;
+        hud.pack();
+    }
+
+    public void load(String savePath) {
+        try {
+            String home = System.getProperty("user.home")+"/.highalbedo/";
+            System.out.println("Athena: Starting Quickload.");
+            //get everything
+            AstralIO.Everything everything;
+            FileInputStream fis = new FileInputStream(home + savePath);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            everything = (AstralIO.Everything) ois.readObject();
+            //unpack universe
+            Universe universe = everything.getUniverse();
+            //restore transient objects
+            loadUniverse(universe);
+            System.out.println("Athena: Quickload Complete.");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadUniverse(Universe universe) {
+        suicide();
+        setUniverse(universe);
+        resurrect();
+    }
+
+    /*
+     * Pauses execution of the simulation
      */
     public final void stop() {
         state = State.PAUSED;
@@ -180,8 +218,14 @@ public class Engine {
      * HUD class, makes sense to put it here.
      */
     public class HUD {
+        //Engine reference
 
+        private Engine engine;
+        //Window list
         ArrayList<AstralWindow> windows = new ArrayList<>();
+        //menu windows
+        MenuHomeWindow homeWindow;
+        //in-game windows
         HealthWindow healthWindow = new HealthWindow();
         FuelWindow fuelWindow = new FuelWindow();
         OverviewWindow overviewWindow = new OverviewWindow();
@@ -189,36 +233,52 @@ public class Engine {
         CargoWindow cargoWindow = new CargoWindow();
         TradeWindow tradeWindow = new TradeWindow();
 
-        public HUD() {
-            //pack
-            windows.add(healthWindow);
-            windows.add(fuelWindow);
-            windows.add(overviewWindow);
-            windows.add(equipmentWindow);
-            cargoWindow.setVisible(false);
-            windows.add(cargoWindow);
-            windows.add(tradeWindow);
+        public HUD(Engine engine) {
+            this.engine = engine;
+            homeWindow = new MenuHomeWindow(engine);
+        }
+
+        public void pack() {
+            windows.clear();
+            if (state == State.RUNNING) {
+                windows.add(healthWindow);
+                windows.add(fuelWindow);
+                windows.add(overviewWindow);
+                windows.add(equipmentWindow);
+                cargoWindow.setVisible(false);
+                windows.add(cargoWindow);
+                windows.add(tradeWindow);
+            } else if (state == State.MENU) {
+                windows.add(homeWindow);
+                homeWindow.setVisible(true);
+            }
         }
 
         public void render(Graphics f) {
-            //position health window
-            healthWindow.setX((uiX / 2) - healthWindow.getWidth() / 2);
-            healthWindow.setY(uiY - 55);
-            //position fuel window
-            fuelWindow.setX((uiX / 2) - fuelWindow.getWidth() / 2);
-            fuelWindow.setY(uiY - 40);
-            //position overview window
-            overviewWindow.setX((uiX - (overviewWindow.getWidth() + 20)));
-            overviewWindow.setY(uiY - (overviewWindow.getHeight() + 20));
-            //position equipment window
-            equipmentWindow.setX(20);
-            equipmentWindow.setY(uiY - (equipmentWindow.getHeight() + 20));
-            //position cargo window
-            cargoWindow.setX((uiX / 2) - cargoWindow.getWidth() / 2);
-            cargoWindow.setY((uiY / 2) - cargoWindow.getHeight() / 2);
-            //position trade window
-            tradeWindow.setX((uiX / 2) - tradeWindow.getWidth() / 2);
-            tradeWindow.setY((uiY / 2) - tradeWindow.getHeight() / 2);
+            if (state == State.RUNNING) {
+                //position health window
+                healthWindow.setX((uiX / 2) - healthWindow.getWidth() / 2);
+                healthWindow.setY(uiY - 55);
+                //position fuel window
+                fuelWindow.setX((uiX / 2) - fuelWindow.getWidth() / 2);
+                fuelWindow.setY(uiY - 40);
+                //position overview window
+                overviewWindow.setX((uiX - (overviewWindow.getWidth() + 20)));
+                overviewWindow.setY(uiY - (overviewWindow.getHeight() + 20));
+                //position equipment window
+                equipmentWindow.setX(20);
+                equipmentWindow.setY(uiY - (equipmentWindow.getHeight() + 20));
+                //position cargo window
+                cargoWindow.setX((uiX / 2) - cargoWindow.getWidth() / 2);
+                cargoWindow.setY((uiY / 2) - cargoWindow.getHeight() / 2);
+                //position trade window
+                tradeWindow.setX((uiX / 2) - tradeWindow.getWidth() / 2);
+                tradeWindow.setY((uiY / 2) - tradeWindow.getHeight() / 2);
+            } else if (state == State.MENU) {
+                //position home window
+                homeWindow.setX((uiX / 2) - homeWindow.getWidth() / 2);
+                homeWindow.setY((uiY / 2) - homeWindow.getHeight() / 2);
+            }
             //render
             for (int a = windows.size() - 1; a >= 0; a--) {
                 windows.get(a).render(f);
@@ -226,17 +286,20 @@ public class Engine {
         }
 
         public void periodicUpdate() {
-            //push hud changes
-            healthWindow.updateHealth((playerShip.getShield() / playerShip.getMaxShield()),
-                    (playerShip.getHull() / playerShip.getMaxHull()));
-            fuelWindow.updateFuel(playerShip.getFuel() / playerShip.getMaxFuel());
-            overviewWindow.updateOverview(playerShip);
-            equipmentWindow.update(playerShip);
-            cargoWindow.update(playerShip);
-            tradeWindow.update(playerShip);
-            //update
-            for (int a = 0; a < windows.size(); a++) {
-                windows.get(a).periodicUpdate();
+            if (state == State.RUNNING) {
+                //push hud changes
+                healthWindow.updateHealth((playerShip.getShield() / playerShip.getMaxShield()),
+                        (playerShip.getHull() / playerShip.getMaxHull()));
+                fuelWindow.updateFuel(playerShip.getFuel() / playerShip.getMaxFuel());
+                overviewWindow.updateOverview(playerShip);
+                equipmentWindow.update(playerShip);
+                cargoWindow.update(playerShip);
+                tradeWindow.update(playerShip);
+                //update
+                for (int a = 0; a < windows.size(); a++) {
+                    windows.get(a).periodicUpdate();
+                }
+            } else if (state == State.MENU) {
             }
         }
 
@@ -567,8 +630,39 @@ public class Engine {
         }
 
         private void createStars() {
-            if (playerShip != null) {
-                //determine aspect ratio
+            if (state == State.RUNNING) {
+                if (playerShip != null) {
+                    //determine aspect ratio
+                    double aspect = getAspectRatio();
+                    //determine whether we are closer to 16x9/16x10 or 4x3
+                    String plateGroup = "";
+                    if (Math.abs(aspect - STD) < Math.abs(aspect - WIDE)) {
+                        //aproximately std ratio
+                        plateGroup = "std";
+                    } else {
+                        //approximately wide ratio
+                        plateGroup = "wide";
+                    }
+                    //for safety reasons grab the generic plate first
+                    Image stars = null;
+                    try {
+                        stars = io.loadImage("plate/" + plateGroup + "/base_plate.png");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    //get base plate
+                    try {
+                        Image test = io.loadImage("plate/" + plateGroup + "/" + playerShip.getCurrentSystem().getBack());
+                        stars = test;
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    //scale backplate to screen size
+                    stars = stars.getScaledInstance(uiX, uiY, Image.SCALE_SMOOTH);
+                    backplate = stars;
+                    lastPlate = playerShip.getCurrentSystem().getBack();
+                }
+            } else if (state == State.MENU) {
                 double aspect = getAspectRatio();
                 //determine whether we are closer to 16x9/16x10 or 4x3
                 String plateGroup = "";
@@ -586,9 +680,15 @@ public class Engine {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                //get base plate
+                //get a list of base plates
+                Parser sky = new Parser("SKY.txt");
+                ArrayList<Term> skyTypes = sky.getTermsOfType("Skybox");
+                int pick = new Random().nextInt(skyTypes.size());
+                //get the asset
+                String asset = skyTypes.get(pick).getValue("asset");
+                //store
                 try {
-                    Image test = io.loadImage("plate/" + plateGroup + "/" + playerShip.getCurrentSystem().getBack());
+                    Image test = io.loadImage("plate/" + plateGroup + "/" + asset);
                     stars = test;
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -596,7 +696,7 @@ public class Engine {
                 //scale backplate to screen size
                 stars = stars.getScaledInstance(uiX, uiY, Image.SCALE_SMOOTH);
                 backplate = stars;
-                lastPlate = playerShip.getCurrentSystem().getBack();
+                lastPlate = asset;
             }
         }
 
@@ -608,81 +708,97 @@ public class Engine {
             /*f.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);*/
             f.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             //setup clip
-            if(clip != null) {
-                clip = new Rectangle(0,0,uiX,uiY);
+            if (clip != null) {
+                clip = new Rectangle(0, 0, uiX, uiY);
             }
             //setup graphics
             Graphics g = bf.getDrawGraphics();
             g.setClip(clip);
-            //backplate
-            if (lastPlate != null) {
-                if (lastPlate.matches(playerShip.getCurrentSystem().getBack())) {
-                    f.drawImage(backplate, 0, 0, null);
+            if (state == State.RUNNING) {
+                /*
+                 * This section renders the game
+                 */
+                //backplate
+                if (lastPlate != null) {
+                    if (lastPlate.matches(playerShip.getCurrentSystem().getBack())) {
+                        f.drawImage(backplate, 0, 0, null);
+                    } else {
+                        render.generateBackdrop();
+                    }
                 } else {
                     render.generateBackdrop();
                 }
-            } else {
-                render.generateBackdrop();
-            }
-            //update render view
-            Rectangle view = new Rectangle((int) dx, (int) dy, uiX, uiY);
-            //render entities in current solar system
-            try {
-                if (playerShip != null) {
-                    SolarSystem current = playerShip.getCurrentSystem();
-                    if (current != null) {
-                        ArrayList<Entity> celestialList = current.getCelestialList();
-                        ArrayList<Entity> stationList = current.getStationList();
-                        ArrayList<Entity> shipList = current.getShipList();
+                //update render view
+                Rectangle view = new Rectangle((int) dx, (int) dy, uiX, uiY);
+                //render entities in current solar system
+                try {
+                    if (playerShip != null) {
+                        SolarSystem current = playerShip.getCurrentSystem();
+                        if (current != null) {
+                            ArrayList<Entity> celestialList = current.getCelestialList();
+                            ArrayList<Entity> stationList = current.getStationList();
+                            ArrayList<Entity> shipList = current.getShipList();
 
-                        /*
-                         * Render celestials first
-                         */
+                            /*
+                             * Render celestials first
+                             */
 
-                        for (int a = 0; a < celestialList.size(); a++) {
-                            if (celestialList.get(a).collideWith(view)) {
-                                celestialList.get(a).render(f, dx, dy);
-                            }
-                        }
-
-                        /*
-                         * Now render stations
-                         */
-
-                        for (int a = 0; a < stationList.size(); a++) {
-                            if (stationList.get(a).getState() != Entity.State.DEAD) {
-                                if (stationList.get(a).collideWith(view)) {
-                                    if (stationList.get(a) == playerShip.getTarget()) {
-                                        renderTargetMarker();
-                                    } else {
-                                        renderIFFMarker((Ship) stationList.get(a));
-                                    }
-                                    stationList.get(a).render(f, dx, dy);
+                            for (int a = 0; a < celestialList.size(); a++) {
+                                if (celestialList.get(a).collideWith(view)) {
+                                    celestialList.get(a).render(f, dx, dy);
                                 }
                             }
-                        }
 
-                        /*
-                         * Now render ships
-                         */
+                            /*
+                             * Now render stations
+                             */
 
-                        for (int a = 0; a < shipList.size(); a++) {
-                            if (shipList.get(a).getState() != Entity.State.DEAD) {
-                                if (shipList.get(a).collideWith(view)) {
-                                    if (shipList.get(a) == playerShip.getTarget()) {
-                                        renderTargetMarker();
-                                    } else {
-                                        renderIFFMarker((Ship) shipList.get(a));
+                            for (int a = 0; a < stationList.size(); a++) {
+                                if (stationList.get(a).getState() != Entity.State.DEAD) {
+                                    if (stationList.get(a).collideWith(view)) {
+                                        if (stationList.get(a) == playerShip.getTarget()) {
+                                            renderTargetMarker();
+                                        } else {
+                                            renderIFFMarker((Ship) stationList.get(a));
+                                        }
+                                        stationList.get(a).render(f, dx, dy);
                                     }
-                                    shipList.get(a).render(f, dx, dy);
+                                }
+                            }
+
+                            /*
+                             * Now render ships
+                             */
+
+                            for (int a = 0; a < shipList.size(); a++) {
+                                if (shipList.get(a).getState() != Entity.State.DEAD) {
+                                    if (shipList.get(a).collideWith(view)) {
+                                        if (shipList.get(a) == playerShip.getTarget()) {
+                                            renderTargetMarker();
+                                        } else {
+                                            renderIFFMarker((Ship) shipList.get(a));
+                                        }
+                                        shipList.get(a).render(f, dx, dy);
+                                    }
                                 }
                             }
                         }
                     }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
+            } else if (state == State.MENU) {
+                /*
+                 * This section renders the main menu
+                 */
+                if (lastPlate != null) {
+                    f.drawImage(backplate, 0, 0, null);
+                } else {
+                    render.generateBackdrop();
+                }
+
             }
+            Toolkit.getDefaultToolkit().sync();
             //render HUD
             getHud().render(f);
             //use ui graphics context to draw
@@ -690,7 +806,6 @@ public class Engine {
                 g.drawImage(frame, 0, 0, null);
                 bf.show();
             }
-            Toolkit.getDefaultToolkit().sync();
         }
 
         /*
@@ -723,6 +838,9 @@ public class Engine {
                 dy = (int) playerShip.getY() - (uiY / 2) + (playerShip.getHeight() / 2);
                 pvx = playerShip.getVx();
                 pvy = playerShip.getVy();
+            } else if (state == State.MENU) {
+                //update HUD
+                getHud().periodicUpdate();
             }
         }
 

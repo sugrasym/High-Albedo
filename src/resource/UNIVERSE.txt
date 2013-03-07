@@ -167,7 +167,7 @@ seed=1925900116
 [Planet]
 name=Planet 1
 system=System 4
-texture=DoubleBandedGas
+texture=BandedGas
 x=25262
 y=-30410
 d=5982
