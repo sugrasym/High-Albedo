@@ -24,6 +24,7 @@ import celestial.Jumphole;
 import celestial.Planet;
 import celestial.Ship.Ship;
 import celestial.Ship.Station;
+import celestial.Star;
 import engine.Entity;
 import java.awt.Graphics;
 import java.awt.Rectangle;
@@ -67,10 +68,18 @@ public class SolarSystem implements Entity, Serializable {
          * a member of this system according to the "system" param and is
          * one of the following
          * 
+         * Star
          * Planet
          * Ship
          * Station
          */
+        ArrayList<Term> stars = parse.getTermsOfType("Star");
+        for (int a = 0; a < stars.size(); a++) {
+            if (stars.get(a).getValue("system").matches(getName())) {
+                //this planet needs to be created and stored
+                putEntityInSystem(makeStar(stars.get(a)));
+            }
+        }
         ArrayList<Term> planets = parse.getTermsOfType("Planet");
         for (int a = 0; a < planets.size(); a++) {
             if (planets.get(a).getValue("system").matches(getName())) {
@@ -101,6 +110,36 @@ public class SolarSystem implements Entity, Serializable {
                 putEntityInSystem(makeJumphole(jumpholes.get(a)));
             }
         }
+    }
+    
+    private Star makeStar(Term starTerm) {
+        Star star = null;
+        {
+            //extract terms
+            String pName = starTerm.getValue("name");
+            String texture = starTerm.getValue("texture");
+            //find logical texture
+            Parser tmp = new Parser("PLANET.txt");
+            Term tex = null;
+            ArrayList<Term> list = tmp.getTermsOfType("Star");
+            for (int a = 0; a < list.size(); a++) {
+                if (list.get(a).getValue("name").matches(texture)) {
+                    tex = list.get(a);
+                    break;
+                }
+            }
+            //extract terms
+            int diameter = Integer.parseInt(starTerm.getValue("d"));
+            double px = Double.parseDouble(starTerm.getValue("x"));
+            double py = Double.parseDouble(starTerm.getValue("y"));
+            int seed = Integer.parseInt(starTerm.getValue("seed"));
+            //make planet and store
+            star = new Star(pName, tex, diameter);
+            star.setX(px);
+            star.setY(py);
+            star.setSeed(seed);
+        }
+        return star;
     }
 
     private Planet makePlanet(Term planetTerm) {

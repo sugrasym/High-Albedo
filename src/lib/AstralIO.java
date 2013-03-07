@@ -21,9 +21,11 @@ package lib;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -60,6 +62,17 @@ public class AstralIO implements Serializable {
             }
         }
         return ret;
+    }
+
+    public void writeFile(String target, String text) {
+        try {
+            FileWriter fstream = new FileWriter(target);
+            BufferedWriter out = new BufferedWriter(fstream);
+            out.write(text);
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public Image loadImage(String target) throws NullPointerException, URISyntaxException {

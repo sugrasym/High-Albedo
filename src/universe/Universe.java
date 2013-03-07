@@ -30,14 +30,14 @@ import lib.Parser.Term;
  * @author Nathan Wiehoff
  */
 public class Universe implements Serializable {
-    
+
     private ArrayList<SolarSystem> systems = new ArrayList<>();
     protected Ship playerShip;
-    
+
     public Universe() {
         init();
     }
-    
+
     private void init() {
         //create the universe parser
         Parser parse = new Parser("UNIVERSE.txt");
@@ -54,12 +54,21 @@ public class Universe implements Serializable {
         //there should only be of these, pick the first one
         makePlayer(games.get(0));
     }
-    
+
     private SolarSystem makeSystem(Parser parse, Term thisSystem) {
         SolarSystem system = null;
         {
             String name = thisSystem.getValue("name");
-            String back = thisSystem.getValue("back");
+            //get list of backs
+            String back = "base_plate.png";
+            String target = thisSystem.getValue("sky");
+            ArrayList<Term> backs = new Parser("SKY.txt").getTermsOfType("Skybox");
+            for (int a = 0; a < backs.size(); a++) {
+                if (backs.get(a).getValue("name").matches(target)) {
+                    back = backs.get(a).getValue("asset");
+                    break;
+                }
+            }
             system = new SolarSystem(this, name, parse);
             system.setBack(back);
             system.init(false);
@@ -67,7 +76,7 @@ public class Universe implements Serializable {
         System.out.println("Zeus: " + system.getName() + " solar system created. ");
         return system;
     }
-    
+
     private void makePlayer(Term start) {
         Ship player = null;
         {
@@ -105,19 +114,19 @@ public class Universe implements Serializable {
             playerShip = player;
         }
     }
-    
+
     public ArrayList<SolarSystem> getSystems() {
         return systems;
     }
-    
+
     public void setSystems(ArrayList<SolarSystem> systems) {
         this.systems = systems;
     }
-    
+
     public Ship getPlayerShip() {
         return playerShip;
     }
-    
+
     public void setPlayerShip(Ship playerShip) {
         this.playerShip = playerShip;
     }

@@ -14,13 +14,11 @@
  */
 package celestial;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
-import java.awt.RenderingHints;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
@@ -45,15 +43,15 @@ public class Planet extends Celestial {
 
     public static final int RENDER_SIZE = 1024;
     private Term texture;
-    private int seed = 255;
+    private int seed = 0;
     protected int diameter;
     protected transient Image raw_tex;
     private ArrayList<Rectangle> bound = new ArrayList<>();
 
-    public Planet(String name, Term texture, int radius) {
+    public Planet(String name, Term texture, int diameter) {
         setName(name);
         this.texture = texture;
-        this.diameter = radius;
+        this.diameter = diameter;
     }
 
     @Override
@@ -123,7 +121,9 @@ public class Planet extends Celestial {
                  * the planet.
                  */
                 //setup stroke
-                gfx.setStroke(new WobblyStroke(sRand.nextInt(5) + 1, sRand.nextInt(5) + 1));
+                int range = (int) (0.005*RENDER_SIZE);
+                int min = (int) (0.01*range) + 1;
+                gfx.setStroke(new WobblyStroke(sRand.nextInt(range) + min, sRand.nextInt(range) + min));
                 //determine band count
                 int bands = sRand.nextInt(75) + 25;
                 int bandHeight = (RENDER_SIZE / bands);
@@ -165,7 +165,9 @@ public class Planet extends Celestial {
             } else if (texture.getValue("group").matches("singlegas")) {
                 Random sRand = new Random(seed);
                 //setup stroke
-                gfx.setStroke(new WobblyStroke(sRand.nextInt(5) + 1, sRand.nextInt(5) + 1));
+                int range = (int) (0.005*RENDER_SIZE);
+                int min = (int) (0.125*range) + 1;
+                gfx.setStroke(new WobblyStroke(sRand.nextInt(range) + min, sRand.nextInt(range) + min));
                 /*
                  * My gas giants are conservative. They have a color and brightness
                  * which is held constant while bands are drawn varying the saturation.
@@ -210,8 +212,6 @@ public class Planet extends Celestial {
                 }
                 //store
                 raw_tex = tmp;
-            } else if (texture.getValue("group").matches("star")) {
-                raw_tex = io.loadImage("planet/Star.png");
             }
         } catch (Exception e) {
             e.printStackTrace();
