@@ -20,6 +20,9 @@ package celestial;
 
 import celestial.Ship.Ship;
 import engine.Entity;
+import java.net.URISyntaxException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import universe.SolarSystem;
 import universe.Universe;
 
@@ -30,8 +33,18 @@ public class Jumphole extends Planet {
     protected String out = "n/n";
 
     public Jumphole(String name, Universe universe) {
-        super(name, "Jumphole.png", 200);
+        super(name, null, 200);
         this.universe = universe;
+    }
+
+    public void initGraphics() {
+        try {
+            raw_tex = io.loadImage("planet/Jumphole.png");
+        } catch (NullPointerException ex) {
+            Logger.getLogger(Jumphole.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(Jumphole.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void createLink(String out) {
@@ -60,7 +73,7 @@ public class Jumphole extends Planet {
     public void linkWithPartner(Jumphole gate) {
         outGate = gate;
     }
-    
+
     @Override
     public void informOfCollisionWith(Entity target) {
         if (target instanceof Ship) {
@@ -72,9 +85,9 @@ public class Jumphole extends Planet {
                 tmp.getCurrentSystem().pullEntityFromSystem(tmp);
                 tmp.setCurrentSystem(outGate.getCurrentSystem());
                 tmp.getCurrentSystem().putEntityInSystem(tmp);
-                double dT = Math.atan2(getX()-tmp.getX(),getY()-tmp.getY());
-                tmp.setX((outGate.getX()+outGate.getWidth()/2) + outGate.getDiameter()*Math.cos(dT));
-                tmp.setY((outGate.getY()+outGate.getHeight()/2) + outGate.getDiameter()*Math.sin(dT));
+                double dT = Math.atan2(getX() - tmp.getX(), getY() - tmp.getY());
+                tmp.setX((outGate.getX() + outGate.getWidth() / 2) + outGate.getDiameter() * Math.cos(dT));
+                tmp.setY((outGate.getY() + outGate.getHeight() / 2) + outGate.getDiameter() * Math.sin(dT));
             }
         }
     }

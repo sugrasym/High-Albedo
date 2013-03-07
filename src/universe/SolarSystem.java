@@ -109,13 +109,26 @@ public class SolarSystem implements Entity, Serializable {
             //extract terms
             String pName = planetTerm.getValue("name");
             String texture = planetTerm.getValue("texture");
+            //find logical texture
+            Parser tmp = new Parser("PLANET.txt");
+            Term tex = null;
+            ArrayList<Term> list = tmp.getTermsOfType("Planet");
+            for (int a = 0; a < list.size(); a++) {
+                if (list.get(a).getValue("name").matches(texture)) {
+                    tex = list.get(a);
+                    break;
+                }
+            }
+            //extract terms
             int diameter = Integer.parseInt(planetTerm.getValue("d"));
             double px = Double.parseDouble(planetTerm.getValue("x"));
             double py = Double.parseDouble(planetTerm.getValue("y"));
+            int seed = Integer.parseInt(planetTerm.getValue("seed"));
             //make planet and store
-            planet = new Planet(pName, texture, diameter);
+            planet = new Planet(pName, tex, diameter);
             planet.setX(px);
             planet.setY(py);
+            planet.setSeed(seed);
         }
         return planet;
     }

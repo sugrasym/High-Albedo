@@ -530,6 +530,7 @@ public class Engine {
         //rendering helpers
         BufferedImage frame = new BufferedImage(uiX, uiY, BufferedImage.TYPE_INT_RGB); //double buffered frame
         Graphics2D f = (Graphics2D) frame.getGraphics(); //graphics context for the frame
+        Rectangle clip = null;
         //per system
         Image backplate;
         String lastPlate;
@@ -612,10 +613,15 @@ public class Engine {
          */
         private void render() throws Exception {
             //setup strategy
-            //f.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+            /*f.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);*/
             f.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            //setup clip
+            if(clip != null) {
+                clip = new Rectangle(0,0,uiX,uiY);
+            }
             //setup graphics
             Graphics g = bf.getDrawGraphics();
+            g.setClip(clip);
             //backplate
             if (lastPlate != null) {
                 if (lastPlate.matches(playerShip.getCurrentSystem().getBack())) {
