@@ -41,12 +41,13 @@ public class OverviewWindow extends AstralWindow {
     AstralLabel modeLabel = new AstralLabel();
     AstralLabel stationLabel = new AstralLabel();
     AstralLabel shipLabel = new AstralLabel();
+    AstralLabel velLabel = new AstralLabel();
     OverviewCanvas radar = new OverviewCanvas();
     private Ship sensorShip;
     public Mode mode = Mode.ACTIVE;
     protected boolean showShipNames = true;
     protected boolean showStationNames = true;
-    protected Color planetGrey = new Color(15, 15, 15,200);
+    protected Color planetGrey = new Color(15, 15, 15, 200);
 
     public enum Mode {
 
@@ -66,6 +67,7 @@ public class OverviewWindow extends AstralWindow {
         this.sensorShip = sensorShip;
         shipLabel.setVisible(showShipNames);
         stationLabel.setVisible(showStationNames);
+        velLabel.setText("REL SPEED: " + roundTwoDecimal(magnitude(sensorShip.getVx(), sensorShip.getVy())));
     }
 
     public void incrementMode() {
@@ -204,7 +206,14 @@ public class OverviewWindow extends AstralWindow {
         }
 
         protected void drawShipOnRadar(Graphics2D gfx, double ex, double ey, ArrayList<Entity> entities, int a) {
-            gfx.setColor(Color.WHITE);
+            //determine standings
+            if (sensorShip.getStandingsToMe((Ship) entities.get(a)) <= -3) {
+                gfx.setColor(Color.RED);
+            } else if (sensorShip.getStandingsToMe((Ship) entities.get(a)) >= 3) {
+                gfx.setColor(Color.GREEN);
+            } else {
+                gfx.setColor(Color.WHITE);
+            }
             gfx.drawRect((int) ex + (width / 2) - 1, (int) ey + (height / 2) - 1, 2, 2);
             gfx.setFont(radarFont);
             if (entities.get(a) instanceof Station) {
@@ -286,6 +295,14 @@ public class OverviewWindow extends AstralWindow {
         shipLabel.setWidth(100);
         shipLabel.setHeight(25);
         shipLabel.setVisible(true);
+        //setup vel label
+        velLabel.setText("REL SPEED");
+        velLabel.setName("vel");
+        velLabel.setX(0);
+        velLabel.setY(getHeight() - 15);
+        velLabel.setWidth(200);
+        velLabel.setHeight(25);
+        velLabel.setVisible(true);
         //setup radar
         radar.setName("radar");
         radar.setVisible(true);
@@ -299,6 +316,7 @@ public class OverviewWindow extends AstralWindow {
         addComponent(modeLabel);
         addComponent(shipLabel);
         addComponent(stationLabel);
+        addComponent(velLabel);
     }
 
     private synchronized double magnitude(double dx, double dy) {
@@ -307,6 +325,11 @@ public class OverviewWindow extends AstralWindow {
 
     private double roundTwoDecimal(double d) {
         DecimalFormat twoDForm = new DecimalFormat("#.##");
+        return Double.parseDouble(twoDForm.format(d));
+    }
+
+    private double roundOneDecimal(double d) {
+        DecimalFormat twoDForm = new DecimalFormat("#.#");
         return Double.parseDouble(twoDForm.format(d));
     }
 

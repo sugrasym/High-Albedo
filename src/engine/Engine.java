@@ -29,7 +29,6 @@ import gdi.FuelWindow;
 import gdi.HealthWindow;
 import gdi.OverviewWindow;
 import gdi.TradeWindow;
-import gdi.VelocityWindow;
 import gdi.component.AstralWindow;
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -183,7 +182,6 @@ public class Engine {
     public class HUD {
 
         ArrayList<AstralWindow> windows = new ArrayList<>();
-        VelocityWindow velocityWindow = new VelocityWindow();
         HealthWindow healthWindow = new HealthWindow();
         FuelWindow fuelWindow = new FuelWindow();
         OverviewWindow overviewWindow = new OverviewWindow();
@@ -193,7 +191,6 @@ public class Engine {
 
         public HUD() {
             //pack
-            windows.add(velocityWindow);
             windows.add(healthWindow);
             windows.add(fuelWindow);
             windows.add(overviewWindow);
@@ -204,15 +201,12 @@ public class Engine {
         }
 
         public void render(Graphics f) {
-            //position velocity window
-            velocityWindow.setX((uiX / 2) - velocityWindow.getWidth() / 2);
-            velocityWindow.setY(uiY - 40);
             //position health window
             healthWindow.setX((uiX / 2) - healthWindow.getWidth() / 2);
             healthWindow.setY(uiY - 55);
             //position fuel window
             fuelWindow.setX((uiX / 2) - fuelWindow.getWidth() / 2);
-            fuelWindow.setY(uiY - 70);
+            fuelWindow.setY(uiY - 40);
             //position overview window
             overviewWindow.setX((uiX - (overviewWindow.getWidth() + 20)));
             overviewWindow.setY(uiY - (overviewWindow.getHeight() + 20));
@@ -233,7 +227,6 @@ public class Engine {
 
         public void periodicUpdate() {
             //push hud changes
-            velocityWindow.updateVelocity(pvx, pvy);
             healthWindow.updateHealth((playerShip.getShield() / playerShip.getMaxShield()),
                     (playerShip.getHull() / playerShip.getMaxHull()));
             fuelWindow.updateFuel(playerShip.getFuel() / playerShip.getMaxFuel());
@@ -434,7 +427,6 @@ public class Engine {
                     windows.get(a).setVisible(false);
                 }
                 //show these since they are always visible
-                velocityWindow.setVisible(true);
                 healthWindow.setVisible(true);
                 fuelWindow.setVisible(true);
             } else {
@@ -841,9 +833,9 @@ public class Engine {
                 int tw = ship.getWidth();
                 int th = ship.getHeight();
                 int standing = ship.getStandingsToMe(playerShip);
-                if (standing > 3) {
-                    f.setColor(Color.BLUE);
-                } else if (standing < -3) {
+                if (standing >= 3) {
+                    f.setColor(Color.GREEN);
+                } else if (standing <= -3) {
                     f.setColor(Color.RED);
                 } else {
                     f.setColor(Color.GRAY);

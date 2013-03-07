@@ -794,7 +794,7 @@ public class Ship extends Celestial {
                         //make sure it is alive
                         if (tmp.getState() == State.ALIVE) {
                             //check standings
-                            if (tmp.getStandingsToMe(this) < -3) {
+                            if (tmp.getStandingsToMe(this) <= -3) {
                                 //make sure it is in range
                                 if (distanceTo(tmp) < getSensor()) {
                                     hostiles.add(tmp);

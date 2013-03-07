@@ -1,8 +1,16 @@
+##########################################
+#   hostile <= -3 < neutral < 3 < hostile
+#
+#   So -3 or lower is hostile
+#       3 or higher is friendly
+#
+##########################################
+
 ########The Player########
 [Faction]
 name=Player
 Player=10
-Ageiran Federation=0
+Ageiran Federation=3
 The Archers=-4
 Caina Conglemerate=-1
 [/Faction]
@@ -10,7 +18,7 @@ Caina Conglemerate=-1
 ########Ageiran Space########
 [Faction]
 name=Ageiran Federation
-Player=0
+Player=3
 Ageiran Federation=10
 The Archers=-10
 Caina Conglemerate=0
