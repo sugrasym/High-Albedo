@@ -30,6 +30,7 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -44,19 +45,11 @@ public class OverviewWindow extends AstralWindow {
     AstralLabel velLabel = new AstralLabel();
     OverviewCanvas radar = new OverviewCanvas();
     private Ship sensorShip;
-    public Mode mode = Mode.ACTIVE;
+    private double area = 1;
     protected boolean showShipNames = true;
     protected boolean showStationNames = true;
     protected Color planetGrey = new Color(15, 15, 15, 200);
-
-    public enum Mode {
-
-        SHORT_ACTIVE, //0.5x sensor range. everything visible including secret stuff
-        ACTIVE, //1x sensor range. ships, planets, stations
-        PASSIVE, //10x sensor range. planets, stations
-        LONG_PASSIVE, //100x sensor range. planets
-        DEEP_FIELD //1000x sensor range. planets without names
-    }
+    Random rnd = new Random();
 
     public OverviewWindow() {
         super();
@@ -71,21 +64,24 @@ public class OverviewWindow extends AstralWindow {
     }
 
     public void incrementMode() {
-        if (mode == Mode.SHORT_ACTIVE) {
-            mode = Mode.ACTIVE;
-        } else if (mode == Mode.ACTIVE) {
-            mode = Mode.PASSIVE;
-        } else if (mode == Mode.PASSIVE) {
-            mode = Mode.LONG_PASSIVE;
-        } else if (mode == Mode.LONG_PASSIVE) {
-            mode = mode.DEEP_FIELD;
-        } else {
-            mode = mode.SHORT_ACTIVE;
+        area *= 2.0;
+        if (area > 1024) {
+            area = 1024;
+        }
+    }
+
+    public void decrementMode() {
+        area /= 2.0;
+        if (area < 0.25) {
+            area = 0.25;
         }
     }
 
     private class OverviewCanvas extends AstralComponent {
 
+        public static final int PLANET_AIM_LIMIT = 32;
+        public static final int SHIP_AIM_LIMIT = 2;
+        public static final int STATION_AIM_LIMIT = 10;
         Font radarFont = new Font("Monospaced", Font.PLAIN, 9);
 
         public OverviewCanvas() {
@@ -96,25 +92,8 @@ public class OverviewWindow extends AstralWindow {
         public void render(Graphics f) {
             BufferedImage frame = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
             if (sensorShip != null) {
-                //store range
-                double scale = 0;
-                if (mode == Mode.SHORT_ACTIVE) {
-                    scale = 0.5;
-                    modeLabel.setText("SHORT ACTIVE");
-                } else if (mode == Mode.ACTIVE) {
-                    scale = 1.0;
-                    modeLabel.setText("ACTIVE");
-                } else if (mode == Mode.PASSIVE) {
-                    scale = 10.0;
-                    modeLabel.setText("PASSIVE");
-                } else if (mode == Mode.LONG_PASSIVE) {
-                    scale = 100.0;
-                    modeLabel.setText("LONG PASSIVE");
-                } else if (mode == Mode.DEEP_FIELD) {
-                    modeLabel.setText("DEEP FIELD");
-                    scale = 1000.0;
-                }
-                rangeLabel.setText("RANGE: " + sensorShip.getSensor() * scale);
+                modeLabel.setText("VIEW: " + area + "x");
+                rangeLabel.setText("RANGE: " + sensorShip.getSensor() * area);
                 //get graphics
                 Graphics2D gfx = (Graphics2D) frame.getGraphics();
                 //draw stuff
@@ -131,20 +110,7 @@ public class OverviewWindow extends AstralWindow {
             ArrayList<Entity> entities = sensorShip.getCurrentSystem().getEntities();
             drawVectorLines(gfx);
             for (int a = 0; a < entities.size(); a++) {
-                //get sensor strength
-                double range = sensorShip.getSensor();
-                //scale range
-                if (mode == Mode.SHORT_ACTIVE) {
-                    range *= 0.5;
-                } else if (mode == Mode.ACTIVE) {
-                    range *= 1.0;
-                } else if (mode == Mode.PASSIVE) {
-                    range *= 10.0;
-                } else if (mode == Mode.LONG_PASSIVE) {
-                    range *= 100.0;
-                } else if (mode == Mode.DEEP_FIELD) {
-                    range *= 1000.0;
-                }
+                double range = (sensorShip.getSensor() * area);
                 //get coordinates
                 double ex = entities.get(a).getX();
                 double ey = entities.get(a).getY();
@@ -179,15 +145,21 @@ public class OverviewWindow extends AstralWindow {
             double diam = pl.getDiameter();
             diam /= (range);
             diam *= width / 2;
-            gfx.setColor(planetGrey);
-            gfx.fillOval((int) ex + (width / 2), (int) ey + (height / 2), (int) diam, (int) diam);
-            gfx.setColor(Color.DARK_GRAY);
-            gfx.drawOval((int) ex + (width / 2), (int) ey + (height / 2), (int) diam, (int) diam);
-            gfx.setColor(Color.pink);
-            gfx.setFont(radarFont);
-            if (mode != Mode.DEEP_FIELD) {
+            //determine whether to draw the name based on range
+            double fuzz = 1.0 - rnd.nextDouble() * 0.1f;
+            double view = PLANET_AIM_LIMIT * sensorShip.getSensor() * fuzz;
+            double dist = sensorShip.distanceTo(pl);
+            if ((area < PLANET_AIM_LIMIT) || dist < view) {
+                gfx.setColor(planetGrey);
+                gfx.fillOval((int) ex + (width / 2), (int) ey + (height / 2), (int) diam, (int) diam);
+                gfx.setColor(Color.DARK_GRAY);
+                gfx.drawOval((int) ex + (width / 2), (int) ey + (height / 2), (int) diam, (int) diam);
+                gfx.setColor(Color.pink);
+                gfx.setFont(radarFont);
                 gfx.drawString(pl.getName(), (int) (ex + diam / 2) + (width / 2) - 1, (int) (ey + diam / 2) + (height / 2) - 1);
             } else {
+                gfx.setColor(Color.PINK);
+                gfx.setFont(radarFont);
                 gfx.drawString("NO AIM", (int) (ex + diam / 2) + (width / 2) - 1, (int) (ey + diam / 2) + (height / 2) - 1);
             }
         }
@@ -198,9 +170,9 @@ public class OverviewWindow extends AstralWindow {
         }
 
         protected void doShip(Graphics2D gfx, double ex, double ey, ArrayList<Entity> entities, int a) {
-            if (mode == Mode.SHORT_ACTIVE || mode == Mode.ACTIVE) {
+            if (area < SHIP_AIM_LIMIT) {
                 drawShipOnRadar(gfx, ex, ey, entities, a);
-            } else if (mode == Mode.PASSIVE && entities.get(a) instanceof Station) {
+            } else if (area < STATION_AIM_LIMIT && entities.get(a) instanceof Station) {
                 drawShipOnRadar(gfx, ex, ey, entities, a);
             }
         }
@@ -333,14 +305,6 @@ public class OverviewWindow extends AstralWindow {
         return Double.parseDouble(twoDForm.format(d));
     }
 
-    public Mode getMode() {
-        return mode;
-    }
-
-    public void setMode(Mode mode) {
-        this.mode = mode;
-    }
-
     public boolean isShowShipNames() {
         return showShipNames;
     }
@@ -363,6 +327,8 @@ public class OverviewWindow extends AstralWindow {
          * navmap keys
          */ if (ke.getKeyCode() == KeyEvent.VK_END) {
             incrementMode();
+        } else if (ke.getKeyCode() == KeyEvent.VK_HOME) {
+            decrementMode();
         } else if (ke.getKeyCode() == KeyEvent.VK_PAGE_DOWN) {
             setShowShipNames(!isShowShipNames());
         } else if (ke.getKeyCode() == KeyEvent.VK_PAGE_UP) {

@@ -47,4 +47,5 @@ Overview Window
 ---------------------
 PAGE UP - toggle show stations
 PAGE DOWN - toggle show ships
-END - cycle through sensor modes
+END - Multiply view area 2x at a diminishing resolution
+HOME - Divide view area 2x at an increasing resolution

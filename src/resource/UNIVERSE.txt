@@ -1,13 +1,68 @@
+#[Jumphole]
+#name=Ban Dali Gate
+#system=Mal Canse
+#out=Ban Dali/Mal Canse Gate
+#x=-6000
+#y=-2000
+#[/Jumphole]
+
 #New Game Smell
 [NewGame]
-ship=Cavalry
-system=System 15
+ship=Sparrow
+system=System 9
 near=Planet 1
 cash=8500
-install=Arrow/Arrow/Long 9
+install=Talon 1/Talon 1
 cargo=Scrap Metal~10/Standard Energy Unit
 faction=Player
 [/NewGame]
+
+########
+
+[Ship]
+ship=Cavalry
+name=Probe Craft
+system=System 9
+near=Planet 1
+faction=The Archers
+install=Catapult/Catapult/Long 9
+[/Ship]
+
+[Ship]
+ship=Monitor
+name=Probe Craft
+system=System 9
+near=Planet 1
+faction=Ageiran Federation
+install=Bask/Bask/Iguana Launcher
+cargo=Iguana Missile~20
+[/Ship]
+
+########
+
+[Station]
+ship=Ageiran Civilian Station
+name=Alpha Station
+faction=Ageiran Federation
+system=System 9
+near=Planet 1
+[/Station]
+
+[Station]
+ship=Ageiran Civilian Station
+name=Beta Station
+faction=Ageiran Federation
+system=System 9
+near=Planet 7
+[/Station]
+
+[Station]
+ship=Ageiran Civilian Station
+name=Gamma Station
+faction=Ageiran Federation
+system=System 9
+near=Planet 6
+[/Station]
 
 [System]
 name=System 0
