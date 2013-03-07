@@ -32,6 +32,9 @@ UI Components
 ---------------------
 * Click on a window to focus it so you can send commands to it, click in empty space to deselect everything.
 
+F1 - Main Menu
+ESC - Quit
+
 F5 - Deselect all windows and return to flight mode
 F6 - Deselect all windows and hide them.
 

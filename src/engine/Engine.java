@@ -184,7 +184,7 @@ public class Engine {
 
     public void load(String savePath) {
         try {
-            String home = System.getProperty("user.home")+"/.highalbedo/";
+            String home = System.getProperty("user.home") + "/.highalbedo/";
             System.out.println("Athena: Starting Quickload.");
             //get everything
             AstralIO.Everything everything;
@@ -206,6 +206,11 @@ public class Engine {
         setUniverse(universe);
         resurrect();
     }
+    
+    public void newGame() {
+        universe = new Universe();
+        setUniverse(universe);
+    }
 
     /*
      * Pauses execution of the simulation
@@ -218,10 +223,8 @@ public class Engine {
      * HUD class, makes sense to put it here.
      */
     public class HUD {
-        //Engine reference
-
-        private Engine engine;
         //Window list
+
         ArrayList<AstralWindow> windows = new ArrayList<>();
         //menu windows
         MenuHomeWindow homeWindow;
@@ -234,7 +237,6 @@ public class Engine {
         TradeWindow tradeWindow = new TradeWindow();
 
         public HUD(Engine engine) {
-            this.engine = engine;
             homeWindow = new MenuHomeWindow(engine);
         }
 
@@ -478,7 +480,9 @@ public class Engine {
 
         public void handleKeyReleasedEvent(KeyEvent ke) {
             boolean windowIntercepted = false;
-            if (ke.getKeyCode() == KeyEvent.VK_F5) {
+            if (ke.getKeyCode() == KeyEvent.VK_F1) {
+                menu();
+            } else if (ke.getKeyCode() == KeyEvent.VK_F5) {
                 //defocus all windows
                 for (int a = 0; a < windows.size(); a++) {
                     windows.get(a).setFocused(false);

@@ -105,8 +105,7 @@ public class Main extends JFrame {
         BufferStrategy bf = getBufferStrategy();
         engine = new Engine(bf, uiX, uiY);
         //initialize universe
-        Universe universe = new Universe();
-        engine.setUniverse(universe);
+        engine.newGame();
     }
 
     /*
@@ -153,10 +152,12 @@ public class Main extends JFrame {
             public void mousePressed(MouseEvent me) {
                 engine.getHud().handleMousePressedEvent(me);
             }
+
             @Override
             public void mouseReleased(MouseEvent me) {
                 engine.getHud().handleMouseReleasedEvent(me);
             }
+
             @Override
             public void mouseClicked(MouseEvent me) {
                 engine.getHud().handleMouseClickedEvent(me);
@@ -169,6 +170,8 @@ public class Main extends JFrame {
      * These are special event handlers
      */
     private void destroy() {
+        //exit save
+        exitSave();
         //escape closes the program always
         setVisible(false);
         dispose();
@@ -190,9 +193,27 @@ public class Main extends JFrame {
         }
     }
 
+    private void exitSave() {
+        try {
+            /*
+             * Saves game upon exit just in case you didn't mean to do that.
+             */
+            AstralIO io = new AstralIO();
+            engine.stop();
+            System.out.println("Athena: Starting Exitsave.");
+            io.saveGame(engine.getUniverse(), "autosave");
+            System.out.println("Athena: Exitsave Complete.");
+        } catch (Exception ex) {
+            //escape closes the program always
+            setVisible(false);
+            dispose();
+            System.exit(0);
+        }
+    }
+
     private void quickLoad() {
         engine.stop();
-        engine.load("quicksave.txt");
+        engine.load("quicksave");
         engine.start();
     }
 }

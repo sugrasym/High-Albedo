@@ -129,7 +129,7 @@ public class AstralIO implements Serializable {
         //generate serializable universe
         Everything everything = new Everything(universe);
         //serialize universe
-        FileOutputStream fos = new FileOutputStream(home + gameName + ".txt");
+        FileOutputStream fos = new FileOutputStream(home + gameName);
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(everything);
     }
