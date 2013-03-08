@@ -65,8 +65,11 @@ public class WorldMaker {
                     //determine skybox
                     int pick = rnd.nextInt(skyTypes.size());
                     //determine map location
-                    int x = rnd.nextInt(worldSize * 2) - worldSize;
-                    int y = rnd.nextInt(worldSize * 2) - worldSize;
+                    double x = rnd.nextInt(worldSize * 2) - worldSize;
+                    double y = rnd.nextInt(worldSize * 2) - worldSize;
+                    //add some randomization
+                    x += 2.0*rnd.nextDouble()-1;
+                    y += 2.0*rnd.nextDouble()-1;
                     //create the system entry
                     thisSystem +=
                             "[System]\n"
@@ -96,7 +99,7 @@ public class WorldMaker {
                             + "seed=" + seed + "\n"
                             + "[/Star]\n\n";
                     //add a simpling for testing
-                    objects.add(new Simpling(new Point2D.Float(x,y), 4 * r));
+                    objects.add(new Simpling(new Point2D.Float((float)x,(float)y), 4 * r));
                     /*
                      * CREATE NEBULA
                      * 
@@ -170,7 +173,7 @@ public class WorldMaker {
                             r = minPlanetSize;
                         }
                         //create a simpling for testing
-                        Simpling test = new Simpling(new Point2D.Float(x,y), r);
+                        Simpling test = new Simpling(new Point2D.Float((float)x,(float)y), r);
                         boolean safe = true;
                         for (int c = 0; c < objects.size(); c++) {
                             if (objects.get(c).collideWith(test)) {

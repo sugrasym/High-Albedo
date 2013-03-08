@@ -59,6 +59,9 @@ public class Universe implements Serializable {
         SolarSystem system = null;
         {
             String name = thisSystem.getValue("name");
+            //get position
+            double sx = Double.parseDouble(thisSystem.getValue("x"));
+            double sy = Double.parseDouble(thisSystem.getValue("y"));
             //get list of backs
             String back = "base_plate.png";
             String target = thisSystem.getValue("sky");
@@ -70,6 +73,8 @@ public class Universe implements Serializable {
                 }
             }
             system = new SolarSystem(this, name, parse);
+            system.setX(sx);
+            system.setY(sy);
             system.setBack(back);
             system.init(false);
         }

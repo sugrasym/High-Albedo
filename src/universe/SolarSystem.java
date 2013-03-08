@@ -42,8 +42,8 @@ public class SolarSystem implements Entity, Serializable {
     //this system
 
     protected String name;
-    int x;
-    int y;
+    double x;
+    double y;
     //backplate
     private String back;
     //what it contains

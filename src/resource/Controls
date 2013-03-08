@@ -42,6 +42,7 @@ S - toggle overview window
 E - toggle equipment and targeting window
 C - toggle cargo window
 T - toggle trade with station window (MUST BE DOCKED!)
+M - toggle star map window
 
 Overview Window
 ---------------------
@@ -49,3 +50,9 @@ PAGE UP - toggle show stations
 PAGE DOWN - toggle show ships
 END - Multiply view area 2x at a diminishing resolution
 HOME - Divide view area 2x at an increasing resolution
+
+Star Map Window
+---------------------
+END - Zoom in 2x
+HOME - Zoom out 2x
+Arrow Keys - Scroll View

@@ -99,4 +99,12 @@ public class Jumphole extends Planet {
     public void setOut(String out) {
         this.out = out;
     }
+
+    public Jumphole getOutGate() {
+        return outGate;
+    }
+
+    public void setOutGate(Jumphole outGate) {
+        this.outGate = outGate;
+    }
 }

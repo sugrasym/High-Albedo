@@ -29,6 +29,7 @@ import gdi.FuelWindow;
 import gdi.HealthWindow;
 import gdi.MenuHomeWindow;
 import gdi.OverviewWindow;
+import gdi.StarMapWindow;
 import gdi.TradeWindow;
 import gdi.component.AstralWindow;
 import java.awt.BasicStroke;
@@ -206,7 +207,7 @@ public class Engine {
         setUniverse(universe);
         resurrect();
     }
-    
+
     public void newGame() {
         universe = new Universe();
         setUniverse(universe);
@@ -235,6 +236,7 @@ public class Engine {
         EquipmentWindow equipmentWindow = new EquipmentWindow();
         CargoWindow cargoWindow = new CargoWindow();
         TradeWindow tradeWindow = new TradeWindow();
+        StarMapWindow starMapWindow = new StarMapWindow();
 
         public HUD(Engine engine) {
             homeWindow = new MenuHomeWindow(engine);
@@ -250,6 +252,7 @@ public class Engine {
                 cargoWindow.setVisible(false);
                 windows.add(cargoWindow);
                 windows.add(tradeWindow);
+                windows.add(starMapWindow);
             } else if (state == State.MENU) {
                 windows.add(homeWindow);
                 homeWindow.setVisible(true);
@@ -276,6 +279,9 @@ public class Engine {
                 //position trade window
                 tradeWindow.setX((uiX / 2) - tradeWindow.getWidth() / 2);
                 tradeWindow.setY((uiY / 2) - tradeWindow.getHeight() / 2);
+                //position map window
+                starMapWindow.setX((uiX / 2) - starMapWindow.getWidth() / 2);
+                starMapWindow.setY((uiY / 2) - starMapWindow.getHeight() / 2);
             } else if (state == State.MENU) {
                 //position home window
                 homeWindow.setX((uiX / 2) - homeWindow.getWidth() / 2);
@@ -283,7 +289,9 @@ public class Engine {
             }
             //render
             for (int a = windows.size() - 1; a >= 0; a--) {
-                windows.get(a).render(f);
+                if (windows.get(a).isVisible()) {
+                    windows.get(a).render(f);
+                }
             }
         }
 
@@ -297,6 +305,7 @@ public class Engine {
                 equipmentWindow.update(playerShip);
                 cargoWindow.update(playerShip);
                 tradeWindow.update(playerShip);
+                starMapWindow.updateMap(universe);
                 //update
                 for (int a = 0; a < windows.size(); a++) {
                     windows.get(a).periodicUpdate();
@@ -548,6 +557,9 @@ public class Engine {
                 }
                 if (ke.getKeyCode() == KeyEvent.VK_S) {
                     overviewWindow.setVisible(!overviewWindow.isVisible());
+                }
+                if (ke.getKeyCode() == KeyEvent.VK_M) {
+                    starMapWindow.setVisible(!starMapWindow.isVisible());
                 }
                 if (ke.getKeyCode() == KeyEvent.VK_C) {
                     cargoWindow.setVisible(!cargoWindow.isVisible());

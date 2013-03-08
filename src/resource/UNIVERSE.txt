@@ -40,6 +40,25 @@ cargo=Iguana Missile~20
 
 ########
 
+########
+[Jumphole]
+name=System 16 Gate
+system=System 9
+out=System 16/System 9 Gate
+x=-6000
+y=-2000
+[/Jumphole]
+
+
+[Jumphole]
+name=System 9 Gate
+system=System 16
+out=System 9/System 16 Gate
+x=-6000
+y=-2000
+[/Jumphole]
+########
+
 [Station]
 ship=Ageiran Civilian Station
 name=Alpha Station
