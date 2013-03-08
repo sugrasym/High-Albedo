@@ -105,7 +105,7 @@ public class Process implements Serializable {
                 }
             }
         } else {
-            System.out.println("Hades: The item " + getName() + " does not exist in PROCESSES.txt");
+            System.out.println("The item " + getName() + " does not exist in PROCESSES.txt");
         }
     }
 

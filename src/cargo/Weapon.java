@@ -119,7 +119,7 @@ public class Weapon extends Equipment {
                 }
             }
         } else {
-            System.out.println("Hades: The item " + getName() + " does not exist in WEAPONS.txt");
+            System.out.println("The item " + getName() + " does not exist in WEAPONS.txt");
         }
     }
 

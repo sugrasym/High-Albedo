@@ -185,7 +185,7 @@ public class Engine {
     public void load(String savePath) {
         try {
             String home = System.getProperty("user.home") + "/.highalbedo/";
-            System.out.println("Athena: Starting Quickload.");
+            System.out.println("Starting Quickload.");
             //get everything
             AstralIO.Everything everything;
             FileInputStream fis = new FileInputStream(home + savePath);
@@ -195,7 +195,7 @@ public class Engine {
             Universe universe = everything.getUniverse();
             //restore transient objects
             loadUniverse(universe);
-            System.out.println("Athena: Quickload Complete.");
+            System.out.println("Quickload Complete.");
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -44,13 +44,13 @@ public class Universe implements Serializable {
         //get all the solar system terms
         ArrayList<Term> solars = parse.getTermsOfType("System");
         //generate the systems and add them
-        System.out.println("Zeus: Found " + solars.size() + " systems to make.");
+        System.out.println("Found " + solars.size() + " systems to make.");
         for (int a = 0; a < solars.size(); a++) {
             getSystems().add(makeSystem(parse, solars.get(a)));
         }
         //generate the player
         ArrayList<Term> games = parse.getTermsOfType("NewGame");
-        System.out.println("Zeus: Found " + games.size() + " games to read.");
+        System.out.println("Found " + games.size() + " games to read.");
         //there should only be of these, pick the first one
         makePlayer(games.get(0));
     }
@@ -73,7 +73,7 @@ public class Universe implements Serializable {
             system.setBack(back);
             system.init(false);
         }
-        System.out.println("Zeus: " + system.getName() + " solar system created. ");
+        System.out.println(system.getName() + " solar system created. ");
         return system;
     }
 

@@ -70,7 +70,7 @@ public class Celestial implements Serializable, Entity {
 
     @Override
     public  void informOfCollisionWith(Entity target) {
-        throw new UnsupportedOperationException("Hades: Not supported yet.");
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -102,7 +102,7 @@ public class Celestial implements Serializable, Entity {
             }
             return false;
         } catch (Exception e) {
-            System.out.println("Hades: " + getName() + " has a null box?!");
+            System.out.println(getName() + " has a null box?!");
             e.printStackTrace();
             return false;
         }
@@ -118,7 +118,7 @@ public class Celestial implements Serializable, Entity {
         } else if (state == State.DEAD) {
             dead(); //and why is this being updated?
         } else {
-            throw new UnsupportedOperationException("Hades: " + getName() + " is in an undefined state.");
+            throw new UnsupportedOperationException(getName() + " is in an undefined state.");
         }
     }
 
@@ -143,7 +143,7 @@ public class Celestial implements Serializable, Entity {
 
     @Override
     public  void render(Graphics f, double dx, double dy) {
-        throw new UnsupportedOperationException("Hades: Not supported yet.");
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -153,7 +153,7 @@ public class Celestial implements Serializable, Entity {
 
     @Override
     public ArrayList<Rectangle> getBounds() {
-        throw new UnsupportedOperationException("Hades: Not supported yet.");
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override

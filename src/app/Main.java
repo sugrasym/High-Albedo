@@ -81,12 +81,12 @@ public class Main extends JFrame {
             //throw new Exception();
             setUndecorated(true);
             gs.setFullScreenWindow(this);
-            System.out.println("Athena: Sucessfully acquired full screen.");
+            System.out.println("Sucessfully acquired full screen.");
         } catch (Exception e) {
             //fallback to a windowed mode
             setUndecorated(false);
             setSize(1024, 768);
-            System.out.println("Athena: Failed to get full screen mode, falling back to windowed.");
+            System.out.println("Failed to get full screen mode, falling back to windowed.");
         }
         //store size
         uiX = getWidth();
@@ -95,7 +95,7 @@ public class Main extends JFrame {
         setVisible(true);
         //create buffer strategy
         createBufferStrategy(2);
-        System.out.println("Athena: Window size of " + uiX + "," + uiY + " stored.");
+        System.out.println("Window size of " + uiX + "," + uiY + " stored.");
     }
 
     /*
@@ -183,9 +183,9 @@ public class Main extends JFrame {
         AstralIO io = new AstralIO();
         try {
             engine.stop();
-            System.out.println("Athena: Starting Quicksave.");
+            System.out.println("Starting Quicksave.");
             io.saveGame(engine.getUniverse(), "quicksave");
-            System.out.println("Athena: Quicksave Complete.");
+            System.out.println("Quicksave Complete.");
             engine.start();
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
@@ -200,9 +200,9 @@ public class Main extends JFrame {
              */
             AstralIO io = new AstralIO();
             engine.stop();
-            System.out.println("Athena: Starting Exitsave.");
+            System.out.println("Starting Exitsave.");
             io.saveGame(engine.getUniverse(), "autosave");
-            System.out.println("Athena: Exitsave Complete.");
+            System.out.println("Exitsave Complete.");
         } catch (Exception ex) {
             //escape closes the program always
             setVisible(false);

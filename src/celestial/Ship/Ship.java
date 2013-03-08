@@ -201,7 +201,7 @@ public class Ship extends Celestial {
             //bring the ship to life
             state = State.ALIVE;
         } else {
-            System.out.println("Hades: The item " + getName() + " does not exist in SHIPS.txt");
+            System.out.println("The item " + getName() + " does not exist in SHIPS.txt");
         }
     }
 

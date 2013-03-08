@@ -73,7 +73,7 @@ public class Item implements Serializable {
             description = relevant.getValue("description");
             group = relevant.getValue("group");
         } else {
-            System.out.println("Hades: The item " + getName() + " does not exist in ITEMS.txt");
+            System.out.println("The item " + getName() + " does not exist in ITEMS.txt");
         }
     }
 
