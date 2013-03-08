@@ -232,8 +232,8 @@ public class SolarSystem implements Entity, Serializable {
             if (near != null) {
                 for (int b = 0; b < entities.size(); b++) {
                     if (entities.get(b).getName().matches(near)) {
-                        ret.setX(entities.get(b).getX() + rnd.nextInt(1600) - 800);
-                        ret.setY(entities.get(b).getY() + rnd.nextInt(1600) - 800);
+                        ret.setX(entities.get(b).getX() + rnd.nextInt(2000) - 1000);
+                        ret.setY(entities.get(b).getY() + rnd.nextInt(2000) - 1000);
                         break;
                     }
                 }
@@ -248,8 +248,8 @@ public class SolarSystem implements Entity, Serializable {
                     ret.setY(ty);
                 } else {
                     //or not? just throw it somewhere.
-                    ret.setX(rnd.nextInt(1000000));
-                    ret.setY(rnd.nextInt(1000000));
+                    ret.setX(rnd.nextInt(100000));
+                    ret.setY(rnd.nextInt(100000));
                 }
             }
             ret.setCurrentSystem(this);

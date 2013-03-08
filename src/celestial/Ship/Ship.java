@@ -125,7 +125,7 @@ public class Ship extends Celestial {
     }
 
     @Override
-    public void initGraphics() {
+    public  void initGraphics() {
         try {
             //get the image
             raw_tex = io.loadImage("ship/" + type + ".png");
@@ -149,7 +149,7 @@ public class Ship extends Celestial {
     }
 
     @Override
-    public void disposeGraphics() {
+    public  void disposeGraphics() {
         raw_tex = null;
         tex = null;
         for (int a = 0; a < hardpoints.size(); a++) {
@@ -163,7 +163,7 @@ public class Ship extends Celestial {
         }
     }
 
-    protected void initStats() {
+    protected  void initStats() {
         /*
          * Loads the stats for this ship from the ships file.
          */
@@ -714,12 +714,12 @@ public class Ship extends Celestial {
     /*
      * Navigation signals
      */
-    public synchronized void abortDock() {
+    public  void abortDock() {
         setAutopilot(Autopilot.NONE);
         port = null;
     }
 
-    public synchronized void requestDocking() {
+    public  void requestDocking() {
         /*
          * Gets a docking port
          */
@@ -732,7 +732,7 @@ public class Ship extends Celestial {
         }
     }
 
-    public synchronized void undock() {
+    public  void undock() {
         /*
          * Attempt to undock with the current target
          */
@@ -743,7 +743,7 @@ public class Ship extends Celestial {
         autopilot = Autopilot.UNDOCK_STAGE1;
     }
 
-    public synchronized void targetNearestShip() {
+    public  void targetNearestShip() {
         target = null;
         //get a list of all nearby ships
         ArrayList<Entity> nearby = getCurrentSystem().getEntities();
@@ -781,7 +781,7 @@ public class Ship extends Celestial {
         target = closest;
     }
 
-    public synchronized void targetNearestHostile() {
+    public  void targetNearestHostile() {
         target = null;
         //get a list of all nearby hostiles
         ArrayList<Entity> nearby = getCurrentSystem().getEntities();
@@ -894,7 +894,7 @@ public class Ship extends Celestial {
         }
     }
 
-    public synchronized void straffPositive() {
+    public  void straffPositive() {
         if (getFuel() > 0) {
             setVx(getVx() - getAccel() * tpf * Math.cos(getTheta() + Math.PI / 2));
             setVy(getVy() - getAccel() * tpf * Math.sin(getTheta() + Math.PI / 2));
@@ -905,7 +905,7 @@ public class Ship extends Celestial {
         }
     }
 
-    public synchronized void straffNegative() {
+    public  void straffNegative() {
         if (getFuel() > 0) {
             setVx(getVx() - getAccel() * tpf * Math.cos(getTheta() - Math.PI / 2));
             setVy(getVy() - getAccel() * tpf * Math.sin(getTheta() - Math.PI / 2));
@@ -916,7 +916,7 @@ public class Ship extends Celestial {
         }
     }
 
-    public synchronized void fireRearThrusters() {
+    public  void fireRearThrusters() {
         if (getFuel() > 0) {
             setVx(getVx() - getAccel() * tpf * Math.cos(getTheta()));
             setVy(getVy() - getAccel() * tpf * Math.sin(getTheta()));
@@ -927,7 +927,7 @@ public class Ship extends Celestial {
         }
     }
 
-    public synchronized void fireForwardThrusters() {
+    public  void fireForwardThrusters() {
         if (getFuel() > 0) {
             setVx(getVx() + getAccel() * tpf * Math.cos(getTheta()));
             setVy(getVy() + getAccel() * tpf * Math.sin(getTheta()));
@@ -938,14 +938,14 @@ public class Ship extends Celestial {
         }
     }
 
-    public synchronized void decelerate() {
+    public  void decelerate() {
         //stops the ship entirely, good panic button in zero g motion.
         //stop if we're near the origin of our velocity
         decelX();
         decelY();
     }
 
-    protected void decelX() {
+    protected  void decelX() {
         if (getFuel() > 0) {
             if (Math.abs(getVx()) < 4 * getAccel() * tpf) {
                 setVx(0);
@@ -961,7 +961,7 @@ public class Ship extends Celestial {
         }
     }
 
-    protected void decelY() {
+    protected  void decelY() {
         if (getFuel() > 0) {
             if (Math.abs(getVy()) < 4 * getAccel() * tpf) {
                 setVy(0);
@@ -976,21 +976,21 @@ public class Ship extends Celestial {
         }
     }
 
-    public synchronized void rotateMinus() {
+    public  void rotateMinus() {
         if (getFuel() > 0) {
             setTheta(getTheta() - getTurning() * tpf);
             setFuel(getFuel() - getTurning() * tpf);
         }
     }
 
-    public synchronized void rotatePlus() {
+    public  void rotatePlus() {
         if (getFuel() > 0) {
             setTheta(getTheta() + getTurning() * tpf);
             setFuel(getFuel() - getTurning() * tpf);
         }
     }
 
-    public synchronized void rotateProportion(double p) {
+    public  void rotateProportion(double p) {
         if (getFuel() > 0) {
             double sign = Math.signum(p);
             if (Math.abs(p) > 1) {
@@ -1002,7 +1002,7 @@ public class Ship extends Celestial {
         }
     }
 
-    public synchronized void rotateAngle(double dt) {
+    public  void rotateAngle(double dt) {
         if (getFuel() > 0) {
             double sign = Math.signum(dt);
             if (Math.abs(dt) > turning) {
@@ -1014,12 +1014,12 @@ public class Ship extends Celestial {
         }
     }
 
-    public synchronized void rotate(double dt) {
+    public  void rotate(double dt) {
         setTheta(getTheta() + dt);
     }
 
     @Override
-    public void informOfCollisionWith(Entity target) {
+    public  void informOfCollisionWith(Entity target) {
         if (target instanceof Celestial) {
             if (!(target instanceof Projectile)) {
                 if (target instanceof CargoPod) {
@@ -1051,7 +1051,7 @@ public class Ship extends Celestial {
         }
     }
 
-    public void dealDamage(double damage) {
+    public  void dealDamage(double damage) {
         shield -= damage;
         if (shield < 0) {
             hull += shield;
@@ -1063,7 +1063,7 @@ public class Ship extends Celestial {
      * Rendering
      */
     @Override
-    public synchronized void render(Graphics g, double dx, double dy) {
+    public  void render(Graphics g, double dx, double dy) {
         if (tex != null) {
             //setup the buffer's graphics
             Graphics2D f = tex.createGraphics();
@@ -1117,7 +1117,7 @@ public class Ship extends Celestial {
         g.fillRect((int) (getX() - dx), (int) (getY() - dy), (int) (getWidth() * shieldPercent), 2);
     }
 
-    public void applyDampening() {
+    public  void applyDampening() {
         double dampX = 0.25 * vx * tpf;
         double dampY = 0.25 * vy * tpf;
         vx -= dampX;
@@ -1128,31 +1128,31 @@ public class Ship extends Celestial {
      * Access and Mutation
      */
     @Override
-    public synchronized ArrayList<Rectangle> getBounds() {
+    public ArrayList<Rectangle> getBounds() {
         return getBound();
     }
 
-    public synchronized final String getType() {
+    public final String getType() {
         return type;
     }
 
-    public synchronized final void setType(String type) {
+    public  final void setType(String type) {
         this.type = type;
     }
 
-    public synchronized double getAccel() {
+    public double getAccel() {
         return accel;
     }
 
-    public synchronized void setAccel(double accel) {
+    public  void setAccel(double accel) {
         this.accel = accel;
     }
 
-    public synchronized double getTurning() {
+    public double getTurning() {
         return turning;
     }
 
-    public synchronized void setTurning(double turning) {
+    public  void setTurning(double turning) {
         this.turning = turning;
     }
 
@@ -1160,7 +1160,7 @@ public class Ship extends Celestial {
         return hull;
     }
 
-    public void setHull(double hull) {
+    public  void setHull(double hull) {
         this.hull = hull;
     }
 
@@ -1168,7 +1168,7 @@ public class Ship extends Celestial {
         return shield;
     }
 
-    public void setShield(double shield) {
+    public  void setShield(double shield) {
         this.shield = shield;
     }
 
@@ -1176,7 +1176,7 @@ public class Ship extends Celestial {
         return maxShield;
     }
 
-    public void setMaxShield(double maxShield) {
+    public  void setMaxShield(double maxShield) {
         this.maxShield = maxShield;
     }
 
@@ -1184,7 +1184,7 @@ public class Ship extends Celestial {
         return shieldRechargeRate;
     }
 
-    public void setShieldRechargeRate(double shieldRechargeRate) {
+    public  void setShieldRechargeRate(double shieldRechargeRate) {
         this.shieldRechargeRate = shieldRechargeRate;
     }
 
@@ -1192,7 +1192,7 @@ public class Ship extends Celestial {
         return maxHull;
     }
 
-    public void setMaxHull(double maxHull) {
+    public  void setMaxHull(double maxHull) {
         this.maxHull = maxHull;
     }
 
@@ -1201,7 +1201,7 @@ public class Ship extends Celestial {
         return bound;
     }
 
-    public void setBound(ArrayList<Rectangle> bound) {
+    public  void setBound(ArrayList<Rectangle> bound) {
         this.bound = bound;
     }
 
@@ -1209,7 +1209,7 @@ public class Ship extends Celestial {
         return fuel;
     }
 
-    public void setFuel(double fuel) {
+    public  void setFuel(double fuel) {
         this.fuel = fuel;
     }
 
@@ -1231,11 +1231,11 @@ public class Ship extends Celestial {
         return mass + cmass;
     }
 
-    public void setMaxFuel(double maxFuel) {
+    public  void setMaxFuel(double maxFuel) {
         this.maxFuel = maxFuel;
     }
 
-    protected void updateBound() {
+    protected  void updateBound() {
         bound.clear();
         if (width != 0 && height != 0) {
             bound.add(new Rectangle((int) getX(), (int) getY(), getWidth(), getHeight()));
@@ -1244,7 +1244,7 @@ public class Ship extends Celestial {
         }
     }
 
-    public boolean addToCargoBay(Item item) {
+    public  boolean addToCargoBay(Item item) {
         if (item != null) {
             /*
              * Puts an item into the cargo bay if there is space available.
@@ -1264,11 +1264,11 @@ public class Ship extends Celestial {
         return true;
     }
 
-    public void removeFromCargoBay(Item item) {
+    public  void removeFromCargoBay(Item item) {
         cargoBay.remove(item);
     }
 
-    public void ejectCargo(Item item) {
+    public  void ejectCargo(Item item) {
         if (cargoBay.contains(item)) {
             cargoBay.remove(item);
             CargoPod pod = new CargoPod(item);
@@ -1324,7 +1324,7 @@ public class Ship extends Celestial {
         return cmass;
     }
 
-    public void addInitialCargo(String cargo) {
+    public  void addInitialCargo(String cargo) {
         if (cargo != null) {
             String[] stuff = cargo.split("/");
             for (int a = 0; a < stuff.length; a++) {
@@ -1533,7 +1533,7 @@ public class Ship extends Celestial {
         return ret;
     }
 
-    public synchronized double magnitude(double dx, double dy) {
+    public  double magnitude(double dx, double dy) {
         return Math.sqrt((dx * dx) + (dy * dy));
     }
 

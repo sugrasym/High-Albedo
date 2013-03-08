@@ -17,7 +17,7 @@ public class WorldMaker {
 
     public WorldMaker() {
         //generate universe
-        String out = generate(1, 10, 80, 100, 100, 40000, 120000, 1000, 5000, 1, 3, 25000, 200000);
+        String out = generate(1, 10, 80, 100, 100, 40000, 120000, 500, 1500, 1, 3, 25000, 200000);
         //save
         AstralIO tmp = new AstralIO();
         tmp.writeFile("/tmp/UNIVERSE.txt", out);

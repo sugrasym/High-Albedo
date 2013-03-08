@@ -477,11 +477,11 @@ seed=944768466
 [Planet]
 name=Planet 1
 system=System 9
-texture=Strange
+texture=Martian
 x=-32958
 y=-44030
-d=9504
-seed=-2011713307
+d=2000
+seed=-201171330
 [/Planet]
 
 [Planet]

@@ -242,7 +242,7 @@ public class Station extends Ship {
     }
 
     @Override
-    public synchronized void render(Graphics g, double dx, double dy) {
+    public  void render(Graphics g, double dx, double dy) {
         theta = 0;
         if (tex != null) {
             //setup the buffer's graphics

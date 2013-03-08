@@ -52,7 +52,7 @@ public class TradeWindow extends AstralWindow {
         //size this window
         width = 500;
         height = 400;
-        setVisible(true);
+        setVisible(false);
         //setup buying label
         buyLabel.setName("buy");
         buyLabel.setText("Buying");

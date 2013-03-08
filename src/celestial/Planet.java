@@ -41,7 +41,7 @@ import org.ankh.unfall.planet.texgen.palette.ranges.StrangePalette;
  */
 public class Planet extends Celestial {
 
-    public static final int RENDER_SIZE = 1024;
+    public static final int RENDER_SIZE = 2048;
     private Term texture;
     private int seed = 0;
     protected int diameter;
@@ -121,8 +121,8 @@ public class Planet extends Celestial {
                  * the planet.
                  */
                 //setup stroke
-                int range = (int) (0.005*RENDER_SIZE);
-                int min = (int) (0.01*range) + 1;
+                int range = (int) (0.007 * RENDER_SIZE);
+                int min = (int) (0.01 * range) + 1;
                 gfx.setStroke(new WobblyStroke(sRand.nextInt(range) + min, sRand.nextInt(range) + min));
                 //determine band count
                 int bands = sRand.nextInt(75) + 25;
@@ -165,8 +165,8 @@ public class Planet extends Celestial {
             } else if (texture.getValue("group").matches("singlegas")) {
                 Random sRand = new Random(seed);
                 //setup stroke
-                int range = (int) (0.005*RENDER_SIZE);
-                int min = (int) (0.125*range) + 1;
+                int range = (int) (0.007 * RENDER_SIZE);
+                int min = (int) (0.125 * range) + 1;
                 gfx.setStroke(new WobblyStroke(sRand.nextInt(range) + min, sRand.nextInt(range) + min));
                 /*
                  * My gas giants are conservative. They have a color and brightness
@@ -235,7 +235,7 @@ public class Planet extends Celestial {
     }
 
     @Override
-    public synchronized void render(Graphics f, double dx, double dy) {
+    public void render(Graphics f, double dx, double dy) {
         if (raw_tex != null) {
             Graphics2D s = (Graphics2D) (f);
             s.drawImage(raw_tex, (int) (getX() - dx), (int) (getY() - dy), getDiameter(), getDiameter(), null);

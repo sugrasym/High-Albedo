@@ -69,12 +69,12 @@ public class Celestial implements Serializable, Entity {
     }
 
     @Override
-    public void informOfCollisionWith(Entity target) {
+    public  void informOfCollisionWith(Entity target) {
         throw new UnsupportedOperationException("Hades: Not supported yet.");
     }
 
     @Override
-    public synchronized boolean collideWith(Entity target) {
+    public boolean collideWith(Entity target) {
         ArrayList<Rectangle> myBox = getBounds();
         ArrayList<Rectangle> targBox = target.getBounds();
         for (int a = 0; a < myBox.size(); a++) {
@@ -88,7 +88,7 @@ public class Celestial implements Serializable, Entity {
     }
 
     @Override
-    public synchronized boolean collideWith(Rectangle target) {
+    public boolean collideWith(Rectangle target) {
         try {
             ArrayList<Rectangle> myBox = getBounds();
             if (myBox.size() > 0) {
@@ -109,7 +109,7 @@ public class Celestial implements Serializable, Entity {
     }
 
     @Override
-    public synchronized void periodicUpdate(double tpf) {
+    public  void periodicUpdate(double tpf) {
         this.tpf = tpf;
         if (state == State.ALIVE) {
             alive();
@@ -142,7 +142,7 @@ public class Celestial implements Serializable, Entity {
     }
 
     @Override
-    public synchronized void render(Graphics f, double dx, double dy) {
+    public  void render(Graphics f, double dx, double dy) {
         throw new UnsupportedOperationException("Hades: Not supported yet.");
     }
 
@@ -152,7 +152,7 @@ public class Celestial implements Serializable, Entity {
     }
 
     @Override
-    public synchronized ArrayList<Rectangle> getBounds() {
+    public ArrayList<Rectangle> getBounds() {
         throw new UnsupportedOperationException("Hades: Not supported yet.");
     }
 
@@ -167,16 +167,16 @@ public class Celestial implements Serializable, Entity {
     }
 
     @Override
-    public void setX(double x) {
+    public  void setX(double x) {
         this.x = x;
     }
 
     @Override
-    public void setY(double y) {
+    public  void setY(double y) {
         this.y = y;
     }
 
-    public void setState(State state) {
+    public  void setState(State state) {
         this.state = state;
     }
 
@@ -184,7 +184,7 @@ public class Celestial implements Serializable, Entity {
         return name;
     }
 
-    public void setName(String name) {
+    public  void setName(String name) {
         this.name = name;
     }
 
@@ -192,7 +192,7 @@ public class Celestial implements Serializable, Entity {
         return currentSystem;
     }
 
-    public void setCurrentSystem(SolarSystem currentSystem) {
+    public  void setCurrentSystem(SolarSystem currentSystem) {
         this.currentSystem = currentSystem;
     }
 
@@ -200,7 +200,7 @@ public class Celestial implements Serializable, Entity {
         return mass;
     }
 
-    public void setMass(double mass) {
+    public  void setMass(double mass) {
         this.mass = mass;
     }
 
@@ -208,7 +208,7 @@ public class Celestial implements Serializable, Entity {
         return vx;
     }
 
-    public void setVx(double vx) {
+    public  void setVx(double vx) {
         this.vx = vx;
     }
 
@@ -216,7 +216,7 @@ public class Celestial implements Serializable, Entity {
         return vy;
     }
 
-    public void setVy(double vy) {
+    public  void setVy(double vy) {
         this.vy = vy;
     }
 
@@ -224,7 +224,7 @@ public class Celestial implements Serializable, Entity {
         return theta;
     }
 
-    public void setTheta(double theta) {
+    public  void setTheta(double theta) {
         this.theta = theta;
     }
 
@@ -232,7 +232,7 @@ public class Celestial implements Serializable, Entity {
         return width;
     }
 
-    public void setWidth(int width) {
+    public   void setWidth(int width) {
         this.width = width;
     }
 
@@ -240,7 +240,7 @@ public class Celestial implements Serializable, Entity {
         return height;
     }
 
-    public void setHeight(int height) {
+    public  void setHeight(int height) {
         this.height = height;
     }
 }

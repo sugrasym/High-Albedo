@@ -291,7 +291,7 @@ public class OverviewWindow extends AstralWindow {
         addComponent(velLabel);
     }
 
-    private synchronized double magnitude(double dx, double dy) {
+    private  double magnitude(double dx, double dy) {
         return Math.sqrt((dx * dx) + (dy * dy));
     }
 
