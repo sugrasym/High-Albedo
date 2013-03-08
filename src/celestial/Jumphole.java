@@ -20,7 +20,11 @@ package celestial;
 
 import celestial.Ship.Ship;
 import engine.Entity;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.net.URISyntaxException;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import universe.SolarSystem;
@@ -31,6 +35,8 @@ public class Jumphole extends Planet {
     private Jumphole outGate;
     private Universe universe;
     protected String out = "n/n";
+    private Random rnd = new Random(1);
+    private double flux = 1;
 
     public Jumphole(String name, Universe universe) {
         super(name, null, 200);
@@ -45,6 +51,30 @@ public class Jumphole extends Planet {
         } catch (URISyntaxException ex) {
             Logger.getLogger(Jumphole.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public void render(Graphics f, double dx, double dy) {
+        if (raw_tex != null) {
+            int size = (int)(2* flux * diameter);
+            Graphics2D s = (Graphics2D) (f);
+            s.drawImage(raw_tex, (int) (getX() - dx) - (size/2), (int) (getY() - dy)-(size/2), size, size, null);
+        } else {
+            initGraphics();
+        }
+    }
+    
+    @Override
+    public void alive() {
+        //update flux
+        flux += (2*rnd.nextDouble()-1)*tpf;
+        if(flux > 1) {
+            flux = rnd.nextDouble();
+        } else if(flux < 0.5) {
+            flux = rnd.nextDouble();
+        }
+        //update bound
+        getBounds().clear();
+        getBounds().add(new Rectangle((int) getX()-getDiameter()/4, (int) getY()-getDiameter()/4, getDiameter()/2, getDiameter()/2));
     }
 
     public void createLink(String out) {

@@ -45,7 +45,7 @@ public class StarMapWindow extends AstralWindow {
     AstralLabel rangeLabel = new AstralLabel();
     Font radarFont = new Font("Monospaced", Font.PLAIN, 9);
     private Universe universe;
-    private double zoom = 2;
+    private double zoom = 1;
     private Point2D.Double offset = new Point2D.Double(0, 0);
 
     public StarMapWindow() {
@@ -135,7 +135,7 @@ public class StarMapWindow extends AstralWindow {
                     double ry = sy + oy;
                     {
                         //search system for jump holes
-                        ArrayList<Entity> cel = systems.get(a).getCelestialList();
+                        ArrayList<Entity> cel = systems.get(a).getJumpholeList();
                         for (int v = 0; v < cel.size(); v++) {
                             if (cel.get(v) instanceof Jumphole) {
                                 Jumphole tmp = (Jumphole) cel.get(v);
@@ -179,9 +179,9 @@ public class StarMapWindow extends AstralWindow {
 
     public void decrementMode() {
         zoom /= 2;
-        if (zoom < 0.25) {
+        /*if (zoom < 0.25) {
             zoom = 0.25;
-        }
+        }*/
         offset.x = offset.x / 2;
         offset.y = offset.y / 2;
         if (Math.abs(offset.x) < 1) {

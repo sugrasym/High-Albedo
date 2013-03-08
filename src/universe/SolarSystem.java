@@ -49,6 +49,7 @@ public class SolarSystem implements Entity, Serializable {
     //what it contains
     private ArrayList<Entity> entities = new ArrayList<>();
     //quick reference
+    private ArrayList<Entity> jumpholeList = new ArrayList<>();
     private ArrayList<Entity> celestialList = new ArrayList<>();
     private ArrayList<Entity> stationList = new ArrayList<>();
     private ArrayList<Entity> shipList = new ArrayList<>();
@@ -111,7 +112,7 @@ public class SolarSystem implements Entity, Serializable {
             }
         }
     }
-    
+
     private Star makeStar(Term starTerm) {
         Star star = null;
         {
@@ -285,11 +286,13 @@ public class SolarSystem implements Entity, Serializable {
     public void putEntityInSystem(Entity entity) {
         entities.add(entity);
         //put in the correct sublist
-        if(entity instanceof Station) {
+        if (entity instanceof Station) {
             stationList.add(entity);
-        } else if(entity instanceof Ship) {
+        } else if (entity instanceof Ship) {
             shipList.add(entity);
-        } else if(entity instanceof Celestial) {
+        } else if (entity instanceof Jumphole) {
+            jumpholeList.add(entity);
+        } else if (entity instanceof Celestial) {
             celestialList.add(entity);
         }
     }
@@ -299,6 +302,7 @@ public class SolarSystem implements Entity, Serializable {
         stationList.remove(entity);
         shipList.remove(entity);
         celestialList.remove(entity);
+        jumpholeList.remove(entity);
     }
 
     @Override
@@ -419,5 +423,13 @@ public class SolarSystem implements Entity, Serializable {
 
     public void setBack(String back) {
         this.back = back;
+    }
+
+    public ArrayList<Entity> getJumpholeList() {
+        return jumpholeList;
+    }
+
+    public void setJumpholeList(ArrayList<Entity> jumpholeList) {
+        this.jumpholeList = jumpholeList;
     }
 }

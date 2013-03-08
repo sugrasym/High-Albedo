@@ -14,6 +14,7 @@
  */
 package gdi;
 
+import celestial.Jumphole;
 import celestial.Planet;
 import celestial.Ship.Projectile;
 import celestial.Ship.Ship;
@@ -128,7 +129,9 @@ public class OverviewWindow extends AstralWindow {
                     /*
                      * Does the final drawing based on what exactly the object is
                      */
-                    if (entities.get(a) instanceof Planet) {
+                    if (entities.get(a) instanceof Jumphole) {
+                        doJumphole(entities, a, range, gfx);
+                    } else if (entities.get(a) instanceof Planet) {
                         doPlanet(entities, a, range, gfx, ex, ey);
                     } else if (entities.get(a) == sensorShip) {
                         doSensorShip(gfx, ex, ey);
@@ -136,6 +139,43 @@ public class OverviewWindow extends AstralWindow {
                         doShip(gfx, ex, ey, entities, a);
                     }
                 }
+            }
+        }
+
+        protected void doJumphole(ArrayList<Entity> entities, int a, double range, Graphics2D gfx) {
+            //get radius
+            Jumphole pl = (Jumphole) entities.get(a);
+            double diam = pl.getDiameter();
+            //get coordinates
+            double ex = entities.get(a).getX() - diam / 2;
+            double ey = entities.get(a).getY() - diam / 2;
+            //adjust
+            diam /= (range);
+            diam *= width / 2;
+            //adjust for player loc
+            ex -= sensorShip.getX();
+            ey -= sensorShip.getY();
+            //adjust for size
+            ex /= range;
+            ey /= range;
+            ex *= width / 2;
+            ey *= height / 2;;
+            //determine whether to draw the name based on range
+            double fuzz = 1.0 - rnd.nextDouble() * 0.1f;
+            double view = PLANET_AIM_LIMIT * sensorShip.getSensor() * fuzz;
+            double dist = sensorShip.distanceTo(pl);
+            if ((area < PLANET_AIM_LIMIT) || dist < view) {
+                gfx.setColor(planetGrey);
+                gfx.fillOval((int) ex + (width / 2), (int) ey + (height / 2), (int) diam, (int) diam);
+                gfx.setColor(Color.MAGENTA);
+                gfx.drawOval((int) ex + (width / 2), (int) ey + (height / 2), (int) diam, (int) diam);
+                gfx.setColor(Color.pink);
+                gfx.setFont(radarFont);
+                gfx.drawString(pl.getName(), (int) (ex + diam / 2) + (width / 2) - 1, (int) (ey + diam / 2) + (height / 2) - 1);
+            } else {
+                gfx.setColor(Color.PINK);
+                gfx.setFont(radarFont);
+                gfx.drawString("NO AIM", (int) (ex + diam / 2) + (width / 2) - 1, (int) (ey + diam / 2) + (height / 2) - 1);
             }
         }
 
@@ -291,7 +331,7 @@ public class OverviewWindow extends AstralWindow {
         addComponent(velLabel);
     }
 
-    private  double magnitude(double dx, double dy) {
+    private double magnitude(double dx, double dy) {
         return Math.sqrt((dx * dx) + (dy * dy));
     }
 

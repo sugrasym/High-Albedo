@@ -754,6 +754,7 @@ public class Engine {
                             ArrayList<Entity> celestialList = current.getCelestialList();
                             ArrayList<Entity> stationList = current.getStationList();
                             ArrayList<Entity> shipList = current.getShipList();
+                            ArrayList<Entity> jumpholeList = current.getJumpholeList();
 
                             /*
                              * Render celestials first
@@ -796,6 +797,15 @@ public class Engine {
                                         }
                                         shipList.get(a).render(f, dx, dy);
                                     }
+                                }
+                            }
+                            
+                            /*
+                             * Render jumpholes last
+                             */
+                            for (int a = 0; a < jumpholeList.size(); a++) {
+                                if (jumpholeList.get(a).collideWith(view)) {
+                                    jumpholeList.get(a).render(f, dx, dy);
                                 }
                             }
                         }
