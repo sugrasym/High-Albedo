@@ -80,6 +80,10 @@ public class Explosion extends Ship {
             super.informOfCollisionWith(target);
         }
     }
+    
+    protected void behave() {
+        //these entities have no behavior
+    }
 
     public void render(Graphics g, double dx, double dy) {
         if (tex != null) {
