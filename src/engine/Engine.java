@@ -21,6 +21,7 @@ import celestial.Celestial;
 import celestial.Jumphole;
 import celestial.Planet;
 import celestial.Ship.CargoPod;
+import celestial.Ship.Explosion;
 import celestial.Ship.Projectile;
 import celestial.Ship.Ship;
 import gdi.CargoWindow;
@@ -799,7 +800,7 @@ public class Engine {
                                     }
                                 }
                             }
-                            
+
                             /*
                              * Render jumpholes last
                              */
@@ -895,8 +896,10 @@ public class Engine {
 
         private void elasticCollision(Entity a, Entity b, double tpf) {
             //inform them of the collision for any special events
-            a.informOfCollisionWith(b);
-            b.informOfCollisionWith(a);
+            if (!(a instanceof Explosion) && !(b instanceof Explosion)) {
+                a.informOfCollisionWith(b);
+                b.informOfCollisionWith(a);
+            }
             //physics time
             if (a instanceof Celestial && b instanceof Celestial) {
                 /*
@@ -906,33 +909,35 @@ public class Engine {
                 if (!(a instanceof CargoPod || b instanceof CargoPod)) {
                     if (!(a instanceof Projectile || b instanceof Projectile)) {
                         if (!(a instanceof Jumphole || b instanceof Jumphole)) {
-                            Celestial dummyA = (Celestial) a;
-                            Celestial dummyB = (Celestial) b;
-                            //get velocity and mass
-                            double aVx = dummyA.getVx();
-                            double aVy = dummyA.getVy();
-                            double aM = dummyA.getMass();
-                            double bVx = dummyB.getVx();
-                            double bVy = dummyB.getVy();
-                            double bM = dummyB.getMass();
-                            //push them apart to avoid double counting and overlap
-                            dummyA.setX(dummyA.getX() - aVx * tpf * 2.0);
-                            dummyA.setY(dummyA.getY() - aVy * tpf * 2.0);
-                            dummyB.setX(dummyB.getX() - bVx * tpf * 2.0);
-                            dummyB.setY(dummyB.getY() - bVy * tpf * 2.0);
-                            //determine center of mass's velocity
-                            double cVx = (aVx * aM + bVx * bM) / (aM + bM);
-                            double cVy = (aVy * aM + bVy * bM) / (aM + bM);
-                            //reverse directions and de-reference frame
-                            double aVx2 = -aVx + cVx;
-                            double aVy2 = -aVy + cVy;
-                            double bVx2 = -bVx + cVx;
-                            double bVy2 = -bVy + cVy;
-                            //store
-                            dummyA.setVx(aVx2);
-                            dummyA.setVy(aVy2);
-                            dummyB.setVx(bVx2);
-                            dummyB.setVy(bVy2);
+                            if (!(a instanceof Explosion || b instanceof Explosion)) {
+                                Celestial dummyA = (Celestial) a;
+                                Celestial dummyB = (Celestial) b;
+                                //get velocity and mass
+                                double aVx = dummyA.getVx();
+                                double aVy = dummyA.getVy();
+                                double aM = dummyA.getMass();
+                                double bVx = dummyB.getVx();
+                                double bVy = dummyB.getVy();
+                                double bM = dummyB.getMass();
+                                //push them apart to avoid double counting and overlap
+                                dummyA.setX(dummyA.getX() - aVx * tpf * 2.0);
+                                dummyA.setY(dummyA.getY() - aVy * tpf * 2.0);
+                                dummyB.setX(dummyB.getX() - bVx * tpf * 2.0);
+                                dummyB.setY(dummyB.getY() - bVy * tpf * 2.0);
+                                //determine center of mass's velocity
+                                double cVx = (aVx * aM + bVx * bM) / (aM + bM);
+                                double cVy = (aVy * aM + bVy * bM) / (aM + bM);
+                                //reverse directions and de-reference frame
+                                double aVx2 = -aVx + cVx;
+                                double aVy2 = -aVy + cVy;
+                                double bVx2 = -bVx + cVx;
+                                double bVy2 = -bVy + cVy;
+                                //store
+                                dummyA.setVx(aVx2);
+                                dummyA.setVy(aVy2);
+                                dummyB.setVx(bVx2);
+                                dummyB.setVy(bVy2);
+                            }
                         }
                     }
                 }
@@ -971,21 +976,23 @@ public class Engine {
 
         protected void renderIFFMarker(Ship ship) {
             if (!(ship instanceof Projectile) && ship != playerShip) {
-                //draw a marker to indicate standings
-                int tx = (int) (ship.getX() - dx);
-                int ty = (int) (ship.getY() - dy);
-                int tw = ship.getWidth();
-                int th = ship.getHeight();
-                int standing = ship.getStandingsToMe(playerShip);
-                if (standing >= 3) {
-                    f.setColor(Color.GREEN);
-                } else if (standing <= -3) {
-                    f.setColor(Color.RED);
-                } else {
-                    f.setColor(Color.GRAY);
+                if (!(ship instanceof Explosion)) {
+                    //draw a marker to indicate standings
+                    int tx = (int) (ship.getX() - dx);
+                    int ty = (int) (ship.getY() - dy);
+                    int tw = ship.getWidth();
+                    int th = ship.getHeight();
+                    int standing = ship.getStandingsToMe(playerShip);
+                    if (standing >= 3) {
+                        f.setColor(Color.GREEN);
+                    } else if (standing <= -3) {
+                        f.setColor(Color.RED);
+                    } else {
+                        f.setColor(Color.GRAY);
+                    }
+                    f.setStroke(new BasicStroke(2));
+                    f.drawOval(tx, ty, tw, th);
                 }
-                f.setStroke(new BasicStroke(2));
-                f.drawOval(tx, ty, tw, th);
             }
         }
     }

@@ -336,13 +336,23 @@ public class OverviewWindow extends AstralWindow {
     }
 
     private double roundTwoDecimal(double d) {
-        DecimalFormat twoDForm = new DecimalFormat("#.##");
-        return Double.parseDouble(twoDForm.format(d));
+        try {
+            DecimalFormat twoDForm = new DecimalFormat("#.##");
+            return Double.parseDouble(twoDForm.format(d));
+        } catch (Exception e) {
+            System.out.println("Not a Number");
+            return 0;
+        }
     }
 
     private double roundOneDecimal(double d) {
-        DecimalFormat twoDForm = new DecimalFormat("#.#");
-        return Double.parseDouble(twoDForm.format(d));
+        try {
+            DecimalFormat twoDForm = new DecimalFormat("#.#");
+            return Double.parseDouble(twoDForm.format(d));
+        } catch (Exception e) {
+            System.out.println("Not a Number");
+            return 0;
+        }
     }
 
     public boolean isShowShipNames() {
