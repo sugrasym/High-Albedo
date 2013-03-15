@@ -131,7 +131,7 @@ public class Explosion extends Ship {
             //create the usable version
             setHeight((int) size);
             setWidth((int) size);
-            tex = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
+            tex = new BufferedImage(getWidth()+1, getHeight()+1, BufferedImage.TYPE_INT_ARGB);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -8,34 +8,35 @@
 
 #New Game Smell
 [NewGame]
-ship=Sparrow
+ship=Hyena
 system=System 10
 near=Planet 0
 cash=8500
-install=Talon 1/Talon 1
-cargo=Scrap Metal~10/Standard Energy Unit
+install=Starstruck Launcher/Starstruck Launcher/Starstruck Launcher/Starstruck Launcher
+cargo=Starstruck Missile~100
 faction=Player
 [/NewGame]
 
 ########
 
 [Ship]
-ship=Cavalry
+ship=Hyena
 name=Probe Craft
 system=System 10
 near=Planet 0
 faction=The Archers
-install=Catapult/Catapult/Long 9
+install=Starstruck Launcher/Starstruck Launcher/Starstruck Launcher/Starstruck Launcher
+cargo=Starstruck Missile~100
 [/Ship]
 
 [Ship]
-ship=Monitor
+ship=Bowman
 name=Probe Craft
 system=System 10
 near=Planet 0
 faction=Ageiran Federation
-install=Bask/Bask/Iguana Launcher
-cargo=Iguana Missile~20
+install=Arrow/Arrow
+cargo=Iguana Missile~40
 [/Ship]
 
 ########

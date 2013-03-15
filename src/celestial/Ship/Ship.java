@@ -123,6 +123,7 @@ public class Ship extends Celestial {
             initStats();
         }
         state = State.ALIVE;
+        behavior = Behavior.PATROL;
     }
 
     @Override
@@ -1244,7 +1245,7 @@ public class Ship extends Celestial {
         if (width != 0 && height != 0) {
             bound.add(new Rectangle((int) getX(), (int) getY(), getWidth(), getHeight()));
         } else {
-            bound.add(new Rectangle((int) getX(), (int) getY(), 1, 1));
+            bound.add(new Rectangle((int) getX(), (int) getY(), 50, 50));
         }
     }
 
@@ -1313,7 +1314,7 @@ public class Ship extends Celestial {
             exp.init(false);
             //calculate helpers
             double dT = rnd.nextInt() % (Math.PI * 2.0);
-            double ew = 2*rnd.nextInt(getWidth())-getWidth();
+            double ew = 2*rnd.nextInt(getWidth()+1)-getWidth();
             double dx = ew*Math.cos(dT);
             double dy = ew*Math.sin(dT);
             //store position

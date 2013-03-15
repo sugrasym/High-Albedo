@@ -259,7 +259,57 @@ group=weapon
 description=The Knights of Orin have weapons that perform fiercly well at close range but have no damage projection beyond that. /br/ /br/ 'Orgullo Negro' is a very powerful cannon when fed with 'Bala Negro' ammunition. It combines the destructive power the Knights are known for at close range with the ability to reach out and touch someone. It does burn through ammo quickly, however.
 [/Item]
 
+#ITC Weapons
+
+[Item]
+name=Starstruck Launcher
+type=missile
+volume=31
+mass=5
+HP=25
+minPrice=20000
+maxPrice=500000
+group=weapon
+description=ITC missile technology is far in advance of any other nation or faction. This is due to a design policy that forgoes other types of weapons. /br/ /br/ 'Starstruck' is the result of 'well placed' defense spending and packs extreme range, high yield, and great tracking into one lethal, albeit prohibitably expensive, package. Proponents of the Starstruck project, and the continued use of the expensive missile it created, argue that you can't put a price on security. /br/ /br/ The Starstruck Missile is the primary weapon on all ITC fighters.
+[/Item]
+
+[Item]
+name=Sidewinder Launcher
+type=missile
+volume=31
+mass=5
+HP=25
+minPrice=40000
+maxPrice=300000
+group=weapon
+description=ITC missile technology is far in advance of any other nation or faction. This is due to a design policy that forgoes other types of weapons. /br/ /br/ 'Sidewinder' is a modified version of the 'Starstruck' missile that gives up about half its yield for a drastic increase in effective range. This missile is designed to relentlessly hunt fast enemy fighters, and the real limit is the sensor range of the craft firing the missile. This missile is used by some ITC interceptors.
+[/Item]
+
 ########Ammo###########
+
+[Item]
+name=Starstruck Missile
+type=commodity
+volume=6
+mass=5
+HP=100
+minPrice=10600
+maxPrice=62000
+group=ammo
+description=Unarmed missile for use with a 'Starstruck Launcher'. /br/ /br/ 'Starstruck' is the result of 'well placed' defense spending and packs extreme range, high yield, and great tracking into one lethal, albeit prohibitably expensive, package. Proponents of the Starstruck project, and the continued use of the expensive missile it created, argue that you can't put a price on security. /br/ /br/ The Starstruck Missile is the primary weapon on all ITC fighters.
+[/Item]
+
+[Item]
+name=Sidewinder Missile
+type=commodity
+volume=6
+mass=5
+HP=100
+minPrice=21000
+maxPrice=84500
+group=ammo
+description=Unarmed missile for use with a 'Sidewinder Launcher'. /br/ /br/ 'Sidewinder' is a modified version of the 'Starstruck' missile that gives up about half its yield for a drastic increase in effective range. This missile is designed to relentlessly hunt fast enemy fighters, and the real limit is the sensor range of the craft firing the missile. This missile is used by some ITC interceptors.
+[/Item]
 
 [Item]
 name=Python Missile
