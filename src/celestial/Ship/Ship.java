@@ -123,7 +123,6 @@ public class Ship extends Celestial {
             initStats();
         }
         state = State.ALIVE;
-        behavior = Behavior.PATROL;
     }
 
     @Override
