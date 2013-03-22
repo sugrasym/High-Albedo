@@ -9,7 +9,7 @@
 #New Game Smell
 [NewGame]
 ship=Sparrow
-system=System 10
+system=System 19
 near=Planet 0
 cash=8500
 install=Talon 1/Talon 1
@@ -22,7 +22,7 @@ faction=Player
 [Ship]
 ship=Monitor
 name=Probe Craft
-system=System 10
+system=System 19
 near=Planet 0
 faction=The Archers
 install=Iguana Launcher/Iguana Launcher/Bask/Bask
@@ -32,7 +32,7 @@ cargo=Iguana Missile~100
 [Ship]
 ship=Bowman
 name=Probe Craft
-system=System 10
+system=System 19
 near=Planet 0
 faction=Ageiran Federation
 install=Arrow/Arrow
@@ -45,6738 +45,6182 @@ cargo=Iguana Missile~40
 ship=Ageiran Weapons Forge
 name=Alpha Station
 faction=Ageiran Federation
-system=System 10
+system=System 19
 near=Planet 0
 [/Station]
 
 [System]
 name=System 0
-x=607.3774262588898
-y=750.9304568345934
+x=829.1037530912391
+y=-380.51601259324036
 sky=orange1
 [/System]
 
 [Star]
 name=System 0
 system=System 0
-texture=BlueStar
-x=-3340.0
-y=-10078.0
-d=4000
-seed=1880873372
-[/Star]
-
-[Jumphole]
-name=System 11 Jumphole
-x=-60983.0
-y=81213.0
-system=System 0
-out=System 11/System 0 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 0 Jumphole
-x=-109314.0
-y=-82288.0
-system=System 11
-out=System 0/System 11 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 8 Jumphole
-x=-44547.0
-y=15390.0
-system=System 0
-out=System 8/System 0 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 0 Jumphole
-x=-8552.0
-y=-60007.0
-system=System 8
-out=System 0/System 8 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 43 Jumphole
-x=69920.0
-y=12470.0
-system=System 0
-out=System 43/System 0 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 0 Jumphole
-x=39960.0
-y=95273.0
-system=System 43
-out=System 0/System 43 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 0
-texture=Terran
-x=-86354.0
-y=21129.0
-d=1800
-seed=-1193869670
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 0
-texture=Lava
-x=106874.0
-y=-7823.0
-d=1800
-seed=414945189
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 0
-texture=Strange
-x=-62881.0
-y=-36096.0
-d=1800
-seed=-1758236716
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 0
-texture=Alien
-x=-67269.0
-y=-12474.0
-d=1800
-seed=1911405663
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 0
-texture=Alien
-x=20760.0
-y=90769.0
-d=1800
-seed=1747685751
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 0
-texture=Martian
-x=99162.0
-y=9264.0
-d=2928
-seed=-1109409424
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 0
-texture=Hospitable
-x=52804.0
-y=-57880.0
-d=2532
-seed=1517204496
-[/Planet]
-
-[Planet]
-name=Planet 7
-system=System 0
-texture=Martian
-x=-111047.0
-y=-14834.0
-d=1800
-seed=-1781417211
-[/Planet]
-
-[Planet]
-name=Planet 8
-system=System 0
-texture=BandedGas
-x=-29938.0
-y=-81093.0
-d=3426
-seed=-881301701
-[/Planet]
-
-[System]
-name=System 1
-x=-646.7816543949708
-y=-197.82652796338493
-sky=blue0
-[/System]
-
-[Star]
-name=System 1
-system=System 1
-texture=YellowStar
-x=193.0
-y=4548.0
-d=6130
-seed=-746121054
-[/Star]
-
-[Jumphole]
-name=System 14 Jumphole
-x=-34418.0
-y=16040.0
-system=System 1
-out=System 14/System 1 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 1 Jumphole
-x=27807.0
-y=9058.0
-system=System 14
-out=System 1/System 14 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 26 Jumphole
-x=24583.0
-y=38997.0
-system=System 1
-out=System 26/System 1 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 1 Jumphole
-x=-15455.0
-y=35948.0
-system=System 26
-out=System 1/System 26 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 37 Jumphole
-x=-16379.0
-y=23248.0
-system=System 1
-out=System 37/System 1 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 1 Jumphole
-x=-21646.0
-y=13220.0
-system=System 37
-out=System 1/System 37 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 1
-texture=Strange
-x=34004.0
-y=-10194.0
-d=2064
-seed=-743885491
-[/Planet]
-
-[System]
-name=System 2
-x=229.16714689641722
-y=-243.8473097175728
-sky=orange1
-[/System]
-
-[Star]
-name=System 2
-system=System 2
-texture=RedStar
-x=1157.0
-y=-1748.0
-d=4106
-seed=-184558056
-[/Star]
-
-[Jumphole]
-name=System 59 Jumphole
-x=38680.0
-y=-5158.0
-system=System 2
-out=System 59/System 2 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 2 Jumphole
-x=40514.0
-y=-20100.0
-system=System 59
-out=System 2/System 59 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 57 Jumphole
-x=16681.0
-y=-9705.0
-system=System 2
-out=System 57/System 2 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 2 Jumphole
-x=1787.0
-y=21704.0
-system=System 57
-out=System 2/System 57 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 64 Jumphole
-x=17807.0
-y=-38707.0
-system=System 2
-out=System 64/System 2 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 2 Jumphole
-x=-3014.0
-y=2523.0
-system=System 64
-out=System 2/System 64 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 2
-texture=Terran
-x=47185.0
-y=-42528.0
-d=1800
-seed=-532360421
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 2
-texture=Terran
-x=-12715.0
-y=27717.0
-d=3922
-seed=-1209494928
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 2
-texture=BandedGas
-x=27576.0
-y=-23250.0
-d=2140
-seed=791163259
-[/Planet]
-
-[System]
-name=System 3
-x=-656.6688944956129
-y=307.836307734285
-sky=green0
-[/System]
-
-[Star]
-name=System 3
-system=System 3
 texture=WhiteStar
-x=-1495.0
-y=-1531.0
-d=4000
-seed=-1364945154
-[/Star]
-
-[Jumphole]
-name=System 21 Jumphole
-x=-15602.0
-y=-11526.0
-system=System 3
-out=System 21/System 3 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 3 Jumphole
-x=-4583.0
-y=-36769.0
-system=System 21
-out=System 3/System 21 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 3
-texture=DoubleBandedGas
-x=31519.0
-y=10256.0
-d=1800
-seed=1802422539
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 3
-texture=Lava
-x=-21595.0
-y=35784.0
-d=2226
-seed=-2087609867
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 3
-texture=Lava
-x=-38659.0
-y=-29706.0
-d=2312
-seed=-2056779225
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 3
-texture=DoubleBandedGas
-x=5033.0
-y=-30677.0
-d=3752
-seed=-1196450739
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 3
-texture=Martian
-x=-35086.0
-y=-6041.0
-d=2284
-seed=10776830
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 3
-texture=Terran
-x=-25960.0
-y=-6321.0
-d=1800
-seed=-760414816
-[/Planet]
-
-[Planet]
-name=Planet 7
-system=System 3
-texture=Martian
-x=6501.0
-y=-25709.0
-d=2796
-seed=1109576443
-[/Planet]
-
-[System]
-name=System 4
-x=658.8743367229313
-y=-233.35373994319772
-sky=black1
-[/System]
-
-[Star]
-name=System 4
-system=System 4
-texture=BlueStar
-x=-22.0
-y=-5278.0
-d=4000
-seed=-177429273
-[/Star]
-
-[Jumphole]
-name=System 71 Jumphole
-x=79518.0
-y=-1931.0
-system=System 4
-out=System 71/System 4 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 4 Jumphole
-x=10231.0
-y=15817.0
-system=System 71
-out=System 4/System 71 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 74 Jumphole
-x=-72386.0
-y=20062.0
-system=System 4
-out=System 74/System 4 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 4 Jumphole
-x=2778.0
-y=34303.0
-system=System 74
-out=System 4/System 74 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 15 Jumphole
-x=42300.0
-y=-78782.0
-system=System 4
-out=System 15/System 4 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 4 Jumphole
-x=43266.0
-y=34520.0
-system=System 15
-out=System 4/System 15 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 4
-texture=Strange
-x=-26838.0
-y=10017.0
-d=2672
-seed=966851205
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 4
-texture=BandedGas
-x=-58881.0
-y=31655.0
-d=1800
-seed=-1993288701
-[/Planet]
-
-[System]
-name=System 5
-x=369.61544112944614
-y=-769.8422714811409
-sky=green0
-[/System]
-
-[Star]
-name=System 5
-system=System 5
-texture=YellowStar
-x=4333.0
-y=5028.0
-d=4000
-seed=237231232
-[/Star]
-
-[Jumphole]
-name=System 33 Jumphole
-x=44974.0
-y=48455.0
-system=System 5
-out=System 33/System 5 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 5 Jumphole
-x=-980.0
-y=-35352.0
-system=System 33
-out=System 5/System 33 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 60 Jumphole
-x=32614.0
-y=25698.0
-system=System 5
-out=System 60/System 5 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 5 Jumphole
-x=-5116.0
-y=-20495.0
-system=System 60
-out=System 5/System 60 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 53 Jumphole
-x=-32533.0
-y=-3827.0
-system=System 5
-out=System 53/System 5 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 5 Jumphole
-x=-6173.0
-y=-44111.0
-system=System 53
-out=System 5/System 53 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 5
-texture=Hospitable
-x=12166.0
-y=-41789.0
-d=2900
-seed=1806386728
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 5
-texture=BandedGas
-x=-10597.0
-y=3828.0
-d=2458
-seed=649296743
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 5
-texture=BandedGas
-x=24084.0
-y=39579.0
-d=2082
-seed=-881203965
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 5
-texture=Hospitable
-x=41842.0
-y=39997.0
-d=3060
-seed=2098149375
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 5
-texture=Terran
-x=-38131.0
-y=7125.0
-d=1842
-seed=1870718722
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 5
-texture=Martian
-x=-29561.0
-y=5127.0
-d=3836
-seed=-1647343127
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 5
-texture=DoubleBandedGas
-x=-35138.0
-y=12880.0
-d=1800
-seed=1530860234
-[/Planet]
-
-[System]
-name=System 6
-x=992.3259611273891
-y=25.073662147761166
-sky=green1
-[/System]
-
-[Star]
-name=System 6
-system=System 6
-texture=RedStar
-x=-4669.0
-y=-5108.0
-d=7704
-seed=-836032919
-[/Star]
-
-[Jumphole]
-name=System 46 Jumphole
-x=31326.0
-y=27583.0
-system=System 6
-out=System 46/System 6 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 6 Jumphole
-x=-53293.0
-y=-30806.0
-system=System 46
-out=System 6/System 46 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 6
-texture=Terran
-x=-22288.0
-y=-35340.0
-d=3838
-seed=-1813535694
-[/Planet]
-
-[System]
-name=System 7
-x=-369.52471538438544
-y=120.08155010829299
-sky=orange1
-[/System]
-
-[Star]
-name=System 7
-system=System 7
-texture=RedStar
-x=4664.0
-y=-4010.0
-d=4000
-seed=489723551
-[/Star]
-
-[Jumphole]
-name=System 51 Jumphole
-x=49988.0
-y=44296.0
-system=System 7
-out=System 51/System 7 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 7 Jumphole
-x=52926.0
-y=41199.0
-system=System 51
-out=System 7/System 51 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 76 Jumphole
-x=9194.0
-y=-38419.0
-system=System 7
-out=System 76/System 7 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 7 Jumphole
-x=-17266.0
-y=60196.0
-system=System 76
-out=System 7/System 76 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 56 Jumphole
-x=10547.0
-y=31631.0
-system=System 7
-out=System 56/System 7 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 7 Jumphole
-x=-50666.0
-y=13922.0
-system=System 56
-out=System 7/System 56 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 7
-texture=BandedGas
-x=-15215.0
-y=-58948.0
-d=2518
-seed=894016471
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 7
-texture=DoubleBandedGas
-x=-42278.0
-y=-58676.0
-d=3050
-seed=1019252916
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 7
-texture=BandedGas
-x=46150.0
-y=5583.0
-d=2036
-seed=287389982
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 7
-texture=Alien
-x=22133.0
-y=32242.0
-d=3390
-seed=1120327333
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 7
-texture=Hospitable
-x=-2534.0
-y=46761.0
-d=1800
-seed=880323288
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 7
-texture=Hospitable
-x=-21580.0
-y=-25843.0
-d=2570
-seed=923209353
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 7
-texture=Strange
-x=-31098.0
-y=-15256.0
-d=1800
-seed=-395355167
-[/Planet]
-
-[Planet]
-name=Planet 7
-system=System 7
-texture=Strange
-x=-30229.0
-y=-38263.0
-d=2822
-seed=-753752574
-[/Planet]
-
-[System]
-name=System 8
-x=767.8626970329542
-y=882.3865438454429
-sky=blue0
-[/System]
-
-[Star]
-name=System 8
-system=System 8
-texture=YellowStar
-x=2216.0
-y=12247.0
-d=4000
-seed=-997110481
-[/Star]
-
-[Jumphole]
-name=System 17 Jumphole
-x=-23698.0
-y=-24055.0
-system=System 8
-out=System 17/System 8 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 8 Jumphole
-x=64475.0
-y=-77531.0
-system=System 17
-out=System 8/System 17 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 8
-texture=Terran
-x=-52914.0
-y=-102033.0
-d=1800
-seed=-1904731946
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 8
-texture=Strange
-x=-64749.0
-y=-65518.0
-d=3840
-seed=2070557994
-[/Planet]
-
-[System]
-name=System 9
-x=-286.20779258691294
-y=569.3995219715246
-sky=blue1
-[/System]
-
-[Star]
-name=System 9
-system=System 9
-texture=RedStar
-x=-376.0
-y=4914.0
-d=5422
-seed=1324829757
-[/Star]
-
-[Jumphole]
-name=System 12 Jumphole
-x=37003.0
-y=474.0
-system=System 9
-out=System 12/System 9 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 9 Jumphole
-x=34822.0
-y=6844.0
-system=System 12
-out=System 9/System 12 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 55 Jumphole
-x=5322.0
-y=-11090.0
-system=System 9
-out=System 55/System 9 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 9 Jumphole
-x=4473.0
-y=21275.0
-system=System 55
-out=System 9/System 55 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 72 Jumphole
-x=-6078.0
-y=-16947.0
-system=System 9
-out=System 72/System 9 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 9 Jumphole
-x=-13105.0
-y=12979.0
-system=System 72
-out=System 9/System 72 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 9
-texture=Strange
-x=-36732.0
-y=-6722.0
-d=2074
-seed=-1868547088
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 9
-texture=Martian
-x=-37391.0
-y=30878.0
-d=2614
-seed=1716693110
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 9
-texture=Hospitable
-x=24603.0
-y=9228.0
-d=1800
-seed=-1877523651
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 9
-texture=Alien
-x=38389.0
-y=13888.0
-d=2440
-seed=-1943991474
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 9
-texture=Hospitable
-x=23050.0
-y=-34132.0
-d=1800
-seed=716070446
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 9
-texture=Strange
-x=2168.0
-y=-24969.0
-d=2202
-seed=174198299
-[/Planet]
-
-[Planet]
-name=Planet 7
-system=System 9
-texture=DoubleBandedGas
-x=-31406.0
-y=-5911.0
-d=3250
-seed=-135903128
-[/Planet]
-
-[Planet]
-name=Planet 8
-system=System 9
-texture=Lava
-x=-23511.0
-y=32357.0
-d=3178
-seed=359402270
-[/Planet]
-
-[System]
-name=System 10
-x=-260.8457011352449
-y=-876.5628539395808
-sky=green0
-[/System]
-
-[Star]
-name=System 10
-system=System 10
-texture=WhiteStar
-x=-4604.0
-y=-3673.0
-d=5098
-seed=-876863387
-[/Star]
-
-[Jumphole]
-name=System 16 Jumphole
-x=10050.0
-y=-23529.0
-system=System 10
-out=System 16/System 10 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 10 Jumphole
-x=25528.0
-y=4085.0
-system=System 16
-out=System 10/System 16 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 52 Jumphole
-x=12239.0
-y=36665.0
-system=System 10
-out=System 52/System 10 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 10 Jumphole
-x=-39064.0
-y=-11287.0
-system=System 52
-out=System 10/System 52 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 10
-texture=Martian
-x=21190.0
-y=20118.0
-d=2906
-seed=-1494556830
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 10
-texture=Hospitable
-x=-31721.0
-y=19850.0
-d=1800
-seed=-110902866
-[/Planet]
-
-[System]
-name=System 11
-x=578.5439593537924
-y=811.8518735825634
-sky=orange1
-[/System]
-
-[Star]
-name=System 11
-system=System 11
-texture=RedStar
-x=1509.0
-y=-2667.0
-d=5154
-seed=-1722885920
-[/Star]
-
-[Jumphole]
-name=System 43 Jumphole
-x=-4544.0
-y=-35809.0
-system=System 11
-out=System 43/System 11 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 11 Jumphole
-x=-36920.0
-y=5365.0
-system=System 43
-out=System 11/System 43 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 8 Jumphole
-x=28720.0
-y=-29346.0
-system=System 11
-out=System 8/System 11 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 11 Jumphole
-x=2206.0
-y=-37965.0
-system=System 8
-out=System 11/System 8 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 11
-texture=Lava
-x=13569.0
-y=-19798.0
-d=3246
-seed=-2139376238
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 11
-texture=Terran
-x=11855.0
-y=-30263.0
-d=1800
-seed=-1244539494
-[/Planet]
-
-[System]
-name=System 12
-x=-212.89081039894336
-y=462.1180223608471
-sky=green0
-[/System]
-
-[Star]
-name=System 12
-system=System 12
-texture=BlueStar
-x=-3723.0
-y=-5808.0
-d=4784
-seed=-1760412030
-[/Star]
-
-[Jumphole]
-name=System 72 Jumphole
-x=10161.0
-y=-61537.0
-system=System 12
-out=System 72/System 12 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 12 Jumphole
-x=75758.0
-y=-77449.0
-system=System 72
-out=System 12/System 72 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 55 Jumphole
-x=-67433.0
-y=-10829.0
-system=System 12
-out=System 55/System 12 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 12 Jumphole
-x=24005.0
-y=55757.0
-system=System 55
-out=System 12/System 55 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 12
-texture=Alien
-x=48778.0
-y=57871.0
-d=3394
-seed=1136818296
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 12
-texture=Alien
-x=24441.0
-y=66083.0
+x=-4694.0
+y=2935.0
 d=2606
-seed=-841740397
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 12
-texture=Lava
-x=44194.0
-y=51899.0
-d=3512
-seed=1730714714
-[/Planet]
-
-[System]
-name=System 13
-x=849.045973833818
-y=-913.8394160651499
-sky=black0
-[/System]
-
-[Star]
-name=System 13
-system=System 13
-texture=YellowStar
-x=2256.0
-y=586.0
-d=7480
-seed=828435512
+seed=-993142349
 [/Star]
-
-[Jumphole]
-name=System 27 Jumphole
-x=-27992.0
-y=-4583.0
-system=System 13
-out=System 27/System 13 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 13 Jumphole
-x=11630.0
-y=-38798.0
-system=System 27
-out=System 13/System 27 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 65 Jumphole
-x=38507.0
-y=-6616.0
-system=System 13
-out=System 65/System 13 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 13 Jumphole
-x=18082.0
-y=6420.0
-system=System 65
-out=System 13/System 65 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 33 Jumphole
-x=19014.0
-y=23153.0
-system=System 13
-out=System 33/System 13 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 13 Jumphole
-x=-22275.0
-y=-35063.0
-system=System 33
-out=System 13/System 33 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 13
-texture=Strange
-x=2635.0
-y=-38940.0
-d=2692
-seed=-540434324
-[/Planet]
-
-[System]
-name=System 14
-x=-749.2249536307964
-y=-191.19332290794244
-sky=black0
-[/System]
-
-[Star]
-name=System 14
-system=System 14
-texture=BlueStar
-x=-8690.0
-y=-2765.0
-d=4000
-seed=1486999549
-[/Star]
-
-[Planet]
-name=Planet 0
-system=System 14
-texture=Strange
-x=-31273.0
-y=-51233.0
-d=2384
-seed=2129046346
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 14
-texture=DoubleBandedGas
-x=-47260.0
-y=29707.0
-d=1800
-seed=2111499379
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 14
-texture=Strange
-x=54344.0
-y=-28574.0
-d=1800
-seed=1669207472
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 14
-texture=Martian
-x=50628.0
-y=32648.0
-d=2916
-seed=406709600
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 14
-texture=Hospitable
-x=-55145.0
-y=65130.0
-d=1800
-seed=1579742270
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 14
-texture=Strange
-x=46386.0
-y=-60654.0
-d=1800
-seed=179892553
-[/Planet]
-
-[Planet]
-name=Planet 7
-system=System 14
-texture=Strange
-x=-55155.0
-y=-45604.0
-d=1800
-seed=-1589484839
-[/Planet]
-
-[Planet]
-name=Planet 8
-system=System 14
-texture=Alien
-x=53283.0
-y=21196.0
-d=3332
-seed=214412926
-[/Planet]
-
-[System]
-name=System 15
-x=815.0461683830878
-y=-296.5677087896021
-sky=orange0
-[/System]
-
-[Star]
-name=System 15
-system=System 15
-texture=BlueStar
-x=-3999.0
-y=3860.0
-d=5126
-seed=-1034218929
-[/Star]
-
-[Jumphole]
-name=System 46 Jumphole
-x=-17259.0
-y=44627.0
-system=System 15
-out=System 46/System 15 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 15 Jumphole
-x=55944.0
-y=26613.0
-system=System 46
-out=System 15/System 46 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 74 Jumphole
-x=45081.0
-y=59063.0
-system=System 15
-out=System 74/System 15 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 15 Jumphole
-x=-5993.0
-y=-26961.0
-system=System 74
-out=System 15/System 74 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 15
-texture=Terran
-x=39370.0
-y=43287.0
-d=3768
-seed=1815679807
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 15
-texture=Terran
-x=48169.0
-y=-27932.0
-d=3420
-seed=-2136195065
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 15
-texture=Hospitable
-x=-42210.0
-y=32983.0
-d=1884
-seed=1299823445
-[/Planet]
-
-[System]
-name=System 16
-x=-457.9967087729255
-y=-771.7805347340778
-sky=green1
-[/System]
-
-[Star]
-name=System 16
-system=System 16
-texture=BlueStar
-x=-10063.0
-y=-427.0
-d=4000
-seed=-1574375000
-[/Star]
-
-[Jumphole]
-name=System 66 Jumphole
-x=-29876.0
-y=-15061.0
-system=System 16
-out=System 66/System 16 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 16 Jumphole
-x=41588.0
-y=-50494.0
-system=System 66
-out=System 16/System 66 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 79 Jumphole
-x=-16799.0
-y=-31721.0
-system=System 16
-out=System 79/System 16 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 16 Jumphole
-x=8338.0
-y=92665.0
-system=System 79
-out=System 16/System 79 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 16
-texture=Hospitable
-x=31218.0
-y=34535.0
-d=3948
-seed=1553135507
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 16
-texture=Alien
-x=53858.0
-y=80680.0
-d=3122
-seed=1307580586
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 16
-texture=Alien
-x=35897.0
-y=-92588.0
-d=3838
-seed=277310982
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 16
-texture=Martian
-x=11735.0
-y=-70317.0
-d=1800
-seed=-1225025733
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 16
-texture=Terran
-x=-68453.0
-y=60030.0
-d=1800
-seed=-593939236
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 16
-texture=Hospitable
-x=71118.0
-y=-19405.0
-d=3016
-seed=368725003
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 16
-texture=Terran
-x=7379.0
-y=62270.0
-d=1800
-seed=-839492544
-[/Planet]
-
-[System]
-name=System 17
-x=863.493165982518
-y=903.2911853033526
-sky=blue0
-[/System]
-
-[Star]
-name=System 17
-system=System 17
-texture=YellowStar
-x=9341.0
-y=-7053.0
-d=6454
-seed=360761782
-[/Star]
-
-[Planet]
-name=Planet 0
-system=System 17
-texture=BandedGas
-x=-87708.0
-y=74085.0
-d=1800
-seed=-2109348672
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 17
-texture=BandedGas
-x=23281.0
-y=21079.0
-d=1800
-seed=1022944255
-[/Planet]
-
-[System]
-name=System 18
-x=-51.254194042078545
-y=-641.5852178229319
-sky=green1
-[/System]
-
-[Star]
-name=System 18
-system=System 18
-texture=YellowStar
-x=-2688.0
-y=9629.0
-d=4000
-seed=346395744
-[/Star]
-
-[Jumphole]
-name=System 52 Jumphole
-x=-101029.0
-y=100076.0
-system=System 18
-out=System 52/System 18 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 18 Jumphole
-x=-786.0
-y=77110.0
-system=System 52
-out=System 18/System 52 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 18
-texture=Hospitable
-x=-50636.0
-y=-79358.0
-d=2668
-seed=995631853
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 18
-texture=Martian
-x=-29495.0
-y=24374.0
-d=3272
-seed=1832046441
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 18
-texture=Alien
-x=-19058.0
-y=68075.0
-d=3602
-seed=-334207534
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 18
-texture=Hospitable
-x=-67945.0
-y=-48642.0
-d=1800
-seed=1070097812
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 18
-texture=Lava
-x=104938.0
-y=82105.0
-d=3872
-seed=-712850639
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 18
-texture=BandedGas
-x=27254.0
-y=21029.0
-d=1800
-seed=-306328495
-[/Planet]
-
-[System]
-name=System 19
-x=404.7576802681577
-y=209.3167023652297
-sky=black0
-[/System]
-
-[Star]
-name=System 19
-system=System 19
-texture=RedStar
-x=4625.0
-y=-4662.0
-d=4000
-seed=515628643
-[/Star]
-
-[Jumphole]
-name=System 24 Jumphole
-x=-32931.0
-y=24914.0
-system=System 19
-out=System 24/System 19 Jumphole
-[/Jumphole]
 
 [Jumphole]
 name=System 19 Jumphole
-x=21796.0
-y=30738.0
-system=System 24
-out=System 19/System 24 Jumphole
-[/Jumphole]
-
-[System]
-name=System 20
-x=-213.46702819988454
-y=116.03056218929451
-sky=blue0
-[/System]
-
-[Star]
-name=System 20
-system=System 20
-texture=YellowStar
-x=-310.0
-y=-4169.0
-d=4888
-seed=-1732657564
-[/Star]
-
-[Jumphole]
-name=System 7 Jumphole
-x=6000.0
-y=18048.0
-system=System 20
-out=System 7/System 20 Jumphole
+x=-18798.0
+y=-25388.0
+system=System 0
+out=System 19/System 0 Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=System 20 Jumphole
-x=29445.0
-y=8606.0
-system=System 7
-out=System 20/System 7 Jumphole
+name=System 0 Jumphole
+x=-15120.0
+y=12458.0
+system=System 19
+out=System 0/System 19 Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=System 51 Jumphole
-x=-26079.0
-y=740.0
-system=System 20
-out=System 51/System 20 Jumphole
+name=System 35 Jumphole
+x=24136.0
+y=29531.0
+system=System 0
+out=System 35/System 0 Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=System 20 Jumphole
-x=-1956.0
-y=-28737.0
-system=System 51
-out=System 20/System 51 Jumphole
+name=System 0 Jumphole
+x=-3397.0
+y=-27909.0
+system=System 35
+out=System 0/System 35 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 61 Jumphole
+x=15181.0
+y=7571.0
+system=System 0
+out=System 61/System 0 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 0 Jumphole
+x=-22411.0
+y=36653.0
+system=System 61
+out=System 0/System 61 Jumphole
 [/Jumphole]
 
 [Planet]
 name=Planet 0
-system=System 20
-texture=BandedGas
-x=3904.0
-y=-25979.0
-d=1800
-seed=629318353
+system=System 0
+texture=Terran
+x=-39666.0
+y=35029.0
+d=3402
+seed=-41700210
 [/Planet]
 
 [System]
-name=System 21
-x=-712.8867313277842
-y=461.7716143347726
-sky=blue0
-[/System]
-
-[Star]
-name=System 21
-system=System 21
-texture=YellowStar
-x=-3193.0
-y=-2114.0
-d=7020
-seed=2029412318
-[/Star]
-
-[Jumphole]
-name=System 45 Jumphole
-x=35884.0
-y=2287.0
-system=System 21
-out=System 45/System 21 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 21 Jumphole
-x=-24622.0
-y=-14283.0
-system=System 45
-out=System 21/System 45 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 21
-texture=BandedGas
-x=-32068.0
-y=22110.0
-d=1800
-seed=-1617282362
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 21
-texture=Strange
-x=35063.0
-y=-26593.0
-d=3454
-seed=-329382413
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 21
-texture=Martian
-x=32021.0
-y=17121.0
-d=3016
-seed=2078331310
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 21
-texture=Hospitable
-x=13838.0
-y=28741.0
-d=2770
-seed=-2101813019
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 21
-texture=DoubleBandedGas
-x=30779.0
-y=22301.0
-d=3694
-seed=-1172091391
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 21
-texture=Hospitable
-x=30928.0
-y=-24874.0
-d=2168
-seed=-666967572
-[/Planet]
-
-[Planet]
-name=Planet 7
-system=System 21
-texture=Lava
-x=11831.0
-y=28749.0
-d=2318
-seed=-2114391902
-[/Planet]
-
-[System]
-name=System 22
-x=564.3728837700669
-y=-43.32214506864534
-sky=green1
-[/System]
-
-[Star]
-name=System 22
-system=System 22
-texture=BlueStar
-x=-4158.0
-y=-1480.0
-d=5068
-seed=2081170915
-[/Star]
-
-[Jumphole]
-name=System 71 Jumphole
-x=4805.0
-y=-21419.0
-system=System 22
-out=System 71/System 22 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 22 Jumphole
-x=-233.0
-y=32563.0
-system=System 71
-out=System 22/System 71 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 39 Jumphole
-x=21830.0
-y=25449.0
-system=System 22
-out=System 39/System 22 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 22 Jumphole
-x=550.0
-y=6501.0
-system=System 39
-out=System 22/System 39 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 22
-texture=Martian
-x=24097.0
-y=10612.0
-d=1800
-seed=1636985795
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 22
-texture=Strange
-x=-23813.0
-y=19893.0
-d=2310
-seed=471512677
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 22
-texture=Lava
-x=15473.0
-y=24789.0
-d=1800
-seed=1268222508
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 22
-texture=BandedGas
-x=-35886.0
-y=33331.0
-d=3758
-seed=-1745349320
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 22
-texture=Alien
-x=21094.0
-y=21606.0
-d=3468
-seed=814466902
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 22
-texture=Strange
-x=33231.0
-y=-1075.0
-d=2334
-seed=348502981
-[/Planet]
-
-[System]
-name=System 23
-x=-55.245435908212954
-y=205.07501763023276
+name=System 1
+x=-805.0105980675755
+y=234.80881081125474
 sky=blue1
 [/System]
 
 [Star]
-name=System 23
-system=System 23
-texture=BlueStar
-x=2650.0
-y=3378.0
-d=4756
-seed=-1031171536
-[/Star]
-
-[Jumphole]
-name=System 20 Jumphole
-x=82514.0
-y=115774.0
-system=System 23
-out=System 20/System 23 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 23 Jumphole
-x=30855.0
-y=17137.0
-system=System 20
-out=System 23/System 20 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 23
-texture=BandedGas
-x=83701.0
-y=111868.0
-d=3574
-seed=-1134849990
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 23
-texture=Lava
-x=78648.0
-y=68538.0
-d=3094
-seed=1282846451
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 23
-texture=Alien
-x=113428.0
-y=-49025.0
-d=1988
-seed=-443926497
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 23
-texture=BandedGas
-x=-37335.0
-y=-71093.0
-d=1800
-seed=-1042582152
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 23
-texture=Lava
-x=-81275.0
-y=1622.0
-d=1800
-seed=-1965058869
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 23
-texture=Lava
-x=-60313.0
-y=-72192.0
-d=2108
-seed=-324486141
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 23
-texture=Strange
-x=-51787.0
-y=50184.0
-d=1800
-seed=996232283
-[/Planet]
-
-[Planet]
-name=Planet 7
-system=System 23
-texture=DoubleBandedGas
-x=4034.0
-y=-53281.0
-d=3414
-seed=1795260714
-[/Planet]
-
-[System]
-name=System 24
-x=173.17975665099453
-y=263.1812570556815
-sky=black0
-[/System]
-
-[Star]
-name=System 24
-system=System 24
-texture=YellowStar
-x=-1347.0
-y=-4526.0
-d=4180
-seed=956142759
-[/Star]
-
-[Jumphole]
-name=System 54 Jumphole
-x=17774.0
-y=-6822.0
-system=System 24
-out=System 54/System 24 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 24 Jumphole
-x=-2268.0
-y=-38996.0
-system=System 54
-out=System 24/System 54 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 24
-texture=Lava
-x=-27451.0
-y=16997.0
-d=3810
-seed=-1152101544
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 24
-texture=Hospitable
-x=4129.0
-y=28263.0
-d=1866
-seed=-1518395668
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 24
-texture=BandedGas
-x=-17381.0
-y=16875.0
-d=1800
-seed=-1271449210
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 24
-texture=BandedGas
-x=22196.0
-y=-4373.0
-d=1800
-seed=1782287143
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 24
-texture=Terran
-x=13821.0
-y=5552.0
-d=3672
-seed=1871296132
-[/Planet]
-
-[System]
-name=System 25
-x=687.764911531179
-y=160.45299449130874
-sky=black0
-[/System]
-
-[Star]
-name=System 25
-system=System 25
-texture=YellowStar
-x=2958.0
-y=-3533.0
-d=4000
-seed=927828372
-[/Star]
-
-[Jumphole]
-name=System 30 Jumphole
-x=23924.0
-y=62533.0
-system=System 25
-out=System 30/System 25 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 25 Jumphole
-x=-48385.0
-y=-72575.0
-system=System 30
-out=System 25/System 30 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 29 Jumphole
-x=60851.0
-y=11294.0
-system=System 25
-out=System 29/System 25 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 25 Jumphole
-x=53670.0
-y=-19776.0
-system=System 29
-out=System 25/System 29 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 25
-texture=Strange
-x=-31686.0
-y=-425.0
-d=1800
-seed=-2123046942
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 25
-texture=Strange
-x=-19044.0
-y=76710.0
-d=1800
-seed=109064454
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 25
-texture=Martian
-x=-61590.0
-y=56819.0
-d=1800
-seed=-839191661
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 25
-texture=Terran
-x=-3153.0
-y=49529.0
-d=3692
-seed=215379908
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 25
-texture=DoubleBandedGas
-x=40208.0
-y=-71609.0
-d=1800
-seed=349848428
-[/Planet]
-
-[System]
-name=System 26
-x=-726.341937263713
-y=-36.82896010383286
-sky=orange0
-[/System]
-
-[Star]
-name=System 26
-system=System 26
-texture=BlueStar
-x=-12870.0
-y=5322.0
-d=6782
-seed=-1095921003
-[/Star]
-
-[Jumphole]
-name=System 42 Jumphole
-x=80974.0
-y=77103.0
-system=System 26
-out=System 42/System 26 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 26 Jumphole
-x=100737.0
-y=-51333.0
-system=System 42
-out=System 26/System 42 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 26
-texture=Terran
-x=86709.0
-y=-58792.0
-d=3532
-seed=231383111
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 26
-texture=DoubleBandedGas
-x=82260.0
-y=-65023.0
-d=1800
-seed=1680067357
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 26
-texture=Terran
-x=-101847.0
-y=32186.0
-d=1800
-seed=-1627619206
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 26
-texture=Lava
-x=-51142.0
-y=46422.0
-d=1800
-seed=-618264577
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 26
-texture=Hospitable
-x=-79993.0
-y=92004.0
-d=1800
-seed=1256218726
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 26
-texture=Hospitable
-x=-20278.0
-y=42146.0
-d=3874
-seed=395046831
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 26
-texture=Lava
-x=-77149.0
-y=-106405.0
-d=1838
-seed=-917851373
-[/Planet]
-
-[Planet]
-name=Planet 7
-system=System 26
-texture=Hospitable
-x=-44952.0
-y=46633.0
-d=1800
-seed=-1865951336
-[/Planet]
-
-[Planet]
-name=Planet 8
-system=System 26
-texture=Strange
-x=51563.0
-y=4971.0
-d=2188
-seed=-1570495014
-[/Planet]
-
-[System]
-name=System 27
-x=813.5121729424862
-y=-720.9362147712671
-sky=black0
-[/System]
-
-[Star]
-name=System 27
-system=System 27
+name=System 1
+system=System 1
 texture=RedStar
-x=3115.0
-y=-4043.0
-d=6918
-seed=-421881141
+x=-1253.0
+y=3323.0
+d=3800
+seed=1414859500
 [/Star]
 
 [Jumphole]
-name=System 65 Jumphole
-x=-171.0
-y=-8036.0
-system=System 27
-out=System 65/System 27 Jumphole
+name=System 33 Jumphole
+x=35857.0
+y=-13727.0
+system=System 1
+out=System 33/System 1 Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=System 27 Jumphole
-x=-20569.0
-y=14311.0
-system=System 65
-out=System 27/System 65 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 27
-texture=Martian
-x=-14752.0
-y=19162.0
-d=3666
-seed=1448776718
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 27
-texture=Lava
-x=33048.0
-y=-27267.0
-d=1800
-seed=-459611640
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 27
-texture=Martian
-x=34467.0
-y=23555.0
-d=2906
-seed=932480253
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 27
-texture=Strange
-x=37526.0
-y=28907.0
-d=1800
-seed=-365581424
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 27
-texture=Lava
-x=-12663.0
-y=-30204.0
-d=2340
-seed=1030704617
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 27
-texture=Lava
-x=-26222.0
-y=7328.0
-d=2790
-seed=-1302398636
-[/Planet]
-
-[System]
-name=System 28
-x=350.8587128884602
-y=689.3133636923928
-sky=black0
-[/System]
-
-[Star]
-name=System 28
-system=System 28
-texture=WhiteStar
-x=-3725.0
-y=9395.0
-d=4000
-seed=-883322494
-[/Star]
-
-[Jumphole]
-name=System 44 Jumphole
-x=81479.0
-y=71116.0
-system=System 28
-out=System 44/System 28 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 28 Jumphole
-x=-85895.0
-y=-28425.0
-system=System 44
-out=System 28/System 44 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 58 Jumphole
-x=-6310.0
-y=3473.0
-system=System 28
-out=System 58/System 28 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 28 Jumphole
-x=15576.0
-y=-65779.0
-system=System 58
-out=System 28/System 58 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 28
-texture=BandedGas
-x=-106831.0
-y=-22019.0
-d=1800
-seed=21490810
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 28
-texture=Terran
-x=-34725.0
-y=-102797.0
-d=1800
-seed=837711412
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 28
-texture=Hospitable
-x=-86055.0
-y=-10316.0
-d=3898
-seed=1059655157
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 28
-texture=BandedGas
-x=-50039.0
-y=17255.0
-d=1884
-seed=134605305
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 28
-texture=Alien
-x=39976.0
-y=-22416.0
-d=2946
-seed=-1007571026
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 28
-texture=Martian
-x=-97354.0
-y=-66384.0
-d=3400
-seed=-423108613
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 28
-texture=Alien
-x=14778.0
-y=-50270.0
-d=2274
-seed=-1480692335
-[/Planet]
-
-[Planet]
-name=Planet 7
-system=System 28
-texture=BandedGas
-x=-37897.0
-y=-63833.0
-d=2854
-seed=2003125230
-[/Planet]
-
-[Planet]
-name=Planet 8
-system=System 28
-texture=DoubleBandedGas
-x=-89611.0
-y=101856.0
-d=1800
-seed=-338616764
-[/Planet]
-
-[System]
-name=System 29
-x=690.4670000423409
-y=205.96286572022072
-sky=orange0
-[/System]
-
-[Star]
-name=System 29
-system=System 29
-texture=BlueStar
-x=3231.0
-y=-2849.0
-d=4000
-seed=-658354706
-[/Star]
-
-[Jumphole]
-name=System 77 Jumphole
-x=-37766.0
-y=4928.0
-system=System 29
-out=System 77/System 29 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 29 Jumphole
-x=34049.0
-y=51539.0
-system=System 77
-out=System 29/System 77 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 30 Jumphole
-x=-15417.0
-y=-34785.0
-system=System 29
-out=System 30/System 29 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 29 Jumphole
-x=16312.0
-y=40775.0
-system=System 30
-out=System 29/System 30 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 29
-texture=DoubleBandedGas
-x=-38806.0
-y=-53010.0
-d=1860
-seed=43234447
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 29
-texture=Hospitable
-x=-35219.0
-y=28127.0
-d=1800
-seed=1791363495
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 29
-texture=BandedGas
-x=22169.0
-y=53383.0
-d=2674
-seed=178305343
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 29
-texture=Terran
-x=-42563.0
-y=-33636.0
-d=2802
-seed=-1902673339
-[/Planet]
-
-[System]
-name=System 30
-x=698.8124018836903
-y=169.22880024039756
-sky=orange0
-[/System]
-
-[Star]
-name=System 30
-system=System 30
-texture=RedStar
-x=7776.0
-y=-6637.0
-d=4000
-seed=-1812388947
-[/Star]
-
-[Planet]
-name=Planet 0
-system=System 30
-texture=Terran
-x=5666.0
-y=-41168.0
-d=1846
-seed=456422619
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 30
-texture=Terran
-x=1801.0
-y=-40100.0
-d=1800
-seed=1506881494
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 30
-texture=Strange
-x=57346.0
-y=12919.0
-d=2478
-seed=-1847423525
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 30
-texture=Hospitable
-x=-33249.0
-y=80633.0
-d=3338
-seed=-1868642878
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 30
-texture=DoubleBandedGas
-x=9809.0
-y=9732.0
-d=2052
-seed=-1442826714
-[/Planet]
-
-[System]
-name=System 31
-x=765.6889856965383
-y=334.0416010028662
-sky=black1
-[/System]
-
-[Star]
-name=System 31
-system=System 31
-texture=WhiteStar
-x=-3589.0
-y=-890.0
-d=4000
-seed=1873256806
-[/Star]
-
-[Jumphole]
-name=System 63 Jumphole
-x=-3467.0
-y=14660.0
-system=System 31
-out=System 63/System 31 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 31 Jumphole
-x=27839.0
-y=39903.0
-system=System 63
-out=System 31/System 63 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 31
-texture=Alien
-x=11889.0
-y=5107.0
-d=2804
-seed=483311710
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 31
-texture=DoubleBandedGas
-x=-7247.0
-y=-34517.0
-d=1800
-seed=-202009050
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 31
-texture=DoubleBandedGas
-x=-15424.0
-y=39922.0
-d=1800
-seed=1481596403
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 31
-texture=Strange
-x=-29751.0
-y=13658.0
-d=2688
-seed=1492643865
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 31
-texture=Strange
-x=35675.0
-y=22051.0
-d=3066
-seed=-1032429321
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 31
-texture=DoubleBandedGas
-x=18939.0
-y=33628.0
-d=3346
-seed=-1063645505
-[/Planet]
-
-[System]
-name=System 32
-x=-493.7055661713445
-y=58.12618946165357
-sky=green1
-[/System]
-
-[Star]
-name=System 32
-system=System 32
-texture=BlueStar
-x=9519.0
-y=11671.0
-d=4000
-seed=725544807
-[/Star]
-
-[Jumphole]
-name=System 56 Jumphole
-x=-68524.0
-y=78027.0
-system=System 32
-out=System 56/System 32 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 32 Jumphole
-x=93414.0
-y=97687.0
-system=System 56
-out=System 32/System 56 Jumphole
+name=System 1 Jumphole
+x=34817.0
+y=-44644.0
+system=System 33
+out=System 1/System 33 Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=System 76 Jumphole
-x=-27974.0
-y=-76835.0
-system=System 32
-out=System 76/System 32 Jumphole
+x=78191.0
+y=-14503.0
+system=System 1
+out=System 76/System 1 Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=System 32 Jumphole
-x=-44591.0
-y=-94817.0
+name=System 1 Jumphole
+x=-60234.0
+y=-10420.0
 system=System 76
-out=System 32/System 76 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 51 Jumphole
-x=-111493.0
-y=-67701.0
-system=System 32
-out=System 51/System 32 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 32 Jumphole
-x=-113277.0
-y=42666.0
-system=System 51
-out=System 32/System 51 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 32
-texture=Alien
-x=32441.0
-y=104485.0
-d=1800
-seed=-553353478
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 32
-texture=BandedGas
-x=47378.0
-y=31042.0
-d=1800
-seed=1109038008
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 32
-texture=DoubleBandedGas
-x=-51809.0
-y=-113524.0
-d=1800
-seed=-1569983670
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 32
-texture=Lava
-x=-83514.0
-y=87767.0
-d=2350
-seed=1186952480
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 32
-texture=DoubleBandedGas
-x=-31452.0
-y=-9455.0
-d=1800
-seed=-1893539891
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 32
-texture=DoubleBandedGas
-x=21234.0
-y=-2719.0
-d=2814
-seed=-234061318
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 32
-texture=DoubleBandedGas
-x=-45514.0
-y=72614.0
-d=3940
-seed=-1323471067
-[/Planet]
-
-[Planet]
-name=Planet 7
-system=System 32
-texture=Lava
-x=-87352.0
-y=61474.0
-d=1800
-seed=-204823250
-[/Planet]
-
-[Planet]
-name=Planet 8
-system=System 32
-texture=Alien
-x=-85826.0
-y=-72470.0
-d=2446
-seed=845401322
-[/Planet]
-
-[System]
-name=System 33
-x=365.81465824637746
-y=-874.3645059339071
-sky=black1
-[/System]
-
-[Star]
-name=System 33
-system=System 33
-texture=RedStar
-x=-6717.0
-y=2492.0
-d=4000
-seed=-752292651
-[/Star]
-
-[Jumphole]
-name=System 60 Jumphole
-x=39313.0
-y=83040.0
-system=System 33
-out=System 60/System 33 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 33 Jumphole
-x=-66229.0
-y=46254.0
-system=System 60
-out=System 33/System 60 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 33
-texture=Terran
-x=53191.0
-y=-37692.0
-d=1800
-seed=-140322125
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 33
-texture=Strange
-x=76256.0
-y=16393.0
-d=1800
-seed=-1304311767
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 33
-texture=BandedGas
-x=-6423.0
-y=-45093.0
-d=2974
-seed=-644605227
-[/Planet]
-
-[System]
-name=System 34
-x=-314.86841299192764
-y=-37.17351396311051
-sky=black0
-[/System]
-
-[Star]
-name=System 34
-system=System 34
-texture=YellowStar
-x=1344.0
-y=3141.0
-d=5028
-seed=-1219312732
-[/Star]
-
-[Jumphole]
-name=System 51 Jumphole
-x=-30191.0
-y=-3691.0
-system=System 34
-out=System 51/System 34 Jumphole
+out=System 1/System 76 Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=System 34 Jumphole
-x=-24692.0
-y=-5002.0
-system=System 51
-out=System 34/System 51 Jumphole
+x=63925.0
+y=49925.0
+system=System 1
+out=System 34/System 1 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 1 Jumphole
+x=-50531.0
+y=55038.0
+system=System 34
+out=System 1/System 34 Jumphole
 [/Jumphole]
 
 [Planet]
 name=Planet 0
-system=System 34
-texture=Hospitable
-x=-34546.0
-y=-11865.0
-d=3754
-seed=-1469740281
+system=System 1
+texture=Alien
+x=4164.0
+y=-22333.0
+d=2562
+seed=-558411363
 [/Planet]
 
 [System]
-name=System 35
-x=-333.85767549746936
-y=867.2368706186609
-sky=orange0
+name=System 2
+x=118.03527866472416
+y=-457.5112316311652
+sky=black1
 [/System]
 
 [Star]
-name=System 35
-system=System 35
+name=System 2
+system=System 2
 texture=WhiteStar
-x=-4892.0
-y=-145.0
-d=4000
-seed=-168692196
+x=-3732.0
+y=-10438.0
+d=2982
+seed=-1353177757
 [/Star]
 
 [Jumphole]
-name=System 48 Jumphole
-x=-44315.0
-y=-25504.0
-system=System 35
-out=System 48/System 35 Jumphole
+name=System 60 Jumphole
+x=53005.0
+y=16344.0
+system=System 2
+out=System 60/System 2 Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=System 35 Jumphole
-x=42775.0
-y=30724.0
-system=System 48
-out=System 35/System 48 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 69 Jumphole
-x=2516.0
-y=7912.0
-system=System 35
-out=System 69/System 35 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 35 Jumphole
-x=-44093.0
-y=43208.0
-system=System 69
-out=System 35/System 69 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 40 Jumphole
-x=-19605.0
-y=17985.0
-system=System 35
-out=System 40/System 35 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 35 Jumphole
-x=15980.0
-y=-41427.0
-system=System 40
-out=System 35/System 40 Jumphole
+name=System 2 Jumphole
+x=-68378.0
+y=-83345.0
+system=System 60
+out=System 2/System 60 Jumphole
 [/Jumphole]
 
 [Planet]
-name=Planet 1
-system=System 35
-texture=Martian
-x=-43729.0
-y=28878.0
+name=Planet 0
+system=System 2
+texture=Alien
+x=53127.0
+y=-5766.0
 d=1800
-seed=-1743439117
+seed=-207905702
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 2
+texture=DoubleBandedGas
+x=31703.0
+y=26218.0
+d=2754
+seed=-2035545349
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 2
+texture=DoubleBandedGas
+x=14926.0
+y=-53849.0
+d=2214
+seed=-1653919081
 [/Planet]
 
 [Planet]
 name=Planet 3
-system=System 35
-texture=DoubleBandedGas
-x=-26060.0
-y=-1979.0
-d=2516
-seed=-223717308
-[/Planet]
-
-[System]
-name=System 36
-x=46.84782707008972
-y=654.9806964585813
-sky=green1
-[/System]
-
-[Star]
-name=System 36
-system=System 36
-texture=RedStar
-x=-384.0
-y=-1449.0
-d=7456
-seed=1298928997
-[/Star]
-
-[Jumphole]
-name=System 73 Jumphole
-x=-51019.0
-y=-33230.0
-system=System 36
-out=System 73/System 36 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 36 Jumphole
-x=-55420.0
-y=62251.0
-system=System 73
-out=System 36/System 73 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 68 Jumphole
-x=52343.0
-y=-13109.0
-system=System 36
-out=System 68/System 36 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 36 Jumphole
-x=-65236.0
-y=-61712.0
-system=System 68
-out=System 36/System 68 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 36
-texture=Lava
-x=10090.0
-y=50555.0
-d=1800
-seed=2023472399
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 36
+system=System 2
 texture=Martian
-x=-37768.0
-y=30926.0
-d=1800
-seed=3883576
+x=40619.0
+y=11508.0
+d=2976
+seed=757728606
 [/Planet]
 
-[System]
-name=System 37
-x=-686.3439500227087
-y=-422.5374619236594
-sky=orange0
-[/System]
-
-[Star]
-name=System 37
-system=System 37
-texture=RedStar
-x=3311.0
-y=-3729.0
-d=4000
-seed=1815693128
-[/Star]
-
-[Jumphole]
-name=System 79 Jumphole
-x=13539.0
-y=-29891.0
-system=System 37
-out=System 79/System 37 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 37 Jumphole
-x=-3828.0
-y=-707.0
-system=System 79
-out=System 37/System 79 Jumphole
-[/Jumphole]
+[Planet]
+name=Planet 4
+system=System 2
+texture=DoubleBandedGas
+x=77095.0
+y=22148.0
+d=1800
+seed=-1717179081
+[/Planet]
 
 [Planet]
-name=Planet 0
-system=System 37
+name=Planet 5
+system=System 2
+texture=Strange
+x=-66903.0
+y=90879.0
+d=1992
+seed=-1601031816
+[/Planet]
+
+[Planet]
+name=Planet 6
+system=System 2
 texture=Alien
-x=35026.0
-y=-38298.0
-d=1800
-seed=-309603260
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 37
-texture=Terran
-x=-7102.0
-y=-39896.0
-d=1800
-seed=-1106334780
+x=-44886.0
+y=38515.0
+d=3000
+seed=737768810
 [/Planet]
 
 [System]
-name=System 38
-x=-957.3205638283147
-y=428.73691331155044
+name=System 3
+x=-559.2539710916152
+y=-818.2497021117781
 sky=orange1
 [/System]
 
 [Star]
-name=System 38
-system=System 38
+name=System 3
+system=System 3
 texture=BlueStar
-x=1049.0
-y=8664.0
-d=4000
-seed=608376005
+x=-1740.0
+y=-3553.0
+d=3798
+seed=1710013954
 [/Star]
 
 [Jumphole]
-name=System 21 Jumphole
-x=-88831.0
-y=1896.0
-system=System 38
-out=System 21/System 38 Jumphole
-[/Jumphole]
-
-[Jumphole]
 name=System 38 Jumphole
-x=-93432.0
-y=47653.0
-system=System 21
-out=System 38/System 21 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 78 Jumphole
-x=37086.0
-y=9249.0
-system=System 38
-out=System 78/System 38 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 38 Jumphole
-x=1332.0
-y=-91115.0
-system=System 78
-out=System 38/System 78 Jumphole
+x=21712.0
+y=-6926.0
+system=System 3
+out=System 38/System 3 Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=System 3 Jumphole
-x=93911.0
-y=2074.0
+x=-27678.0
+y=820.0
 system=System 38
 out=System 3/System 38 Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=System 38 Jumphole
-x=-99399.0
-y=62571.0
+name=System 11 Jumphole
+x=-10136.0
+y=-34441.0
 system=System 3
-out=System 38/System 3 Jumphole
+out=System 11/System 3 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 3 Jumphole
+x=34047.0
+y=32610.0
+system=System 11
+out=System 3/System 11 Jumphole
 [/Jumphole]
 
 [Planet]
 name=Planet 0
-system=System 38
-texture=Alien
-x=16445.0
-y=104294.0
-d=3616
-seed=745790992
+system=System 3
+texture=Strange
+x=4792.0
+y=-33762.0
+d=1800
+seed=1022279332
 [/Planet]
 
 [Planet]
 name=Planet 1
-system=System 38
+system=System 3
 texture=Terran
-x=103979.0
-y=-13015.0
-d=3198
-seed=1500876512
+x=-26490.0
+y=24683.0
+d=1800
+seed=-1840795570
 [/Planet]
 
 [Planet]
 name=Planet 2
-system=System 38
-texture=Martian
-x=-63503.0
-y=65931.0
-d=1800
-seed=-1297016837
+system=System 3
+texture=DoubleBandedGas
+x=19126.0
+y=-4865.0
+d=3122
+seed=-321249689
 [/Planet]
 
 [Planet]
 name=Planet 3
-system=System 38
-texture=DoubleBandedGas
-x=52795.0
-y=57571.0
-d=1800
-seed=935517721
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 38
-texture=Hospitable
-x=19712.0
-y=75449.0
-d=1800
-seed=812323919
+system=System 3
+texture=Martian
+x=-6324.0
+y=34675.0
+d=3340
+seed=-458103958
 [/Planet]
 
 [Planet]
 name=Planet 5
-system=System 38
-texture=Martian
-x=67890.0
-y=-2950.0
-d=2104
-seed=-427475695
+system=System 3
+texture=DoubleBandedGas
+x=-18556.0
+y=-9038.0
+d=1800
+seed=-129533659
 [/Planet]
 
 [Planet]
 name=Planet 6
-system=System 38
-texture=Martian
-x=-54119.0
-y=64936.0
+system=System 3
+texture=Lava
+x=-5921.0
+y=-22864.0
 d=1800
-seed=-1335764635
+seed=-1833962083
 [/Planet]
 
 [Planet]
 name=Planet 7
-system=System 38
-texture=Hospitable
-x=-62650.0
-y=63054.0
-d=2568
-seed=1517444417
+system=System 3
+texture=Martian
+x=16281.0
+y=-18145.0
+d=3104
+seed=-1651476268
 [/Planet]
 
 [Planet]
 name=Planet 8
-system=System 38
-texture=BandedGas
-x=-94114.0
-y=-31945.0
-d=1956
-seed=-782786805
-[/Planet]
-
-[System]
-name=System 39
-x=712.8691144816901
-y=-65.72742830481802
-sky=black1
-[/System]
-
-[Star]
-name=System 39
-system=System 39
-texture=BlueStar
-x=5653.0
-y=-1931.0
-d=5688
-seed=813931752
-[/Star]
-
-[Jumphole]
-name=System 71 Jumphole
-x=1668.0
-y=60840.0
-system=System 39
-out=System 71/System 39 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 39 Jumphole
-x=-55406.0
-y=-11058.0
-system=System 71
-out=System 39/System 71 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 47 Jumphole
-x=-21993.0
-y=20838.0
-system=System 39
-out=System 47/System 39 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 39 Jumphole
-x=-20834.0
-y=-61782.0
-system=System 47
-out=System 39/System 47 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 39
-texture=DoubleBandedGas
-x=-13968.0
-y=17459.0
-d=3924
-seed=1370036378
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 39
-texture=Strange
-x=22568.0
-y=62424.0
-d=1800
-seed=751579464
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 39
-texture=BandedGas
-x=-18785.0
-y=-47124.0
-d=1800
-seed=-1575798064
-[/Planet]
-
-[System]
-name=System 40
-x=-546.531483780712
-y=811.9193775595679
-sky=blue1
-[/System]
-
-[Star]
-name=System 40
-system=System 40
-texture=RedStar
-x=-6185.0
-y=5922.0
-d=6298
-seed=896862734
-[/Star]
-
-[Jumphole]
-name=System 48 Jumphole
-x=-31413.0
-y=-31032.0
-system=System 40
-out=System 48/System 40 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 40 Jumphole
-x=-19000.0
-y=29288.0
-system=System 48
-out=System 40/System 48 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 45 Jumphole
-x=-24355.0
-y=-45600.0
-system=System 40
-out=System 45/System 40 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 40 Jumphole
-x=-16150.0
-y=-55723.0
-system=System 45
-out=System 40/System 45 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 40
-texture=Strange
-x=-13138.0
-y=40369.0
-d=1800
-seed=-1755888375
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 40
-texture=BandedGas
-x=-18762.0
-y=-21529.0
-d=3344
-seed=900862385
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 40
-texture=DoubleBandedGas
-x=50031.0
-y=31451.0
-d=3784
-seed=58889601
-[/Planet]
-
-[System]
-name=System 41
-x=427.9788254787188
-y=-449.148408202514
-sky=green1
-[/System]
-
-[Star]
-name=System 41
-system=System 41
-texture=WhiteStar
-x=5541.0
-y=4942.0
-d=4000
-seed=2024679279
-[/Star]
-
-[Jumphole]
-name=System 49 Jumphole
-x=-22583.0
-y=-87599.0
-system=System 41
-out=System 49/System 41 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 41 Jumphole
-x=26493.0
-y=24919.0
-system=System 49
-out=System 41/System 49 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 74 Jumphole
-x=-58873.0
-y=69587.0
-system=System 41
-out=System 74/System 41 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 41 Jumphole
-x=41185.0
-y=-96168.0
-system=System 74
-out=System 41/System 74 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 53 Jumphole
-x=-89657.0
-y=-72684.0
-system=System 41
-out=System 53/System 41 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 41 Jumphole
-x=-81645.0
-y=-77656.0
-system=System 53
-out=System 41/System 53 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 41
-texture=DoubleBandedGas
-x=67906.0
-y=59685.0
-d=2438
-seed=-1485730028
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 41
-texture=Strange
-x=-31549.0
-y=-70434.0
-d=1800
-seed=-282708019
-[/Planet]
-
-[System]
-name=System 42
-x=-795.0522862269264
-y=61.15860591961296
-sky=blue1
-[/System]
-
-[Star]
-name=System 42
-system=System 42
-texture=RedStar
-x=2229.0
-y=-4863.0
-d=4000
-seed=-712845227
-[/Star]
-
-[Jumphole]
-name=System 50 Jumphole
-x=32597.0
-y=26324.0
-system=System 42
-out=System 50/System 42 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 42 Jumphole
-x=31465.0
-y=24870.0
-system=System 50
-out=System 42/System 50 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 1
-system=System 42
-texture=Lava
-x=37697.0
-y=-18068.0
-d=1800
-seed=-1037334181
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 42
-texture=BandedGas
-x=19891.0
-y=-445.0
-d=1800
-seed=1193503116
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 42
-texture=Strange
-x=22935.0
-y=2163.0
-d=3228
-seed=-1976033794
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 42
+system=System 3
 texture=Terran
-x=31203.0
-y=10448.0
+x=-22338.0
+y=-25253.0
 d=1800
-seed=1405073917
+seed=502334071
 [/Planet]
 
 [System]
-name=System 43
-x=650.3062252450347
-y=983.109213145454
-sky=blue1
-[/System]
-
-[Star]
-name=System 43
-system=System 43
-texture=YellowStar
-x=-3412.0
-y=2510.0
-d=7940
-seed=542707326
-[/Star]
-
-[Jumphole]
-name=System 62 Jumphole
-x=-4738.0
-y=-9673.0
-system=System 43
-out=System 62/System 43 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 43 Jumphole
-x=23268.0
-y=-20060.0
-system=System 62
-out=System 43/System 62 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 8 Jumphole
-x=2479.0
-y=-29886.0
-system=System 43
-out=System 8/System 43 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 43 Jumphole
-x=-11742.0
-y=-15056.0
-system=System 8
-out=System 43/System 8 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 43
-texture=DoubleBandedGas
-x=25007.0
-y=-9048.0
-d=3716
-seed=-1231700305
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 43
-texture=Strange
-x=-7467.0
-y=32620.0
-d=1800
-seed=-1173889699
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 43
-texture=Strange
-x=34364.0
-y=-23976.0
-d=3546
-seed=-1314368394
-[/Planet]
-
-[System]
-name=System 44
-x=342.44780308799614
-y=867.9499762963254
-sky=green0
-[/System]
-
-[Star]
-name=System 44
-system=System 44
-texture=YellowStar
-x=4865.0
-y=1742.0
-d=6746
-seed=-2095212442
-[/Star]
-
-[Jumphole]
-name=System 58 Jumphole
-x=29552.0
-y=21957.0
-system=System 44
-out=System 58/System 44 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 44 Jumphole
-x=-9152.0
-y=-4664.0
-system=System 58
-out=System 44/System 58 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 73 Jumphole
-x=27061.0
-y=16039.0
-system=System 44
-out=System 73/System 44 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 44 Jumphole
-x=18100.0
-y=-1453.0
-system=System 73
-out=System 44/System 73 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 44
-texture=Martian
-x=-28327.0
-y=-13193.0
-d=2058
-seed=373856654
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 44
-texture=Alien
-x=32499.0
-y=17379.0
-d=1800
-seed=2065396973
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 44
-texture=DoubleBandedGas
-x=-19695.0
-y=-34650.0
-d=2400
-seed=-464137786
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 44
-texture=Martian
-x=6720.0
-y=25522.0
-d=3110
-seed=34286621
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 44
-texture=Alien
-x=-19074.0
-y=191.0
-d=3486
-seed=38396417
-[/Planet]
-
-[Planet]
-name=Planet 7
-system=System 44
-texture=Martian
-x=31672.0
-y=15214.0
-d=1800
-seed=538370561
-[/Planet]
-
-[System]
-name=System 45
-x=-605.9030113670809
-y=684.4374559745926
+name=System 4
+x=-785.3124001371092
+y=-459.26165981357093
 sky=black0
 [/System]
 
 [Star]
-name=System 45
-system=System 45
-texture=WhiteStar
-x=1505.0
-y=-2535.0
-d=7672
-seed=-2009815419
-[/Star]
-
-[Jumphole]
-name=System 48 Jumphole
-x=13805.0
-y=26183.0
-system=System 45
-out=System 48/System 45 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 45 Jumphole
-x=13716.0
-y=-31733.0
-system=System 48
-out=System 45/System 48 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 45
-texture=BandedGas
-x=-37932.0
-y=-37469.0
-d=2800
-seed=52348014
-[/Planet]
-
-[System]
-name=System 46
-x=963.0149575357797
-y=-143.76690416270003
-sky=orange0
-[/System]
-
-[Star]
-name=System 46
-system=System 46
-texture=WhiteStar
-x=-6159.0
-y=-5854.0
-d=5804
-seed=-1000499320
-[/Star]
-
-[Jumphole]
-name=System 39 Jumphole
-x=-33298.0
-y=-47451.0
-system=System 46
-out=System 39/System 46 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 46 Jumphole
-x=4386.0
-y=-45384.0
-system=System 39
-out=System 46/System 39 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 46
-texture=BandedGas
-x=3720.0
-y=34601.0
-d=1800
-seed=276005645
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 46
-texture=Hospitable
-x=-25658.0
-y=19022.0
-d=1800
-seed=-1722967443
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 46
-texture=Alien
-x=-46106.0
-y=23894.0
-d=3502
-seed=1431275115
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 46
-texture=Alien
-x=40575.0
-y=7982.0
-d=3352
-seed=1510826830
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 46
-texture=Martian
-x=29624.0
-y=-48248.0
-d=3348
-seed=728885094
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 46
-texture=Terran
-x=-23417.0
-y=10855.0
-d=1800
-seed=792456373
-[/Planet]
-
-[System]
-name=System 47
-x=670.5394844209611
-y=97.7863767053783
-sky=orange0
-[/System]
-
-[Star]
-name=System 47
-system=System 47
-texture=WhiteStar
-x=-836.0
-y=1210.0
-d=4000
-seed=2081863285
-[/Star]
-
-[Jumphole]
-name=System 25 Jumphole
-x=35784.0
-y=22530.0
-system=System 47
-out=System 25/System 47 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 47 Jumphole
-x=-43480.0
-y=-34130.0
-system=System 25
-out=System 47/System 25 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 47
-texture=Hospitable
-x=-37068.0
-y=10653.0
-d=1944
-seed=-1361305644
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 47
-texture=BandedGas
-x=15614.0
-y=49060.0
-d=1800
-seed=-945801182
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 47
-texture=Terran
-x=39215.0
-y=27797.0
-d=3836
-seed=-850511699
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 47
-texture=Hospitable
-x=-26886.0
-y=-5059.0
-d=2570
-seed=-392094004
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 47
-texture=Martian
-x=-41186.0
-y=-5621.0
-d=3916
-seed=-856353406
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 47
-texture=Martian
-x=41276.0
-y=-22839.0
-d=2150
-seed=1076444666
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 47
-texture=Hospitable
-x=42184.0
-y=-39304.0
-d=1800
-seed=1242120170
-[/Planet]
-
-[System]
-name=System 48
-x=-471.3630614236289
-y=872.279293745034
-sky=blue0
-[/System]
-
-[Star]
-name=System 48
-system=System 48
+name=System 4
+system=System 4
 texture=YellowStar
-x=1149.0
-y=330.0
-d=5464
-seed=-1041267438
-[/Star]
-
-[Planet]
-name=Planet 1
-system=System 48
-texture=Alien
-x=-14383.0
-y=32001.0
-d=3436
-seed=-1086848630
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 48
-texture=Martian
-x=-11650.0
-y=-39298.0
-d=2974
-seed=-816719989
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 48
-texture=Martian
-x=-24703.0
-y=-39231.0
-d=1800
-seed=-1241817278
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 48
-texture=Lava
-x=-24389.0
-y=-21160.0
-d=1800
-seed=-327506490
-[/Planet]
-
-[System]
-name=System 49
-x=584.7684159905455
-y=-486.9929806349021
-sky=green0
-[/System]
-
-[Star]
-name=System 49
-system=System 49
-texture=YellowStar
-x=-8602.0
-y=-6743.0
-d=4000
-seed=797271365
-[/Star]
-
-[Jumphole]
-name=System 74 Jumphole
-x=40098.0
-y=82916.0
-system=System 49
-out=System 74/System 49 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 49 Jumphole
-x=-13556.0
-y=-66468.0
-system=System 74
-out=System 49/System 74 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 49
-texture=Strange
-x=66242.0
-y=-42264.0
-d=1800
-seed=-1389691535
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 49
-texture=DoubleBandedGas
-x=17658.0
-y=-78564.0
-d=2800
-seed=-2050681396
-[/Planet]
-
-[System]
-name=System 50
-x=-856.9859511414649
-y=68.95817953290538
-sky=blue1
-[/System]
-
-[Star]
-name=System 50
-system=System 50
-texture=WhiteStar
-x=8198.0
-y=-173.0
-d=4170
-seed=515344996
-[/Star]
-
-[Planet]
-name=Planet 0
-system=System 50
-texture=Hospitable
-x=-46019.0
-y=-67580.0
-d=1800
-seed=2113387457
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 50
-texture=Martian
-x=50484.0
-y=54646.0
-d=3258
-seed=6449996
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 50
-texture=Terran
-x=10116.0
-y=31469.0
-d=1972
-seed=252764078
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 50
-texture=Martian
-x=-9257.0
-y=-58537.0
-d=1800
-seed=-317984273
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 50
-texture=Lava
-x=70654.0
-y=-31520.0
-d=2666
-seed=1219064999
-[/Planet]
-
-[System]
-name=System 51
-x=-369.40088549367374
-y=109.52497077200303
-sky=orange1
-[/System]
-
-[Star]
-name=System 51
-system=System 51
-texture=WhiteStar
-x=9565.0
-y=-5730.0
-d=6918
-seed=832223865
-[/Star]
-
-[Jumphole]
-name=System 76 Jumphole
-x=-71167.0
-y=36364.0
-system=System 51
-out=System 76/System 51 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 51 Jumphole
-x=-58830.0
-y=-42084.0
-system=System 76
-out=System 51/System 76 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 51
-texture=Hospitable
-x=-74533.0
-y=82119.0
-d=2552
-seed=-1083724739
-[/Planet]
-
-[System]
-name=System 52
-x=-32.75535862150747
-y=-805.6451935225342
-sky=orange0
-[/System]
-
-[Star]
-name=System 52
-system=System 52
-texture=BlueStar
-x=5235.0
-y=8673.0
-d=5026
-seed=-477266971
-[/Star]
-
-[Jumphole]
-name=System 75 Jumphole
-x=27270.0
-y=-3162.0
-system=System 52
-out=System 75/System 52 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 52 Jumphole
-x=103530.0
-y=46884.0
-system=System 75
-out=System 52/System 75 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 52
-texture=Martian
-x=-5099.0
-y=44774.0
-d=2908
-seed=1517512825
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 52
-texture=Martian
-x=32205.0
-y=66248.0
-d=3804
-seed=-1653053824
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 52
-texture=Strange
-x=-13201.0
-y=-86026.0
-d=1800
-seed=838667601
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 52
-texture=DoubleBandedGas
-x=-92788.0
-y=98306.0
-d=1800
-seed=970815064
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 52
-texture=Lava
-x=-23384.0
-y=-56476.0
-d=2132
-seed=-1269612685
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 52
-texture=Strange
-x=-56416.0
-y=-80124.0
-d=3066
-seed=-556192371
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 52
-texture=Lava
-x=57796.0
-y=-43825.0
-d=1800
-seed=1235253360
-[/Planet]
-
-[Planet]
-name=Planet 7
-system=System 52
-texture=BandedGas
-x=-5682.0
-y=-15174.0
-d=1816
-seed=1475380377
-[/Planet]
-
-[Planet]
-name=Planet 8
-system=System 52
-texture=Strange
-x=18384.0
-y=-81798.0
-d=2950
-seed=894058825
-[/Planet]
-
-[System]
-name=System 53
-x=181.92111106827906
-y=-540.4517930916963
-sky=green1
-[/System]
-
-[Star]
-name=System 53
-system=System 53
-texture=BlueStar
-x=-2988.0
-y=2926.0
-d=4482
-seed=468596504
-[/Star]
-
-[Jumphole]
-name=System 18 Jumphole
-x=32769.0
-y=5476.0
-system=System 53
-out=System 18/System 53 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 53 Jumphole
-x=34393.0
-y=10131.0
-system=System 18
-out=System 53/System 18 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 53
-texture=Lava
-x=11532.0
-y=-16407.0
-d=1800
-seed=1616227991
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 53
-texture=Hospitable
-x=31198.0
-y=-38771.0
-d=1840
-seed=-1298373686
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 53
-texture=Martian
-x=-17391.0
-y=72469.0
-d=3942
-seed=-2042855842
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 53
-texture=Strange
-x=-31506.0
-y=58199.0
-d=1800
-seed=-865919510
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 53
-texture=Alien
-x=56861.0
-y=4170.0
-d=2830
-seed=508018482
-[/Planet]
-
-[System]
-name=System 54
-x=205.9304705705681
-y=67.78138441877056
-sky=black0
-[/System]
-
-[Star]
-name=System 54
-system=System 54
-texture=WhiteStar
-x=2033.0
-y=-6732.0
-d=4000
-seed=91744934
-[/Star]
-
-[Jumphole]
-name=System 57 Jumphole
-x=59028.0
-y=55387.0
-system=System 54
-out=System 57/System 54 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 54 Jumphole
-x=60151.0
-y=-32122.0
-system=System 57
-out=System 54/System 57 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 64 Jumphole
-x=69584.0
-y=-69930.0
-system=System 54
-out=System 64/System 54 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 54 Jumphole
-x=-27263.0
-y=12916.0
-system=System 64
-out=System 54/System 64 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 67 Jumphole
-x=-9750.0
-y=43019.0
-system=System 54
-out=System 67/System 54 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 54 Jumphole
-x=16125.0
-y=56375.0
-system=System 67
-out=System 54/System 67 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 54
-texture=Alien
-x=20005.0
-y=41629.0
-d=3702
-seed=1312088547
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 54
-texture=Strange
-x=-30935.0
-y=41046.0
-d=3034
-seed=-1914683966
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 54
-texture=Alien
-x=-43392.0
-y=-54932.0
-d=1800
-seed=-1886461444
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 54
-texture=Lava
-x=-77752.0
-y=32361.0
-d=2578
-seed=318502626
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 54
-texture=Lava
-x=45746.0
-y=68344.0
-d=1800
-seed=1493914171
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 54
-texture=BandedGas
-x=60420.0
-y=10893.0
-d=2782
-seed=1315359391
-[/Planet]
-
-[System]
-name=System 55
-x=-314.2816003557738
-y=382.19671479806414
-sky=blue1
-[/System]
-
-[Star]
-name=System 55
-system=System 55
-texture=RedStar
-x=2827.0
-y=-1020.0
-d=7160
-seed=-1954138415
-[/Star]
-
-[Planet]
-name=Planet 0
-system=System 55
-texture=Hospitable
-x=-40193.0
-y=27662.0
-d=3868
-seed=-141995156
-[/Planet]
-
-[System]
-name=System 56
-x=-497.19810958291544
-y=68.73083020210052
-sky=green0
-[/System]
-
-[Star]
-name=System 56
-system=System 56
-texture=YellowStar
-x=1061.0
-y=5186.0
-d=4000
-seed=292556290
-[/Star]
-
-[Jumphole]
-name=System 76 Jumphole
-x=4709.0
-y=34394.0
-system=System 56
-out=System 76/System 56 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 56 Jumphole
-x=44604.0
-y=18013.0
-system=System 76
-out=System 56/System 76 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 56
-texture=Alien
-x=-44328.0
-y=-30709.0
-d=2714
-seed=758831723
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 56
-texture=Hospitable
-x=-33359.0
-y=41552.0
-d=1800
-seed=459276314
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 56
-texture=Strange
-x=17777.0
-y=-5915.0
-d=2312
-seed=1192166970
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 56
-texture=Terran
-x=-32249.0
-y=-20116.0
-d=1800
-seed=714384047
-[/Planet]
-
-[System]
-name=System 57
-x=175.63179004466326
-y=-91.67975400380362
-sky=blue0
-[/System]
-
-[Star]
-name=System 57
-system=System 57
-texture=YellowStar
-x=-7119.0
-y=-7135.0
-d=4000
-seed=-1202088148
-[/Star]
-
-[Jumphole]
-name=System 59 Jumphole
-x=-94325.0
-y=62553.0
-system=System 57
-out=System 59/System 57 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 57 Jumphole
-x=-39111.0
-y=-35614.0
-system=System 59
-out=System 57/System 59 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 57
-texture=Strange
-x=-76395.0
-y=31656.0
-d=3260
-seed=-1053310977
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 57
-texture=Alien
-x=-75887.0
-y=-59786.0
-d=1800
-seed=597782673
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 57
-texture=Strange
-x=-49052.0
-y=-24387.0
-d=1800
-seed=-1574888205
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 57
-texture=Hospitable
-x=-85617.0
-y=6914.0
-d=1800
-seed=1871541407
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 57
-texture=Lava
-x=88789.0
-y=1263.0
-d=1868
-seed=1777831281
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 57
-texture=Lava
-x=-4634.0
-y=-70418.0
-d=1800
-seed=1667381379
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 57
-texture=Strange
-x=78305.0
-y=-59799.0
-d=2566
-seed=813526686
-[/Planet]
-
-[Planet]
-name=Planet 7
-system=System 57
-texture=Lava
-x=24560.0
-y=-43521.0
-d=3768
-seed=-1125688193
-[/Planet]
-
-[System]
-name=System 58
-x=303.28701053741037
-y=912.3481015623081
-sky=green1
-[/System]
-
-[Star]
-name=System 58
-system=System 58
-texture=RedStar
-x=-3603.0
-y=-5446.0
-d=5990
-seed=1779614155
-[/Star]
-
-[Jumphole]
-name=System 73 Jumphole
-x=-74199.0
-y=-83867.0
-system=System 58
-out=System 73/System 58 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 58 Jumphole
-x=79760.0
-y=-18805.0
-system=System 73
-out=System 58/System 73 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 58
-texture=DoubleBandedGas
-x=-70723.0
-y=84634.0
-d=2406
-seed=1593809620
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 58
-texture=Terran
-x=-46201.0
-y=-52117.0
-d=1800
-seed=2132101298
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 58
-texture=DoubleBandedGas
-x=-20856.0
-y=-35319.0
-d=2352
-seed=-1650636215
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 58
-texture=Alien
-x=35464.0
-y=78240.0
-d=1800
-seed=1712178974
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 58
-texture=Martian
-x=14907.0
-y=-62490.0
-d=2570
-seed=1938969328
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 58
-texture=DoubleBandedGas
-x=-79994.0
-y=-85270.0
-d=1800
-seed=325709801
-[/Planet]
-
-[System]
-name=System 59
-x=114.98624268159489
-y=-166.46542045564482
-sky=black1
-[/System]
-
-[Star]
-name=System 59
-system=System 59
-texture=WhiteStar
-x=-378.0
-y=-467.0
-d=4764
-seed=-254053039
-[/Star]
-
-[Planet]
-name=Planet 0
-system=System 59
-texture=Strange
-x=30485.0
-y=3218.0
-d=1800
-seed=-1136169740
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 59
-texture=Lava
-x=-25699.0
-y=-5163.0
-d=3014
-seed=2105581039
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 59
-texture=Alien
-x=-16492.0
-y=20120.0
-d=1800
-seed=-1476499340
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 59
-texture=Strange
-x=-19264.0
-y=25514.0
-d=3680
-seed=-1080080159
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 59
-texture=DoubleBandedGas
-x=-24345.0
-y=-5157.0
-d=3058
-seed=1265479344
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 59
-texture=Strange
-x=40494.0
-y=-42647.0
-d=1800
-seed=-1001157419
-[/Planet]
-
-[Planet]
-name=Planet 7
-system=System 59
-texture=Martian
-x=-31093.0
-y=-31655.0
-d=1800
-seed=1728007884
-[/Planet]
-
-[Planet]
-name=Planet 8
-system=System 59
-texture=Strange
-x=-48373.0
-y=-50733.0
-d=1884
-seed=-995439464
-[/Planet]
-
-[System]
-name=System 60
-x=245.44492329283597
-y=-947.7348857548446
-sky=orange0
-[/System]
-
-[Star]
-name=System 60
-system=System 60
-texture=YellowStar
-x=8635.0
-y=-6858.0
-d=7102
-seed=1025447609
-[/Star]
-
-[Jumphole]
-name=System 75 Jumphole
-x=58873.0
-y=-32009.0
-system=System 60
-out=System 75/System 60 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 60 Jumphole
-x=17783.0
-y=-25634.0
-system=System 75
-out=System 60/System 75 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 60
-texture=Terran
-x=80414.0
-y=-41235.0
-d=1800
-seed=-1937643457
-[/Planet]
-
-[System]
-name=System 61
-x=997.8108875525851
-y=714.7960831195878
-sky=orange1
-[/System]
-
-[Star]
-name=System 61
-system=System 61
-texture=YellowStar
-x=-6952.0
-y=-4024.0
-d=4000
-seed=609560051
-[/Star]
-
-[Jumphole]
-name=System 17 Jumphole
-x=-20778.0
-y=61701.0
-system=System 61
-out=System 17/System 61 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 61 Jumphole
-x=-70062.0
-y=-101946.0
-system=System 17
-out=System 61/System 17 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 8 Jumphole
-x=51403.0
-y=33778.0
-system=System 61
-out=System 8/System 61 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 61 Jumphole
-x=68603.0
-y=-104008.0
-system=System 8
-out=System 61/System 8 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 62 Jumphole
-x=47.0
-y=-64679.0
-system=System 61
-out=System 62/System 61 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 61 Jumphole
-x=63598.0
-y=-59539.0
-system=System 62
-out=System 61/System 62 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 61
-texture=BandedGas
-x=83830.0
-y=-95339.0
-d=2204
-seed=133707552
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 61
-texture=Terran
-x=101709.0
-y=103935.0
-d=1800
-seed=53818544
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 61
-texture=DoubleBandedGas
-x=-13063.0
-y=-61688.0
-d=1800
-seed=2086992165
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 61
-texture=Martian
-x=1613.0
-y=67476.0
-d=1800
-seed=-66929142
-[/Planet]
-
-[System]
-name=System 62
-x=754.3073700896188
-y=998.7771330022861
-sky=black0
-[/System]
-
-[Star]
-name=System 62
-system=System 62
-texture=WhiteStar
-x=-2776.0
-y=3804.0
-d=4850
-seed=1862941043
-[/Star]
-
-[Planet]
-name=Planet 0
-system=System 62
-texture=Hospitable
-x=-1121.0
-y=36850.0
-d=1800
-seed=1859787502
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 62
-texture=Lava
-x=32390.0
-y=8263.0
-d=1800
-seed=1239758686
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 62
-texture=Alien
-x=-24754.0
-y=-8309.0
-d=1800
-seed=1404199205
-[/Planet]
-
-[System]
-name=System 63
-x=899.8552337605371
-y=296.44499036539355
-sky=blue1
-[/System]
-
-[Star]
-name=System 63
-system=System 63
-texture=WhiteStar
-x=-2486.0
-y=-2967.0
-d=4000
-seed=1793416959
+x=-1454.0
+y=13697.0
+d=3020
+seed=-1806205141
 [/Star]
 
 [Jumphole]
 name=System 70 Jumphole
-x=11563.0
-y=39144.0
-system=System 63
-out=System 70/System 63 Jumphole
+x=57782.0
+y=-93106.0
+system=System 4
+out=System 70/System 4 Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=System 63 Jumphole
-x=-37277.0
-y=4484.0
+name=System 4 Jumphole
+x=-58380.0
+y=70048.0
 system=System 70
-out=System 63/System 70 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 1
-system=System 63
-texture=Martian
-x=-39767.0
-y=1068.0
-d=1800
-seed=1639443636
-[/Planet]
-
-[System]
-name=System 64
-x=75.83642640065054
-y=-37.47807216803284
-sky=green0
-[/System]
-
-[Star]
-name=System 64
-system=System 64
-texture=RedStar
-x=-12399.0
-y=10483.0
-d=5446
-seed=-1794267541
-[/Star]
-
-[Jumphole]
-name=System 67 Jumphole
-x=49309.0
-y=-42028.0
-system=System 64
-out=System 67/System 64 Jumphole
+out=System 4/System 70 Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=System 64 Jumphole
-x=67943.0
-y=-99996.0
-system=System 67
-out=System 64/System 67 Jumphole
+name=System 6 Jumphole
+x=5421.0
+y=97222.0
+system=System 4
+out=System 6/System 4 Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=System 57 Jumphole
-x=-81939.0
-y=-73784.0
-system=System 64
-out=System 57/System 64 Jumphole
+name=System 4 Jumphole
+x=23980.0
+y=-55529.0
+system=System 6
+out=System 4/System 6 Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=System 64 Jumphole
-x=-99678.0
-y=-79407.0
-system=System 57
-out=System 64/System 57 Jumphole
+name=System 55 Jumphole
+x=-97836.0
+y=64616.0
+system=System 4
+out=System 55/System 4 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 4 Jumphole
+x=-762.0
+y=13408.0
+system=System 55
+out=System 4/System 55 Jumphole
 [/Jumphole]
 
 [Planet]
 name=Planet 0
-system=System 64
-texture=Strange
-x=21855.0
-y=-81657.0
-d=1800
-seed=923786575
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 64
+system=System 4
 texture=Alien
-x=-92029.0
-y=-48417.0
-d=2158
-seed=-251973244
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 64
-texture=Hospitable
-x=-63165.0
-y=-58792.0
-d=2482
-seed=1565697930
+x=40161.0
+y=-104927.0
+d=1800
+seed=1225523150
 [/Planet]
 
 [System]
-name=System 65
-x=850.5167434141619
-y=-695.4876091696083
-sky=blue1
+name=System 5
+x=392.0598339562958
+y=-171.7716572363609
+sky=orange0
 [/System]
 
 [Star]
-name=System 65
-system=System 65
+name=System 5
+system=System 5
 texture=YellowStar
-x=7207.0
-y=9171.0
-d=4000
-seed=-1026736177
+x=931.0
+y=-286.0
+d=3220
+seed=1331235039
 [/Star]
 
 [Jumphole]
-name=System 49 Jumphole
-x=59566.0
-y=-66346.0
-system=System 65
-out=System 49/System 65 Jumphole
+name=System 26 Jumphole
+x=21889.0
+y=16673.0
+system=System 5
+out=System 26/System 5 Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=System 65 Jumphole
-x=16652.0
-y=71492.0
-system=System 49
-out=System 65/System 49 Jumphole
+name=System 5 Jumphole
+x=-35874.0
+y=57020.0
+system=System 26
+out=System 5/System 26 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 71 Jumphole
+x=20676.0
+y=-12737.0
+system=System 5
+out=System 71/System 5 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 5 Jumphole
+x=42444.0
+y=29035.0
+system=System 71
+out=System 5/System 71 Jumphole
 [/Jumphole]
 
 [Planet]
 name=Planet 0
-system=System 65
-texture=Alien
-x=15274.0
-y=-31951.0
-d=2240
-seed=-927922045
+system=System 5
+texture=Martian
+x=-34599.0
+y=3781.0
+d=1800
+seed=1607130235
 [/Planet]
 
 [Planet]
 name=Planet 1
-system=System 65
-texture=Hospitable
-x=39451.0
-y=73766.0
-d=1800
-seed=1640544346
+system=System 5
+texture=DoubleBandedGas
+x=-40773.0
+y=38337.0
+d=3212
+seed=998683015
 [/Planet]
 
 [Planet]
 name=Planet 2
-system=System 65
-texture=Terran
-x=-23363.0
-y=-44768.0
-d=2556
-seed=66712613
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 65
-texture=BandedGas
-x=12962.0
-y=-57029.0
-d=1800
-seed=-1394703274
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 65
-texture=Hospitable
-x=33671.0
-y=-66054.0
-d=1800
-seed=-1170318197
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 65
-texture=Terran
-x=49737.0
-y=-18070.0
-d=3762
-seed=634384934
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 65
-texture=DoubleBandedGas
-x=69889.0
-y=-43696.0
-d=1800
-seed=48649920
-[/Planet]
-
-[System]
-name=System 66
-x=-556.4129999374836
-y=-862.7048343647776
-sky=blue0
-[/System]
-
-[Star]
-name=System 66
-system=System 66
-texture=WhiteStar
-x=-3259.0
-y=1041.0
-d=4192
-seed=-101730281
-[/Star]
-
-[Jumphole]
-name=System 10 Jumphole
-x=12777.0
-y=65033.0
-system=System 66
-out=System 10/System 66 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 66 Jumphole
-x=-13279.0
-y=-41199.0
-system=System 10
-out=System 66/System 10 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 66
-texture=Terran
-x=12458.0
-y=-3376.0
-d=1800
-seed=522663834
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 66
-texture=DoubleBandedGas
-x=56882.0
-y=55458.0
-d=2142
-seed=1021061542
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 66
-texture=Strange
-x=51500.0
-y=-18346.0
-d=3046
-seed=991084366
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 66
+system=System 5
 texture=Lava
-x=27910.0
-y=-1850.0
-d=3150
-seed=-1745890217
+x=-29520.0
+y=28366.0
+d=3946
+seed=-725027786
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 5
+texture=Martian
+x=-39230.0
+y=-495.0
+d=2230
+seed=1765344750
 [/Planet]
 
 [System]
-name=System 67
-x=44.76334787318683
-y=2.154958082192606
+name=System 6
+x=-746.2782186781998
+y=-684.9099945723486
 sky=orange1
 [/System]
 
 [Star]
-name=System 67
-system=System 67
-texture=RedStar
-x=-774.0
-y=-4710.0
-d=4000
-seed=171021227
+name=System 6
+system=System 6
+texture=BlueStar
+x=-520.0
+y=5235.0
+d=3522
+seed=856782120
 [/Star]
 
 [Jumphole]
-name=System 57 Jumphole
-x=-9155.0
-y=-22844.0
-system=System 67
-out=System 57/System 67 Jumphole
+name=System 38 Jumphole
+x=11818.0
+y=22459.0
+system=System 6
+out=System 38/System 6 Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=System 67 Jumphole
-x=33089.0
-y=4012.0
-system=System 57
-out=System 67/System 57 Jumphole
+name=System 6 Jumphole
+x=-39847.0
+y=9600.0
+system=System 38
+out=System 6/System 38 Jumphole
 [/Jumphole]
 
 [Planet]
 name=Planet 0
-system=System 67
-texture=BandedGas
-x=8374.0
-y=27248.0
-d=1978
-seed=-1053280820
+system=System 6
+texture=Strange
+x=16722.0
+y=-10552.0
+d=3874
+seed=1415954223
 [/Planet]
 
 [Planet]
 name=Planet 1
-system=System 67
-texture=BandedGas
-x=7039.0
-y=-24635.0
+system=System 6
+texture=DoubleBandedGas
+x=12568.0
+y=-37557.0
 d=1800
-seed=1774337947
+seed=-7608712
 [/Planet]
 
 [Planet]
 name=Planet 2
-system=System 67
+system=System 6
 texture=Martian
-x=7676.0
-y=10455.0
-d=2876
-seed=-397386890
+x=-22693.0
+y=8788.0
+d=2264
+seed=-1389563326
 [/Planet]
 
 [Planet]
 name=Planet 3
-system=System 67
-texture=DoubleBandedGas
-x=37917.0
-y=19609.0
+system=System 6
+texture=Alien
+x=-7246.0
+y=-29600.0
+d=2178
+seed=571981647
+[/Planet]
+
+[System]
+name=System 7
+x=-503.0007113206079
+y=506.4805740163718
+sky=orange1
+[/System]
+
+[Star]
+name=System 7
+system=System 7
+texture=YellowStar
+x=5370.0
+y=4534.0
+d=2158
+seed=-710084628
+[/Star]
+
+[Jumphole]
+name=System 37 Jumphole
+x=44870.0
+y=-9708.0
+system=System 7
+out=System 37/System 7 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 7 Jumphole
+x=-17571.0
+y=10510.0
+system=System 37
+out=System 7/System 37 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 7
+texture=Terran
+x=18999.0
+y=-25738.0
+d=3482
+seed=-1563963579
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 7
+texture=Alien
+x=-53863.0
+y=-31537.0
 d=1800
-seed=-1028569603
+seed=-1906615849
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 7
+texture=Hospitable
+x=-26318.0
+y=-32239.0
+d=1800
+seed=342642620
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 7
+texture=Strange
+x=-41572.0
+y=20548.0
+d=1800
+seed=-582497540
+[/Planet]
+
+[System]
+name=System 8
+x=685.7919251092231
+y=-10.583177958912607
+sky=green1
+[/System]
+
+[Star]
+name=System 8
+system=System 8
+texture=BlueStar
+x=4923.0
+y=3104.0
+d=2548
+seed=1868802329
+[/Star]
+
+[Jumphole]
+name=System 78 Jumphole
+x=-813.0
+y=24467.0
+system=System 8
+out=System 78/System 8 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 8 Jumphole
+x=15655.0
+y=-25831.0
+system=System 78
+out=System 8/System 78 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 69 Jumphole
+x=3270.0
+y=-29886.0
+system=System 8
+out=System 69/System 8 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 8 Jumphole
+x=-5749.0
+y=26561.0
+system=System 69
+out=System 8/System 69 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 8
+texture=Martian
+x=-29376.0
+y=-12674.0
+d=3654
+seed=-2126953419
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 8
+texture=DoubleBandedGas
+x=-36189.0
+y=37580.0
+d=2048
+seed=-611684715
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 8
+texture=Lava
+x=19116.0
+y=-6382.0
+d=1800
+seed=1827810379
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 8
+texture=Martian
+x=-25764.0
+y=-34615.0
+d=2042
+seed=-1093511685
 [/Planet]
 
 [Planet]
 name=Planet 4
-system=System 67
-texture=Terran
-x=250.0
-y=39999.0
+system=System 8
+texture=DoubleBandedGas
+x=13577.0
+y=-6880.0
 d=1800
-seed=-1842766551
+seed=-1571050137
 [/Planet]
 
 [System]
-name=System 68
-x=-60.802718513034065
-y=429.20957964916875
-sky=green0
+name=System 9
+x=848.2363117800935
+y=-887.3923842500775
+sky=orange1
 [/System]
 
 [Star]
-name=System 68
-system=System 68
-texture=YellowStar
-x=4485.0
-y=-3751.0
-d=4000
-seed=594653980
+name=System 9
+system=System 9
+texture=WhiteStar
+x=3283.0
+y=-3839.0
+d=3630
+seed=-903155970
 [/Star]
 
 [Jumphole]
-name=System 72 Jumphole
-x=-3467.0
-y=9112.0
-system=System 68
-out=System 72/System 68 Jumphole
+name=System 13 Jumphole
+x=-49599.0
+y=-33510.0
+system=System 9
+out=System 13/System 9 Jumphole
 [/Jumphole]
 
 [Jumphole]
-name=System 68 Jumphole
-x=2296.0
-y=24187.0
-system=System 72
-out=System 68/System 72 Jumphole
+name=System 9 Jumphole
+x=-10977.0
+y=-44818.0
+system=System 13
+out=System 9/System 13 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 9
+texture=BandedGas
+x=27607.0
+y=-6610.0
+d=1800
+seed=1302535832
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 9
+texture=Terran
+x=-28578.0
+y=-22283.0
+d=1800
+seed=-1892759423
+[/Planet]
+
+[System]
+name=System 10
+x=543.9689920955798
+y=985.1446503930633
+sky=black0
+[/System]
+
+[Star]
+name=System 10
+system=System 10
+texture=BlueStar
+x=-1634.0
+y=7042.0
+d=2838
+seed=-637183160
+[/Star]
+
+[Jumphole]
+name=System 29 Jumphole
+x=9569.0
+y=-50646.0
+system=System 10
+out=System 29/System 10 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 10 Jumphole
+x=-57426.0
+y=55578.0
+system=System 29
+out=System 10/System 29 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 24 Jumphole
+x=1697.0
+y=-34454.0
+system=System 10
+out=System 24/System 10 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 10 Jumphole
+x=77307.0
+y=67441.0
+system=System 24
+out=System 10/System 24 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 10
+texture=Alien
+x=72968.0
+y=-76019.0
+d=2290
+seed=-969594539
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 10
+texture=Hospitable
+x=-67987.0
+y=61218.0
+d=1800
+seed=1670441820
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 10
+texture=DoubleBandedGas
+x=-2591.0
+y=41420.0
+d=3582
+seed=-1717487493
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 10
+texture=Strange
+x=25818.0
+y=31170.0
+d=2878
+seed=-1570261503
+[/Planet]
+
+[Planet]
+name=Planet 4
+system=System 10
+texture=Lava
+x=26526.0
+y=41638.0
+d=3332
+seed=-1860192450
+[/Planet]
+
+[Planet]
+name=Planet 5
+system=System 10
+texture=BandedGas
+x=-521.0
+y=-9928.0
+d=2684
+seed=1725054901
+[/Planet]
+
+[Planet]
+name=Planet 6
+system=System 10
+texture=Strange
+x=39139.0
+y=8077.0
+d=1990
+seed=-1708130595
+[/Planet]
+
+[Planet]
+name=Planet 7
+system=System 10
+texture=DoubleBandedGas
+x=-33689.0
+y=-24612.0
+d=3538
+seed=-686851612
+[/Planet]
+
+[System]
+name=System 11
+x=-732.4075715421081
+y=-946.1594373908022
+sky=orange0
+[/System]
+
+[Star]
+name=System 11
+system=System 11
+texture=BlueStar
+x=-2428.0
+y=-6721.0
+d=3630
+seed=1384480970
+[/Star]
+
+[Jumphole]
+name=System 6 Jumphole
+x=1831.0
+y=-56348.0
+system=System 11
+out=System 6/System 11 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 11 Jumphole
+x=4606.0
+y=44913.0
+system=System 6
+out=System 11/System 6 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 11
+texture=Martian
+x=-16393.0
+y=16953.0
+d=1800
+seed=-78108101
+[/Planet]
+
+[System]
+name=System 12
+x=125.55511028949117
+y=845.9898622618019
+sky=blue0
+[/System]
+
+[Star]
+name=System 12
+system=System 12
+texture=YellowStar
+x=-1848.0
+y=-1742.0
+d=2970
+seed=1331519285
+[/Star]
+
+[Jumphole]
+name=System 44 Jumphole
+x=-37651.0
+y=-16814.0
+system=System 12
+out=System 44/System 12 Jumphole
 [/Jumphole]
 
 [Jumphole]
 name=System 12 Jumphole
-x=22586.0
-y=8690.0
-system=System 68
-out=System 12/System 68 Jumphole
+x=6003.0
+y=-10172.0
+system=System 44
+out=System 12/System 44 Jumphole
 [/Jumphole]
 
-[Jumphole]
-name=System 68 Jumphole
-x=-38703.0
-y=6678.0
+[Planet]
+name=Planet 0
 system=System 12
-out=System 68/System 12 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 68
-texture=Lava
-x=-3027.0
-y=-21957.0
-d=2376
-seed=-925652245
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 68
-texture=Lava
-x=-21227.0
-y=-33530.0
-d=1800
-seed=650119740
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 68
-texture=Martian
-x=29413.0
-y=9140.0
-d=2030
-seed=-2139150965
-[/Planet]
-
-[System]
-name=System 69
-x=-394.1220116133832
-y=992.5717553519926
-sky=orange0
-[/System]
-
-[Star]
-name=System 69
-system=System 69
-texture=YellowStar
-x=-4628.0
-y=616.0
-d=4000
-seed=452545971
-[/Star]
-
-[Jumphole]
-name=System 48 Jumphole
-x=-30913.0
-y=-18525.0
-system=System 69
-out=System 48/System 69 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 69 Jumphole
-x=26902.0
-y=2558.0
-system=System 48
-out=System 69/System 48 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 40 Jumphole
-x=10283.0
-y=-14008.0
-system=System 69
-out=System 40/System 69 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 69 Jumphole
-x=21041.0
-y=24897.0
-system=System 40
-out=System 69/System 40 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 69
-texture=Lava
-x=25912.0
-y=-26693.0
-d=1800
-seed=-485720716
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 69
-texture=DoubleBandedGas
-x=-11528.0
-y=-35851.0
-d=1800
-seed=-1318923951
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 69
-texture=Terran
-x=-37370.0
-y=2004.0
-d=2198
-seed=-407496393
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 69
-texture=DoubleBandedGas
-x=-31697.0
-y=-18237.0
-d=1800
-seed=663376896
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 69
-texture=Hospitable
-x=-26204.0
-y=-24480.0
-d=1800
-seed=-828148140
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 69
-texture=Martian
-x=-32572.0
-y=32161.0
-d=2930
-seed=-926952201
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 69
-texture=BandedGas
-x=-11574.0
-y=-26970.0
-d=3072
-seed=424123913
-[/Planet]
-
-[Planet]
-name=Planet 7
-system=System 69
-texture=Terran
-x=12619.0
-y=29098.0
-d=1800
-seed=1531567301
-[/Planet]
-
-[Planet]
-name=Planet 8
-system=System 69
-texture=Alien
-x=-17979.0
-y=-8514.0
-d=1800
-seed=-1045015593
-[/Planet]
-
-[System]
-name=System 70
-x=745.0221050919563
-y=189.85802081882431
-sky=green0
-[/System]
-
-[Star]
-name=System 70
-system=System 70
-texture=RedStar
-x=-1381.0
-y=-3180.0
-d=4470
-seed=-899484986
-[/Star]
-
-[Jumphole]
-name=System 77 Jumphole
-x=23398.0
-y=-3771.0
-system=System 70
-out=System 77/System 70 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 70 Jumphole
-x=-23870.0
-y=-20918.0
-system=System 77
-out=System 70/System 77 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 30 Jumphole
-x=34971.0
-y=25166.0
-system=System 70
-out=System 30/System 70 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 70 Jumphole
-x=-709.0
-y=19960.0
-system=System 30
-out=System 70/System 30 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 29 Jumphole
-x=35405.0
-y=1914.0
-system=System 70
-out=System 29/System 70 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 70 Jumphole
-x=-15407.0
-y=-31647.0
-system=System 29
-out=System 70/System 29 Jumphole
-[/Jumphole]
-
-[Planet]
-name=Planet 0
-system=System 70
-texture=DoubleBandedGas
-x=3946.0
-y=36371.0
-d=1800
-seed=-511160709
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 70
-texture=Martian
-x=-17519.0
-y=-32568.0
-d=1800
-seed=1872827562
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 70
-texture=Terran
-x=-39414.0
-y=-23069.0
-d=1800
-seed=1436626524
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 70
-texture=Hospitable
-x=20535.0
-y=6652.0
-d=3332
-seed=209952596
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 70
-texture=Martian
-x=25395.0
-y=2200.0
-d=3184
-seed=145570599
-[/Planet]
-
-[System]
-name=System 71
-x=687.0944315881277
-y=-109.08262815404134
-sky=green0
-[/System]
-
-[Star]
-name=System 71
-system=System 71
-texture=RedStar
-x=2178.0
-y=-2623.0
-d=4514
-seed=-180122427
-[/Star]
-
-[Planet]
-name=Planet 0
-system=System 71
-texture=Alien
-x=7630.0
-y=15951.0
-d=2788
-seed=185605812
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 71
-texture=Terran
-x=-31745.0
-y=-8294.0
-d=2750
-seed=-46738122
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 71
-texture=Terran
-x=24151.0
-y=-15600.0
-d=1800
-seed=-1875112518
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 71
-texture=DoubleBandedGas
-x=-31458.0
-y=4268.0
-d=1800
-seed=2075107271
-[/Planet]
-
-[System]
-name=System 72
-x=-151.48480468505335
-y=403.248784000445
-sky=black1
-[/System]
-
-[Star]
-name=System 72
-system=System 72
-texture=RedStar
-x=6227.0
-y=4699.0
-d=4000
-seed=1698243458
-[/Star]
-
-[Planet]
-name=Planet 0
-system=System 72
-texture=Lava
-x=41703.0
-y=68993.0
-d=2090
-seed=-2088767373
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 72
 texture=Strange
-x=68391.0
-y=-6063.0
+x=-4722.0
+y=-22178.0
 d=1800
-seed=70130323
+seed=1906238363
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 12
+texture=Martian
+x=32514.0
+y=-17785.0
+d=1800
+seed=610468278
 [/Planet]
 
 [Planet]
 name=Planet 2
-system=System 72
-texture=Strange
-x=-1730.0
-y=-60965.0
+system=System 12
+texture=Lava
+x=-20349.0
+y=-29921.0
 d=1800
-seed=-510028062
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 72
-texture=DoubleBandedGas
-x=45403.0
-y=-6363.0
-d=1800
-seed=-651348570
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 72
-texture=Alien
-x=-62757.0
-y=-33882.0
-d=1800
-seed=533395191
+seed=-1265507225
 [/Planet]
 
 [System]
-name=System 73
-x=108.03781026936551
-y=838.5860653284639
-sky=orange0
-[/System]
-
-[Star]
-name=System 73
-system=System 73
-texture=BlueStar
-x=-3649.0
-y=1320.0
-d=4000
-seed=-394872696
-[/Star]
-
-[Planet]
-name=Planet 0
-system=System 73
-texture=Alien
-x=-20753.0
-y=-38796.0
-d=1936
-seed=845697291
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 73
-texture=Strange
-x=-30451.0
-y=15482.0
-d=1800
-seed=-102308299
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 73
-texture=DoubleBandedGas
-x=-26079.0
-y=-24482.0
-d=1800
-seed=-283795865
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 73
-texture=Lava
-x=1839.0
-y=23061.0
-d=2522
-seed=-471237556
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 73
-texture=Lava
-x=-44782.0
-y=-33844.0
-d=1800
-seed=815349179
-[/Planet]
-
-[Planet]
-name=Planet 7
-system=System 73
-texture=BandedGas
-x=34423.0
-y=-8258.0
-d=2186
-seed=1006005733
-[/Planet]
-
-[System]
-name=System 74
-x=610.6442040360076
-y=-375.93064826979406
+name=System 13
+x=952.3213006361921
+y=-924.4259734582606
 sky=blue1
 [/System]
 
 [Star]
+name=System 13
+system=System 13
+texture=BlueStar
+x=4379.0
+y=-4839.0
+d=3932
+seed=1204249882
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 13
+texture=Terran
+x=-21453.0
+y=38606.0
+d=1800
+seed=-1084374622
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 13
+texture=Alien
+x=20698.0
+y=-28964.0
+d=1800
+seed=-1268700320
+[/Planet]
+
+[System]
+name=System 14
+x=-119.56666712039689
+y=-512.8628027227029
+sky=green1
+[/System]
+
+[Star]
+name=System 14
+system=System 14
+texture=BlueStar
+x=-2705.0
+y=1106.0
+d=2316
+seed=1673006359
+[/Star]
+
+[Jumphole]
+name=System 48 Jumphole
+x=18208.0
+y=-12857.0
+system=System 14
+out=System 48/System 14 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 14 Jumphole
+x=13155.0
+y=24229.0
+system=System 48
+out=System 14/System 48 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 57 Jumphole
+x=-10404.0
+y=-17981.0
+system=System 14
+out=System 57/System 14 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 14 Jumphole
+x=-29849.0
+y=11464.0
+system=System 57
+out=System 14/System 57 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 45 Jumphole
+x=33986.0
+y=-9507.0
+system=System 14
+out=System 45/System 14 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 14 Jumphole
+x=23803.0
+y=13986.0
+system=System 45
+out=System 14/System 45 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 14
+texture=Martian
+x=21411.0
+y=-20511.0
+d=1800
+seed=581952782
+[/Planet]
+
+[System]
+name=System 15
+x=720.7779704148793
+y=-961.8093128669776
+sky=black1
+[/System]
+
+[Star]
+name=System 15
+system=System 15
+texture=RedStar
+x=1026.0
+y=-3554.0
+d=2978
+seed=-2115924182
+[/Star]
+
+[Jumphole]
+name=System 9 Jumphole
+x=27125.0
+y=2297.0
+system=System 15
+out=System 9/System 15 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 15 Jumphole
+x=-34234.0
+y=31877.0
+system=System 9
+out=System 15/System 9 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 15
+texture=DoubleBandedGas
+x=-19309.0
+y=8451.0
+d=1800
+seed=-55982020
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 15
+texture=Terran
+x=29818.0
+y=20250.0
+d=3460
+seed=-886134969
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 15
+texture=Lava
+x=6507.0
+y=6021.0
+d=1800
+seed=143217451
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 15
+texture=Hospitable
+x=5250.0
+y=9121.0
+d=1800
+seed=1449211930
+[/Planet]
+
+[System]
+name=System 16
+x=-712.4600551837862
+y=753.4466827472409
+sky=black1
+[/System]
+
+[Star]
+name=System 16
+system=System 16
+texture=WhiteStar
+x=-4623.0
+y=-2758.0
+d=1876
+seed=-2060354643
+[/Star]
+
+[Jumphole]
+name=System 32 Jumphole
+x=14507.0
+y=-31826.0
+system=System 16
+out=System 32/System 16 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 16 Jumphole
+x=-22761.0
+y=-28228.0
+system=System 32
+out=System 16/System 32 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 37 Jumphole
+x=-25045.0
+y=27792.0
+system=System 16
+out=System 37/System 16 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 16 Jumphole
+x=-24349.0
+y=-18022.0
+system=System 37
+out=System 16/System 37 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 74 Jumphole
+x=-19602.0
+y=27304.0
+system=System 16
+out=System 74/System 16 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 16 Jumphole
+x=14205.0
+y=19282.0
+system=System 74
+out=System 16/System 74 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 16
+texture=Terran
+x=-30395.0
+y=14922.0
+d=2460
+seed=419538378
+[/Planet]
+
+[System]
+name=System 17
+x=6.580661396085956
+y=985.142322385483
+sky=black0
+[/System]
+
+[Star]
+name=System 17
+system=System 17
+texture=WhiteStar
+x=8790.0
+y=6601.0
+d=2758
+seed=-2005691291
+[/Star]
+
+[Jumphole]
+name=System 12 Jumphole
+x=74810.0
+y=-68919.0
+system=System 17
+out=System 12/System 17 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 17 Jumphole
+x=-21470.0
+y=-78775.0
+system=System 12
+out=System 17/System 12 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 44 Jumphole
+x=-153.0
+y=-76873.0
+system=System 17
+out=System 44/System 17 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 17 Jumphole
+x=-72536.0
+y=-23590.0
+system=System 44
+out=System 17/System 44 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 64 Jumphole
+x=57330.0
+y=-35343.0
+system=System 17
+out=System 64/System 17 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 17 Jumphole
+x=-15396.0
+y=7424.0
+system=System 64
+out=System 17/System 64 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 17
+texture=Strange
+x=-33488.0
+y=-75296.0
+d=2710
+seed=-1916920715
+[/Planet]
+
+[System]
+name=System 18
+x=232.17577822744403
+y=-780.2634773555532
+sky=green0
+[/System]
+
+[Star]
+name=System 18
+system=System 18
+texture=BlueStar
+x=-1787.0
+y=-2052.0
+d=1882
+seed=804552369
+[/Star]
+
+[Jumphole]
+name=System 20 Jumphole
+x=18771.0
+y=-22125.0
+system=System 18
+out=System 20/System 18 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 18 Jumphole
+x=-52342.0
+y=83093.0
+system=System 20
+out=System 18/System 20 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 56 Jumphole
+x=-26880.0
+y=80586.0
+system=System 18
+out=System 56/System 18 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 18 Jumphole
+x=25554.0
+y=67647.0
+system=System 56
+out=System 18/System 56 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 18
+texture=DoubleBandedGas
+x=64369.0
+y=-20794.0
+d=1800
+seed=690165694
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 18
+texture=BandedGas
+x=-61203.0
+y=70816.0
+d=1800
+seed=1846502088
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 18
+texture=Terran
+x=-39599.0
+y=30881.0
+d=2522
+seed=-708052835
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 18
+texture=Strange
+x=-59267.0
+y=33969.0
+d=1800
+seed=449897238
+[/Planet]
+
+[Planet]
+name=Planet 4
+system=System 18
+texture=Martian
+x=-35845.0
+y=77001.0
+d=2930
+seed=16397598
+[/Planet]
+
+[Planet]
+name=Planet 5
+system=System 18
+texture=Hospitable
+x=-69490.0
+y=-41798.0
+d=3542
+seed=-96147922
+[/Planet]
+
+[System]
+name=System 19
+x=798.5919866155641
+y=-333.1024200454694
+sky=black0
+[/System]
+
+[Star]
+name=System 19
+system=System 19
+texture=BlueStar
+x=1775.0
+y=-2492.0
+d=3210
+seed=-205562552
+[/Star]
+
+[Jumphole]
+name=System 35 Jumphole
+x=-93314.0
+y=18316.0
+system=System 19
+out=System 35/System 19 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 19 Jumphole
+x=-76727.0
+y=-69985.0
+system=System 35
+out=System 19/System 35 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 41 Jumphole
+x=-5404.0
+y=-20035.0
+system=System 19
+out=System 41/System 19 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 19 Jumphole
+x=-73625.0
+y=-7631.0
+system=System 41
+out=System 19/System 41 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 19
+texture=BandedGas
+x=101373.0
+y=-41315.0
+d=2428
+seed=-1650093125
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 19
+texture=BandedGas
+x=-4677.0
+y=-101655.0
+d=3176
+seed=1898241521
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 19
+texture=Terran
+x=-16780.0
+y=71471.0
+d=3168
+seed=-1094448228
+[/Planet]
+
+[System]
+name=System 20
+x=85.00166866888715
+y=-744.8129545179243
+sky=orange0
+[/System]
+
+[Star]
+name=System 20
+system=System 20
+texture=RedStar
+x=-8965.0
+y=1404.0
+d=1912
+seed=-1287411660
+[/Star]
+
+[Jumphole]
+name=System 68 Jumphole
+x=-33424.0
+y=70608.0
+system=System 20
+out=System 68/System 20 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 20 Jumphole
+x=31610.0
+y=7335.0
+system=System 68
+out=System 20/System 68 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 2 Jumphole
+x=-63718.0
+y=99040.0
+system=System 20
+out=System 2/System 20 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 20 Jumphole
+x=-56811.0
+y=76052.0
+system=System 2
+out=System 20/System 2 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 20
+texture=Strange
+x=-23922.0
+y=22746.0
+d=1800
+seed=-1998086014
+[/Planet]
+
+[System]
+name=System 21
+x=96.16632516545273
+y=-31.828111459238535
+sky=blue1
+[/System]
+
+[Star]
+name=System 21
+system=System 21
+texture=RedStar
+x=-3626.0
+y=3088.0
+d=2306
+seed=1107612149
+[/Star]
+
+[Jumphole]
+name=System 23 Jumphole
+x=-28306.0
+y=-32271.0
+system=System 21
+out=System 23/System 21 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 21 Jumphole
+x=-23810.0
+y=39674.0
+system=System 23
+out=System 21/System 23 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 21
+texture=Lava
+x=30896.0
+y=-13521.0
+d=1800
+seed=2120548424
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 21
+texture=BandedGas
+x=11453.0
+y=-1578.0
+d=1800
+seed=1171745391
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 21
+texture=Alien
+x=-32436.0
+y=-14605.0
+d=3994
+seed=-1174056707
+[/Planet]
+
+[System]
+name=System 22
+x=235.76600161193238
+y=-353.65651240514643
+sky=green0
+[/System]
+
+[Star]
+name=System 22
+system=System 22
+texture=YellowStar
+x=6221.0
+y=6119.0
+d=2762
+seed=978464699
+[/Star]
+
+[Jumphole]
+name=System 60 Jumphole
+x=-56454.0
+y=-61774.0
+system=System 22
+out=System 60/System 22 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 22 Jumphole
+x=5878.0
+y=-72876.0
+system=System 60
+out=System 22/System 60 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 36 Jumphole
+x=48300.0
+y=-73058.0
+system=System 22
+out=System 36/System 22 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 22 Jumphole
+x=-65700.0
+y=-35421.0
+system=System 36
+out=System 22/System 36 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 22
+texture=Hospitable
+x=53754.0
+y=-16247.0
+d=2584
+seed=2003259665
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 22
+texture=Lava
+x=-73455.0
+y=-54357.0
+d=2644
+seed=-1376634746
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 22
+texture=Terran
+x=-37694.0
+y=-60436.0
+d=1800
+seed=-961573937
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 22
+texture=Terran
+x=-30486.0
+y=-30281.0
+d=3678
+seed=-1180735246
+[/Planet]
+
+[System]
+name=System 23
+x=124.99854347454918
+y=52.91100727449175
+sky=black0
+[/System]
+
+[Star]
+name=System 23
+system=System 23
+texture=WhiteStar
+x=1450.0
+y=789.0
+d=3184
+seed=-159505279
+[/Star]
+
+[Jumphole]
+name=System 71 Jumphole
+x=-28287.0
+y=-38206.0
+system=System 23
+out=System 71/System 23 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 23 Jumphole
+x=17931.0
+y=13560.0
+system=System 71
+out=System 23/System 71 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 54 Jumphole
+x=-39909.0
+y=-9314.0
+system=System 23
+out=System 54/System 23 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 23 Jumphole
+x=-31564.0
+y=-38353.0
+system=System 54
+out=System 23/System 54 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 23
+texture=Lava
+x=-47736.0
+y=-27418.0
+d=2008
+seed=-1672859044
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 23
+texture=Martian
+x=-32213.0
+y=-32052.0
+d=3110
+seed=946279987
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 23
+texture=Strange
+x=-24362.0
+y=1203.0
+d=1800
+seed=-841467352
+[/Planet]
+
+[System]
+name=System 24
+x=640.7951216873371
+y=890.2420618801036
+sky=green0
+[/System]
+
+[Star]
+name=System 24
+system=System 24
+texture=RedStar
+x=1603.0
+y=4865.0
+d=3294
+seed=1323725046
+[/Star]
+
+[Jumphole]
+name=System 29 Jumphole
+x=-26986.0
+y=-39092.0
+system=System 24
+out=System 29/System 24 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 24 Jumphole
+x=-8833.0
+y=-13172.0
+system=System 29
+out=System 24/System 29 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 24
+texture=Hospitable
+x=-39023.0
+y=14477.0
+d=2104
+seed=1317441825
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 24
+texture=Strange
+x=-13348.0
+y=-16026.0
+d=3720
+seed=1817184996
+[/Planet]
+
+[System]
+name=System 25
+x=175.50577658921338
+y=699.4373045004752
+sky=green1
+[/System]
+
+[Star]
+name=System 25
+system=System 25
+texture=BlueStar
+x=-9212.0
+y=-10603.0
+d=3224
+seed=1916937170
+[/Star]
+
+[Jumphole]
+name=System 44 Jumphole
+x=-11131.0
+y=47479.0
+system=System 25
+out=System 44/System 25 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 25 Jumphole
+x=17338.0
+y=38312.0
+system=System 44
+out=System 25/System 44 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 25
+texture=Strange
+x=2246.0
+y=-48631.0
+d=1800
+seed=810743143
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 25
+texture=DoubleBandedGas
+x=55559.0
+y=-25876.0
+d=1800
+seed=-984340653
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 25
+texture=Strange
+x=-23059.0
+y=14852.0
+d=1800
+seed=-461897567
+[/Planet]
+
+[System]
+name=System 26
+x=349.28399824239494
+y=-252.04449279766118
+sky=orange0
+[/System]
+
+[Star]
+name=System 26
+system=System 26
+texture=WhiteStar
+x=-3998.0
+y=3669.0
+d=1878
+seed=-1388339645
+[/Star]
+
+[Jumphole]
+name=System 22 Jumphole
+x=2049.0
+y=-1374.0
+system=System 26
+out=System 22/System 26 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 26 Jumphole
+x=9968.0
+y=38817.0
+system=System 22
+out=System 26/System 22 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 77 Jumphole
+x=17644.0
+y=26632.0
+system=System 26
+out=System 77/System 26 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 26 Jumphole
+x=-11726.0
+y=29932.0
+system=System 77
+out=System 26/System 77 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 26
+texture=Terran
+x=-15187.0
+y=-23855.0
+d=3402
+seed=-363139261
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 26
+texture=BandedGas
+x=-8296.0
+y=-28667.0
+d=1800
+seed=882899704
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 26
+texture=DoubleBandedGas
+x=-19317.0
+y=6767.0
+d=2762
+seed=-855616843
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 26
+texture=BandedGas
+x=38775.0
+y=6207.0
+d=3704
+seed=-1627034178
+[/Planet]
+
+[Planet]
+name=Planet 4
+system=System 26
+texture=Alien
+x=15048.0
+y=-2404.0
+d=1800
+seed=-392317495
+[/Planet]
+
+[Planet]
+name=Planet 5
+system=System 26
+texture=Martian
+x=-5078.0
+y=33708.0
+d=2520
+seed=-644349846
+[/Planet]
+
+[System]
+name=System 27
+x=574.1374332323479
+y=-706.7152460058348
+sky=black1
+[/System]
+
+[Star]
+name=System 27
+system=System 27
+texture=RedStar
+x=-3611.0
+y=-541.0
+d=3504
+seed=141545500
+[/Star]
+
+[Jumphole]
+name=System 40 Jumphole
+x=-16656.0
+y=3133.0
+system=System 27
+out=System 40/System 27 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 27 Jumphole
+x=-34857.0
+y=-60253.0
+system=System 40
+out=System 27/System 40 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 27
+texture=Alien
+x=59072.0
+y=-43574.0
+d=3988
+seed=-150643137
+[/Planet]
+
+[System]
+name=System 28
+x=694.9923671710068
+y=-599.5534802264145
+sky=orange1
+[/System]
+
+[Star]
+name=System 28
+system=System 28
+texture=YellowStar
+x=-6351.0
+y=11957.0
+d=3934
+seed=-1493626029
+[/Star]
+
+[Jumphole]
+name=System 49 Jumphole
+x=-51527.0
+y=6445.0
+system=System 28
+out=System 49/System 28 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 28 Jumphole
+x=70562.0
+y=-15247.0
+system=System 49
+out=System 28/System 49 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 40 Jumphole
+x=-75254.0
+y=-90192.0
+system=System 28
+out=System 40/System 28 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 28 Jumphole
+x=58294.0
+y=42149.0
+system=System 40
+out=System 28/System 40 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 35 Jumphole
+x=-83574.0
+y=-34457.0
+system=System 28
+out=System 35/System 28 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 28 Jumphole
+x=-30329.0
+y=2961.0
+system=System 35
+out=System 28/System 35 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 28
+texture=Lava
+x=-85489.0
+y=-60700.0
+d=2628
+seed=-1249990800
+[/Planet]
+
+[System]
+name=System 29
+x=526.8700390335414
+y=933.8803230975343
+sky=orange1
+[/System]
+
+[Star]
+name=System 29
+system=System 29
+texture=BlueStar
+x=-7860.0
+y=-8261.0
+d=3414
+seed=761608667
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 29
+texture=Strange
+x=24958.0
+y=-4931.0
+d=1800
+seed=44265300
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 29
+texture=Alien
+x=-85424.0
+y=25320.0
+d=1800
+seed=954984771
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 29
+texture=Martian
+x=72995.0
+y=8515.0
+d=2348
+seed=304118594
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 29
+texture=Alien
+x=75592.0
+y=-54225.0
+d=2560
+seed=1542976222
+[/Planet]
+
+[System]
+name=System 30
+x=-421.19081841873304
+y=878.2432124571933
+sky=black1
+[/System]
+
+[Star]
+name=System 30
+system=System 30
+texture=BlueStar
+x=69.0
+y=-2330.0
+d=2400
+seed=1383446612
+[/Star]
+
+[Jumphole]
+name=System 51 Jumphole
+x=59634.0
+y=9932.0
+system=System 30
+out=System 51/System 30 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 30 Jumphole
+x=-15769.0
+y=-23456.0
+system=System 51
+out=System 30/System 51 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 30
+texture=Lava
+x=-38812.0
+y=9188.0
+d=1800
+seed=-1751198253
+[/Planet]
+
+[System]
+name=System 31
+x=-1000.5477488543594
+y=-194.60635103307445
+sky=black1
+[/System]
+
+[Star]
+name=System 31
+system=System 31
+texture=WhiteStar
+x=-3466.0
+y=4558.0
+d=3502
+seed=432468438
+[/Star]
+
+[Jumphole]
+name=System 73 Jumphole
+x=27244.0
+y=-17469.0
+system=System 31
+out=System 73/System 31 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 31 Jumphole
+x=36783.0
+y=25579.0
+system=System 73
+out=System 31/System 73 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 70 Jumphole
+x=39752.0
+y=-1916.0
+system=System 31
+out=System 70/System 31 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 31 Jumphole
+x=-23299.0
+y=-28074.0
+system=System 70
+out=System 31/System 70 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 31
+texture=Lava
+x=7366.0
+y=18919.0
+d=1800
+seed=1519537057
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 31
+texture=Alien
+x=15438.0
+y=10406.0
+d=2986
+seed=-249372748
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 31
+texture=Martian
+x=-862.0
+y=-11315.0
+d=1800
+seed=-1081856883
+[/Planet]
+
+[System]
+name=System 32
+x=-650.0490116021391
+y=842.7828886420227
+sky=green1
+[/System]
+
+[Star]
+name=System 32
+system=System 32
+texture=RedStar
+x=-5679.0
+y=4758.0
+d=2544
+seed=-2050390107
+[/Star]
+
+[Jumphole]
+name=System 79 Jumphole
+x=-88349.0
+y=-62921.0
+system=System 32
+out=System 79/System 32 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 32 Jumphole
+x=62230.0
+y=-16098.0
+system=System 79
+out=System 32/System 79 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 32
+texture=Terran
+x=-12023.0
+y=61988.0
+d=3140
+seed=-1997254998
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 32
+texture=Martian
+x=54731.0
+y=-965.0
+d=3866
+seed=1721620582
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 32
+texture=Terran
+x=-2720.0
+y=-102750.0
+d=3094
+seed=-1731031423
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 32
+texture=BandedGas
+x=-15665.0
+y=-43493.0
+d=2118
+seed=-1703981234
+[/Planet]
+
+[System]
+name=System 33
+x=-737.7921389411603
+y=310.971338603026
+sky=green0
+[/System]
+
+[Star]
+name=System 33
+system=System 33
+texture=BlueStar
+x=-3628.0
+y=4118.0
+d=2642
+seed=-899368946
+[/Star]
+
+[Jumphole]
+name=System 7 Jumphole
+x=16277.0
+y=-27354.0
+system=System 33
+out=System 7/System 33 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 33 Jumphole
+x=37955.0
+y=34635.0
+system=System 7
+out=System 33/System 7 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 34 Jumphole
+x=-11200.0
+y=-32028.0
+system=System 33
+out=System 34/System 33 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 33 Jumphole
+x=19814.0
+y=-22209.0
+system=System 34
+out=System 33/System 34 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 33
+texture=Lava
+x=-29597.0
+y=-20701.0
+d=3872
+seed=1117804687
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 33
+texture=DoubleBandedGas
+x=-32232.0
+y=19227.0
+d=1800
+seed=-2064382487
+[/Planet]
+
+[System]
+name=System 34
+x=-412.4676604204011
+y=232.26835768294447
+sky=orange0
+[/System]
+
+[Star]
+name=System 34
+system=System 34
+texture=BlueStar
+x=1956.0
+y=-683.0
+d=2600
+seed=-1736890802
+[/Star]
+
+[Jumphole]
+name=System 76 Jumphole
+x=-23970.0
+y=10245.0
+system=System 34
+out=System 76/System 34 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 34 Jumphole
+x=6377.0
+y=31216.0
+system=System 76
+out=System 34/System 76 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 39 Jumphole
+x=23294.0
+y=-3287.0
+system=System 34
+out=System 39/System 34 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 34 Jumphole
+x=35885.0
+y=-35831.0
+system=System 39
+out=System 34/System 39 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 34
+texture=Terran
+x=-5790.0
+y=-28301.0
+d=2840
+seed=368471241
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 34
+texture=DoubleBandedGas
+x=33743.0
+y=-4717.0
+d=1800
+seed=1407620885
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 34
+texture=Lava
+x=23274.0
+y=32866.0
+d=1800
+seed=1146492467
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 34
+texture=BandedGas
+x=21316.0
+y=2449.0
+d=2492
+seed=1761663583
+[/Planet]
+
+[Planet]
+name=Planet 4
+system=System 34
+texture=Martian
+x=-34401.0
+y=-10841.0
+d=3570
+seed=325246001
+[/Planet]
+
+[Planet]
+name=Planet 5
+system=System 34
+texture=BandedGas
+x=25953.0
+y=-38191.0
+d=2630
+seed=-353844860
+[/Planet]
+
+[System]
+name=System 35
+x=784.2679460649763
+y=-478.02344738432174
+sky=black0
+[/System]
+
+[Star]
+name=System 35
+system=System 35
+texture=YellowStar
+x=2308.0
+y=2628.0
+d=2494
+seed=287420569
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 35
+texture=Strange
+x=-32899.0
+y=3221.0
+d=1800
+seed=-1140978183
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 35
+texture=Hospitable
+x=30185.0
+y=32945.0
+d=1994
+seed=159072030
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 35
+texture=DoubleBandedGas
+x=-36177.0
+y=-5883.0
+d=3620
+seed=-809132153
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 35
+texture=BandedGas
+x=-9557.0
+y=-12677.0
+d=2518
+seed=1665525744
+[/Planet]
+
+[Planet]
+name=Planet 4
+system=System 35
+texture=Hospitable
+x=-1564.0
+y=-38649.0
+d=1800
+seed=-192413085
+[/Planet]
+
+[Planet]
+name=Planet 5
+system=System 35
+texture=Martian
+x=-36903.0
+y=-11456.0
+d=3024
+seed=-879800144
+[/Planet]
+
+[Planet]
+name=Planet 6
+system=System 35
+texture=Alien
+x=-6280.0
+y=-10949.0
+d=2198
+seed=-1801805223
+[/Planet]
+
+[Planet]
+name=Planet 7
+system=System 35
+texture=Martian
+x=-38503.0
+y=11134.0
+d=1800
+seed=188947335
+[/Planet]
+
+[System]
+name=System 36
+x=129.84728035308015
+y=-299.6118440080408
+sky=black0
+[/System]
+
+[Star]
+name=System 36
+system=System 36
+texture=YellowStar
+x=634.0
+y=1423.0
+d=3772
+seed=-1793439982
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 36
+texture=Terran
+x=24697.0
+y=18908.0
+d=3518
+seed=-408808058
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 36
+texture=Alien
+x=36384.0
+y=-25654.0
+d=2706
+seed=-2006827187
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 36
+texture=Alien
+x=-11429.0
+y=-24335.0
+d=2610
+seed=-1511871653
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 36
+texture=Lava
+x=33397.0
+y=26371.0
+d=1800
+seed=1442699185
+[/Planet]
+
+[Planet]
+name=Planet 5
+system=System 36
+texture=Martian
+x=-32173.0
+y=17991.0
+d=1800
+seed=1155522099
+[/Planet]
+
+[Planet]
+name=Planet 6
+system=System 36
+texture=Alien
+x=-25571.0
+y=8955.0
+d=3618
+seed=-1353944304
+[/Planet]
+
+[Planet]
+name=Planet 7
+system=System 36
+texture=DoubleBandedGas
+x=-35744.0
+y=39783.0
+d=1800
+seed=-218846592
+[/Planet]
+
+[Planet]
+name=Planet 8
+system=System 36
+texture=BandedGas
+x=-28817.0
+y=-6527.0
+d=2270
+seed=-2001369557
+[/Planet]
+
+[System]
+name=System 37
+x=-595.5013060282266
+y=669.8973671466636
+sky=blue0
+[/System]
+
+[Star]
+name=System 37
+system=System 37
+texture=BlueStar
+x=3275.0
+y=3124.0
+d=3546
+seed=-212830370
+[/Star]
+
+[Jumphole]
+name=System 32 Jumphole
+x=-2430.0
+y=-29372.0
+system=System 37
+out=System 32/System 37 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 37 Jumphole
+x=-36833.0
+y=31345.0
+system=System 32
+out=System 37/System 32 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 37
+texture=Hospitable
+x=22227.0
+y=-14.0
+d=1800
+seed=-1871338426
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 37
+texture=Alien
+x=-17069.0
+y=16624.0
+d=1800
+seed=-794424264
+[/Planet]
+
+[System]
+name=System 38
+x=-643.5888927791475
+y=-688.1702204689949
+sky=blue1
+[/System]
+
+[Star]
+name=System 38
+system=System 38
+texture=YellowStar
+x=8462.0
+y=11910.0
+d=3060
+seed=-2026417097
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 38
+texture=Martian
+x=83886.0
+y=35174.0
+d=2974
+seed=971789301
+[/Planet]
+
+[System]
+name=System 39
+x=-193.8071051209117
+y=125.94761258438963
+sky=black0
+[/System]
+
+[Star]
+name=System 39
+system=System 39
+texture=RedStar
+x=-10764.0
+y=11005.0
+d=2040
+seed=-1736240049
+[/Star]
+
+[Jumphole]
+name=System 62 Jumphole
+x=53661.0
+y=-117791.0
+system=System 39
+out=System 62/System 39 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 39 Jumphole
+x=84084.0
+y=-108048.0
+system=System 62
+out=System 39/System 62 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 50 Jumphole
+x=102947.0
+y=2666.0
+system=System 39
+out=System 50/System 39 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 39 Jumphole
+x=71310.0
+y=-17553.0
+system=System 50
+out=System 39/System 50 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 39
+texture=Terran
+x=16363.0
+y=-100375.0
+d=1800
+seed=-403682589
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 39
+texture=Lava
+x=-57747.0
+y=104234.0
+d=1800
+seed=2111323043
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 39
+texture=BandedGas
+x=89952.0
+y=63802.0
+d=1964
+seed=740938641
+[/Planet]
+
+[System]
+name=System 40
+x=681.1820986980547
+y=-666.6873329678659
+sky=orange1
+[/System]
+
+[Star]
+name=System 40
+system=System 40
+texture=BlueStar
+x=-2154.0
+y=4098.0
+d=2674
+seed=600793021
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 40
+texture=Strange
+x=31555.0
+y=31035.0
+d=2654
+seed=1698186209
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 40
+texture=DoubleBandedGas
+x=-13295.0
+y=-32484.0
+d=1800
+seed=235179622
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 40
+texture=Alien
+x=23037.0
+y=-5592.0
+d=2536
+seed=-1577590190
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 40
+texture=Strange
+x=2256.0
+y=-38421.0
+d=2862
+seed=1590979034
+[/Planet]
+
+[Planet]
+name=Planet 4
+system=System 40
+texture=Terran
+x=39731.0
+y=-3560.0
+d=2918
+seed=916526150
+[/Planet]
+
+[System]
+name=System 41
+x=619.2994864839877
+y=-298.04256846514295
+sky=blue1
+[/System]
+
+[Star]
+name=System 41
+system=System 41
+texture=RedStar
+x=-548.0
+y=-4369.0
+d=2116
+seed=1981014024
+[/Star]
+
+[Jumphole]
+name=System 77 Jumphole
+x=-94503.0
+y=48301.0
+system=System 41
+out=System 77/System 41 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 41 Jumphole
+x=96104.0
+y=-28046.0
+system=System 77
+out=System 41/System 77 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 0 Jumphole
+x=69507.0
+y=103238.0
+system=System 41
+out=System 0/System 41 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 41 Jumphole
+x=-74170.0
+y=-49852.0
+system=System 0
+out=System 41/System 0 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 41
+texture=Strange
+x=-3821.0
+y=59303.0
+d=3356
+seed=-13224549
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 41
+texture=Lava
+x=7388.0
+y=4186.0
+d=3438
+seed=-1001459328
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 41
+texture=Alien
+x=-45094.0
+y=-48573.0
+d=2094
+seed=867854816
+[/Planet]
+
+[System]
+name=System 42
+x=965.3705948813323
+y=974.819129933313
+sky=blue0
+[/System]
+
+[Star]
+name=System 42
+system=System 42
+texture=YellowStar
+x=9068.0
+y=-10367.0
+d=3044
+seed=2098465033
+[/Star]
+
+[Jumphole]
+name=System 24 Jumphole
+x=-76699.0
+y=-88800.0
+system=System 42
+out=System 24/System 42 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 42 Jumphole
+x=11806.0
+y=24945.0
+system=System 24
+out=System 42/System 24 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 42
+texture=Martian
+x=-78004.0
+y=4521.0
+d=2212
+seed=1028074326
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 42
+texture=Martian
+x=-42879.0
+y=-63525.0
+d=1800
+seed=-1218353906
+[/Planet]
+
+[System]
+name=System 43
+x=624.3783102038248
+y=369.63735781998145
+sky=blue1
+[/System]
+
+[Star]
+name=System 43
+system=System 43
+texture=BlueStar
+x=-4679.0
+y=-2919.0
+d=2044
+seed=-1415423048
+[/Star]
+
+[Jumphole]
+name=System 47 Jumphole
+x=26078.0
+y=16380.0
+system=System 43
+out=System 47/System 43 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 43 Jumphole
+x=-1431.0
+y=-19793.0
+system=System 47
+out=System 43/System 47 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 63 Jumphole
+x=-19846.0
+y=-11981.0
+system=System 43
+out=System 63/System 43 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 43 Jumphole
+x=26274.0
+y=10825.0
+system=System 63
+out=System 43/System 63 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 43
+texture=Martian
+x=-19724.0
+y=25741.0
+d=3524
+seed=-635991609
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 43
+texture=DoubleBandedGas
+x=-34653.0
+y=9629.0
+d=1800
+seed=265755501
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 43
+texture=BandedGas
+x=-22712.0
+y=16642.0
+d=1800
+seed=-2093988330
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 43
+texture=Strange
+x=24452.0
+y=-12944.0
+d=3760
+seed=-909410389
+[/Planet]
+
+[System]
+name=System 44
+x=85.36921643916517
+y=804.4568545015692
+sky=blue1
+[/System]
+
+[Star]
+name=System 44
+system=System 44
+texture=RedStar
+x=-6620.0
+y=896.0
+d=3068
+seed=-267465317
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 44
+texture=BandedGas
+x=86555.0
+y=-14893.0
+d=3838
+seed=1188838270
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 44
+texture=DoubleBandedGas
+x=42539.0
+y=-43558.0
+d=2250
+seed=88788656
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 44
+texture=Hospitable
+x=4403.0
+y=-7923.0
+d=3560
+seed=72633707
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 44
+texture=BandedGas
+x=32554.0
+y=-61907.0
+d=2162
+seed=-600350956
+[/Planet]
+
+[Planet]
+name=Planet 4
+system=System 44
+texture=Alien
+x=92505.0
+y=79829.0
+d=2696
+seed=-281795486
+[/Planet]
+
+[Planet]
+name=Planet 5
+system=System 44
+texture=Hospitable
+x=19995.0
+y=20782.0
+d=2238
+seed=-382847947
+[/Planet]
+
+[Planet]
+name=Planet 6
+system=System 44
+texture=Strange
+x=-71225.0
+y=-83123.0
+d=3986
+seed=-1623797129
+[/Planet]
+
+[Planet]
+name=Planet 7
+system=System 44
+texture=Martian
+x=63540.0
+y=55161.0
+d=1800
+seed=-1743296352
+[/Planet]
+
+[Planet]
+name=Planet 8
+system=System 44
+texture=BandedGas
+x=85611.0
+y=-49841.0
+d=1800
+seed=-70835965
+[/Planet]
+
+[System]
+name=System 45
+x=61.99990041677437
+y=-429.0592540325981
+sky=green0
+[/System]
+
+[Star]
+name=System 45
+system=System 45
+texture=YellowStar
+x=-2473.0
+y=5174.0
+d=2688
+seed=-1546022048
+[/Star]
+
+[Jumphole]
+name=System 2 Jumphole
+x=-11850.0
+y=-23125.0
+system=System 45
+out=System 2/System 45 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 45 Jumphole
+x=-59552.0
+y=-59188.0
+system=System 2
+out=System 45/System 2 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 60 Jumphole
+x=-33047.0
+y=-8696.0
+system=System 45
+out=System 60/System 45 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 45 Jumphole
+x=27707.0
+y=7562.0
+system=System 60
+out=System 45/System 60 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 57 Jumphole
+x=-59526.0
+y=-32799.0
+system=System 45
+out=System 57/System 45 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 45 Jumphole
+x=-41686.0
+y=16568.0
+system=System 57
+out=System 45/System 57 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 45
+texture=Alien
+x=-34028.0
+y=-44966.0
+d=3442
+seed=2012578684
+[/Planet]
+
+[System]
+name=System 46
+x=375.7349688638191
+y=699.3601587304611
+sky=orange1
+[/System]
+
+[Star]
+name=System 46
+system=System 46
+texture=YellowStar
+x=-3950.0
+y=-10088.0
+d=2090
+seed=-976567095
+[/Star]
+
+[Jumphole]
+name=System 25 Jumphole
+x=92919.0
+y=-55094.0
+system=System 46
+out=System 25/System 46 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 46 Jumphole
+x=94617.0
+y=12449.0
+system=System 25
+out=System 46/System 25 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 46
+texture=Martian
+x=2271.0
+y=-15914.0
+d=2684
+seed=1666884922
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 46
+texture=Hospitable
+x=80658.0
+y=47137.0
+d=1800
+seed=1090695981
+[/Planet]
+
+[System]
+name=System 47
+x=671.2898349328088
+y=454.3590842602707
+sky=blue0
+[/System]
+
+[Star]
+name=System 47
+system=System 47
+texture=YellowStar
+x=-4874.0
+y=2117.0
+d=2556
+seed=822232039
+[/Star]
+
+[Jumphole]
+name=System 58 Jumphole
+x=-2916.0
+y=14138.0
+system=System 47
+out=System 58/System 47 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 47 Jumphole
+x=-20719.0
+y=-11316.0
+system=System 58
+out=System 47/System 58 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 63 Jumphole
+x=21945.0
+y=-39433.0
+system=System 47
+out=System 63/System 47 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 47 Jumphole
+x=-25297.0
+y=-34160.0
+system=System 63
+out=System 47/System 63 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 47
+texture=Hospitable
+x=17040.0
+y=-36979.0
+d=2730
+seed=604732162
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 47
+texture=Lava
+x=1645.0
+y=-31072.0
+d=3414
+seed=1256369399
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 47
+texture=Alien
+x=35237.0
+y=32323.0
+d=1800
+seed=1293420773
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 47
+texture=Terran
+x=-28207.0
+y=6070.0
+d=2632
+seed=1814213393
+[/Planet]
+
+[Planet]
+name=Planet 4
+system=System 47
+texture=DoubleBandedGas
+x=-36007.0
+y=-29870.0
+d=1948
+seed=60340953
+[/Planet]
+
+[System]
+name=System 48
+x=-197.66304863125353
+y=-556.932829555879
+sky=blue0
+[/System]
+
+[Star]
+name=System 48
+system=System 48
+texture=YellowStar
+x=-3590.0
+y=-2932.0
+d=3426
+seed=2106897893
+[/Star]
+
+[Jumphole]
+name=System 57 Jumphole
+x=-12982.0
+y=23732.0
+system=System 48
+out=System 57/System 48 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 48 Jumphole
+x=-24229.0
+y=31893.0
+system=System 57
+out=System 48/System 57 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 48
+texture=Lava
+x=-25926.0
+y=8563.0
+d=1894
+seed=1017865279
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 48
+texture=BandedGas
+x=13254.0
+y=-30645.0
+d=2256
+seed=-1987645680
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 48
+texture=Hospitable
+x=17764.0
+y=11312.0
+d=2774
+seed=-331051622
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 48
+texture=Martian
+x=16616.0
+y=5334.0
+d=1800
+seed=-1196504654
+[/Planet]
+
+[Planet]
+name=Planet 4
+system=System 48
+texture=DoubleBandedGas
+x=-42725.0
+y=-28993.0
+d=3850
+seed=-1776172971
+[/Planet]
+
+[Planet]
+name=Planet 5
+system=System 48
+texture=Hospitable
+x=-30980.0
+y=-16601.0
+d=1800
+seed=567065652
+[/Planet]
+
+[System]
+name=System 49
+x=728.322829252008
+y=-588.258460738759
+sky=blue1
+[/System]
+
+[Star]
+name=System 49
+system=System 49
+texture=RedStar
+x=-5827.0
+y=-5866.0
+d=3874
+seed=-1569152508
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 49
+texture=Martian
+x=39308.0
+y=-31094.0
+d=1950
+seed=588528415
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 49
+texture=Terran
+x=52951.0
+y=-26792.0
+d=2270
+seed=969253974
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 49
+texture=Alien
+x=52882.0
+y=-51080.0
+d=3232
+seed=-2059634505
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 49
+texture=Strange
+x=15236.0
+y=69827.0
+d=1800
+seed=415077139
+[/Planet]
+
+[Planet]
+name=Planet 4
+system=System 49
+texture=Strange
+x=41514.0
+y=-19030.0
+d=2404
+seed=-639328727
+[/Planet]
+
+[System]
+name=System 50
+x=-68.67768946875715
+y=327.95910052323353
+sky=black0
+[/System]
+
+[Star]
+name=System 50
+system=System 50
+texture=YellowStar
+x=6726.0
+y=4702.0
+d=3778
+seed=706620510
+[/Star]
+
+[Jumphole]
+name=System 23 Jumphole
+x=-3675.0
+y=8204.0
+system=System 50
+out=System 23/System 50 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 50 Jumphole
+x=-45995.0
+y=91802.0
+system=System 23
+out=System 50/System 23 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 34 Jumphole
+x=-25956.0
+y=61629.0
+system=System 50
+out=System 34/System 50 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 50 Jumphole
+x=27639.0
+y=27702.0
+system=System 34
+out=System 50/System 34 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 50
+texture=Terran
+x=-90567.0
+y=50383.0
+d=1800
+seed=-1233777249
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 50
+texture=BandedGas
+x=-11716.0
+y=-16295.0
+d=1800
+seed=-2090771007
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 50
+texture=Martian
+x=25126.0
+y=41168.0
+d=2288
+seed=-1654059355
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 50
+texture=Lava
+x=-86964.0
+y=8377.0
+d=3038
+seed=1002590242
+[/Planet]
+
+[Planet]
+name=Planet 4
+system=System 50
+texture=Lava
+x=91736.0
+y=-62788.0
+d=3588
+seed=254892955
+[/Planet]
+
+[Planet]
+name=Planet 5
+system=System 50
+texture=Lava
+x=84163.0
+y=54063.0
+d=2844
+seed=514859490
+[/Planet]
+
+[Planet]
+name=Planet 6
+system=System 50
+texture=Hospitable
+x=80445.0
+y=-20593.0
+d=3450
+seed=1398030630
+[/Planet]
+
+[Planet]
+name=Planet 7
+system=System 50
+texture=Alien
+x=-44740.0
+y=-9976.0
+d=2562
+seed=1675680266
+[/Planet]
+
+[System]
+name=System 51
+x=-468.8035690024087
+y=895.6020700351669
+sky=black1
+[/System]
+
+[Star]
+name=System 51
+system=System 51
+texture=RedStar
+x=-2803.0
+y=-4340.0
+d=2538
+seed=-907792311
+[/Star]
+
+[Jumphole]
+name=System 66 Jumphole
+x=31174.0
+y=-30731.0
+system=System 51
+out=System 66/System 51 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 51 Jumphole
+x=8672.0
+y=94.0
+system=System 66
+out=System 51/System 66 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 79 Jumphole
+x=29129.0
+y=5433.0
+system=System 51
+out=System 79/System 51 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 51 Jumphole
+x=30405.0
+y=-7866.0
+system=System 79
+out=System 51/System 79 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 51
+texture=Alien
+x=-26938.0
+y=-33480.0
+d=2860
+seed=-450977156
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 51
+texture=Alien
+x=-8199.0
+y=10516.0
+d=1800
+seed=-1767063340
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 51
+texture=BandedGas
+x=-2505.0
+y=19180.0
+d=1800
+seed=707310933
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 51
+texture=BandedGas
+x=33851.0
+y=16376.0
+d=1908
+seed=1515592676
+[/Planet]
+
+[Planet]
+name=Planet 4
+system=System 51
+texture=Strange
+x=25064.0
+y=16871.0
+d=2610
+seed=-565554616
+[/Planet]
+
+[Planet]
+name=Planet 5
+system=System 51
+texture=Lava
+x=-37228.0
+y=39308.0
+d=2746
+seed=-918687120
+[/Planet]
+
+[Planet]
+name=Planet 6
+system=System 51
+texture=BandedGas
+x=-7209.0
+y=7943.0
+d=2782
+seed=94202241
+[/Planet]
+
+[System]
+name=System 52
+x=-379.06154271828694
+y=702.8506890615034
+sky=green0
+[/System]
+
+[Star]
+name=System 52
+system=System 52
+texture=WhiteStar
+x=-2941.0
+y=2532.0
+d=2156
+seed=-791531176
+[/Star]
+
+[Jumphole]
+name=System 67 Jumphole
+x=23583.0
+y=39612.0
+system=System 52
+out=System 67/System 52 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 52 Jumphole
+x=-29693.0
+y=79007.0
+system=System 67
+out=System 52/System 67 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 30 Jumphole
+x=-32440.0
+y=59195.0
+system=System 52
+out=System 30/System 52 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 52 Jumphole
+x=-83932.0
+y=-55229.0
+system=System 30
+out=System 52/System 30 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 52
+texture=DoubleBandedGas
+x=5654.0
+y=87196.0
+d=2498
+seed=-732051887
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 52
+texture=Lava
+x=-76350.0
+y=-26258.0
+d=1840
+seed=872662688
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 52
+texture=Terran
+x=73328.0
+y=91928.0
+d=1980
+seed=-53144138
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 52
+texture=DoubleBandedGas
+x=-26600.0
+y=46156.0
+d=2202
+seed=1335525674
+[/Planet]
+
+[Planet]
+name=Planet 4
+system=System 52
+texture=BandedGas
+x=-50608.0
+y=25474.0
+d=1800
+seed=-1161519801
+[/Planet]
+
+[Planet]
+name=Planet 5
+system=System 52
+texture=BandedGas
+x=33329.0
+y=34087.0
+d=1800
+seed=1776868949
+[/Planet]
+
+[Planet]
+name=Planet 6
+system=System 52
+texture=Hospitable
+x=29854.0
+y=-73571.0
+d=2814
+seed=-1229180991
+[/Planet]
+
+[System]
+name=System 53
+x=372.49055136160945
+y=960.397899554498
+sky=black1
+[/System]
+
+[Star]
+name=System 53
+system=System 53
+texture=RedStar
+x=2961.0
+y=890.0
+d=3730
+seed=1469159034
+[/Star]
+
+[Jumphole]
+name=System 29 Jumphole
+x=37222.0
+y=21676.0
+system=System 53
+out=System 29/System 53 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 53 Jumphole
+x=-21048.0
+y=4602.0
+system=System 29
+out=System 53/System 29 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 10 Jumphole
+x=28746.0
+y=-5146.0
+system=System 53
+out=System 10/System 53 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 53 Jumphole
+x=3570.0
+y=-20628.0
+system=System 10
+out=System 53/System 10 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 46 Jumphole
+x=21349.0
+y=33388.0
+system=System 53
+out=System 46/System 53 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 53 Jumphole
+x=-8039.0
+y=-12459.0
+system=System 46
+out=System 53/System 46 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 53
+texture=Alien
+x=-36180.0
+y=1353.0
+d=2856
+seed=-441828636
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 53
+texture=Hospitable
+x=-23387.0
+y=-12649.0
+d=1800
+seed=1230222852
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 53
+texture=Terran
+x=-15078.0
+y=13687.0
+d=1800
+seed=-1993637720
+[/Planet]
+
+[Planet]
+name=Planet 4
+system=System 53
+texture=Terran
+x=30687.0
+y=17719.0
+d=1820
+seed=1476787703
+[/Planet]
+
+[Planet]
+name=Planet 5
+system=System 53
+texture=Strange
+x=24117.0
+y=6080.0
+d=3984
+seed=-2133661374
+[/Planet]
+
+[Planet]
+name=Planet 6
+system=System 53
+texture=Hospitable
+x=35556.0
+y=32599.0
+d=1800
+seed=-2113682255
+[/Planet]
+
+[Planet]
+name=Planet 7
+system=System 53
+texture=Terran
+x=-16374.0
+y=18027.0
+d=3610
+seed=62946057
+[/Planet]
+
+[Planet]
+name=Planet 8
+system=System 53
+texture=BandedGas
+x=34733.0
+y=-35680.0
+d=1800
+seed=715216412
+[/Planet]
+
+[System]
+name=System 54
+x=329.28838751007794
+y=-9.213668773395714
+sky=blue0
+[/System]
+
+[Star]
+name=System 54
+system=System 54
+texture=BlueStar
+x=3813.0
+y=-6445.0
+d=3800
+seed=1137338927
+[/Star]
+
+[Jumphole]
+name=System 71 Jumphole
+x=25049.0
+y=47464.0
+system=System 54
+out=System 71/System 54 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 54 Jumphole
+x=-35383.0
+y=-52587.0
+system=System 71
+out=System 54/System 71 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 54
+texture=Terran
+x=-27045.0
+y=-43062.0
+d=1800
+seed=-181006096
+[/Planet]
+
+[System]
+name=System 55
+x=-602.0220341673916
+y=-292.39663388193213
+sky=black1
+[/System]
+
+[Star]
+name=System 55
+system=System 55
+texture=BlueStar
+x=9088.0
+y=-5281.0
+d=3366
+seed=-172292944
+[/Star]
+
+[Jumphole]
+name=System 72 Jumphole
+x=-7212.0
+y=-46512.0
+system=System 55
+out=System 72/System 55 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 55 Jumphole
+x=-47116.0
+y=-81342.0
+system=System 72
+out=System 55/System 72 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 59 Jumphole
+x=35415.0
+y=-75638.0
+system=System 55
+out=System 59/System 55 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 55 Jumphole
+x=-60507.0
+y=-102562.0
+system=System 59
+out=System 55/System 59 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 73 Jumphole
+x=-104549.0
+y=73283.0
+system=System 55
+out=System 73/System 55 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 55 Jumphole
+x=72651.0
+y=-48453.0
+system=System 73
+out=System 55/System 73 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 55
+texture=Strange
+x=-107951.0
+y=-66912.0
+d=1800
+seed=254354749
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 55
+texture=Strange
+x=55315.0
+y=-18172.0
+d=1800
+seed=-1599800742
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 55
+texture=DoubleBandedGas
+x=100227.0
+y=105452.0
+d=2124
+seed=248548597
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 55
+texture=BandedGas
+x=-16639.0
+y=84518.0
+d=3972
+seed=816443978
+[/Planet]
+
+[Planet]
+name=Planet 4
+system=System 55
+texture=Alien
+x=84056.0
+y=-31783.0
+d=2604
+seed=158582063
+[/Planet]
+
+[Planet]
+name=Planet 5
+system=System 55
+texture=DoubleBandedGas
+x=-50705.0
+y=-28484.0
+d=3228
+seed=-762573328
+[/Planet]
+
+[Planet]
+name=Planet 6
+system=System 55
+texture=Strange
+x=24024.0
+y=78561.0
+d=3762
+seed=-1810019152
+[/Planet]
+
+[Planet]
+name=Planet 7
+system=System 55
+texture=Alien
+x=-3888.0
+y=-108409.0
+d=1800
+seed=2063394164
+[/Planet]
+
+[System]
+name=System 56
+x=460.8899286090662
+y=-629.573860850924
+sky=blue1
+[/System]
+
+[Star]
+name=System 56
+system=System 56
+texture=BlueStar
+x=4940.0
+y=323.0
+d=2270
+seed=50611891
+[/Star]
+
+[Jumphole]
+name=System 27 Jumphole
+x=3000.0
+y=8141.0
+system=System 56
+out=System 27/System 56 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 56 Jumphole
+x=-19029.0
+y=7227.0
+system=System 27
+out=System 56/System 27 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 40 Jumphole
+x=991.0
+y=-21635.0
+system=System 56
+out=System 40/System 56 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 56 Jumphole
+x=12827.0
+y=13174.0
+system=System 40
+out=System 56/System 40 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 56
+texture=Lava
+x=32568.0
+y=2828.0
+d=3452
+seed=-1430677974
+[/Planet]
+
+[System]
+name=System 57
+x=-52.2471115500661
+y=-342.0277176126231
+sky=orange1
+[/System]
+
+[Star]
+name=System 57
+system=System 57
+texture=WhiteStar
+x=-3263.0
+y=-2541.0
+d=2636
+seed=-1855696021
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 57
+texture=Alien
+x=-36236.0
+y=28329.0
+d=3074
+seed=-210041093
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 57
+texture=Terran
+x=-10770.0
+y=17915.0
+d=1800
+seed=-537244100
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 57
+texture=Lava
+x=14317.0
+y=-32284.0
+d=2278
+seed=-985161394
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 57
+texture=Terran
+x=-6701.0
+y=-13290.0
+d=3986
+seed=-904432548
+[/Planet]
+
+[System]
+name=System 58
+x=941.0399563977352
+y=414.22784674070766
+sky=green1
+[/System]
+
+[Star]
+name=System 58
+system=System 58
+texture=BlueStar
+x=-809.0
+y=-14890.0
+d=3894
+seed=278859291
+[/Star]
+
+[Jumphole]
+name=System 43 Jumphole
+x=21833.0
+y=-65347.0
+system=System 58
+out=System 43/System 58 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 58 Jumphole
+x=-25462.0
+y=11192.0
+system=System 43
+out=System 58/System 43 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 58
+texture=Alien
+x=-105681.0
+y=91276.0
+d=1800
+seed=660629692
+[/Planet]
+
+[System]
+name=System 59
+x=-465.3333659134369
+y=-193.14510193908663
+sky=green0
+[/System]
+
+[Star]
+name=System 59
+system=System 59
+texture=YellowStar
+x=11816.0
+y=6493.0
+d=3446
+seed=2012371445
+[/Star]
+
+[Jumphole]
+name=System 72 Jumphole
+x=23544.0
+y=-17612.0
+system=System 59
+out=System 72/System 59 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 59 Jumphole
+x=-45715.0
+y=48055.0
+system=System 72
+out=System 59/System 72 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 59
+texture=Martian
+x=-77487.0
+y=-17262.0
+d=1800
+seed=-1493375119
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 59
+texture=DoubleBandedGas
+x=5058.0
+y=84733.0
+d=3128
+seed=-1068417740
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 59
+texture=BandedGas
+x=19689.0
+y=79969.0
+d=1800
+seed=-1352252223
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 59
+texture=DoubleBandedGas
+x=-24211.0
+y=-56025.0
+d=1800
+seed=-188417515
+[/Planet]
+
+[Planet]
+name=Planet 4
+system=System 59
+texture=Alien
+x=-45442.0
+y=86843.0
+d=1800
+seed=1772459609
+[/Planet]
+
+[Planet]
+name=Planet 5
+system=System 59
+texture=Terran
+x=33072.0
+y=-61487.0
+d=1800
+seed=303537207
+[/Planet]
+
+[Planet]
+name=Planet 6
+system=System 59
+texture=DoubleBandedGas
+x=-39418.0
+y=100203.0
+d=3874
+seed=251100004
+[/Planet]
+
+[System]
+name=System 60
+x=158.97191563229543
+y=-423.6172382250858
+sky=orange1
+[/System]
+
+[Star]
+name=System 60
+system=System 60
+texture=YellowStar
+x=-4254.0
+y=3065.0
+d=3366
+seed=-1925393357
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 60
+texture=Strange
+x=-20668.0
+y=39118.0
+d=1800
+seed=-976268959
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 60
+texture=Martian
+x=-38368.0
+y=-30580.0
+d=1800
+seed=-103326957
+[/Planet]
+
+[System]
+name=System 61
+x=918.8763764579212
+y=-513.1168396697566
+sky=black0
+[/System]
+
+[Star]
+name=System 61
+system=System 61
+texture=BlueStar
+x=5456.0
+y=424.0
+d=3298
+seed=2008006169
+[/Star]
+
+[Jumphole]
+name=System 75 Jumphole
+x=-529.0
+y=2800.0
+system=System 61
+out=System 75/System 61 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 61 Jumphole
+x=41412.0
+y=-19624.0
+system=System 75
+out=System 61/System 75 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 35 Jumphole
+x=-5272.0
+y=-15623.0
+system=System 61
+out=System 35/System 61 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 61 Jumphole
+x=16071.0
+y=8362.0
+system=System 35
+out=System 61/System 35 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 61
+texture=Alien
+x=38175.0
+y=128.0
+d=3258
+seed=-1605882745
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 61
+texture=Terran
+x=-44555.0
+y=-11413.0
+d=1800
+seed=1198556648
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 61
+texture=Hospitable
+x=-5624.0
+y=-13162.0
+d=1800
+seed=93949411
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 61
+texture=Alien
+x=34151.0
+y=12607.0
+d=1800
+seed=1558488909
+[/Planet]
+
+[System]
+name=System 62
+x=-347.29962675178007
+y=-21.433347633524264
+sky=green1
+[/System]
+
+[Star]
+name=System 62
+system=System 62
+texture=BlueStar
+x=2528.0
+y=-2109.0
+d=2308
+seed=2089619742
+[/Star]
+
+[Jumphole]
+name=System 76 Jumphole
+x=-5117.0
+y=-18654.0
+system=System 62
+out=System 76/System 62 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 62 Jumphole
+x=2763.0
+y=-26319.0
+system=System 76
+out=System 62/System 76 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 59 Jumphole
+x=-39229.0
+y=17816.0
+system=System 62
+out=System 59/System 62 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 62 Jumphole
+x=16877.0
+y=-25510.0
+system=System 59
+out=System 62/System 59 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 62
+texture=Terran
+x=45948.0
+y=-29019.0
+d=2836
+seed=-1412545304
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 62
+texture=Hospitable
+x=-55802.0
+y=49749.0
+d=3970
+seed=1915156131
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 62
+texture=Strange
+x=-37766.0
+y=-53189.0
+d=1800
+seed=-187000175
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 62
+texture=Strange
+x=-15608.0
+y=966.0
+d=3440
+seed=1556943333
+[/Planet]
+
+[Planet]
+name=Planet 4
+system=System 62
+texture=Strange
+x=-10669.0
+y=-13311.0
+d=1800
+seed=-1642387116
+[/Planet]
+
+[Planet]
+name=Planet 5
+system=System 62
+texture=Alien
+x=-54167.0
+y=33000.0
+d=1800
+seed=1043663611
+[/Planet]
+
+[Planet]
+name=Planet 6
+system=System 62
+texture=DoubleBandedGas
+x=-22250.0
+y=-13666.0
+d=1800
+seed=1153593107
+[/Planet]
+
+[Planet]
+name=Planet 7
+system=System 62
+texture=Lava
+x=37746.0
+y=-51218.0
+d=1800
+seed=-877665475
+[/Planet]
+
+[Planet]
+name=Planet 8
+system=System 62
+texture=Martian
+x=37787.0
+y=7362.0
+d=1800
+seed=-5550474
+[/Planet]
+
+[System]
+name=System 63
+x=523.2802248743563
+y=189.3222805008528
+sky=blue0
+[/System]
+
+[Star]
+name=System 63
+system=System 63
+texture=RedStar
+x=4565.0
+y=-127.0
+d=2986
+seed=1423461643
+[/Star]
+
+[Jumphole]
+name=System 69 Jumphole
+x=-6364.0
+y=32892.0
+system=System 63
+out=System 69/System 63 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 63 Jumphole
+x=-9021.0
+y=8786.0
+system=System 69
+out=System 63/System 69 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 63
+texture=BandedGas
+x=39555.0
+y=-33836.0
+d=1800
+seed=1577944604
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 63
+texture=Hospitable
+x=6159.0
+y=-38482.0
+d=2068
+seed=-386151317
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 63
+texture=Strange
+x=-33531.0
+y=-7983.0
+d=1800
+seed=-1513054178
+[/Planet]
+
+[System]
+name=System 64
+x=-114.06589939647351
+y=800.0134126490542
+sky=blue0
+[/System]
+
+[Star]
+name=System 64
+system=System 64
+texture=WhiteStar
+x=5141.0
+y=4820.0
+d=3120
+seed=1615152613
+[/Star]
+
+[Jumphole]
+name=System 44 Jumphole
+x=-39048.0
+y=18069.0
+system=System 64
+out=System 44/System 64 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 64 Jumphole
+x=51026.0
+y=-11753.0
+system=System 44
+out=System 64/System 44 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 64
+texture=Martian
+x=27935.0
+y=49941.0
+d=1800
+seed=1904829618
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 64
+texture=Martian
+x=-46083.0
+y=-41053.0
+d=3984
+seed=-297325017
+[/Planet]
+
+[System]
+name=System 65
+x=934.6955527267571
+y=-714.8514566053847
+sky=black0
+[/System]
+
+[Star]
+name=System 65
+system=System 65
+texture=RedStar
+x=5978.0
+y=1490.0
+d=2974
+seed=-1559986959
+[/Star]
+
+[Jumphole]
+name=System 75 Jumphole
+x=82094.0
+y=81284.0
+system=System 65
+out=System 75/System 65 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 65 Jumphole
+x=-84525.0
+y=-77311.0
+system=System 75
+out=System 65/System 75 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 9 Jumphole
+x=80508.0
+y=-110335.0
+system=System 65
+out=System 9/System 65 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 65 Jumphole
+x=108030.0
+y=-82209.0
+system=System 9
+out=System 65/System 9 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 61 Jumphole
+x=-60993.0
+y=22066.0
+system=System 65
+out=System 61/System 65 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 65 Jumphole
+x=2732.0
+y=25842.0
+system=System 61
+out=System 65/System 61 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 65
+texture=BandedGas
+x=-19525.0
+y=-104648.0
+d=1800
+seed=-386523039
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 65
+texture=DoubleBandedGas
+x=-45788.0
+y=81816.0
+d=2814
+seed=-1281191926
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 65
+texture=Martian
+x=-62097.0
+y=61369.0
+d=1800
+seed=-1352001482
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 65
+texture=Lava
+x=14408.0
+y=61042.0
+d=1800
+seed=-1324750176
+[/Planet]
+
+[Planet]
+name=Planet 4
+system=System 65
+texture=Hospitable
+x=-24691.0
+y=-99791.0
+d=3768
+seed=-1271783890
+[/Planet]
+
+[Planet]
+name=Planet 5
+system=System 65
+texture=Hospitable
+x=94982.0
+y=-48655.0
+d=1800
+seed=-827016910
+[/Planet]
+
+[System]
+name=System 66
+x=-508.9280960176177
+y=979.6290605926654
+sky=black0
+[/System]
+
+[Star]
+name=System 66
+system=System 66
+texture=YellowStar
+x=1439.0
+y=-819.0
+d=3978
+seed=-1010128102
+[/Star]
+
+[Jumphole]
+name=System 79 Jumphole
+x=20547.0
+y=-27606.0
+system=System 66
+out=System 79/System 66 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 66 Jumphole
+x=-7643.0
+y=35135.0
+system=System 79
+out=System 66/System 79 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 30 Jumphole
+x=-25109.0
+y=-22869.0
+system=System 66
+out=System 30/System 66 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 66 Jumphole
+x=25828.0
+y=-14335.0
+system=System 30
+out=System 66/System 30 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 66
+texture=DoubleBandedGas
+x=-6175.0
+y=35147.0
+d=1800
+seed=1374331929
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 66
+texture=Lava
+x=33906.0
+y=11099.0
+d=2526
+seed=-898654555
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 66
+texture=Strange
+x=19685.0
+y=3453.0
+d=1800
+seed=-655403953
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 66
+texture=Terran
+x=-3474.0
+y=13992.0
+d=2938
+seed=1898108666
+[/Planet]
+
+[Planet]
+name=Planet 4
+system=System 66
+texture=Hospitable
+x=33370.0
+y=11066.0
+d=2364
+seed=-1611300065
+[/Planet]
+
+[Planet]
+name=Planet 5
+system=System 66
+texture=Lava
+x=-38207.0
+y=10198.0
+d=1800
+seed=-2055769587
+[/Planet]
+
+[Planet]
+name=Planet 6
+system=System 66
+texture=Lava
+x=21246.0
+y=-8814.0
+d=2656
+seed=-1940872427
+[/Planet]
+
+[Planet]
+name=Planet 7
+system=System 66
+texture=Strange
+x=24078.0
+y=27090.0
+d=1800
+seed=-95171595
+[/Planet]
+
+[System]
+name=System 67
+x=-395.11165306170085
+y=770.1801992797159
+sky=orange0
+[/System]
+
+[Star]
+name=System 67
+system=System 67
+texture=YellowStar
+x=-7064.0
+y=10136.0
+d=1810
+seed=-313223968
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 67
+texture=Alien
+x=-7991.0
+y=-6229.0
+d=2436
+seed=151919373
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 67
+texture=Hospitable
+x=-73717.0
+y=84331.0
+d=1800
+seed=1123022514
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 67
+texture=BandedGas
+x=31878.0
+y=24596.0
+d=3340
+seed=1002237209
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 67
+texture=DoubleBandedGas
+x=-36178.0
+y=-45097.0
+d=1800
+seed=1227539298
+[/Planet]
+
+[Planet]
+name=Planet 4
+system=System 67
+texture=Terran
+x=-12519.0
+y=1270.0
+d=1836
+seed=-1309698595
+[/Planet]
+
+[Planet]
+name=Planet 5
+system=System 67
+texture=Martian
+x=-56057.0
+y=79815.0
+d=3784
+seed=252027200
+[/Planet]
+
+[Planet]
+name=Planet 6
+system=System 67
+texture=DoubleBandedGas
+x=30175.0
+y=-22871.0
+d=1800
+seed=-357603281
+[/Planet]
+
+[Planet]
+name=Planet 7
+system=System 67
+texture=Martian
+x=29697.0
+y=-77374.0
+d=2760
+seed=-1944478710
+[/Planet]
+
+[System]
+name=System 68
+x=-57.885176102597754
+y=-790.9122545071874
+sky=black0
+[/System]
+
+[Star]
+name=System 68
+system=System 68
+texture=YellowStar
+x=-555.0
+y=4023.0
+d=3716
+seed=1532918430
+[/Star]
+
+[Jumphole]
+name=System 48 Jumphole
+x=7866.0
+y=-6933.0
+system=System 68
+out=System 48/System 68 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 68 Jumphole
+x=37504.0
+y=37253.0
+system=System 48
+out=System 68/System 48 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 14 Jumphole
+x=-33683.0
+y=-1709.0
+system=System 68
+out=System 14/System 68 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 68 Jumphole
+x=-31826.0
+y=-32076.0
+system=System 14
+out=System 68/System 14 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 68
+texture=DoubleBandedGas
+x=-34605.0
+y=-34503.0
+d=1800
+seed=-396508655
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 68
+texture=Strange
+x=-273.0
+y=-18638.0
+d=1800
+seed=1215415149
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 68
+texture=BandedGas
+x=-38283.0
+y=24599.0
+d=1800
+seed=353982081
+[/Planet]
+
+[System]
+name=System 69
+x=554.375105785678
+y=172.76091823761186
+sky=orange1
+[/System]
+
+[Star]
+name=System 69
+system=System 69
+texture=BlueStar
+x=-6179.0
+y=-5144.0
+d=3872
+seed=1965020495
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 69
+texture=Martian
+x=34278.0
+y=21075.0
+d=1800
+seed=-1791964644
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 69
+texture=Alien
+x=-37379.0
+y=-24736.0
+d=1800
+seed=-1773378642
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 69
+texture=Terran
+x=48766.0
+y=367.0
+d=3142
+seed=279484333
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 69
+texture=Hospitable
+x=-29145.0
+y=44907.0
+d=1800
+seed=781410909
+[/Planet]
+
+[Planet]
+name=Planet 4
+system=System 69
+texture=Hospitable
+x=-35309.0
+y=-1397.0
+d=3300
+seed=-819684385
+[/Planet]
+
+[System]
+name=System 70
+x=-808.3910305499038
+y=-374.71203041145776
+sky=green0
+[/System]
+
+[Star]
+name=System 70
+system=System 70
+texture=RedStar
+x=-970.0
+y=730.0
+d=3540
+seed=190292165
+[/Star]
+
+[Jumphole]
+name=System 73 Jumphole
+x=-18564.0
+y=-11978.0
+system=System 70
+out=System 73/System 70 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 70 Jumphole
+x=23210.0
+y=-15947.0
+system=System 73
+out=System 70/System 73 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 55 Jumphole
+x=-13575.0
+y=10236.0
+system=System 70
+out=System 55/System 70 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 70 Jumphole
+x=40579.0
+y=-38.0
+system=System 55
+out=System 70/System 55 Jumphole
+[/Jumphole]
+
+[Planet]
+name=Planet 0
+system=System 70
+texture=DoubleBandedGas
+x=-16072.0
+y=34739.0
+d=2582
+seed=-709993843
+[/Planet]
+
+[System]
+name=System 71
+x=241.65921394866945
+y=-95.90806048035552
+sky=orange1
+[/System]
+
+[Star]
+name=System 71
+system=System 71
+texture=BlueStar
+x=-6563.0
+y=6106.0
+d=1910
+seed=-1925992964
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 71
+texture=BandedGas
+x=90385.0
+y=11405.0
+d=2782
+seed=596152862
+[/Planet]
+
+[System]
+name=System 72
+x=-579.7017473643808
+y=-307.52083227832856
+sky=blue0
+[/System]
+
+[Star]
+name=System 72
+system=System 72
+texture=BlueStar
+x=2010.0
+y=4086.0
+d=3950
+seed=917275163
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 72
+texture=Strange
+x=-31249.0
+y=12277.0
+d=1800
+seed=-1812337881
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 72
+texture=Strange
+x=-29969.0
+y=-30031.0
+d=2382
+seed=2042739242
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 72
+texture=Terran
+x=6672.0
+y=-27317.0
+d=1800
+seed=985706691
+[/Planet]
+
+[Planet]
+name=Planet 4
+system=System 72
+texture=DoubleBandedGas
+x=-13027.0
+y=21873.0
+d=1800
+seed=-907357185
+[/Planet]
+
+[Planet]
+name=Planet 5
+system=System 72
+texture=Strange
+x=-16372.0
+y=-15880.0
+d=1800
+seed=1103852906
+[/Planet]
+
+[Planet]
+name=Planet 6
+system=System 72
+texture=Strange
+x=-3577.0
+y=-16503.0
+d=1800
+seed=1388032123
+[/Planet]
+
+[System]
+name=System 73
+x=-782.476105466235
+y=-194.66405901618876
+sky=blue1
+[/System]
+
+[Star]
+name=System 73
+system=System 73
+texture=BlueStar
+x=-5489.0
+y=-5633.0
+d=2496
+seed=-1340782497
+[/Star]
+
+[Planet]
+name=Planet 0
+system=System 73
+texture=Strange
+x=-3878.0
+y=-27489.0
+d=3162
+seed=1853683464
+[/Planet]
+
+[System]
+name=System 74
+x=-826.8209906458727
+y=646.5447281114583
+sky=orange0
+[/System]
+
+[Star]
 name=System 74
 system=System 74
-texture=BlueStar
-x=-506.0
-y=1435.0
-d=4000
-seed=-293960793
+texture=YellowStar
+x=2447.0
+y=915.0
+d=3878
+seed=-581074015
 [/Star]
 
 [Planet]
 name=Planet 0
 system=System 74
+texture=BandedGas
+x=-6908.0
+y=37556.0
+d=3478
+seed=-133672992
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 74
 texture=Hospitable
-x=20103.0
-y=-19094.0
+x=32840.0
+y=15043.0
 d=1800
-seed=-1889809901
+seed=1898673457
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 74
+texture=Hospitable
+x=6031.0
+y=20091.0
+d=1800
+seed=-813962134
 [/Planet]
 
 [System]
 name=System 75
-x=52.62820522255855
-y=-982.555650608717
-sky=orange0
+x=971.8380316728906
+y=-566.2608601727952
+sky=green0
 [/System]
 
 [Star]
 name=System 75
 system=System 75
 texture=YellowStar
-x=4161.0
-y=-1428.0
-d=4338
-seed=-1444200485
+x=6026.0
+y=-415.0
+d=3650
+seed=1182527661
 [/Star]
+
+[Jumphole]
+name=System 35 Jumphole
+x=49838.0
+y=-31239.0
+system=System 75
+out=System 35/System 75 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 75 Jumphole
+x=-4780.0
+y=-39597.0
+system=System 35
+out=System 75/System 35 Jumphole
+[/Jumphole]
 
 [Planet]
 name=Planet 0
 system=System 75
-texture=Hospitable
-x=-28000.0
-y=-9976.0
-d=1800
-seed=672157735
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 75
-texture=Strange
-x=-14365.0
-y=5541.0
-d=1800
-seed=693176640
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 75
 texture=Martian
-x=29496.0
-y=-463.0
-d=1800
-seed=311649176
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 75
-texture=DoubleBandedGas
-x=15508.0
-y=14234.0
-d=1800
-seed=-1245168546
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 75
-texture=Alien
-x=17983.0
-y=9730.0
-d=1800
-seed=-1551380142
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 75
-texture=Alien
-x=28364.0
-y=-35966.0
-d=1800
-seed=1719902503
-[/Planet]
-
-[Planet]
-name=Planet 6
-system=System 75
-texture=DoubleBandedGas
-x=34665.0
-y=38247.0
-d=1800
-seed=852464948
+x=44266.0
+y=16866.0
+d=2032
+seed=1728257263
 [/Planet]
 
 [System]
 name=System 76
-x=-445.77729243500573
-y=170.1876650846206
-sky=black0
+x=-472.1331440578817
+y=39.30726757612593
+sky=blue1
 [/System]
 
 [Star]
 name=System 76
 system=System 76
-texture=RedStar
-x=-10693.0
-y=7838.0
-d=6060
-seed=-1432915873
+texture=BlueStar
+x=-8686.0
+y=-2635.0
+d=2060
+seed=-89374842
 [/Star]
 
 [Planet]
 name=Planet 0
 system=System 76
-texture=BandedGas
-x=67658.0
-y=-52260.0
-d=2322
-seed=1218211379
+texture=Terran
+x=77170.0
+y=14977.0
+d=1800
+seed=1087225524
+[/Planet]
+
+[Planet]
+name=Planet 1
+system=System 76
+texture=Martian
+x=-33916.0
+y=-1844.0
+d=2552
+seed=1395105166
+[/Planet]
+
+[Planet]
+name=Planet 2
+system=System 76
+texture=Hospitable
+x=62735.0
+y=-27500.0
+d=1800
+seed=-1113914700
+[/Planet]
+
+[Planet]
+name=Planet 3
+system=System 76
+texture=Strange
+x=-69383.0
+y=80269.0
+d=1800
+seed=320470196
+[/Planet]
+
+[Planet]
+name=Planet 4
+system=System 76
+texture=Alien
+x=48837.0
+y=11466.0
+d=1800
+seed=1546981030
+[/Planet]
+
+[Planet]
+name=Planet 5
+system=System 76
+texture=Strange
+x=-45791.0
+y=-85773.0
+d=3010
+seed=388254502
 [/Planet]
 
 [System]
 name=System 77
-x=704.6586036253951
-y=207.80853797911848
-sky=black0
+x=465.0854805727854
+y=-385.4133061076588
+sky=orange1
 [/System]
 
 [Star]
 name=System 77
 system=System 77
 texture=BlueStar
-x=-1053.0
-y=-4886.0
-d=5958
-seed=-398934406
+x=2803.0
+y=6931.0
+d=2626
+seed=630209927
 [/Star]
-
-[Jumphole]
-name=System 30 Jumphole
-x=14143.0
-y=40533.0
-system=System 77
-out=System 30/System 77 Jumphole
-[/Jumphole]
-
-[Jumphole]
-name=System 77 Jumphole
-x=-1978.0
-y=39993.0
-system=System 30
-out=System 77/System 30 Jumphole
-[/Jumphole]
 
 [Planet]
 name=Planet 0
 system=System 77
-texture=Hospitable
-x=32089.0
-y=-39438.0
-d=1800
-seed=-1778899045
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 77
-texture=Hospitable
-x=38197.0
-y=-1877.0
-d=3662
-seed=-304220715
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 77
-texture=Alien
-x=-39576.0
-y=36138.0
-d=1800
-seed=114022464
-[/Planet]
-
-[Planet]
-name=Planet 3
-system=System 77
 texture=Martian
-x=22394.0
-y=-35306.0
-d=3828
-seed=-13767296
-[/Planet]
-
-[Planet]
-name=Planet 4
-system=System 77
-texture=Lava
-x=19304.0
-y=40538.0
+x=75903.0
+y=-105799.0
 d=1800
-seed=-1290538166
-[/Planet]
-
-[Planet]
-name=Planet 5
-system=System 77
-texture=Alien
-x=8070.0
-y=24349.0
-d=1800
-seed=847251426
+seed=1043988735
 [/Planet]
 
 [System]
 name=System 78
-x=-897.4900719033208
-y=708.2614666797089
-sky=blue0
+x=582.2203855080304
+y=-16.10044850073198
+sky=blue1
 [/System]
 
 [Star]
 name=System 78
 system=System 78
 texture=WhiteStar
-x=6673.0
-y=-2041.0
-d=5218
-seed=-549251350
+x=4599.0
+y=3954.0
+d=3314
+seed=725042743
 [/Star]
 
-[Planet]
-name=Planet 0
+[Jumphole]
+name=System 69 Jumphole
+x=5359.0
+y=25099.0
 system=System 78
-texture=Alien
-x=51353.0
-y=11927.0
-d=1800
-seed=625695558
-[/Planet]
+out=System 69/System 78 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 78 Jumphole
+x=-11349.0
+y=-35.0
+system=System 69
+out=System 78/System 69 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 63 Jumphole
+x=31780.0
+y=-4636.0
+system=System 78
+out=System 63/System 78 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 78 Jumphole
+x=14410.0
+y=-13332.0
+system=System 63
+out=System 78/System 63 Jumphole
+[/Jumphole]
 
 [Planet]
 name=Planet 1
 system=System 78
-texture=Martian
-x=-41217.0
-y=-8190.0
-d=1902
-seed=-1236514294
+texture=Alien
+x=-6018.0
+y=23852.0
+d=1800
+seed=-2114449523
 [/Planet]
 
 [Planet]
 name=Planet 2
 system=System 78
 texture=DoubleBandedGas
-x=-42516.0
-y=-16993.0
+x=-39439.0
+y=38380.0
 d=1800
-seed=-1956868537
+seed=-1806870865
 [/Planet]
 
 [Planet]
 name=Planet 3
 system=System 78
-texture=Lava
-x=46227.0
-y=64248.0
+texture=Alien
+x=26244.0
+y=26377.0
 d=1800
-seed=824115329
+seed=-520995795
 [/Planet]
 
 [Planet]
 name=Planet 4
 system=System 78
-texture=DoubleBandedGas
-x=-10581.0
-y=17242.0
-d=1800
-seed=-423345363
+texture=Hospitable
+x=-32688.0
+y=36507.0
+d=3692
+seed=-1164371425
+[/Planet]
+
+[Planet]
+name=Planet 5
+system=System 78
+texture=Alien
+x=28493.0
+y=13776.0
+d=2588
+seed=1873142172
+[/Planet]
+
+[Planet]
+name=Planet 6
+system=System 78
+texture=Lava
+x=-19221.0
+y=15022.0
+d=2492
+seed=1493228242
 [/Planet]
 
 [System]
 name=System 79
-x=-510.89862565550095
-y=-492.7286250020035
+x=-542.5798145250394
+y=966.5947258068936
 sky=orange0
 [/System]
 
 [Star]
 name=System 79
 system=System 79
-texture=YellowStar
-x=13046.0
-y=11713.0
-d=5914
-seed=1655939784
+texture=BlueStar
+x=5776.0
+y=-471.0
+d=2912
+seed=-1751793232
 [/Star]
+
+[Jumphole]
+name=System 30 Jumphole
+x=-34545.0
+y=-39488.0
+system=System 79
+out=System 30/System 79 Jumphole
+[/Jumphole]
+
+[Jumphole]
+name=System 79 Jumphole
+x=22686.0
+y=6203.0
+system=System 30
+out=System 79/System 30 Jumphole
+[/Jumphole]
 
 [Planet]
 name=Planet 0
 system=System 79
-texture=Alien
-x=5172.0
-y=67329.0
-d=2912
-seed=1338107737
-[/Planet]
-
-[Planet]
-name=Planet 1
-system=System 79
-texture=Hospitable
-x=-40667.0
-y=56328.0
-d=2576
-seed=-1195862029
-[/Planet]
-
-[Planet]
-name=Planet 2
-system=System 79
-texture=Strange
-x=-82122.0
-y=-57629.0
-d=2274
-seed=-530541914
+texture=DoubleBandedGas
+x=-37427.0
+y=24926.0
+d=3178
+seed=-1264219514
 [/Planet]

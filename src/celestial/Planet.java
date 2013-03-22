@@ -90,7 +90,7 @@ public class Planet extends Celestial {
                 info.setPoleTemperature(sRand.nextInt(info.getEquatorTemperature()) - 50);
                 info.setRadius(diameter / 2);
                 info.setWaterInPercent(sRand.nextFloat());
-                info.setHeightFactor(sRand.nextFloat()/2+0.1f);
+                info.setHeightFactor(sRand.nextFloat()/2+0.15f);
                 info.setSeed((int) seed);
                 info.setHumidity(sRand.nextFloat());
                 info.setSmoothness(sRand.nextInt(4) + 6);

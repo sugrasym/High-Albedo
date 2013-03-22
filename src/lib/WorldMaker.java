@@ -4,6 +4,7 @@
  */
 package lib;
 
+import celestial.Planet;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Random;
@@ -110,10 +111,9 @@ public class WorldMaker {
                     //create a star in the relative center of the system
                     x = rnd.nextInt(size / 4) - size / 8;
                     y = rnd.nextInt(size / 4) - size / 8;
-                    int r = rnd.nextInt(2 * maxPlanetSize);
-                    if (r < maxPlanetSize) {
-                        r = maxPlanetSize;
-                    }
+                    int dR = maxPlanetSize - minPlanetSize;
+                    int dB = (int) (rnd.nextFloat() * dR);
+                    int r = minPlanetSize + dB;
                     int seed = rnd.nextInt();
                     thisSystem +=
                             "[Star]\n"
