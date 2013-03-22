@@ -43,6 +43,7 @@ public class Weapon extends Equipment {
     protected double speed;
     protected boolean guided;
     protected Item ammoType;
+    private String explosion = "None";
     //guided weapons
     double accel;
     double turning;
@@ -101,6 +102,10 @@ public class Weapon extends Equipment {
             setRange(Double.parseDouble(relevant.getValue("range")));
             setSpeed(Double.parseDouble(relevant.getValue("speed")));
             setCoolDown(Double.parseDouble(relevant.getValue("refire")));
+            String exp = relevant.getValue("explosion");
+            if (exp != null) {
+                setExplosion(exp);
+            }
             //guided?
             {
                 String test = relevant.getValue("guided");
@@ -142,7 +147,7 @@ public class Weapon extends Equipment {
                 useAmmo();
                 //create projectile
                 String tName = "";
-                if(ammoType != null) {
+                if (ammoType != null) {
                     tName = ammoType.getName();
                 } else {
                     tName = getName();
@@ -170,6 +175,7 @@ public class Weapon extends Equipment {
                 pro.setMaxRange(getRange());
                 pro.setMass(getMass());
                 pro.setSpeed(speed);
+                pro.setExplosion(explosion);
                 //store AI
                 pro.setGuided(guided);
                 if (guided) {
@@ -246,5 +252,13 @@ public class Weapon extends Equipment {
             ret += " <" + host.getNumInCargoBay(ammoType) + ">";
         }
         return ret;
+    }
+
+    public String getExplosion() {
+        return explosion;
+    }
+
+    public void setExplosion(String explosion) {
+        this.explosion = explosion;
     }
 }

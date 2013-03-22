@@ -11,6 +11,7 @@ range=350
 speed=400
 mass=5
 refire=0.35
+explosion=Smoke
 [/Weapon]
 
 [Weapon]
@@ -23,6 +24,7 @@ range=375
 speed=410
 mass=8
 refire=0.35
+explosion=Smoke
 [/Weapon]
 
 [Weapon]
@@ -35,6 +37,7 @@ range=402
 speed=415
 mass=11
 refire=0.34
+explosion=Smoke
 [/Weapon]
 
 ########ITC Weapons##########
@@ -49,6 +52,7 @@ range=2000
 speed=5
 mass=1
 refire=7
+explosion=Explosion
 #make it a seeker
 guided=true
 #it uses ammo
@@ -67,6 +71,7 @@ range=6000
 speed=5
 mass=1
 refire=6
+explosion=Explosion
 #make it a seeker
 guided=true
 #it uses ammo
@@ -87,6 +92,7 @@ range=700
 speed=5
 mass=4
 refire=5
+explosion=Explosion
 #make it a seeker
 guided=true
 #it uses ammo
@@ -105,6 +111,7 @@ range=350
 speed=5
 mass=10
 refire=8
+explosion=Explosion
 #make it a seeker
 guided=true
 #it uses ammo
@@ -123,6 +130,7 @@ range=1000
 speed=7
 mass=3
 refire=4
+explosion=Explosion
 #make it a seeker
 guided=true
 #it uses ammo
@@ -141,6 +149,7 @@ range=355
 speed=405
 mass=4
 refire=0.33
+explosion=Blue
 [/Weapon]
 
 [Weapon]
@@ -153,6 +162,7 @@ range=385
 speed=432
 mass=6
 refire=0.32
+explosion=Blue
 [/Weapon]
 
 [Weapon]
@@ -165,6 +175,7 @@ range=350
 speed=600
 mass=11
 refire=0.04
+explosion=Yellow
 [/Weapon]
 
 [Weapon]
@@ -177,6 +188,7 @@ range=350
 speed=150
 mass=8
 refire=25
+explosion=Red
 [/Weapon]
 
 
@@ -194,6 +206,7 @@ range=1500
 speed=150
 mass=6
 refire=0.55
+explosion=Red
 [/Weapon]
 
 [Weapon]
@@ -206,6 +219,7 @@ range=2000
 speed=1200
 mass=5
 refire=0.35
+explosion=Blue
 [/Weapon]
 
 [Weapon]
@@ -218,6 +232,7 @@ range=1300
 speed=650
 mass=7
 refire=4.8
+explosion=Smoke
 [/Weapon]
 
 ########Knights of Orin Weapons########
@@ -232,6 +247,7 @@ range=200
 speed=800
 mass=11
 refire=0.4
+explosion=Blue
 [/Weapon]
 
 [Weapon]
@@ -244,6 +260,7 @@ range=150
 speed=300
 mass=13
 refire=0.38
+explosion=Red
 [/Weapon]
 
 [Weapon]
@@ -256,6 +273,7 @@ range=650
 speed=900
 mass=25
 refire=0.1
+explosion=Yellow
 #ammo
 ammo=Bala Negro
 [/Weapon]
@@ -271,4 +289,5 @@ range=1500
 speed=800
 mass=5
 refire=0.35
+explosion=Red
 [/Weapon]

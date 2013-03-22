@@ -79,19 +79,10 @@ public class Explosion extends Ship {
         }
         if (relevant != null) {
             //now decode stats
-            accel = Double.parseDouble(relevant.getValue("accel"));
-            turning = Double.parseDouble(relevant.getValue("turning"));
-            shield = maxShield = Double.parseDouble(relevant.getValue("shield"));
-            shieldRechargeRate = Double.parseDouble(relevant.getValue("shieldRecharge"));
-            maxHull = hull = Double.parseDouble(relevant.getValue("hull"));
-            maxFuel = fuel = Double.parseDouble(relevant.getValue("fuel"));
-            setMass(Double.parseDouble(relevant.getValue("mass")));
-            sensor = Double.parseDouble(relevant.getValue("sensor"));
-            cargo = Double.parseDouble(relevant.getValue("cargo"));
-            //hardpoints
-            installHardpoints(relevant);
-            //equipment
-            installLoadout();
+            shield = maxShield = Double.MAX_VALUE;
+            shieldRechargeRate = Double.MAX_VALUE;
+            maxHull = hull = Double.MAX_VALUE;
+            maxFuel = fuel = Double.MAX_VALUE;
             //faction
             installFaction();
             //bring the ship to life
