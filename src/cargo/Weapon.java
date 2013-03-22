@@ -54,18 +54,21 @@ public class Weapon extends Equipment {
 
     public void initGraphics() {
         try {
-            if (ammoType == null) {
-                //the projectile name is the image
-                raw_tex = new AstralIO().loadImage("projectile/" + getName() + ".png");
-            } else {
-                //the ammo type is the image
-                raw_tex = new AstralIO().loadImage("projectile/" + ammoType.getName() + ".png");
+            if (host.getUniverse() != null) {
+                if (ammoType == null) {
+                    //the projectile name is the image
+                    //get the image
+                    raw_tex = host.getUniverse().getCache().getProjectileSprite(getName());
+                } else {
+                    //the ammo type is the image
+                    raw_tex = host.getUniverse().getCache().getProjectileSprite(ammoType.getName());
+                }
+                //create the usable version
+                ImageIcon icon = new ImageIcon(raw_tex);
+                height = (icon.getIconHeight());
+                width = (icon.getIconWidth());
+                tex = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
             }
-            //create the usable version
-            ImageIcon icon = new ImageIcon(raw_tex);
-            height = (icon.getIconHeight());
-            width = (icon.getIconWidth());
-            tex = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -138,7 +141,13 @@ public class Weapon extends Equipment {
                 //use any ammo
                 useAmmo();
                 //create projectile
-                Projectile pro = new Projectile(host, getName(), getName(), raw_tex, tex, width, height);
+                String tName = "";
+                if(ammoType != null) {
+                    tName = ammoType.getName();
+                } else {
+                    tName = getName();
+                }
+                Projectile pro = new Projectile(host, tName, tName, raw_tex, tex, width, height);
                 pro.init(false);
                 //calculate relative position from hardpoint
                 double hT = getSocket().getT();

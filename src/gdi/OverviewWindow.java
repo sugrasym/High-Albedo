@@ -16,6 +16,7 @@ package gdi;
 
 import celestial.Jumphole;
 import celestial.Planet;
+import celestial.Ship.Explosion;
 import celestial.Ship.Projectile;
 import celestial.Ship.Ship;
 import celestial.Ship.Station;
@@ -136,7 +137,9 @@ public class OverviewWindow extends AstralWindow {
                     } else if (entities.get(a) == sensorShip) {
                         doSensorShip(gfx, ex, ey);
                     } else if (entities.get(a) instanceof Ship) {
-                        doShip(gfx, ex, ey, entities, a);
+                        if (!(entities.get(a) instanceof Explosion)) {
+                            doShip(gfx, ex, ey, entities, a);
+                        }
                     }
                 }
             }

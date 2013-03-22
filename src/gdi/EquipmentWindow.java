@@ -19,6 +19,7 @@
 package gdi;
 
 import cargo.Hardpoint;
+import celestial.Ship.Explosion;
 import celestial.Ship.Projectile;
 import celestial.Ship.Ship;
 import celestial.Ship.Station;
@@ -72,9 +73,11 @@ public class EquipmentWindow extends AstralWindow {
         for (int a = 0; a < celestials.size(); a++) {
             if (celestials.get(a) instanceof Ship) {
                 if (!(celestials.get(a) instanceof Projectile)) {
-                    Ship tmp = (Ship) celestials.get(a);
-                    if (ship.distanceTo(tmp) < ship.getSensor() && ship != tmp) {
-                        targetList.addToList(tmp);
+                    if (!(celestials.get(a) instanceof Explosion)) {
+                        Ship tmp = (Ship) celestials.get(a);
+                        if (ship.distanceTo(tmp) < ship.getSensor() && ship != tmp) {
+                            targetList.addToList(tmp);
+                        }
                     }
                 }
             }
@@ -142,7 +145,7 @@ public class EquipmentWindow extends AstralWindow {
         targetName.setY((height / 2) + 1);
         targetName.setFont(targetFont);
         targetName.setWidth(width / 2);
-        targetName.setHeight(targetFont.getSize()+1);
+        targetName.setHeight(targetFont.getSize() + 1);
         targetName.setVisible(true);
         //setup the target type label
         targetType.setName("type");
@@ -151,7 +154,7 @@ public class EquipmentWindow extends AstralWindow {
         targetType.setY((height / 2) + 1 + targetFont.getSize());
         targetType.setFont(targetFont);
         targetType.setWidth(width / 2);
-        targetType.setHeight(targetFont.getSize()+1);
+        targetType.setHeight(targetFont.getSize() + 1);
         targetType.setVisible(true);
         //setup the target faction label
         targetFaction.setName("faction");
@@ -160,7 +163,7 @@ public class EquipmentWindow extends AstralWindow {
         targetFaction.setY((height / 2) + 1 + 2 * targetFont.getSize());
         targetFaction.setFont(targetFont);
         targetFaction.setWidth(width / 2);
-        targetFaction.setHeight(targetFont.getSize()+1);
+        targetFaction.setHeight(targetFont.getSize() + 1);
         targetFaction.setVisible(true);
         //setup the target distance
         targetDistance.setName("distance");
@@ -169,7 +172,7 @@ public class EquipmentWindow extends AstralWindow {
         targetDistance.setY((height / 2) + 1 + 3 * targetFont.getSize());
         targetDistance.setFont(targetFont);
         targetDistance.setWidth(width / 2);
-        targetDistance.setHeight(targetFont.getSize()+1);
+        targetDistance.setHeight(targetFont.getSize() + 1);
         targetDistance.setVisible(true);
         //setup the target distance
         dockInfo.setName("dock");
@@ -178,14 +181,14 @@ public class EquipmentWindow extends AstralWindow {
         dockInfo.setY((height / 2) + 1 + 5 * targetFont.getSize());
         dockInfo.setFont(targetFont);
         dockInfo.setWidth(width / 2);
-        dockInfo.setHeight((targetFont.getSize()+1)*2);
+        dockInfo.setHeight((targetFont.getSize() + 1) * 2);
         dockInfo.setVisible(true);
         //setup the shield bar
         targetShield.setX(0);
         targetShield.setName("shield");
         targetShield.setY(height - 2 * targetFont.getSize());
         targetShield.setWidth(width / 2);
-        targetShield.setHeight(targetFont.getSize()+1);
+        targetShield.setHeight(targetFont.getSize() + 1);
         targetShield.setBarColor(Color.GREEN);
         targetShield.setVisible(true);
         //setup the hull
@@ -193,7 +196,7 @@ public class EquipmentWindow extends AstralWindow {
         targetHull.setName("shield");
         targetHull.setY(height - 1 * targetFont.getSize());
         targetHull.setWidth(width / 2);
-        targetHull.setHeight(targetFont.getSize()+1);
+        targetHull.setHeight(targetFont.getSize() + 1);
         targetHull.setBarColor(Color.RED);
         targetHull.setVisible(true);
         //setup the overview canvas
@@ -323,7 +326,7 @@ public class EquipmentWindow extends AstralWindow {
         weaponList.scrollDown();
     }
 
-    private  double magnitude(double dx, double dy) {
+    private double magnitude(double dx, double dy) {
         return Math.sqrt((dx * dx) + (dy * dy));
     }
 }

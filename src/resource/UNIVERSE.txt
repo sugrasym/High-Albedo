@@ -8,11 +8,11 @@
 
 #New Game Smell
 [NewGame]
-ship=Hyena
+ship=Sparrow
 system=System 10
 near=Planet 0
 cash=8500
-install=Starstruck Launcher/Starstruck Launcher/Starstruck Launcher/Starstruck Launcher
+install=Talon 1/Talon 1
 cargo=Starstruck Missile~100
 faction=Player
 [/NewGame]
@@ -20,13 +20,273 @@ faction=Player
 ########
 
 [Ship]
-ship=Hyena
+ship=Monitor
 name=Probe Craft
 system=System 10
 near=Planet 0
 faction=The Archers
-install=Starstruck Launcher/Starstruck Launcher/Starstruck Launcher/Starstruck Launcher
-cargo=Starstruck Missile~100
+install=Iguana Launcher/Iguana Launcher/Bask/Bask
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 10
+near=Planet 0
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~40
+[/Ship]
+
+[Ship]
+ship=Monitor
+name=Probe Craft
+system=System 10
+near=Planet 0
+faction=The Archers
+install=Iguana Launcher/Iguana Launcher/Bask/Bask
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 10
+near=Planet 0
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~40
+[/Ship]
+
+[Ship]
+ship=Monitor
+name=Probe Craft
+system=System 10
+near=Planet 0
+faction=The Archers
+install=Iguana Launcher/Iguana Launcher/Bask/Bask
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 10
+near=Planet 0
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~40
+[/Ship]
+
+[Ship]
+ship=Monitor
+name=Probe Craft
+system=System 10
+near=Planet 0
+faction=The Archers
+install=Iguana Launcher/Iguana Launcher/Bask/Bask
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 10
+near=Planet 0
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~40
+[/Ship]
+
+[Ship]
+ship=Monitor
+name=Probe Craft
+system=System 10
+near=Planet 0
+faction=The Archers
+install=Iguana Launcher/Iguana Launcher/Bask/Bask
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 10
+near=Planet 0
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~40
+[/Ship]
+
+[Ship]
+ship=Monitor
+name=Probe Craft
+system=System 10
+near=Planet 0
+faction=The Archers
+install=Iguana Launcher/Iguana Launcher/Bask/Bask
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 10
+near=Planet 0
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~40
+[/Ship]
+
+[Ship]
+ship=Monitor
+name=Probe Craft
+system=System 10
+near=Planet 0
+faction=The Archers
+install=Iguana Launcher/Iguana Launcher/Bask/Bask
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 10
+near=Planet 0
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~40
+[/Ship]
+
+[Ship]
+ship=Monitor
+name=Probe Craft
+system=System 10
+near=Planet 0
+faction=The Archers
+install=Iguana Launcher/Iguana Launcher/Bask/Bask
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 10
+near=Planet 0
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~40
+[/Ship]
+
+[Ship]
+ship=Monitor
+name=Probe Craft
+system=System 10
+near=Planet 0
+faction=The Archers
+install=Iguana Launcher/Iguana Launcher/Bask/Bask
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 10
+near=Planet 0
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~40
+[/Ship]
+
+[Ship]
+ship=Monitor
+name=Probe Craft
+system=System 10
+near=Planet 0
+faction=The Archers
+install=Iguana Launcher/Iguana Launcher/Bask/Bask
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 10
+near=Planet 0
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~40
+[/Ship]
+
+[Ship]
+ship=Monitor
+name=Probe Craft
+system=System 10
+near=Planet 0
+faction=The Archers
+install=Iguana Launcher/Iguana Launcher/Bask/Bask
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 10
+near=Planet 0
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~40
+[/Ship]
+
+[Ship]
+ship=Monitor
+name=Probe Craft
+system=System 10
+near=Planet 0
+faction=The Archers
+install=Iguana Launcher/Iguana Launcher/Bask/Bask
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 10
+near=Planet 0
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~40
+[/Ship]
+
+[Ship]
+ship=Monitor
+name=Probe Craft
+system=System 10
+near=Planet 0
+faction=The Archers
+install=Iguana Launcher/Iguana Launcher/Bask/Bask
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 10
+near=Planet 0
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~40
+[/Ship]
+
+[Ship]
+ship=Monitor
+name=Probe Craft
+system=System 10
+near=Planet 0
+faction=The Archers
+install=Iguana Launcher/Iguana Launcher/Bask/Bask
+cargo=Iguana Missile~100
 [/Ship]
 
 [Ship]

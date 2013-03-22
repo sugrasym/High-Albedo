@@ -45,7 +45,6 @@ public class Faction implements Serializable {
     private void init() {
         Parser tmp = new Parser("FACTIONS.txt");
         ArrayList<Term> factions = tmp.getTermsOfType("Faction");
-        System.out.println(factions.size());
         for (int a = 0; a < factions.size(); a++) {
             if (factions.get(a).getValue("name").matches(name)) {
                 standings = factions.get(a);

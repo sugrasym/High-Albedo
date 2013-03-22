@@ -19,6 +19,7 @@
 package celestial.Ship;
 
 import cargo.Item;
+import celestial.Ship.Process;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics;

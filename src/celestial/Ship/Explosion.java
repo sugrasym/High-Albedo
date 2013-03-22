@@ -25,7 +25,9 @@ import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.Random;
+import lib.Parser;
 
 /**
  *
@@ -33,13 +35,14 @@ import java.util.Random;
  */
 public class Explosion extends Ship {
 
-    int maxLife = 3;
+    double maxLife = 3;
     double lifeLimit;
     double elapsed = 0;
     double size;
 
-    public Explosion(Point2D.Double size) {
-        super("Debris", "Explosion");
+    public Explosion(Point2D.Double size, String type, double maxLife) {
+        super("Debris", type);
+        this.maxLife = maxLife;
         //store size
         if (size.x > size.y) {
             this.size = size.x;
@@ -53,6 +56,49 @@ public class Explosion extends Ship {
     @Override
     public void init(boolean loadedGame) {
         super.init(loadedGame);
+    }
+    
+    @Override
+    protected void initStats() {
+        /*
+         * Loads the stats for this ship from the ships file.
+         */
+        //create parser
+        Parser parse = new Parser("EXPLOSIONS.txt");
+        //get the term with this ship's type
+        ArrayList<Parser.Term> terms = parse.getTermsOfType("Explosion");
+        Parser.Term relevant = null;
+        for (int a = 0; a < terms.size(); a++) {
+            String termName = terms.get(a).getValue("type");
+            if (termName.matches(getType())) {
+                //get the stats we want
+                relevant = terms.get(a);
+                //and end
+                break;
+            }
+        }
+        if (relevant != null) {
+            //now decode stats
+            accel = Double.parseDouble(relevant.getValue("accel"));
+            turning = Double.parseDouble(relevant.getValue("turning"));
+            shield = maxShield = Double.parseDouble(relevant.getValue("shield"));
+            shieldRechargeRate = Double.parseDouble(relevant.getValue("shieldRecharge"));
+            maxHull = hull = Double.parseDouble(relevant.getValue("hull"));
+            maxFuel = fuel = Double.parseDouble(relevant.getValue("fuel"));
+            setMass(Double.parseDouble(relevant.getValue("mass")));
+            sensor = Double.parseDouble(relevant.getValue("sensor"));
+            cargo = Double.parseDouble(relevant.getValue("cargo"));
+            //hardpoints
+            installHardpoints(relevant);
+            //equipment
+            installLoadout();
+            //faction
+            installFaction();
+            //bring the ship to life
+            state = State.ALIVE;
+        } else {
+            System.out.println("The item " + getName() + " does not exist in SHIPS.txt");
+        }
     }
 
     @Override
@@ -108,8 +154,6 @@ public class Explosion extends Ship {
                 //calculate size
                 f.drawImage(raw_tex, 0, 0, (int) sx, (int) sx, null);
             }
-            //draw health bars
-            drawHealthBars(g, dx, dy);
             /*//draw avoidance info
              Line2D tmp = getDodgeLine();
              g.setColor(Color.WHITE);
@@ -127,7 +171,7 @@ public class Explosion extends Ship {
     public void initGraphics() {
         try {
             //get the image
-            raw_tex = io.loadImage("explosion/" + type + ".png");
+            raw_tex = getUniverse().getCache().getExplosionSprite(type);
             //create the usable version
             setHeight((int) size);
             setWidth((int) size);

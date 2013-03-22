@@ -20,6 +20,7 @@ package universe;
 
 import cargo.Item;
 import celestial.Ship.Ship;
+import engine.ResourceCache;
 import java.io.Serializable;
 import java.util.ArrayList;
 import lib.Parser;
@@ -32,6 +33,7 @@ import lib.Parser.Term;
 public class Universe implements Serializable {
 
     private ArrayList<SolarSystem> systems = new ArrayList<>();
+    private transient ResourceCache cache = new ResourceCache();
     protected Ship playerShip;
 
     public Universe() {
@@ -134,5 +136,9 @@ public class Universe implements Serializable {
 
     public void setPlayerShip(Ship playerShip) {
         this.playerShip = playerShip;
+    }
+
+    public ResourceCache getCache() {
+        return cache;
     }
 }

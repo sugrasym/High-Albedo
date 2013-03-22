@@ -845,6 +845,10 @@ public class Engine {
             lastFrame = System.nanoTime();
             //calculate time per frame
             double tpf = Math.abs(dt / 1000000000.0) * dilation;
+            //hard limit
+            if (tpf > 0.1) {
+                tpf = 0.1;
+            }
             if (state == State.RUNNING) {
                 //handle player events
                 handlePlayerEvents();

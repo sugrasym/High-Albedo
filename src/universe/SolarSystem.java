@@ -432,4 +432,8 @@ public class SolarSystem implements Entity, Serializable {
     public void setJumpholeList(ArrayList<Entity> jumpholeList) {
         this.jumpholeList = jumpholeList;
     }
+
+    public Universe getUniverse() {
+        return universe;
+    }
 }
