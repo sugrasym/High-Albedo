@@ -476,6 +476,7 @@ public class Engine {
                     } else if (ke.getKeyCode() == KeyEvent.VK_HOME) {
                         playerShip.setAutopilot(Ship.Autopilot.NONE);
                         playerShip.setBehavior(Ship.Behavior.NONE);
+                        playerShip.setPort(null);
                         allStopPressed = true;
                     } else if (ke.getKeyCode() == KeyEvent.VK_SPACE) {
                         firing = true;

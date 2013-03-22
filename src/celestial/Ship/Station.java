@@ -198,10 +198,13 @@ public class Station extends Ship {
 
     public boolean canDock(Ship ship) {
         for (int a = 0; a < docks.size(); a++) {
-            if (docks.get(a).canFit(ship) && docks.get(a).isAvailable()) {
+            if (docks.get(a).canFit(ship) && docks.get(a).isAvailable(ship)) {
                 if (ship.getStandingsToMe(this) > -2) {
                     return true;
                 }
+            } else {
+                System.out.println(docks.get(a).canFit(ship)+" "+a);
+                System.out.println(docks.get(a).getClient()+" "+a);
             }
         }
         return false;
@@ -213,7 +216,7 @@ public class Station extends Ship {
          * are ports available.
          */
         for (int a = 0; a < docks.size(); a++) {
-            if (docks.get(a).canFit(ship) && docks.get(a).isAvailable()) {
+            if (docks.get(a).canFit(ship) && docks.get(a).isAvailable(ship)) {
                 if (ship.getStandingsToMe(this) > -2) {
                     docks.get(a).setClient(ship);
                     return docks.get(a);

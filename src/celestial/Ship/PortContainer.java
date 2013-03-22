@@ -34,7 +34,7 @@ public class PortContainer implements Serializable {
     protected Station parent;
     private Ship client;
     //timing
-    private double maxHold = 180;
+    private double maxHold = 120;
     private double time = 0;
 
     public PortContainer(Station parent, double x, double y, int w, int h, double ax, double ay) {
@@ -62,6 +62,7 @@ public class PortContainer implements Serializable {
                     } else {
                         client.abortDock();
                         client = null;
+                        time = 0;
                     }
                 } else {
                     client.setX(getPortX() - width / 2);
@@ -75,7 +76,6 @@ public class PortContainer implements Serializable {
             }
         } else {
             //nobody is docked
-            time = 0;
         }
     }
 
@@ -84,7 +84,7 @@ public class PortContainer implements Serializable {
     }
 
     public void render(Graphics f) {
-        if (isAvailable()) {
+        if (client == null) {
             f.setColor(Color.GRAY);
             f.drawOval((int) x, (int) y, width, height);
         } else if (time < maxHold && !client.isDocked()) {
@@ -125,9 +125,13 @@ public class PortContainer implements Serializable {
         this.client = docked;
     }
 
-    public boolean isAvailable() {
+    public boolean isAvailable(Ship test) {
         if (client != null) {
-            return false;
+            if (client == test) {
+                return true;
+            } else {
+                return false;
+            }
         } else {
             return true;
         }
