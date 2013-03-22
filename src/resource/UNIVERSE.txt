@@ -42,7 +42,7 @@ cargo=Iguana Missile~40
 ########
 
 [Station]
-ship=Ageiran MRE Factory
+ship=Ageiran Weapons Forge
 name=Alpha Station
 faction=Ageiran Federation
 system=System 10

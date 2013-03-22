@@ -53,3 +53,45 @@ rectBound=25,5,192,340/192,15,485,39
 dock=234,45,284,95,900,305/334,45,384,95,900,305/434,45,484,95,900,305
 ##process=HydrocarbonBurn/Scrap->ConsumerGoods
 [/Station]
+
+[Station]
+type=Ageiran Fabricator
+accel=1.5
+turning=0
+shield=100800
+shieldRecharge=1275
+hull=7200
+fuel=2500000000000
+mass=39000
+rectBound=25,5,192,340/192,15,485,39
+dock=234,45,284,95,900,305/334,45,384,95,900,305/434,45,484,95,900,305
+##process=HydrocarbonBurn/Scrap->ConsumerGoods
+[/Station]
+
+[Station]
+type=Ageiran Shipyard
+accel=1.5
+turning=0
+shield=850000
+shieldRecharge=3275
+hull=36500
+fuel=2500000000000
+mass=16000
+rectBound=25,5,192,118/192,15,485,39/158,118,192,339
+dock=234,45,284,95,900,305/334,45,384,95,900,305/434,45,484,95,900,305
+##process=HydrocarbonBurn/Scrap->ConsumerGoods
+[/Station]
+
+[Station]
+type=Ageiran Weapons Forge
+accel=1.5
+turning=0
+shield=700000
+shieldRecharge=3000
+hull=21000
+fuel=2500000000000
+mass=22010
+rectBound=22,32,186,234/169,24,572,48
+dock=210,50,260,100,900,140/310,50,360,100,900,140/410,50,460,100,900,140/510,50,560,100,900,140
+##process=HydrocarbonBurn/Scrap->ConsumerGoods
+[/Station]
