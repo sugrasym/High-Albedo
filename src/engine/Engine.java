@@ -24,6 +24,7 @@ import celestial.Ship.CargoPod;
 import celestial.Ship.Explosion;
 import celestial.Ship.Projectile;
 import celestial.Ship.Ship;
+import celestial.Ship.Station;
 import gdi.CargoWindow;
 import gdi.EquipmentWindow;
 import gdi.FuelWindow;
@@ -969,34 +970,38 @@ public class Engine {
         protected void renderTargetMarker() {
             //draw a marker around the player's target
             if (playerShip.getTarget() != null) {
-                int tx = (int) (playerShip.getTarget().getX() - dx);
-                int ty = (int) (playerShip.getTarget().getY() - dy);
-                int tw = playerShip.getTarget().getWidth();
-                int th = playerShip.getTarget().getHeight();
-                f.setColor(Color.YELLOW);
-                f.setStroke(new BasicStroke(3));
-                f.drawOval(tx, ty, tw, th);
+                if (!(playerShip.getTarget() instanceof Station)) {
+                    int tx = (int) (playerShip.getTarget().getX() - dx);
+                    int ty = (int) (playerShip.getTarget().getY() - dy);
+                    int tw = playerShip.getTarget().getWidth();
+                    int th = playerShip.getTarget().getHeight();
+                    f.setColor(Color.YELLOW);
+                    f.setStroke(new BasicStroke(3));
+                    f.drawOval(tx, ty, tw, th);
+                }
             }
         }
 
         protected void renderIFFMarker(Ship ship) {
             if (!(ship instanceof Projectile) && ship != playerShip) {
                 if (!(ship instanceof Explosion)) {
-                    //draw a marker to indicate standings
-                    int tx = (int) (ship.getX() - dx);
-                    int ty = (int) (ship.getY() - dy);
-                    int tw = ship.getWidth();
-                    int th = ship.getHeight();
-                    int standing = ship.getStandingsToMe(playerShip);
-                    if (standing >= 3) {
-                        f.setColor(Color.GREEN);
-                    } else if (standing <= -3) {
-                        f.setColor(Color.RED);
-                    } else {
-                        f.setColor(Color.GRAY);
+                    if (!(ship instanceof Station)) {
+                        //draw a marker to indicate standings
+                        int tx = (int) (ship.getX() - dx);
+                        int ty = (int) (ship.getY() - dy);
+                        int tw = ship.getWidth();
+                        int th = ship.getHeight();
+                        int standing = ship.getStandingsToMe(playerShip);
+                        if (standing >= 3) {
+                            f.setColor(Color.GREEN);
+                        } else if (standing <= -3) {
+                            f.setColor(Color.RED);
+                        } else {
+                            f.setColor(Color.GRAY);
+                        }
+                        f.setStroke(new BasicStroke(2));
+                        f.drawOval(tx, ty, tw, th);
                     }
-                    f.setStroke(new BasicStroke(2));
-                    f.drawOval(tx, ty, tw, th);
                 }
             }
         }

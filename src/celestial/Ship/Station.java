@@ -183,42 +183,43 @@ public class Station extends Ship {
                     //attempt transfer of item
                     if (ship.addToCargoBay(new Item(item.getName()))) {
                         //decrement stocks
-                        rel.setQuantity(rel.getQuantity()-1);
+                        rel.setQuantity(rel.getQuantity() - 1);
                         //transfer funds
-                        ship.setCash(ship.getCash()-price);
-                        setCash(getCash()+price);
+                        ship.setCash(ship.getCash() - price);
+                        setCash(getCash() + price);
                     }
                 }
             }
         }
-
     }
 
     public void sell(Ship ship, Item item, int quantity) {
-        //get current offer
-        int price = getPrice(item);
-        //repeat sell procedure
-        for (int lx = 0; lx < quantity; lx++) {
-            Item rel = null;
-            //validate the item is in the cargo bay
-            for (int a = 0; a < ship.getCargoBay().size(); a++) {
-                if (ship.getCargoBay().get(a).getName().matches(item.getName())) {
-                    rel = ship.getCargoBay().get(a);
-                    break;
-                }
-            }
-            if (rel != null) {
-                //send to station
-                for (int a = 0; a < getStationBuying().size(); a++) {
-                    if (rel.getName().matches(getStationBuying().get(a).getName())) {
-                        getStationBuying().get(a).setQuantity(getStationBuying().get(a).getQuantity() + rel.getQuantity());
-                        //remove from cargo
-                        ship.removeFromCargoBay(rel);
-                        //pay the ship
-                        ship.setCash(ship.getCash() + price);
-                        //remove funds from station wallet
-                        setCash(getCash() - price);
+        if (item.getQuantity() == 1) {
+            //get current offer
+            int price = getPrice(item);
+            //repeat sell procedure
+            for (int lx = 0; lx < quantity; lx++) {
+                Item rel = null;
+                //validate the item is in the cargo bay
+                for (int a = 0; a < ship.getCargoBay().size(); a++) {
+                    if (ship.getCargoBay().get(a).getName().matches(item.getName())) {
+                        rel = ship.getCargoBay().get(a);
                         break;
+                    }
+                }
+                if (rel != null) {
+                    //send to station
+                    for (int a = 0; a < getStationBuying().size(); a++) {
+                        if (rel.getName().matches(getStationBuying().get(a).getName())) {
+                            getStationBuying().get(a).setQuantity(getStationBuying().get(a).getQuantity() + rel.getQuantity());
+                            //remove from cargo
+                            ship.removeFromCargoBay(rel);
+                            //pay the ship
+                            ship.setCash(ship.getCash() + price);
+                            //remove funds from station wallet
+                            setCash(getCash() - price);
+                            break;
+                        }
                     }
                 }
             }
@@ -412,7 +413,7 @@ public class Station extends Ship {
 
     @Override
     protected void drawHealthBars(Graphics g, double dx, double dy) {
-        //draw the bounds
+        /*//draw the bounds
         for (int a = 0; a < getBounds().size(); a++) {
             double bx = getBounds().get(a).x;
             double by = getBounds().get(a).y;
@@ -420,7 +421,7 @@ public class Station extends Ship {
             int bh = getBounds().get(a).height;
             g.setColor(Color.PINK);
             g.drawRect((int) (bx - dx), (int) (by - dy), bw, bh);
-        }
+        }*/
         //draw health bars
         double hullPercent = hull / maxHull;
         double shieldPercent = shield / maxShield;

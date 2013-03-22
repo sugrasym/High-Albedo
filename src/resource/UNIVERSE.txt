@@ -8,12 +8,12 @@
 
 #New Game Smell
 [NewGame]
-ship=Sparrow
+ship=Hyena
 system=System 19
 near=Planet 0
 cash=8500
-install=Talon 1/Talon 1
-cargo=Ageiran MRE~3
+install=Starstruck Launcher/Starstruck Launcher/Starstruck Launcher/Starstruck Launcher
+cargo=Ageiran MRE~3/Starstruck Missile~100
 faction=Player
 [/NewGame]
 
