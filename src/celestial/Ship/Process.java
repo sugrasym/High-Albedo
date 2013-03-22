@@ -60,48 +60,52 @@ public class Process implements Serializable {
             cycleTime = Double.parseDouble(relevant.getValue("cycle"));
             //create products and products table
             String product = relevant.getValue("product");
-            String[] pArr = product.split("/");
-            for (int a = 0; a < pArr.length; a++) {
-                Item p = new Item(pArr[a].split(",")[0]);
-                p.setQuantity(Integer.parseInt(pArr[a].split(",")[1]));
-                products.add(p);
-                //see if the station has this registered as a product
-                boolean needed = true;
-                for (int b = 0; b < stationSelling.size(); b++) {
-                    if (stationSelling.get(b).getName().matches(p.getName())) {
-                        //yep it does
-                        needed = false;
-                        break;
+            if (product != null) {
+                String[] pArr = product.split("/");
+                for (int a = 0; a < pArr.length; a++) {
+                    Item p = new Item(pArr[a].split(",")[0]);
+                    p.setQuantity(Integer.parseInt(pArr[a].split(",")[1]));
+                    products.add(p);
+                    //see if the station has this registered as a product
+                    boolean needed = true;
+                    for (int b = 0; b < stationSelling.size(); b++) {
+                        if (stationSelling.get(b).getName().matches(p.getName())) {
+                            //yep it does
+                            needed = false;
+                            break;
+                        }
                     }
-                }
-                if (needed) {
-                    //add it to the product table so it can be bought
-                    Item p2 = new Item(pArr[a].split(",")[0]);
-                    p2.setQuantity(0);
-                    stationSelling.add(p2);
+                    if (needed) {
+                        //add it to the product table so it can be bought
+                        Item p2 = new Item(pArr[a].split(",")[0]);
+                        p2.setQuantity(0);
+                        stationSelling.add(p2);
+                    }
                 }
             }
             //create resources and resource table
             String resource = relevant.getValue("resource");
-            String[] rArr = resource.split("/");
-            for (int a = 0; a < rArr.length; a++) {
-                Item p = new Item(rArr[a].split(",")[0]);
-                p.setQuantity(Integer.parseInt(rArr[a].split(",")[1]));
-                resources.add(p);
-                //see if the station has this registered as a resource
-                boolean needed = true;
-                for (int b = 0; b < stationBuying.size(); b++) {
-                    if (stationBuying.get(b).getName().matches(p.getName())) {
-                        //yep it does
-                        needed = false;
-                        break;
+            if (resource != null) {
+                String[] rArr = resource.split("/");
+                for (int a = 0; a < rArr.length; a++) {
+                    Item p = new Item(rArr[a].split(",")[0]);
+                    p.setQuantity(Integer.parseInt(rArr[a].split(",")[1]));
+                    resources.add(p);
+                    //see if the station has this registered as a resource
+                    boolean needed = true;
+                    for (int b = 0; b < stationBuying.size(); b++) {
+                        if (stationBuying.get(b).getName().matches(p.getName())) {
+                            //yep it does
+                            needed = false;
+                            break;
+                        }
                     }
-                }
-                if (needed) {
-                    //add it to the resource table so it can be bought
-                    Item p2 = new Item(rArr[a].split(",")[0]);
-                    p2.setQuantity(0);
-                    stationBuying.add(p2);
+                    if (needed) {
+                        //add it to the resource table so it can be bought
+                        Item p2 = new Item(rArr[a].split(",")[0]);
+                        p2.setQuantity(0);
+                        stationBuying.add(p2);
+                    }
                 }
             }
         } else {
@@ -142,16 +146,45 @@ public class Process implements Serializable {
             timer += tpf;
         } else {
             //process complete, deliver products and reset
-            for (int a = 0; a < products.size(); a++) {
-                for (int b = 0; b < stationSelling.size(); b++) {
-                    if (products.get(a).getName().matches(stationSelling.get(b).getName())) {
-                        //deliver
-                        stationSelling.get(b).setQuantity(stationSelling.get(b).getQuantity() + products.get(a).getQuantity());
-                        break;
+            if (canDeliver()) {
+                for (int a = 0; a < products.size(); a++) {
+                    for (int b = 0; b < stationSelling.size(); b++) {
+                        if (products.get(a).getName().matches(stationSelling.get(b).getName())) {
+                            //deliver
+                            stationSelling.get(b).setQuantity(stationSelling.get(b).getQuantity() + products.get(a).getQuantity());
+                            break;
+                        }
+                    }
+                }
+                timer = 0;
+            } else {
+                //no room for product delivery, stalled
+            }
+        }
+    }
+
+    public boolean canDeliver() {
+        try {
+            //iterate each product
+            for(int a = 0; a < products.size(); a++) {
+                //check each station's selling list
+                for(int  b= 0; b < stationSelling.size(); b++) {
+                    if(products.get(a).getName().matches(stationSelling.get(b).getName())) {
+                        //determine if there is room for delivery
+                        int stored = stationSelling.get(b).getQuantity();
+                        int max = stationSelling.get(b).getStore();
+                        int delivering = products.get(a).getQuantity();
+                        if(stored + delivering > max) {
+                            //no room
+                            return false;
+                        }
                     }
                 }
             }
-            timer = 0;
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
     }
 

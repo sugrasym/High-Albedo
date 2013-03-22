@@ -105,8 +105,64 @@ public class Station extends Ship {
         computeComplexRectangularBounds(relevant);
         computeDockBounds(relevant);
         computeProcesses(relevant);
+        randomizeInitialGoods();
         //bring the ship to life
         state = State.ALIVE;
+    }
+
+    public int getPrice(Item item) {
+        int max = 0;
+        int min = 0;
+        int q = 0;
+        int s = 1;
+        //get the right commodity
+        boolean found = false;
+        for (int a = 0; a < stationBuying.size(); a++) {
+            if (stationBuying.get(a).getName().matches(item.getName())) {
+                max = stationBuying.get(a).getMaxPrice();
+                min = stationBuying.get(a).getMinPrice();
+                q = stationBuying.get(a).getQuantity();
+                s = stationBuying.get(a).getStore();
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            for (int a = 0; a < stationSelling.size(); a++) {
+                if (stationSelling.get(a).getName().matches(item.getName())) {
+                    max = stationSelling.get(a).getMaxPrice();
+                    min = stationSelling.get(a).getMinPrice();
+                    q = stationSelling.get(a).getQuantity();
+                    s = stationSelling.get(a).getStore();
+                    found = true;
+                    break;
+                }
+            }
+        }
+        //calculate price
+        int d = max - min;
+        float per = (float) q / (float) s;
+        int x = (int) (d * (1-per));
+        int price = min + x;
+        if (price < min) {
+            price = min;
+        } else if (price > max) {
+            price = max;
+        }
+        return price;
+    }
+
+    protected void randomizeInitialGoods() {
+        if (stationSelling.size() > 0) {
+            for (int a = 0; a < stationSelling.size(); a++) {
+                stationSelling.get(a).setQuantity(rnd.nextInt(stationSelling.get(a).getStore()));
+            }
+        }
+        if (stationBuying.size() > 0) {
+            for (int a = 0; a < stationBuying.size(); a++) {
+                stationBuying.get(a).setQuantity(rnd.nextInt(stationBuying.get(a).getStore()));
+            }
+        }
     }
 
     protected void computeComplexRectangularBounds(Parser.Term relevant) throws NumberFormatException {
@@ -203,8 +259,8 @@ public class Station extends Ship {
                     return true;
                 }
             } else {
-                System.out.println(docks.get(a).canFit(ship)+" "+a);
-                System.out.println(docks.get(a).getClient()+" "+a);
+                System.out.println(docks.get(a).canFit(ship) + " " + a);
+                System.out.println(docks.get(a).getClient() + " " + a);
             }
         }
         return false;

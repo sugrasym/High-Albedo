@@ -13,7 +13,7 @@ system=System 19
 near=Planet 0
 cash=8500
 install=Talon 1/Talon 1
-cargo=Starstruck Missile~100
+cargo=Atmospheric Gases~3
 faction=Player
 [/NewGame]
 
@@ -36,13 +36,13 @@ system=System 19
 near=Planet 0
 faction=Ageiran Federation
 install=Arrow/Arrow
-cargo=Iguana Missile~40
+cargo=Iguana Missile~50
 [/Ship]
 
 ########
 
 [Station]
-ship=Ageiran Weapons Forge
+ship=Ageiran Fabricator
 name=Alpha Station
 faction=Ageiran Federation
 system=System 19

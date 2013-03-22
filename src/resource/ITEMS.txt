@@ -6,9 +6,88 @@ volume=1
 mass=0.5
 HP=100
 minPrice=5
-maxPrice=25
+maxPrice=15
+store=1000
 group=powercell
 description=A standardized energy unit produced by a power plant and moved to a more needed location. /br/ /br/ Energy units are stored in the cargo bay as a suspended static electric field which remains confined in the region it is placed by the compartmentalization of the cargo bay.
+[/Item]
+
+[Item]
+name=Ageiran MRE
+type=commodity
+volume=1
+mass=1
+HP=100
+minPrice=20
+maxPrice=25
+store=250
+group=food
+description=Originally a military product, the Agieran MRE formula is now widely distributed to people of all occupations.
+[/Item]
+
+[Item]
+name=Ageiran Whole Foods
+type=commodity
+volume=5
+mass=1
+HP=100
+minPrice=150
+maxPrice=250
+store=250
+group=food
+description=Raw ingredients for use in the preparation of Ageiran meals. Contains assorted food stuffs.
+[/Item]
+
+[Item]
+name=Mineral Ore
+type=commodity
+volume=4
+mass=2
+HP=100
+minPrice=55
+maxPrice=85
+store=500
+group=ore
+description=Raw ore extracted from either a space based or planet side mining operation.
+[/Item]
+
+[Item]
+name=Atmospheric Gases
+type=commodity
+volume=1
+mass=1
+HP=100
+minPrice=2
+maxPrice=4
+store=500
+group=ore
+description=These gases were extracted from the atmosphere of a planet. Many industrial processes take advantage of them.
+[/Item]
+
+[Item]
+name=Alloy Bar
+type=commodity
+volume=2
+mass=1
+HP=100
+minPrice=120
+maxPrice=175
+store=120
+group=alloy
+description=Alloy bars are bars of refined metal that can be used for more sophisticated manufacturing processes such as space craft construction.
+[/Item]
+
+[Item]
+name=FPGAs
+type=commodity
+volume=1
+mass=1
+HP=100
+minPrice=105
+maxPrice=160
+store=120
+group=alloy
+description=Field-Programmable-Gate-Arrays are used in rapid prototyping of computer circuitry. Once programmed, they can be flashed into a permanent configuration for release.
 [/Item]
 
 [Item]
@@ -20,6 +99,7 @@ HP=100
 minPrice=2500
 maxPrice=5000
 group=ore
+store=1000
 description=Since the dawn of man hydrocarbons have been burned in low tech reactors to generate energy. They have a much higher energy density than solar energy, but a lower energy density than nuclear fusion. One hydrocarbon unit can easily produce several hundred energy units, however hydrocarbon supplies are harder to locate than the extremely abundant solar energy.  /br/ /br/ Many stations are capable of using hydrocarbons to generate their power, and Ageiran Customs Offices will do the conversion as well so that the resulting energy can be sold at a profit to small scale traders.
 [/Item]
 
@@ -32,6 +112,7 @@ HP=100
 minPrice=1
 maxPrice=10
 group=ore
+store=1000
 description=Scrap metal is often found in wreckage and waste disposal areas. These pieces of metal can be converted into a usable form by the correct factory. 
 [/Item]
 
@@ -44,6 +125,7 @@ HP=100
 minPrice=0
 maxPrice=5
 group=ore
+store=1000
 description=When something is burned, built, or processed there are often toxic industrial wastes produced. These wastes are often reusable with the right equipment, creating a cottage industry of moving waste to refinement plants. When in doubt, however, waste is often just ejected. /br/ /br/ Industrial waste is a rare commodity in that it is often given away for free by factories so that a trader will take it off their hands so manufacturing can continue.
 [/Item]
 
@@ -53,9 +135,10 @@ type=commodity
 volume=1
 mass=2
 HP=100
-minPrice=20
-maxPrice=250
-group=ore
+minPrice=300
+maxPrice=950
+group=product
+store=60
 description=Consumer goods are household items that are relatively easy to produce. Small personal fabrication devices are ubiquitous and capable of converting a sufficient quantity of input materials into a desired good. This process is so lightweight that it often doesn't require any additional energy beyond what all stations can generate internally, making consumer goods manufacturing an attractive option for light stations such as customs offices. 
 [/Item]
 
@@ -70,6 +153,7 @@ HP=100
 minPrice=500
 maxPrice=750
 group=weapon
+store=1000
 description=Ageiran medium range particle weapon designed to be mounted on light fighters. /br/ /br/ Ageiran weapons favor a balance of range, damage output, and speed since the Ageirans are concerned with good damage projection. Their weapons are outperformed in all areas by weapons from other factions, but few are as well rounded.
 [/Item]
 
@@ -82,6 +166,7 @@ HP=100
 minPrice=900
 maxPrice=1250
 group=weapon
+store=1000
 description=Ageiran medium range particle weapon designed to be mounted on light fighters. /br/ /br/ Ageiran weapons favor a balance of range, damage output, and speed since the Ageirans are concerned with good damage projection. Their weapons are outperformed in all areas by weapons from other factions, but few are as well rounded. /br/ /br/ This weapon features small improvements to all areas of the Talon 1's design.
 [/Item]
 
@@ -94,6 +179,7 @@ HP=100
 minPrice=1400
 maxPrice=1725
 group=weapon
+store=1000
 description=Ageiran medium range particle weapon designed to be mounted on light fighters. /br/ /br/ Ageiran weapons favor a balance of range, damage output, and speed since the Ageirans are concerned with good damage projection. Their weapons are outperformed in all areas by weapons from other factions, but few are as well rounded. /br/ /br/ This weapon is the most powerful particle weapon that the Ageiran Federation offers for fighters.
 [/Item]
 
@@ -108,6 +194,7 @@ HP=85
 minPrice=850
 maxPrice=1050
 group=weapon
+store=1000
 description=Cainan missile technology delivers great reliability at medium range. /br/ /br/ The Python missile is a balanced, multirole, missile intended for Cainan light fighters.
 [/Item]
 
@@ -120,6 +207,7 @@ HP=185
 minPrice=67850
 maxPrice=213050
 group=weapon
+store=1000
 description=Cainan missile technology delivers great reliability at medium range. /br/ /br/ The Anaconda missile is a siege missile that does devastating damage to slow moving or stationary targets.
 [/Item]
 
@@ -144,6 +232,7 @@ HP=85
 minPrice=850
 maxPrice=1050
 group=weapon
+store=1000
 description=Advances in Cainan weapon technology were primarily in the field of guided missiles, but they still equip cannons to their fighters to avoid running out of ammunition. This is a Cainan particle cannon and it is a fairly average weapon. It is intended to be equipped on Cainan light fighters.
 [/Item]
 
@@ -168,6 +257,7 @@ HP=200
 minPrice=3100
 maxPrice=4500
 group=weapon
+store=1000
 description=Advances in Cainan weapon technology were primarily in the field of guided missiles, but they still equip cannons to their fighters to avoid running out of ammunition. The Bask is a pulse cannon which delivers a steady stream of damage. It is designed to be equipped to both medium and heavy Cainan fighters looking for an edge in close quarters combat.
 [/Item]
 
@@ -180,6 +270,7 @@ HP=210
 minPrice=3250
 maxPrice=4800
 group=weapon
+store=1000
 description=Advances in Cainan weapon technology were primarily in the field of guided missiles, but they still equip cannons to their fighters to avoid running out of ammunition. The Frill is a siege weapon that delivers substantial damage but refires very slowly. It is designed to be equipped to both medium and heavy Cainan fighters looking to attack hard targets.
 [/Item]
 
@@ -194,6 +285,7 @@ HP=150
 minPrice=2600
 maxPrice=4525
 group=weapon
+store=1000
 description=A weapon of the 'Archers' pirate faction. Designed to project high damage at range, this weapon trades projectile speed for long range punishment. /br/ /br/ Designed for use on light figters, this weapon allows for significant sustained firepower at extreme ranges. However, one must be skilled in maintaining range and adjusting the trajectory of the weapon to compensate for the slowness of the projectile.
 [/Item]
 
@@ -206,6 +298,7 @@ HP=125
 minPrice=2400
 maxPrice=4800
 group=weapon
+store=1000
 description=A weapon of the 'Archers' pirate faction. Designed to out-kite long range opponents, this weapon trades damage for extremely long range and a high projectile speed. /br/ /br/ The Arrow was developed when the Archers decided their raiders needed the final word in beyond visual range combat.
 [/Item]
 
@@ -218,6 +311,7 @@ HP=200
 minPrice=6400
 maxPrice=14800
 group=weapon
+store=1000
 description=A weapon of the 'Archers' pirate faction. Designed for precision strikes at range, this weapon does a massive amount of damage at long range but refires very slowly. /br/ /br/ The Long 9 fulfills the Archers' need for an effective long range siege platform.
 [/Item]
 
@@ -232,6 +326,7 @@ HP=100
 minPrice=7000
 maxPrice=15500
 group=weapon
+store=1000
 description=The Knights of Orin have weapons that perform fiercly well at close range but have no damage projection beyond that. /br/ /br/ 'Rayo Azul' is a wicked fast plasma bolt that does heavy damage but dissipates quickly.
 [/Item]
 
@@ -244,6 +339,7 @@ HP=100
 minPrice=12000
 maxPrice=78100
 group=weapon
+store=1000
 description=The Knights of Orin have weapons that perform fiercly well at close range but have no damage projection beyond that. /br/ /br/ 'Sangre Roja' is an extremely powerful close range weapon, but using it requires closing to extremely close range.
 [/Item]
 
@@ -256,6 +352,7 @@ HP=142
 minPrice=3000
 maxPrice=5000
 group=weapon
+store=1000
 description=The Knights of Orin have weapons that perform fiercly well at close range but have no damage projection beyond that. /br/ /br/ 'Orgullo Negro' is a very powerful cannon when fed with 'Bala Negro' ammunition. It combines the destructive power the Knights are known for at close range with the ability to reach out and touch someone. It does burn through ammo quickly, however.
 [/Item]
 
@@ -270,6 +367,7 @@ HP=25
 minPrice=20000
 maxPrice=500000
 group=weapon
+store=1000
 description=ITC missile technology is far in advance of any other nation or faction. This is due to a design policy that forgoes other types of weapons. /br/ /br/ 'Starstruck' is the result of 'well placed' defense spending and packs extreme range, high yield, and great tracking into one lethal, albeit prohibitably expensive, package. Proponents of the Starstruck project, and the continued use of the expensive missile it created, argue that you can't put a price on security. /br/ /br/ The Starstruck Missile is the primary weapon on all ITC fighters.
 [/Item]
 
@@ -282,6 +380,7 @@ HP=25
 minPrice=40000
 maxPrice=300000
 group=weapon
+store=1000
 description=ITC missile technology is far in advance of any other nation or faction. This is due to a design policy that forgoes other types of weapons. /br/ /br/ 'Sidewinder' is a modified version of the 'Starstruck' missile that gives up about half its yield for a drastic increase in effective range. This missile is designed to relentlessly hunt fast enemy fighters, and the real limit is the sensor range of the craft firing the missile. This missile is used by some ITC interceptors.
 [/Item]
 
@@ -296,6 +395,7 @@ HP=100
 minPrice=10600
 maxPrice=62000
 group=ammo
+store=1000
 description=Unarmed missile for use with a 'Starstruck Launcher'. /br/ /br/ 'Starstruck' is the result of 'well placed' defense spending and packs extreme range, high yield, and great tracking into one lethal, albeit prohibitably expensive, package. Proponents of the Starstruck project, and the continued use of the expensive missile it created, argue that you can't put a price on security. /br/ /br/ The Starstruck Missile is the primary weapon on all ITC fighters.
 [/Item]
 
@@ -308,6 +408,7 @@ HP=100
 minPrice=21000
 maxPrice=84500
 group=ammo
+store=1000
 description=Unarmed missile for use with a 'Sidewinder Launcher'. /br/ /br/ 'Sidewinder' is a modified version of the 'Starstruck' missile that gives up about half its yield for a drastic increase in effective range. This missile is designed to relentlessly hunt fast enemy fighters, and the real limit is the sensor range of the craft firing the missile. This missile is used by some ITC interceptors.
 [/Item]
 
@@ -320,6 +421,7 @@ HP=100
 minPrice=5
 maxPrice=25
 group=ammo
+store=1000
 description=Unarmed missile for use with a 'Python Launcher'. This is a Cainan multirole missile primarily used on light fighters. It does decent damage, but its guidance is sub par compared to dogfighting missiles.
 [/Item]
 
@@ -332,6 +434,7 @@ HP=300
 minPrice=1400
 maxPrice=3500
 group=ammo
+store=1000
 description=Unarmed missile for use with a 'Anaconda Launcher'. This Cainan torpedo is only effective against slow or stationary targets, but it packs a punch when it hits.
 [/Item]
 
@@ -344,6 +447,7 @@ HP=50
 minPrice=200
 maxPrice=600
 group=ammo
+store=1000
 description=Unarmed missile for use with a 'Iguana Launcher'. This is a Cainan anti-fighter missile that is designed to get to the target quickly and accurately, but delivers less damage than a multi-role missile.
 [/Item]
 
@@ -356,6 +460,7 @@ HP=1
 minPrice=1
 maxPrice=5
 group=ammo
+store=1000
 description=Shell for use with a 'Orgullo Negro' cannon. When loaded into such a weapon this shell has impressive damage output and projection.
 [/Item]
 
@@ -369,6 +474,7 @@ mass=0
 HP=0
 minPrice=0
 maxPrice=0
+store=1000
 description=Empty space.
 [/Item]
 
@@ -381,6 +487,7 @@ HP=100
 minPrice=500
 maxPrice=750
 group=weapon
+store=1000
 description=Devtest weapon
 [/Item]
 
@@ -394,5 +501,6 @@ HP=100
 minPrice=50000000
 maxPrice=250000000
 group=exoticmatter
+store=1000
 description=In the 20th and 21st centuries it was theorized that one could create matter that had a negative rest mass, essentially violating some energy conditions in relativity and creating the most powerful thing in existence. This material would behave very, very, strangely in our universe and allow for things like wormholes, warp drive, and making things levitate without using power. /br/ /br/ Negative mass has been synthesized in a laboratory, but in small quantities and at extreme expense. It has vast applications making it a highly expensive and desired commodity. No natural sources are known, and the particle synthesis process to generate it is insanely expensive for most organizations. /br/ /br/ Negative mass was used to open wormholes to random locations in the universe during the Exodus project which created our civilization. Unfortunately the Exodus experiments proved that it was possible to make traversable wormholes, but impossible to target them to a specific location meaning anyone sent through would be, in all odds, lost in space forever. /br/ /br/ This variant of exotic matter also has a negative volume, since it causes space to expand in its presence. If the negative mass manages to cancel the mass of your craft, or make it negative, you will notice some interesting behavior when you collide with something.
 [/Item]

@@ -11,3 +11,50 @@ cycle=120
 product=Consumer Goods,1
 resource=Scrap Metal,1
 [/Process]
+
+[Process]
+name=AgeiranSolar
+cycle=25
+product=Standard Energy Unit,20
+resource=Atmospheric Gases,1
+[/Process]
+
+[Process]
+name=AgeiranCustomsGases
+cycle=5
+product=Atmospheric Gases,5
+[/Process]
+
+[Process]
+name=AgeiranCustomsOre
+cycle=60
+product=Mineral Ore,24
+[/Process]
+
+[Process]
+name=AgeiranMRE
+cycle=20
+product=Ageiran MRE,10
+resource=Standard Energy Unit,10
+[/Process]
+
+[Process]
+name=AgeiranWholeFoods
+cycle=120
+product=Ageiran Whole Foods,4
+resource=Standard Energy Unit,20
+[/Process]
+
+[Process]
+name=AgeiranAlloyBar
+cycle=75
+product=Alloy Bar,12/Industrial Waste,1
+resource=Standard Energy Unit,36/Mineral Ore,12/Ageiran MRE,12
+[/Process]
+
+[Process]
+name=AgeiranFPGAs
+cycle=30
+product=FPGAs,10/Industrial Waste,1
+resource=Standard Energy Unit,10/Mineral Ore,10/Ageiran MRE,10
+[/Process]

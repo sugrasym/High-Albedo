@@ -26,11 +26,12 @@ import lib.Parser.Term;
 
 public class Item implements Serializable {
     //parameters
+
     public static final String TYPE_CANNON = "cannon";
     public static final String TYPE_MISSILE = "missile";
     public static final String TYPE_COMMODITY = "commodity";
-
     private int volume;
+    private int store;
     private double mass;
     private double HP;
     private String name;
@@ -72,6 +73,12 @@ public class Item implements Serializable {
             maxPrice = Integer.parseInt(relevant.getValue("maxPrice"));
             description = relevant.getValue("description");
             group = relevant.getValue("group");
+            String st = relevant.getValue("store");
+            if (st != null) {
+                store = Integer.parseInt(relevant.getValue("store"));
+            } else {
+                store = 1000;
+            }
         } else {
             System.out.println("The item " + getName() + " does not exist in ITEMS.txt");
         }
@@ -177,7 +184,7 @@ public class Item implements Serializable {
 
     @Override
     public String toString() {
-        return name + "["+quantity+"]";
+        return name + "[" + quantity + "]";
     }
 
     public int getQuantity() {
@@ -186,5 +193,13 @@ public class Item implements Serializable {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public int getStore() {
+        return store;
+    }
+
+    public void setStore(int store) {
+        this.store = store;
     }
 }

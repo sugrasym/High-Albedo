@@ -217,13 +217,15 @@ public class TradeWindow extends AstralWindow {
                         }
                     }
                 }
+            } else if(command.matches("Buy")) {
+                
             }
         }
     }
 
     private void fillCommandLines(Item selected) {
         optionList.addToList("--Market--");
-        optionList.addToList("PRICE");
+        optionList.addToList("Price: "+docked.getPrice(selected));
         optionList.addToList(" ");
         optionList.addToList("--Trade--");
         if (lastFocus == cargoList) {
