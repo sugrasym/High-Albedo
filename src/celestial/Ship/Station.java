@@ -168,11 +168,13 @@ public class Station extends Ship {
         //generates the processes that were linked to this station
         {
             String raw = relevant.getValue("process");
-            String[] arr = raw.split("/");
-            for (int a = 0; a < arr.length; a++) {
-                Process p = new Process(this, arr[a], stationSelling, stationBuying);
-                if (p != null) {
-                    processes.add(p);
+            if (raw != null) {
+                String[] arr = raw.split("/");
+                for (int a = 0; a < arr.length; a++) {
+                    Process p = new Process(this, arr[a], stationSelling, stationBuying);
+                    if (p != null) {
+                        processes.add(p);
+                    }
                 }
             }
         }
@@ -243,7 +245,7 @@ public class Station extends Ship {
     }
 
     @Override
-    public  void render(Graphics g, double dx, double dy) {
+    public void render(Graphics g, double dx, double dy) {
         theta = 0;
         if (tex != null) {
             //setup the buffer's graphics
@@ -278,22 +280,22 @@ public class Station extends Ship {
 
     @Override
     protected void drawHealthBars(Graphics g, double dx, double dy) {
-        /*//draw the bounds
-         for (int a = 0; a < getBounds().size(); a++) {
-         double bx = getBounds().get(a).x;
-         double by = getBounds().get(a).y;
-         int bw = getBounds().get(a).width;
-         int bh = getBounds().get(a).height;
-         g.setColor(Color.PINK);
-         g.drawRect((int) (bx - dx), (int) (by - dy), bw, bh);
-         }*/
+        //draw the bounds
+        for (int a = 0; a < getBounds().size(); a++) {
+            double bx = getBounds().get(a).x;
+            double by = getBounds().get(a).y;
+            int bw = getBounds().get(a).width;
+            int bh = getBounds().get(a).height;
+            g.setColor(Color.PINK);
+            g.drawRect((int) (bx - dx), (int) (by - dy), bw, bh);
+        }
         //draw health bars
         double hullPercent = hull / maxHull;
         double shieldPercent = shield / maxShield;
         g.setColor(Color.RED);
-        g.fillRect((int) (getX() + getWidth() / 4 - dx), (int) (getY() + getHeight() / 4 - dy), (int) (getWidth() / 2 * hullPercent), 2);
+        g.fillRect((int) (getX() - dx), (int) (getY() - dy), (int) (getWidth() * hullPercent), 2);
         g.setColor(Color.GREEN);
-        g.fillRect((int) (getX() + getWidth() / 4 - dx), (int) (getY() + getHeight() / 4 - dy), (int) (getWidth() / 2 * shieldPercent), 2);
+        g.fillRect((int) (getX() - dx), (int) (getY() - dy), (int) (getWidth() * shieldPercent), 2);
     }
 
     @Override
