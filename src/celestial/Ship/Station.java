@@ -54,6 +54,15 @@ public class Station extends Ship {
     @Override
     public void alive() {
         super.alive();
+        //check if out of business
+        if(cash < 0) {
+            //out of business :(
+            for(int a = 0; a < docks.size(); a++) {
+                docks.get(a).kickOut();
+            }
+            //so sad
+            state = State.DYING;
+        }
         //check dockers
         for (int a = 0; a < docks.size(); a++) {
             docks.get(a).periodicUpdate(tpf);
@@ -142,7 +151,7 @@ public class Station extends Ship {
         //calculate price
         int d = max - min;
         float per = (float) q / (float) s;
-        int x = (int) (d * (1-per));
+        int x = (int) (d * (1 - per));
         int price = min + x;
         if (price < min) {
             price = min;
@@ -150,6 +159,36 @@ public class Station extends Ship {
             price = max;
         }
         return price;
+    }
+
+    public void buy(Ship ship, Item item) {
+    }
+
+    public void sell(Ship ship, Item item) {
+        int price = getPrice(item);
+        Item rel = null;
+        //validate the item is in the cargo bay
+        for (int a = 0; a < ship.getCargoBay().size(); a++) {
+            if (ship.getCargoBay().get(a).getName().matches(item.getName())) {
+                rel = ship.getCargoBay().get(a);
+                break;
+            }
+        }
+        if (rel != null) {
+            //send to station
+            for (int a = 0; a < getStationBuying().size(); a++) {
+                if (rel.getName().matches(getStationBuying().get(a).getName())) {
+                    getStationBuying().get(a).setQuantity(getStationBuying().get(a).getQuantity() + rel.getQuantity());
+                    //remove from cargo
+                    ship.removeFromCargoBay(rel);
+                    //pay the ship
+                    ship.setCash(ship.getCash() + price);
+                    //remove funds from station wallet
+                    setCash(getCash() - price);
+                    break;
+                }
+            }
+        }
     }
 
     protected void randomizeInitialGoods() {

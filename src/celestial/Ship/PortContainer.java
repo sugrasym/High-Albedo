@@ -144,4 +144,10 @@ public class PortContainer implements Serializable {
     public void setParent(Station parent) {
         this.parent = parent;
     }
+
+    public void kickOut() {
+        if(client != null) {
+            client.undock();
+        }
+    }
 }

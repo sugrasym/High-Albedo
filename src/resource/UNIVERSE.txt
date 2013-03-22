@@ -13,7 +13,7 @@ system=System 19
 near=Planet 0
 cash=8500
 install=Talon 1/Talon 1
-cargo=Atmospheric Gases~3
+cargo=Ageiran MRE~3
 faction=Player
 [/NewGame]
 

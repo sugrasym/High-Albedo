@@ -67,7 +67,7 @@ public class Ship extends Celestial {
     private boolean rotateMinus = false;
     private boolean rotatePlus = false;
     //wallet
-    protected long cash = 5000;
+    protected long cash = 50000;
 
     public enum Behavior {
 

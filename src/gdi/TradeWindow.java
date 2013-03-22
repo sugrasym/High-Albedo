@@ -198,27 +198,11 @@ public class TradeWindow extends AstralWindow {
                 //get item
                 int index = lastFocus.getIndex();
                 Item selected = (Item) lastFocus.getItemAtIndex(index);
-                Item rel = null;
-                //validate the item is in the cargo bay
-                for (int a = 0; a < ship.getCargoBay().size(); a++) {
-                    if (ship.getCargoBay().get(a).getName().matches(selected.getName())) {
-                        rel = ship.getCargoBay().get(a);
-                        break;
-                    }
-                }
-                if (rel != null) {
-                    //send to station
-                    for (int a = 0; a < docked.getStationBuying().size(); a++) {
-                        if (rel.getName().matches(docked.getStationBuying().get(a).getName())) {
-                            docked.getStationBuying().get(a).setQuantity(docked.getStationBuying().get(a).getQuantity() + rel.getQuantity());
-                            //remove from cargo
-                            ship.removeFromCargoBay(rel);
-                            break;
-                        }
-                    }
-                }
+                docked.sell(ship, selected);
             } else if(command.matches("Buy")) {
-                
+                int index = lastFocus.getIndex();
+                Item selected = (Item) lastFocus.getItemAtIndex(index);
+                docked.buy(ship, selected);
             }
         }
     }
