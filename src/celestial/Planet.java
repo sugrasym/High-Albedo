@@ -30,8 +30,10 @@ import org.ankh.unfall.planet.PlanetInformation;
 import org.ankh.unfall.planet.texgen.ContinentalGenerator;
 import org.ankh.unfall.planet.texgen.PlanetGenerator;
 import org.ankh.unfall.planet.texgen.palette.TerrainPalette;
+import org.ankh.unfall.planet.texgen.palette.ranges.AlienPalette;
 import org.ankh.unfall.planet.texgen.palette.ranges.EarthPalette;
 import org.ankh.unfall.planet.texgen.palette.ranges.HospitablePalette;
+import org.ankh.unfall.planet.texgen.palette.ranges.LavaPalette;
 import org.ankh.unfall.planet.texgen.palette.ranges.MarsPalette;
 import org.ankh.unfall.planet.texgen.palette.ranges.StrangePalette;
 
@@ -84,14 +86,14 @@ public class Planet extends Celestial {
                 //create planet info
                 PlanetInformation info = new PlanetInformation();
                 info.setDaytime(360);
-                info.setEquatorTemperature(sRand.nextInt(40) + 10);
+                info.setEquatorTemperature(sRand.nextInt(50) + 15);
                 info.setPoleTemperature(sRand.nextInt(info.getEquatorTemperature()) - 50);
                 info.setRadius(diameter / 2);
                 info.setWaterInPercent(sRand.nextFloat());
-                info.setHeightFactor(0.2f);
+                info.setHeightFactor(sRand.nextFloat()/2+0.1f);
                 info.setSeed((int) seed);
                 info.setHumidity(sRand.nextFloat());
-                info.setSmoothness(sRand.nextInt(3) + 7);
+                info.setSmoothness(sRand.nextInt(4) + 6);
                 //setup palette
                 TerrainPalette palette = null;
                 String pal = texture.getValue("palette");
@@ -103,6 +105,10 @@ public class Planet extends Celestial {
                     palette = new HospitablePalette(info);
                 } else if (pal.matches("Strange")) {
                     palette = new StrangePalette(info);
+                } else if (pal.matches("Lava")) {
+                    palette = new LavaPalette(info);
+                } else if (pal.matches("Alien")) {
+                    palette = new AlienPalette(info);
                 }
                 //call the procedural planet generator
                 PlanetGenerator plan = new ContinentalGenerator(RENDER_SIZE, RENDER_SIZE, info, palette);
@@ -123,7 +129,7 @@ public class Planet extends Celestial {
                 //setup stroke
                 int range = (int) (0.007 * RENDER_SIZE);
                 int min = (int) (0.01 * range) + 1;
-                gfx.setStroke(new WobblyStroke(sRand.nextInt(range) + min, sRand.nextInt(range) + min));
+                gfx.setStroke(new WobblyStroke(sRand.nextInt(range) + min, sRand.nextInt(range) + min, seed));
                 //determine band count
                 int bands = sRand.nextInt(75) + 25;
                 int bandHeight = (RENDER_SIZE / bands);
@@ -139,14 +145,14 @@ public class Planet extends Celestial {
                 gfx.setColor(new Color(Color.HSBtoRGB(hue, sat, value)));
                 gfx.fillRect(0, 0, RENDER_SIZE, RENDER_SIZE);
                 //pass 1, big bands
-                for (int a = 0; a < bands / 2; a++) {
+                for (int a = 0; a < bands; a++) {
                     //vary saturation
                     sat = sRand.nextFloat();
                     //draw a band
                     Color raw = new Color(Color.HSBtoRGB(hue, sat, value));
                     Color col = new Color(raw.getRed(), raw.getGreen(), raw.getBlue(), 64);
                     gfx.setColor(col);
-                    gfx.drawRect(0, bandHeight / 2 * (a), RENDER_SIZE, bandHeight);
+                    gfx.drawRect(0, sRand.nextInt(RENDER_SIZE), RENDER_SIZE, bandHeight);
                 }
                 //pick a hue
                 hue = sRand.nextFloat();
@@ -158,7 +164,7 @@ public class Planet extends Celestial {
                     Color raw = new Color(Color.HSBtoRGB(hue, sat, value));
                     Color col = new Color(raw.getRed(), raw.getGreen(), raw.getBlue(), 16);
                     gfx.setColor(col);
-                    gfx.drawRect(0, bandHeight / 4 * (a), RENDER_SIZE, bandHeight);
+                    gfx.drawRect(0, sRand.nextInt(RENDER_SIZE), RENDER_SIZE, bandHeight);
                 }
                 //store
                 raw_tex = tmp;
@@ -167,7 +173,7 @@ public class Planet extends Celestial {
                 //setup stroke
                 int range = (int) (0.007 * RENDER_SIZE);
                 int min = (int) (0.125 * range) + 1;
-                gfx.setStroke(new WobblyStroke(sRand.nextInt(range) + min, sRand.nextInt(range) + min));
+                gfx.setStroke(new WobblyStroke(sRand.nextInt(range) + min, sRand.nextInt(range) + min, seed));
                 /*
                  * My gas giants are conservative. They have a color and brightness
                  * which is held constant while bands are drawn varying the saturation.
@@ -191,14 +197,14 @@ public class Planet extends Celestial {
                 gfx.setColor(new Color(Color.HSBtoRGB(hue, sat, value)));
                 gfx.fillRect(0, 0, RENDER_SIZE, RENDER_SIZE);
                 //pass 1, big bands
-                for (int a = 0; a < bands / 2; a++) {
+                for (int a = 0; a < bands; a++) {
                     //vary saturation
                     sat = sRand.nextFloat();
                     //draw a band
                     Color raw = new Color(Color.HSBtoRGB(hue, sat, value));
                     Color col = new Color(raw.getRed(), raw.getGreen(), raw.getBlue(), 64);
                     gfx.setColor(col);
-                    gfx.drawRect(0, bandHeight / 2 * (a), RENDER_SIZE, bandHeight);
+                    gfx.drawRect(0, sRand.nextInt(RENDER_SIZE), RENDER_SIZE, bandHeight);
                 }
                 //pass 2, small secondary bands
                 for (int a = 0; a < bands * 4; a++) {
@@ -208,7 +214,7 @@ public class Planet extends Celestial {
                     Color raw = new Color(Color.HSBtoRGB(hue, sat, value));
                     Color col = new Color(raw.getRed(), raw.getGreen(), raw.getBlue(), 16);
                     gfx.setColor(col);
-                    gfx.drawRect(0, bandHeight / 4 * (a), RENDER_SIZE, bandHeight);
+                    gfx.drawRect(0, sRand.nextInt(RENDER_SIZE), RENDER_SIZE, bandHeight);
                 }
                 //store
                 raw_tex = tmp;

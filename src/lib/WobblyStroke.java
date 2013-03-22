@@ -18,15 +18,18 @@ package lib;
 
 import java.awt.*;
 import java.awt.geom.*;
+import java.util.Random;
 
 public class WobblyStroke implements Stroke {
 	private float detail = 2;
 	private float amplitude = 2;
 	private static final float FLATNESS = 1;
+        Random rnd;
 
-	public WobblyStroke( float detail, float amplitude ) {
+	public WobblyStroke(float detail, float amplitude, int seed) {
 		this.detail	= detail;
 		this.amplitude	= amplitude;
+                rnd = new Random(seed);
 	}
 
 	public Shape createStrokedShape( Shape shape ) {
@@ -86,7 +89,7 @@ public class WobblyStroke implements Stroke {
 	}
     
     private float randomize( float x ) {
-        return x+(float)Math.random()*amplitude*2-1;
+        return x+(float)rnd.nextFloat()*amplitude*2-1;
     }
 
 }

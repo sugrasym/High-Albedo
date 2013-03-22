@@ -59,3 +59,15 @@ name=Strange
 group=rock
 palette=Strange
 [/Planet]
+
+[Planet]
+name=Lava
+group=rock
+palette=Lava
+[/Planet]
+
+[Planet]
+name=Alien
+group=rock
+palette=Alien
+[/Planet]

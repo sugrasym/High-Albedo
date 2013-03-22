@@ -33,7 +33,7 @@ import lib.Parser.Term;
 public class Universe implements Serializable {
 
     private ArrayList<SolarSystem> systems = new ArrayList<>();
-    private transient ResourceCache cache = new ResourceCache();
+    private transient ResourceCache cache;
     protected Ship playerShip;
 
     public Universe() {
@@ -139,6 +139,11 @@ public class Universe implements Serializable {
     }
 
     public ResourceCache getCache() {
-        return cache;
+        if (cache != null) {
+            return cache;
+        } else {
+            cache = new ResourceCache();
+            return cache;
+        }
     }
 }
