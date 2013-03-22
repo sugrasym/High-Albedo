@@ -141,7 +141,7 @@ public class TradeWindow extends AstralWindow {
                 }
                 //display info on selected
                 int index = lastFocus.getIndex();
-                if (index < logicalCargoList.size()) {
+                if (lastFocus.getItemAtIndex(index) != null) {
                     Item selected = (Item) lastFocus.getItemAtIndex(index);
                     propertyList.addToList("--GLOBAL--");
                     propertyList.addToList(" ");
@@ -198,18 +198,18 @@ public class TradeWindow extends AstralWindow {
                 //get item
                 int index = lastFocus.getIndex();
                 Item selected = (Item) lastFocus.getItemAtIndex(index);
-                docked.sell(ship, selected);
-            } else if(command.matches("Buy")) {
+                docked.sell(ship, selected, 1);
+            } else if (command.matches("Buy")) {
                 int index = lastFocus.getIndex();
                 Item selected = (Item) lastFocus.getItemAtIndex(index);
-                docked.buy(ship, selected);
+                docked.buy(ship, selected, 1);
             }
         }
     }
 
     private void fillCommandLines(Item selected) {
         optionList.addToList("--Market--");
-        optionList.addToList("Price: "+docked.getPrice(selected));
+        optionList.addToList("Price: " + docked.getPrice(selected));
         optionList.addToList(" ");
         optionList.addToList("--Trade--");
         if (lastFocus == cargoList) {

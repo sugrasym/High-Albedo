@@ -55,9 +55,9 @@ public class Station extends Ship {
     public void alive() {
         super.alive();
         //check if out of business
-        if(cash < 0) {
+        if (cash < 0) {
             //out of business :(
-            for(int a = 0; a < docks.size(); a++) {
+            for (int a = 0; a < docks.size(); a++) {
                 docks.get(a).kickOut();
             }
             //so sad
@@ -161,31 +161,65 @@ public class Station extends Ship {
         return price;
     }
 
-    public void buy(Ship ship, Item item) {
-    }
-
-    public void sell(Ship ship, Item item) {
+    public void buy(Ship ship, Item item, int quantity) {
+        //get current offer
         int price = getPrice(item);
-        Item rel = null;
-        //validate the item is in the cargo bay
-        for (int a = 0; a < ship.getCargoBay().size(); a++) {
-            if (ship.getCargoBay().get(a).getName().matches(item.getName())) {
-                rel = ship.getCargoBay().get(a);
-                break;
+        //repeat buy procedure
+        for (int lx = 0; lx < quantity; lx++) {
+            Item rel = null;
+            //validate the item is available
+            for (int a = 0; a < stationSelling.size(); a++) {
+                if (stationSelling.get(a).getName().matches(item.getName())) {
+                    //make sure there is something available
+                    if (stationSelling.get(a).getQuantity() > 0) {
+                        rel = stationSelling.get(a);
+                    }
+                    break;
+                }
+            }
+            if (rel != null) {
+                //validate the player can cover the charge
+                if (ship.getCash() - price >= 0) {
+                    //attempt transfer of item
+                    if (ship.addToCargoBay(new Item(item.getName()))) {
+                        //decrement stocks
+                        rel.setQuantity(rel.getQuantity()-1);
+                        //transfer funds
+                        ship.setCash(ship.getCash()-price);
+                        setCash(getCash()+price);
+                    }
+                }
             }
         }
-        if (rel != null) {
-            //send to station
-            for (int a = 0; a < getStationBuying().size(); a++) {
-                if (rel.getName().matches(getStationBuying().get(a).getName())) {
-                    getStationBuying().get(a).setQuantity(getStationBuying().get(a).getQuantity() + rel.getQuantity());
-                    //remove from cargo
-                    ship.removeFromCargoBay(rel);
-                    //pay the ship
-                    ship.setCash(ship.getCash() + price);
-                    //remove funds from station wallet
-                    setCash(getCash() - price);
+
+    }
+
+    public void sell(Ship ship, Item item, int quantity) {
+        //get current offer
+        int price = getPrice(item);
+        //repeat sell procedure
+        for (int lx = 0; lx < quantity; lx++) {
+            Item rel = null;
+            //validate the item is in the cargo bay
+            for (int a = 0; a < ship.getCargoBay().size(); a++) {
+                if (ship.getCargoBay().get(a).getName().matches(item.getName())) {
+                    rel = ship.getCargoBay().get(a);
                     break;
+                }
+            }
+            if (rel != null) {
+                //send to station
+                for (int a = 0; a < getStationBuying().size(); a++) {
+                    if (rel.getName().matches(getStationBuying().get(a).getName())) {
+                        getStationBuying().get(a).setQuantity(getStationBuying().get(a).getQuantity() + rel.getQuantity());
+                        //remove from cargo
+                        ship.removeFromCargoBay(rel);
+                        //pay the ship
+                        ship.setCash(ship.getCash() + price);
+                        //remove funds from station wallet
+                        setCash(getCash() - price);
+                        break;
+                    }
                 }
             }
         }
