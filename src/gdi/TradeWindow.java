@@ -205,10 +205,12 @@ public class TradeWindow extends AstralWindow {
             try {
                 if (input.canReturn()) {
                     int val = Integer.parseInt(input.getText());
-                    //perform trade
-                    int index = lastFocus.getIndex();
-                    Item selected = (Item) lastFocus.getItemAtIndex(index);
-                    docked.buy(ship, selected, val);
+                    if (val > 0) {
+                        //perform trade
+                        int index = lastFocus.getIndex();
+                        Item selected = (Item) lastFocus.getItemAtIndex(index);
+                        docked.buy(ship, selected, val);
+                    }
                     //hide it
                     input.setVisible(false);
                     //normal mode
@@ -222,10 +224,12 @@ public class TradeWindow extends AstralWindow {
             try {
                 if (input.canReturn()) {
                     int val = Integer.parseInt(input.getText());
-                    //perform trade
-                    int index = lastFocus.getIndex();
-                    Item selected = (Item) lastFocus.getItemAtIndex(index);
-                    docked.sell(ship, selected, val);
+                    if (val > 0) {
+                        //perform trade
+                        int index = lastFocus.getIndex();
+                        Item selected = (Item) lastFocus.getItemAtIndex(index);
+                        docked.sell(ship, selected, val);
+                    }
                     //hide it
                     input.setVisible(false);
                     //normal mode
