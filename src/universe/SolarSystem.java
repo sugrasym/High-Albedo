@@ -195,8 +195,8 @@ public class SolarSystem implements Entity, Serializable {
             if (near != null) {
                 for (int b = 0; b < entities.size(); b++) {
                     if (entities.get(b).getName().matches(near)) {
-                        ret.setX(entities.get(b).getX() + rnd.nextInt(1600) - 800);
-                        ret.setY(entities.get(b).getY() + rnd.nextInt(1900) - 800);
+                        ret.setX(entities.get(b).getX() + rnd.nextInt(12800) - 6400);
+                        ret.setY(entities.get(b).getY() + rnd.nextInt(12800) - 6400);
                         break;
                     }
                 }

@@ -57,3 +57,24 @@ Ageiran Federation=0
 The Archers=0
 Caina Conglemerate=10
 [/Faction]
+
+############################
+
+##########################################
+#Station lists for each faction
+##########################################
+
+[Stations]
+name=Ageiran Federation
+station0=Ageiran Civilian Station,1.0
+station1=Ageiran Customs Office,2.0
+station2=Ageiran Fabricator,0.25
+station3=Ageiran MRE Factory,0.5
+station4=Ageiran Shipyard,0.1
+station5=Ageiran Solar Power Plant,2.0
+station6=Ageiran Weapons Forge,0.25
+[/Stations]
+
+[Stations]
+name=Caina Conglemerate
+[/Stations]

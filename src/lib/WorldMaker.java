@@ -206,6 +206,38 @@ public class WorldMaker {
                                     + "d=" + 2 * r + "\n"
                                     + "seed=" + seed + "\n"
                                     + "[/Planet]\n\n";
+                            objects.add(test);
+                        }
+                    }
+                    /*
+                     * Add Initial Stations
+                     */
+                    ArrayList<Statling> stations = sys.getStations();
+                    for (int b = 0; b < stations.size(); b++) {
+                        //pick a random planet
+                        int pa = rnd.nextInt(objects.size());
+                        //add owner stations near planets
+                        Statling tmp = stations.get(b);
+                        if (tmp.getOwner().matches(sys.getOwner())) {
+                            //drop it near it
+                            Simpling host = objects.get(pa);
+                            //get root coordinates
+                            x = host.getLoc().getX();
+                            y = host.getLoc().getY();
+                            //mutate
+                            x += rnd.nextInt(12800) - 6400;
+                            y += rnd.nextInt(12800) - 6400;
+                            //drop
+                            thisSystem += "[Station]\n"
+                                    + "name=" + tmp.getName() + "\n"
+                                    + "system=" + systemName + "\n"
+                                    + "ship=" + tmp.getType() + "\n"
+                                    + "x=" + x + "\n"
+                                    + "y=" + y + "\n"
+                                    + "faction=" + tmp.getOwner() + "\n"
+                                    + "[/Station]\n\n";
+                        } else {
+                            //drop it randomly in space its probably a pirate base
                         }
                     }
                 }
@@ -265,6 +297,49 @@ public class WorldMaker {
         return syslings;
     }
 
+    private void dropStations(ArrayList<Sysling> syslings, Faction faction) {
+        //make a list of this faction's systems
+        ArrayList<Sysling> simp = new ArrayList<>();
+        for (int a = 0; a < syslings.size(); a++) {
+            if (syslings.get(a).getOwner().matches(faction.getName())) {
+                simp.add(syslings.get(a));
+            }
+        }
+        //get a list of stations for this faction
+        Parser sParse = new Parser("FACTIONS.txt");
+        ArrayList<Term> terms = sParse.getTermsOfType("Stations");
+        Term stat = null;
+        for (int a = 0; a < terms.size(); a++) {
+            if (terms.get(a).getValue("name").matches(faction.getName())) {
+                stat = terms.get(a);
+            }
+        }
+        if (stat != null) {
+            //get types of stations
+            int a = 0;
+            String type = "";
+            while ((type = stat.getValue("station" + a)) != null) {
+                //get station info
+                String ty = type.split(",")[0];
+                double spread = Float.parseFloat(type.split(",")[1]);
+                //calculate the number of stations (guaranteeing at least 1!)
+                int count = (int) (spread * simp.size()) + 1;
+                //place them
+                for (int v = 0; v < count; v++) {
+                    String name = ty + " " + (v + 1);
+                    Statling tr = new Statling(name, ty, faction.getName());
+                    //put it in a random system owned by this faction
+                    int pick = rnd.nextInt(simp.size() - 1);
+                    simp.get(pick).getStations().add(tr);
+                }
+                //iterate
+                a++;
+            }
+        } else {
+            System.out.println(faction.getName() + " doesn't have any stations!");
+        }
+    }
+
     private void dropSov(ArrayList<Sysling> syslings) {
         /*
          * Seeds factions
@@ -310,11 +385,55 @@ public class WorldMaker {
                 //these will be handled in the next pass
             }
         }
-        //final sov report
+        //build stations
+        for(int a = 0; a < factions.size(); a++) {
+            dropStations(syslings, factions.get(a));
+        }
+        //report
         for (int a = 0; a < syslings.size(); a++) {
             if (!syslings.get(a).getOwner().matches("Neutral")) {
                 System.out.println("Sysling " + a + " claimed by " + syslings.get(a).getOwner());
             }
+        }
+    }
+
+    public class Statling {
+        /*
+         * Simple structure for storing a station template
+         */
+
+        private String name;
+        private String type;
+        private String owner;
+
+        public Statling(String name, String type, String owner) {
+            this.name = name;
+            this.type = type;
+            this.owner = owner;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
+        }
+
+        public String getOwner() {
+            return owner;
+        }
+
+        public void setOwner(String owner) {
+            this.owner = owner;
         }
     }
 
@@ -326,6 +445,7 @@ public class WorldMaker {
         private Point2D.Double loc;
         private Sysling[] neighbors;
         private ArrayList<Sysling> connections = new ArrayList<>();
+        private ArrayList<Statling> stations = new ArrayList<>();
         private String name;
         private String owner = "Neutral";
 
@@ -399,6 +519,10 @@ public class WorldMaker {
 
         public void setOwner(String owner) {
             this.owner = owner;
+        }
+
+        public ArrayList<Statling> getStations() {
+            return stations;
         }
     }
 
