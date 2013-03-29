@@ -45,7 +45,7 @@ public class God implements EngineElement {
 
     private void initFactions() {
         //make a list of all factions
-        ArrayList<Faction> factions = new ArrayList<>();
+        ArrayList<Faction> tmpF = new ArrayList<>();
         Parser fParse = new Parser("FACTIONS.txt");
         ArrayList<Term> terms = fParse.getTermsOfType("Faction");
         for (int a = 0; a < terms.size(); a++) {
