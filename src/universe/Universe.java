@@ -61,6 +61,7 @@ public class Universe implements Serializable {
         SolarSystem system = null;
         {
             String name = thisSystem.getValue("name");
+            String owner = thisSystem.getValue("owner");
             //get position
             double sx = Double.parseDouble(thisSystem.getValue("x"));
             double sy = Double.parseDouble(thisSystem.getValue("y"));
@@ -78,6 +79,7 @@ public class Universe implements Serializable {
             system.setX(sx);
             system.setY(sy);
             system.setBack(back);
+            system.setOwner(owner);
             system.init(false);
         }
         System.out.println(system.getName() + " solar system created. ");

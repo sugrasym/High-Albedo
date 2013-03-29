@@ -53,6 +53,8 @@ public class SolarSystem implements Entity, Serializable {
     private ArrayList<Entity> celestialList = new ArrayList<>();
     private ArrayList<Entity> stationList = new ArrayList<>();
     private ArrayList<Entity> shipList = new ArrayList<>();
+    //who owns it
+    private String owner = "Neutral";
     //what contains it
     private Universe universe;
 
@@ -435,5 +437,13 @@ public class SolarSystem implements Entity, Serializable {
 
     public Universe getUniverse() {
         return universe;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 }

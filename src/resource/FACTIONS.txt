@@ -28,6 +28,8 @@ Caina Conglemerate=-1
 ########Ageiran Space########
 [Faction]
 name=Ageiran Federation
+var_isEmpire=true
+var_worldPercent=0.15
 Neutral=0
 Player=3
 Ageiran Federation=10
@@ -47,6 +49,8 @@ Caina Conglemerate=0
 ########Cainan Space########
 [Faction]
 name=Caina Conglemerate
+var_isEmpire=true
+var_worldPercent=0.1
 Neutral=0
 Player=-1
 Ageiran Federation=0

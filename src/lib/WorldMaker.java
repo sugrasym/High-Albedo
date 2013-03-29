@@ -9,12 +9,15 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Random;
 import lib.Parser.Term;
+import lib.Faction;
 
 /**
  *
  * @author nwiehoff
  */
 public class WorldMaker {
+
+    Random rnd = new Random();
 
     public WorldMaker() {
         //generate universe
@@ -43,40 +46,19 @@ public class WorldMaker {
              ArrayList<Term> nebTypes = particle.getTermsOfType("Nebula");*/
             Parser planets = new Parser("PLANET.txt");
             ArrayList<Term> planetTypes = planets.getTermsOfType("Planet");
-            //start rng
-            Random rnd = new Random();
             //determine the number of systems to make
             int numSystems = rnd.nextInt(maxSystems);
             if (numSystems < minSystems) {
                 numSystems = minSystems;
             }
             //generate syslings
-            ArrayList<Sysling> syslings = new ArrayList<>();
-            for (int a = 0; a < numSystems; a++) {
-                //determine map location
-                double x = rnd.nextInt(worldSize * 2) - worldSize;
-                double y = rnd.nextInt(worldSize * 2) - worldSize;
-                //pick name
-                String name = "System " + a;
-                //make sysling
-                Sysling test = new Sysling(name, new Point2D.Double(x, y));
-                //check for collission
-                boolean safe = true;
-                for (int v = 0; v < syslings.size(); v++) {
-                    if (syslings.get(v).collideWith(test)) {
-                        safe = false;
-                        break;
-                    }
-                }
-                //add if safe
-                if (safe) {
-                    syslings.add(test);
-                }
-            }
-            //stort syslings
+            ArrayList<Sysling> syslings = makeSyslings(numSystems, rnd, worldSize);
+            //sort syslings
             for (int a = 0; a < syslings.size(); a++) {
                 syslings.get(a).sortBuddy(syslings);
             }
+            //drop sov in syslings
+            dropSov(syslings);
             //generate each system
             for (int a = 0; a < syslings.size(); a++) {
                 System.out.println("Generating Universe - " + (a + 1) + "/" + numSystems);
@@ -102,6 +84,7 @@ public class WorldMaker {
                     thisSystem +=
                             "[System]\n"
                             + "name=" + systemName + "\n"
+                            + "owner=" + sys.getOwner() + "\n"
                             + "x=" + x + "\n"
                             + "y=" + y + "\n"
                             + "sky=" + skyTypes.get(pick).getValue("name") + "\n"
@@ -255,6 +238,86 @@ public class WorldMaker {
         }
     }
 
+    private ArrayList<Sysling> makeSyslings(int numSystems, Random rnd, int worldSize) {
+        //generate syslings
+        ArrayList<Sysling> syslings = new ArrayList<>();
+        for (int a = 0; a < numSystems; a++) {
+            //determine map location
+            double x = rnd.nextInt(worldSize * 2) - worldSize;
+            double y = rnd.nextInt(worldSize * 2) - worldSize;
+            //pick name
+            String name = "System " + a;
+            //make sysling
+            Sysling test = new Sysling(name, new Point2D.Double(x, y));
+            //check for collission
+            boolean safe = true;
+            for (int v = 0; v < syslings.size(); v++) {
+                if (syslings.get(v).collideWith(test)) {
+                    safe = false;
+                    break;
+                }
+            }
+            //add if safe
+            if (safe) {
+                syslings.add(test);
+            }
+        }
+        return syslings;
+    }
+
+    private void dropSov(ArrayList<Sysling> syslings) {
+        /*
+         * Seeds factions
+         */
+        //make a list of all factions
+        ArrayList<Faction> factions = new ArrayList<>();
+        Parser fParse = new Parser("FACTIONS.txt");
+        ArrayList<Term> terms = fParse.getTermsOfType("Faction");
+        for (int a = 0; a < terms.size(); a++) {
+            factions.add(new Faction(terms.get(a).getValue("name")));
+        }
+        //for each sov holding faction pick a capital
+        for (int a = 0; a < factions.size(); a++) {
+            if (factions.get(a).isEmpire()) {
+                //pick a random system as the capital
+                Sysling pick = null;
+                while (pick == null) {
+                    Sysling tmp = syslings.get(rnd.nextInt(syslings.size() - 1));
+                    if (tmp.getOwner().matches("Neutral")) {
+                        pick = tmp;
+                    }
+                }
+                //mark it
+                pick.setOwner(factions.get(a).getName());
+                //determine system count
+                int numSystems = (int) (factions.get(a).getSpread() * syslings.size());
+                int offset = 0;
+                //pick unclaimed systems by proximity
+                for (int x = 0; x < numSystems + offset; x++) {
+                    if ((x + offset) < syslings.size()) {
+                        Sysling tmp = pick.findBuddy(syslings, x + offset);
+                        if (tmp.getOwner().matches("Neutral")) {
+                            tmp.setOwner(factions.get(a).getName());
+                        } else {
+                            offset += 1;
+                        }
+                    } else {
+                        System.out.println(factions.get(a).getName() + " ran out of space to claim sov!");
+                        //no room left
+                    }
+                }
+            } else {
+                //these will be handled in the next pass
+            }
+        }
+        //final sov report
+        for (int a = 0; a < syslings.size(); a++) {
+            if (!syslings.get(a).getOwner().matches("Neutral")) {
+                System.out.println("Sysling " + a + " claimed by " + syslings.get(a).getOwner());
+            }
+        }
+    }
+
     public class Sysling {
         /*
          * Solar system template used for jump hole mapping.
@@ -264,6 +327,7 @@ public class WorldMaker {
         private Sysling[] neighbors;
         private ArrayList<Sysling> connections = new ArrayList<>();
         private String name;
+        private String owner = "Neutral";
 
         public Sysling(String name, Point2D.Double loc) {
             this.loc = loc;
@@ -327,6 +391,14 @@ public class WorldMaker {
 
         public String toString() {
             return name;
+        }
+
+        public String getOwner() {
+            return owner;
+        }
+
+        public void setOwner(String owner) {
+            this.owner = owner;
         }
     }
 

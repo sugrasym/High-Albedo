@@ -35,6 +35,8 @@ import lib.Parser.Term;
 public class Faction implements Serializable {
 
     private String name;
+    private boolean isEmpire = false;
+    private double spread = 0;
     private Term standings;
 
     public Faction(String name) {
@@ -48,6 +50,12 @@ public class Faction implements Serializable {
         for (int a = 0; a < factions.size(); a++) {
             if (factions.get(a).getValue("name").matches(name)) {
                 standings = factions.get(a);
+                try {
+                    isEmpire = Boolean.parseBoolean(standings.getValue("var_isEmpire"));
+                    spread = Double.parseDouble((standings.getValue("var_worldPercent")));
+                } catch (Exception e) {
+                    System.out.println(name + " is missing information about spread and sov");
+                }
                 break;
             }
         }
@@ -73,5 +81,17 @@ public class Faction implements Serializable {
             value = 10;
         }
         standings.setValue(faction, value + "");
+    }
+
+    public boolean isEmpire() {
+        return isEmpire;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getSpread() {
+        return spread;
     }
 }
