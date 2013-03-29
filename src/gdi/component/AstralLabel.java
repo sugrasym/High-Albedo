@@ -40,6 +40,7 @@ public class AstralLabel extends AstralComponent {
 
     public AstralLabel() {
         super();
+        setFocusColor(transparent);
     }
 
     @Override
@@ -56,6 +57,11 @@ public class AstralLabel extends AstralComponent {
             s.setFont(font);
             s.setColor(fontColor);
             s.drawString(text, 1, font.getSize());
+            //draw focus borders
+            if (focused) {
+                s.setColor(getFocusColor());
+                s.drawRect(0, 0, width - 1, height - 1);
+            }
             //push
             f.drawImage(buffer, x, y, null);
             //clear

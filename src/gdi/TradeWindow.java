@@ -22,9 +22,11 @@ package gdi;
 import cargo.Item;
 import celestial.Ship.Ship;
 import celestial.Ship.Station;
+import gdi.component.AstralInput;
 import gdi.component.AstralLabel;
 import gdi.component.AstralList;
 import gdi.component.AstralWindow;
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
@@ -39,8 +41,18 @@ public class TradeWindow extends AstralWindow {
     AstralList cargoList = new AstralList(this);
     AstralList propertyList = new AstralList(this);
     AstralList optionList = new AstralList(this);
+    AstralInput input = new AstralInput();
     //logical
     AstralList lastFocus = cargoList;
+    //behavior
+
+    private enum Behavior {
+
+        WAITING_TO_BUY,
+        WAITING_TO_SELL,
+        NONE
+    };
+    private Behavior action = Behavior.NONE;
 
     public TradeWindow() {
         super();
@@ -53,6 +65,14 @@ public class TradeWindow extends AstralWindow {
         width = 500;
         height = 400;
         setVisible(false);
+        //setup input method
+        input.setName("Input");
+        input.setText("|");
+        input.setY(getHeight() / 2);
+        input.setVisible(false);
+        input.setWidth(150);
+        input.setX((getWidth() / 2) - input.getWidth() / 2);
+        input.setHeight((input.getFont().getSize() + 2));
         //setup buying label
         buyLabel.setName("buy");
         buyLabel.setText("Buying");
@@ -107,6 +127,7 @@ public class TradeWindow extends AstralWindow {
         addComponent(cargoList);
         addComponent(propertyList);
         addComponent(optionList);
+        addComponent(input);
     }
 
     public void update(Ship ship) {
@@ -167,6 +188,8 @@ public class TradeWindow extends AstralWindow {
                     fillCommandLines(selected);
                 }
             }
+            //behave
+            behave();
         } else {
             //you can't trade when you're not docked
             setVisible(false);
@@ -174,21 +197,66 @@ public class TradeWindow extends AstralWindow {
         }
     }
 
+    private void behave() {
+        if (action == Behavior.NONE) {
+            //do nothing
+        } else if (action == Behavior.WAITING_TO_BUY) {
+            //check if a value was returned
+            try {
+                if (input.canReturn()) {
+                    int val = Integer.parseInt(input.getText());
+                    //perform trade
+                    int index = lastFocus.getIndex();
+                    Item selected = (Item) lastFocus.getItemAtIndex(index);
+                    docked.buy(ship, selected, val);
+                    //hide it
+                    input.setVisible(false);
+                    //normal mode
+                    action = Behavior.NONE;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else if (action == Behavior.WAITING_TO_SELL) {
+            //check if a value was returned
+            try {
+                if (input.canReturn()) {
+                    int val = Integer.parseInt(input.getText());
+                    //perform trade
+                    int index = lastFocus.getIndex();
+                    Item selected = (Item) lastFocus.getItemAtIndex(index);
+                    docked.sell(ship, selected, val);
+                    //hide it
+                    input.setVisible(false);
+                    //normal mode
+                    action = Behavior.NONE;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        } else {
+            //unreachable
+        }
+    }
+
     @Override
     public void handleMouseClickedEvent(MouseEvent me) {
-        super.handleMouseClickedEvent(me);
-        //get the module and toggle its enabled status
-        if (productList.isFocused()) {
-            lastFocus = productList;
-        } else if (resourceList.isFocused()) {
-            lastFocus = resourceList;
-        } else if (cargoList.isFocused()) {
-            lastFocus = cargoList;
-        }
-        //handle trade commands
-        if (optionList.isFocused()) {
-            String command = (String) optionList.getItemAtIndex(optionList.getIndex());
-            parseCommand(command);
+        if (action == Behavior.NONE) {
+            super.handleMouseClickedEvent(me);
+            //get the module and toggle its enabled status
+            if (productList.isFocused()) {
+                lastFocus = productList;
+            } else if (resourceList.isFocused()) {
+                lastFocus = resourceList;
+            } else if (cargoList.isFocused()) {
+                lastFocus = cargoList;
+            }
+            //handle trade commands
+            if (optionList.isFocused()) {
+                String command = (String) optionList.getItemAtIndex(optionList.getIndex());
+                parseCommand(command);
+            }
         }
     }
 
@@ -196,15 +264,25 @@ public class TradeWindow extends AstralWindow {
         if (command != null) {
             if (command.matches("Sell")) {
                 //get item
-                int index = lastFocus.getIndex();
-                Item selected = (Item) lastFocus.getItemAtIndex(index);
-                docked.sell(ship, selected, 1);
+                /*int index = lastFocus.getIndex();
+                 Item selected = (Item) lastFocus.getItemAtIndex(index);
+                 docked.sell(ship, selected, 1);*/
+                showInput();
+                action = Behavior.WAITING_TO_SELL;
             } else if (command.matches("Buy")) {
-                int index = lastFocus.getIndex();
-                Item selected = (Item) lastFocus.getItemAtIndex(index);
-                docked.buy(ship, selected, 1);
+                /*int index = lastFocus.getIndex();
+                 Item selected = (Item) lastFocus.getItemAtIndex(index);
+                 docked.buy(ship, selected, 1);*/
+                showInput();
+                action = Behavior.WAITING_TO_BUY;
             }
         }
+    }
+
+    private void showInput() {
+        input.setText("1");
+        input.setVisible(true);
+        input.setFocused(true);
     }
 
     private void fillCommandLines(Item selected) {

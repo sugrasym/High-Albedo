@@ -41,7 +41,7 @@ public class AstralList extends AstralComponent {
     protected Font font = new Font("Monospaced", Font.PLAIN, 12);
     protected Color fontColor = amber;
     protected Color backColor = windowGrey;
-    protected Color selectColor = amber;
+    protected Color selectColor = Color.darkGray;
     BufferedImage buffer;
     //index and scrolling
     protected int index = 0;
@@ -70,16 +70,16 @@ public class AstralList extends AstralComponent {
                 //draw the background
                 s.setColor(backColor);
                 s.fillRect(0, 0, width, height);
+                //draw over the selected
+                s.setColor(selectColor);
+                s.fillRect(0, (index - scrollPosition) * getFont().getSize(), width - 10, getFont().getSize());
+                //draw indicator that there is more or less to the list
                 //draw the text
                 s.setFont(getFont());
                 s.setColor(fontColor);
                 for (int a = scrollPosition; a < listContents.size(); a++) {
                     s.drawString(listContents.get(a).toString(), 1, ((a + 1) - scrollPosition) * getFont().getSize());
                 }
-                //draw over the selected
-                s.setColor(selectColor);
-                s.drawRect(0, (index - scrollPosition) * getFont().getSize(), width - 10, getFont().getSize());
-                //draw indicator that there is more or less to the list
                 int displayableLines = height / getFont().getSize();
                 //draw scroll bar
                 s.setColor(fontColor);
@@ -207,7 +207,7 @@ public class AstralList extends AstralComponent {
         Rectangle mouseRect = new Rectangle(rx, ry, 1, 1);
         //create the scrollbar rect
         Rectangle scrollRect = new Rectangle(width - 9, 0, 9, height);
-        int displayableLines = height / getFont().getSize();
+        int displayableLines = height / (getFont().getSize());
         if (scrollRect.intersects(mouseRect) && (displayableLines < listContents.size())) {
             dragging = true;
         }
@@ -234,7 +234,7 @@ public class AstralList extends AstralComponent {
     private void checkForListIntersection(Rectangle mouseRect) {
         int displayableLines = height / getFont().getSize();
         for (int a = 0; a < displayableLines; a++) {
-            Rectangle lRect = new Rectangle(0, a * getFont().getSize(), width - 9, getFont().getSize());
+            Rectangle lRect = new Rectangle(0, a * (getFont().getSize()), width - 9, getFont().getSize());
             if (lRect.intersects(mouseRect)) {
                 int newSelection = a + scrollPosition;
                 setIndex(newSelection);
