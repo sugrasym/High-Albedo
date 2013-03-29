@@ -68,7 +68,7 @@ public class Engine {
     public static final double STD = 1.3333;
     //graphics and threading
     BufferStrategy bf;
-    Element render;
+    Element element;
     //HUD
     protected HUD hud = new HUD(this);
     //dimensions
@@ -117,7 +117,7 @@ public class Engine {
         //initialize entities
         entities = new ArrayList<>();
         //create components
-        render = new Element();
+        element = new Element();
         //halt components
         stop();
     }
@@ -630,7 +630,11 @@ public class Engine {
         @Override
         public void periodicUpdate() {
             try {
+                //game logic
                 logic();
+                //god
+                god();
+                //render final
                 render();
             } catch (IllegalStateException e) {
                 //lol
@@ -742,10 +746,10 @@ public class Engine {
                     if (lastPlate.matches(playerShip.getCurrentSystem().getBack())) {
                         f.drawImage(backplate, 0, 0, null);
                     } else {
-                        render.generateBackdrop();
+                        element.generateBackdrop();
                     }
                 } else {
-                    render.generateBackdrop();
+                    element.generateBackdrop();
                 }
                 //update render view
                 Rectangle view = new Rectangle((int) dx, (int) dy, uiX, uiY);
@@ -823,7 +827,7 @@ public class Engine {
                 if (lastPlate != null) {
                     f.drawImage(backplate, 0, 0, null);
                 } else {
-                    render.generateBackdrop();
+                    element.generateBackdrop();
                 }
 
             }
@@ -874,6 +878,14 @@ public class Engine {
             } else if (state == State.MENU) {
                 //update HUD
                 getHud().periodicUpdate();
+            }
+        }
+
+        private void god() {
+            if (universe != null) {
+                if (universe.getGod() != null) {
+                    universe.getGod().periodicUpdate();
+                }
             }
         }
 

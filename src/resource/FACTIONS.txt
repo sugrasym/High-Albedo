@@ -78,3 +78,13 @@ station6=Ageiran Weapons Forge,0.25
 [Stations]
 name=Caina Conglemerate
 [/Stations]
+
+##########################################
+#Loadout lists for each faction
+##########################################
+[Patrol]
+name=Ageiran Federation
+loadout0=Police Sparrow,16.0
+loadout1=Naval Crow ,8.0
+loadout2=Naval Raven,4.0
+[/Patrol]

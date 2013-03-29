@@ -1,0 +1,26 @@
+#[Loadout]
+#ship=Monitor
+#name=Air Force Monitor
+#install=Iguana Launcher/Iguana Launcher/Bask/Bask
+#cargo=Iguana Missile~100
+#[/Loadout]
+
+########Ageiran Federation Lawful
+
+[Loadout]
+ship=Sparrow
+name=Police Sparrow
+install=Talon 1/Talon 1
+[/Loadout]
+
+[Loadout]
+ship=Crow
+name=Naval Crow
+install=Talon 2/Talon 2
+[/Loadout]
+
+[Loadout]
+ship=Raven
+name=Naval Raven
+install=Talon 3/Talon 3/Talon 3
+[/Loadout]
