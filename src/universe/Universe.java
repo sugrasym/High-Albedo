@@ -101,7 +101,7 @@ public class Universe implements Serializable {
             String cash = start.getValue("cash");
             //create player
             player = new Ship("Player", ship);
-            player.setLoadout(loadout);
+            player.setEquip(loadout);
             player.setFaction(faction);
             player.init(false);
             player.addInitialCargo(cargo);

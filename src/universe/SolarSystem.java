@@ -182,12 +182,32 @@ public class SolarSystem implements Entity, Serializable {
             String ship = shipTerm.getValue("ship");
             String near = shipTerm.getValue("near");
             String name = shipTerm.getValue("name");
-            String loadout = shipTerm.getValue("install");
+            String install = shipTerm.getValue("install");
             String faction = shipTerm.getValue("faction");
             String cargo = shipTerm.getValue("cargo");
+            String template = shipTerm.getValue("template");
+            if (template != null) {
+                //load this template
+                Parser lParse = new Parser("LOADOUTS.txt");
+                ArrayList<Term> lods = lParse.getTermsOfType("Loadout");
+                for (int a = 0; a < lods.size(); a++) {
+                    if (lods.get(a).getValue("name").matches(template)) {
+                        //get terms
+                        cargo = lods.get(a).getValue("cargo");
+                        install = lods.get(a).getValue("install");
+                        ship = lods.get(a).getValue("ship");
+                        break;
+                    }
+                }
+            }
+
             //create player
             ret = new Ship(name, ship);
-            ret.setLoadout(loadout);
+            if (template != null) {
+                ret.setTemplate(template);
+            }
+            //check template
+            ret.setEquip(install);
             ret.setFaction(faction);
             ret.init(false);
             ret.addInitialCargo(cargo);
@@ -211,8 +231,8 @@ public class SolarSystem implements Entity, Serializable {
                     ret.setY(ty);
                 } else {
                     //or not? just throw it somewhere.
-                    ret.setX(rnd.nextInt(100000)-50000);
-                    ret.setY(rnd.nextInt(100000)-50000);
+                    ret.setX(rnd.nextInt(100000) - 50000);
+                    ret.setY(rnd.nextInt(100000) - 50000);
                 }
             }
             ret.setCurrentSystem(this);
@@ -251,8 +271,8 @@ public class SolarSystem implements Entity, Serializable {
                     ret.setY(ty);
                 } else {
                     //or not? just throw it somewhere.
-                    ret.setX(rnd.nextInt(100000)-50000);
-                    ret.setY(rnd.nextInt(100000)-50000);
+                    ret.setX(rnd.nextInt(100000) - 50000);
+                    ret.setY(rnd.nextInt(100000) - 50000);
                 }
             }
             ret.setCurrentSystem(this);

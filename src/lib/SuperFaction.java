@@ -21,14 +21,20 @@ package lib;
 
 import java.util.ArrayList;
 import lib.Parser.Term;
+import universe.SolarSystem;
+import universe.Universe;
 
 /**
  *
  * @author nwiehoff
  */
 public class SuperFaction extends Faction {
-    //loadout lists
+    //universe
 
+    private Universe universe;
+    //sov
+    private ArrayList<SolarSystem> sov = new ArrayList<>();
+    //loadout lists
     private ArrayList<Binling> patrols = new ArrayList<>();
     private ArrayList<Binling> traders = new ArrayList<>();
     private ArrayList<Binling> taxies = new ArrayList<>();
@@ -39,10 +45,12 @@ public class SuperFaction extends Faction {
      * station types, etc that god needs.
      */
 
-    public SuperFaction(String name) {
+    public SuperFaction(Universe universe, String name) {
         super(name);
+        this.universe = universe;
         initStations();
         initLoadouts();
+        initSov();
     }
 
     private void initStations() {
@@ -134,6 +142,18 @@ public class SuperFaction extends Faction {
         }
     }
 
+    private void initSov() {
+        /*
+         * Makes a list of all the systems this faction controls.
+         */
+        ArrayList<SolarSystem> systems = universe.getSystems();
+        for (int a = 0; a < systems.size(); a++) {
+            if (systems.get(a).getOwner().matches(getName())) {
+                sov.add(systems.get(a));
+            }
+        }
+    }
+
     public ArrayList<Binling> getPatrols() {
         return patrols;
     }
@@ -148,5 +168,9 @@ public class SuperFaction extends Faction {
 
     public void setStations(ArrayList<Binling> stations) {
         this.stations = stations;
+    }
+
+    public ArrayList<SolarSystem> getSov() {
+        return sov;
     }
 }

@@ -51,9 +51,29 @@ import lib.Parser.Term;
  */
 public class Ship extends Celestial {
 
+    public enum Behavior {
+
+        NONE,
+        TEST,
+        PATROL
+    }
+
+    public enum Autopilot {
+
+        NONE, //nothing
+        DOCK_STAGE1, //get permission, go to the alignment vector
+        DOCK_STAGE2, //fly into docking area
+        DOCK_STAGE3, //fly into docking port
+        UNDOCK_STAGE1, //fly into docking area
+        UNDOCK_STAGE2, //align to alignment vector
+        UNDOCK_STAGE3, //accelerate and release
+        FLY_TO_CELESTIAL //fly to a celestial
+    }
+    //constants
     public static final double PATROL_REFUEL_PERCENT = 0.25;
     //raw loadout
-    protected String loadout;
+    protected String equip = "";
+    private String template = "";
     //texture and type
     protected transient Image raw_tex;
     protected transient BufferedImage tex;
@@ -73,25 +93,7 @@ public class Ship extends Celestial {
     private Celestial flyToTarget;
     //wallet
     protected long cash = 50000;
-
-    public enum Behavior {
-
-        NONE,
-        TEST,
-        PATROL
-    }
-
-    public enum Autopilot {
-
-        NONE,
-        DOCK_STAGE1, //get permission, go to the alignment vector
-        DOCK_STAGE2, //fly into docking area
-        DOCK_STAGE3, //fly into docking port
-        UNDOCK_STAGE1, //fly into docking area
-        UNDOCK_STAGE2, //align to alignment vector
-        UNDOCK_STAGE3, //accelerate and release
-        FLY_TO_CELESTIAL //fly to a celestial
-    }
+    //behavior and autopilot
     protected Behavior behavior = Behavior.NONE;
     protected Autopilot autopilot = Autopilot.NONE;
     protected boolean docked;
@@ -298,6 +300,7 @@ public class Ship extends Celestial {
                         }
                     }
                 } catch (Exception e) {
+                    e.printStackTrace();
                     target = null;
                 }
             }
@@ -308,17 +311,23 @@ public class Ship extends Celestial {
      * Autopilot
      */
     protected void autopilot() {
+        /*if (faction.matches("Player")) {
+         System.out.println("A: " + autopilot + " :: " + "B: " + behavior);
+         }*/
         try {
             if (getAutopilot() == Autopilot.NONE) {
                 //do nothing
             } else {
-                //call components
-                autopilotFlyToBlock();
-                autopilotDockingBlock();
-                autopilotUndockingBlock();
+                if (autopilot == Autopilot.FLY_TO_CELESTIAL) {
+                    //call components
+                    autopilotFlyToBlock();
+                } else {
+                    autopilotDockingBlock();
+                    autopilotUndockingBlock();
+                }
             }
         } catch (Exception e) {
-            System.out.println(getName() + " encountered an autopilot issue.");
+            System.out.println(getName() + " encountered an autopilot issue. (" + autopilot + ", " + behavior + ")");
             e.printStackTrace();
             autopilot = Autopilot.NONE;
         }
@@ -747,7 +756,7 @@ public class Ship extends Celestial {
                 } else {
                     //wait
                 }
-            } else if (target != null) {
+            } else {
                 if (target.getStandingsToMe(this) < -2) {
                     fightTarget();
                 }
@@ -769,7 +778,7 @@ public class Ship extends Celestial {
         double ay = y - ty;
         double dist = magnitude((ax), (ay));
         double speed = magnitude(vx, vy);
-        double hold = accel * 1.5;
+        double hold = accel * 2;
         //
         double desired = Math.atan2(ay, ax);
         desired = (desired + 2.0 * Math.PI) % (2.0 * Math.PI);
@@ -790,13 +799,8 @@ public class Ship extends Celestial {
                 //this is damage control - it deals with bad initial velocities and out of control spirals
                 double d2x = 0;
                 double d2y = 0;
-                if (target != null) {
-                    d2x = magnitude((x + vx) - (tx + target.getVx()), 0);
-                    d2y = magnitude(0, (y + vy) - (ty + target.getVy()));
-                } else {
-                    d2x = magnitude((x + vx) - (tx), 0);
-                    d2y = magnitude(0, (y + vy) - (ty));
-                }
+                d2x = magnitude((x + vx) - (tx), 0);
+                d2y = magnitude(0, (y + vy) - (ty));
                 //check x axis
                 double dPx = 0;
                 double d1x = magnitude(ax, 0);
@@ -964,6 +968,7 @@ public class Ship extends Celestial {
     }
 
     public void targetNearestHostileShip() {
+        target = null;
         //get a list of all nearby hostiles
         ArrayList<Entity> nearby = getCurrentSystem().getShipList();
         ArrayList<Ship> hostiles = new ArrayList<>();
@@ -1006,42 +1011,40 @@ public class Ship extends Celestial {
     }
 
     public void targetNearestHostileStation() {
+        target = null;
+        Station closest = null;
         //get a list of all nearby hostiles
         ArrayList<Entity> nearby = getCurrentSystem().getStationList();
-        ArrayList<Ship> hostiles = new ArrayList<>();
+        ArrayList<Station> hostiles = new ArrayList<>();
         for (int a = 0; a < nearby.size(); a++) {
-            if (nearby.get(a) instanceof Ship) {
-                if (!(nearby.get(a) instanceof Projectile)) {
-                    if (!(nearby.get(a) instanceof Explosion)) {
-                        Ship tmp = (Ship) nearby.get(a);
-                        if (tmp != this) {
-                            //make sure it is alive
-                            if (tmp.getState() == State.ALIVE) {
-                                //check standings
-                                if (tmp.getStandingsToMe(this) <= -3) {
-                                    //make sure it is in range
-                                    if (distanceTo(tmp) < getSensor()) {
-                                        hostiles.add(tmp);
-                                    }
-                                }
-                            }
-                        }
+            Station tmp = (Station) nearby.get(a);
+            //make sure it is alive
+            if (tmp.getState() == State.ALIVE) {
+                //check standings
+                if (tmp.getStandingsToMe(this) <= -3) {
+                    //make sure it is in range
+                    if (distanceTo(tmp) < getSensor()) {
+                        hostiles.add(tmp);
                     }
                 }
             }
         }
         //target the nearest one
-        Ship closest = null;
-        for (int a = 0; a < hostiles.size(); a++) {
-            if (closest == null) {
-                closest = hostiles.get(a);
-            } else {
-                double distClosest = distanceTo(closest);
-                double distTest = distanceTo(hostiles.get(a));
-                if (distTest < distClosest) {
+        if (hostiles.size() > 0) {
+            closest = hostiles.get(0);
+            for (int a = 0; a < hostiles.size(); a++) {
+                if (closest == null) {
                     closest = hostiles.get(a);
+                } else {
+                    double distClosest = distanceTo(closest);
+                    double distTest = distanceTo(hostiles.get(a));
+                    if (distTest < distClosest) {
+                        closest = hostiles.get(a);
+                    }
                 }
             }
+        } else {
+            //nothing to target
         }
         //store
         target = closest;
@@ -1053,6 +1056,9 @@ public class Ship extends Celestial {
          * a more realistic way to fight in zero gravity.
          */
         if (target != null) {
+            //disable autopilot
+            autopilot = Autopilot.NONE;
+            //attack
             if (target.state == State.ALIVE) {
                 double distance = distanceTo(target);
                 double rad;
@@ -1627,9 +1633,9 @@ public class Ship extends Celestial {
         /*
          * Equips the ship with equipment from the starting loadout
          */
-        if (loadout != null) {
+        if (equip != null) {
             //equip player from install keyword
-            String[] arr = loadout.split("/");
+            String[] arr = equip.split("/");
             for (int a = 0; a < arr.length; a++) {
                 Item test = new Item(arr[a]);
                 /*
@@ -1749,12 +1755,12 @@ public class Ship extends Celestial {
         this.behavior = behavior;
     }
 
-    public String getLoadout() {
-        return loadout;
+    public String getEquip() {
+        return equip;
     }
 
-    public void setLoadout(String loadout) {
-        this.loadout = loadout;
+    public void setEquip(String equip) {
+        this.equip = equip;
     }
 
     public Faction getMyFaction() {
@@ -1777,6 +1783,7 @@ public class Ship extends Celestial {
         if (myFaction != null) {
             return myFaction.getStanding(ship.getFaction());
         } else {
+            installFaction();
             return 0;
         }
     }
@@ -1875,5 +1882,13 @@ public class Ship extends Celestial {
 
     public void setExplosion(String explosion) {
         this.explosion = explosion;
+    }
+
+    public String getTemplate() {
+        return template;
+    }
+
+    public void setTemplate(String template) {
+        this.template = template;
     }
 }

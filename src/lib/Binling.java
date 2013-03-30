@@ -15,7 +15,9 @@
 
 package lib;
 
-public class Binling {
+import java.io.Serializable;
+
+public class Binling implements Serializable {
     /*
      * Class for storing a string paired with a double
      */

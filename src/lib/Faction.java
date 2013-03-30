@@ -60,7 +60,7 @@ public class Faction implements Serializable {
                                 int rel = Integer.parseInt(vals.get(q).getValue());
                                 standings.add(new Binling(fac, rel));
                             } catch (Exception e) {
-                                System.out.println(vals.get(q).getName() + ": Not standings information!");
+                                //
                             }
                         }
                     }

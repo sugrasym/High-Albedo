@@ -11,16 +11,19 @@
 ship=Sparrow
 name=Police Sparrow
 install=Talon 1/Talon 1
+cargo=Standard Energy Unit~5
 [/Loadout]
 
 [Loadout]
 ship=Crow
 name=Naval Crow
 install=Talon 2/Talon 2
+cargo=Standard Energy Unit~5
 [/Loadout]
 
 [Loadout]
 ship=Raven
 name=Naval Raven
 install=Talon 3/Talon 3/Talon 3
+cargo=Standard Energy Unit~5
 [/Loadout]

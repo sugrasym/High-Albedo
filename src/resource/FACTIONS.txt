@@ -85,7 +85,7 @@ name=Caina Conglemerate
 
 [Loadout]
 name=Ageiran Federation
-patrol0=Police Sparrow,16.0
-patrol1=Naval Crow ,8.0
-patrol2=Naval Raven,4.0
+patrol0=Police Sparrow,200
+patrol1=Naval Crow,100
+patrol2=Naval Raven,50
 [/Loadout]
