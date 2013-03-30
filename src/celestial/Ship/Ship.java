@@ -729,11 +729,14 @@ public class Ship extends Celestial {
                         //get random station in system
                         Station near = getRandomStation();
                         if (near != null) {
-                            //fly within half sensor range
-                            double range = sensor / 2;
+                            //fly within sensor range
+                            double range = sensor;
                             cmdFlyToCelestial(near, range);
                         } else {
-                            //there are no stations!
+                            /*
+                             * There are no stations, pick a jump hole and fly
+                             * through it!
+                             */
                         }
                     }
                 } else {

@@ -1,10 +1,10 @@
 #New Game Smell
 [NewGame]
-ship=Cheetah
+ship=Monitor
 system=System 7
 near=Planet 0
 cash=8500
-install=Starstruck Launcher/Starstruck Launcher
+install=Bask/Bask/Bask/Bask
 cargo=Ageiran MRE~3/Starstruck Missile~100
 faction=Player
 [/NewGame]
@@ -12,62 +12,807 @@ faction=Player
 ########
 
 [Ship]
-ship=Sparrow
+ship=Bowman
 name=Probe Craft
 system=System 7
-near=Planet 0
-faction=The Archers
-install=Talon 1/Talon 1
+faction=Ageiran Federation
+install=Arrow/Arrow
 cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
 [/Ship]
 
 [Ship]
 ship=Bowman
 name=Probe Craft
 system=System 7
-near=Planet 0
 faction=Ageiran Federation
 install=Arrow/Arrow
-cargo=Iguana Missile~50
+cargo=Iguana Missile~100
 [/Ship]
+
 [Ship]
-ship=Sparrow
+ship=Crow
 name=Probe Craft
 system=System 7
-near=Planet 0
-faction=The Archers
-install=Talon 1/Talon 1
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
 cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
 [/Ship]
 
 [Ship]
 ship=Bowman
 name=Probe Craft
 system=System 7
-near=Planet 0
 faction=Ageiran Federation
 install=Arrow/Arrow
-cargo=Iguana Missile~50
+cargo=Iguana Missile~100
 [/Ship]
 
 [Ship]
-ship=Sparrow
+ship=Crow
 name=Probe Craft
 system=System 7
-near=Planet 0
-faction=The Archers
-install=Talon 1/Talon 1
-cargo=Iguana Missile~100
+faction=Ageiran Federation
+install=Talon 2/Talon 2
 [/Ship]
 
 [Ship]
 ship=Bowman
 name=Probe Craft
 system=System 7
-near=Planet 0
 faction=Ageiran Federation
 install=Arrow/Arrow
-cargo=Iguana Missile~50
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
+[/Ship]
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Crow
+name=Probe Craft
+system=System 7
+faction=Ageiran Federation
+install=Talon 2/Talon 2
 [/Ship]
 
 

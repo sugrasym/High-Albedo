@@ -149,34 +149,4 @@ public class SuperFaction extends Faction {
     public void setStations(ArrayList<Binling> stations) {
         this.stations = stations;
     }
-
-    public class Binling {
-        /*
-         * Class for storing a string paired with a double
-         */
-
-        private String str;
-        private double num;
-
-        public Binling(String str, double num) {
-            this.str = str;
-            this.num = num;
-        }
-
-        public String getString() {
-            return str;
-        }
-
-        public void setString(String str) {
-            this.str = str;
-        }
-
-        public double getDouble() {
-            return num;
-        }
-
-        public void setDouble(double num) {
-            this.num = num;
-        }
-    }
 }

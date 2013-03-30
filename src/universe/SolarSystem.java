@@ -211,8 +211,8 @@ public class SolarSystem implements Entity, Serializable {
                     ret.setY(ty);
                 } else {
                     //or not? just throw it somewhere.
-                    ret.setX(rnd.nextInt(1000000));
-                    ret.setY(rnd.nextInt(1000000));
+                    ret.setX(rnd.nextInt(100000)-50000);
+                    ret.setY(rnd.nextInt(100000)-50000);
                 }
             }
             ret.setCurrentSystem(this);
@@ -251,8 +251,8 @@ public class SolarSystem implements Entity, Serializable {
                     ret.setY(ty);
                 } else {
                     //or not? just throw it somewhere.
-                    ret.setX(rnd.nextInt(100000));
-                    ret.setY(rnd.nextInt(100000));
+                    ret.setX(rnd.nextInt(100000)-50000);
+                    ret.setY(rnd.nextInt(100000)-50000);
                 }
             }
             ret.setCurrentSystem(this);

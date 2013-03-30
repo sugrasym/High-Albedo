@@ -26,6 +26,7 @@ package lib;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import lib.Parser.Param;
 import lib.Parser.Term;
 
 /**
@@ -37,7 +38,7 @@ public class Faction implements Serializable {
     private String name;
     private boolean isEmpire = false;
     private double spread = 0;
-    private Term standings;
+    private ArrayList<Binling> standings = new ArrayList<>();
 
     public Faction(String name) {
         this.name = name;
@@ -49,10 +50,24 @@ public class Faction implements Serializable {
         ArrayList<Term> factions = tmp.getTermsOfType("Faction");
         for (int a = 0; a < factions.size(); a++) {
             if (factions.get(a).getValue("name").matches(name)) {
-                standings = factions.get(a);
+                Term tmp2 = factions.get(a);
+                {
+                    ArrayList<Param> vals = tmp2.getParams();
+                    for (int q = 0; q < vals.size(); q++) {
+                        if (!vals.get(q).getName().contains(("val_"))) {
+                            try {
+                                String fac = vals.get(q).getName();
+                                int rel = Integer.parseInt(vals.get(q).getValue());
+                                standings.add(new Binling(fac, rel));
+                            } catch (Exception e) {
+                                System.out.println(vals.get(q).getName() + ": Not standings information!");
+                            }
+                        }
+                    }
+                }
                 try {
-                    isEmpire = Boolean.parseBoolean(standings.getValue("var_isEmpire"));
-                    spread = Double.parseDouble((standings.getValue("var_worldPercent")));
+                    isEmpire = Boolean.parseBoolean(tmp2.getValue("var_isEmpire"));
+                    spread = Double.parseDouble((tmp2.getValue("var_worldPercent")));
                 } catch (Exception e) {
                     System.out.println(name + " is missing information about spread and sov");
                 }
@@ -63,15 +78,16 @@ public class Faction implements Serializable {
 
     public int getStanding(String faction) {
         if (standings != null) {
-            String tmp = standings.getValue(faction);
-            if (tmp != null) {
-                return Integer.parseInt(tmp);
-            } else {
-                return 0;
+            for (int a = 0; a < standings.size(); a++) {
+                Binling test = standings.get(a);
+                if (test.getString().matches(faction)) {
+                    return (int) test.getDouble();
+                }
             }
         } else {
             return 0;
         }
+        return 0;
     }
 
     public void setStanding(String faction, int value) {
@@ -80,7 +96,14 @@ public class Faction implements Serializable {
         } else if (value > 10) {
             value = 10;
         }
-        standings.setValue(faction, value + "");
+        if (standings != null) {
+            for (int a = 0; a < standings.size(); a++) {
+                Binling test = standings.get(a);
+                if (test.getString().matches(faction)) {
+                    test.setDouble(value);
+                }
+            }
+        }
     }
 
     public boolean isEmpire() {

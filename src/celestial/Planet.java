@@ -111,9 +111,9 @@ public class Planet extends Celestial {
                     palette = new AlienPalette(info);
                 }
                 //call the procedural planet generator
-                PlanetGenerator plan = new ContinentalGenerator(RENDER_SIZE, RENDER_SIZE, info, palette);
+                //PlanetGenerator plan = new ContinentalGenerator(RENDER_SIZE, RENDER_SIZE, info, palette);
                 //paint texture
-                gfx.drawImage(plan.getDebugImageMap(PlanetGenerator.MAP_COLOR), 0, 0, null);
+                //gfx.drawImage(plan.getDebugImageMap(PlanetGenerator.MAP_COLOR), 0, 0, null);
                 //store texture
                 raw_tex = tmp;
             } else if (texture.getValue("group").matches("doublegas")) {
