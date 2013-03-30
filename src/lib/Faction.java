@@ -80,7 +80,7 @@ public class Faction implements Serializable {
         if (standings != null) {
             for (int a = 0; a < standings.size(); a++) {
                 Binling test = standings.get(a);
-                if (test.getString().matches(faction)) {
+                if (test.getString().hashCode() == faction.hashCode()) {
                     return (int) test.getDouble();
                 }
             }

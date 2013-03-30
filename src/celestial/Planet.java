@@ -90,7 +90,7 @@ public class Planet extends Celestial {
                 info.setPoleTemperature(sRand.nextInt(info.getEquatorTemperature()) - 50);
                 info.setRadius(diameter / 2);
                 info.setWaterInPercent(sRand.nextFloat());
-                info.setHeightFactor(sRand.nextFloat()/2+0.15f);
+                info.setHeightFactor(sRand.nextFloat() / 2 + 0.15f);
                 info.setSeed((int) seed);
                 info.setHumidity(sRand.nextFloat());
                 info.setSmoothness(sRand.nextInt(4) + 6);
@@ -111,9 +111,9 @@ public class Planet extends Celestial {
                     palette = new AlienPalette(info);
                 }
                 //call the procedural planet generator
-                //PlanetGenerator plan = new ContinentalGenerator(RENDER_SIZE, RENDER_SIZE, info, palette);
+                PlanetGenerator plan = new ContinentalGenerator(RENDER_SIZE, RENDER_SIZE, info, palette);
                 //paint texture
-                //gfx.drawImage(plan.getDebugImageMap(PlanetGenerator.MAP_COLOR), 0, 0, null);
+                gfx.drawImage(plan.getDebugImageMap(PlanetGenerator.MAP_COLOR), 0, 0, null);
                 //store texture
                 raw_tex = tmp;
             } else if (texture.getValue("group").matches("doublegas")) {

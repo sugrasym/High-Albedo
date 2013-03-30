@@ -64,7 +64,9 @@ public class MenuHomeWindow extends AstralWindow {
         mainList.addToList("");
         mainList.addToList("Save Game");
         mainList.addToList("");
-        mainList.addToList("Resume");
+        if (engine.getUniverse() != null) {
+            mainList.addToList("Resume");
+        }
         //setup save game list
         gameList.setX(getWidth() / 2 - 200);
         gameList.setY(getHeight() / 2 - 200);
@@ -117,7 +119,7 @@ public class MenuHomeWindow extends AstralWindow {
                 saveList.setVisible(false);
                 populateLoadGameList();
                 gameList.setVisible(true);
-            }else if (command.matches("Save Game")) {
+            } else if (command.matches("Save Game")) {
                 mainList.setVisible(false);
                 gameList.setVisible(false);
                 populateSaveGameList();
@@ -142,7 +144,7 @@ public class MenuHomeWindow extends AstralWindow {
             int index = saveList.getIndex();
             if (index > 2) {
                 try {
-                    new AstralIO().saveGame(engine.getUniverse(), (String)saveList.getItemAtIndex(index));
+                    new AstralIO().saveGame(engine.getUniverse(), (String) saveList.getItemAtIndex(index));
                     populateSaveGameList();
                 } catch (Exception ex) {
                     Logger.getLogger(MenuHomeWindow.class.getName()).log(Level.SEVERE, null, ex);
@@ -154,7 +156,7 @@ public class MenuHomeWindow extends AstralWindow {
             }
         }
     }
-    
+
     private void populateSaveGameList() {
         saveList.clearList();
         //add menu cruft
@@ -162,7 +164,7 @@ public class MenuHomeWindow extends AstralWindow {
         saveList.addToList("Return to Main Menu");
         saveList.addToList("");
         addSaves(saveList);
-        saveList.addToList("Game "+countSaves());
+        saveList.addToList("Game " + countSaves());
     }
 
     private void populateLoadGameList() {
@@ -173,7 +175,7 @@ public class MenuHomeWindow extends AstralWindow {
         gameList.addToList("");
         addSaves(gameList);
     }
-    
+
     private int countSaves() {
         String path = System.getProperty("user.home") + "/.highalbedo/";
         File folder = new File(path);

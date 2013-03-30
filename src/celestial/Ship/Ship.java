@@ -23,6 +23,7 @@ import cargo.Hardpoint;
 import cargo.Item;
 import cargo.Weapon;
 import celestial.Celestial;
+import celestial.Jumphole;
 import engine.Entity;
 import java.awt.AlphaComposite;
 import java.awt.Color;
@@ -463,7 +464,6 @@ public class Ship extends Celestial {
      */
     protected void autopilotFlyToBlock() {
         if (getAutopilot() == Autopilot.FLY_TO_CELESTIAL) {
-            //TODO: Account for pathfinding between solar systems!
             if (flyToTarget != null) {
                 double dist = distanceTo(flyToTarget);
                 if (dist < autopilotRange) {
@@ -724,7 +724,13 @@ public class Ship extends Celestial {
                     if ((fuel / maxFuel) <= PATROL_REFUEL_PERCENT) {
                         //dock at the nearest friendly station
                         Station near = getNearestFriendlyStation();
-                        cmdDock(near);
+                        if (near != null) {
+                            cmdDock(near);
+                        } else {
+                            //try another system
+                            Jumphole njmp = getRandomJumphole();
+                            cmdFlyToCelestial(njmp, 0);
+                        }
                     } else {
                         //get random station in system
                         Station near = getRandomStation();
@@ -733,10 +739,9 @@ public class Ship extends Celestial {
                             double range = sensor;
                             cmdFlyToCelestial(near, range);
                         } else {
-                            /*
-                             * There are no stations, pick a jump hole and fly
-                             * through it!
-                             */
+                            //try another system
+                            Jumphole njmp = getRandomJumphole();
+                            cmdFlyToCelestial(njmp, 0);
                         }
                     }
                 } else {
@@ -824,6 +829,19 @@ public class Ship extends Celestial {
             ArrayList<Entity> stations = currentSystem.getStationList();
             if (stations.size() > 0) {
                 ret = (Station) stations.get(rnd.nextInt(stations.size()));
+            } else {
+                return null;
+            }
+        }
+        return ret;
+    }
+
+    public Jumphole getRandomJumphole() {
+        Jumphole ret = null;
+        {
+            ArrayList<Entity> jumpHoles = currentSystem.getJumpholeList();
+            if (jumpHoles.size() > 0) {
+                ret = (Jumphole) jumpHoles.get(rnd.nextInt(jumpHoles.size()));
             } else {
                 return null;
             }

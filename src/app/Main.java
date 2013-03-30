@@ -78,7 +78,7 @@ public class Main extends JFrame {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         GraphicsDevice gs = ge.getDefaultScreenDevice();
         try {
-            throw new Exception();
+            //throw new Exception();
             setUndecorated(true);
             gs.setFullScreenWindow(this);
             System.out.println("Sucessfully acquired full screen.");
@@ -104,8 +104,6 @@ public class Main extends JFrame {
     public final void engineInit() {
         BufferStrategy bf = getBufferStrategy();
         engine = new Engine(bf, uiX, uiY);
-        //initialize universe
-        engine.newGame();
     }
 
     /*
