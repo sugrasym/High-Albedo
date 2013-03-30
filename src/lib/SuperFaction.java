@@ -20,6 +20,7 @@
 package lib;
 
 import java.util.ArrayList;
+import lib.Parser.Term;
 
 /**
  *
@@ -29,6 +30,8 @@ public class SuperFaction extends Faction {
     //loadout lists
 
     private ArrayList<Binling> patrols = new ArrayList<>();
+    private ArrayList<Binling> traders = new ArrayList<>();
+    private ArrayList<Binling> taxies = new ArrayList<>();
     //station list
     private ArrayList<Binling> stations = new ArrayList<>();
     /*
@@ -45,8 +48,8 @@ public class SuperFaction extends Faction {
     private void initStations() {
         //get a list of stations for this faction
         Parser sParse = new Parser("FACTIONS.txt");
-        ArrayList<Parser.Term> terms = sParse.getTermsOfType("Stations");
-        Parser.Term stat = null;
+        ArrayList<Term> terms = sParse.getTermsOfType("Stations");
+        Term stat = null;
         for (int a = 0; a < terms.size(); a++) {
             if (terms.get(a).getValue("name").matches(getName())) {
                 stat = terms.get(a);
@@ -70,7 +73,65 @@ public class SuperFaction extends Faction {
     }
 
     private void initLoadouts() {
-        //TODO
+
+        //get a list of patrol loadouts for this faction
+        Parser sParse = new Parser("FACTIONS.txt");
+        ArrayList<Term> terms = sParse.getTermsOfType("Loadout");
+        Term stat = null;
+        for (int a = 0; a < terms.size(); a++) {
+            if (terms.get(a).getValue("name").matches(getName())) {
+                stat = terms.get(a);
+            }
+        }
+        if (stat != null) {
+            /*
+             * Patrol loadouts
+             */
+            {
+                int a = 0;
+                String type = "";
+                while ((type = stat.getValue("patrol" + a)) != null) {
+                    //get patrol info
+                    String ty = type.split(",")[0];
+                    double spread = Float.parseFloat(type.split(",")[1]);
+                    patrols.add(new Binling(ty, spread));
+                    //iterate
+                    a++;
+                }
+            }
+            /*
+             * Trader loadouts
+             */
+            {
+                int a = 0;
+                String type = "";
+                while ((type = stat.getValue("trader" + a)) != null) {
+                    //get trader info
+                    String ty = type.split(",")[0];
+                    double spread = Float.parseFloat(type.split(",")[1]);
+                    traders.add(new Binling(ty, spread));
+                    //iterate
+                    a++;
+                }
+            }
+            /*
+             * Taxie loadouts
+             */
+            {
+                int a = 0;
+                String type = "";
+                while ((type = stat.getValue("taxie" + a)) != null) {
+                    //get taxie info
+                    String ty = type.split(",")[0];
+                    double spread = Float.parseFloat(type.split(",")[1]);
+                    taxies.add(new Binling(ty, spread));
+                    //iterate
+                    a++;
+                }
+            }
+        } else {
+            System.out.println(getName() + " doesn't have any loadouts!");
+        }
     }
 
     public ArrayList<Binling> getPatrols() {

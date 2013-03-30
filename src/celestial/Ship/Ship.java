@@ -49,8 +49,9 @@ import lib.Parser.Term;
  * @author Nathan Wiehoff
  */
 public class Ship extends Celestial {
-    //raw loadout
 
+    public static final double PATROL_REFUEL_PERCENT = 0.25;
+    //raw loadout
     protected String loadout;
     //texture and type
     protected transient Image raw_tex;
@@ -66,6 +67,9 @@ public class Ship extends Celestial {
     private boolean thrustRear = false;
     private boolean rotateMinus = false;
     private boolean rotatePlus = false;
+    //navigational aid
+    private double autopilotRange = 0; //how close to fly to something
+    private Celestial flyToTarget;
     //wallet
     protected long cash = 50000;
 
@@ -84,7 +88,8 @@ public class Ship extends Celestial {
         DOCK_STAGE3, //fly into docking port
         UNDOCK_STAGE1, //fly into docking area
         UNDOCK_STAGE2, //align to alignment vector
-        UNDOCK_STAGE3 //accelerate and release
+        UNDOCK_STAGE3, //accelerate and release
+        FLY_TO_CELESTIAL //fly to a celestial
     }
     protected Behavior behavior = Behavior.NONE;
     protected Autopilot autopilot = Autopilot.NONE;
@@ -125,6 +130,7 @@ public class Ship extends Celestial {
             initStats();
         }
         state = State.ALIVE;
+        setBehavior(Behavior.PATROL);
     }
 
     @Override
@@ -280,9 +286,11 @@ public class Ship extends Celestial {
                     if (target.getCurrentSystem() != getCurrentSystem()) {
                         target = null;
                     } else {
-                        //dereference if the target is no longer in sensor range
-                        if (distanceTo(target) > getSensor()) {
-                            target = null;
+                        if (!(target instanceof Station)) {
+                            //dereference if the target is no longer in sensor range
+                            if (distanceTo(target) > getSensor()) {
+                                target = null;
+                            }
                         }
                         if (target.getState() == State.DEAD) {
                             target = null;
@@ -299,12 +307,19 @@ public class Ship extends Celestial {
      * Autopilot
      */
     protected void autopilot() {
-        if (getAutopilot() == Autopilot.NONE) {
-            //do nothing
-        } else {
-            //call components
-            autopilotDockingBlock();
-            autopilotUndockingBlock();
+        try {
+            if (getAutopilot() == Autopilot.NONE) {
+                //do nothing
+            } else {
+                //call components
+                autopilotFlyToBlock();
+                autopilotDockingBlock();
+                autopilotUndockingBlock();
+            }
+        } catch (Exception e) {
+            System.out.println(getName() + " encountered an autopilot issue.");
+            e.printStackTrace();
+            autopilot = Autopilot.NONE;
         }
     }
 
@@ -415,8 +430,53 @@ public class Ship extends Celestial {
     }
 
     /*
+     * Command "Blocks"
+     */
+    public void cmdFlyToCelestial(Celestial destination, double range) {
+        /*
+         * Fly to within a certain range of a celestial
+         */
+        flyToTarget = destination;
+        autopilotRange = range;
+        autopilot = Autopilot.FLY_TO_CELESTIAL;
+    }
+
+    public void cmdDock(Ship ship) {
+        /*
+         * Wrapper for cmdDock
+         */
+        if (ship instanceof Station) {
+            cmdDock((Station) ship);
+        }
+    }
+
+    public void cmdDock(Station station) {
+        /*
+         * Dock at a station
+         */
+        target = station;
+        setAutopilot(Autopilot.DOCK_STAGE1);
+    }
+
+    /*
      * Autopilot "Blocks"
      */
+    protected void autopilotFlyToBlock() {
+        if (getAutopilot() == Autopilot.FLY_TO_CELESTIAL) {
+            //TODO: Account for pathfinding between solar systems!
+            if (flyToTarget != null) {
+                double dist = distanceTo(flyToTarget);
+                if (dist < autopilotRange) {
+                    autopilot = Autopilot.NONE;
+                } else {
+                    moveToPosition(flyToTarget.getX(), flyToTarget.getY());
+                }
+            } else {
+                autopilot = Autopilot.NONE;
+            }
+        }
+    }
+
     protected void autopilotUndockingBlock() {
         if (getAutopilot() == Autopilot.UNDOCK_STAGE1) {
             /*
@@ -510,65 +570,17 @@ public class Ship extends Celestial {
                             //get the docking port to use
                             port = tmp.requestDockPort(this);
                         } else {
-                            //get the docking align
-                            double ax = x - port.getAlignX();
-                            double ay = y - port.getAlignY();
-                            double dist = magnitude((ax), (ay));
-                            double speed = magnitude(vx, vy);
-                            double hold = accel * 1.2;
-                            //
-                            double desired = Math.atan2(ay, ax);
-                            desired = (desired + 2.0 * Math.PI) % (2.0 * Math.PI);
-                            if (Math.abs(theta - desired) > turning * tpf) {
-                                if (theta - desired > 0) {
-                                    rotateMinus();
-                                } else if (theta - desired < 0) {
-                                    rotatePlus();
-                                }
-                            } else {
-                                if (dist < hold) {
-                                    decelerate();
-                                    if (speed == 0) {
-                                        setAutopilot(Autopilot.DOCK_STAGE2);
-                                    }
-                                } else {
-                                    boolean canAccel = true;
-                                    //this is damage control - it deals with bad initial velocities and out of control spirals
-                                    //check x axis
-                                    double dPx = 0;
-                                    double d1x = magnitude(ax, 0);
-                                    double d2x = magnitude((x + vx) - (port.getAlignX() + target.getVx()), 0);
-                                    dPx = d2x - d1x;
-                                    if (dPx > 0) {
-                                        //we're getting further from the goal, slow down
-                                        decelX();
-                                        canAccel = false;
-                                    }
-                                    //check y axis
-                                    double dPy = 0;
-                                    double d1y = magnitude(0, ay);
-                                    double d2y = magnitude(0, (y + vy) - (port.getAlignY() + target.getVy()));
-                                    dPy = d2y - d1y;
-                                    if (dPy > 0) {
-                                        //we're getting further from the goal, slow down
-                                        decelY();
-                                        canAccel = false;
-                                    }
-                                    //accel if needed
-                                    if (canAccel && speed < hold) {
-                                        fireRearThrusters();
-                                    }
-                                }
-                            }
+                            //simple move to position function works here
+                            moveToPosition(port.getAlignX(), port.getAlignY());
                         }
                     } else {
-                        abortDock();
+                        cmdAbortDock();
                     }
                 } else {
-                    abortDock();
+                    cmdAbortDock();
                 }
             } else {
-                abortDock();
+                cmdAbortDock();
             }
         } else if (getAutopilot() == Autopilot.DOCK_STAGE2) {
             /*
@@ -693,17 +705,155 @@ public class Ship extends Celestial {
 
     protected void behaviorPatrol() {
         if (!docked) {
-            //target nearest enemy
-            targetNearestHostile();
+            if ((fuel / maxFuel) > PATROL_REFUEL_PERCENT) {
+                //target nearest enemy
+                targetNearestHostileShip();
+                if (target == null) {
+                    targetNearestHostileStation();
+                }
+            }
+            //handle what we got
             if (target == null) {
-                if (magnitude(vx, vy) > 0) {
-                    decelerate();
+                /*
+                 * Resume the patrol. Pick a station to fly within sensor
+                 * range of and fly to it. If fuel is less than 50% go dock
+                 * so it is replenished.
+                 */
+                if (autopilot == Autopilot.NONE) {
+                    //fuel check
+                    if ((fuel / maxFuel) <= PATROL_REFUEL_PERCENT) {
+                        //dock at the nearest friendly station
+                        Station near = getNearestFriendlyStation();
+                        cmdDock(near);
+                    } else {
+                        //get random station in system
+                        Station near = getRandomStation();
+                        if (near != null) {
+                            //fly within half sensor range
+                            double range = sensor / 2;
+                            cmdFlyToCelestial(near, range);
+                        } else {
+                            //there are no stations!
+                        }
+                    }
+                } else {
+                    //wait
                 }
             } else if (target != null) {
-                fightTarget();
+                if (target.getStandingsToMe(this) < -2) {
+                    fightTarget();
+                }
             }
         } else {
-            //TODO - ADD CODE FOR WHEN DOCKED
+            //restore fuel
+            fuel = maxFuel;
+            //undock
+            cmdUndock();
+        }
+    }
+
+    /*
+     * Utility nav functions
+     */
+    protected void moveToPosition(double tx, double ty) {
+        //get the docking align
+        double ax = x - tx;
+        double ay = y - ty;
+        double dist = magnitude((ax), (ay));
+        double speed = magnitude(vx, vy);
+        double hold = accel * 1.5;
+        //
+        double desired = Math.atan2(ay, ax);
+        desired = (desired + 2.0 * Math.PI) % (2.0 * Math.PI);
+        if (Math.abs(theta - desired) > turning * tpf) {
+            if (theta - desired > 0) {
+                rotateMinus();
+            } else if (theta - desired < 0) {
+                rotatePlus();
+            }
+        } else {
+            if (dist < hold) {
+                decelerate();
+                if (speed == 0) {
+                    setAutopilot(Autopilot.DOCK_STAGE2);
+                }
+            } else {
+                boolean canAccel = true;
+                //this is damage control - it deals with bad initial velocities and out of control spirals
+                double d2x = 0;
+                double d2y = 0;
+                if (target != null) {
+                    d2x = magnitude((x + vx) - (tx + target.getVx()), 0);
+                    d2y = magnitude(0, (y + vy) - (ty + target.getVy()));
+                } else {
+                    d2x = magnitude((x + vx) - (tx), 0);
+                    d2y = magnitude(0, (y + vy) - (ty));
+                }
+                //check x axis
+                double dPx = 0;
+                double d1x = magnitude(ax, 0);
+                dPx = d2x - d1x;
+                if (dPx > 0) {
+                    //we're getting further from the goal, slow down
+                    decelX();
+                    canAccel = false;
+                }
+                //check y axis
+                double dPy = 0;
+                double d1y = magnitude(0, ay);
+                dPy = d2y - d1y;
+                if (dPy > 0) {
+                    //we're getting further from the goal, slow down
+                    decelY();
+                    canAccel = false;
+                }
+                //accel if needed
+                if (canAccel && speed < hold) {
+                    fireRearThrusters();
+                }
+            }
+        }
+    }
+
+    public Station getRandomStation() {
+        Station ret = null;
+        {
+            ArrayList<Entity> stations = currentSystem.getStationList();
+            if (stations.size() > 0) {
+                ret = (Station) stations.get(rnd.nextInt(stations.size()));
+            } else {
+                return null;
+            }
+        }
+        return ret;
+    }
+
+    public Station getNearestFriendlyStation() {
+        Station ret = null;
+        {
+            ArrayList<Entity> stations = currentSystem.getStationList();
+            if (stations.size() > 0) {
+                Station closest = (Station) stations.get(0);
+                for (int a = 0; a < stations.size(); a++) {
+                    Station test = (Station) stations.get(a);
+                    if (test.canDock(this)) {
+                        double old = closest.distanceTo(this);
+                        double next = test.distanceTo(this);
+                        if (next < old) {
+                            closest = test;
+                        }
+                    }
+                }
+                ret = closest;
+            } else {
+                return null;
+            }
+        }
+        //final check
+        if (ret.canDock(this)) {
+            return ret;
+        } else {
+            return null;
         }
     }
 
@@ -722,11 +872,6 @@ public class Ship extends Celestial {
     /*
      * Navigation signals
      */
-    public void abortDock() {
-        setAutopilot(Autopilot.NONE);
-        port = null;
-    }
-
     public void requestDocking() {
         /*
          * Gets a docking port
@@ -740,19 +885,25 @@ public class Ship extends Celestial {
         }
     }
 
-    public void undock() {
+    public void cmdAbortDock() {
+        setAutopilot(Autopilot.NONE);
+        port = null;
+        target = null;
+    }
+
+    public void cmdUndock() {
         /*
          * Attempt to undock with the current target
          */
         if (port != null) {
             port.setClient(null);
         }
+        target = null;
         docked = false;
         autopilot = Autopilot.UNDOCK_STAGE1;
     }
 
     public void targetNearestShip() {
-        target = null;
         //get a list of all nearby ships
         ArrayList<Entity> nearby = getCurrentSystem().getEntities();
         ArrayList<Ship> ships = new ArrayList<>();
@@ -791,10 +942,51 @@ public class Ship extends Celestial {
         target = closest;
     }
 
-    public void targetNearestHostile() {
-        target = null;
+    public void targetNearestHostileShip() {
         //get a list of all nearby hostiles
-        ArrayList<Entity> nearby = getCurrentSystem().getEntities();
+        ArrayList<Entity> nearby = getCurrentSystem().getShipList();
+        ArrayList<Ship> hostiles = new ArrayList<>();
+        for (int a = 0; a < nearby.size(); a++) {
+            if (nearby.get(a) instanceof Ship) {
+                if (!(nearby.get(a) instanceof Projectile)) {
+                    if (!(nearby.get(a) instanceof Explosion)) {
+                        Ship tmp = (Ship) nearby.get(a);
+                        if (tmp != this) {
+                            //make sure it is alive
+                            if (tmp.getState() == State.ALIVE) {
+                                //check standings
+                                if (tmp.getStandingsToMe(this) <= -3) {
+                                    //make sure it is in range
+                                    if (distanceTo(tmp) < getSensor()) {
+                                        hostiles.add(tmp);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        //target the nearest one
+        Ship closest = null;
+        for (int a = 0; a < hostiles.size(); a++) {
+            if (closest == null) {
+                closest = hostiles.get(a);
+            } else {
+                double distClosest = distanceTo(closest);
+                double distTest = distanceTo(hostiles.get(a));
+                if (distTest < distClosest) {
+                    closest = hostiles.get(a);
+                }
+            }
+        }
+        //store
+        target = closest;
+    }
+
+    public void targetNearestHostileStation() {
+        //get a list of all nearby hostiles
+        ArrayList<Entity> nearby = getCurrentSystem().getStationList();
         ArrayList<Ship> hostiles = new ArrayList<>();
         for (int a = 0; a < nearby.size(); a++) {
             if (nearby.get(a) instanceof Ship) {

@@ -82,9 +82,10 @@ name=Caina Conglemerate
 ##########################################
 #Loadout lists for each faction
 ##########################################
-[Patrol]
+
+[Loadout]
 name=Ageiran Federation
-loadout0=Police Sparrow,16.0
-loadout1=Naval Crow ,8.0
-loadout2=Naval Raven,4.0
-[/Patrol]
+patrol0=Police Sparrow,16.0
+patrol1=Naval Crow ,8.0
+patrol2=Naval Raven,4.0
+[/Loadout]

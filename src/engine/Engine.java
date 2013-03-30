@@ -541,14 +541,14 @@ public class Engine {
                     } /*
                      * comms keys
                      */ else if (ke.getKeyCode() == KeyEvent.VK_D) {
-                        playerShip.setAutopilot(Ship.Autopilot.DOCK_STAGE1);
+                        playerShip.cmdDock(playerShip.getTarget());
                     }
                 } else {
                     /*
                      * docked
                      */
                     if (ke.getKeyCode() == KeyEvent.VK_D) {
-                        playerShip.undock();
+                        playerShip.cmdUndock();
                     }
                 }
                 /*

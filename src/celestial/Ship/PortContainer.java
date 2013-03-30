@@ -60,7 +60,7 @@ public class PortContainer implements Serializable {
                             client.setDocked(true);
                         }
                     } else {
-                        client.abortDock();
+                        client.cmdAbortDock();
                         client = null;
                         time = 0;
                     }
@@ -147,7 +147,7 @@ public class PortContainer implements Serializable {
 
     public void kickOut() {
         if(client != null) {
-            client.undock();
+            client.cmdUndock();
         }
     }
 }

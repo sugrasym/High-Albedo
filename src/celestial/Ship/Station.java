@@ -79,6 +79,11 @@ public class Station extends Ship {
             decelerate();
         }
     }
+    
+    @Override
+    protected void autopilot() {
+        //do nothing
+    }
 
     @Override
     protected void behaviorTest() {

@@ -1,23 +1,23 @@
 #New Game Smell
 [NewGame]
-ship=Bowman
+ship=Cheetah
 system=System 7
 near=Planet 0
 cash=8500
-install=Arrow/Arrow
-cargo=Ageiran MRE~3
+install=Starstruck Launcher/Starstruck Launcher
+cargo=Ageiran MRE~3/Starstruck Missile~100
 faction=Player
 [/NewGame]
 
 ########
 
 [Ship]
-ship=Monitor
+ship=Sparrow
 name=Probe Craft
 system=System 7
 near=Planet 0
 faction=The Archers
-install=Iguana Launcher/Iguana Launcher/Bask/Bask
+install=Talon 1/Talon 1
 cargo=Iguana Missile~100
 [/Ship]
 
@@ -30,6 +30,46 @@ faction=Ageiran Federation
 install=Arrow/Arrow
 cargo=Iguana Missile~50
 [/Ship]
+[Ship]
+ship=Sparrow
+name=Probe Craft
+system=System 7
+near=Planet 0
+faction=The Archers
+install=Talon 1/Talon 1
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+near=Planet 0
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~50
+[/Ship]
+
+[Ship]
+ship=Sparrow
+name=Probe Craft
+system=System 7
+near=Planet 0
+faction=The Archers
+install=Talon 1/Talon 1
+cargo=Iguana Missile~100
+[/Ship]
+
+[Ship]
+ship=Bowman
+name=Probe Craft
+system=System 7
+near=Planet 0
+faction=Ageiran Federation
+install=Arrow/Arrow
+cargo=Iguana Missile~50
+[/Ship]
+
 
 ########
 
