@@ -66,14 +66,14 @@ public class ContinentalGenerator extends PlanetGenerator {
 
         //@Override
         public ForRunnable copy() {
-            ForHeightMap copie = new ForHeightMap();
+            ForHeightMap copy = new ForHeightMap();
 
-            copie.perlin = perlin;
-            copie.shift = shift;
-            copie.diagram = diagram.clone();
-            copie.heightmap = heightmap;
+            copy.perlin = perlin;
+            copy.shift = shift;
+            copy.diagram = diagram.clone();
+            copy.heightmap = heightmap;
 
-            return copie;
+            return copy;
         }
 
         @Override

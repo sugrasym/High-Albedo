@@ -578,8 +578,12 @@ public class Ship extends Celestial {
                             //get the docking port to use
                             port = tmp.requestDockPort(this);
                         } else {
-                            //simple move to position function works here
-                            moveToPosition(port.getAlignX(), port.getAlignY());
+                            //check to see if we're where we need to be
+                            if (magnitude(vx, vy) == 0) {
+                                setAutopilot(Autopilot.DOCK_STAGE2);
+                            } else {
+                                moveToPosition(port.getAlignX(), port.getAlignY());
+                            }
                         }
                     } else {
                         cmdAbortDock();
@@ -637,7 +641,6 @@ public class Ship extends Celestial {
                     }
                 }
             }
-
         } else if (getAutopilot() == Autopilot.DOCK_STAGE3) {
             //determine which axis is further away
             double lx = x - port.getPortX();
@@ -772,7 +775,7 @@ public class Ship extends Celestial {
      * Utility nav functions
      */
     protected void moveToPosition(double tx, double ty) {
-        //get the docking align
+        //get the destination
         double ax = x - tx;
         double ay = y - ty;
         double dist = magnitude((ax), (ay));
@@ -791,7 +794,8 @@ public class Ship extends Celestial {
             if (dist < hold) {
                 decelerate();
                 if (speed == 0) {
-                    setAutopilot(Autopilot.DOCK_STAGE2);
+                    //disable autopilot destination reached
+                    autopilot = Autopilot.NONE;
                 }
             } else {
                 boolean canAccel = true;
@@ -1075,30 +1079,35 @@ public class Ship extends Celestial {
                 }
                 range += rad;
                 //fire thrusters based on range
-                if (distance < (range / 3)) {
-                    /*
-                     * The enemy is getting too close to the ship, so fire the reverse
-                     * thrusters.
-                     */
-                    fireForwardThrusters();
-                } else if (distance > (range / 2) && distance < (2 * range / 3)) {
-                    /*
-                     * The enemy is getting too far away from the ship, fire the forward
-                     * thrusters.
-                     */
-                    fireRearThrusters();
-                } else if (distance > (range)) {
-                    /*
-                     * The enemy is out of weapons range and needs to be approached
-                     */
-                    double dP = 0;
-                    double d1 = magnitude(x - target.getX(), y - target.getY());
-                    double d2 = magnitude((x + vx) - (target.getX() + target.getVx()), (y + vy) - (target.getY() + target.getVy()));
-                    dP = d2 - d1;
-                    if (dP + (accel * 2) > 0) {
+                Ship avoid = avoidCollission();
+                if (avoid == null && avoid != target) {
+                    if (distance < (range / 3)) {
+                        /*
+                         * The enemy is getting too close to the ship, so fire the reverse
+                         * thrusters.
+                         */
+                        fireForwardThrusters();
+                    } else if (distance > (range / 2) && distance < (2 * range / 3)) {
+                        /*
+                         * The enemy is getting too far away from the ship, fire the forward
+                         * thrusters.
+                         */
                         fireRearThrusters();
-                    }
+                    } else if (distance > (range)) {
+                        /*
+                         * The enemy is out of weapons range and needs to be approached
+                         */
+                        double dP = 0;
+                        double d1 = magnitude(x - target.getX(), y - target.getY());
+                        double d2 = magnitude((x + vx) - (target.getX() + target.getVx()), (y + vy) - (target.getY() + target.getVy()));
+                        dP = d2 - d1;
+                        if (dP + (accel * 2) > 0) {
+                            fireRearThrusters();
+                        }
 
+                    }
+                } else {
+                    autopilotAvoidBlock(avoid);
                 }
                 double enemyX = getFireLeadX();
                 double enemyY = getFireLeadY();

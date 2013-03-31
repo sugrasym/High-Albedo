@@ -52,22 +52,22 @@ public class Projectile extends Ship {
         this.tex = tex;
         this.faction = owner.getFaction();
     }
-    
+
     protected void explode() {
         /*
          * Generates explosion effect
          */
         Point2D.Double size = new Point2D.Double(width, height);
-        int count = rnd.nextInt(3)+1;
-        for(int a = 0; a < count; a++) {
-            Explosion exp = new Explosion(size, getExplosion(),0.5);
+        int count = rnd.nextInt(3) + 1;
+        for (int a = 0; a < count; a++) {
+            Explosion exp = new Explosion(size, getExplosion(), 0.5);
             exp.setFaction(faction);
             exp.init(false);
             //calculate helpers
             double dT = rnd.nextInt() % (Math.PI * 2.0);
-            double ew = 2*rnd.nextInt(getWidth()+1)-getWidth();
-            double dx = ew*Math.cos(dT);
-            double dy = ew*Math.sin(dT);
+            double ew = 2 * rnd.nextInt(getWidth() + 1) - getWidth();
+            double dx = ew * Math.cos(dT);
+            double dy = ew * Math.sin(dT);
             //store position
             exp.setX((getX() + getWidth() / 2) - exp.getWidth() / 2 + dx);
             exp.setY((getY() + getHeight() / 2) - exp.getHeight() / 2 + dy);
@@ -76,16 +76,20 @@ public class Projectile extends Ship {
             double pdx = speed * Math.cos(dT);
             double pdy = speed * Math.sin(dT);
             //add to host vector
-            exp.setVx(-getVx()/8+pdx);
-            exp.setVy(-getVy()/8+pdy);
+            exp.setVx(-getVx() / 8 + pdx);
+            exp.setVy(-getVy() / 8 + pdy);
             exp.setCurrentSystem(currentSystem);
             //randomize rotation
-            exp.setTheta(rnd.nextDouble()*(2*Math.PI));
+            exp.setTheta(rnd.nextDouble() * (2 * Math.PI));
             //deploy
             getCurrentSystem().putEntityInSystem(exp);
         }
     }
-    
+
+    protected Ship avoidCollission() {
+        return null;
+    }
+
     @Override
     public void initGraphics() {
         try {
@@ -158,7 +162,7 @@ public class Projectile extends Ship {
         target = owner.getTarget();
         fightTarget();
     }
-    
+
     public void fireForwardThrusters() {
         //ramming speed only
     }
@@ -169,7 +173,7 @@ public class Projectile extends Ship {
          */
         return -1;
     }
-    
+
     @Override
     protected double getFireLeadX() {
         //get the center of the enemy
