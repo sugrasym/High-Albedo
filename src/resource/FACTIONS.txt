@@ -69,6 +69,12 @@ Caina Conglemerate=10
 
 ##########################################
 #Station lists for each faction
+#
+#NOTE: This is the formula used to find
+#the number of a station to drop.
+#
+# n = 1 + (populatedSystems * value)
+#
 ##########################################
 
 [Stations]
@@ -80,6 +86,11 @@ station3=Ageiran MRE Factory,0.5
 station4=Ageiran Shipyard,0.1
 station5=Ageiran Solar Power Plant,2.0
 station6=Ageiran Weapons Forge,0.25
+[/Stations]
+
+[Stations]
+name=The Archers
+station0=Archer Cove,0.15
 [/Stations]
 
 [Stations]

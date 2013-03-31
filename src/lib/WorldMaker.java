@@ -252,7 +252,18 @@ public class WorldMaker {
                                     + "faction=" + tmp.getOwner() + "\n"
                                     + "[/Station]\n\n";
                         } else {
-                            //drop it randomly in space its probably a pirate base
+                            //it is probably a pirate base drop it somewhere
+                            x = rnd.nextInt(2 * size) - size;
+                            y = rnd.nextInt(2 * size) - size;
+                            //drop
+                            thisSystem += "[Station]\n"
+                                    + "name=" + tmp.getName() + "\n"
+                                    + "system=" + systemName + "\n"
+                                    + "ship=" + tmp.getType() + "\n"
+                                    + "x=" + x + "\n"
+                                    + "y=" + y + "\n"
+                                    + "faction=" + tmp.getOwner() + "\n"
+                                    + "[/Station]\n\n";
                         }
                     }
                 }
@@ -313,11 +324,24 @@ public class WorldMaker {
     }
 
     private void dropStations(ArrayList<Sysling> syslings, Faction faction) {
-        //make a list of this faction's systems
         ArrayList<Sysling> simp = new ArrayList<>();
-        for (int a = 0; a < syslings.size(); a++) {
-            if (syslings.get(a).getOwner().matches(faction.getName())) {
-                simp.add(syslings.get(a));
+        if (faction.isEmpire()) {
+            //make a list of this faction's systems
+            for (int a = 0; a < syslings.size(); a++) {
+                if (syslings.get(a).getOwner().matches(faction.getName())) {
+                    simp.add(syslings.get(a));
+                }
+            }
+        } else {
+            //figure out who hosts this faction
+            ArrayList<String> hosts = faction.hosts;
+            for (int a = 0; a < hosts.size(); a++) {
+                //make a list of the host's systems
+                for (int v = 0; v < syslings.size(); v++) {
+                    if (syslings.get(v).getOwner().matches(hosts.get(a))) {
+                        simp.add(syslings.get(v));
+                    }
+                }
             }
         }
         //get a list of stations for this faction
@@ -401,7 +425,7 @@ public class WorldMaker {
             }
         }
         //build stations
-        for(int a = 0; a < factions.size(); a++) {
+        for (int a = 0; a < factions.size(); a++) {
             dropStations(syslings, factions.get(a));
         }
         //report
