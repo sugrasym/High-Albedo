@@ -45,6 +45,8 @@ public class God implements EngineElement {
     private Universe universe;
     private ArrayList<SuperFaction> factions = new ArrayList<>();
     private Random rnd = new Random();
+    //timing
+    private long lastFrame;
 
     public God(Universe universe) {
         this.universe = universe;
@@ -63,12 +65,22 @@ public class God implements EngineElement {
 
     @Override
     public void periodicUpdate() {
-        try {
-            checkPatrols();
-            checkStations();
-        } catch (Exception e) {
-            System.out.println("Error manipulating dynamic universe.");
-            e.printStackTrace();
+        //get time since last frame
+        long dt = System.nanoTime() - lastFrame;
+        //calculate time per frame
+        double tpf = Math.abs(dt / 1000000000.0);
+        //only run it every 15 seconds because it's a performance hog!
+        if (tpf > 15) {
+            //store time
+            lastFrame = System.nanoTime();
+            //update
+            try {
+                checkPatrols();
+                checkStations();
+            } catch (Exception e) {
+                System.out.println("Error manipulating dynamic universe.");
+                e.printStackTrace();
+            }
         }
     }
 
@@ -99,10 +111,25 @@ public class God implements EngineElement {
         if (faction.getPatrols().size() > 0) {
             //for storing loadout totals
             int count[] = new int[faction.getPatrols().size()];
-            //get a count of the number of patrols in each system
-            for (int a = 0; a < universe.getSystems().size(); a++) {
-                SolarSystem sys = universe.getSystems().get(a);
-                if (sys.getOwner().matches(faction.getName())) {
+            if (faction.isEmpire()) {
+                //get a count of the number of patrols in each system
+                for (int a = 0; a < faction.getSov().size(); a++) {
+                    SolarSystem sys = faction.getSov().get(a);
+                    /*
+                     * Increment count[] by the total number of each loadout
+                     * found in this system. This will be used as a universe
+                     * wide total later on.
+                     */
+                    for (int v = 0; v < count.length; v++) {
+                        String loadout = faction.getPatrols().get(v).getString();
+                        int num = countShipsByLoadout(faction, sys, loadout);
+                        count[v] += num;
+                    }
+                }
+            } else {
+                //this faction does not own space - count the space it lives in
+                for (int a = 0; a < faction.getSovHost().size(); a++) {
+                    SolarSystem sys = faction.getSovHost().get(a);
                     /*
                      * Increment count[] by the total number of each loadout
                      * found in this system. This will be used as a universe
@@ -118,21 +145,44 @@ public class God implements EngineElement {
             //do they meet the required density?
             for (int a = 0; a < count.length; a++) {
                 double density = faction.getPatrols().get(a).getDouble();
-                //System.out.println(faction.getPatrols().get(a).getString() + " " + count[a]);
-                if (count[a] < density) {
-                    //pick a system this faction owns
-                    ArrayList<SolarSystem> sov = faction.getSov();
-                    SolarSystem pick = sov.get(rnd.nextInt(sov.size()));
-                    //pick a planet in this system
-                    ArrayList<Entity> planets = pick.getCelestialList();
-                    Celestial host = (Celestial) planets.get(rnd.nextInt(planets.size()));
+                System.out.println(faction.getPatrols().get(a).getString() + " " + count[a]);
+                while (count[a] < density) {
+                    Celestial host = null;
+                    SolarSystem pick = null;
+                    if (faction.isEmpire()) {
+                        //pick a system this faction owns
+                        ArrayList<SolarSystem> sov = faction.getSov();
+                        if (sov.size() > 0) {
+                            pick = sov.get(rnd.nextInt(sov.size()));
+                        } else {
+                            System.out.println(faction.getName() + " has no sov");
+                            pick = universe.getSystems().get(rnd.nextInt(universe.getSystems().size()));
+                        }
+                        //pick a planet in this system
+                        ArrayList<Entity> planets = pick.getCelestialList();
+                        host = (Celestial) planets.get(rnd.nextInt(planets.size()));
+                    } else {
+                        //space belonging to this faction's host
+                        ArrayList<SolarSystem> sov = faction.getSovHost();
+                        if (sov.size() > 0) {
+                            pick = sov.get(rnd.nextInt(sov.size()));
+                        } else {
+                            System.out.println(faction.getName() + " has no hosts");
+                            pick = universe.getSystems().get(rnd.nextInt(universe.getSystems().size()));
+                        }
+                        //pick a planet in this system
+                        ArrayList<Entity> planets = pick.getCelestialList();
+                        host = (Celestial) planets.get(rnd.nextInt(planets.size()));
+                    }
                     //pick a point near the jump hole
-                    double x = host.getX() + rnd.nextInt(8000) - 4000;
-                    double y = host.getY() + rnd.nextInt(8000) - 4000;
+                    double x = host.getX() + rnd.nextInt(10000) - 5000;
+                    double y = host.getY() + rnd.nextInt(10000) - 5000;
                     //make a point
                     Point2D.Double pnt = new Point2D.Double(x, y);
                     //spawn
                     spawnShip(faction, pick, pnt, faction.getPatrols().get(a), Behavior.PATROL);
+                    //increment count
+                    count[a]++;
                 }
             }
         }
@@ -148,10 +198,15 @@ public class God implements EngineElement {
             ArrayList<Entity> ships = system.getShipList();
             for (int a = 0; a < ships.size(); a++) {
                 Ship tmp = (Ship) ships.get(a);
-                if (tmp.getFaction().matches(faction.getName())) {
-                    if (tmp.getTemplate().matches(loadout)) {
-                        count++;
+                if (tmp.getState() == Ship.State.ALIVE) {
+                    if (tmp.getFaction().matches(faction.getName())) {
+                        if (tmp.getTemplate().matches(loadout)) {
+                            count++;
+                        }
                     }
+                } else if (tmp.getState() == Ship.State.DEAD) {
+                    System.out.println(tmp.getName() + " dead but not cleaned up");
+
                 }
             }
         }
@@ -226,6 +281,6 @@ public class God implements EngineElement {
         tmp.setCurrentSystem(system);
         system.putEntityInSystem(tmp);
         //report
-        System.out.println("Spawned "+loadout.getString()+" in "+system.getName()+" for "+faction.getName());
+        System.out.println("Spawned " + loadout.getString() + " in " + system.getName() + " for " + faction.getName());
     }
 }

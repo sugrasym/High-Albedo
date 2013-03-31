@@ -9,6 +9,8 @@
 ########Netural###########
 [Faction]
 name=Neutral
+var_isEmpire=false
+var_worldPercent=0
 Player=0
 Ageiran Federation=0
 The Archers=0
@@ -18,6 +20,8 @@ Caina Conglemerate=0
 ########The Player########
 [Faction]
 name=Player
+var_isEmpire=false
+var_worldPercent=0
 Neutral=0
 Player=10
 Ageiran Federation=3
@@ -39,6 +43,9 @@ Caina Conglemerate=0
 
 [Faction]
 name=The Archers
+var_isEmpire=false
+var_worldPercent=0
+var_hosts=Ageiran Federation/Orin Federation
 Neutral=0
 Player=-4
 Ageiran Federation=-10
@@ -85,7 +92,14 @@ name=Caina Conglemerate
 
 [Loadout]
 name=Ageiran Federation
-patrol0=Police Sparrow,200
-patrol1=Naval Crow,100
-patrol2=Naval Raven,50
+patrol0=Police Sparrow,100
+patrol1=Naval Crow,50
+patrol2=Naval Raven,25
+[/Loadout]
+
+[Loadout]
+name=The Archers
+patrol0=Archers' Pillager,15
+patrol1=Archers' Raider,10
+patrol2=Archers' Vanguard,5
 [/Loadout]

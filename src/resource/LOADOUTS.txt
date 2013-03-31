@@ -27,3 +27,26 @@ name=Naval Raven
 install=Talon 3/Talon 3/Talon 3
 cargo=Standard Energy Unit~5
 [/Loadout]
+
+########Ageiran Federation Unlawful
+
+[Loadout]
+ship=Bowman
+name=Archers' Pillager
+install=Arrow/Arrow
+cargo=Consumer Goods~2
+[/Loadout]
+
+[Loadout]
+ship=Cavalry
+name=Archers' Raider
+install=Catapult/Catapult/Long 9
+cargo=Consumer Goods~6
+[/Loadout]
+
+[Loadout]
+ship=Cavalry
+name=Archers' Vanguard
+install=Catapult/Catapult/Catapult
+cargo=Consumer Goods~10
+[/Loadout]

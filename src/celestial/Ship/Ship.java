@@ -130,10 +130,10 @@ public class Ship extends Celestial {
     @Override
     public void init(boolean loadedGame) {
         if (!loadedGame) {
+            //setup stats
             initStats();
         }
         state = State.ALIVE;
-        setBehavior(Behavior.PATROL);
     }
 
     @Override
@@ -294,8 +294,7 @@ public class Ship extends Celestial {
                             if (distanceTo(target) > getSensor()) {
                                 target = null;
                             }
-                        }
-                        if (target.getState() == State.DEAD) {
+                        } else if (target.getState() == State.DEAD) {
                             target = null;
                         }
                     }
@@ -973,17 +972,17 @@ public class Ship extends Celestial {
         ArrayList<Entity> nearby = getCurrentSystem().getShipList();
         ArrayList<Ship> hostiles = new ArrayList<>();
         for (int a = 0; a < nearby.size(); a++) {
-            if (nearby.get(a) instanceof Ship) {
-                if (!(nearby.get(a) instanceof Projectile)) {
-                    if (!(nearby.get(a) instanceof Explosion)) {
-                        Ship tmp = (Ship) nearby.get(a);
-                        if (tmp != this) {
-                            //make sure it is alive
-                            if (tmp.getState() == State.ALIVE) {
-                                //check standings
-                                if (tmp.getStandingsToMe(this) <= -3) {
-                                    //make sure it is in range
-                                    if (distanceTo(tmp) < getSensor()) {
+            Ship tmp = (Ship) nearby.get(a);
+            //make sure it is in range
+            if (distanceTo(tmp) < getSensor()) {
+                if (nearby.get(a) instanceof Ship) {
+                    if (!(nearby.get(a) instanceof Projectile)) {
+                        if (!(nearby.get(a) instanceof Explosion)) {
+                            if (tmp != this) {
+                                //make sure it is alive
+                                if (tmp.getState() == State.ALIVE) {
+                                    //check standings
+                                    if (tmp.getStandingsToMe(this) <= -3) {
                                         hostiles.add(tmp);
                                     }
                                 }
@@ -1018,12 +1017,12 @@ public class Ship extends Celestial {
         ArrayList<Station> hostiles = new ArrayList<>();
         for (int a = 0; a < nearby.size(); a++) {
             Station tmp = (Station) nearby.get(a);
-            //make sure it is alive
-            if (tmp.getState() == State.ALIVE) {
-                //check standings
-                if (tmp.getStandingsToMe(this) <= -3) {
-                    //make sure it is in range
-                    if (distanceTo(tmp) < getSensor()) {
+            //make sure it is in range
+            if (distanceTo(tmp) < getSensor()) {
+                //make sure it is alive
+                if (tmp.getState() == State.ALIVE) {
+                    //check standings
+                    if (tmp.getStandingsToMe(this) <= -3) {
                         hostiles.add(tmp);
                     }
                 }

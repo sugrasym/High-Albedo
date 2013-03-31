@@ -34,6 +34,7 @@ public class SuperFaction extends Faction {
     private Universe universe;
     //sov
     private ArrayList<SolarSystem> sov = new ArrayList<>();
+    private ArrayList<SolarSystem> sovHost = new ArrayList<>();
     //loadout lists
     private ArrayList<Binling> patrols = new ArrayList<>();
     private ArrayList<Binling> traders = new ArrayList<>();
@@ -51,6 +52,7 @@ public class SuperFaction extends Faction {
         initStations();
         initLoadouts();
         initSov();
+        initSovHosts();
     }
 
     private void initStations() {
@@ -153,6 +155,19 @@ public class SuperFaction extends Faction {
             }
         }
     }
+    
+    private void initSovHosts() {
+        /*
+         * Makes a list of all the systems this faction can spawn in if it is
+         * not a sov holder.
+         */
+        ArrayList<SolarSystem> systems = universe.getSystems();
+        for (int a = 0; a < systems.size(); a++) {
+            if (canSpawnIn(universe.getSystems().get(a))) {
+                sovHost.add(systems.get(a));
+            }
+        }
+    }
 
     public ArrayList<Binling> getPatrols() {
         return patrols;
@@ -172,5 +187,18 @@ public class SuperFaction extends Faction {
 
     public ArrayList<SolarSystem> getSov() {
         return sov;
+    }
+
+    public ArrayList<SolarSystem> getSovHost() {
+        return sovHost;
+    }
+
+    private boolean canSpawnIn(SolarSystem get) {
+        for(int a = 0; a < hosts.size(); a++) {
+            if(get.getOwner().matches(hosts.get(a))) {
+                return true;
+            }
+        }
+        return false;
     }
 }

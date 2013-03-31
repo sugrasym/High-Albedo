@@ -26,6 +26,7 @@ package lib;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import lib.Parser.Param;
 import lib.Parser.Term;
 
@@ -34,17 +35,18 @@ import lib.Parser.Term;
  * @author Nathan Wiehoff
  */
 public class Faction implements Serializable {
-
+    
     private String name;
     private boolean isEmpire = false;
     private double spread = 0;
+    protected ArrayList<String> hosts = new ArrayList<>();
     private ArrayList<Binling> standings = new ArrayList<>();
-
+    
     public Faction(String name) {
         this.name = name;
         init();
     }
-
+    
     private void init() {
         Parser tmp = new Parser("FACTIONS.txt");
         ArrayList<Term> factions = tmp.getTermsOfType("Faction");
@@ -54,7 +56,7 @@ public class Faction implements Serializable {
                 {
                     ArrayList<Param> vals = tmp2.getParams();
                     for (int q = 0; q < vals.size(); q++) {
-                        if (!vals.get(q).getName().contains(("val_"))) {
+                        if (!vals.get(q).getName().contains(("var_"))) {
                             try {
                                 String fac = vals.get(q).getName();
                                 int rel = Integer.parseInt(vals.get(q).getValue());
@@ -68,6 +70,12 @@ public class Faction implements Serializable {
                 try {
                     isEmpire = Boolean.parseBoolean(tmp2.getValue("var_isEmpire"));
                     spread = Double.parseDouble((tmp2.getValue("var_worldPercent")));
+                    //store hosts
+                    String ho = tmp2.getValue("var_hosts");
+                    if (ho != null) {
+                        String[] arr = ho.split("/");
+                        hosts.addAll(Arrays.asList(arr));
+                    }
                 } catch (Exception e) {
                     System.out.println(name + " is missing information about spread and sov");
                 }
@@ -75,7 +83,7 @@ public class Faction implements Serializable {
             }
         }
     }
-
+    
     public int getStanding(String faction) {
         if (standings != null) {
             for (int a = 0; a < standings.size(); a++) {
@@ -89,7 +97,7 @@ public class Faction implements Serializable {
         }
         return 0;
     }
-
+    
     public void setStanding(String faction, int value) {
         if (value < -10) {
             value = -10;
@@ -105,15 +113,15 @@ public class Faction implements Serializable {
             }
         }
     }
-
+    
     public boolean isEmpire() {
         return isEmpire;
     }
-
+    
     public String getName() {
         return name;
     }
-
+    
     public double getSpread() {
         return spread;
     }

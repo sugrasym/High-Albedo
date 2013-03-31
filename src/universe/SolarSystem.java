@@ -358,7 +358,18 @@ public class SolarSystem implements Entity, Serializable {
             entities.get(a).periodicUpdate(tpf);
             if (entities.get(a).getState() == Entity.State.DEAD) {
                 //remove the entity
-                entities.remove(a);
+                pullEntityFromSystem(entities.get(a));
+            } else if (entities.get(a) instanceof Ship) {
+                Ship test = (Ship) entities.get(a);
+                double perc = test.getFuel() / test.getMaxFuel();
+                if (perc < 0.05) {
+                    if (!entities.contains(universe.getPlayerShip())) {
+                        System.out.println("Removing derelict ship " + test.getName());
+                        test.setState(State.DYING);
+                    } else {
+                        //don't do this while the player is watching
+                    }
+                }
             }
         }
         //cleanup graphics if the player is not present
