@@ -119,6 +119,7 @@ name=ITC
 
 [Stations]
 name=Caina Conglemerate
+station0=Royal Military Base,0.5
 [/Stations]
 
 ##########################################

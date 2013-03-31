@@ -107,3 +107,16 @@ rectBound=22,32,186,234/169,24,572,48
 dock=210,50,260,100,900,140/310,50,360,100,900,140/410,50,460,100,900,140/510,50,560,100,900,140
 ##process=HydrocarbonBurn/Scrap->ConsumerGoods
 [/Station]
+
+[Station]
+type=Royal Military Base
+accel=1.5
+turning=0
+shield=2500000
+shieldRecharge=1000
+hull=38050
+fuel=2500000000000
+mass=62010
+rectBound=22,32,186,234/169,24,572,48
+dock=210,50,260,100,900,140/310,50,360,100,900,140/410,50,460,100,900,140/510,50,560,100,900,140
+[/Station]
