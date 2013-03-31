@@ -8,6 +8,13 @@
 ########Ageiran Federation Lawful
 
 [Loadout]
+ship=Cab
+name=Federal Taxie
+install=Talon 1/Talon 1
+cargo=Standard Energy Unit~1
+[/Loadout]
+
+[Loadout]
 ship=Sparrow
 name=Police Sparrow
 install=Talon 1/Talon 1

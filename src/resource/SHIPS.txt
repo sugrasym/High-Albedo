@@ -1,5 +1,21 @@
 #########Agerian Federation########
 
+#Taxies
+
+[Ship]
+type=Cab
+accel=76
+turning=4.3
+shield=8500
+shieldRecharge=15
+hull=400
+fuel=46500
+mass=95
+sensor=2000
+cargo=25
+hardpoint=cannon,10,8,3.925/cannon,10,-8,5.495
+[/Ship]
+
 #Light Fighters
 [Ship]
 type=Sparrow

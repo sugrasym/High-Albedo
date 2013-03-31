@@ -95,6 +95,7 @@ name=Ageiran Federation
 patrol0=Police Sparrow,100
 patrol1=Naval Crow,50
 patrol2=Naval Raven,25
+taxie0=Federal Taxie,50
 [/Loadout]
 
 [Loadout]
