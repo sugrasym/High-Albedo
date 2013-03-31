@@ -1,4 +1,21 @@
 #########Agerian Federation########
+#Naming Scheme: Birds
+#########
+#Transports
+
+[Ship]
+type=Emu
+accel=25
+turning=2.8
+shield=11500
+shieldRecharge=200
+hull=1500
+fuel=34750
+mass=525
+sensor=2600
+cargo=1550
+hardpoint=cannon,30,0,0
+[/Ship]
 
 #Taxies
 
@@ -62,6 +79,8 @@ hardpoint=cannon,30,8,3.925/cannon,30,-8,5.495/cannon,30,0,0
 [/Ship]
 
 #########The Archers########
+#Naming Scheme: Long Range Weapons
+#########
 
 #Light Fighters
 [Ship]
@@ -97,7 +116,25 @@ hardpoint=cannon,20,8,3.925/cannon,20,-8,5.495/cannon,30,0,0
 #Heavy Fighters
 #The archers do not have a HF
 
-#########ITC Fighters##########
+#########ITC##########
+#Naming Scheme: Savanna Animals
+#########
+
+#Transports
+
+[Ship]
+type=Wildabeast
+accel=17
+turning=1.8
+shield=6000
+shieldRecharge=350
+hull=1200
+fuel=80000
+mass=600
+sensor=14500
+cargo=2200
+hardpoint=missile,32,8,3.925/missile,32,-8,5.495/missile,32,4,3.925/missile,32,-4,5.495
+[/Ship]
 
 #Light Fighters
 [Ship]
@@ -129,7 +166,26 @@ cargo=450
 hardpoint=missile,32,8,3.925/missile,32,-8,5.495/missile,32,4,3.925/missile,32,-4,5.495
 [/Ship]
 
-#########Caina Fighters########
+#########Caina Conglemerate########
+#Naming Scheme: Reptiles
+#########
+
+#Transports
+
+[Ship]
+type=Gila
+accel=30
+turning=2.6
+shield=12100
+shieldRecharge=180
+hull=1750
+fuel=28590
+mass=725
+sensor=3300
+cargo=1100
+hardpoint=missile,24,5,1.5/missile,24,-5,0/cannon,28,5,5.495/cannon,28,-5,5.495
+[/Ship]
+
 
 #Light Fighters
 [Ship]
@@ -180,6 +236,8 @@ hardpoint=missile,24,12,3.925/missile,24,-12,5.495/cannon,28,6,3.925/cannon,28,-
 
 
 #########Special########
+#Naming Scheme: Snark
+#########
 
 [Ship]
 type=Mass Testing Brick

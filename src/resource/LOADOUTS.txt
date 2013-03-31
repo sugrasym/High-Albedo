@@ -57,3 +57,63 @@ name=Archers' Vanguard
 install=Catapult/Catapult/Catapult
 cargo=Consumer Goods~10
 [/Loadout]
+
+########ITC Lawful
+
+[Loadout]
+ship=Cheetah
+name=PPF Police
+install=Sidewinder Launcher/Sidewinder Launcher
+cargo=Sidewinder Missile~32
+[/Loadout]
+
+[Loadout]
+ship=Cheetah
+name=PPF Security
+install=Starstruck Launcher/Starstruck Launcher
+cargo=Starstruck Missile~32
+[/Loadout]
+
+[Loadout]
+ship=Cheetah
+name=PPF Military
+install=Starstruck Launcher/Starstruck Launcher/Starstruck Launcher/Starstruck Launcher
+cargo=Starstruck Missile~74
+[/Loadout]
+
+########Caina Lawful
+
+[Loadout]
+ship=Gecko
+name=Air Force Gecko
+install=Iguana Launcher/Iguana Launcher/Venom Alpha
+cargo=Iguana Missile~24
+[/Loadout]
+
+[Loadout]
+ship=Monitor
+name=Naval Monitor
+install=Iguana Launcher/Iguana Launcher/Venom Beta
+cargo=Iguana Missile~28
+[/Loadout]
+
+[Loadout]
+ship=Monitor
+name=Air Force Monitor
+install=Iguana Launcher/Iguana Launcher/Bask
+cargo=Iguana Missile~28
+[/Loadout]
+
+[Loadout]
+ship=Komodo
+name=Air Force Komodo
+install=Iguana Launcher/Iguana Launcher/Bask/Bask
+cargo=Iguana Missile~30
+[/Loadout]
+
+[Loadout]
+ship=Komodo
+name=Naval Komodo
+install=Anaconda Launcher/Anaconda Launcher/Frill/Bask
+cargo=Anaconda Missile~14
+[/Loadout]

@@ -1323,7 +1323,9 @@ public class Ship extends Celestial {
                 f.drawImage(raw_tex, 0, 0, null);
             }
             //draw health bars
-            drawHealthBars(g, dx, dy);
+            if (this != getUniverse().getPlayerShip()) {
+                drawHealthBars(g, dx, dy);
+            }
             /*//draw avoidance info
              Line2D tmp = getDodgeLine();
              g.setColor(Color.WHITE);
