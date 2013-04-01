@@ -212,8 +212,15 @@ resource=Standard Energy Unit,35
 [Process]
 name=ITCLivestock
 cycle=320
-product=Livestock,20
-resource=Heavy Water,2
+product=Livestock,100
+resource=Heavy Water,1
+[/Process]
+
+[Process]
+name=ITCMeatOnAStick
+cycle=110
+product=Meat On A Stick,100
+resource=Livestock,100/Heavy Water,1
 [/Process]
 
 [Process]

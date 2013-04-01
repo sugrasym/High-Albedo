@@ -120,6 +120,7 @@ station1=ITC Ice Refinery,0.75
 station2=ITC Orbital Material Hub,1.0
 station3=ITC Ore Converter,0.5
 station4=ITC Orbital Ranch,0.75
+station5=ITC Food Supply,0.8
 [/Stations]
 
 [Stations]

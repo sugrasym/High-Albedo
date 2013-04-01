@@ -299,3 +299,17 @@ rectBound=9,3,446,448/428,195,529,251
 dock=454,141,504,191,485,-114/454,252,504,302,491,512
 process=ITCLivestock
 [/Station]
+
+[Station]
+type=ITC Food Supply
+accel=1.5
+turning=0
+shield=21000
+shieldRecharge=3000
+hull=2860
+fuel=2500000000000
+mass=35000
+rectBound=9,3,446,448/428,195,529,251
+dock=454,141,504,191,485,-114/454,252,504,302,491,512
+process=ITCMeatOnAStick
+[/Station]
