@@ -117,6 +117,19 @@ description=Alloy bars are bars of refined metal that can be used for more sophi
 [/Item]
 
 [Item]
+name=Hull Plating
+type=commodity
+volume=1
+mass=2
+HP=100
+minPrice=310
+maxPrice=450
+store=200
+group=alloy
+description=Hull plates are highly refined alloy sheets that can be converted into the hulls of space craft and stations.
+[/Item]
+
+[Item]
 name=FPGAs
 type=commodity
 volume=1
@@ -127,6 +140,19 @@ maxPrice=160
 store=120
 group=alloy
 description=Field-Programmable-Gate-Arrays are used in rapid prototyping of computer circuitry. Once programmed, they can be flashed into a permanent configuration for release.
+[/Item]
+
+[Item]
+name=Assembly Modules
+type=commodity
+volume=1
+mass=1
+HP=100
+minPrice=250
+maxPrice=410
+store=220
+group=alloy
+description=Cainan 'assembly modules' are self-assembly machines that can convert into another component. This conversion process allows them to become the components of many high-tech devices, although the process is irreversible.
 [/Item]
 
 [Item]
@@ -179,6 +205,19 @@ maxPrice=950
 group=product
 store=60
 description=Consumer goods are household items that are relatively easy to produce. Small personal fabrication devices are ubiquitous and capable of converting a sufficient quantity of input materials into a desired good. This process is so lightweight that it often doesn't require any additional energy beyond what all stations can generate internally, making consumer goods manufacturing an attractive option for light stations such as customs offices. 
+[/Item]
+
+[Item]
+name=Pirated Software
+type=commodity
+volume=0
+mass=0
+HP=100
+minPrice=5
+maxPrice=1000
+group=product
+store=500
+description=Lots and lots of cracked copies of commercial software. Due to network monitoring transmission of this product is impossible, therefore those who run it in bulk are heavily rewarded.
 [/Item]
 
 ########Weapon Entries#######

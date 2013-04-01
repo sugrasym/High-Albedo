@@ -9,6 +9,7 @@ fuel=2500000000000
 mass=10000
 rectBound=20,32,186,234/169,24,572,48/170,236,572,266
 dock=210,50,260,100,900,140/310,50,360,100,900,140/410,50,460,100,900,140/510,50,560,100,900,140
+process=AgeiranCivilianFoodSink/AgeiranCivilianPirateSink/CivilianConsumerGoods
 [/Station]
 
 [Station]
@@ -22,6 +23,7 @@ fuel=2500000000000
 mass=50000
 rectBound=20,32,186,234/169,24,572,48/170,236,572,266
 dock=210,50,260,100,900,140/310,50,360,100,900,140/410,50,460,100,900,140/510,50,560,100,900,140
+process=GoodsToPiracy
 [/Station]
 
 [Station]
@@ -91,7 +93,7 @@ fuel=2500000000000
 mass=16000
 rectBound=25,5,192,118/192,15,485,39/158,118,192,339
 dock=234,45,284,95,900,305/334,45,384,95,900,305/434,45,484,95,900,305
-##process=HydrocarbonBurn/Scrap->ConsumerGoods
+process=AgeiranCheatTalonSink
 [/Station]
 
 [Station]
@@ -165,6 +167,34 @@ process=CainanLunchbox
 [/Station]
 
 [Station]
+type=Hull Plating Fabricator
+accel=1.5
+turning=0
+shield=1400000
+shieldRecharge=120
+hull=12600
+fuel=2500000000000
+mass=81000
+rectBound=6,6,293,562
+dock=10,568,60,618,27,738/88,568,138,618,105,738/166,568,216,618,185,738/244,568,294,618,263,738
+process=CainanHullPlating
+[/Station]
+
+[Station]
+type=Module Fabricator
+accel=1.5
+turning=0
+shield=1400000
+shieldRecharge=120
+hull=12600
+fuel=2500000000000
+mass=81000
+rectBound=6,6,293,562
+dock=10,568,60,618,27,738/88,568,138,618,105,738/166,568,216,618,185,738/244,568,294,618,263,738
+process=CainanAssemblyModule
+[/Station]
+
+[Station]
 type=Royal Military Base
 accel=1.5
 turning=0
@@ -175,4 +205,19 @@ fuel=2500000000000
 mass=62010
 rectBound=6,6,293,562
 dock=10,568,60,618,27,738/88,568,138,618,105,738/166,568,216,618,185,738/244,568,294,618,263,738
+process=CainanCheatWeaponSink/CainanCheatVenom/CainanCheatHeavy/CainanCheatMissile/CainanCheatMissileAmmo/CainanCheatWasteSink
+[/Station]
+
+[Station]
+type=Orbital Habitat
+accel=1.5
+turning=0
+shield=800000
+shieldRecharge=64
+hull=4600
+fuel=2500000000000
+mass=52000
+rectBound=6,6,293,562
+dock=10,568,60,618,27,738/88,568,138,618,105,738/166,568,216,618,185,738/244,568,294,618,263,738
+process=CainanHabitatGoodsSink/CainanHabitatFoodSink
 [/Station]

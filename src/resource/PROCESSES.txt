@@ -1,4 +1,46 @@
-#Weapon Manufacturing
+#Cheating Weapon Manufacturing
+
+[Process]
+name=CainanCheatVenom
+cycle=200
+product=Venom Alpha,4/Venom Beta,2
+resource=
+[/Process]
+
+[Process]
+name=CainanCheatHeavy
+cycle=300
+product=Bask,2/Frill,1
+resource=
+[/Process]
+
+[Process]
+name=CainanCheatMissile
+cycle=300
+product=Python Launcher,5/Iguana Launcher,3/Anaconda Launcher,1
+resource=
+[/Process]
+
+[Process]
+name=CainanCheatMissileAmmo
+cycle=150
+product=Python Missile,10/Iguana Missile,5/Anaconda Missile,1
+resource=
+[/Process]
+
+[Process]
+name=CainanCheatWeaponSink
+cycle=300
+product=
+resource=Standard Energy Unit,7/Hull Plating,3/Assembly Modules,8/Cainan Lunchbox,14
+[/Process]
+
+[Process]
+name=CainanCheatWasteSink
+cycle=25
+product=
+resource=Industrial Waste,1
+[/Process]
 
 [Process]
 name=AgeiranCheatTalon
@@ -14,6 +56,45 @@ product=
 resource=Standard Energy Unit,10/Alloy Bar,2/FPGAs,5/Ageiran MRE,10
 [/Process]
 
+#Misc Sinks
+
+[Process]
+name=CainanHabitatGoodsSink
+cycle=240
+product=
+resource=Consumer Goods,1
+[/Process]
+
+[Process]
+name=CainanHabitatFoodSink
+cycle=120
+product=
+resource=Cainan Lunchbox,1
+[/Process]
+
+[Process]
+name=AgeiranCivilianFoodSink
+cycle=120
+product=
+resource=Ageiran Whole Foods,2
+[/Process]
+
+[Process]
+name=AgeiranCivilianPirateSink
+cycle=25
+product=
+resource=Pirated Software,1
+[/Process]
+
+#Piracy Yaar
+
+[Process]
+name=GoodsToPiracy
+cycle=650
+product=Pirated Software,5
+resource=Consumer Goods,3
+[/Process]
+
 #Commodity Production
 
 [Process]
@@ -24,10 +105,10 @@ resource=Hydrocarbon,1
 [/Process]
 
 [Process]
-name=Scrap->ConsumerGoods
-cycle=120
+name=CivilianConsumerGoods
+cycle=600
 product=Consumer Goods,1
-resource=Scrap Metal,1
+resource=Alloy Bar,1/Standard Energy Unit,1
 [/Process]
 
 [Process]
@@ -106,8 +187,22 @@ resource=Standard Energy Unit,36/Mineral Ore,12/Ageiran MRE,12
 [/Process]
 
 [Process]
+name=CainanHullPlating
+cycle=5
+product=Hull Plating,1
+resource=Standard Energy Unit,1/Mineral Ore,1/Cainan Lunchbox,2
+[/Process]
+
+[Process]
 name=AgeiranFPGAs
 cycle=30
 product=FPGAs,10/Industrial Waste,1
 resource=Standard Energy Unit,10/Mineral Ore,10/Ageiran MRE,10
+[/Process]
+
+[Process]
+name=CainanAssemblyModule
+cycle=15
+product=Assembly Modules,1
+resource=Standard Energy Unit,1/Mineral Ore,1/Cainan Lunchbox,1
 [/Process]

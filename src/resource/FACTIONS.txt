@@ -123,7 +123,10 @@ station0=Royal Military Base,0.5
 station1=Sunfarm,1.5
 station2=Hydroponics Facility,1.0
 station3=Industrial Kitchen,0.5
-station4=Cainan Asteroid Mine,0.5
+station4=Cainan Asteroid Mine,0.25
+station5=Hull Plating Fabricator,0.25
+station6=Module Fabricator,0.25
+station7=Orbital Habitat,0.35
 [/Stations]
 
 ##########################################

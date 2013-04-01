@@ -53,7 +53,7 @@ public class EquipmentWindow extends AstralWindow {
     AstralLabel dockInfo = new AstralLabel();
     AstralBar targetShield = new AstralBar();
     AstralBar targetHull = new AstralBar();
-    Font targetFont = new Font("Monospaced", Font.PLAIN, 10);
+    Font targetFont = new Font("Monospaced", Font.PLAIN, 9);
     private Ship ship;
 
     public EquipmentWindow() {
