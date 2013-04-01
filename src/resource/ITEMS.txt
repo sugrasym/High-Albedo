@@ -157,7 +157,7 @@ description=Cainan 'assembly modules' are self-assembly machines that can conver
 
 [Item]
 name=Hydrocarbon
-type=commodity
+type=ore
 volume=8
 mass=3
 HP=100
@@ -218,6 +218,19 @@ maxPrice=1000
 group=product
 store=500
 description=Lots and lots of cracked copies of commercial software. Due to network monitoring transmission of this product is impossible, therefore those who run it in bulk are heavily rewarded.
+[/Item]
+
+[Item]
+name=Heavy Water
+type=commodity
+volume=8
+mass=16
+HP=100
+minPrice=25
+maxPrice=45
+store=1000
+group=commodity
+description=Refined deuterium for use in a nuclear fusion reactor. Heavy water can be derived from planetary sources such as sea water, however the most economical sources are interstellar ices.
 [/Item]
 
 ########Weapon Entries#######

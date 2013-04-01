@@ -75,7 +75,7 @@ cargo=Starstruck Missile~32
 [/Loadout]
 
 [Loadout]
-ship=Cheetah
+ship=Hyena
 name=PPF Military
 install=Starstruck Launcher/Starstruck Launcher/Starstruck Launcher/Starstruck Launcher
 cargo=Starstruck Missile~74

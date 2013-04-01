@@ -56,6 +56,15 @@ product=
 resource=Standard Energy Unit,10/Alloy Bar,2/FPGAs,5/Ageiran MRE,10
 [/Process]
 
+#Converters
+
+[Process]
+name=ITCEnergy
+cycle=800
+product=Standard Energy Unit,100
+resource=Heavy Water,1
+[/Process]
+
 #Misc Sinks
 
 [Process]

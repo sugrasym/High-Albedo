@@ -578,11 +578,55 @@ public class Ship extends Celestial {
                             //get the docking port to use
                             port = tmp.requestDockPort(this);
                         } else {
-                            //check to see if we're where we need to be
-                            if (magnitude(vx, vy) == 0) {
-                                setAutopilot(Autopilot.DOCK_STAGE2);
+                            //get the docking align
+                            double ax = x - port.getAlignX();
+                            double ay = y - port.getAlignY();
+                            double dist = magnitude((ax), (ay));
+                            double speed = magnitude(vx, vy);
+                            double hold = accel * 1.2;
+                            //
+                            double desired = Math.atan2(ay, ax);
+                            desired = (desired + 2.0 * Math.PI) % (2.0 * Math.PI);
+                            if (Math.abs(theta - desired) > turning * tpf) {
+                                if (theta - desired > 0) {
+                                    rotateMinus();
+                                } else if (theta - desired < 0) {
+                                    rotatePlus();
+                                }
                             } else {
-                                moveToPosition(port.getAlignX(), port.getAlignY());
+                                if (dist < hold) {
+                                    decelerate();
+                                    if (speed == 0 && dist < width / 2) {
+                                        setAutopilot(Autopilot.DOCK_STAGE2);
+                                    }
+                                } else {
+                                    boolean canAccel = true;
+                                    //this is damage control - it deals with bad initial velocities and out of control spirals
+                                    //check x axis
+                                    double dPx = 0;
+                                    double d1x = magnitude(ax, 0);
+                                    double d2x = magnitude((x + vx) - (port.getAlignX() + target.getVx()), 0);
+                                    dPx = d2x - d1x;
+                                    if (dPx > 0) {
+                                        //we're getting further from the goal, slow down
+                                        decelX();
+                                        canAccel = false;
+                                    }
+                                    //check y axis
+                                    double dPy = 0;
+                                    double d1y = magnitude(0, ay);
+                                    double d2y = magnitude(0, (y + vy) - (port.getAlignY() + target.getVy()));
+                                    dPy = d2y - d1y;
+                                    if (dPy > 0) {
+                                        //we're getting further from the goal, slow down
+                                        decelY();
+                                        canAccel = false;
+                                    }
+                                    //accel if needed
+                                    if (canAccel && speed < hold) {
+                                        fireRearThrusters();
+                                    }
+                                }
                             }
                         }
                     } else {
@@ -641,20 +685,14 @@ public class Ship extends Celestial {
                     }
                 }
             }
+
         } else if (getAutopilot() == Autopilot.DOCK_STAGE3) {
-            //determine which axis is further away
             double lx = x - port.getPortX();
             double ly = y - port.getPortY();
             //setup nav parameters
             double desired;
-            double speed = magnitude(vx, vy);
-            double hold = accel * 2;
             //pick the right axis and calculate angle
-            if (lx > ly) {
-                desired = Math.atan2(0, lx);
-            } else {
-                desired = Math.atan2(ly, 0);
-            }
+            desired = Math.atan2(ly, lx);
             //turn towards desired angle
             desired = (desired + 2.0 * Math.PI) % (2.0 * Math.PI);
             if (Math.abs(theta - desired) > turning * tpf) {
@@ -668,9 +706,7 @@ public class Ship extends Celestial {
                 if (docked) {
                     setAutopilot(Autopilot.NONE);
                 } else {
-                    if (speed <= hold) {
-                        fireRearThrusters(); //accelerate
-                    }
+                    fireRearThrusters(); //accelerate
                 }
             }
         }

@@ -228,3 +228,17 @@ rectBound=6,6,293,562
 dock=10,568,60,618,27,738/88,568,138,618,105,738/166,568,216,618,185,738/244,568,294,618,263,738
 process=CainanHabitatGoodsSink/CainanHabitatFoodSink
 [/Station]
+
+[Station]
+type=ITC Power Converter
+accel=1.5
+turning=0
+shield=24000
+shieldRecharge=3200
+hull=3500
+fuel=2500000000000
+mass=17000
+rectBound=4,4,392,194/161,189,238,309/134,309,268,378
+dock=83,319,133,369,-200,350
+process=ITCEnergy
+[/Station]
