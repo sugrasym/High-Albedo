@@ -52,6 +52,20 @@ description=Produce grown on Cainan settlements for use in preparation of meal p
 [/Item]
 
 [Item]
+name=Livestock
+type=commodity
+volume=4
+mass=1
+HP=100
+minPrice=1
+maxPrice=4
+store=500
+group=food
+description=Live animals raised on ranches to be sent for conversion into food products.
+[/Item]
+
+
+[Item]
 name=Ageiran Whole Foods
 type=commodity
 volume=5

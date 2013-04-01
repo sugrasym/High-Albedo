@@ -210,6 +210,13 @@ resource=Standard Energy Unit,35
 [/Process]
 
 [Process]
+name=ITCLivestock
+cycle=320
+product=Livestock,20
+resource=Heavy Water,2
+[/Process]
+
+[Process]
 name=AgeiranMRE
 cycle=20
 product=Ageiran MRE,10

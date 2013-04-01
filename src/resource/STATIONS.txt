@@ -285,3 +285,17 @@ rectBound=4,4,392,194/161,189,238,309/134,309,268,378
 dock=83,319,133,369,-200,350/271,320,321,370,500,345
 process=ConvertAsteroid/ConvertMineral
 [/Station]
+
+[Station]
+type=ITC Orbital Ranch
+accel=1.5
+turning=0
+shield=21000
+shieldRecharge=3000
+hull=2860
+fuel=2500000000000
+mass=45000
+rectBound=9,3,446,448/428,195,529,251
+dock=454,141,504,191,485,-114/454,252,504,302,491,512
+process=ITCLivestock
+[/Station]
