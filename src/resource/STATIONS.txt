@@ -256,3 +256,18 @@ rectBound=29,115,251,245/250,8,580,357
 dock=68,60,118,110,87,-164/68,247,118,297,98,437
 process=ITCHeavyWater
 [/Station]
+
+[Station]
+type=ITC Orbital Material Hub
+accel=1.5
+exempt=true
+turning=0
+shield=36000
+shieldRecharge=4400
+hull=8200
+fuel=2500000000000
+mass=65078
+rectBound=26,17,516,340/250,334,296,406
+dock=198,346,248,396,-82,374/296,346,346,396,614,368
+process=ITCRichIce/ITCMineralOre
+[/Station]

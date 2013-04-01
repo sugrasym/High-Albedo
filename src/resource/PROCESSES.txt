@@ -107,6 +107,20 @@ resource=Consumer Goods,3
 #Commodity Production
 
 [Process]
+name=ITCRichIce
+cycle=25
+product=Rich Ice,5
+resource=
+[/Process]
+
+[Process]
+name=ITCMineralOre
+cycle=75
+product=Mineral Ore,2
+resource=
+[/Process]
+
+[Process]
 name=ITCHeavyWater
 cycle=6
 product=Heavy Water,1

@@ -117,6 +117,7 @@ station0=Archer Cove,0.15
 name=ITC
 station0=ITC Power Converter,0.25
 station1=ITC Ice Refinery,0.75
+station2=ITC Orbital Material Hub,1.0
 [/Stations]
 
 [Stations]
