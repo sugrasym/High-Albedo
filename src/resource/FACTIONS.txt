@@ -120,6 +120,10 @@ name=ITC
 [Stations]
 name=Caina Conglemerate
 station0=Royal Military Base,0.5
+station1=Sunfarm,1.5
+station2=Hydroponics Facility,1.0
+station3=Industrial Kitchen,0.5
+station4=Cainan Asteroid Mine,0.5
 [/Stations]
 
 ##########################################

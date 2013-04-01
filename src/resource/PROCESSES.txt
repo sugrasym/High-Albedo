@@ -19,7 +19,7 @@ resource=Standard Energy Unit,10/Alloy Bar,2/FPGAs,5/Ageiran MRE,10
 [Process]
 name=HydrocarbonBurn
 cycle=60
-product=Standard Energy Unit,1000/Industrial Waste,3
+product=Standard Energy Unit,10/Industrial Waste,3
 resource=Hydrocarbon,1
 [/Process]
 
@@ -38,6 +38,13 @@ resource=Atmospheric Gases,1
 [/Process]
 
 [Process]
+name=CainanSolar
+cycle=45
+product=Standard Energy Unit,80
+resource=
+[/Process]
+
+[Process]
 name=AgeiranCustomsGases
 cycle=5
 product=Atmospheric Gases,5
@@ -50,10 +57,38 @@ product=Mineral Ore,24
 [/Process]
 
 [Process]
+name=CainanAsteroidOre
+cycle=120
+product=Asteroid Ore,52
+resource=Standard Energy Unit,10
+[/Process]
+
+[Process]
+name=CainanAsteroidHydrocarbon
+cycle=110
+product=Hydrocarbon,1
+resource=
+[/Process]
+
+[Process]
+name=CainanProduce
+cycle=40
+product=Cainan Produce,35
+resource=Standard Energy Unit,35
+[/Process]
+
+[Process]
 name=AgeiranMRE
 cycle=20
 product=Ageiran MRE,10
 resource=Standard Energy Unit,10
+[/Process]
+
+[Process]
+name=CainanLunchbox
+cycle=32
+product=Cainan Lunchbox,15
+resource=Standard Energy Unit,15/Cainan Produce,15
 [/Process]
 
 [Process]

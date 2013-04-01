@@ -22,7 +22,20 @@ minPrice=20
 maxPrice=25
 store=250
 group=food
-description=Originally a military product, the Agieran MRE formula is now widely distributed to people of all occupations.
+description=Originally a military product, the Ageiran MRE formula is now widely distributed to people of all occupations.
+[/Item]
+
+[Item]
+name=Cainan Produce
+type=commodity
+volume=3
+mass=1
+HP=100
+minPrice=22
+maxPrice=35
+store=450
+group=food
+description=Produce grown on Cainan settlements for use in preparation of meal packs.
 [/Item]
 
 [Item]
@@ -39,16 +52,42 @@ description=Raw ingredients for use in the preparation of Ageiran meals. Contain
 [/Item]
 
 [Item]
+name=Cainan Lunchbox
+type=commodity
+volume=2
+mass=1
+HP=100
+minPrice=55
+maxPrice=70
+store=275
+group=food
+description=Cainan 'Lunch Boxes' are nearly complete meals that are frozen. They are cooked in a microwave oven for 2-5 minutes and then served.
+[/Item]
+
+[Item]
 name=Mineral Ore
 type=commodity
-volume=4
+volume=6
 mass=2
 HP=100
 minPrice=55
 maxPrice=85
 store=500
 group=ore
-description=Raw ore extracted from either a space based or planet side mining operation.
+description=Raw ore extracted from a planet side mining operation.
+[/Item]
+
+[Item]
+name=Asteroid Ore
+type=commodity
+volume=2
+mass=5
+HP=100
+minPrice=80
+maxPrice=150
+store=750
+group=ore
+description=Raw ore extracted from a space based mining operation.
 [/Item]
 
 [Item]
@@ -96,11 +135,11 @@ type=commodity
 volume=8
 mass=3
 HP=100
-minPrice=2500
-maxPrice=5000
+minPrice=1
+maxPrice=10
 group=ore
 store=1000
-description=Since the dawn of man hydrocarbons have been burned in low tech reactors to generate energy. They have a much higher energy density than solar energy, but a lower energy density than nuclear fusion. One hydrocarbon unit can easily produce several hundred energy units, however hydrocarbon supplies are harder to locate than the extremely abundant solar energy.  /br/ /br/ Many stations are capable of using hydrocarbons to generate their power, and Ageiran Customs Offices will do the conversion as well so that the resulting energy can be sold at a profit to small scale traders.
+description=Since the dawn of man hydrocarbons have been burned in low tech reactors to generate energy. They have a much higher energy density than solar energy, but a lower energy density than nuclear fusion. One hydrocarbon unit can easily produce ten energy units, however hydrocarbon supplies are harder to locate than the extremely abundant solar energy.  /br/ /br/ Some stations are capable of using hydrocarbons to generate their power, and Ageiran Customs Offices will do the conversion as well so that the resulting energy can be sold at a profit to small scale traders.
 [/Item]
 
 [Item]
