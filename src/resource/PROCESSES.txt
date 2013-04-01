@@ -1,6 +1,41 @@
 #Cheating Weapon Manufacturing
 
 [Process]
+name=ITCCheatStarstruck
+cycle=1200
+product=Starstruck Launcher,1
+resource=
+[/Process]
+
+[Process]
+name=ITCCheatStarstruckMissile
+cycle=310
+product=Starstruck Missile,1
+resource=
+[/Process]
+
+[Process]
+name=ITCCheatSidewinder
+cycle=1100
+product=Sidewinder Launcher,1
+resource=
+[/Process]
+
+[Process]
+name=ITCCheatSidewinderMissile
+cycle=150
+product=Sidewinder Missile,1
+resource=
+[/Process]
+
+[Process]
+name=ITCCheatWeaponSink
+cycle=245
+product=
+resource=Heavy Water,1/Mass Block,6/Plank Tubes,16/Meat On A Stick,5/Nanoweave Textiles,1/ITC Warheads,4
+[/Process]
+
+[Process]
 name=CainanCheatVenom
 cycle=200
 product=Venom Alpha,4/Venom Beta,2

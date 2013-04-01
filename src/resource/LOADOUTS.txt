@@ -62,21 +62,21 @@ cargo=Consumer Goods~10
 
 [Loadout]
 ship=Cheetah
-name=PPF Police
+name=ITC Police
 install=Sidewinder Launcher/Sidewinder Launcher
 cargo=Sidewinder Missile~32
 [/Loadout]
 
 [Loadout]
 ship=Cheetah
-name=PPF Security
+name=ITC Fleet Cheetah
 install=Starstruck Launcher/Starstruck Launcher
 cargo=Starstruck Missile~32
 [/Loadout]
 
 [Loadout]
 ship=Hyena
-name=PPF Military
+name=ITC Fleet Hyena
 install=Starstruck Launcher/Starstruck Launcher/Starstruck Launcher/Starstruck Launcher
 cargo=Starstruck Missile~74
 [/Loadout]

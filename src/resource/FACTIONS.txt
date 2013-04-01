@@ -122,6 +122,7 @@ station3=ITC Ore Converter,0.5
 station4=ITC Orbital Ranch,0.75
 station5=ITC Food Supply,0.8
 station6=ITC Industrial Replicator,1.0
+station7=Fleet Armory,0.15
 [/Stations]
 
 [Stations]
@@ -165,9 +166,8 @@ patrol3=Naval Komodo,12
 [/Loadout]
 
 [Loadout]
-#Profit. Protection. Fleet. :-)
 name=ITC
-patrol0=PPF Police,75
-patrol1=PPF Security,50
-patrol2=PPF Military,25
+patrol0=ITC Police,75
+patrol1=ITC Fleet Cheetah,50
+patrol2=ITC Fleet Hyena,25
 [/Loadout]

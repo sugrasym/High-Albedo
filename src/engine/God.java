@@ -75,8 +75,8 @@ public class God implements EngineElement {
             lastFrame = System.nanoTime();
             //update
             try {
-                /*checkPatrols();
-                checkStations();*/
+                checkPatrols();
+                checkStations();
             } catch (Exception e) {
                 System.out.println("Error manipulating dynamic universe.");
                 e.printStackTrace();
