@@ -313,3 +313,17 @@ rectBound=9,3,446,448/428,195,529,251
 dock=454,141,504,191,485,-114/454,252,504,302,491,512
 process=ITCMeatOnAStick
 [/Station]
+
+[Station]
+type=ITC Industrial Replicator
+accel=1.5
+turning=0
+shield=26000
+shieldRecharge=3100
+hull=3260
+fuel=2500000000000
+mass=85000
+rectBound=275,558,375,743/117,24,533,217/8,215,641,466/34,464,612,575/107,572,549,651/35,105,618,219
+dock=218,672,268,722,-115,690/376,672,426,722,776,700
+process=ITCConsumerGoods/ITCWarheads/ITCPlankTubes/ITCTextiles
+[/Station]

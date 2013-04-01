@@ -596,7 +596,7 @@ public class Ship extends Celestial {
                             } else {
                                 if (dist < hold) {
                                     decelerate();
-                                    if (speed == 0 && dist < width / 2) {
+                                    if (speed == 0 && dist < width) {
                                         setAutopilot(Autopilot.DOCK_STAGE2);
                                     }
                                 } else {

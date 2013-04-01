@@ -157,6 +157,45 @@ description=Alloy bars are bars of refined metal that can be used for more sophi
 [/Item]
 
 [Item]
+name=ITC Warheads
+type=commodity
+volume=2
+mass=1
+HP=100
+minPrice=115
+maxPrice=245
+store=140
+group=alloy
+description=Locked warheads for use in the assembly of ITC missiles which are known for their high cost and extreme lethality.
+[/Item]
+
+[Item]
+name=Plank Tubes
+type=commodity
+volume=1
+mass=1
+HP=100
+minPrice=68
+maxPrice=260
+store=120
+group=alloy
+description=Derived from vacuum tube technology, plank tubes manipulate the quantum level fluctuations that drive quantum computers.
+[/Item]
+
+[Item]
+name=Nanoweave Textiles
+type=commodity
+volume=5
+mass=1
+HP=100
+minPrice=230
+maxPrice=712
+store=100
+group=alloy
+description=Fabricated at the molecular level, these textiles are both extemely thin and have a high tensile strength while retaining all their flexibility.
+[/Item]
+
+[Item]
 name=Hull Plating
 type=commodity
 volume=1

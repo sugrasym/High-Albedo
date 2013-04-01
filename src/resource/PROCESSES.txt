@@ -271,3 +271,31 @@ cycle=15
 product=Assembly Modules,1
 resource=Standard Energy Unit,1/Mineral Ore,1/Cainan Lunchbox,1
 [/Process]
+
+[Process]
+name=ITCConsumerGoods
+cycle=215
+product=Consumer Goods,10
+resource=Mass Block,10/Heavy Water,1
+[/Process]
+
+[Process]
+name=ITCWarheads
+cycle=425
+product=ITC Warheads,20
+resource=Mass Block,20/Heavy Water,2
+[/Process]
+
+[Process]
+name=ITCPlankTubes
+cycle=450
+product=Plank Tubes,10
+resource=Mass Block,10/Heavy Water,1
+[/Process]
+
+[Process]
+name=ITCTextiles
+cycle=900
+product=Nanoweave Textiles,10
+resource=Mass Block,10/Heavy Water,1
+[/Process]
