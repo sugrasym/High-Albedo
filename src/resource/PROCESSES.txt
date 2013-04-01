@@ -65,7 +65,28 @@ product=Standard Energy Unit,100
 resource=Heavy Water,1
 [/Process]
 
+[Process]
+name=ConvertAsteroid
+cycle=600
+product=Mass Block,10
+resource=Asteroid Ore,10/Heavy Water,1
+[/Process]
+
+[Process]
+name=ConvertMineral
+cycle=900
+product=Mass Block,10
+resource=Mineral Ore,10/Heavy Water,1
+[/Process]
+
 #Misc Sinks
+
+[Process]
+name=ITCMeatSink
+cycle=225
+product=
+resource=Meat On A Stick,5
+[/Process]
 
 [Process]
 name=CainanHabitatGoodsSink

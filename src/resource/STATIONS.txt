@@ -269,5 +269,19 @@ fuel=2500000000000
 mass=65078
 rectBound=26,17,516,340/250,334,296,406
 dock=198,346,248,396,-82,374/296,346,346,396,614,368
-process=ITCRichIce/ITCMineralOre
+process=ITCRichIce/ITCMineralOre/ITCMeatSink
+[/Station]
+
+[Station]
+type=ITC Ore Converter
+accel=1.5
+turning=0
+shield=24000
+shieldRecharge=3200
+hull=3500
+fuel=2500000000000
+mass=17000
+rectBound=4,4,392,194/161,189,238,309/134,309,268,378
+dock=83,319,133,369,-200,350/271,320,321,370,500,345
+process=ConvertAsteroid/ConvertMineral
 [/Station]

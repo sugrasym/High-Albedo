@@ -13,6 +13,19 @@ description=A standardized energy unit produced by a power plant and moved to a 
 [/Item]
 
 [Item]
+name=Meat On A Stick
+type=commodity
+volume=1
+mass=1
+HP=100
+minPrice=5
+maxPrice=10
+store=500
+group=food
+description=It's meat and it's on a stick.
+[/Item]
+
+[Item]
 name=Ageiran MRE
 type=commodity
 volume=1
@@ -101,6 +114,19 @@ maxPrice=4
 store=500
 group=ore
 description=These gases were extracted from the atmosphere of a planet. Many industrial processes take advantage of them.
+[/Item]
+
+[Item]
+name=Mass Block
+type=commodity
+volume=2
+mass=4
+HP=100
+minPrice=152
+maxPrice=200
+store=350
+group=alloy
+description=ITC Ore Converters are capable of converting both planet derived and space derived ore into a standardized block that is used for more advanced manufacturing processes.
 [/Item]
 
 [Item]
