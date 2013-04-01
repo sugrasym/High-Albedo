@@ -107,6 +107,13 @@ resource=Consumer Goods,3
 #Commodity Production
 
 [Process]
+name=ITCHeavyWater
+cycle=6
+product=Heavy Water,1
+resource=Rich Ice,2
+[/Process]
+
+[Process]
 name=HydrocarbonBurn
 cycle=60
 product=Standard Energy Unit,10/Industrial Waste,3

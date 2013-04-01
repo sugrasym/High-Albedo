@@ -233,6 +233,19 @@ group=commodity
 description=Refined deuterium for use in a nuclear fusion reactor. Heavy water can be derived from planetary sources such as sea water, however the most economical sources are interstellar ices.
 [/Item]
 
+[Item]
+name=Rich Ice
+type=commodity
+volume=16
+mass=8
+HP=100
+minPrice=3
+maxPrice=8
+store=1000
+group=commodity
+description=Interstellar ices collected for refinement into an energy source. This ice is rich in deuterium.
+[/Item]
+
 ########Weapon Entries#######
 #Ageiran Weapons
 [Item]
