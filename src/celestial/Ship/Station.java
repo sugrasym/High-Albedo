@@ -46,6 +46,8 @@ public class Station extends Ship {
     protected ArrayList<Item> stationBuying = new ArrayList<>();
     //manufacturing
     protected ArrayList<Process> processes = new ArrayList<>();
+    //cheating is needed sometimes
+    private boolean exemptFromEconomics = false;
 
     public Station(String name, String type) {
         super(name, type);
@@ -56,12 +58,19 @@ public class Station extends Ship {
         super.alive();
         //check if out of business
         if (cash < 0) {
-            //out of business :(
-            for (int a = 0; a < docks.size(); a++) {
-                docks.get(a).kickOut();
+            if (!isExemptFromEconomics()) {
+                //out of business :(
+                for (int a = 0; a < docks.size(); a++) {
+                    docks.get(a).kickOut();
+                }
+                //so sad
+                state = State.DYING;
+                System.out.println(getName() + " was removed because it is out of business.");
+            } else {
+                //the station is above the system
+                cash = rnd.nextInt(1000000);
+                System.out.println(getName() + " was topped off because it is exempt from economics.");
             }
-            //so sad
-            state = State.DYING;
         }
         //check dockers
         for (int a = 0; a < docks.size(); a++) {
@@ -79,7 +88,7 @@ public class Station extends Ship {
             decelerate();
         }
     }
-    
+
     @Override
     protected void autopilot() {
         //do nothing
@@ -115,6 +124,10 @@ public class Station extends Ship {
         shieldRechargeRate = Double.parseDouble(relevant.getValue("shieldRecharge"));
         maxHull = hull = Double.parseDouble(relevant.getValue("hull"));
         maxFuel = fuel = Double.parseDouble(relevant.getValue("fuel"));
+        //exemption block
+        String exempt = relevant.getValue("exempt");
+        exemptionSetup(exempt);
+        //more stats
         setMass(Double.parseDouble(relevant.getValue("mass")));
         computeComplexRectangularBounds(relevant);
         computeDockBounds(relevant);
@@ -419,14 +432,14 @@ public class Station extends Ship {
     @Override
     protected void drawHealthBars(Graphics g, double dx, double dy) {
         /*//draw the bounds
-        for (int a = 0; a < getBounds().size(); a++) {
-            double bx = getBounds().get(a).x;
-            double by = getBounds().get(a).y;
-            int bw = getBounds().get(a).width;
-            int bh = getBounds().get(a).height;
-            g.setColor(Color.PINK);
-            g.drawRect((int) (bx - dx), (int) (by - dy), bw, bh);
-        }*/
+         for (int a = 0; a < getBounds().size(); a++) {
+         double bx = getBounds().get(a).x;
+         double by = getBounds().get(a).y;
+         int bw = getBounds().get(a).width;
+         int bh = getBounds().get(a).height;
+         g.setColor(Color.PINK);
+         g.drawRect((int) (bx - dx), (int) (by - dy), bw, bh);
+         }*/
         //draw health bars
         double hullPercent = hull / maxHull;
         double shieldPercent = shield / maxShield;
@@ -467,5 +480,25 @@ public class Station extends Ship {
 
     public void setProcesses(ArrayList<Process> processes) {
         this.processes = processes;
+    }
+
+    public boolean isExemptFromEconomics() {
+        return exemptFromEconomics;
+    }
+
+    public void setExemptFromEconomics(boolean exemptFromEconomics) {
+        this.exemptFromEconomics = exemptFromEconomics;
+    }
+
+    private void exemptionSetup(String exempt) {
+        //exemption block
+        if (exempt != null) {
+            exemptFromEconomics = Boolean.parseBoolean(exempt);
+        } else {
+            exemptFromEconomics = false;
+        }
+        if (exemptFromEconomics) {
+            System.out.println(getName() + " is exempted from economics.");
+        }
     }
 }
