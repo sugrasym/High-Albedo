@@ -1,7 +1,7 @@
 #New Game Smell
 [NewGame]
 ship=Gecko
-system=System 23
+system=System 18
 near=Planet 0
 cash=8500
 install=Bask/Iguana Launcher/Iguana Launcher
