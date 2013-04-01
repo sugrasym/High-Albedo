@@ -150,10 +150,10 @@ type=cannon
 volume=10
 mass=10
 HP=100
-minPrice=500
-maxPrice=750
+minPrice=5000
+maxPrice=7500
 group=weapon
-store=1000
+store=501
 description=Ageiran medium range particle weapon designed to be mounted on light fighters. /br/ /br/ Ageiran weapons favor a balance of range, damage output, and speed since the Ageirans are concerned with good damage projection. Their weapons are outperformed in all areas by weapons from other factions, but few are as well rounded.
 [/Item]
 
@@ -163,10 +163,10 @@ type=cannon
 volume=10
 mass=12
 HP=100
-minPrice=900
-maxPrice=1250
+minPrice=9000
+maxPrice=12500
 group=weapon
-store=1000
+store=256
 description=Ageiran medium range particle weapon designed to be mounted on light fighters. /br/ /br/ Ageiran weapons favor a balance of range, damage output, and speed since the Ageirans are concerned with good damage projection. Their weapons are outperformed in all areas by weapons from other factions, but few are as well rounded. /br/ /br/ This weapon features small improvements to all areas of the Talon 1's design.
 [/Item]
 
@@ -176,10 +176,10 @@ type=cannon
 volume=10
 mass=15
 HP=100
-minPrice=1400
-maxPrice=1725
+minPrice=14000
+maxPrice=17250
 group=weapon
-store=1000
+store=128
 description=Ageiran medium range particle weapon designed to be mounted on light fighters. /br/ /br/ Ageiran weapons favor a balance of range, damage output, and speed since the Ageirans are concerned with good damage projection. Their weapons are outperformed in all areas by weapons from other factions, but few are as well rounded. /br/ /br/ This weapon is the most powerful particle weapon that the Ageiran Federation offers for fighters.
 [/Item]
 
@@ -191,10 +191,10 @@ type=missile
 volume=13
 mass=8
 HP=85
-minPrice=850
-maxPrice=1050
+minPrice=8500
+maxPrice=10500
 group=weapon
-store=1000
+store=104
 description=Cainan missile technology delivers great reliability at medium range. /br/ /br/ The Python missile is a balanced, multirole, missile intended for Cainan light fighters.
 [/Item]
 
@@ -204,10 +204,10 @@ type=missile
 volume=21
 mass=12
 HP=185
-minPrice=67850
-maxPrice=213050
+minPrice=678500
+maxPrice=2130500
 group=weapon
-store=1000
+store=115
 description=Cainan missile technology delivers great reliability at medium range. /br/ /br/ The Anaconda missile is a siege missile that does devastating damage to slow moving or stationary targets.
 [/Item]
 
@@ -217,9 +217,10 @@ type=missile
 volume=14
 mass=7
 HP=78
-minPrice=8000
-maxPrice=10000
+minPrice=80000
+maxPrice=100000
 group=weapon
+store=128
 description=Cainan missile technology delivers great reliability at medium range. /br/ /br/ The Iguana missile is a strong anti-fighter missile for dogfighting.
 [/Item]
 
@@ -229,10 +230,10 @@ type=cannon
 volume=13
 mass=8
 HP=85
-minPrice=850
-maxPrice=1050
+minPrice=8500
+maxPrice=10500
 group=weapon
-store=1000
+store=230
 description=Advances in Cainan weapon technology were primarily in the field of guided missiles, but they still equip cannons to their fighters to avoid running out of ammunition. This is a Cainan particle cannon and it is a fairly average weapon. It is intended to be equipped on Cainan light fighters.
 [/Item]
 
@@ -242,9 +243,10 @@ type=cannon
 volume=19
 mass=10
 HP=104
-minPrice=1800
-maxPrice=2475
+minPrice=18000
+maxPrice=24750
 group=weapon
+store=550
 description=Advances in Cainan weapon technology were primarily in the field of guided missiles, but they still equip cannons to their fighters to avoid running out of ammunition. This is a Cainan particle cannon and it is a fairly average weapon. It is intended to be equipped on Cainan medium fighters.
 [/Item]
 
@@ -254,10 +256,10 @@ type=cannon
 volume=22
 mass=18
 HP=200
-minPrice=3100
-maxPrice=4500
+minPrice=31000
+maxPrice=45000
 group=weapon
-store=1000
+store=725
 description=Advances in Cainan weapon technology were primarily in the field of guided missiles, but they still equip cannons to their fighters to avoid running out of ammunition. The Bask is a pulse cannon which delivers a steady stream of damage. It is designed to be equipped to both medium and heavy Cainan fighters looking for an edge in close quarters combat.
 [/Item]
 
@@ -267,10 +269,10 @@ type=cannon
 volume=23
 mass=21
 HP=210
-minPrice=3250
-maxPrice=4800
+minPrice=32500
+maxPrice=48000
 group=weapon
-store=1000
+store=150
 description=Advances in Cainan weapon technology were primarily in the field of guided missiles, but they still equip cannons to their fighters to avoid running out of ammunition. The Frill is a siege weapon that delivers substantial damage but refires very slowly. It is designed to be equipped to both medium and heavy Cainan fighters looking to attack hard targets.
 [/Item]
 
@@ -282,10 +284,10 @@ type=cannon
 volume=20
 mass=9
 HP=150
-minPrice=2600
-maxPrice=4525
+minPrice=26000
+maxPrice=45250
 group=weapon
-store=1000
+store=26
 description=A weapon of the 'Archers' pirate faction. Designed to project high damage at range, this weapon trades projectile speed for long range punishment. /br/ /br/ Designed for use on light figters, this weapon allows for significant sustained firepower at extreme ranges. However, one must be skilled in maintaining range and adjusting the trajectory of the weapon to compensate for the slowness of the projectile.
 [/Item]
 
@@ -295,10 +297,10 @@ type=cannon
 volume=10
 mass=8
 HP=125
-minPrice=2400
-maxPrice=4800
+minPrice=24000
+maxPrice=48000
 group=weapon
-store=1000
+store=56
 description=A weapon of the 'Archers' pirate faction. Designed to out-kite long range opponents, this weapon trades damage for extremely long range and a high projectile speed. /br/ /br/ The Arrow was developed when the Archers decided their raiders needed the final word in beyond visual range combat.
 [/Item]
 
@@ -308,10 +310,10 @@ type=cannon
 volume=30
 mass=12
 HP=200
-minPrice=6400
-maxPrice=14800
+minPrice=64000
+maxPrice=148000
 group=weapon
-store=1000
+store=15
 description=A weapon of the 'Archers' pirate faction. Designed for precision strikes at range, this weapon does a massive amount of damage at long range but refires very slowly. /br/ /br/ The Long 9 fulfills the Archers' need for an effective long range siege platform.
 [/Item]
 
@@ -323,10 +325,10 @@ type=cannon
 volume=15
 mass=14
 HP=100
-minPrice=7000
-maxPrice=15500
+minPrice=70000
+maxPrice=155000
 group=weapon
-store=1000
+store=20
 description=The Knights of Orin have weapons that perform fiercly well at close range but have no damage projection beyond that. /br/ /br/ 'Rayo Azul' is a wicked fast plasma bolt that does heavy damage but dissipates quickly.
 [/Item]
 
@@ -336,10 +338,10 @@ type=cannon
 volume=25
 mass=14
 HP=100
-minPrice=12000
-maxPrice=78100
+minPrice=120000
+maxPrice=781000
 group=weapon
-store=1000
+store=15
 description=The Knights of Orin have weapons that perform fiercly well at close range but have no damage projection beyond that. /br/ /br/ 'Sangre Roja' is an extremely powerful close range weapon, but using it requires closing to extremely close range.
 [/Item]
 
@@ -349,10 +351,10 @@ type=cannon
 volume=10
 mass=8
 HP=142
-minPrice=3000
-maxPrice=5000
+minPrice=30000
+maxPrice=50000
 group=weapon
-store=1000
+store=10
 description=The Knights of Orin have weapons that perform fiercly well at close range but have no damage projection beyond that. /br/ /br/ 'Orgullo Negro' is a very powerful cannon when fed with 'Bala Negro' ammunition. It combines the destructive power the Knights are known for at close range with the ability to reach out and touch someone. It does burn through ammo quickly, however.
 [/Item]
 
@@ -364,10 +366,10 @@ type=missile
 volume=31
 mass=5
 HP=25
-minPrice=20000
-maxPrice=500000
+minPrice=200000
+maxPrice=5000000
 group=weapon
-store=1000
+store=35
 description=ITC missile technology is far in advance of any other nation or faction. This is due to a design policy that forgoes other types of weapons. /br/ /br/ 'Starstruck' is the result of 'well placed' defense spending and packs extreme range, high yield, and great tracking into one lethal, albeit prohibitably expensive, package. Proponents of the Starstruck project, and the continued use of the expensive missile it created, argue that you can't put a price on security. /br/ /br/ The Starstruck Missile is the primary weapon on all ITC fighters.
 [/Item]
 
@@ -377,10 +379,10 @@ type=missile
 volume=31
 mass=5
 HP=25
-minPrice=40000
-maxPrice=300000
+minPrice=400000
+maxPrice=3000000
 group=weapon
-store=1000
+store=25
 description=ITC missile technology is far in advance of any other nation or faction. This is due to a design policy that forgoes other types of weapons. /br/ /br/ 'Sidewinder' is a modified version of the 'Starstruck' missile that gives up about half its yield for a drastic increase in effective range. This missile is designed to relentlessly hunt fast enemy fighters, and the real limit is the sensor range of the craft firing the missile. This missile is used by some ITC interceptors.
 [/Item]
 
@@ -395,7 +397,7 @@ HP=100
 minPrice=10600
 maxPrice=62000
 group=ammo
-store=1000
+store=80
 description=Unarmed missile for use with a 'Starstruck Launcher'. /br/ /br/ 'Starstruck' is the result of 'well placed' defense spending and packs extreme range, high yield, and great tracking into one lethal, albeit prohibitably expensive, package. Proponents of the Starstruck project, and the continued use of the expensive missile it created, argue that you can't put a price on security. /br/ /br/ The Starstruck Missile is the primary weapon on all ITC fighters.
 [/Item]
 
@@ -408,7 +410,7 @@ HP=100
 minPrice=21000
 maxPrice=84500
 group=ammo
-store=1000
+store=625
 description=Unarmed missile for use with a 'Sidewinder Launcher'. /br/ /br/ 'Sidewinder' is a modified version of the 'Starstruck' missile that gives up about half its yield for a drastic increase in effective range. This missile is designed to relentlessly hunt fast enemy fighters, and the real limit is the sensor range of the craft firing the missile. This missile is used by some ITC interceptors.
 [/Item]
 
@@ -421,7 +423,7 @@ HP=100
 minPrice=5
 maxPrice=25
 group=ammo
-store=1000
+store=350
 description=Unarmed missile for use with a 'Python Launcher'. This is a Cainan multirole missile primarily used on light fighters. It does decent damage, but its guidance is sub par compared to dogfighting missiles.
 [/Item]
 
@@ -434,7 +436,7 @@ HP=300
 minPrice=1400
 maxPrice=3500
 group=ammo
-store=1000
+store=120
 description=Unarmed missile for use with a 'Anaconda Launcher'. This Cainan torpedo is only effective against slow or stationary targets, but it packs a punch when it hits.
 [/Item]
 
@@ -447,7 +449,7 @@ HP=50
 minPrice=200
 maxPrice=600
 group=ammo
-store=1000
+store=450
 description=Unarmed missile for use with a 'Iguana Launcher'. This is a Cainan anti-fighter missile that is designed to get to the target quickly and accurately, but delivers less damage than a multi-role missile.
 [/Item]
 
@@ -460,7 +462,7 @@ HP=1
 minPrice=1
 maxPrice=5
 group=ammo
-store=1000
+store=2500
 description=Shell for use with a 'Orgullo Negro' cannon. When loaded into such a weapon this shell has impressive damage output and projection.
 [/Item]
 

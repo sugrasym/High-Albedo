@@ -105,7 +105,7 @@ fuel=2500000000000
 mass=22010
 rectBound=22,32,186,234/169,24,572,48
 dock=210,50,260,100,900,140/310,50,360,100,900,140/410,50,460,100,900,140/510,50,560,100,900,140
-##process=HydrocarbonBurn/Scrap->ConsumerGoods
+process=AgeiranCheatTalon/AgeiranCheatTalonSink
 [/Station]
 
 [Station]

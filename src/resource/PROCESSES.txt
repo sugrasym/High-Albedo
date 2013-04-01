@@ -1,3 +1,21 @@
+#Weapon Manufacturing
+
+[Process]
+name=AgeiranCheatTalon
+cycle=300
+product=Talon 1,6/Talon 2,2/Talon 3,1
+resource=
+[/Process]
+
+[Process]
+name=AgeiranCheatTalonSink
+cycle=60
+product=
+resource=Standard Energy Unit,10/Alloy Bar,2/FPGAs,5/Ageiran MRE,10
+[/Process]
+
+#Commodity Production
+
 [Process]
 name=HydrocarbonBurn
 cycle=60
