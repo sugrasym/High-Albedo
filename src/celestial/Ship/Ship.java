@@ -70,7 +70,7 @@ public class Ship extends Celestial {
         FLY_TO_CELESTIAL //fly to a celestial
     }
     //constants
-    public static final double PATROL_REFUEL_PERCENT = 0.25;
+    public static final double PATROL_REFUEL_PERCENT = 0.5;
     //raw loadout
     protected String equip = "";
     private String template = "";
@@ -583,7 +583,7 @@ public class Ship extends Celestial {
                             double ay = y - port.getAlignY();
                             double dist = magnitude((ax), (ay));
                             double speed = magnitude(vx, vy);
-                            double hold = accel * 1.2;
+                            double hold = accel * 1.85;
                             //
                             double desired = Math.atan2(ay, ax);
                             desired = (desired + 2.0 * Math.PI) % (2.0 * Math.PI);

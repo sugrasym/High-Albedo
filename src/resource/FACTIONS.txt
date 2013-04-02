@@ -100,7 +100,7 @@ Caina Conglemerate=10
 [Stations]
 name=Ageiran Federation
 station0=Ageiran Civilian Station,0.5
-station1=Ageiran Customs Office,1.0
+station1=Ageiran Customs Office,0.5
 station2=Ageiran Fabricator,0.25
 station3=Ageiran MRE Factory,0.5
 station4=Ageiran Shipyard,0.1
@@ -117,19 +117,19 @@ station0=Archer Cove,0.15
 name=ITC
 station0=ITC Power Converter,0.25
 station1=ITC Ice Refinery,0.75
-station2=ITC Orbital Material Hub,1.0
+station2=ITC Orbital Material Hub,0.5
 station3=ITC Ore Converter,0.5
 station4=ITC Orbital Ranch,0.75
 station5=ITC Food Supply,0.8
-station6=ITC Industrial Replicator,1.0
+station6=ITC Industrial Replicator,0.5
 station7=Fleet Armory,0.15
 [/Stations]
 
 [Stations]
 name=Caina Conglemerate
-station0=Royal Military Base,0.5
+station0=Royal Military Base,0.25
 station1=Sunfarm,1.5
-station2=Hydroponics Facility,1.0
+station2=Hydroponics Facility,0.5
 station3=Industrial Kitchen,0.5
 station4=Cainan Asteroid Mine,0.25
 station5=Hull Plating Fabricator,0.25
