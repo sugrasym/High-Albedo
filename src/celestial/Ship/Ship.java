@@ -206,6 +206,13 @@ public class Ship extends Celestial {
             setMass(Double.parseDouble(relevant.getValue("mass")));
             sensor = Double.parseDouble(relevant.getValue("sensor"));
             cargo = Double.parseDouble(relevant.getValue("cargo"));
+            //initial width and height for OOS indeterminate
+            String ws = relevant.getValue("width");
+            String hs = relevant.getValue("height");
+            if (ws != null && hs != null) {
+                width = Integer.parseInt(ws);
+                height = Integer.parseInt(hs);
+            }
             //hardpoints
             installHardpoints(relevant);
             //equipment
@@ -774,7 +781,7 @@ public class Ship extends Celestial {
                         if (near != null) {
                             cmdDock(near);
                             System.out.println(getName() + " is low on fuel and docking at "
-                                    + near.getName() + " (" + (int)(100 * (fuel / maxFuel)) + "%)");
+                                    + near.getName() + " (" + (int) (100 * (fuel / maxFuel)) + "%)");
                         } else {
                             //try another system
                             Jumphole njmp = getRandomJumpholeInSystem();

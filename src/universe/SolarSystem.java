@@ -23,6 +23,7 @@ import celestial.Celestial;
 import celestial.Jumphole;
 import celestial.Planet;
 import celestial.Ship.Ship;
+import celestial.Ship.Ship.Autopilot;
 import celestial.Ship.Station;
 import celestial.Star;
 import engine.Entity;
