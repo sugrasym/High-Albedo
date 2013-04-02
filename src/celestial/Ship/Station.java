@@ -351,8 +351,7 @@ public class Station extends Ship {
                     return true;
                 }
             } else {
-                System.out.println(docks.get(a).canFit(ship) + " " + a);
-                System.out.println(docks.get(a).getClient() + " " + a);
+                //unavailable
             }
         }
         return false;

@@ -368,7 +368,7 @@ public class WorldMaker {
                     String name = ty + " " + (v + 1);
                     Statling tr = new Statling(name, ty, faction.getName());
                     //put it in a random system owned by this faction
-                    int pick = rnd.nextInt(simp.size() - 1);
+                    int pick = rnd.nextInt(simp.size());
                     simp.get(pick).getStations().add(tr);
                 }
                 //iterate

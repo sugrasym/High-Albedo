@@ -25,14 +25,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferStrategy;
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import lib.AstralIO;
-import lib.AstralIO.Everything;
-import universe.Universe;
 
 /**
  *

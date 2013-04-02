@@ -70,7 +70,7 @@ public class Ship extends Celestial {
         FLY_TO_CELESTIAL //fly to a celestial
     }
     //constants
-    public static final double PATROL_REFUEL_PERCENT = 0.25;
+    public static final double PATROL_REFUEL_PERCENT = 0.35;
     //raw loadout
     protected String equip = "";
     private String template = "";
@@ -773,6 +773,7 @@ public class Ship extends Celestial {
                         Station near = getNearestFriendlyStation();
                         if (near != null) {
                             cmdDock(near);
+                            //System.out.println(getName() + " is low on fuel and docking at " + near.getName());
                         } else {
                             //try another system
                             Jumphole njmp = getRandomJumphole();
@@ -800,6 +801,8 @@ public class Ship extends Celestial {
                 }
             }
         } else {
+            System.out.println(getName() + " [P] sucessfully docked at " + port.getParent().getName()
+                    + " in " + port.getParent().getCurrentSystem().getName());
             //restore fuel
             fuel = maxFuel;
             //undock

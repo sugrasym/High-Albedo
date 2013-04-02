@@ -145,7 +145,7 @@ public class God implements EngineElement {
             //do they meet the required density?
             for (int a = 0; a < count.length; a++) {
                 double density = faction.getPatrols().get(a).getDouble();
-                System.out.println(faction.getPatrols().get(a).getString() + " " + count[a]);
+                //System.out.println(faction.getPatrols().get(a).getString() + " " + count[a]);
                 while (count[a] < density) {
                     Celestial host = null;
                     SolarSystem pick = null;
