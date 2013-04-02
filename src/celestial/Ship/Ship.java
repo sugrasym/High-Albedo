@@ -70,7 +70,7 @@ public class Ship extends Celestial {
         FLY_TO_CELESTIAL //fly to a celestial
     }
     //constants
-    public static final double PATROL_REFUEL_PERCENT = 0.35;
+    public static final double PATROL_REFUEL_PERCENT = 0.25;
     //raw loadout
     protected String equip = "";
     private String template = "";
@@ -773,20 +773,29 @@ public class Ship extends Celestial {
                         Station near = getNearestFriendlyStationInSystem();
                         if (near != null) {
                             cmdDock(near);
-                            //System.out.println(getName() + " is low on fuel and docking at " + near.getName());
+                            System.out.println(getName() + " is low on fuel and docking at "
+                                    + near.getName() + " (" + (int)(100 * (fuel / maxFuel)) + "%)");
                         } else {
                             //try another system
                             Jumphole njmp = getRandomJumpholeInSystem();
                             cmdFlyToCelestial(njmp, 0);
                         }
                     } else {
-                        //get random celestial or station in system
+                        /*
+                         * Get a random celestial or station in system. Stations
+                         * are preferred but if there aren't many available then
+                         * fly to celestials as well.
+                         */
                         double pick = rnd.nextFloat();
                         Celestial near = null;
-                        if(pick <= 0.5) {
-                            near = getRandomStationInSystem();
+                        if (currentSystem.getStationList().size() < 4) {
+                            if (pick <= 0.5) {
+                                near = getRandomStationInSystem();
+                            } else {
+                                near = getRandomCelestialInSystem();
+                            }
                         } else {
-                            near = getRandomCelestialInSystem();
+                            near = getRandomStationInSystem();
                         }
                         if (near != null) {
                             //fly within sensor range
@@ -887,7 +896,7 @@ public class Ship extends Celestial {
         }
         return ret;
     }
-    
+
     public Celestial getRandomCelestialInSystem() {
         Celestial ret = null;
         {

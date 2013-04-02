@@ -173,8 +173,13 @@ public class Engine {
      * Enters the menu state
      */
     public final void menu() {
-        state = State.MENU;
-        hud.pack();
+        if (state != state.MENU) {
+            state = State.MENU;
+            hud.pack();
+        } else {
+            state = State.RUNNING;
+            hud.pack();
+        }
     }
 
     /*
@@ -966,13 +971,17 @@ public class Engine {
          * Ongoing event handling
          */
         private void handlePlayerEvents() {
-            if (!playerShip.isDocked()) {
-                if (allStopPressed) {
-                    playerShip.decelerate();
+            try {
+                if (!playerShip.isDocked()) {
+                    if (allStopPressed) {
+                        playerShip.decelerate();
+                    }
+                    if (firing) {
+                        playerShip.fireActiveModules(null);
+                    }
                 }
-                if (firing) {
-                    playerShip.fireActiveModules(null);
-                }
+            } catch (Exception e) {
+                System.out.println("Failure to pass player input event.");
             }
         }
 

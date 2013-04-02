@@ -36,7 +36,7 @@ public class WorldMaker {
 
     public WorldMaker() {
         //generate universe
-        String out = generate(1, 10, 80, 100, 1000, 20000, 70000, 900, 2000, 1, 3, 25000, 200000);
+        String out = generate(1, 10, 75, 120, 1000, 16000, 48000, 900, 2000, 1, 3, 25000, 200000);
         //save
         AstralIO tmp = new AstralIO();
         tmp.writeFile("/tmp/UNIVERSE.txt", out);
@@ -86,10 +86,9 @@ public class WorldMaker {
                     double y = sys.getLoc().y;
                     String systemName = sys.getName();
                     //pick size
-                    int size = rnd.nextInt(maxSystemSize);
-                    if (size < minSystemSize) {
-                        size = minSystemSize;
-                    }
+                    int dRS = maxSystemSize - minSystemSize;
+                    int dRB = (int) (rnd.nextFloat() * dRS);
+                    int size = minSystemSize + dRB;
                     //determine skybox
                     int pick = rnd.nextInt(skyTypes.size());
                     //add some randomization
@@ -196,10 +195,10 @@ public class WorldMaker {
                         x = rnd.nextInt(size * 2) - size;
                         y = rnd.nextInt(size * 2) - size;
                         //generate the radius
-                        r = rnd.nextInt(maxPlanetSize);
-                        if (r < minPlanetSize) {
-                            r = minPlanetSize;
-                        }
+                        //pick size
+                        dRS = maxPlanetSize - minPlanetSize;
+                        dRB = (int) (rnd.nextFloat() * dRS);
+                        r = minPlanetSize + dRB;
                         //create a simpling for testing
                         Simpling test = new Simpling(new Point2D.Float((float) x, (float) y), r);
                         boolean safe = true;
@@ -240,8 +239,8 @@ public class WorldMaker {
                             x = host.getLoc().getX();
                             y = host.getLoc().getY();
                             //mutate
-                            x += rnd.nextInt(12800) - 6400;
-                            y += rnd.nextInt(12800) - 6400;
+                            x += rnd.nextInt(10000) - 5000;
+                            y += rnd.nextInt(10000) - 5000;
                             //drop
                             thisSystem += "[Station]\n"
                                     + "name=" + tmp.getName() + "\n"
@@ -396,7 +395,7 @@ public class WorldMaker {
                 //pick a random system as the capital
                 Sysling pick = null;
                 while (pick == null) {
-                    Sysling tmp = syslings.get(rnd.nextInt(syslings.size() - 1));
+                    Sysling tmp = syslings.get(rnd.nextInt(syslings.size()));
                     if (tmp.getOwner().matches("Neutral")) {
                         pick = tmp;
                     }

@@ -86,8 +86,8 @@ cargo=Starstruck Missile~74
 [Loadout]
 ship=Gecko
 name=Air Force Gecko
-install=Iguana Launcher/Iguana Launcher/Venom Alpha
-cargo=Iguana Missile~24
+install=Python Launcher/Python Launcher/Venom Alpha
+cargo=Python Missile~16
 [/Loadout]
 
 [Loadout]

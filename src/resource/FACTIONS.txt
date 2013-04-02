@@ -99,13 +99,13 @@ Caina Conglemerate=10
 
 [Stations]
 name=Ageiran Federation
-station0=Ageiran Civilian Station,1.0
-station1=Ageiran Customs Office,2.0
+station0=Ageiran Civilian Station,0.5
+station1=Ageiran Customs Office,1.0
 station2=Ageiran Fabricator,0.25
 station3=Ageiran MRE Factory,0.5
 station4=Ageiran Shipyard,0.1
-station5=Ageiran Solar Power Plant,2.0
-station6=Ageiran Weapons Forge,0.25
+station5=Ageiran Solar Power Plant,1.0
+station6=Ageiran Weapons Forge,0.1
 [/Stations]
 
 [Stations]

@@ -362,7 +362,7 @@ public class SolarSystem implements Entity, Serializable {
             } else if (entities.get(a) instanceof Ship) {
                 Ship test = (Ship) entities.get(a);
                 double perc = test.getFuel() / test.getMaxFuel();
-                if (perc < 0.05) {
+                if (perc < 0.025) {
                     if (!entities.contains(universe.getPlayerShip())) {
                         System.out.println("Removing derelict ship " + test.getName());
                         test.setState(State.DYING);
