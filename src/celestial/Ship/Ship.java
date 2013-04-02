@@ -770,25 +770,31 @@ public class Ship extends Celestial {
                     //fuel check
                     if ((fuel / maxFuel) <= PATROL_REFUEL_PERCENT) {
                         //dock at the nearest friendly station
-                        Station near = getNearestFriendlyStation();
+                        Station near = getNearestFriendlyStationInSystem();
                         if (near != null) {
                             cmdDock(near);
                             //System.out.println(getName() + " is low on fuel and docking at " + near.getName());
                         } else {
                             //try another system
-                            Jumphole njmp = getRandomJumphole();
+                            Jumphole njmp = getRandomJumpholeInSystem();
                             cmdFlyToCelestial(njmp, 0);
                         }
                     } else {
-                        //get random station in system
-                        Station near = getRandomStation();
+                        //get random celestial or station in system
+                        double pick = rnd.nextFloat();
+                        Celestial near = null;
+                        if(pick <= 0.5) {
+                            near = getRandomStationInSystem();
+                        } else {
+                            near = getRandomCelestialInSystem();
+                        }
                         if (near != null) {
                             //fly within sensor range
                             double range = sensor;
                             cmdFlyToCelestial(near, range);
                         } else {
                             //try another system
-                            Jumphole njmp = getRandomJumphole();
+                            Jumphole njmp = getRandomJumpholeInSystem();
                             cmdFlyToCelestial(njmp, 0);
                         }
                     }
@@ -869,7 +875,7 @@ public class Ship extends Celestial {
         }
     }
 
-    public Station getRandomStation() {
+    public Station getRandomStationInSystem() {
         Station ret = null;
         {
             ArrayList<Entity> stations = currentSystem.getStationList();
@@ -881,8 +887,21 @@ public class Ship extends Celestial {
         }
         return ret;
     }
+    
+    public Celestial getRandomCelestialInSystem() {
+        Celestial ret = null;
+        {
+            ArrayList<Entity> celestials = currentSystem.getCelestialList();
+            if (celestials.size() > 0) {
+                ret = (Celestial) celestials.get(rnd.nextInt(celestials.size()));
+            } else {
+                return null;
+            }
+        }
+        return ret;
+    }
 
-    public Jumphole getRandomJumphole() {
+    public Jumphole getRandomJumpholeInSystem() {
         Jumphole ret = null;
         {
             ArrayList<Entity> jumpHoles = currentSystem.getJumpholeList();
@@ -895,7 +914,7 @@ public class Ship extends Celestial {
         return ret;
     }
 
-    public Station getNearestFriendlyStation() {
+    public Station getNearestFriendlyStationInSystem() {
         Station ret = null;
         {
             ArrayList<Entity> stations = currentSystem.getStationList();

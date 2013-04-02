@@ -162,7 +162,7 @@ patrol0=Air Force Gecko,100
 patrol1=Naval Monitor,25
 patrol2=Air Force Monitor,25
 patrol2=Air Force Komodo,25
-patrol3=Naval Komodo,12 
+patrol3=Naval Komodo,12
 [/Loadout]
 
 [Loadout]
