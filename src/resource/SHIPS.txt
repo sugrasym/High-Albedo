@@ -89,7 +89,7 @@ height=50
 [/Ship]
 
 #########The Archers########
-#Naming Scheme: Long Range Weapons
+#Naming Scheme: Ancient Ground Warfare
 #########
 
 #Light Fighters

@@ -747,7 +747,7 @@ public class Engine {
                  * This section renders the game
                  */
                 //backplate
-                if (lastPlate != null) {
+                if (lastPlate != null && playerShip != null) {
                     if (lastPlate.matches(playerShip.getCurrentSystem().getBack())) {
                         f.drawImage(backplate, 0, 0, null);
                     } else {
@@ -860,7 +860,7 @@ public class Engine {
             if (tpf > 0.1) {
                 tpf = 0.1;
             }
-            if (state == State.RUNNING) {
+            if (state == State.RUNNING && universe != null) {
                 //handle player events
                 handlePlayerEvents();
                 //collission test

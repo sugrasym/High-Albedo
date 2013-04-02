@@ -98,7 +98,10 @@ public class Main extends JFrame {
      * Initialize the engine
      */
     public final void engineInit() {
-        BufferStrategy bf = getBufferStrategy();
+        BufferStrategy bf = null;
+        while (bf == null) {
+            bf = getBufferStrategy();
+        }
         engine = new Engine(bf, uiX, uiY);
     }
 
