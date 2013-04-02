@@ -5,6 +5,7 @@
 #       3 or higher is friendly
 #
 ##########################################
+#Make sure world percents add up to 100% at most.
 
 ########Netural###########
 [Faction]
@@ -14,6 +15,7 @@ var_worldPercent=0
 Neutral=0
 Entities=-10
 Player=0
+Red Sky=0
 Ageiran Federation=0
 The Archers=0
 ITC=0
@@ -28,6 +30,7 @@ var_isEmpire=false
 var_hosts=Ageiran Federation/Orin Federation/Caina Conglemerate/ITC/Neutral
 var_worldPercent=0
 Player=-10
+Red Sky=-10
 Neutral=-10
 Entities=10
 Ageiran Federation=-10
@@ -44,10 +47,28 @@ var_worldPercent=0
 Neutral=0
 Entities=-10
 Player=10
+Red Sky=0
 Ageiran Federation=3
 The Archers=-4
 ITC=0
 Caina Conglemerate=-1
+[/Faction]
+
+########Red Sky########
+
+[Faction]
+name=Red Sky
+var_isEmpire=false
+var_hosts=Neutral
+var_worldPercent=0
+Neutral=0
+Entities=-10
+Player=0
+Red Sky=10
+Ageiran Federation=0
+The Archers=-5
+ITC=0
+Caina Conglemerate=0
 [/Faction]
 
 ########Ageiran Space########
@@ -59,6 +80,7 @@ var_worldPercent=0.2
 Neutral=0
 Entities=-10
 Player=3
+Red Sky=0
 Ageiran Federation=10
 The Archers=-10
 ITC=0
@@ -73,6 +95,7 @@ var_hosts=Ageiran Federation/Orin Federation
 Neutral=0
 Entities=-10
 Player=-4
+Red Sky=-5
 Ageiran Federation=-10
 The Archers=10
 ITC=0
@@ -88,6 +111,7 @@ var_worldPercent=0.2
 Neutral=0
 Entities=-10
 Player=0
+Red Sky=0
 Ageiran Federation=0
 The Archers=0
 ITC=10
@@ -102,6 +126,7 @@ var_worldPercent=0.15
 Neutral=0
 Entities=-10
 Player=-1
+Red Sky=0
 Ageiran Federation=0
 The Archers=0
 ITC=4
@@ -167,6 +192,12 @@ station7=Orbital Habitat,0.35
 [Loadout]
 name=Entities
 patrol0=Nightmare,3
+[/Loadout]
+
+[Loadout]
+name=Red Sky
+patrol0=RS Bounty Hunter,40
+patrol1=RS Assassin,10
 [/Loadout]
 
 [Loadout]

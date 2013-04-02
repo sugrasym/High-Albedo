@@ -326,6 +326,35 @@ description=Interstellar ices collected for refinement into an energy source. Th
 [/Item]
 
 ########Weapon Entries#######
+
+#Red Sky Weapons
+
+[Item]
+name=Thorn A
+type=cannon
+volume=25
+mass=10
+HP=100
+minPrice=12000
+maxPrice=14600
+group=weapon
+store=321
+description=Red Sky weapon used on medium fighters. This weapon delivers a steady stream of damage at medium range.
+[/Item]
+
+[Item]
+name=Thorn B
+type=cannon
+volume=30
+mass=10
+HP=100
+minPrice=56000
+maxPrice=81600
+group=weapon
+store=121
+description=Red Sky weapon used on Red Sky's heavy interceptors. This weapon delivers a steady stream of damage at medium range.
+[/Item]
+
 #Ageiran Weapons
 [Item]
 name=Talon 1

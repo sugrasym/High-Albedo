@@ -1,3 +1,43 @@
+#########Red SKy###################
+#Naming Scheme: Norse
+########
+
+#Medium Fighters
+
+[Ship]
+type=Freyr
+accel=32
+turning=3.8
+shield=16000
+shieldRecharge=250
+hull=3000
+fuel=32050
+mass=125
+sensor=2800
+cargo=100
+hardpoint=cannon,25,8,3.925/cannon,25,-8,5.495
+width=50
+height=50
+[/Ship]
+
+#Interceptors
+
+[Ship]
+type=Odin
+accel=51
+turning=2.9
+shield=18000
+shieldRecharge=265
+hull=3200
+fuel=18000
+mass=136
+sensor=2950
+cargo=80
+hardpoint=cannon,30,8,3.925/cannon,30,-8,5.495
+width=50
+height=50
+[/Ship]
+
 #########Agerian Federation########
 #Naming Scheme: Birds
 #########

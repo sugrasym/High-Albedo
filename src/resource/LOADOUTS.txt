@@ -5,6 +5,22 @@
 #cargo=Iguana Missile~100
 #[/Loadout]
 
+########Corportate Lawful
+
+[Loadout]
+ship=Freyr
+name=RS Bounty Hunter
+install=Thorn A/Thorn A
+cargo=Standard Energy Unit~1
+[/Loadout]
+
+[Loadout]
+ship=Odin
+name=RS Assassin
+install=Thorn B/Thorn B
+cargo=Standard Energy Unit~1
+[/Loadout]
+
 ########Ageiran Federation Lawful
 
 [Loadout]

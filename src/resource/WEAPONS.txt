@@ -1,3 +1,32 @@
+########Red Sky Weapons########
+#Red Sky weapons are med damage at med range with a high refire rate.
+
+[Weapon]
+#weapon info
+name=Thorn A
+type=cannon
+#shell info
+damage=35
+range=365
+speed=425
+mass=4
+refire=0.12
+explosion=Yellow
+[/Weapon]
+
+[Weapon]
+#weapon info
+name=Thorn B
+type=cannon
+#shell info
+damage=36
+range=385
+speed=475
+mass=4
+refire=0.11
+explosion=Yellow
+[/Weapon]
+
 ########Ageiran Weapons########
 #Ageiran weapons are med damage at med range.
 
