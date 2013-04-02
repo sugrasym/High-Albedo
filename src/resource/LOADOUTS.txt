@@ -117,3 +117,12 @@ name=Naval Komodo
 install=Anaconda Launcher/Anaconda Launcher/Frill/Bask
 cargo=Anaconda Missile~14
 [/Loadout]
+
+########Entities
+
+[Loadout]
+ship=Grimm
+name=Nightmare
+install=Howler/Howler/Howler/Howler/Howler/Howler
+cargo=Exotic Matter~1
+[/Loadout]

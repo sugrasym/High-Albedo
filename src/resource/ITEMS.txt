@@ -676,6 +676,21 @@ store=1000
 description=Devtest weapon
 [/Item]
 
+#Entity Weapons
+
+[Item]
+name=Howler
+type=cannon
+volume=850
+mass=1
+HP=100
+minPrice=5000000
+maxPrice=7500000
+group=weapon
+store=6
+description=When the entities were encountered in deep space they fired an extremely lethal, guided, weapon nicknamed the 'Howler'. This weapon is extremely dangerous and any contact with an Entity should be avoided.
+[/Item]
+
 ########Plot Commodities########
 [Item]
 name=Exotic Matter

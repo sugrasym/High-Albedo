@@ -278,6 +278,25 @@ explosion=Yellow
 ammo=Bala Negro
 [/Weapon]
 
+########Entity Weapons########
+
+[Weapon]
+#weapon info
+name=Howler
+type=cannon
+#shell info
+damage=220
+range=600
+speed=1
+mass=3
+refire=0.3
+explosion=Green
+#make it a seeker
+guided=true
+accel=250
+turning=8
+[/Weapon]
+
 ########SPECIAL TEST WEAPONS########
 [Weapon]
 #weapon info

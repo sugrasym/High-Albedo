@@ -11,11 +11,29 @@
 name=Neutral
 var_isEmpire=false
 var_worldPercent=0
+Neutral=0
+Entities=-10
 Player=0
 Ageiran Federation=0
 The Archers=0
 ITC=0
 Caina Conglemerate=0
+[/Faction]
+
+########Anarchy###########
+
+[Faction]
+name=Entities
+var_isEmpire=false
+var_hosts=Ageiran Federation/Orin Federation/Caina Conglemerate/ITC/Neutral
+var_worldPercent=0
+Player=-10
+Neutral=-10
+Entities=10
+Ageiran Federation=-10
+The Archers=-10
+ITC=-10
+Caina Conglemerate=-10
 [/Faction]
 
 ########The Player########
@@ -24,6 +42,7 @@ name=Player
 var_isEmpire=false
 var_worldPercent=0
 Neutral=0
+Entities=-10
 Player=10
 Ageiran Federation=3
 The Archers=-4
@@ -38,6 +57,7 @@ name=Ageiran Federation
 var_isEmpire=true
 var_worldPercent=0.2
 Neutral=0
+Entities=-10
 Player=3
 Ageiran Federation=10
 The Archers=-10
@@ -51,6 +71,7 @@ var_isEmpire=false
 var_worldPercent=0
 var_hosts=Ageiran Federation/Orin Federation
 Neutral=0
+Entities=-10
 Player=-4
 Ageiran Federation=-10
 The Archers=10
@@ -65,6 +86,7 @@ name=ITC
 var_isEmpire=true
 var_worldPercent=0.2
 Neutral=0
+Entities=-10
 Player=0
 Ageiran Federation=0
 The Archers=0
@@ -78,6 +100,7 @@ name=Caina Conglemerate
 var_isEmpire=true
 var_worldPercent=0.15
 Neutral=0
+Entities=-10
 Player=-1
 Ageiran Federation=0
 The Archers=0
@@ -140,6 +163,11 @@ station7=Orbital Habitat,0.35
 ##########################################
 #Loadout lists for each faction
 ##########################################
+
+[Loadout]
+name=Entities
+patrol0=Nightmare,3
+[/Loadout]
 
 [Loadout]
 name=Ageiran Federation

@@ -421,7 +421,7 @@ public class God implements EngineElement {
         tmp.setCurrentSystem(system);
         system.putEntityInSystem(tmp);
         //report
-        //System.out.println("Spawned " + loadout.getString() + " in " + system.getName() + " for " + faction.getName());
+        System.out.println("Spawned " + loadout.getString() + " in " + system.getName() + " for " + faction.getName());
     }
 
     public void spawnStation(Faction faction, SolarSystem system, Point2D.Double loc, Binling loadout) {
@@ -435,6 +435,6 @@ public class God implements EngineElement {
         tmp.setCurrentSystem(system);
         system.putEntityInSystem(tmp);
         //report
-        //System.out.println("Spawned " + loadout.getString() + " in " + system.getName() + " for " + faction.getName());
+        System.out.println("Spawned " + loadout.getString() + " in " + system.getName() + " for " + faction.getName());
     }
 }

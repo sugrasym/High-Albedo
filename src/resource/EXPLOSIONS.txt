@@ -15,6 +15,10 @@ type=Red
 [/Explosion]
 
 [Explosion]
+type=Green
+[/Explosion]
+
+[Explosion]
 type=Blue
 [/Explosion]
 

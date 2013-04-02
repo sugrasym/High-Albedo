@@ -234,6 +234,23 @@ cargo=310
 hardpoint=missile,24,12,3.925/missile,24,-12,5.495/cannon,28,6,3.925/cannon,28,-6,5.495
 [/Ship]
 
+#########Entities########
+#Naming Scheme: go with it
+#########
+
+[Ship]
+type=Grimm
+accel=125
+turning=6
+shield=256000
+shieldRecharge=6400
+hull=1
+fuel=999999999
+mass=0
+sensor=20000
+cargo=2500
+hardpoint=cannon,900,15,3.925/cannon,900,-15,5.495/cannon,900,-15,1.495/cannon,900,-15,2.495/cannon,900,-15,4.495/cannon,900,-15,6.495
+[/Ship]
 
 #########Special########
 #Naming Scheme: Snark
