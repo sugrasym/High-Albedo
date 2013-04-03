@@ -80,8 +80,9 @@ public class God implements EngineElement {
             lastFrame = System.nanoTime();
             //update
             try {
-                checkStations();
-                checkPatrols();
+                /*checkStations();
+                checkPatrols();*/
+                universe.getPlayerShip().setBehavior(Behavior.SECTOR_TRADE);
             } catch (Exception e) {
                 System.out.println("Error manipulating dynamic universe.");
                 e.printStackTrace();

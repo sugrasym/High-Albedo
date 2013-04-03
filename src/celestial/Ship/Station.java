@@ -137,6 +137,80 @@ public class Station extends Ship {
         state = State.ALIVE;
     }
 
+    public int getBuyPrice(Item item) {
+        /*
+         * Return the price this station will pay for a ware
+         */
+        int max = 0;
+        int min = 0;
+        int q = 0;
+        int s = 1;
+        boolean found = false;
+        //get the right commodity
+        for (int a = 0; a < stationBuying.size(); a++) {
+            if (stationBuying.get(a).getName().matches(item.getName())) {
+                max = stationBuying.get(a).getMaxPrice();
+                min = stationBuying.get(a).getMinPrice();
+                q = stationBuying.get(a).getQuantity();
+                s = stationBuying.get(a).getStore();
+                found = true;
+                break;
+            }
+        }
+        //calculate price
+        int d = max - min;
+        float per = (float) q / (float) s;
+        int x = (int) (d * (1 - per));
+        int price = min + x;
+        if (price < min) {
+            price = min;
+        } else if (price > max) {
+            price = max;
+        }
+        if (found) {
+            return price;
+        } else {
+            return -1;
+        }
+    }
+
+    public int getSellPrice(Item item) {
+        /*
+         * Returns the price this station will charge for a ware
+         */
+        int max = 0;
+        int min = 0;
+        int q = 0;
+        int s = 1;
+        boolean found = false;
+        //get the right commodity
+        for (int a = 0; a < stationSelling.size(); a++) {
+            if (stationSelling.get(a).getName().matches(item.getName())) {
+                max = stationSelling.get(a).getMaxPrice();
+                min = stationSelling.get(a).getMinPrice();
+                q = stationSelling.get(a).getQuantity();
+                s = stationSelling.get(a).getStore();
+                found = true;
+                break;
+            }
+        }
+        //calculate price
+        int d = max - min;
+        float per = (float) q / (float) s;
+        int x = (int) (d * (1 - per));
+        int price = min + x;
+        if (price < min) {
+            price = min;
+        } else if (price > max) {
+            price = max;
+        }
+        if (found) {
+            return price;
+        } else {
+            return -1;
+        }
+    }
+
     public int getPrice(Item item) {
         int max = 0;
         int min = 0;

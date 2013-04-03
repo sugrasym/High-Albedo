@@ -6,7 +6,7 @@
 name=Thorn A
 type=cannon
 #shell info
-damage=35
+damage=50
 range=365
 speed=425
 mass=4
@@ -19,7 +19,7 @@ explosion=Yellow
 name=Thorn B
 type=cannon
 #shell info
-damage=36
+damage=62
 range=385
 speed=475
 mass=4

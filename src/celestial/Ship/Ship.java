@@ -55,8 +55,8 @@ public class Ship extends Celestial {
 
         NONE,
         TEST,
-        PATROL
-    }
+        PATROL,
+        SECTOR_TRADE,}
 
     public enum Autopilot {
 
@@ -98,6 +98,12 @@ public class Ship extends Celestial {
     protected Autopilot autopilot = Autopilot.NONE;
     protected boolean docked;
     protected PortContainer port;
+    //trading
+    protected Station buyFromStation;
+    protected int buyFromPrice;
+    protected Station sellToStation;
+    protected int sellToPrice;
+    protected Item workingWare;
     //acceleration
     protected double accel = 0;
     protected double turning = 0;
@@ -733,6 +739,161 @@ public class Ship extends Celestial {
             behaviorTest();
         } else if (getBehavior() == Behavior.PATROL) {
             behaviorPatrol();
+        } else if (getBehavior() == Behavior.SECTOR_TRADE) {
+            behaviorSectorTrade();
+        }
+    }
+
+    protected void behaviorSectorTrade() {
+        /*
+         * Buy low sell high within one solar system.
+         */
+        if (!docked) {
+            if (autopilot == Autopilot.NONE) {
+                /*
+                 * 1. Get a list of friendly stations to collate wares from
+                 * 2. Build a list of all wares that can be traded in the
+                 * sector (a ware must have both a buyer and a seller)
+                 * 3. Find the one with the highest profit.
+                 * 4. Fill up on the ware.
+                 * 5. Drop off the ware.
+                 * repeat
+                 */
+                if (getNumInCargoBay(workingWare) > 0) {
+                    /*
+                     * There are wares to be sold, this is stage 2.
+                     */
+                    cmdDock(sellToStation);
+                } else {
+                    /*
+                     * This is stage 1, find the best deal.
+                     */
+                    //get a list of friendly stations
+                    ArrayList<Station> friendly = getFriendlyStationsInSystem();
+                    if (friendly.size() > 1) {
+                        //build a list of wares that are being produced
+                        ArrayList<String> produced = new ArrayList<>();
+                        for (int a = 0; a < friendly.size(); a++) {
+                            ArrayList<Item> made = friendly.get(a).getStationSelling();
+                            for (int b = 0; b < made.size(); b++) {
+                                String ware = made.get(b).getName().toString();
+                                if (!produced.contains(ware)) {
+                                    produced.add(ware);
+                                }
+                            }
+                        }
+                        //build a list of wares that are being consumed
+                        ArrayList<String> consumed = new ArrayList<>();
+                        for (int a = 0; a < friendly.size(); a++) {
+                            ArrayList<Item> made = friendly.get(a).getStationBuying();
+                            for (int b = 0; b < made.size(); b++) {
+                                String ware = made.get(b).getName().toString();
+                                if (!consumed.contains(ware)) {
+                                    consumed.add(ware);
+                                }
+                            }
+                        }
+                        //cross reference the lists to find what's the same in both
+                        ArrayList<String> sample = new ArrayList<>();
+                        for (int a = 0; a < consumed.size(); a++) {
+                            for (int b = 0; b < produced.size(); b++) {
+                                if (consumed.get(a).matches(produced.get(b))) {
+                                    sample.add(consumed.get(a));
+                                    break;
+                                }
+                            }
+                        }
+                        //make sure there's a sample
+                        if (sample.size() > 0) {
+                            Station buyLoc = null;
+                            Station sellLoc = null;
+                            Item bestWare = null;
+                            double gain = 0;
+                            for (int a = 0; a < sample.size(); a++) {
+                                Item ware = new Item(sample.get(a));
+                                //get the best stations
+                                Station pickUp = getLocalBestSell(ware);
+                                Station dropOff = getLocalBestBuy(ware);
+                                //get prices
+                                int pickUpPrice = pickUp.getPrice(ware);
+                                int dropOffPrice = dropOff.getPrice(ware);
+                                System.out.println(ware.getName());
+                                System.out.println(pickUp.getName() + " " + pickUpPrice);
+                                System.out.println(dropOff.getName() + " " + dropOffPrice);
+                                //find profit
+                                int profit = dropOffPrice - pickUpPrice;
+                                System.out.println(profit);
+                                if (pickUpPrice != -1 && dropOffPrice != -1) {
+                                    if (profit > 0) {
+                                        if (profit > gain) {
+                                            buyLoc = pickUp;
+                                            sellLoc = dropOff;
+                                            bestWare = ware;
+                                            //store prices
+                                            gain = profit;
+                                            buyFromPrice = pickUpPrice;
+                                            sellToPrice = dropOffPrice;
+                                        }
+                                    } else {
+                                        //no point in trading this
+                                    }
+                                }
+                            }
+                            if (bestWare != null) {
+                                //store start and end
+                                buyFromStation = buyLoc;
+                                sellToStation = sellLoc;
+                                workingWare = bestWare;
+                                //start trading
+                                cmdDock(buyFromStation);
+                            } else {
+                                //maybe profit awaits us elsewhere
+                                leaveSystem();
+                            }
+                        } else {
+                            //maybe profit awaits us elsewhere
+                            leaveSystem();
+                        }
+                    } else {
+                        //profit definately awaits us elsewhere
+                        leaveSystem();
+                    }
+                }
+            } else {
+                //wait
+            }
+        } else {
+            //do buying and selling
+            Station curr = port.getParent();
+            if (curr == buyFromStation) {
+                //make sure the price is still ok
+                if (curr.getPrice(workingWare) <= buyFromPrice) {
+                    //how much of the ware can we carry
+                    int maxQ = (int) (cargo - getBayUsed()) / Math.max(1, (int) workingWare.getVolume());
+                    //buy as much as we can carry
+                    curr.buy(this, workingWare, maxQ);
+                    System.out.println(getName() + " bought " + getNumInCargoBay(workingWare)
+                            + workingWare.getName() + " from " + curr.getName());
+                } else {
+                    //abort trading operation
+                    abortTrade();
+                    System.out.println(getName() + " aborted trading operation (Bad buy price)");
+                }
+            } else if (curr == sellToStation) {
+                if (curr.getPrice(workingWare) >= sellToPrice) {
+                    //sell everything
+                    int q = getNumInCargoBay(workingWare);
+                    curr.sell(this, workingWare, q);
+                    System.out.println(getName() + " sold " + (q - getNumInCargoBay(workingWare))
+                            + workingWare.getName() + " to " + curr.getName());
+                } else {
+                    //abort trading operation
+                    abortTrade();
+                    System.out.println(getName() + " aborted trading operation (Bad sell price)");
+                }
+            }
+            //finally undock
+            cmdUndock();
         }
     }
 
@@ -783,9 +944,7 @@ public class Ship extends Celestial {
                             System.out.println(getName() + " is low on fuel and docking at "
                                     + near.getName() + " (" + (int) (100 * (fuel / maxFuel)) + "%)");
                         } else {
-                            //try another system
-                            Jumphole njmp = getRandomJumpholeInSystem();
-                            cmdFlyToCelestial(njmp, 0);
+                            leaveSystem();
                         }
                     } else {
                         /*
@@ -809,9 +968,7 @@ public class Ship extends Celestial {
                             double range = sensor;
                             cmdFlyToCelestial(near, range);
                         } else {
-                            //try another system
-                            Jumphole njmp = getRandomJumpholeInSystem();
-                            cmdFlyToCelestial(njmp, 0);
+                            leaveSystem();
                         }
                     }
                 } else {
@@ -835,6 +992,23 @@ public class Ship extends Celestial {
     /*
      * Utility nav functions
      */
+    private void leaveSystem() {
+        /*
+         * Finds a random jump hole and flies through it.
+         */
+        Jumphole njmp = getRandomJumpholeInSystem();
+        cmdFlyToCelestial(njmp, 0);
+    }
+
+    private void abortTrade() {
+        autopilot = Autopilot.NONE;
+        buyFromStation = null;
+        sellToStation = null;
+        workingWare = null;
+        buyFromPrice = 0;
+        sellToPrice = 0;
+    }
+
     protected void moveToPosition(double tx, double ty) {
         //get the destination
         double ax = x - tx;
@@ -891,6 +1065,65 @@ public class Ship extends Celestial {
         }
     }
 
+    public Station getLocalBestBuy(Item ware) {
+        /*
+         * Returns the station in this system charging the least price for a 
+         * ware.
+         */
+        Station ret = null;
+        {
+            ArrayList<Station> friendly = getFriendlyStationsInSystem();
+            if (friendly.size() > 0) {
+                Station best = friendly.get(0);
+                for (int a = 0; a < friendly.size(); a++) {
+                    //get price at test
+                    Station test = friendly.get(a);
+                    //get ware prices
+                    if (best != null) {
+                        int oldPrice = best.getSellPrice(ware);
+                        int newPrice = test.getSellPrice(ware);
+                        if (newPrice < oldPrice) {
+                            best = test;
+                        }
+                    } else if (test.getSellPrice(ware) > -1) {
+                        best = test;
+                    }
+                }
+                ret = best;
+            }
+        }
+        return ret;
+    }
+
+    public Station getLocalBestSell(Item ware) {
+        /*
+         * Returns the station in this system paying the best price for a ware.
+         */
+        Station ret = null;
+        {
+            ArrayList<Station> friendly = getFriendlyStationsInSystem();
+            if (friendly.size() > 0) {
+                Station best = null;
+                for (int a = 0; a < friendly.size(); a++) {
+                    //get price at test
+                    Station test = friendly.get(a);
+                    if (best != null) {
+                        //get ware prices
+                        int oldPrice = best.getBuyPrice(ware);
+                        int newPrice = test.getBuyPrice(ware);
+                        if (newPrice > oldPrice) {
+                            best = test;
+                        }
+                    } else if (test.getSellPrice(ware) > -1) {
+                        best = test;
+                    }
+                }
+                ret = best;
+            }
+        }
+        return ret;
+    }
+
     public Station getRandomStationInSystem() {
         Station ret = null;
         {
@@ -928,6 +1161,22 @@ public class Ship extends Celestial {
             }
         }
         return ret;
+    }
+
+    public ArrayList<Station> getFriendlyStationsInSystem() {
+        ArrayList<Station> list = new ArrayList<>();
+        {
+            ArrayList<Entity> stations = currentSystem.getStationList();
+            if (stations.size() > 0) {
+                for (int a = 0; a < stations.size(); a++) {
+                    Station test = (Station) stations.get(a);
+                    if (test.canDock(this)) {
+                        list.add(test);
+                    }
+                }
+            }
+        }
+        return list;
     }
 
     public Station getNearestFriendlyStationInSystem() {
@@ -1647,15 +1896,17 @@ public class Ship extends Celestial {
 
     public int getNumInCargoBay(Item item) {
         int count = 0;
-        String iname = item.getName();
-        String itype = item.getType();
-        String group = item.getGroup();
-        for (int a = 0; a < cargoBay.size(); a++) {
-            Item tmp = cargoBay.get(a);
-            if (iname.matches(tmp.getName())) {
-                if (itype.matches(tmp.getType())) {
-                    if (group.matches(tmp.getGroup())) {
-                        count += tmp.getQuantity();
+        if (item != null) {
+            String iname = item.getName();
+            String itype = item.getType();
+            String group = item.getGroup();
+            for (int a = 0; a < cargoBay.size(); a++) {
+                Item tmp = cargoBay.get(a);
+                if (iname.matches(tmp.getName())) {
+                    if (itype.matches(tmp.getType())) {
+                        if (group.matches(tmp.getGroup())) {
+                            count += tmp.getQuantity();
+                        }
                     }
                 }
             }
