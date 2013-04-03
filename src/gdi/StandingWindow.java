@@ -84,7 +84,7 @@ public class StandingWindow extends AstralWindow {
             }
             //display detailed information about the selected item
             int index = factionList.getIndex();
-            Binling bin = (Binling)factionList.getItemAtIndex(index);
+            Binling bin = (Binling) factionList.getItemAtIndex(index);
             if (index < logicalFactionList.size()) {
                 //fill
                 fillFactionLines(viewing, bin);
@@ -92,7 +92,7 @@ public class StandingWindow extends AstralWindow {
             }
         }
     }
-    
+
     private ArrayList<Binling> sort(ArrayList<Binling> list) {
         ArrayList<Binling> sorted = new ArrayList<>();
         {
@@ -123,11 +123,41 @@ public class StandingWindow extends AstralWindow {
         if (selected != null) {
             infoList.addToList("--Basic--");
             infoList.addToList(" ");
-            infoList.addToList("Name:         "+selected.getName());
-            infoList.addToList("Empire:       "+selected.isEmpire());
+            infoList.addToList("Name:         " + selected.getName());
+            infoList.addToList("Empire:       " + selected.isEmpire());
+            if (selected.isEmpire()) {
+                infoList.addToList("Extent:       " + (100*(selected.getSpread()))+"%");
+            }
             infoList.addToList(" ");
             infoList.addToList("--Standings--");
-            infoList.addToList("You:          "+simple.getDouble());
+            infoList.addToList(" ");
+            infoList.addToList("You:          " + simple.getDouble());
+            infoList.addToList(" ");
+            infoList.addToList("--Likes--");
+            infoList.addToList(" ");
+            for (int a = 0; a < selected.getStandings().size(); a++) {
+                if (selected.getStandings().get(a).getDouble() > 0) {
+                    infoList.addToList(selected.getStandings().get(a).getString());
+                }
+            }
+            infoList.addToList(" ");
+            infoList.addToList("--Dislikes--");
+            infoList.addToList(" ");
+            for (int a = 0; a < selected.getStandings().size(); a++) {
+                if (selected.getStandings().get(a).getDouble() < 0) {
+                    infoList.addToList(selected.getStandings().get(a).getString());
+                }
+            }
+            infoList.addToList(" ");
+            infoList.addToList("--Will Attack--");
+            infoList.addToList(" ");
+            for (int a = 0; a < selected.getStandings().size(); a++) {
+                if (selected.getStandings().get(a).getDouble() < -2) {
+                    infoList.addToList(selected.getStandings().get(a).getString());
+                }
+            }
+            infoList.addToList(" ");
+            infoList.addToList("--Description-");
             infoList.addToList(" ");
         }
     }
