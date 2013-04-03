@@ -1,12 +1,12 @@
 #New Game Smell
 [NewGame]
-ship=Cheetah
+ship=Gila
 system=System 55
 x=6240.0
 y=28986.0
 cash=52000
-install=Starstruck Launcher/Starstruck Launcher
-cargo=Starstruck Missile~8
+install=Iguana Launcher/Iguana Launcher/Bask/Bask
+cargo=Iguana Missile~30
 faction=Player
 [/NewGame]
 

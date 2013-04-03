@@ -71,6 +71,7 @@ public class Ship extends Celestial {
     }
     //constants
     public static final double PATROL_REFUEL_PERCENT = 0.5;
+    public static final double TRADER_RESERVE_PERCENT = 0.5;
     //raw loadout
     protected String equip = "";
     private String template = "";
@@ -733,6 +734,9 @@ public class Ship extends Celestial {
          * Behaviors are basically the role this NPC plays in the universe. This
          * is what makes it into a trader, a fighter, etc.
          */
+        //shield percent
+        double shieldPercent = 100 * (shield / maxShield);
+        //behavior blocks
         if (getBehavior() == Behavior.NONE) {
             //do nothing
         } else if (getBehavior() == Behavior.TEST) {
@@ -740,7 +744,12 @@ public class Ship extends Celestial {
         } else if (getBehavior() == Behavior.PATROL) {
             behaviorPatrol();
         } else if (getBehavior() == Behavior.SECTOR_TRADE) {
-            behaviorSectorTrade();
+            //give this thing a chance of fighting back against hostiles
+            if (shieldPercent > 75) {
+                behaviorSectorTrade();
+            } else {
+                behaviorPatrol();
+            }
         }
     }
 
@@ -874,8 +883,10 @@ public class Ship extends Celestial {
                 if (curr.getPrice(workingWare) <= buyFromPrice) {
                     //how much of the ware can we carry
                     int maxQ = (int) (cargo - getBayUsed()) / Math.max(1, (int) workingWare.getVolume());
+                    //how much can we carry if we want to follow reserve rules
+                    int q = (int) ((1 - TRADER_RESERVE_PERCENT) * maxQ);
                     //buy as much as we can carry
-                    curr.buy(this, workingWare, maxQ);
+                    curr.buy(this, workingWare, q);
                     System.out.println(getName() + " bought " + getNumInCargoBay(workingWare)
                             + " " + workingWare.getName() + " from " + curr.getName());
                 } else {

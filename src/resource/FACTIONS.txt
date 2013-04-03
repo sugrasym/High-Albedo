@@ -205,7 +205,7 @@ name=Ageiran Federation
 patrol0=Police Sparrow,100
 patrol1=Naval Crow,50
 patrol2=Naval Raven,25
-trader0=Federal Trade Emu,50
+trader0=Federal Trade Emu,30
 [/Loadout]
 
 [Loadout]
@@ -222,7 +222,7 @@ patrol1=Naval Monitor,25
 patrol2=Air Force Monitor,25
 patrol2=Air Force Komodo,25
 patrol3=Naval Komodo,12
-trader0=Royal Trade Gila,50
+trader0=Royal Trade Gila,30
 [/Loadout]
 
 [Loadout]
@@ -230,5 +230,5 @@ name=ITC
 patrol0=ITC Police,75
 patrol1=ITC Fleet Cheetah,50
 patrol2=ITC Fleet Hyena,25
-trader0=ITC Trade Wildabeast,50
+trader0=ITC Trade Wildabeast,30
 [/Loadout]

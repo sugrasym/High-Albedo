@@ -80,6 +80,7 @@ public class God implements EngineElement {
             lastFrame = System.nanoTime();
             //update
             try {
+                universe.getPlayerShip().setBehavior(Behavior.SECTOR_TRADE);
                 checkStations();
                 checkPatrols();
                 checkTraders();
