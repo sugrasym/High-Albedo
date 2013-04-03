@@ -56,7 +56,8 @@ public class Ship extends Celestial {
         NONE,
         TEST,
         PATROL,
-        SECTOR_TRADE,}
+        SECTOR_TRADE,
+    }
 
     public enum Autopilot {
 
@@ -596,7 +597,7 @@ public class Ship extends Celestial {
                             double ay = y - port.getAlignY();
                             double dist = magnitude((ax), (ay));
                             double speed = magnitude(vx, vy);
-                            double hold = accel * 1.85;
+                            double hold = accel * 1.6;
                             //
                             double desired = Math.atan2(ay, ax);
                             desired = (desired + 2.0 * Math.PI) % (2.0 * Math.PI);
@@ -812,31 +813,31 @@ public class Ship extends Celestial {
                             for (int a = 0; a < sample.size(); a++) {
                                 Item ware = new Item(sample.get(a));
                                 //get the best stations
-                                Station pickUp = getLocalBestSell(ware);
-                                Station dropOff = getLocalBestBuy(ware);
+                                Station pickUp = getBestLocalPickup(ware);
+                                Station dropOff = getBestLocalDropOff(ware);
                                 //get prices
-                                int pickUpPrice = pickUp.getPrice(ware);
-                                int dropOffPrice = dropOff.getPrice(ware);
-                                System.out.println(ware.getName());
-                                System.out.println(pickUp.getName() + " " + pickUpPrice);
-                                System.out.println(dropOff.getName() + " " + dropOffPrice);
-                                //find profit
-                                int profit = dropOffPrice - pickUpPrice;
-                                System.out.println(profit);
-                                if (pickUpPrice != -1 && dropOffPrice != -1) {
-                                    if (profit > 0) {
-                                        if (profit > gain) {
-                                            buyLoc = pickUp;
-                                            sellLoc = dropOff;
-                                            bestWare = ware;
-                                            //store prices
-                                            gain = profit;
-                                            buyFromPrice = pickUpPrice;
-                                            sellToPrice = dropOffPrice;
+                                if (pickUp != null && dropOff != null) {
+                                    int pickUpPrice = pickUp.getPrice(ware);
+                                    int dropOffPrice = dropOff.getPrice(ware);
+                                    //find profit
+                                    int profit = dropOffPrice - pickUpPrice;
+                                    if (pickUpPrice != -1 && dropOffPrice != -1) {
+                                        if (profit > 0) {
+                                            if (profit > gain) {
+                                                buyLoc = pickUp;
+                                                sellLoc = dropOff;
+                                                bestWare = ware;
+                                                //store prices
+                                                gain = profit;
+                                                buyFromPrice = pickUpPrice;
+                                                sellToPrice = dropOffPrice;
+                                            }
+                                        } else {
+                                            //no point in trading this
                                         }
-                                    } else {
-                                        //no point in trading this
                                     }
+                                } else {
+                                    //something went wrong
                                 }
                             }
                             if (bestWare != null) {
@@ -863,6 +864,10 @@ public class Ship extends Celestial {
                 //wait
             }
         } else {
+            System.out.println(getName() + " [ST] sucessfully docked at " + port.getParent().getName()
+                    + " in " + port.getParent().getCurrentSystem().getName());
+            //restore fuel
+            fuel = maxFuel;
             //do buying and selling
             Station curr = port.getParent();
             if (curr == buyFromStation) {
@@ -873,7 +878,7 @@ public class Ship extends Celestial {
                     //buy as much as we can carry
                     curr.buy(this, workingWare, maxQ);
                     System.out.println(getName() + " bought " + getNumInCargoBay(workingWare)
-                            + workingWare.getName() + " from " + curr.getName());
+                            + " " + workingWare.getName() + " from " + curr.getName());
                 } else {
                     //abort trading operation
                     abortTrade();
@@ -885,7 +890,7 @@ public class Ship extends Celestial {
                     int q = getNumInCargoBay(workingWare);
                     curr.sell(this, workingWare, q);
                     System.out.println(getName() + " sold " + (q - getNumInCargoBay(workingWare))
-                            + workingWare.getName() + " to " + curr.getName());
+                            + " " + workingWare.getName() + " to " + curr.getName());
                 } else {
                     //abort trading operation
                     abortTrade();
@@ -1065,61 +1070,56 @@ public class Ship extends Celestial {
         }
     }
 
-    public Station getLocalBestBuy(Item ware) {
-        /*
-         * Returns the station in this system charging the least price for a 
-         * ware.
-         */
+    public Station getBestLocalDropOff(Item ware) {
         Station ret = null;
         {
             ArrayList<Station> friendly = getFriendlyStationsInSystem();
+            int bPrice = 0;
+            Station bStation = null;
             if (friendly.size() > 0) {
-                Station best = friendly.get(0);
                 for (int a = 0; a < friendly.size(); a++) {
-                    //get price at test
                     Station test = friendly.get(a);
-                    //get ware prices
-                    if (best != null) {
-                        int oldPrice = best.getSellPrice(ware);
-                        int newPrice = test.getSellPrice(ware);
-                        if (newPrice < oldPrice) {
-                            best = test;
+                    if (test.buysWare(ware)) {
+                        if (bStation == null) {
+                            bStation = test;
+                            bPrice = test.getPrice(ware);
+                        } else {
+                            int nP = test.getPrice(ware);
+                            if (nP > bPrice) {
+                                bStation = test;
+                            }
                         }
-                    } else if (test.getSellPrice(ware) > -1) {
-                        best = test;
                     }
                 }
-                ret = best;
             }
+            ret = bStation;
         }
         return ret;
     }
 
-    public Station getLocalBestSell(Item ware) {
-        /*
-         * Returns the station in this system paying the best price for a ware.
-         */
+    public Station getBestLocalPickup(Item ware) {
         Station ret = null;
         {
             ArrayList<Station> friendly = getFriendlyStationsInSystem();
+            int bPrice = 0;
+            Station bStation = null;
             if (friendly.size() > 0) {
-                Station best = null;
                 for (int a = 0; a < friendly.size(); a++) {
-                    //get price at test
                     Station test = friendly.get(a);
-                    if (best != null) {
-                        //get ware prices
-                        int oldPrice = best.getBuyPrice(ware);
-                        int newPrice = test.getBuyPrice(ware);
-                        if (newPrice > oldPrice) {
-                            best = test;
+                    if (test.sellsWare(ware)) {
+                        if (bStation == null) {
+                            bStation = test;
+                            bPrice = test.getPrice(ware);
+                        } else {
+                            int nP = test.getPrice(ware);
+                            if (nP < bPrice) {
+                                bStation = test;
+                            }
                         }
-                    } else if (test.getSellPrice(ware) > -1) {
-                        best = test;
                     }
                 }
-                ret = best;
             }
+            ret = bStation;
         }
         return ret;
     }

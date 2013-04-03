@@ -1,12 +1,12 @@
 #New Game Smell
 [NewGame]
-ship=Odin
+ship=Wildabeast
 system=System 66
 x=6240.0
 y=28986.0
 cash=52000
-install=Thorn B/Thorn B
-cargo=
+install=Starstruck Launcher/Starstruck Launcher/Starstruck Launcher/Starstruck Launcher
+cargo=Starstruck Missile~16
 faction=Player
 [/NewGame]
 
