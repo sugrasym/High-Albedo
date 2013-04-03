@@ -35,18 +35,19 @@ import lib.Parser.Term;
  * @author Nathan Wiehoff
  */
 public class Faction implements Serializable {
-    
+
     private String name;
+    private String description = "No Information Found";
     private boolean isEmpire = false;
     private double spread = 0;
     protected ArrayList<String> hosts = new ArrayList<>();
     private ArrayList<Binling> standings = new ArrayList<>();
-    
+
     public Faction(String name) {
         this.name = name;
         init();
     }
-    
+
     private void init() {
         Parser tmp = new Parser("FACTIONS.txt");
         ArrayList<Term> factions = tmp.getTermsOfType("Faction");
@@ -76,6 +77,11 @@ public class Faction implements Serializable {
                         String[] arr = ho.split("/");
                         hosts.addAll(Arrays.asList(arr));
                     }
+                    //Store description
+                    String desc = tmp2.getValue("description");
+                    if (desc != null) {
+                        description = desc;
+                    }
                 } catch (Exception e) {
                     System.out.println(name + " is missing information about spread and sov");
                 }
@@ -83,7 +89,7 @@ public class Faction implements Serializable {
             }
         }
     }
-    
+
     public int getStanding(String faction) {
         if (standings != null) {
             for (int a = 0; a < standings.size(); a++) {
@@ -97,7 +103,7 @@ public class Faction implements Serializable {
         }
         return 0;
     }
-    
+
     public void setStanding(String faction, int value) {
         if (value < -10) {
             value = -10;
@@ -113,16 +119,24 @@ public class Faction implements Serializable {
             }
         }
     }
-    
+
     public boolean isEmpire() {
         return isEmpire;
     }
-    
+
     public String getName() {
         return name;
     }
-    
+
     public double getSpread() {
         return spread;
+    }
+
+    public ArrayList<Binling> getStandings() {
+        return standings;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }

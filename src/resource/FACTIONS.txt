@@ -54,7 +54,7 @@ Ageiran Federation=3
 The Archers=-4
 ITC=0
 Caina Conglemerate=-1
-Wolves=-10
+Wolves=-7
 [/Faction]
 
 ########Red Sky########
@@ -72,7 +72,7 @@ Ageiran Federation=0
 The Archers=-5
 ITC=0
 Caina Conglemerate=0
-Wolves=-10
+Wolves=-7
 [/Faction]
 
 ########Ageiran Space########
@@ -89,7 +89,7 @@ Ageiran Federation=10
 The Archers=-10
 ITC=0
 Caina Conglemerate=0
-Wolves=-10
+Wolves=-7
 [/Faction]
 
 [Faction]
@@ -105,7 +105,7 @@ Ageiran Federation=-10
 The Archers=10
 ITC=0
 Caina Conglemerate=0
-Wolves=-10
+Wolves=-7
 [/Faction]
 
 ########ITC Space########
@@ -122,7 +122,7 @@ Ageiran Federation=0
 The Archers=0
 ITC=10
 Caina Conglemerate=4
-Wolves=-10
+Wolves=-7
 [/Faction]
 
 ########Cainan Space########
@@ -138,7 +138,7 @@ Ageiran Federation=0
 The Archers=0
 ITC=4
 Caina Conglemerate=10
-Wolves=-10
+Wolves=-7
 [/Faction]
 
 ########'The Wolves' Pirates########

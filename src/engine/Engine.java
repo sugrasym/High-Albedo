@@ -31,6 +31,7 @@ import gdi.FuelWindow;
 import gdi.HealthWindow;
 import gdi.MenuHomeWindow;
 import gdi.OverviewWindow;
+import gdi.StandingWindow;
 import gdi.StarMapWindow;
 import gdi.TradeWindow;
 import gdi.component.AstralWindow;
@@ -244,6 +245,7 @@ public class Engine {
         CargoWindow cargoWindow = new CargoWindow();
         TradeWindow tradeWindow = new TradeWindow();
         StarMapWindow starMapWindow = new StarMapWindow();
+        StandingWindow standingWindow = new StandingWindow();
 
         public HUD(Engine engine) {
             homeWindow = new MenuHomeWindow(engine);
@@ -260,6 +262,8 @@ public class Engine {
                 windows.add(cargoWindow);
                 windows.add(tradeWindow);
                 windows.add(starMapWindow);
+                windows.add(standingWindow);
+                standingWindow.setVisible(false);
             } else if (state == State.MENU) {
                 windows.add(homeWindow);
                 homeWindow.setVisible(true);
@@ -289,6 +293,9 @@ public class Engine {
                 //position map window
                 starMapWindow.setX((uiX / 2) - starMapWindow.getWidth() / 2);
                 starMapWindow.setY((uiY / 2) - starMapWindow.getHeight() / 2);
+                //position standing window
+                standingWindow.setX((uiX / 2) - standingWindow.getWidth() / 2);
+                standingWindow.setY((uiY / 2) - standingWindow.getHeight() / 2);
             } else if (state == State.MENU) {
                 //position home window
                 homeWindow.setX((uiX / 2) - homeWindow.getWidth() / 2);
@@ -305,14 +312,31 @@ public class Engine {
         public void periodicUpdate() {
             if (state == State.RUNNING) {
                 //push hud changes
-                healthWindow.updateHealth((playerShip.getShield() / playerShip.getMaxShield()),
-                        (playerShip.getHull() / playerShip.getMaxHull()));
-                fuelWindow.updateFuel(playerShip.getFuel() / playerShip.getMaxFuel());
-                overviewWindow.updateOverview(playerShip);
-                equipmentWindow.update(playerShip);
-                cargoWindow.update(playerShip);
-                tradeWindow.update(playerShip);
-                starMapWindow.updateMap(universe);
+                if (healthWindow.isVisible()) {
+                    healthWindow.updateHealth((playerShip.getShield() / playerShip.getMaxShield()),
+                            (playerShip.getHull() / playerShip.getMaxHull()));
+                }
+                if (fuelWindow.isVisible()) {
+                    fuelWindow.updateFuel(playerShip.getFuel() / playerShip.getMaxFuel());
+                }
+                if (overviewWindow.isVisible()) {
+                    overviewWindow.updateOverview(playerShip);
+                }
+                if (equipmentWindow.isVisible()) {
+                    equipmentWindow.update(playerShip);
+                }
+                if (cargoWindow.isVisible()) {
+                    cargoWindow.update(playerShip);
+                }
+                if (tradeWindow.isVisible()) {
+                    tradeWindow.update(playerShip);
+                }
+                if (starMapWindow.isVisible()) {
+                    starMapWindow.updateMap(universe);
+                }
+                if (standingWindow.isVisible()) {
+                    standingWindow.update(playerShip);
+                }
                 //update
                 for (int a = 0; a < windows.size(); a++) {
                     windows.get(a).periodicUpdate();
@@ -547,6 +571,10 @@ public class Engine {
                      */ else if (ke.getKeyCode() == KeyEvent.VK_SPACE) {
                         firing = false;
                     } /*
+                     * targeting keys
+                     */ else if (ke.getKeyCode() == KeyEvent.VK_R) {
+                        playerShip.targetNearestHostileShip();
+                    } /*
                      * comms keys
                      */ else if (ke.getKeyCode() == KeyEvent.VK_D) {
                         playerShip.cmdDock(playerShip.getTarget());
@@ -579,6 +607,9 @@ public class Engine {
                     if (playerShip.isDocked()) {
                         tradeWindow.setVisible(!tradeWindow.isVisible());
                     }
+                }
+                if (ke.getKeyCode() == KeyEvent.VK_L) {
+                    standingWindow.setVisible(!standingWindow.isVisible());
                 }
                 /*
                  * Time dilation keys
@@ -867,7 +898,11 @@ public class Engine {
                 //handle player events
                 handlePlayerEvents();
                 //collission test
-                collissionTest(tpf);
+                try {
+                    collissionTest(tpf);
+                } catch (Exception e) {
+                    System.out.println("Collission tester dun goof'd");
+                }
                 //update game entities
                 for (int a = 0; a < entities.size(); a++) {
                     entities.get(a).periodicUpdate(tpf);
@@ -897,7 +932,7 @@ public class Engine {
             }
         }
 
-        private void collissionTest(double tpf) {
+        private void collissionTest(double tpf) throws Exception {
             /*
              * 1. Collissions are not tested on planets
              * 2. Collissions are only tested between entities in the same solar system.

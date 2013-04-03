@@ -45,4 +45,9 @@ public class Binling implements Serializable {
     public void setDouble(double num) {
         this.num = num;
     }
+    
+    @Override
+    public String toString() {
+        return str+" ["+num+"]";
+    }
 }
