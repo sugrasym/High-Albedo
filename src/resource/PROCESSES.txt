@@ -1,6 +1,20 @@
 #Cheating Weapon Manufacturing
 
 [Process]
+name=ArchersCoveCheatWeapons
+cycle=1600
+product=Arrow,2/Catapult,1/Long 9,1
+resource=
+[/Process]
+
+[Process]
+name=WolfDenCheatWeapons
+cycle=1600
+product=Fang,2/Fang Alpha,1
+resource=
+[/Process]
+
+[Process]
 name=ITCCheatStarstruck
 cycle=1200
 product=Starstruck Launcher,1
@@ -117,6 +131,13 @@ resource=Mineral Ore,10/Heavy Water,1
 #Misc Sinks
 
 [Process]
+name=OrganSink
+cycle=450
+product=
+resource=Human Organs,1
+[/Process]
+
+[Process]
 name=ITCMeatSink
 cycle=225
 product=
@@ -158,6 +179,13 @@ name=GoodsToPiracy
 cycle=650
 product=Pirated Software,5
 resource=Consumer Goods,3
+[/Process]
+
+[Process]
+name=WolfOrgans
+cycle=750
+product=Human Organs,5
+resource=Consumer Goods,1/Livestock,1
 [/Process]
 
 #Commodity Production

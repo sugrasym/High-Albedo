@@ -20,6 +20,7 @@ Ageiran Federation=0
 The Archers=0
 ITC=0
 Caina Conglemerate=0
+Wolves=0
 [/Faction]
 
 ########Anarchy###########
@@ -37,6 +38,7 @@ Ageiran Federation=-10
 The Archers=-10
 ITC=-10
 Caina Conglemerate=-10
+Wolves=-10
 [/Faction]
 
 ########The Player########
@@ -52,6 +54,7 @@ Ageiran Federation=3
 The Archers=-4
 ITC=0
 Caina Conglemerate=-1
+Wolves=-10
 [/Faction]
 
 ########Red Sky########
@@ -69,6 +72,7 @@ Ageiran Federation=0
 The Archers=-5
 ITC=0
 Caina Conglemerate=0
+Wolves=-10
 [/Faction]
 
 ########Ageiran Space########
@@ -85,6 +89,7 @@ Ageiran Federation=10
 The Archers=-10
 ITC=0
 Caina Conglemerate=0
+Wolves=-10
 [/Faction]
 
 [Faction]
@@ -100,6 +105,7 @@ Ageiran Federation=-10
 The Archers=10
 ITC=0
 Caina Conglemerate=0
+Wolves=-10
 [/Faction]
 
 ########ITC Space########
@@ -116,6 +122,7 @@ Ageiran Federation=0
 The Archers=0
 ITC=10
 Caina Conglemerate=4
+Wolves=-10
 [/Faction]
 
 ########Cainan Space########
@@ -131,6 +138,25 @@ Ageiran Federation=0
 The Archers=0
 ITC=4
 Caina Conglemerate=10
+Wolves=-10
+[/Faction]
+
+########'The Wolves' Pirates########
+
+[Faction]
+name=Wolves
+var_isEmpire=false
+var_hosts=Neutral/ITC
+var_worldPercent=0
+Player=-10
+Red Sky=-10
+Neutral=-10
+Entities=-10
+Ageiran Federation=-10
+The Archers=-10
+ITC=-10
+Caina Conglemerate=-10
+Wolves=10
 [/Faction]
 
 ############################
@@ -185,6 +211,11 @@ station6=Module Fabricator,0.25
 station7=Orbital Habitat,0.35
 [/Stations]
 
+[Stations]
+name=Wolves
+station0=Wolf Den,0.1
+[/Stations]
+
 ##########################################
 #Loadout lists for each faction
 ##########################################
@@ -205,7 +236,7 @@ name=Ageiran Federation
 patrol0=Police Sparrow,100
 patrol1=Naval Crow,50
 patrol2=Naval Raven,25
-trader0=Federal Trade Emu,30
+trader0=Federal Trade Emu,20
 [/Loadout]
 
 [Loadout]
@@ -222,7 +253,7 @@ patrol1=Naval Monitor,25
 patrol2=Air Force Monitor,25
 patrol2=Air Force Komodo,25
 patrol3=Naval Komodo,12
-trader0=Royal Trade Gila,30
+trader0=Royal Trade Gila,20
 [/Loadout]
 
 [Loadout]
@@ -230,5 +261,11 @@ name=ITC
 patrol0=ITC Police,75
 patrol1=ITC Fleet Cheetah,50
 patrol2=ITC Fleet Hyena,25
-trader0=ITC Trade Wildabeast,30
+trader0=ITC Trade Wildabeast,20
+[/Loadout]
+
+[Loadout]
+name=Wolves
+patrol0=Wolves Cub,75
+patrol1=Wolves Member,25
 [/Loadout]

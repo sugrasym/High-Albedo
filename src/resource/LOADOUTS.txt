@@ -155,6 +155,22 @@ install=Iguana Launcher/Iguana Launcher/Bask/Bask
 cargo=Iguana Missile~30
 [/Loadout]
 
+########The Wolves
+
+[Loadout]
+ship=Coyote
+name=Wolves Cub
+install=Fang/Fang
+cargo=Consumer Goods~1
+[/Loadout]
+
+[Loadout]
+ship=Jackal
+name=Wolves Member
+install=Fang Alpha/Fang Alpha/Python Launcher/Python Launcher
+cargo=Python Missile~32
+[/Loadout]
+
 ########Entities
 
 [Loadout]

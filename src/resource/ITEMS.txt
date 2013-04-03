@@ -300,6 +300,19 @@ description=Lots and lots of cracked copies of commercial software. Due to netwo
 [/Item]
 
 [Item]
+name=Human Organs
+type=commodity
+volume=5
+mass=2
+HP=100
+minPrice=25000
+maxPrice=500000
+group=product
+store=500
+description=Human organs, probably 'recovered' by the Wolves. The posession of human organs is strictly prohibited except for government licensed distributors of humanely procured organs.
+[/Item]
+
+[Item]
 name=Heavy Water
 type=commodity
 volume=8
@@ -527,6 +540,34 @@ maxPrice=148000
 group=weapon
 store=15
 description=A weapon of the 'Archers' pirate faction. Designed for precision strikes at range, this weapon does a massive amount of damage at long range but refires very slowly. /br/ /br/ The Long 9 fulfills the Archers' need for an effective long range siege platform.
+[/Item]
+
+#Wolves Weapons
+
+[Item]
+name=Fang
+type=cannon
+volume=23
+mass=16
+HP=125
+minPrice=46000
+maxPrice=69000
+group=weapon
+store=256
+description=A pulse cannon of the Wolves. When the Wolves encountered the Cainans they ditched ITC missile technology (due to the high cost of ammunition) and opted for a modified version of the prototypical pulse cannon that would later become the Fang and Bask. This version is better than the Bask, but requires significantly more space to fit, making it an unattractive option for the Cainans, but not for the Wolves.
+[/Item]
+
+[Item]
+name=Fang Alpha
+type=cannon
+volume=32
+mass=32
+HP=125
+minPrice=152000
+maxPrice=266000
+group=weapon
+store=128
+description=A pulse cannon of the Wolves. When the Wolves encountered the Cainans they ditched ITC missile technology (due to the high cost of ammunition) and opted for a modified version of the prototypical pulse cannon that would later become the Fang and Bask. This version is better than the Bask, but requires significantly more space to fit, making it an unattractive option for the Cainans, but not for the Wolves. /br/ /br/ This is the 'Alpha' edition which has a wider beam to make hitting small targets easier. It also packs greatly improved damage at a slightly reduced range.
 [/Item]
 
 #Knights Weapons

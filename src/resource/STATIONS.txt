@@ -25,7 +25,7 @@ fuel=2500000000000
 mass=50000
 rectBound=20,32,186,234/169,24,572,48/170,236,572,266
 dock=210,50,260,100,900,140/310,50,360,100,900,140/410,50,460,100,900,140/510,50,560,100,900,140
-process=GoodsToPiracy
+process=GoodsToPiracy/ArchersCoveCheatWeapons/OrganSink
 [/Station]
 
 [Station]
@@ -226,7 +226,7 @@ fuel=2500000000000
 mass=52000
 rectBound=6,6,293,562
 dock=10,568,60,618,27,738/88,568,138,618,105,738/166,568,216,618,185,738/244,568,294,618,263,738
-process=CainanHabitatGoodsSink/CainanHabitatFoodSink
+process=CainanHabitatGoodsSink/CainanHabitatFoodSink/OrganSink
 [/Station]
 
 [Station]
@@ -341,4 +341,19 @@ mass=93280
 rectBound=275,558,375,743/117,24,533,217/8,215,641,466/34,464,612,575/107,572,549,651/35,105,618,219
 dock=218,672,268,722,-115,690/376,672,426,722,776,700/300,747,350,797,326,976
 process=ITCCheatStarstruck/ITCCheatSidewinder/ITCCheatStarstruckMissile/ITCCheatSidewinderMissile/ITCCheatWeaponSink
+[/Station]
+
+[Station]
+type=Wolf Den
+exempt=true
+accel=1.5
+turning=0
+shield=280000
+shieldRecharge=4000
+hull=2500
+fuel=2500000000000
+mass=55000
+rectBound=9,3,446,448/428,195,529,251
+dock=454,141,504,191,485,-114/454,252,504,302,491,512
+process=WolfOrgans/WolfDenCheatWeapons
 [/Station]

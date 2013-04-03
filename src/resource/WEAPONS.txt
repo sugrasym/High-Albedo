@@ -307,6 +307,34 @@ explosion=Yellow
 ammo=Bala Negro
 [/Weapon]
 
+########Wolves Weapons########
+
+[Weapon]
+#weapon info
+name=Fang
+type=cannon
+#shell info
+damage=32
+range=450
+speed=580
+mass=18
+refire=0.05
+explosion=Red
+[/Weapon]
+
+[Weapon]
+#weapon info
+name=Fang Alpha
+type=cannon
+#shell info
+damage=64
+range=445
+speed=580
+mass=26
+refire=0.05
+explosion=Red
+[/Weapon]
+
 ########Entity Weapons########
 
 [Weapon]
