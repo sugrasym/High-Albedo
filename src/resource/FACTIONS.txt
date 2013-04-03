@@ -146,7 +146,7 @@ Wolves=-10
 [Faction]
 name=Wolves
 var_isEmpire=false
-var_hosts=Neutral/ITC
+var_hosts=Neutral
 var_worldPercent=0
 Player=-10
 Red Sky=-10
@@ -222,7 +222,7 @@ station0=Wolf Den,0.1
 
 [Loadout]
 name=Entities
-patrol0=Nightmare,3
+patrol0=Nightmare,1
 [/Loadout]
 
 [Loadout]

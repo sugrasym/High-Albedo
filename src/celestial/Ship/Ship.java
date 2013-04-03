@@ -263,6 +263,7 @@ public class Ship extends Celestial {
         //am i dead?
         if (hull <= 0) {
             state = State.DYING;
+            System.out.println(getName() + " was destroyed in " + currentSystem.getName());
         } else {
             behave();
             if (autopilot != Autopilot.NONE) {
@@ -1890,31 +1891,33 @@ public class Ship extends Celestial {
         /*
          * Generates explosion effect
          */
-        Point2D.Double size = new Point2D.Double(width, height);
-        for (int a = 0; a < 15; a++) {
-            Explosion exp = new Explosion(size, explosion, 3);
-            exp.setFaction(faction);
-            exp.init(false);
-            //calculate helpers
-            double dT = rnd.nextInt() % (Math.PI * 2.0);
-            double ew = 2 * rnd.nextInt(getWidth() + 1) - getWidth();
-            double dx = ew * Math.cos(dT);
-            double dy = ew * Math.sin(dT);
-            //store position
-            exp.setX((getX() + getWidth() / 2) - exp.getWidth() / 2 + dx);
-            exp.setY((getY() + getHeight() / 2) - exp.getHeight() / 2 + dy);
-            //calculate speed
-            double speed = rnd.nextInt(40) + 50;
-            double pdx = speed * Math.cos(dT);
-            double pdy = speed * Math.sin(dT);
-            //add to host vector
-            exp.setVx(getVx() + pdx);
-            exp.setVy(getVy() + pdy);
-            exp.setCurrentSystem(currentSystem);
-            //randomize rotation
-            exp.setTheta(rnd.nextDouble() * (2 * Math.PI));
-            //deploy
-            getCurrentSystem().putEntityInSystem(exp);
+        if (tex != null) {
+            Point2D.Double size = new Point2D.Double(width, height);
+            for (int a = 0; a < 15; a++) {
+                Explosion exp = new Explosion(size, explosion, 3);
+                exp.setFaction(faction);
+                exp.init(false);
+                //calculate helpers
+                double dT = rnd.nextInt() % (Math.PI * 2.0);
+                double ew = 2 * rnd.nextInt(getWidth() + 1) - getWidth();
+                double dx = ew * Math.cos(dT);
+                double dy = ew * Math.sin(dT);
+                //store position
+                exp.setX((getX() + getWidth() / 2) - exp.getWidth() / 2 + dx);
+                exp.setY((getY() + getHeight() / 2) - exp.getHeight() / 2 + dy);
+                //calculate speed
+                double speed = rnd.nextInt(40) + 50;
+                double pdx = speed * Math.cos(dT);
+                double pdy = speed * Math.sin(dT);
+                //add to host vector
+                exp.setVx(getVx() + pdx);
+                exp.setVy(getVy() + pdy);
+                exp.setCurrentSystem(currentSystem);
+                //randomize rotation
+                exp.setTheta(rnd.nextDouble() * (2 * Math.PI));
+                //deploy
+                getCurrentSystem().putEntityInSystem(exp);
+            }
         }
     }
 
