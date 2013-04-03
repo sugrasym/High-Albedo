@@ -184,7 +184,7 @@ station6=Ageiran Weapons Forge,0.1
 
 [Stations]
 name=The Archers
-station0=Archer Cove,0.15
+station0=Archer Cove,0.05
 [/Stations]
 
 [Stations]
@@ -213,7 +213,7 @@ station7=Orbital Habitat,0.35
 
 [Stations]
 name=Wolves
-station0=Wolf Den,0.1
+station0=Wolf Den,0.05
 [/Stations]
 
 ##########################################
@@ -227,8 +227,8 @@ patrol0=Nightmare,1
 
 [Loadout]
 name=Red Sky
-patrol0=RS Bounty Hunter,40
-patrol1=RS Assassin,10
+patrol0=RS Bounty Hunter,75
+patrol1=RS Assassin,25
 [/Loadout]
 
 [Loadout]
