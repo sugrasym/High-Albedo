@@ -204,6 +204,7 @@ public class Station extends Ship {
     public void buy(Ship ship, Item item, int quantity) {
         //get current offer
         int price = getPrice(item);
+        Item tmp = new Item(item.getName());
         //repeat buy procedure
         for (int lx = 0; lx < quantity; lx++) {
             Item rel = null;
@@ -221,7 +222,7 @@ public class Station extends Ship {
                 //validate the player can cover the charge
                 if (ship.getCash() - price >= 0) {
                     //attempt transfer of item
-                    if (ship.addToCargoBay(new Item(item.getName()))) {
+                    if (ship.addToCargoBay(tmp)) {
                         //decrement stocks
                         rel.setQuantity(rel.getQuantity() - 1);
                         //transfer funds

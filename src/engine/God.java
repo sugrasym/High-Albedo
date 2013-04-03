@@ -82,7 +82,6 @@ public class God implements EngineElement {
             try {
                 /*checkStations();
                 checkPatrols();*/
-                universe.getPlayerShip().setBehavior(Behavior.SECTOR_TRADE);
             } catch (Exception e) {
                 System.out.println("Error manipulating dynamic universe.");
                 e.printStackTrace();
