@@ -20,6 +20,7 @@
 package celestial.Ship;
 
 import cargo.Item;
+import cargo.Weapon;
 import engine.Entity;
 import java.util.Random;
 
@@ -35,8 +36,12 @@ public class CargoPod extends Ship {
     double elapsed = 0;
 
     public CargoPod(Item ware) {
-        super(ware.getName()+" ["+ware.getQuantity()+"]", "Cargo Pod");
+        super(ware.getName() + " [" + ware.getQuantity() + "]", "Cargo Pod");
         this.ware = ware;
+    }
+
+    @Override
+    public void installLoadout() {
     }
 
     @Override
@@ -52,10 +57,10 @@ public class CargoPod extends Ship {
     public void init(boolean loadedGame) {
         super.init(loadedGame);
     }
-    
+
     @Override
     public void informOfCollisionWith(Entity target) {
-        if(target instanceof CargoPod) {
+        if (target instanceof CargoPod) {
             //do nothing
         } else {
             super.informOfCollisionWith(target);
@@ -66,7 +71,7 @@ public class CargoPod extends Ship {
     public String toString() {
         String ret = "";
         {
-            ret = (int)(100-(elapsed/lifeLimit)*100.0)+"% (" + type + ") - " + name + ", " + faction;
+            ret = (int) (100 - (elapsed / lifeLimit) * 100.0) + "% (" + type + ") - " + name + ", " + faction;
         }
         return ret;
     }

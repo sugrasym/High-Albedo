@@ -56,8 +56,7 @@ public class Ship extends Celestial {
         NONE,
         TEST,
         PATROL,
-        SECTOR_TRADE,
-    }
+        SECTOR_TRADE,}
 
     public enum Autopilot {
 
@@ -1817,8 +1816,18 @@ public class Ship extends Celestial {
             for (int a = 0; a < cargoBay.size(); a++) {
                 used += cargoBay.get(a).getVolume();
             }
-            if ((cargo - used) > item.getVolume()) {
-                cargoBay.add(item);
+            double fVol = 0;
+            if (cargoBay.contains(item)) {
+                fVol = item.getVolume() / item.getQuantity();
+            } else {
+                fVol = item.getVolume();
+            }
+            if ((cargo - used) > fVol) {
+                if (!cargoBay.contains(item)) {
+                    cargoBay.add(item);
+                } else {
+                    item.setQuantity(item.getQuantity() + 1);
+                }
             } else {
                 return false;
             }
@@ -1829,7 +1838,11 @@ public class Ship extends Celestial {
     }
 
     public void removeFromCargoBay(Item item) {
-        cargoBay.remove(item);
+        if (item.getQuantity() > 1) {
+            item.setQuantity(item.getQuantity() - 1);
+        } else {
+            cargoBay.remove(item);
+        }
     }
 
     public void ejectCargo(Item item) {
@@ -1977,9 +1990,11 @@ public class Ship extends Celestial {
                 /*
                  * Cannons and launchers are both in the weapon class
                  */
-                if (test.getType().matches("cannon") || test.getType().matches("missile")) {
-                    Weapon wep = new Weapon(arr[a]);
-                    fit(wep);
+                if (getType() != null) {
+                    if (test.getType().matches("cannon") || test.getType().matches("missile")) {
+                        Weapon wep = new Weapon(arr[a]);
+                        fit(wep);
+                    }
                 }
             }
         }

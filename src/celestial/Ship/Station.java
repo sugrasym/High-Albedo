@@ -139,7 +139,7 @@ public class Station extends Ship {
 
     public boolean buysWare(Item ware) {
         {
-            for(int a = 0; a < stationBuying.size(); a++) {
+            for (int a = 0; a < stationBuying.size(); a++) {
                 if (stationBuying.get(a).getName().matches(ware.getName())) {
                     return true;
                 }
@@ -147,10 +147,10 @@ public class Station extends Ship {
         }
         return false;
     }
-    
+
     public boolean sellsWare(Item ware) {
         {
-            for(int a = 0; a < stationSelling.size(); a++) {
+            for (int a = 0; a < stationSelling.size(); a++) {
                 if (stationSelling.get(a).getName().matches(ware.getName())) {
                     return true;
                 }
@@ -235,32 +235,30 @@ public class Station extends Ship {
     }
 
     public void sell(Ship ship, Item item, int quantity) {
-        if (item.getQuantity() == 1) {
-            //get current offer
-            int price = getPrice(item);
-            //repeat sell procedure
-            for (int lx = 0; lx < quantity; lx++) {
-                Item rel = null;
-                //validate the item is in the cargo bay
-                for (int a = 0; a < ship.getCargoBay().size(); a++) {
-                    if (ship.getCargoBay().get(a).getName().matches(item.getName())) {
-                        rel = ship.getCargoBay().get(a);
-                        break;
-                    }
+        //get current offer
+        int price = getPrice(item);
+        //repeat sell procedure
+        for (int lx = 0; lx < quantity; lx++) {
+            Item rel = null;
+            //validate the item is in the cargo bay
+            for (int a = 0; a < ship.getCargoBay().size(); a++) {
+                if (ship.getCargoBay().get(a).getName().matches(item.getName())) {
+                    rel = ship.getCargoBay().get(a);
+                    break;
                 }
-                if (rel != null) {
-                    //send to station
-                    for (int a = 0; a < getStationBuying().size(); a++) {
-                        if (rel.getName().matches(getStationBuying().get(a).getName())) {
-                            getStationBuying().get(a).setQuantity(getStationBuying().get(a).getQuantity() + rel.getQuantity());
-                            //remove from cargo
-                            ship.removeFromCargoBay(rel);
-                            //pay the ship
-                            ship.setCash(ship.getCash() + price);
-                            //remove funds from station wallet
-                            setCash(getCash() - price);
-                            break;
-                        }
+            }
+            if (rel != null) {
+                //send to station
+                for (int a = 0; a < getStationBuying().size(); a++) {
+                    if (rel.getName().matches(getStationBuying().get(a).getName())) {
+                        getStationBuying().get(a).setQuantity(getStationBuying().get(a).getQuantity() + rel.getQuantity());
+                        //remove from cargo
+                        ship.removeFromCargoBay(rel);
+                        //pay the ship
+                        ship.setCash(ship.getCash() + price);
+                        //remove funds from station wallet
+                        setCash(getCash() - price);
+                        break;
                     }
                 }
             }

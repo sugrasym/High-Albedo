@@ -99,7 +99,7 @@ public class God implements EngineElement {
             doTraders(factions.get(a));
         }
     }
-    
+
     private void checkPatrols() {
         //iterate through each faction
         for (int a = 0; a < factions.size(); a++) {
@@ -210,7 +210,7 @@ public class God implements EngineElement {
             }
         }
     }
-    
+
     private void doTraders(SuperFaction faction) {
         /*
          * 1. Make sure this faction has patrols
