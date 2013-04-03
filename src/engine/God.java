@@ -80,8 +80,9 @@ public class God implements EngineElement {
             lastFrame = System.nanoTime();
             //update
             try {
-                /*checkStations();
-                checkPatrols();*/
+                checkStations();
+                checkPatrols();
+                checkTraders();
             } catch (Exception e) {
                 System.out.println("Error manipulating dynamic universe.");
                 e.printStackTrace();
@@ -92,6 +93,13 @@ public class God implements EngineElement {
     /*
      * Hooks
      */
+    private void checkTraders() {
+        //iterate through each faction
+        for (int a = 0; a < factions.size(); a++) {
+            doTraders(factions.get(a));
+        }
+    }
+    
     private void checkPatrols() {
         //iterate through each faction
         for (int a = 0; a < factions.size(); a++) {
@@ -196,6 +204,93 @@ public class God implements EngineElement {
                     Point2D.Double pnt = new Point2D.Double(x, y);
                     //spawn
                     spawnStation(faction, pick, pnt, faction.getStations().get(a));
+                    //increment count
+                    count[a]++;
+                }
+            }
+        }
+    }
+    
+    private void doTraders(SuperFaction faction) {
+        /*
+         * 1. Make sure this faction has patrols
+         * 2. Count the number of each loadout
+         * 3. Spawn more of each loadout as needed
+         */
+        //make sure this faction has patrols
+        if (faction.getTraders().size() > 0) {
+            //for storing loadout totals
+            int count[] = new int[faction.getTraders().size()];
+            if (faction.isEmpire()) {
+                //get a count of the number of traders in each system
+                for (int a = 0; a < faction.getSov().size(); a++) {
+                    SolarSystem sys = faction.getSov().get(a);
+                    /*
+                     * Increment count[] by the total number of each loadout
+                     * found in this system. This will be used as a universe
+                     * wide total later on.
+                     */
+                    for (int v = 0; v < count.length; v++) {
+                        String loadout = faction.getTraders().get(v).getString();
+                        int num = countShipsByLoadout(faction, sys, loadout);
+                        count[v] += num;
+                    }
+                }
+            } else {
+                //this faction does not own space - count the space it lives in
+                for (int a = 0; a < faction.getSovHost().size(); a++) {
+                    SolarSystem sys = faction.getSovHost().get(a);
+                    /*
+                     * Increment count[] by the total number of each loadout
+                     * found in this system. This will be used as a universe
+                     * wide total later on.
+                     */
+                    for (int v = 0; v < count.length; v++) {
+                        String loadout = faction.getTraders().get(v).getString();
+                        int num = countShipsByLoadout(faction, sys, loadout);
+                        count[v] += num;
+                    }
+                }
+            }
+            //do they meet the required density?
+            for (int a = 0; a < count.length; a++) {
+                double density = faction.getTraders().get(a).getDouble();
+                //System.out.println(faction.getTraders().get(a).getString() + " " + count[a]);
+                while (count[a] < density) {
+                    Celestial host = null;
+                    SolarSystem pick = null;
+                    if (faction.isEmpire()) {
+                        //pick a system this faction owns
+                        ArrayList<SolarSystem> sov = faction.getSov();
+                        if (sov.size() > 0) {
+                            pick = sov.get(rnd.nextInt(sov.size()));
+                        } else {
+                            System.out.println(faction.getName() + " has no sov");
+                            pick = universe.getSystems().get(rnd.nextInt(universe.getSystems().size()));
+                        }
+                        //pick a planet in this system
+                        ArrayList<Entity> planets = pick.getCelestialList();
+                        host = (Celestial) planets.get(rnd.nextInt(planets.size()));
+                    } else {
+                        //space belonging to this faction's host
+                        ArrayList<SolarSystem> sov = faction.getSovHost();
+                        if (sov.size() > 0) {
+                            pick = sov.get(rnd.nextInt(sov.size()));
+                        } else {
+                            System.out.println(faction.getName() + " has no hosts");
+                            pick = universe.getSystems().get(rnd.nextInt(universe.getSystems().size()));
+                        }
+                        //pick a planet in this system
+                        ArrayList<Entity> planets = pick.getCelestialList();
+                        host = (Celestial) planets.get(rnd.nextInt(planets.size()));
+                    }
+                    //pick a point near the planet
+                    double x = host.getX() + rnd.nextInt(10000) - 5000;
+                    double y = host.getY() + rnd.nextInt(10000) - 5000;
+                    //make a point
+                    Point2D.Double pnt = new Point2D.Double(x, y);
+                    //spawn
+                    spawnShip(faction, pick, pnt, faction.getTraders().get(a), Behavior.SECTOR_TRADE);
                     //increment count
                     count[a]++;
                 }

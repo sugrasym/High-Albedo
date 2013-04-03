@@ -51,6 +51,13 @@ install=Talon 3/Talon 3/Talon 3
 cargo=Standard Energy Unit~5
 [/Loadout]
 
+[Loadout]
+ship=Emu
+name=Federal Trade Emu
+install=Talon 3
+cargo=Standard Energy Unit~5
+[/Loadout]
+
 ########Ageiran Federation Unlawful
 
 [Loadout]
@@ -97,6 +104,13 @@ install=Starstruck Launcher/Starstruck Launcher/Starstruck Launcher/Starstruck L
 cargo=Starstruck Missile~74
 [/Loadout]
 
+[Loadout]
+ship=Wildabeast
+name=ITC Trade Wildabeast
+install=Starstruck Launcher/Starstruck Launcher/Starstruck Launcher/Starstruck Launcher
+cargo=Starstruck Missile~80
+[/Loadout]
+
 ########Caina Lawful
 
 [Loadout]
@@ -132,6 +146,13 @@ ship=Komodo
 name=Naval Komodo
 install=Anaconda Launcher/Anaconda Launcher/Frill/Bask
 cargo=Anaconda Missile~14
+[/Loadout]
+
+[Loadout]
+ship=Gila
+name=Royal Trade Gila
+install=Iguana Launcher/Iguana Launcher/Bask/Bask
+cargo=Iguana Missile~30
 [/Loadout]
 
 ########Entities

@@ -1927,12 +1927,13 @@ public class Ship extends Celestial {
             String[] stuff = cargo.split("/");
             for (int a = 0; a < stuff.length; a++) {
                 String[] tb = stuff[a].split("~");
+                Item tmp = new Item(tb[0]);
                 int count = 1;
                 if (tb.length == 2) {
                     count = Integer.parseInt(tb[1]);
                 }
                 for (int v = 0; v < count; v++) {
-                    addToCargoBay(new Item(tb[0]));
+                    addToCargoBay(tmp);
                 }
             }
         }

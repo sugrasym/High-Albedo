@@ -201,4 +201,8 @@ public class SuperFaction extends Faction {
         }
         return false;
     }
+
+    public ArrayList<Binling> getTraders() {
+        return traders;
+    }
 }
