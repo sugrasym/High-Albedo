@@ -56,7 +56,8 @@ public class Ship extends Celestial {
         NONE,
         TEST,
         PATROL,
-        SECTOR_TRADE,}
+        SECTOR_TRADE,
+    }
 
     public enum Autopilot {
 
@@ -122,6 +123,8 @@ public class Ship extends Celestial {
     //sensor
     protected double sensor;
     protected Ship target;
+    //detecting aggro
+    protected Ship lastBlow = this;
     //cargo
     protected double cargo;
     protected ArrayList<Hardpoint> hardpoints = new ArrayList();
@@ -263,7 +266,7 @@ public class Ship extends Celestial {
         //am i dead?
         if (hull <= 0) {
             state = State.DYING;
-            System.out.println(getName() + " was destroyed in " + currentSystem.getName());
+            System.out.println(getName() + " was destroyed in " + currentSystem.getName()+" by "+lastBlow.getName());
         } else {
             behave();
             if (autopilot != Autopilot.NONE) {
@@ -1616,8 +1619,12 @@ public class Ship extends Celestial {
                 if (tmp.getOwner() != this) {
                     if (!tmp.isGuided()) {
                         dealDamage(tmp.getDamage());
+                        //store last ship to attack this ship
+                        lastBlow = tmp.getOwner();
                     } else if (tmp.getTarget() == this) {
                         dealDamage(tmp.getDamage());
+                        //store last ship to attack this ship
+                        lastBlow = tmp.getOwner();
                     }
                 }
             }
