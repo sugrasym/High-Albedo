@@ -252,4 +252,9 @@ public class Celestial implements Serializable, Entity {
             return null;
         }
     }
+    
+    @Override
+    public String toString() {
+        return name;
+    }
 }

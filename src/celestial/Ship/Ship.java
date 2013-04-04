@@ -81,6 +81,7 @@ public class Ship extends Celestial {
         UNDOCK_STAGE3, //accelerate and release
         FLY_TO_CELESTIAL, //fly to a celestial
         ATTACK_TARGET, //attack current target
+        ALL_STOP, //slow down until velocity is 0
     }
     //constants
     public static final double PATROL_REFUEL_PERCENT = 0.5;
@@ -375,6 +376,7 @@ public class Ship extends Celestial {
                     //call components
                     autopilotFlyToBlock();
                 } else {
+                    autopilotAllStopBlock();
                     autopilotFightingBlock();
                     autopilotDockingBlock();
                     autopilotUndockingBlock();
@@ -528,11 +530,15 @@ public class Ship extends Celestial {
     protected void autopilotFlyToBlock() {
         if (getAutopilot() == Autopilot.FLY_TO_CELESTIAL) {
             if (flyToTarget != null) {
-                double dist = distanceTo(flyToTarget);
-                if (dist < autopilotRange) {
-                    autopilot = Autopilot.NONE;
+                if (flyToTarget.getCurrentSystem() == currentSystem) {
+                    double dist = distanceTo(flyToTarget);
+                    if (dist < autopilotRange) {
+                        cmdAllStop();
+                    } else {
+                        moveToPosition(flyToTarget.getX(), flyToTarget.getY());
+                    }
                 } else {
-                    moveToPosition(flyToTarget.getX(), flyToTarget.getY());
+                    cmdAllStop();
                 }
             } else {
                 autopilot = Autopilot.NONE;
@@ -612,6 +618,20 @@ public class Ship extends Celestial {
             if (speed > dist) {
                 autopilot = Autopilot.NONE;
                 port = null;
+            }
+        }
+    }
+
+    protected void autopilotAllStopBlock() {
+        /*
+         * Decelerate until |v| == 0
+         */
+        if (getAutopilot() == Autopilot.ALL_STOP) {
+            double v = magnitude(vx, vy);
+            if (v > 0) {
+                decelerate();
+            } else {
+                autopilot = Autopilot.NONE;
             }
         }
     }
@@ -927,9 +947,7 @@ public class Ship extends Celestial {
                                      * and wait. Sector traders shouldn't leave system unless there is
                                      * literally nothing to trade.
                                      */
-                                    if (magnitude(vx, vy) > 0) {
-                                        decelerate();
-                                    }
+                                    cmdAllStop();
                                 } else {
                                     /*
                                      * I honestly don't give a damn if some random NPC trader dies.
@@ -1366,6 +1384,10 @@ public class Ship extends Celestial {
         setAutopilot(Autopilot.NONE);
         port = null;
         target = null;
+    }
+
+    public void cmdAllStop() {
+        setAutopilot(Autopilot.ALL_STOP);
     }
 
     public void cmdUndock() {
@@ -2429,6 +2451,10 @@ public class Ship extends Celestial {
 
     public Celestial getFlyToTarget() {
         return flyToTarget;
+    }
+
+    public void setFlyToTarget(Celestial cel) {
+        flyToTarget = cel;
     }
 
     public Station getBuyFromStation() {
