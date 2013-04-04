@@ -59,24 +59,6 @@ width=50
 height=50
 [/Ship]
 
-#Taxies
-
-[Ship]
-type=Cab
-accel=76
-turning=4.3
-shield=8500
-shieldRecharge=15
-hull=400
-fuel=46500
-mass=95
-sensor=2000
-cargo=25
-hardpoint=cannon,10,8,3.925/cannon,10,-8,5.495
-width=50
-height=50
-[/Ship]
-
 #Light Fighters
 [Ship]
 type=Sparrow
@@ -330,11 +312,11 @@ height=50
 type=Jackal
 accel=38
 turning=3.6
-shield=17000
-shieldRecharge=230
+shield=25000
+shieldRecharge=245
 hull=800
 fuel=25000
-mass=85
+mass=125
 sensor=3800
 cargo=450
 hardpoint=cannon,32,12,3.925/cannon,32,-12,5.495/missile,15,6,3.925/missile,15,-6,5.495
@@ -366,6 +348,26 @@ height=180
 #Naming Scheme: Snark
 #########
 
+# Taxies
+
+[Ship]
+type=Cab
+accel=76
+turning=4.3
+shield=8500
+shieldRecharge=15
+hull=400
+fuel=46500
+mass=95
+sensor=2000
+cargo=25
+hardpoint=cannon,10,8,3.925/cannon,10,-8,5.495
+width=50
+height=50
+[/Ship]
+
+# Bricks
+
 [Ship]
 type=Mass Testing Brick
 accel=35
@@ -380,6 +382,8 @@ cargo=150000
 width=50
 height=50
 [/Ship]
+
+# Containers
 
 [Ship]
 type=Cargo Pod

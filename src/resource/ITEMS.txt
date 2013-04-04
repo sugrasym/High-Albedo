@@ -1,6 +1,45 @@
 ########Ship Stuff#########
 
 [Item]
+name=Freyr
+type=ship
+volume=2500
+mass=125
+HP=100
+minPrice=250000
+maxPrice=428000
+store=8
+group=fighter
+description=Older but still effective, the Freyr is used by Red Sky to engage local pirates for bounty. It is relatively fast and well shielded, but has issues with fuel consumption.
+[/Item]
+
+[Item]
+name=Odin
+type=ship
+volume=2500
+mass=136
+HP=100
+minPrice=1280000
+maxPrice=1598000
+store=6
+group=fighter
+description=Good fortune is rare, and Red Sky hunters need lots of it. Pirates often move quickly and carry powerful weapons, making traditional ship designs unable to intercept. The Odin is designed to close on even the fastest pirate ships and live to tell about it.
+[/Item]
+
+[Item]
+name=Cab
+type=ship
+volume=2500
+mass=95
+HP=100
+minPrice=15000
+maxPrice=32000
+store=25
+group=fighter
+description=This is a taxie, it goes fast and it isn't well armed or shielded. Only a fool would use this ship outside its intended role of a passenger shuttle.
+[/Item]
+
+[Item]
 name=Sparrow
 type=ship
 volume=2500
@@ -50,6 +89,149 @@ maxPrice=558000
 store=16
 group=transport
 description=The most generalized trading ship currently in production, the Emu works tirelessly and efficiently to keep Ageiran factories running. It has thick shields and is poorly armed, but has good speed and cargo capacity.
+[/Item]
+
+[Item]
+name=Bowman
+type=ship
+volume=2500
+mass=80
+HP=100
+minPrice=75000
+maxPrice=102000
+store=10
+group=fighter
+description=The Archers, being few in number, wanted to invest in a ship capable of combating local authorities and making quick raids at transports. This heavily modified Sparrow is fast, manauverable, and capable of mounting long range weapons. It is designed to fight at long range and widdle down the enemy, and run from authorities later.
+[/Item]
+
+[Item]
+name=Cavalry
+type=ship
+volume=2500
+mass=125
+HP=100
+minPrice=825000
+maxPrice=1200000
+store=4
+group=fighter
+description=To ensure the security of the Federation, the Ageiran military developed the Crow. To ensure continued success raiding the Ageirans, The Archers converted the Crow into the Cavalry. This versatile ship is capable of mounting powerful long range weapons making it an excellent strike platform.
+[/Item]
+
+[Item]
+name=Cheetah
+type=ship
+volume=2500
+mass=50
+HP=100
+minPrice=55000
+maxPrice=90000
+store=25
+group=fighter
+description=Despite the name, this is a slow ship. However, like the name, it is a lethal predator. Capable of hurling extremely powerful ITC missiles from beyond the sensor range of most targets, the Cheetah is the ideal beyond visual range fighter. 
+[/Item]
+
+[Item]
+name=Hyena
+type=ship
+volume=2500
+mass=200
+HP=100
+minPrice=550000
+maxPrice=900000
+store=10
+group=fighter
+description=The Hyena represents the pinnacle of ITC fighter-bomber technology. Fundamentally, it is a heavy version of the Cheetah with more launchers and more room for more missiles. Flown properly, this fighter can wipe out groups of enemies before they even get a fix on your position.
+[/Item]
+
+[Item]
+name=Wildabeast
+type=ship
+volume=2500
+mass=600
+HP=100
+minPrice=512000
+maxPrice=715000
+store=8
+group=transport
+description=Slow, lumbering, and armed to the teeth best describes the Wildabeast. In ITC tradition it has a high recharge shield generator and multiple missile launchers, allowing it to not only ward off raiding pirates but to destroy them as well.
+[/Item]
+
+[Item]
+name=Gecko
+type=ship
+volume=2500
+mass=120
+HP=100
+minPrice=25000
+maxPrice=52000
+store=20
+group=fighter
+description=A light fighter that carries both guns and missiles, giving it improved endurance over pure missile designs. Designed and built for the Royal Cainan Air Force, the Gecko provides security in the kingdom and beyond.
+[/Item]
+
+[Item]
+name=Monitor
+type=ship
+volume=2500
+mass=200
+HP=100
+minPrice=152000
+maxPrice=186000
+store=10
+group=fighter
+description=The Monitor improves upon the Gecko by carrying heavier missiles and more poweful cannons. This fighter is in use by both the Royal Air Force and Navy.
+[/Item]
+
+[Item]
+name=Komodo
+type=ship
+volume=2500
+mass=300
+HP=100
+minPrice=425000
+maxPrice=675000
+store=5
+group=fighter
+description=The operation of heavy strike fighters is beyond the scope of Air Force needs, forcing the Navy to commission their own. This fighter is capable of mounting extremely powerful siege weapons capable of destroying hard targets such as space stations.
+[/Item]
+
+[Item]
+name=Gila
+type=ship
+volume=2500
+mass=725
+HP=100
+minPrice=125000
+maxPrice=327000
+store=14
+group=transport
+description=The Gila is a fast transport that is reasonably well armed, sacrificing cargo space. However, the improved speed may make your trade runs more profitable by beating other traders, and the weapons can ward off many adversaries.
+[/Item]
+
+[Item]
+name=Coyote
+type=ship
+volume=2500
+mass=85
+HP=100
+minPrice=175000
+maxPrice=196000
+store=5
+group=fighter
+description=Although it is classified as a light fighter, the Coyote is one of the most dangerous ships in the known universe. The Wolves claim it to be the ultimate raider: capable of closing in, destroying the target, and dealing with police and naval escorts.
+[/Item]
+
+[Item]
+name=Jackal
+type=ship
+volume=2500
+mass=125
+HP=100
+minPrice=3198000
+maxPrice=5642000
+store=5
+group=fighter
+description=If allowed to close range, this fighter lays waste to most adversaries. When fast and hard is the plan, the Jackal delivers.
 [/Item]
 
 ########Commodities########
