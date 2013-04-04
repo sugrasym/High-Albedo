@@ -63,7 +63,8 @@ public class Ship extends Celestial {
         NONE,
         TEST,
         PATROL,
-        SECTOR_TRADE,}
+        SECTOR_TRADE,
+    }
 
     /*
      * Autopilot functions are slices of behavior that are useful as part of
@@ -1279,6 +1280,31 @@ public class Ship extends Celestial {
         return list;
     }
 
+    public ArrayList<Ship> getShipsInSensorRange() {
+        ArrayList<Ship> ret = new ArrayList<>();
+        {
+            //get ship list
+            ArrayList<Entity> ships = currentSystem.getShipList();
+            for (int a = 0; a < ships.size(); a++) {
+                Ship tmp = (Ship) ships.get(a);
+                if (tmp != this) {
+                    if (tmp.distanceTo(this) < sensor) {
+                        ret.add(tmp);
+                    }
+                }
+            }
+            //get station list
+            ArrayList<Entity> stations = currentSystem.getStationList();
+            for (int a = 0; a < stations.size(); a++) {
+                Station tmp = (Station) stations.get(a);
+                if (tmp.distanceTo(this) < sensor) {
+                    ret.add(tmp);
+                }
+            }
+        }
+        return ret;
+    }
+
     public Station getNearestFriendlyStationInSystem() {
         Station ret = null;
         {
@@ -1487,8 +1513,6 @@ public class Ship extends Celestial {
          * a more realistic way to fight in zero gravity.
          */
         if (target != null) {
-            //disable autopilot
-            autopilot = Autopilot.NONE;
             //attack
             if (target.state == State.ALIVE) {
                 double distance = distanceTo(target);

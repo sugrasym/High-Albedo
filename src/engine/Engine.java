@@ -1071,13 +1071,11 @@ public class Engine {
                                 f.setColor(Color.GREEN);
                             } else if (standing <= -3) {
                                 f.setColor(Color.RED);
-                            } else if (standing == 10) {
-                                f.setColor(Color.RED);
                             } else {
                                 f.setColor(Color.GRAY);
                             }
                         } else {
-                            f.setColor(Color.BLUE);
+                            f.setColor(Color.MAGENTA);
                         }
                         f.setStroke(new BasicStroke(2));
                         f.drawOval(tx, ty, tw, th);

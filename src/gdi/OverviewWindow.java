@@ -234,7 +234,7 @@ public class OverviewWindow extends AstralWindow {
             } else if (standings >= 3 && standings < 10) {
                 gfx.setColor(Color.GREEN);
             } else if (standings == 10) {
-                gfx.setColor(Color.BLUE);
+                gfx.setColor(Color.MAGENTA);
             } else {
                 gfx.setColor(Color.WHITE);
             }
