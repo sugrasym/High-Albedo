@@ -133,13 +133,12 @@ public class Faction implements Serializable {
                             double deltaPrime = (per) * delta;
                             //it's harder to make friends than lose them
                             if(deltaPrime > 0) {
-                                deltaPrime /= 2;
+                                deltaPrime /= 4;
                             }
                             //calculate new standings
                             newStanding = lS + deltaPrime;
                             //modify standings
                             if (newStanding > PERMA_RED && newStanding < PERMA_GREEN) {
-                                System.out.println(tmpName + " derived " + deltaPrime);
                                 setStanding(tmpName, lS + deltaPrime);
                             }
                         }

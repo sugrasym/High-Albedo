@@ -1,9 +1,10 @@
 #New Game Smell
 [NewGame]
 ship=Odin
-system=System 14
-near=Planet 0
-cash=52000
+system=System 44
+x=-32879.0
+y=-14166.0
+cash=5200000
 install=Thorn B/Thorn B
 cargo=
 faction=Player

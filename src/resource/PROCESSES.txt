@@ -1,3 +1,33 @@
+#Cheating Ship Manufacturing
+
+[Process]
+name=CheatMakeSparrow
+cycle=6400
+product=Sparrow,1
+resource=
+[/Process]
+
+[Process]
+name=CheatMakeCrow
+cycle=7200
+product=Crow,1
+resource=
+[/Process]
+
+[Process]
+name=CheatMakeRaven
+cycle=9500
+product=Raven,1
+resource=
+[/Process]
+
+[Process]
+name=CheatMakeEmu
+cycle=9500
+product=Emu,1
+resource=
+[/Process]
+
 #Cheating Weapon Manufacturing
 
 [Process]

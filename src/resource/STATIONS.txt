@@ -97,7 +97,7 @@ fuel=2500000000000
 mass=16000
 rectBound=25,5,192,118/192,15,485,39/158,118,192,339
 dock=234,45,284,95,900,305/334,45,384,95,900,305/434,45,484,95,900,305
-process=AgeiranCheatTalonSink
+process=AgeiranCheatTalonSink/CheatMakeSparrow/CheatMakeCrow/CheatMakeRaven/CheatMakeEmu
 [/Station]
 
 [Station]
