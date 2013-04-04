@@ -271,7 +271,7 @@ public class Ship extends Celestial {
             state = State.DYING;
             System.out.println(getName() + " was destroyed in " + currentSystem.getName() + " by " + lastBlow.getName());
             //did the player destroy this ship?
-            if(lastBlow.getFaction().matches(PLAYER_FACTION)) {
+            if (lastBlow.getFaction().matches(PLAYER_FACTION)) {
                 //adjust the player's standings accordingly
                 getUniverse().getPlayerShip().getMyFaction().derivedModification(myFaction, -1.0);
             }
@@ -295,7 +295,9 @@ public class Ship extends Celestial {
          * actions.
          */
         if (faction.hashCode() == PLAYER_FACTION.hashCode()) {
-            myFaction = getUniverse().getPlayerShip().getMyFaction();
+            if (getUniverse() != null) {
+                myFaction = getUniverse().getPlayerShip().getMyFaction();
+            }
         }
     }
 
@@ -2031,9 +2033,13 @@ public class Ship extends Celestial {
                  * Cannons and launchers are both in the weapon class
                  */
                 if (getType() != null) {
-                    if (test.getType().matches("cannon") || test.getType().matches("missile")) {
-                        Weapon wep = new Weapon(arr[a]);
-                        fit(wep);
+                    try {
+                        if (test.getType().matches("cannon") || test.getType().matches("missile")) {
+                            Weapon wep = new Weapon(arr[a]);
+                            fit(wep);
+                        }
+                    } catch (Exception e) {
+                        //e.printStackTrace();
                     }
                 }
             }
@@ -2172,7 +2178,7 @@ public class Ship extends Celestial {
 
     public int getStandingsToMe(String faction) {
         if (myFaction != null) {
-            return (int)myFaction.getStanding(faction);
+            return (int) myFaction.getStanding(faction);
         } else {
             installFaction();
             return 0;
@@ -2182,9 +2188,9 @@ public class Ship extends Celestial {
     public int getStandingsToMe(Ship ship) {
         if (myFaction != null) {
             if (ship.getFaction().hashCode() == PLAYER_FACTION.hashCode()) {
-                return (int)ship.getMyFaction().getStanding(getFaction());
+                return (int) ship.getMyFaction().getStanding(getFaction());
             } else {
-                return (int)myFaction.getStanding(ship.getFaction());
+                return (int) myFaction.getStanding(ship.getFaction());
             }
         } else {
             installFaction();

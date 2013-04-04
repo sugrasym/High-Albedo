@@ -120,7 +120,7 @@ public class Station extends Ship {
         //now decode stats
         accel = Double.parseDouble(relevant.getValue("accel"));
         turning = Double.parseDouble(relevant.getValue("turning"));
-        maxShield = Double.parseDouble(relevant.getValue("shield"));
+        shield = maxShield = Double.parseDouble(relevant.getValue("shield"));
         shieldRechargeRate = Double.parseDouble(relevant.getValue("shieldRecharge"));
         maxHull = hull = Double.parseDouble(relevant.getValue("hull"));
         maxFuel = fuel = Double.parseDouble(relevant.getValue("fuel"));
@@ -221,13 +221,51 @@ public class Station extends Ship {
             if (rel != null) {
                 //validate the player can cover the charge
                 if (ship.getCash() - price >= 0) {
-                    //attempt transfer of item
-                    if (ship.addToCargoBay(tmp)) {
-                        //decrement stocks
-                        rel.setQuantity(rel.getQuantity() - 1);
-                        //transfer funds
-                        ship.setCash(ship.getCash() - price);
-                        setCash(getCash() + price);
+                    //branch based on regular item or ship
+                    if (rel.getType().matches("ship")) {
+                        /*
+                         * This one is a little more complicated.
+                         */
+                        //make a ship
+                        Ship newShip = new Ship("Your " + rel.getName(), rel.getName());
+                        //initialize it to the correct faction
+                        newShip.setFaction(ship.getFaction());
+                        newShip.init(false);
+                        //find an open hanger
+                        PortContainer pick = null;
+                        for (int a = 0; a < docks.size(); a++) {
+                            if (docks.get(a).isAvailable(newShip)) {
+                                //got one
+                                pick = docks.get(a);
+                                break;
+                            }
+                        }
+                        if (pick != null) {
+                            //decrement stocks
+                            rel.setQuantity(rel.getQuantity() - 1);
+                            //drop it in the current solar system
+                            newShip.setCurrentSystem(currentSystem);
+                            currentSystem.putEntityInSystem(newShip);
+                            //drop it in that port
+                            pick.setClient(newShip);
+                            newShip.setPort(pick);
+                            newShip.setDocked(true);
+                            //transfer funds
+                            ship.setCash(ship.getCash() - price);
+                            setCash(getCash() + price);
+                        }
+                    } else {
+                        /*
+                         * This is pretty simple
+                         */
+                        //attempt transfer of item
+                        if (ship.addToCargoBay(tmp)) {
+                            //decrement stocks
+                            rel.setQuantity(rel.getQuantity() - 1);
+                            //transfer funds
+                            ship.setCash(ship.getCash() - price);
+                            setCash(getCash() + price);
+                        }
                     }
                 }
             }
