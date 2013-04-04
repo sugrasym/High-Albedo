@@ -253,6 +253,8 @@ public class Station extends Ship {
                             //transfer funds
                             ship.setCash(ship.getCash() - price);
                             setCash(getCash() + price);
+                            //make sure it doesn't have funds
+                            newShip.setCash(0);
                         }
                     } else {
                         /*

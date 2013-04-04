@@ -31,6 +31,7 @@ import gdi.FuelWindow;
 import gdi.HealthWindow;
 import gdi.MenuHomeWindow;
 import gdi.OverviewWindow;
+import gdi.PropertyWindow;
 import gdi.StandingWindow;
 import gdi.StarMapWindow;
 import gdi.TradeWindow;
@@ -246,6 +247,7 @@ public class Engine {
         TradeWindow tradeWindow = new TradeWindow();
         StarMapWindow starMapWindow = new StarMapWindow();
         StandingWindow standingWindow = new StandingWindow();
+        PropertyWindow propertyWindow = new PropertyWindow();
 
         public HUD(Engine engine) {
             homeWindow = new MenuHomeWindow(engine);
@@ -264,6 +266,8 @@ public class Engine {
                 windows.add(starMapWindow);
                 windows.add(standingWindow);
                 standingWindow.setVisible(false);
+                windows.add(propertyWindow);
+                propertyWindow.setVisible(false);
             } else if (state == State.MENU) {
                 windows.add(homeWindow);
                 homeWindow.setVisible(true);
@@ -296,6 +300,9 @@ public class Engine {
                 //position standing window
                 standingWindow.setX((uiX / 2) - standingWindow.getWidth() / 2);
                 standingWindow.setY((uiY / 2) - standingWindow.getHeight() / 2);
+                //position property window
+                propertyWindow.setX((uiX / 2) - propertyWindow.getWidth() / 2);
+                propertyWindow.setY((uiY / 2) - propertyWindow.getHeight() / 2);
             } else if (state == State.MENU) {
                 //position home window
                 homeWindow.setX((uiX / 2) - homeWindow.getWidth() / 2);
@@ -336,6 +343,9 @@ public class Engine {
                 }
                 if (standingWindow.isVisible()) {
                     standingWindow.update(playerShip);
+                }
+                if (propertyWindow.isVisible()) {
+                    propertyWindow.update(playerShip);
                 }
                 //update
                 for (int a = 0; a < windows.size(); a++) {
@@ -610,6 +620,9 @@ public class Engine {
                 }
                 if (ke.getKeyCode() == KeyEvent.VK_L) {
                     standingWindow.setVisible(!standingWindow.isVisible());
+                }
+                if (ke.getKeyCode() == KeyEvent.VK_P) {
+                    propertyWindow.setVisible(!propertyWindow.isVisible());
                 }
                 /*
                  * Time dilation keys

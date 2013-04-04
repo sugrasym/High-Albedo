@@ -54,12 +54,29 @@ public class Ship extends Celestial {
 
     public static final String PLAYER_FACTION = "Player";
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public boolean isAlternateString() {
+        return alternateString;
+    }
+
+    public void setAlternateString(boolean alternateString) {
+        this.alternateString = alternateString;
+    }
+
     public enum Behavior {
 
         NONE,
         TEST,
         PATROL,
-        SECTOR_TRADE,}
+        SECTOR_TRADE,
+    }
 
     public enum Autopilot {
 
@@ -79,6 +96,9 @@ public class Ship extends Celestial {
     //raw loadout
     protected String equip = "";
     private String template = "";
+    //info
+    private String description = "No Information Available";
+    private boolean alternateString = false;
     //texture and type
     protected transient Image raw_tex;
     protected transient BufferedImage tex;
@@ -219,6 +239,11 @@ public class Ship extends Celestial {
             setMass(Double.parseDouble(relevant.getValue("mass")));
             sensor = Double.parseDouble(relevant.getValue("sensor"));
             cargo = Double.parseDouble(relevant.getValue("cargo"));
+            //description
+            String des = relevant.getValue("description");
+            if (des != null) {
+                description = des;
+            }
             //initial width and height for OOS indeterminate
             String ws = relevant.getValue("width");
             String hs = relevant.getValue("height");
@@ -297,6 +322,7 @@ public class Ship extends Celestial {
         if (faction.hashCode() == PLAYER_FACTION.hashCode()) {
             if (getUniverse() != null) {
                 myFaction = getUniverse().getPlayerShip().getMyFaction();
+                alternateString = true;
             }
         }
     }
@@ -2202,7 +2228,24 @@ public class Ship extends Celestial {
     public String toString() {
         String ret = "";
         {
-            ret = "(" + type + ") - " + name + ", " + faction;
+            if (!alternateString) {
+                ret = "(" + type + ") - " + name + ", " + faction;
+            } else {
+                if (currentSystem != getUniverse().getPlayerShip().getCurrentSystem()) {
+                    ret = "(" + type + ") - " + name + ", " + currentSystem.getName();
+                    if (docked) {
+                        ret += " [" + port.getParent().getName() + "]";
+                    }
+                } else {
+                    ret = "(" + type + ") - " + name;
+                    if (docked) {
+                        ret += " [" + port.getParent().getName() + "]";
+                    }
+                }
+                if(this == getUniverse().getPlayerShip()) {
+                    ret += " *Current Ship*";
+                }
+            }
         }
         return ret;
     }

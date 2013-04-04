@@ -25,6 +25,7 @@ import cargo.Weapon;
 import celestial.Celestial;
 import celestial.Jumphole;
 import celestial.Planet;
+import celestial.Ship.Projectile;
 import celestial.Ship.Ship;
 import celestial.Ship.Ship.Autopilot;
 import celestial.Ship.Station;
@@ -316,6 +317,14 @@ public class SolarSystem implements Entity, Serializable {
             stationList.add(entity);
         } else if (entity instanceof Ship) {
             shipList.add(entity);
+            //is this player owned?
+            if (!(entity instanceof Projectile)) {
+                Ship test = (Ship) entity;
+                if (test.getFaction().matches("Player")) {
+                    //yep, add it to the global list
+                    universe.getPlayerProperty().add(test);
+                }
+            }
         } else if (entity instanceof Jumphole) {
             jumpholeList.add(entity);
         } else if (entity instanceof Celestial) {
@@ -329,6 +338,8 @@ public class SolarSystem implements Entity, Serializable {
         shipList.remove(entity);
         celestialList.remove(entity);
         jumpholeList.remove(entity);
+        //remove from global list
+        universe.getPlayerProperty().remove(entity);
     }
 
     @Override

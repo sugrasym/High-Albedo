@@ -37,6 +37,7 @@ public class Universe implements Serializable {
     private transient ResourceCache cache;
     private transient God god;
     protected Ship playerShip;
+    private ArrayList<Ship> playerProperty = new ArrayList<>();
 
     public Universe() {
         init();
@@ -169,5 +170,9 @@ public class Universe implements Serializable {
 
     public void setGod(God god) {
         this.god = god;
+    }
+
+    public ArrayList<Ship> getPlayerProperty() {
+        return playerProperty;
     }
 }
