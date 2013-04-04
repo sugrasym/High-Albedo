@@ -48,6 +48,6 @@ public class Binling implements Serializable {
     
     @Override
     public String toString() {
-        return str+" ["+num+"]";
+        return str;
     }
 }

@@ -30,6 +30,8 @@ import lib.Faction;
 import lib.WorldMaker;
 
 public class StandingWindow extends AstralWindow {
+    public static final String PLAYER_FACTION = "Player";
+    public static final int HOSTILE_STANDING = -2;
 
     AstralList factionList = new AstralList(this);
     AstralList infoList = new AstralList(this);
@@ -126,18 +128,21 @@ public class StandingWindow extends AstralWindow {
             infoList.addToList("Name:         " + selected.getName());
             infoList.addToList("Empire:       " + selected.isEmpire());
             if (selected.isEmpire()) {
-                infoList.addToList("Extent:       " + (100*(selected.getSpread()))+"%");
+                infoList.addToList("Extent:       " + (100 * (selected.getSpread())) + "%");
             }
             infoList.addToList(" ");
             infoList.addToList("--Standings--");
             infoList.addToList(" ");
-            infoList.addToList("You:          " + simple.getDouble());
+            infoList.addToList("You:          "
+                    + ship.getUniverse().getPlayerShip().getStandingsToMe(simple.getString()));
             infoList.addToList(" ");
             infoList.addToList("--Likes--");
             infoList.addToList(" ");
             for (int a = 0; a < selected.getStandings().size(); a++) {
                 if (selected.getStandings().get(a).getDouble() > 0) {
-                    infoList.addToList(selected.getStandings().get(a).getString());
+                    if (!selected.getStandings().get(a).getString().matches(PLAYER_FACTION)) {
+                        infoList.addToList(selected.getStandings().get(a).getString());
+                    }
                 }
             }
             infoList.addToList(" ");
@@ -145,15 +150,19 @@ public class StandingWindow extends AstralWindow {
             infoList.addToList(" ");
             for (int a = 0; a < selected.getStandings().size(); a++) {
                 if (selected.getStandings().get(a).getDouble() < 0) {
-                    infoList.addToList(selected.getStandings().get(a).getString());
+                    if (!selected.getStandings().get(a).getString().matches(PLAYER_FACTION)) {
+                        infoList.addToList(selected.getStandings().get(a).getString());
+                    }
                 }
             }
             infoList.addToList(" ");
             infoList.addToList("--Will Attack--");
             infoList.addToList(" ");
             for (int a = 0; a < selected.getStandings().size(); a++) {
-                if (selected.getStandings().get(a).getDouble() < -2) {
-                    infoList.addToList(selected.getStandings().get(a).getString());
+                if (selected.getStandings().get(a).getDouble() < HOSTILE_STANDING) {
+                    if (!selected.getStandings().get(a).getString().matches(PLAYER_FACTION)) {
+                        infoList.addToList(selected.getStandings().get(a).getString());
+                    }
                 }
             }
             infoList.addToList(" ");
@@ -212,7 +221,11 @@ public class StandingWindow extends AstralWindow {
             int index = factionList.getIndex();
             Binling tmp = (Binling) factionList.getItemAtIndex(index);
             //build the superfaction
-            viewing = new Faction(tmp.getString());
+            if (tmp.getString().matches(PLAYER_FACTION)) {
+                viewing = ship.getUniverse().getPlayerShip().getMyFaction();
+            } else {
+                viewing = new Faction(tmp.getString());
+            }
         }
     }
 }

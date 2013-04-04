@@ -22,7 +22,6 @@
 package engine;
 
 import celestial.Celestial;
-import celestial.Jumphole;
 import celestial.Ship.Ship;
 import celestial.Ship.Ship.Behavior;
 import celestial.Ship.Station;
@@ -81,9 +80,9 @@ public class God implements EngineElement {
             //update
             try {
                 /*universe.getPlayerShip().setBehavior(Behavior.SECTOR_TRADE);*/
-                /*checkStations();
+                checkStations();
                 checkPatrols();
-                checkTraders();*/
+                checkTraders();
             } catch (Exception e) {
                 System.out.println("Error manipulating dynamic universe.");
                 e.printStackTrace();

@@ -42,6 +42,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import lib.Faction;
+import lib.FastMath;
 import lib.Parser;
 import lib.Parser.Term;
 
@@ -51,13 +52,14 @@ import lib.Parser.Term;
  */
 public class Ship extends Celestial {
 
+    public static final String PLAYER_FACTION = "Player";
+
     public enum Behavior {
 
         NONE,
         TEST,
         PATROL,
-        SECTOR_TRADE,
-    }
+        SECTOR_TRADE,}
 
     public enum Autopilot {
 
@@ -73,6 +75,7 @@ public class Ship extends Celestial {
     //constants
     public static final double PATROL_REFUEL_PERCENT = 0.5;
     public static final double TRADER_RESERVE_PERCENT = 0.5;
+    public static final int HOSTILE_STANDING = -2;
     //raw loadout
     protected String equip = "";
     private String template = "";
@@ -266,8 +269,9 @@ public class Ship extends Celestial {
         //am i dead?
         if (hull <= 0) {
             state = State.DYING;
-            System.out.println(getName() + " was destroyed in " + currentSystem.getName()+" by "+lastBlow.getName());
+            System.out.println(getName() + " was destroyed in " + currentSystem.getName() + " by " + lastBlow.getName());
         } else {
+            syncStandings();
             behave();
             if (autopilot != Autopilot.NONE) {
                 Ship obstruction = avoidCollission();
@@ -277,6 +281,16 @@ public class Ship extends Celestial {
                     autopilotAvoidBlock(obstruction);
                 }
             }
+        }
+    }
+
+    private void syncStandings() {
+        /*
+         * Keeps all player owned property in sync with the player's current
+         * actions.
+         */
+        if (faction.hashCode() == PLAYER_FACTION.hashCode()) {
+            myFaction = getUniverse().getPlayerShip().getMyFaction();
         }
     }
 
@@ -518,10 +532,10 @@ public class Ship extends Celestial {
             //pick the right axis and calculate angle
             if (lx > ly) {
                 dist = magnitude((lx), 0);
-                desired = Math.atan2(0, lx);
+                desired = FastMath.atan2(0, lx);
             } else {
                 dist = magnitude(0, (ly));
-                desired = Math.atan2(ly, 0);
+                desired = FastMath.atan2(ly, 0);
             }
             //turn towards desired angle
             desired = (desired + 2.0 * Math.PI) % (2.0 * Math.PI);
@@ -554,7 +568,7 @@ public class Ship extends Celestial {
             double ax = x - port.getAlignX();
             double ay = y - port.getAlignY();
             //
-            double desired = Math.atan2(ay, ax);
+            double desired = FastMath.atan2(ay, ax);
             desired = (desired + 2.0 * Math.PI) % (2.0 * Math.PI);
             if (Math.abs(theta - desired) > turning * tpf) {
                 if (theta - desired > 0) {
@@ -603,7 +617,7 @@ public class Ship extends Celestial {
                             double speed = magnitude(vx, vy);
                             double hold = accel * 1.6;
                             //
-                            double desired = Math.atan2(ay, ax);
+                            double desired = FastMath.atan2(ay, ax);
                             desired = (desired + 2.0 * Math.PI) % (2.0 * Math.PI);
                             if (Math.abs(theta - desired) > turning * tpf) {
                                 if (theta - desired > 0) {
@@ -674,10 +688,10 @@ public class Ship extends Celestial {
             //pick the right axis and calculate angle
             if (lx > ly) {
                 dist = magnitude((lx), 0);
-                desired = Math.atan2(0, lx);
+                desired = FastMath.atan2(0, lx);
             } else {
                 dist = magnitude(0, (ly));
-                desired = Math.atan2(ly, 0);
+                desired = FastMath.atan2(ly, 0);
             }
             //turn towards desired angle
             desired = (desired + 2.0 * Math.PI) % (2.0 * Math.PI);
@@ -710,7 +724,7 @@ public class Ship extends Celestial {
             //setup nav parameters
             double desired;
             //pick the right axis and calculate angle
-            desired = Math.atan2(ly, lx);
+            desired = FastMath.atan2(ly, lx);
             //turn towards desired angle
             desired = (desired + 2.0 * Math.PI) % (2.0 * Math.PI);
             if (Math.abs(theta - desired) > turning * tpf) {
@@ -994,7 +1008,7 @@ public class Ship extends Celestial {
                     //wait
                 }
             } else {
-                if (target.getStandingsToMe(this) < -2) {
+                if (target.getStandingsToMe(this) < HOSTILE_STANDING) {
                     fightTarget();
                 }
             }
@@ -1036,7 +1050,7 @@ public class Ship extends Celestial {
         double speed = magnitude(vx, vy);
         double hold = accel * 2;
         //
-        double desired = Math.atan2(ay, ax);
+        double desired = FastMath.atan2(ay, ax);
         desired = (desired + 2.0 * Math.PI) % (2.0 * Math.PI);
         if (Math.abs(theta - desired) > turning * tpf) {
             if (theta - desired > 0) {
@@ -1323,7 +1337,7 @@ public class Ship extends Celestial {
                                 //make sure it is alive
                                 if (tmp.getState() == State.ALIVE) {
                                     //check standings
-                                    if (tmp.getStandingsToMe(this) <= -3) {
+                                    if (tmp.getStandingsToMe(this) < HOSTILE_STANDING) {
                                         hostiles.add(tmp);
                                     }
                                 }
@@ -1363,7 +1377,7 @@ public class Ship extends Celestial {
                 //make sure it is alive
                 if (tmp.getState() == State.ALIVE) {
                     //check standings
-                    if (tmp.getStandingsToMe(this) <= -3) {
+                    if (tmp.getStandingsToMe(this) <= HOSTILE_STANDING) {
                         hostiles.add(tmp);
                     }
                 }
@@ -1450,7 +1464,7 @@ public class Ship extends Celestial {
                 double enemyY = getFireLeadY();
                 /*double enemyX = (getX()) - (target.getX());
                  double enemyY = (getY()) - (target.getY());*/
-                double desired = Math.atan2(enemyY, enemyX);
+                double desired = FastMath.atan2(enemyY, enemyX);
                 desired = (desired + 2.0 * Math.PI) % (2.0 * Math.PI);
                 //rotate to face the enemy
                 if (Math.abs(theta - desired) > turning * tpf) {
@@ -2151,9 +2165,22 @@ public class Ship extends Celestial {
         this.faction = faction;
     }
 
+    public int getStandingsToMe(String faction) {
+        if (myFaction != null) {
+            return myFaction.getStanding(faction);
+        } else {
+            installFaction();
+            return 0;
+        }
+    }
+
     public int getStandingsToMe(Ship ship) {
         if (myFaction != null) {
-            return myFaction.getStanding(ship.getFaction());
+            if (ship.getFaction().hashCode() == PLAYER_FACTION.hashCode()) {
+                return ship.getMyFaction().getStanding(getFaction());
+            } else {
+                return myFaction.getStanding(ship.getFaction());
+            }
         } else {
             installFaction();
             return 0;
