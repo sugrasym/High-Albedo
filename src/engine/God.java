@@ -15,10 +15,11 @@
 
 /*
  * Responsible for keeping the universe active. Specifically,
- * 1. Manage patrols and traders - spawn replacements as needed - TODO
- * 2. Manage stations - spawn replacements as needed - TODO
+ * 1. Manage patrols and traders - spawn replacements as needed
+ * 2. Manage stations - spawn replacements as needed
  * 3. Add 'fun' disasters to the universe. - TODO
  */
+
 package engine;
 
 import celestial.Celestial;

@@ -270,6 +270,11 @@ public class Ship extends Celestial {
         if (hull <= 0) {
             state = State.DYING;
             System.out.println(getName() + " was destroyed in " + currentSystem.getName() + " by " + lastBlow.getName());
+            //did the player destroy this ship?
+            if(lastBlow.getFaction().matches(PLAYER_FACTION)) {
+                //adjust the player's standings accordingly
+                getUniverse().getPlayerShip().getMyFaction().derivedModification(myFaction, -1.0);
+            }
         } else {
             syncStandings();
             behave();
@@ -2167,7 +2172,7 @@ public class Ship extends Celestial {
 
     public int getStandingsToMe(String faction) {
         if (myFaction != null) {
-            return myFaction.getStanding(faction);
+            return (int)myFaction.getStanding(faction);
         } else {
             installFaction();
             return 0;
@@ -2177,9 +2182,9 @@ public class Ship extends Celestial {
     public int getStandingsToMe(Ship ship) {
         if (myFaction != null) {
             if (ship.getFaction().hashCode() == PLAYER_FACTION.hashCode()) {
-                return ship.getMyFaction().getStanding(getFaction());
+                return (int)ship.getMyFaction().getStanding(getFaction());
             } else {
-                return myFaction.getStanding(ship.getFaction());
+                return (int)myFaction.getStanding(ship.getFaction());
             }
         } else {
             installFaction();

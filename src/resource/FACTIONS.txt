@@ -89,7 +89,7 @@ Ageiran Federation=10
 The Archers=-10
 ITC=0
 Caina Conglemerate=0
-Wolves=-7
+Wolves=-3
 [/Faction]
 
 [Faction]
@@ -138,7 +138,7 @@ Ageiran Federation=0
 The Archers=0
 ITC=4
 Caina Conglemerate=10
-Wolves=-7
+Wolves=-4
 [/Faction]
 
 ########'The Wolves' Pirates########
@@ -148,14 +148,14 @@ name=Wolves
 var_isEmpire=false
 var_hosts=Neutral
 var_worldPercent=0
-Player=-10
+Player=-7
 Red Sky=-10
 Neutral=0
 Entities=-10
-Ageiran Federation=-10
+Ageiran Federation=-3
 The Archers=-10
 ITC=-10
-Caina Conglemerate=-10
+Caina Conglemerate=-4
 Wolves=10
 [/Faction]
 

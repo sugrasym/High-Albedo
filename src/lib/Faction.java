@@ -36,6 +36,8 @@ import lib.Parser.Term;
  */
 public class Faction implements Serializable {
 
+    public static final int PERMA_RED = -10;
+    public static final int PERMA_GREEN = 10;
     private String name;
     private String description = "No Information Found";
     private boolean isEmpire = false;
@@ -90,12 +92,73 @@ public class Faction implements Serializable {
         }
     }
 
-    public int getStanding(String faction) {
+    public void derivedModification(Faction mod, double delta) {
+        /*
+         * When you destroy someone's ship you get a standings hit to them,
+         * and a derived standings hit to their allies.
+         * 
+         * You also get a derived bonus to their enemies so long as they
+         * are not -10 (perma red) to you.
+         * 
+         * A faction will always hate you if you are -10 to them and will
+         * always like you if you are +10 to them. -9 to 9 is the normal
+         * range for dynamic standings.
+         * 
+         */
+        double standing = getStanding(mod.getName());
+        //perform standing adjustment
+        if (standing > PERMA_RED && standing < PERMA_GREEN) {
+            //linear adjustment on the faction directly affected
+            double newStanding = standing + delta;
+            if (newStanding > PERMA_RED && newStanding < PERMA_GREEN) {
+                setStanding(mod.getName(), newStanding);
+            } else {
+                //we don't want to push the player into a singularity
+            }
+            //calculate delta prime for each faction
+            ArrayList<Binling> list = mod.getStandings();
+            for (int a = 0; a < list.size(); a++) {
+                String tmpName = list.get(a).getString();
+                double tmpStanding = list.get(a).getDouble();
+                //make sure they aren't neutral
+                if (tmpStanding != 0) {
+                    //make sure it's not this faction
+                    if (!tmpName.matches(name) && !tmpName.matches(mod.getName())) {
+                        //make sure they aren't -10 or +10 to this faction
+                        double lS = getStanding(tmpName);
+                        if (lS > PERMA_RED && lS < PERMA_GREEN) {
+                            //get their relationship as a percentage
+                            double per = tmpStanding / 10.0;
+                            //multiply the delta by that percentage
+                            double deltaPrime = (per) * delta;
+                            //it's harder to make friends than lose them
+                            if(deltaPrime > 0) {
+                                deltaPrime /= 2;
+                            }
+                            //calculate new standings
+                            newStanding = lS + deltaPrime;
+                            //modify standings
+                            if (newStanding > PERMA_RED && newStanding < PERMA_GREEN) {
+                                System.out.println(tmpName + " derived " + deltaPrime);
+                                setStanding(tmpName, lS + deltaPrime);
+                            }
+                        }
+                    }
+                } else {
+                    //nobody cares
+                }
+            }
+        } else {
+            //ignore
+        }
+    }
+
+    public double getStanding(String faction) {
         if (standings != null) {
             for (int a = 0; a < standings.size(); a++) {
                 Binling test = standings.get(a);
                 if (test.getString().hashCode() == faction.hashCode()) {
-                    return (int) test.getDouble();
+                    return test.getDouble();
                 }
             }
         } else {
@@ -104,17 +167,19 @@ public class Faction implements Serializable {
         return 0;
     }
 
-    public void setStanding(String faction, int value) {
-        if (value < -10) {
-            value = -10;
-        } else if (value > 10) {
-            value = 10;
-        }
-        if (standings != null) {
-            for (int a = 0; a < standings.size(); a++) {
-                Binling test = standings.get(a);
-                if (test.getString().matches(faction)) {
-                    test.setDouble(value);
+    public void setStanding(String faction, double value) {
+        if (!faction.matches(name)) {
+            if (value < PERMA_RED) {
+                value = PERMA_RED;
+            } else if (value > PERMA_GREEN) {
+                value = PERMA_GREEN;
+            }
+            if (standings != null) {
+                for (int a = 0; a < standings.size(); a++) {
+                    Binling test = standings.get(a);
+                    if (test.getString().matches(faction)) {
+                        test.setDouble(value);
+                    }
                 }
             }
         }
