@@ -1,7 +1,7 @@
 #New Game Smell
 [NewGame]
 ship=Odin
-system=System 17
+system=System 34
 near=Planet 0
 cash=750000
 install=Thorn B/Thorn B
