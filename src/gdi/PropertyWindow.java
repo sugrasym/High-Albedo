@@ -19,19 +19,24 @@
  */
 package gdi;
 
-import cargo.Equipment;
 import cargo.Hardpoint;
 import cargo.Item;
-import cargo.Weapon;
 import celestial.Ship.Ship;
+import celestial.Ship.Ship.Autopilot;
+import celestial.Ship.Ship.Behavior;
+import celestial.Ship.Station;
 import gdi.component.AstralList;
 import gdi.component.AstralWindow;
 import java.awt.event.MouseEvent;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class PropertyWindow extends AstralWindow {
 
     public static final String CMD_SWITCH = "Switch Ship";
+    public static final String CMD_PATROL = "Start Patrol AI";
+    public static final String CMD_TRADE = "Start Trade AI";
+    public static final String CMD_NONE = "End Program";
     AstralList propertyList = new AstralList(this);
     AstralList infoList = new AstralList(this);
     AstralList optionList = new AstralList(this);
@@ -85,18 +90,91 @@ public class PropertyWindow extends AstralWindow {
                 logicalPropertyList.add(prop.get(a));
             }
             //push list to window
-            for(int a = 0; a < prop.size(); a++) {
+            for (int a = 0; a < prop.size(); a++) {
                 propertyList.addToList(prop.get(a));
             }
             //display detailed information about the selected item
             int index = propertyList.getIndex();
             if (index < logicalPropertyList.size()) {
                 Ship selected = (Ship) propertyList.getItemAtIndex(index);
-                infoList.addToList("--GLOBAL--");
+                infoList.addToList("--Basic--");
                 infoList.addToList(" ");
+                infoList.addToList("Credits:      " + selected.getCash());
+                infoList.addToList("Behavior:     " + selected.getBehavior());
+                infoList.addToList("Autopilot:    " + selected.getAutopilot());
+                /*
+                 * Specifics
+                 */
+                infoList.addToList(" ");
+                infoList.addToList("--Advanced--");
+                infoList.addToList(" ");
+                fillSpecifics(selected);
+                infoList.addToList(" ");
+                infoList.addToList("--Integrity--");
+                infoList.addToList(" ");
+                infoList.addToList("Shield:       " + roundTwoDecimal(100.0 * (selected.getShield() / selected.getMaxShield())) + "%");
+                infoList.addToList("Hull:         " + roundTwoDecimal(100.0 * (selected.getHull() / selected.getMaxHull())) + "%");
+                infoList.addToList("Fuel:         " + roundTwoDecimal(100.0 * (selected.getFuel() / selected.getMaxFuel())) + "%");
+                infoList.addToList(" ");
+                infoList.addToList("--Fitting--");
+                infoList.addToList(" ");
+                ArrayList<Hardpoint> fit = selected.getHardpoints();
+                for (int a = 0; a < fit.size(); a++) {
+                    infoList.addToList(fit.get(a));
+                }
+                infoList.addToList(" ");
+                infoList.addToList("--Cargo--");
+                infoList.addToList(" ");
+                ArrayList<Item> cargo = selected.getCargoBay();
+                for (int a = 0; a < cargo.size(); a++) {
+                    infoList.addToList(cargo.get(a));
+                }
+                infoList.addToList(" ");
+                //more
                 fillDescriptionLines(selected);
                 fillCommandLines(selected);
             }
+        }
+    }
+
+    private void fillSpecifics(Ship selected) {
+        if (selected != null) {
+            /*
+             * More autopilot info
+             */
+            if (selected.getAutopilot() == Autopilot.FLY_TO_CELESTIAL) {
+                infoList.addToList("Waypoint:     " + selected.getFlyToTarget().getName());
+            }
+            /*
+             * More behavior info 
+             */
+            if (selected.getBehavior() == Behavior.PATROL) {
+                //what are we flying to?
+                if (selected.getTarget() != null) {
+                    infoList.addToList("Attacking:    " + selected.getTarget().getName());
+                } else {
+                    infoList.addToList("NO AIM");
+                }
+            } else if (selected.getBehavior() == Behavior.SECTOR_TRADE) {
+                Station start = selected.getBuyFromStation();
+                Station end = selected.getSellToStation();
+                Item ware = selected.getWorkingWare();
+                if (start != null && end != null && ware != null) {
+                    infoList.addToList("Ware:         " + selected.getWorkingWare().getName());
+                    infoList.addToList("From:         " + start.getName());
+                    infoList.addToList("To:           " + end.getName());
+                }
+            }
+        }
+    }
+
+    private double roundTwoDecimal(double d) {
+        try {
+            DecimalFormat twoDForm = new DecimalFormat("#.##");
+            return Double.parseDouble(twoDForm.format(d));
+        } catch (Exception e) {
+            System.out.println("Not a Number");
+            return 0;
         }
     }
 
@@ -113,7 +191,9 @@ public class PropertyWindow extends AstralWindow {
          * Fills in the item's description being aware of things like line breaking on spaces.
          */
         if (selected != null) {
-            String description = selected.getDescription();
+            Item shipItem = new Item(selected.getType());
+            String description = shipItem.getDescription();
+            //fill
             int lineWidth = (((infoList.getWidth() - 10) / (infoList.getFont().getSize())));
             int cursor = 0;
             String tmp = "";
@@ -152,6 +232,29 @@ public class PropertyWindow extends AstralWindow {
 
     private void fillCommandLines(Ship selected) {
         if (selected != null) {
+            /*
+             * Some actions are only possible while both ships are docked in the same
+             * station. This is the block for those.
+             */
+            if (selected.isDocked() && selected.getUniverse().getPlayerShip().isDocked()) {
+                Station a = selected.getPort().getParent();
+                Station b = selected.getUniverse().getPlayerShip().getPort().getParent();
+                if (a == b) {
+                    optionList.addToList("--Transfer--");
+                    optionList.addToList(" ");
+                    optionList.addToList(CMD_SWITCH);
+                    optionList.addToList(" ");
+                }
+            }
+            /*
+             * These activate behaviors on a ship
+             */
+            optionList.addToList("--Console--");
+            optionList.addToList(" ");
+            optionList.addToList(CMD_NONE);
+            optionList.addToList(CMD_TRADE);
+            optionList.addToList(CMD_PATROL);
+            optionList.addToList(" ");
         }
     }
 
@@ -167,12 +270,20 @@ public class PropertyWindow extends AstralWindow {
 
     private void parseCommand(String command) {
         if (command != null) {
+            Ship selected = (Ship) propertyList.getItemAtIndex(propertyList.getIndex());
             if (command.matches(CMD_SWITCH)) {
                 /*
                  * Switch to another ship.
-                 */
-                Ship selected = (Ship) propertyList.getItemAtIndex(propertyList.getIndex());
-                ship.getUniverse().setPlayerShip(selected);
+                 */ ship.getUniverse().setPlayerShip(selected);
+            } else if (command.matches(CMD_NONE)) {
+                //abort current behavior
+                selected.setBehavior(Behavior.NONE);
+                selected.setAutopilot(Autopilot.NONE);
+                selected.cmdAbortDock();
+            } else if (command.matches(CMD_TRADE)) {
+                selected.setBehavior(Behavior.SECTOR_TRADE);
+            } else if (command.matches(CMD_PATROL)) {
+                selected.setBehavior(Behavior.PATROL);
             }
         }
     }

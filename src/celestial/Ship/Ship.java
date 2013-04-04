@@ -54,20 +54,28 @@ public class Ship extends Celestial {
 
     public static final String PLAYER_FACTION = "Player";
 
-    public String getDescription() {
-        return description;
+    public Celestial getFlyToTarget() {
+        return flyToTarget;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public Station getBuyFromStation() {
+        return buyFromStation;
     }
 
-    public boolean isAlternateString() {
-        return alternateString;
+    public int getBuyFromPrice() {
+        return buyFromPrice;
     }
 
-    public void setAlternateString(boolean alternateString) {
-        this.alternateString = alternateString;
+    public Station getSellToStation() {
+        return sellToStation;
+    }
+
+    public int getSellToPrice() {
+        return sellToPrice;
+    }
+
+    public Item getWorkingWare() {
+        return workingWare;
     }
 
     public enum Behavior {
@@ -75,8 +83,7 @@ public class Ship extends Celestial {
         NONE,
         TEST,
         PATROL,
-        SECTOR_TRADE,
-    }
+        SECTOR_TRADE,}
 
     public enum Autopilot {
 
@@ -97,7 +104,6 @@ public class Ship extends Celestial {
     protected String equip = "";
     private String template = "";
     //info
-    private String description = "No Information Available";
     private boolean alternateString = false;
     //texture and type
     protected transient Image raw_tex;
@@ -124,11 +130,11 @@ public class Ship extends Celestial {
     protected boolean docked;
     protected PortContainer port;
     //trading
-    protected Station buyFromStation;
-    protected int buyFromPrice;
-    protected Station sellToStation;
-    protected int sellToPrice;
-    protected Item workingWare;
+    private Station buyFromStation;
+    private int buyFromPrice;
+    private Station sellToStation;
+    private int sellToPrice;
+    private Item workingWare;
     //acceleration
     protected double accel = 0;
     protected double turning = 0;
@@ -239,11 +245,6 @@ public class Ship extends Celestial {
             setMass(Double.parseDouble(relevant.getValue("mass")));
             sensor = Double.parseDouble(relevant.getValue("sensor"));
             cargo = Double.parseDouble(relevant.getValue("cargo"));
-            //description
-            String des = relevant.getValue("description");
-            if (des != null) {
-                description = des;
-            }
             //initial width and height for OOS indeterminate
             String ws = relevant.getValue("width");
             String hs = relevant.getValue("height");
@@ -2229,8 +2230,14 @@ public class Ship extends Celestial {
         String ret = "";
         {
             if (!alternateString) {
+                /*
+                 * This is the string used for reporting NPC ships.
+                 */
                 ret = "(" + type + ") - " + name + ", " + faction;
             } else {
+                /*
+                 * This is the string used for reporting player ships.
+                 */
                 if (currentSystem != getUniverse().getPlayerShip().getCurrentSystem()) {
                     ret = "(" + type + ") - " + name + ", " + currentSystem.getName();
                     if (docked) {
@@ -2242,7 +2249,7 @@ public class Ship extends Celestial {
                         ret += " [" + port.getParent().getName() + "]";
                     }
                 }
-                if(this == getUniverse().getPlayerShip()) {
+                if (this == getUniverse().getPlayerShip()) {
                     ret += " *Current Ship*";
                 }
             }
@@ -2343,5 +2350,13 @@ public class Ship extends Celestial {
 
     public void setTemplate(String template) {
         this.template = template;
+    }
+
+    public boolean isAlternateString() {
+        return alternateString;
+    }
+
+    public void setAlternateString(boolean alternateString) {
+        this.alternateString = alternateString;
     }
 }

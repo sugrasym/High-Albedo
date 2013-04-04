@@ -931,6 +931,8 @@ public class Engine {
                 dy = (int) playerShip.getY() - (uiY / 2) + (playerShip.getHeight() / 2);
                 pvx = playerShip.getVx();
                 pvy = playerShip.getVy();
+                //recover player ship
+                playerShip = universe.getPlayerShip();
             } else if (state == State.MENU) {
                 //update HUD
                 getHud().periodicUpdate();
