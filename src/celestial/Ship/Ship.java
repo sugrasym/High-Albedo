@@ -51,8 +51,12 @@ import lib.Parser.Term;
  * @author Nathan Wiehoff
  */
 public class Ship extends Celestial {
-
-    public static final String PLAYER_FACTION = "Player";
+    /*
+     * Behaviors are over-arching goals and motivations such as hunting down
+     * hostiles or trading. The behave() method will keep track of any
+     * variables it needs and call autopilot functions as needed to realize
+     * these goals.
+     */
 
     public enum Behavior {
 
@@ -61,6 +65,10 @@ public class Ship extends Celestial {
         PATROL,
         SECTOR_TRADE,}
 
+    /*
+     * Autopilot functions are slices of behavior that are useful as part of
+     * a big picture.
+     */
     public enum Autopilot {
 
         NONE, //nothing
@@ -70,13 +78,15 @@ public class Ship extends Celestial {
         UNDOCK_STAGE1, //fly into docking area
         UNDOCK_STAGE2, //align to alignment vector
         UNDOCK_STAGE3, //accelerate and release
-        FLY_TO_CELESTIAL //fly to a celestial
+        FLY_TO_CELESTIAL, //fly to a celestial
+        ATTACK_TARGET, //attack current target
     }
     //constants
     public static final double PATROL_REFUEL_PERCENT = 0.5;
     public static final double TRADER_RESERVE_PERCENT = 0.5;
     public static final double TRADER_REFUEL_PERCENT = 0.5;
     public static final int HOSTILE_STANDING = -2;
+    public static final String PLAYER_FACTION = "Player";
     //raw loadout
     protected String equip = "";
     private String template = "";
@@ -364,6 +374,7 @@ public class Ship extends Celestial {
                     //call components
                     autopilotFlyToBlock();
                 } else {
+                    autopilotFightingBlock();
                     autopilotDockingBlock();
                     autopilotUndockingBlock();
                 }
@@ -600,6 +611,30 @@ public class Ship extends Celestial {
             if (speed > dist) {
                 autopilot = Autopilot.NONE;
                 port = null;
+            }
+        }
+    }
+
+    protected void autopilotFightingBlock() {
+        /*
+         * Fights whatever is currently targeted.
+         */
+        if (getAutopilot() == Autopilot.ATTACK_TARGET) {
+            if (target != null) {
+                if (target.getCurrentSystem() == currentSystem) {
+                    if (target.getState() == State.ALIVE) {
+                        fightTarget();
+                    } else {
+                        target = null;
+                        autopilot = Autopilot.NONE;
+                    }
+                } else {
+                    target = null;
+                    autopilot = Autopilot.NONE;
+                }
+            } else {
+                target = null;
+                autopilot = Autopilot.NONE;
             }
         }
     }
@@ -1046,7 +1081,7 @@ public class Ship extends Celestial {
                 }
             } else {
                 if (target.getStandingsToMe(this) < HOSTILE_STANDING) {
-                    fightTarget();
+                    cmdFightTarget(target);
                 }
             }
         } else {
@@ -1317,6 +1352,11 @@ public class Ship extends Celestial {
         target = null;
         docked = false;
         autopilot = Autopilot.UNDOCK_STAGE1;
+    }
+
+    public void cmdFightTarget(Ship ship) {
+        this.target = ship;
+        autopilot = Autopilot.ATTACK_TARGET;
     }
 
     public void targetNearestShip() {

@@ -64,9 +64,6 @@ public class MenuHomeWindow extends AstralWindow {
         mainList.addToList("");
         mainList.addToList("Save Game");
         mainList.addToList("");
-        if (engine.getUniverse() != null) {
-            mainList.addToList("Resume");
-        }
         //setup save game list
         gameList.setX(getWidth() / 2 - 200);
         gameList.setY(getHeight() / 2 - 200);
