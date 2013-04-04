@@ -25,6 +25,7 @@ import celestial.Ship.Ship;
 import celestial.Ship.Ship.Autopilot;
 import celestial.Ship.Ship.Behavior;
 import celestial.Ship.Station;
+import gdi.component.AstralInput;
 import gdi.component.AstralList;
 import gdi.component.AstralWindow;
 import java.awt.event.MouseEvent;
@@ -33,10 +34,19 @@ import java.util.ArrayList;
 
 public class PropertyWindow extends AstralWindow {
 
+    private enum Mode {
+
+        NONE,
+        WAITING_FOR_CREDITS,
+        WAITING_FOR_NAME,};
+    private Mode mode = Mode.NONE;
     public static final String CMD_SWITCH = "Switch Ship";
     public static final String CMD_PATROL = "Start Patrol AI";
     public static final String CMD_TRADE = "Start Trade AI";
     public static final String CMD_NONE = "End Program";
+    public static final String CMD_MOVEFUNDS = "Credit Transfer";
+    public static final String CMD_RENAME = "Rename";
+    AstralInput input = new AstralInput();
     AstralList propertyList = new AstralList(this);
     AstralList infoList = new AstralList(this);
     AstralList optionList = new AstralList(this);
@@ -52,7 +62,7 @@ public class PropertyWindow extends AstralWindow {
         //size this window
         width = 500;
         height = 400;
-        setVisible(true);
+        setVisible(false);
         //setup the cargo list
         propertyList.setX(0);
         propertyList.setY(0);
@@ -71,10 +81,77 @@ public class PropertyWindow extends AstralWindow {
         optionList.setWidth((int) (width / 3));
         optionList.setHeight((height / 2) - 1);
         optionList.setVisible(true);
+        //setup input method
+        input.setName("Input");
+        input.setText("|");
+        input.setY(getHeight() / 2);
+        input.setVisible(false);
+        input.setWidth(150);
+        input.setX((getWidth() / 2) - input.getWidth() / 2);
+        input.setHeight((input.getFont().getSize() + 2));
         //pack
         addComponent(propertyList);
         addComponent(infoList);
         addComponent(optionList);
+        addComponent(input);
+    }
+
+    private void showInput(String text) {
+        input.setText(text);
+        input.setVisible(true);
+        input.setFocused(true);
+    }
+
+    private void behave(Ship selected) {
+        if (mode == Mode.NONE) {
+            //do nothing
+        } else if (mode == Mode.WAITING_FOR_CREDITS) {
+            if (input.canReturn()) {
+                Ship player = ship.getUniverse().getPlayerShip();
+                try {
+                    int val = Integer.parseInt(input.getText());
+                    if (val > 0) {
+                        //we are pushing
+                        long source = player.getCash();
+                        if (source >= val) {
+                            selected.setCash(selected.getCash() + val);
+                            player.setCash(player.getCash() - val);
+                        } else {
+                            //insufficient credits
+                        }
+                    } else {
+                        //we are pulling
+                        long source = selected.getCash();
+                        long tfr = -val;
+                        if (source >= tfr) {
+                            player.setCash(player.getCash() + tfr);
+                            selected.setCash(selected.getCash() - tfr);
+                        } else {
+                            //insufficient credits
+                        }
+                    }
+                    //hide it
+                    input.setVisible(false);
+                    //normal mode
+                    mode = Mode.NONE;
+                } catch (Exception e) {
+                    System.out.println("Malformed input");
+                }
+            }
+        } else if (mode == Mode.WAITING_FOR_NAME) {
+            try {
+                if (input.canReturn()) {
+                    //get name
+                    String nm = input.getText();
+                    //push
+                    selected.setName(nm);
+                    //normal mode
+                    mode = Mode.NONE;
+                }
+            } catch(Exception e) {
+                System.out.println("Malformed input");
+            }
+        }
     }
 
     public void update(Ship ship) {
@@ -97,6 +174,7 @@ public class PropertyWindow extends AstralWindow {
             int index = propertyList.getIndex();
             if (index < logicalPropertyList.size()) {
                 Ship selected = (Ship) propertyList.getItemAtIndex(index);
+                behave(selected);
                 infoList.addToList("--Basic--");
                 infoList.addToList(" ");
                 infoList.addToList("Credits:      " + selected.getCash());
@@ -233,6 +311,12 @@ public class PropertyWindow extends AstralWindow {
     private void fillCommandLines(Ship selected) {
         if (selected != null) {
             /*
+             * Funds transfer can happen no matter where the ships are located.
+             */
+            optionList.addToList("--Transfer--");
+            optionList.addToList(" ");
+            optionList.addToList(CMD_MOVEFUNDS);
+            /*
              * Some actions are only possible while both ships are docked in the same
              * station. This is the block for those.
              */
@@ -240,17 +324,16 @@ public class PropertyWindow extends AstralWindow {
                 Station a = selected.getPort().getParent();
                 Station b = selected.getUniverse().getPlayerShip().getPort().getParent();
                 if (a == b) {
-                    optionList.addToList("--Transfer--");
-                    optionList.addToList(" ");
                     optionList.addToList(CMD_SWITCH);
-                    optionList.addToList(" ");
                 }
             }
+            optionList.addToList(" ");
             /*
              * These activate behaviors on a ship
              */
             optionList.addToList("--Console--");
             optionList.addToList(" ");
+            optionList.addToList(CMD_RENAME);
             optionList.addToList(CMD_NONE);
             optionList.addToList(CMD_TRADE);
             optionList.addToList(CMD_PATROL);
@@ -284,6 +367,12 @@ public class PropertyWindow extends AstralWindow {
                 selected.setBehavior(Behavior.SECTOR_TRADE);
             } else if (command.matches(CMD_PATROL)) {
                 selected.setBehavior(Behavior.PATROL);
+            } else if (command.matches(CMD_MOVEFUNDS)) {
+                mode = Mode.WAITING_FOR_CREDITS;
+                showInput("0");
+            } else if (command.matches(CMD_RENAME)) {
+                mode = Mode.WAITING_FOR_NAME;
+                showInput(selected.getName());
             }
         }
     }

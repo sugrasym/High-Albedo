@@ -26,7 +26,6 @@ import gdi.component.AstralInput;
 import gdi.component.AstralLabel;
 import gdi.component.AstralList;
 import gdi.component.AstralWindow;
-import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
@@ -217,7 +216,7 @@ public class TradeWindow extends AstralWindow {
                     action = Behavior.NONE;
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                System.out.println("Malformed input");
             }
         } else if (action == Behavior.WAITING_TO_SELL) {
             //check if a value was returned
@@ -236,7 +235,7 @@ public class TradeWindow extends AstralWindow {
                     action = Behavior.NONE;
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                System.out.println("Malformed input");
             }
 
         } else {
