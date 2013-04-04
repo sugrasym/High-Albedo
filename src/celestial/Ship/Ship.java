@@ -83,7 +83,8 @@ public class Ship extends Celestial {
         NONE,
         TEST,
         PATROL,
-        SECTOR_TRADE,}
+        SECTOR_TRADE,
+    }
 
     public enum Autopilot {
 
@@ -99,6 +100,7 @@ public class Ship extends Celestial {
     //constants
     public static final double PATROL_REFUEL_PERCENT = 0.5;
     public static final double TRADER_RESERVE_PERCENT = 0.5;
+    public static final double TRADER_REFUEL_PERCENT = 0.5;
     public static final int HOSTILE_STANDING = -2;
     //raw loadout
     protected String equip = "";
@@ -447,8 +449,8 @@ public class Ship extends Celestial {
          * This method is responsible for avoiding collissions by interrupting
          * the normal autopilot code if a future collission is detected and making
          * a course correction.
-         * 
-         * 
+         *
+         *
          */
         //create a list for storing candidates
         ArrayList<Ship> candidates = new ArrayList<>();
@@ -810,7 +812,7 @@ public class Ship extends Celestial {
          * Buy low sell high within one solar system.
          */
         if (!docked) {
-            if (autopilot == Autopilot.NONE) {
+            if (autopilot == Autopilot.NONE && (fuel / maxFuel) > TRADER_REFUEL_PERCENT) {
                 /*
                  * 1. Get a list of friendly stations to collate wares from
                  * 2. Build a list of all wares that can be traded in the
@@ -908,8 +910,22 @@ public class Ship extends Celestial {
                                 //start trading
                                 cmdDock(buyFromStation);
                             } else {
-                                //maybe profit awaits us elsewhere
-                                leaveSystem();
+                                if (faction.matches(PLAYER_FACTION)) {
+                                    /*
+                                     * There are trade chances here but not at the moment, so just idle
+                                     * and wait. Sector traders shouldn't leave system unless there is
+                                     * literally nothing to trade.
+                                     */
+                                    if (magnitude(vx, vy) > 0) {
+                                        decelerate();
+                                    }
+                                } else {
+                                    /*
+                                     * I honestly don't give a damn if some random NPC trader dies.
+                                     * It probably keeps the universe more interesting.
+                                     */
+                                    leaveSystem();
+                                }
                             }
                         } else {
                             //maybe profit awaits us elsewhere
@@ -921,7 +937,19 @@ public class Ship extends Celestial {
                     }
                 }
             } else {
-                //wait
+                if (autopilot == Autopilot.NONE && (fuel / maxFuel) <= TRADER_REFUEL_PERCENT) {
+                    //dock at the nearest friendly station
+                    Station near = getNearestFriendlyStationInSystem();
+                    if (near != null) {
+                        cmdDock(near);
+                        System.out.println(getName() + " [ST] is low on fuel and docking at "
+                                + near.getName() + " (" + (int) (100 * (fuel / maxFuel)) + "%)");
+                    } else {
+                        leaveSystem();
+                    }
+                } else {
+                    //wait;
+                }
             }
         } else {
             System.out.println(getName() + " [ST] sucessfully docked at " + port.getParent().getName()
@@ -1008,7 +1036,7 @@ public class Ship extends Celestial {
                         Station near = getNearestFriendlyStationInSystem();
                         if (near != null) {
                             cmdDock(near);
-                            System.out.println(getName() + " is low on fuel and docking at "
+                            System.out.println(getName() + " [P] is low on fuel and docking at "
                                     + near.getName() + " (" + (int) (100 * (fuel / maxFuel)) + "%)");
                         } else {
                             leaveSystem();

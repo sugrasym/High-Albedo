@@ -36,9 +36,11 @@ public class PropertyWindow extends AstralWindow {
 
     private enum Mode {
 
-        NONE,
-        WAITING_FOR_CREDITS,
-        WAITING_FOR_NAME,};
+        NONE, //idle
+        WAITING_FOR_STATION, //waiting for a station to dock at
+        WAITING_FOR_CREDITS, //waiting for credits to be specified
+        WAITING_FOR_NAME, //waiting for a new name
+    };
     private Mode mode = Mode.NONE;
     public static final String CMD_SWITCH = "Switch Ship";
     public static final String CMD_PATROL = "Start Patrol AI";
@@ -46,10 +48,13 @@ public class PropertyWindow extends AstralWindow {
     public static final String CMD_NONE = "End Program";
     public static final String CMD_MOVEFUNDS = "Credit Transfer";
     public static final String CMD_RENAME = "Rename";
+    public static final String CMD_UNDOCK = "Undock";
+    public static final String CMD_DOCK = "Dock";
     AstralInput input = new AstralInput();
     AstralList propertyList = new AstralList(this);
     AstralList infoList = new AstralList(this);
     AstralList optionList = new AstralList(this);
+    AstralList inputList = new AstralList(this);
     protected Ship ship;
 
     public PropertyWindow() {
@@ -84,15 +89,23 @@ public class PropertyWindow extends AstralWindow {
         //setup input method
         input.setName("Input");
         input.setText("|");
-        input.setY(getHeight() / 2);
         input.setVisible(false);
-        input.setWidth(150);
+        input.setWidth(width / 3);
         input.setX((getWidth() / 2) - input.getWidth() / 2);
         input.setHeight((input.getFont().getSize() + 2));
+        input.setY((getHeight() / 2) - input.getHeight() / 2);
+        //setup input list
+        inputList.setWidth((int) (width / 1.5));
+        inputList.setX((getWidth() / 2) - inputList.getWidth() / 2);
+        inputList.setHeight((height / 2) - 1);
+        inputList.setVisible(false);
+        inputList.setY((getHeight() / 2) - inputList.getHeight() / 2);
         //pack
         addComponent(propertyList);
         addComponent(infoList);
         addComponent(optionList);
+        //do last
+        addComponent(inputList);
         addComponent(input);
     }
 
@@ -100,6 +113,20 @@ public class PropertyWindow extends AstralWindow {
         input.setText(text);
         input.setVisible(true);
         input.setFocused(true);
+    }
+
+    private void showInputList(ArrayList<Object> options) {
+        inputList.clearList();
+        for (int a = 0; a < options.size(); a++) {
+            inputList.addToList(options.get(a));
+        }
+        inputList.setVisible(true);
+        inputList.setFocused(true);
+    }
+
+    private void hideInputList() {
+        inputList.setVisible(false);
+        inputList.setIndex(0);
     }
 
     private void behave(Ship selected) {
@@ -148,8 +175,23 @@ public class PropertyWindow extends AstralWindow {
                     //normal mode
                     mode = Mode.NONE;
                 }
-            } catch(Exception e) {
+            } catch (Exception e) {
                 System.out.println("Malformed input");
+            }
+        } else if (mode == Mode.WAITING_FOR_STATION) {
+            Object raw = inputList.getItemAtIndex(inputList.getIndex());
+            if (raw instanceof Station) {
+                //grab it
+                Station pick = (Station) raw;
+                //order docking
+                selected.cmdAbortDock();
+                selected.cmdDock(pick);
+                //hide it
+                hideInputList();
+                //normal mode
+                mode = Mode.NONE;
+            } else {
+                //probably selected some info text
             }
         }
     }
@@ -222,6 +264,15 @@ public class PropertyWindow extends AstralWindow {
              */
             if (selected.getAutopilot() == Autopilot.FLY_TO_CELESTIAL) {
                 infoList.addToList("Waypoint:     " + selected.getFlyToTarget().getName());
+            }
+            if (selected.getPort() != null) {
+                if (selected.getAutopilot() == Autopilot.DOCK_STAGE1) {
+                    infoList.addToList("Docking At:   " + selected.getPort().getParent().getName());
+                } else if (selected.getAutopilot() == Autopilot.DOCK_STAGE2) {
+                    infoList.addToList("Docking At:   " + selected.getPort().getParent().getName());
+                } else if (selected.getAutopilot() == Autopilot.DOCK_STAGE3) {
+                    infoList.addToList("Docking At:   " + selected.getPort().getParent().getName());
+                }
             }
             /*
              * More behavior info 
@@ -334,9 +385,20 @@ public class PropertyWindow extends AstralWindow {
             optionList.addToList("--Console--");
             optionList.addToList(" ");
             optionList.addToList(CMD_RENAME);
+            optionList.addToList(" ");
             optionList.addToList(CMD_NONE);
+            optionList.addToList(" ");
             optionList.addToList(CMD_TRADE);
             optionList.addToList(CMD_PATROL);
+            optionList.addToList(" ");
+            /*
+             * These are situational commands
+             */
+            if (selected.isDocked()) {
+                optionList.addToList(CMD_UNDOCK);
+            } else {
+                optionList.addToList(CMD_DOCK);
+            }
             optionList.addToList(" ");
         }
     }
@@ -352,7 +414,7 @@ public class PropertyWindow extends AstralWindow {
     }
 
     private void parseCommand(String command) {
-        if (command != null) {
+        if (command != null && mode == Mode.NONE) {
             Ship selected = (Ship) propertyList.getItemAtIndex(propertyList.getIndex());
             if (command.matches(CMD_SWITCH)) {
                 /*
@@ -373,6 +435,18 @@ public class PropertyWindow extends AstralWindow {
             } else if (command.matches(CMD_RENAME)) {
                 mode = Mode.WAITING_FOR_NAME;
                 showInput(selected.getName());
+            } else if (command.matches(CMD_UNDOCK)) {
+                selected.cmdUndock();
+            } else if (command.matches(CMD_DOCK)) {
+                mode = Mode.WAITING_FOR_STATION;
+                ArrayList<Object> choice = new ArrayList<>();
+                choice.add("--Select Station To Dock At--");
+                choice.add(" ");
+                ArrayList<Station> st = selected.getFriendlyStationsInSystem();
+                for (int a = 0; a < st.size(); a++) {
+                    choice.add(st.get(a));
+                }
+                showInputList(choice);
             }
         }
     }

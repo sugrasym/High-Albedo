@@ -44,7 +44,7 @@ public class AstralList extends AstralComponent {
     protected Color selectColor = Color.darkGray;
     BufferedImage buffer;
     //index and scrolling
-    protected int index = 0;
+    private int index = 0;
     protected int scrollPosition = 0;
     private int scrollDirection = 0;
     //for getting info about my location

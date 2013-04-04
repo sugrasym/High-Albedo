@@ -1066,12 +1066,18 @@ public class Engine {
                         int tw = ship.getWidth();
                         int th = ship.getHeight();
                         int standing = ship.getStandingsToMe(playerShip);
-                        if (standing >= 3) {
-                            f.setColor(Color.GREEN);
-                        } else if (standing <= -3) {
-                            f.setColor(Color.RED);
+                        if (!ship.getFaction().matches("Player")) {
+                            if (standing >= 3) {
+                                f.setColor(Color.GREEN);
+                            } else if (standing <= -3) {
+                                f.setColor(Color.RED);
+                            } else if (standing == 10) {
+                                f.setColor(Color.RED);
+                            } else {
+                                f.setColor(Color.GRAY);
+                            }
                         } else {
-                            f.setColor(Color.GRAY);
+                            f.setColor(Color.BLUE);
                         }
                         f.setStroke(new BasicStroke(2));
                         f.drawOval(tx, ty, tw, th);

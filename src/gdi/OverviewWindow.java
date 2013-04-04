@@ -219,14 +219,22 @@ public class OverviewWindow extends AstralWindow {
             } else if (area < STATION_AIM_LIMIT && entities.get(a) instanceof Station) {
                 drawShipOnRadar(gfx, ex, ey, entities, a);
             }
+            //player ships always visible
+            Ship test = (Ship) entities.get(a);
+            if (test.getUniverse().getPlayerProperty().contains(test)) {
+                drawShipOnRadar(gfx, ex, ey, entities, a);
+            }
         }
 
         protected void drawShipOnRadar(Graphics2D gfx, double ex, double ey, ArrayList<Entity> entities, int a) {
             //determine standings
-            if (sensorShip.getStandingsToMe((Ship) entities.get(a)) <= -3) {
+            int standings = sensorShip.getStandingsToMe((Ship) entities.get(a));
+            if (standings <= -3) {
                 gfx.setColor(Color.RED);
-            } else if (sensorShip.getStandingsToMe((Ship) entities.get(a)) >= 3) {
+            } else if (standings >= 3 && standings < 10) {
                 gfx.setColor(Color.GREEN);
+            } else if (standings == 10) {
+                gfx.setColor(Color.BLUE);
             } else {
                 gfx.setColor(Color.WHITE);
             }
