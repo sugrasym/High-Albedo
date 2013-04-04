@@ -54,37 +54,12 @@ public class Ship extends Celestial {
 
     public static final String PLAYER_FACTION = "Player";
 
-    public Celestial getFlyToTarget() {
-        return flyToTarget;
-    }
-
-    public Station getBuyFromStation() {
-        return buyFromStation;
-    }
-
-    public int getBuyFromPrice() {
-        return buyFromPrice;
-    }
-
-    public Station getSellToStation() {
-        return sellToStation;
-    }
-
-    public int getSellToPrice() {
-        return sellToPrice;
-    }
-
-    public Item getWorkingWare() {
-        return workingWare;
-    }
-
     public enum Behavior {
 
         NONE,
         TEST,
         PATROL,
-        SECTOR_TRADE,
-    }
+        SECTOR_TRADE,}
 
     public enum Autopilot {
 
@@ -155,7 +130,7 @@ public class Ship extends Celestial {
     protected double sensor;
     protected Ship target;
     //detecting aggro
-    protected Ship lastBlow = this;
+    private Ship lastBlow = this;
     //cargo
     protected double cargo;
     protected ArrayList<Hardpoint> hardpoints = new ArrayList();
@@ -2386,5 +2361,37 @@ public class Ship extends Celestial {
 
     public void setAlternateString(boolean alternateString) {
         this.alternateString = alternateString;
+    }
+
+    public Celestial getFlyToTarget() {
+        return flyToTarget;
+    }
+
+    public Station getBuyFromStation() {
+        return buyFromStation;
+    }
+
+    public int getBuyFromPrice() {
+        return buyFromPrice;
+    }
+
+    public Station getSellToStation() {
+        return sellToStation;
+    }
+
+    public int getSellToPrice() {
+        return sellToPrice;
+    }
+
+    public Item getWorkingWare() {
+        return workingWare;
+    }
+
+    public Ship getLastBlow() {
+        return lastBlow;
+    }
+
+    public void setLastBlow(Ship lastBlow) {
+        this.lastBlow = lastBlow;
     }
 }

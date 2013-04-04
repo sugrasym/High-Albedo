@@ -19,6 +19,7 @@
 package cargo;
 
 import celestial.Ship.Projectile;
+import celestial.Ship.Ship;
 import engine.Entity;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -26,6 +27,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import lib.AstralIO;
 import lib.Parser;
+import universe.SolarSystem;
 
 /**
  *
@@ -187,9 +189,21 @@ public class Weapon extends Equipment {
                     pro.setMaxRange(getRange() * 1.5);
                     pro.setTurning(turning);
                 }
-                //add to universe
-                pro.setCurrentSystem(host.getCurrentSystem());
-                host.getCurrentSystem().putEntityInSystem(pro);
+                //determine if OOS or not
+                SolarSystem playerSys = host.getUniverse().getPlayerShip().getCurrentSystem();
+                if (host.getCurrentSystem() == playerSys) {
+                    //add to universe
+                    pro.setCurrentSystem(host.getCurrentSystem());
+                    host.getCurrentSystem().putEntityInSystem(pro);
+                } else {
+                    //deal damage directly
+                    Ship tvp = host.getTarget();
+                    if (tvp != null) {
+                        tvp.dealDamage(damage);
+                        tvp.setLastBlow(host);
+                    }
+                }
+
             }
         }
     }
