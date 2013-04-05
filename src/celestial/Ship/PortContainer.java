@@ -57,25 +57,24 @@ public class PortContainer implements Serializable {
                     if (maxHold > time) {
                         //it might still be trying to dock
                         if (client.collideWith(getBound())) {
-                            client.setDocked(true);
+                            if (client.getPort() == this) {
+                                client.setDocked(true);
+                            } else {
+                                fullAbort();
+                            }
                         }
                     } else {
-                        client.cmdAbortDock();
-                        client = null;
-                        time = 0;
+                        fullAbort();
                     }
                 } else {
-                    client.setX(getPortX() - width / 2);
-                    client.setY(getPortY() - height / 2);
-                    client.setVx(0);
-                    client.setVy(0);
+                    keepClientCentered();
                 }
             } else {
                 //client died somehow
                 client = null;
             }
         } else {
-            //nobody is docked
+            time = 0;
         }
     }
 
@@ -146,8 +145,21 @@ public class PortContainer implements Serializable {
     }
 
     public void kickOut() {
-        if(client != null) {
+        if (client != null) {
             client.cmdUndock();
         }
+    }
+
+    private void fullAbort() {
+        client.cmdAbortDock();
+        client = null;
+        time = 0;
+    }
+
+    private void keepClientCentered() {
+        client.setX(getPortX() - width / 2);
+        client.setY(getPortY() - height / 2);
+        client.setVx(0);
+        client.setVy(0);
     }
 }

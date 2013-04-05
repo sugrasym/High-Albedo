@@ -682,7 +682,13 @@ public class Ship extends Celestial {
                             double ay = y - port.getAlignY();
                             double dist = magnitude((ax), (ay));
                             double speed = magnitude(vx, vy);
-                            double hold = accel * 1.6;
+                            double hold = 0;
+                            //calculate hold
+                            if (dist > 500) {
+                                hold = accel * 1.6;
+                            } else {
+                                hold = width / 2;
+                            }
                             //
                             double desired = FastMath.atan2(ay, ax);
                             desired = (desired + 2.0 * Math.PI) % (2.0 * Math.PI);
@@ -694,9 +700,10 @@ public class Ship extends Celestial {
                                 }
                             } else {
                                 if (dist < hold) {
-                                    decelerate();
                                     if (speed == 0 && dist < width) {
                                         setAutopilot(Autopilot.DOCK_STAGE2);
+                                    } else {
+                                        decelerate();
                                     }
                                 } else {
                                     boolean canAccel = true;
