@@ -18,7 +18,6 @@
  */
 package lib;
 
-import java.applet.AudioClip;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineEvent;
 import javax.sound.sampled.LineListener;
@@ -45,12 +44,6 @@ public class Soundling {
 
     public boolean isPlaying() {
         return sound.playing;
-    }
-
-    public void reset() {
-        sound.playing = false;
-        sound.stop();
-        sound.clip.setFramePosition(0);
     }
 
     /*
@@ -104,13 +97,8 @@ public class Soundling {
         }
 
         private void loop(final int count) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    playing = true;
-                    clip.loop(count);
-                }
-            }).start();
+            playing = true;
+            clip.loop(count);
         }
     }
 }

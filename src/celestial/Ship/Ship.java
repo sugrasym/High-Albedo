@@ -66,7 +66,8 @@ public class Ship extends Celestial {
         NONE,
         TEST,
         PATROL,
-        SECTOR_TRADE,}
+        SECTOR_TRADE,
+    }
 
     /*
      * Autopilot functions are slices of behavior that are useful as part of
@@ -106,9 +107,9 @@ public class Ship extends Celestial {
     protected String faction;
     //death
     private String explosion = "Explosion";
-    //navigation switches
-    private boolean thrustForward = false;
-    private boolean thrustRear = false;
+    //remove control (ex player control) switches
+    private boolean controlThrustForward = false;
+    private boolean controlThrustReverse = false;
     private boolean rotateMinus = false;
     private boolean rotatePlus = false;
     //navigational aid
@@ -152,6 +153,8 @@ public class Ship extends Celestial {
     protected ArrayList<Item> cargoBay = new ArrayList();
     //RNG
     Random rnd = new Random();
+    //media switches
+    protected boolean thrusting = false;
     //sound que
     private transient ArrayList<Soundling> soundQue;
     //sound effects
@@ -212,6 +215,12 @@ public class Ship extends Celestial {
                 }
             }
         }
+        //dispose of audio
+        for (int a = 0; a < soundQue.size(); a++) {
+            soundQue.get(a).stop();
+        }
+        soundQue.clear();
+        engineLoop = null;
     }
 
     protected void initStats() {
@@ -270,6 +279,9 @@ public class Ship extends Celestial {
             aliveInDock();
         } else {
             aliveInSpace();
+            //update sounds
+            updateSoundEffects();
+            updateSoundSwitches();
         }
     }
 
@@ -1687,6 +1699,8 @@ public class Ship extends Celestial {
             setFuel(getFuel() - getAccel() * tpf);
             //apply dampening coefficient
             applyDampening();
+            //keep playing the thrust noise
+            thrusting = true;
         }
     }
 
@@ -1698,6 +1712,8 @@ public class Ship extends Celestial {
             setFuel(getFuel() - getAccel() * tpf);
             //apply dampening coefficient
             applyDampening();
+            //keep playing the thrust noise
+            thrusting = true;
         }
     }
 
@@ -2433,19 +2449,19 @@ public class Ship extends Celestial {
     }
 
     public boolean isThrustForward() {
-        return thrustForward;
+        return controlThrustForward;
     }
 
     public void setThrustForward(boolean thrustForward) {
-        this.thrustForward = thrustForward;
+        this.controlThrustForward = thrustForward;
     }
 
     public boolean isThrustRear() {
-        return thrustRear;
+        return controlThrustReverse;
     }
 
     public void setThrustRear(boolean thrustRear) {
-        this.thrustRear = thrustRear;
+        this.controlThrustReverse = thrustRear;
     }
 
     public boolean isRotateMinus() {
@@ -2534,36 +2550,62 @@ public class Ship extends Celestial {
     public void setLastBlow(Ship lastBlow) {
         this.lastBlow = lastBlow;
     }
-    
-    protected void stopSound(Soundling sound) {
-        sound.reset();
+
+    /*
+     * The sound section
+     */
+    protected void updateSoundEffects() {
+        /*
+         * Thruster effect
+         */
+        if (thrusting) {
+            playSound(engineLoop);
+        } else {
+            stopSound(engineLoop);
+        }
     }
 
     protected void playSound(Soundling sound) {
         if (soundQue == null) {
             soundQue = new ArrayList<>();
         }
-        //are we in the player's system?
-        if (currentSystem == getUniverse().getPlayerShip().getCurrentSystem()) {
-            //are we within 1000 units of the player?
-            if (distanceTo(getUniverse().getPlayerShip()) < 1000) {
-                //prepare sound for que
-                //make sure it doesn't already contain this noise
-                boolean safe = true;
-                for (int a = 0; a < soundQue.size(); a++) {
-                    if (soundQue.get(a).getName().matches(name)) {
-                        safe = false;
-                        break;
+        if (sound != null) {
+            //are we in the player's system?
+            if (currentSystem == getUniverse().getPlayerShip().getCurrentSystem()) {
+                //are we within 1000 units of the player?
+                if (distanceTo(getUniverse().getPlayerShip()) < 1000) {
+                    //make sure it doesn't already contain this noise
+                    boolean safe = true;
+                    for (int a = 0; a < soundQue.size(); a++) {
+                        if (soundQue.get(a).getName().matches(name)) {
+                            safe = false;
+                            break;
+                        }
                     }
-                }
-                if (safe) {
-                    soundQue.add(sound);
+                    if (safe && !sound.isPlaying()) {
+                        soundQue.add(sound);
+                    }
+                } else {
+                    //nope, player can't hear it
                 }
             } else {
-                //nope, no need to waste resources
+                //nope, no need to push anything to the que
             }
-        } else {
-            //nope, no need to push anything to the que
+        }
+    }
+
+    protected void stopSound(Soundling sound) {
+        if (sound != null) {
+            if (sound.isPlaying()) {
+                sound.stop();
+            }
+        }
+    }
+
+    protected void updateSoundSwitches() {
+        //stop switches
+        if (!controlThrustForward && !controlThrustReverse) {
+            thrusting = false;
         }
     }
 
