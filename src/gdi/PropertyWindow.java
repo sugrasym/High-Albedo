@@ -46,6 +46,8 @@ public class PropertyWindow extends AstralWindow {
         WAITING_FOR_ATTACK, //waiting for a ship to attack
         WAITING_FOR_CELESTIAL, //waiting for a celestial to fly to
         WAITING_FOR_CELESTIAL_RANGE, //waiting for range to fly to celestial to
+        WAITING_FOR_FOLLOW, //waiting for a ship to follow
+        WAITING_FOR_FOLLOW_RANGE, //waiting for a range to follow at
     };
     private Mode mode = Mode.NONE;
     public static final String CMD_SWITCH = "Switch Ship";
@@ -57,6 +59,7 @@ public class PropertyWindow extends AstralWindow {
     public static final String CMD_UNDOCK = "Undock";
     public static final String CMD_DOCK = "Dock";
     public static final String CMD_FLYTO = "Move To Position";
+    public static final String CMD_FOLLOW = "Follow";
     public static final String CMD_ATTACK = "Attack";
     public static final String CMD_DESTRUCT = "Self Destruct";
     public static final String CMD_ALLSTOP = "All Stop";
@@ -247,6 +250,36 @@ public class PropertyWindow extends AstralWindow {
             } catch (Exception e) {
                 System.out.println("Malformed input");
             }
+        } else if (mode == Mode.WAITING_FOR_FOLLOW) {
+            Object raw = inputList.getItemAtIndex(inputList.getIndex());
+            if (raw instanceof Ship) {
+                //grab it
+                Ship pick = (Ship) raw;
+                //store celestial
+                selected.setFlyToTarget(pick);
+                //hide it
+                hideInputList();
+                //show the next step
+                showInput("100");
+                //get range
+                mode = Mode.WAITING_FOR_FOLLOW_RANGE;
+            } else {
+                //probably selected some info text
+            }
+        } else if (mode == Mode.WAITING_FOR_FOLLOW_RANGE) {
+            try {
+                if (input.canReturn()) {
+                    //get input
+                    String nm = input.getText();
+                    Double range = Double.parseDouble(nm);
+                    //start command
+                    selected.cmdFollowShip((Ship) selected.getFlyToTarget(), range);
+                    //normal mode
+                    mode = Mode.NONE;
+                }
+            } catch (Exception e) {
+                System.out.println("Malformed input");
+            }
         }
     }
 
@@ -426,10 +459,12 @@ public class PropertyWindow extends AstralWindow {
              * station. This is the block for those.
              */
             if (selected.isDocked() && selected.getUniverse().getPlayerShip().isDocked()) {
-                Station a = selected.getPort().getParent();
-                Station b = selected.getUniverse().getPlayerShip().getPort().getParent();
-                if (a == b) {
-                    optionList.addToList(CMD_SWITCH);
+                if (selected.getPort() != null) {
+                    Station a = selected.getPort().getParent();
+                    Station b = selected.getUniverse().getPlayerShip().getPort().getParent();
+                    if (a == b) {
+                        optionList.addToList(CMD_SWITCH);
+                    }
                 }
             }
             optionList.addToList(" ");
@@ -453,6 +488,7 @@ public class PropertyWindow extends AstralWindow {
             } else {
                 optionList.addToList(CMD_DOCK);
                 optionList.addToList(CMD_FLYTO);
+                optionList.addToList(CMD_FOLLOW);
                 optionList.addToList(CMD_ALLSTOP);
                 optionList.addToList(" ");
                 optionList.addToList("--Combat--");
@@ -508,7 +544,11 @@ public class PropertyWindow extends AstralWindow {
                 for (int a = 0; a < st.size(); a++) {
                     choice.add(st.get(a));
                 }
-                showInputList(choice);
+                if (choice.size() > 0) {
+                    showInputList(choice);
+                } else {
+                    mode = Mode.NONE;
+                }
             } else if (command.matches(CMD_ATTACK)) {
                 mode = Mode.WAITING_FOR_ATTACK;
                 ArrayList<Object> choice = new ArrayList<>();
@@ -518,7 +558,11 @@ public class PropertyWindow extends AstralWindow {
                 for (int a = 0; a < sh.size(); a++) {
                     choice.add(sh.get(a));
                 }
-                showInputList(choice);
+                if (choice.size() > 0) {
+                    showInputList(choice);
+                } else {
+                    mode = Mode.NONE;
+                }
             } else if (command.matches(CMD_DESTRUCT)) {
                 selected.setState(State.DYING);
             } else if (command.matches(CMD_FLYTO)) {
@@ -534,7 +578,26 @@ public class PropertyWindow extends AstralWindow {
                 for (int a = 0; a < jhp.size(); a++) {
                     choice.add(jhp.get(a));
                 }
-                showInputList(choice);
+                if (choice.size() > 0) {
+                    showInputList(choice);
+                } else {
+                    mode = Mode.NONE;
+                }
+            } else if (command.matches(CMD_FOLLOW)) {
+                mode = Mode.WAITING_FOR_FOLLOW;
+                ArrayList<Object> choice = new ArrayList<>();
+
+                choice.add("--Select Target To Follow--");
+                choice.add(" ");
+                ArrayList<Ship> sh = selected.getShipsInSensorRange();
+                for (int a = 0; a < sh.size(); a++) {
+                    choice.add(sh.get(a));
+                }
+                if (choice.size() > 0) {
+                    showInputList(choice);
+                } else {
+                    mode = Mode.NONE;
+                }
             } else if (command.matches(CMD_ALLSTOP)) {
                 selected.cmdAllStop();
             }

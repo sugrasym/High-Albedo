@@ -82,6 +82,7 @@ public class Ship extends Celestial {
         FLY_TO_CELESTIAL, //fly to a celestial
         ATTACK_TARGET, //attack current target
         ALL_STOP, //slow down until velocity is 0
+        FOLLOW, //follow a target at a range
     }
     //constants
     public static final double PATROL_REFUEL_PERCENT = 0.5;
@@ -375,6 +376,8 @@ public class Ship extends Celestial {
                 if (autopilot == Autopilot.FLY_TO_CELESTIAL) {
                     //call components
                     autopilotFlyToBlock();
+                } else if (autopilot == Autopilot.FOLLOW) {
+                    autopilotFollowBlock();
                 } else {
                     autopilotAllStopBlock();
                     autopilotFightingBlock();
@@ -507,6 +510,15 @@ public class Ship extends Celestial {
         autopilot = Autopilot.FLY_TO_CELESTIAL;
     }
 
+    public void cmdFollowShip(Ship destination, double range) {
+        /*
+         * Fly to within a certain range of a celestial
+         */
+        flyToTarget = destination;
+        autopilotRange = range;
+        autopilot = Autopilot.FOLLOW;
+    }
+
     public void cmdDock(Ship ship) {
         /*
          * Wrapper for cmdDock
@@ -527,6 +539,29 @@ public class Ship extends Celestial {
     /*
      * Autopilot "Blocks"
      */
+    protected void autopilotFollowBlock() {
+        if (getAutopilot() == Autopilot.FOLLOW) {
+            if (flyToTarget != null) {
+                if (flyToTarget.getCurrentSystem() == currentSystem) {
+                    double dist = distanceTo(flyToTarget);
+                    if (dist < (autopilotRange) + (getWidth() * 2)) {
+                        decelerate();
+                    } else {
+                        if (dist > (autopilotRange) + (getWidth() * 6)) {
+                            moveToPosition(flyToTarget.getX(), flyToTarget.getY());
+                        } else {
+                            //wait
+                        }
+                    }
+                } else {
+                    cmdAllStop();
+                }
+            } else {
+                autopilot = Autopilot.NONE;
+            }
+        }
+    }
+
     protected void autopilotFlyToBlock() {
         if (getAutopilot() == Autopilot.FLY_TO_CELESTIAL) {
             if (flyToTarget != null) {
@@ -685,7 +720,7 @@ public class Ship extends Celestial {
                             double hold = 0;
                             //calculate hold
                             if (dist > 500) {
-                                hold = accel * 1.6;
+                                hold = accel * 1.8;
                             } else {
                                 hold = width / 2;
                             }
