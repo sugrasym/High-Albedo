@@ -33,12 +33,18 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.URISyntaxException;
 import java.net.URL;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import universe.Universe;
 
 public class AstralIO implements Serializable {
 
     public static final String RESOURCE_DIR = "/resource/";
 
+    /*
+     * Text
+     */
     public static String readFile(String target, boolean local) {
         String ret = "";
         //Attemps to load an external file (local = false) or a file from within the archive
@@ -75,21 +81,6 @@ public class AstralIO implements Serializable {
         }
     }
 
-    public Image loadImage(String target) throws NullPointerException, URISyntaxException {
-        Image tmp = null;
-        {
-            System.out.println("Loading image resource " + RESOURCE_DIR + target);
-            URL url = getClass().getResource(RESOURCE_DIR + target);
-            File file = new File(url.toURI());
-            if (file.exists()) {
-                tmp = Toolkit.getDefaultToolkit().getImage(url);
-            } else {
-                throw new NullPointerException();
-            }
-        }
-        return tmp;
-    }
-
     public static String readTextFromJar(String target) {
         InputStream is = null;
         BufferedReader br = null;
@@ -119,11 +110,77 @@ public class AstralIO implements Serializable {
         return ret;
     }
 
+    /*
+     * Images
+     */
+    public Image loadImage(String target) throws NullPointerException, URISyntaxException {
+        Image tmp = null;
+        {
+            System.out.println("Loading image resource " + RESOURCE_DIR + target);
+            URL url = getClass().getResource(RESOURCE_DIR + target);
+            File file = new File(url.toURI());
+            if (file.exists()) {
+                tmp = Toolkit.getDefaultToolkit().getImage(url);
+            } else {
+                throw new NullPointerException();
+            }
+        }
+        return tmp;
+    }
+
+    /*
+     * Audio
+     */
+    public static synchronized Clip getSound(final String url) {
+        //new Thread(new Runnable() {
+        // The wrapper thread is unnecessary, unless it blocks on the
+        // Clip finishing; see comments.
+        //public void run() {
+        try {
+            Clip clip = AudioSystem.getClip();
+            AudioInputStream inputStream = AudioSystem.getAudioInputStream(
+                    AstralIO.class.getResourceAsStream(RESOURCE_DIR + url));
+            clip.open(inputStream);
+            return clip;
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        // }
+        //}).start();
+        return null;
+    }
+
+    public static synchronized void playSound(Clip clip, int loop) {
+        clip.loop(loop);
+        clip.start();
+    }
+
+    public static synchronized void playSound(final String url) {
+        //new Thread(new Runnable() {
+        // The wrapper thread is unnecessary, unless it blocks on the
+        // Clip finishing; see comments.
+        //public void run() {
+        try {
+            Clip clip = AudioSystem.getClip();
+            AudioInputStream inputStream = AudioSystem.getAudioInputStream(
+                    AstralIO.class.getResourceAsStream(RESOURCE_DIR + url));
+            clip.open(inputStream);
+            clip.start();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        // }
+        //}).start();
+    }
+
+    /*
+     * Binary data
+     */
     public void saveGame(Universe universe, String gameName) throws Exception {
-        String home = System.getProperty("user.home")+"/.highalbedo/";
+        String home = System.getProperty("user.home") + "/.highalbedo/";
         //create the subfolder
         File folder = new File(home);
-        if(!folder.exists()) {
+        if (!folder.exists()) {
             folder.mkdir();
         }
         //generate serializable universe
