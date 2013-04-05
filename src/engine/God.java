@@ -74,16 +74,16 @@ public class God implements EngineElement {
         long dt = System.nanoTime() - lastFrame;
         //calculate time per frame
         double tpf = Math.abs(dt / 1000000000.0);
-        //only run it every 15 seconds because it's a performance hog!
+        //only run it every 240 seconds because it's a performance hog!
         if (tpf > 240) {
             //store time
             lastFrame = System.nanoTime();
             //update
             try {
                 /*universe.getPlayerShip().setBehavior(Behavior.SECTOR_TRADE);*/
-                checkStations();
+                /*checkStations();
                 checkPatrols();
-                checkTraders();
+                checkTraders();*/
             } catch (Exception e) {
                 System.out.println("Error manipulating dynamic universe.");
                 e.printStackTrace();

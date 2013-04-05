@@ -18,6 +18,8 @@
  */
 package lib;
 
+import java.applet.Applet;
+import java.applet.AudioClip;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.BufferedReader;
@@ -131,39 +133,35 @@ public class AstralIO implements Serializable {
     /*
      * Audio
      */
-    public static synchronized Clip getSound(final String url) {
-        //new Thread(new Runnable() {
-        // The wrapper thread is unnecessary, unless it blocks on the
-        // Clip finishing; see comments.
-        //public void run() {
+    public static synchronized Clip getClip(String target) {
         try {
             Clip clip = AudioSystem.getClip();
             AudioInputStream inputStream = AudioSystem.getAudioInputStream(
-                    AstralIO.class.getResourceAsStream(RESOURCE_DIR + url));
+                    AstralIO.class.getResourceAsStream(RESOURCE_DIR + target));
             clip.open(inputStream);
             return clip;
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
-        // }
-        //}).start();
         return null;
     }
+    
+    public synchronized AudioClip getAudioClip(String target) {
+        URL url = getClass().getResource(RESOURCE_DIR + target);
+        return Applet.newAudioClip(url);
+    }
 
-    public static synchronized void playSound(Clip clip, int loop) {
-        clip.loop(loop);
+    public static synchronized void playSound(Clip clip) {
         clip.start();
     }
 
-    public static synchronized void playSound(final String url) {
+    public static synchronized void playSound(String target) {
         //new Thread(new Runnable() {
-        // The wrapper thread is unnecessary, unless it blocks on the
-        // Clip finishing; see comments.
         //public void run() {
         try {
             Clip clip = AudioSystem.getClip();
             AudioInputStream inputStream = AudioSystem.getAudioInputStream(
-                    AstralIO.class.getResourceAsStream(RESOURCE_DIR + url));
+                    AstralIO.class.getResourceAsStream(RESOURCE_DIR + target));
             clip.open(inputStream);
             clip.start();
         } catch (Exception e) {
@@ -176,6 +174,10 @@ public class AstralIO implements Serializable {
     /*
      * Binary data
      */
+    public static InputStream getStream(String target) {
+        return AstralIO.class.getResourceAsStream(RESOURCE_DIR + "/" + target);
+    }
+
     public void saveGame(Universe universe, String gameName) throws Exception {
         String home = System.getProperty("user.home") + "/.highalbedo/";
         //create the subfolder

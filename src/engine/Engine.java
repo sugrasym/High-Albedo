@@ -53,9 +53,11 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
+import javax.sound.sampled.Clip;
 import lib.AstralIO;
 import lib.Parser;
 import lib.Parser.Term;
+import lib.Soundling;
 import universe.SolarSystem;
 import universe.Universe;
 
@@ -73,6 +75,8 @@ public class Engine {
     Element element;
     //HUD
     protected HUD hud = new HUD(this);
+    //Sound
+    protected SoundEngine sound = new SoundEngine(this);
     //dimensions
     private int uiX;
     private int uiY;
@@ -230,9 +234,82 @@ public class Engine {
     }
 
     /*
+     * Sound class, makes sense to put it here
+     */
+    public class SoundEngine implements EngineElement {
+
+        public SoundEngine(Engine engine) {
+            //nothing
+        }
+
+        @Override
+        public void periodicUpdate() {
+            try {
+                if (state == State.RUNNING) {
+                    checkForSoundSignals();
+                } else if (state == State.MENU) {
+                } else {
+                    //do nothing
+                }
+            } catch (Exception e) {
+                System.out.println("Audio engine encountered a problem.");
+                e.printStackTrace();
+            }
+        }
+
+        private void checkForSoundSignals() {
+            /*
+             * Ships have to request a sound be played. The sound engine will
+             * then evaluate that request to determine whether or not to play
+             * the sound.
+             * 
+             * Sounds will only be played if the ship is within 1000 world units
+             * of the player. Sound volume will diminish with distance.
+             */
+
+            //get list of ships in the player's system
+            ArrayList<Entity> tmp = playerShip.getCurrentSystem().getShipList();
+            //use an array because it's faster
+            Ship[] ships = new Ship[tmp.size()];
+            for (int a = 0; a < ships.length; a++) {
+                ships[a] = (Ship) tmp.get(a);
+            }
+            //iterate through each ship
+            for (int a = 0; a < ships.length; a++) {
+                //get the sound que
+                ArrayList<Soundling> que = ships[a].getSoundQue();
+                //does it have anything waiting?
+                if (que != null) {
+                    if (que.size() > 0) {
+                        //is this ship in range of the sound system?
+                        double distance = playerShip.distanceTo(ships[a]);
+                        if (distance < 1000) {
+                            //yes, play each clip in the list
+                            for (int c = 0; c < que.size(); c++) {
+                                //get soundling
+                                Soundling snd = que.get(c);
+                                if (!snd.isPlaying()) {
+                                    snd.play();
+                                } else {
+                                    //remove
+                                    que.remove(snd);
+                                }
+                            }
+                        } else {
+                            //out of range
+                        }
+                    } else {
+                        //nope
+                    }
+                }
+            }
+        }
+    }
+
+    /*
      * HUD class, makes sense to put it here.
      */
-    public class HUD {
+    public class HUD implements EngineElement {
         //Window list
 
         ArrayList<AstralWindow> windows = new ArrayList<>();
@@ -924,8 +1001,10 @@ public class Engine {
                         entities.remove(a);
                     }
                 }
+                //update sound
+                sound.periodicUpdate();
                 //update hud
-                getHud().periodicUpdate();
+                hud.periodicUpdate();
                 //update differentials for rendering
                 dx = (int) playerShip.getX() - (uiX / 2) + (playerShip.getWidth() / 2);
                 dy = (int) playerShip.getY() - (uiY / 2) + (playerShip.getHeight() / 2);

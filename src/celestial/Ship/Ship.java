@@ -40,31 +40,33 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
+import lib.AstralIO;
 import lib.Faction;
 import lib.FastMath;
 import lib.Parser;
 import lib.Parser.Term;
+import lib.Soundling;
 
 /**
  *
  * @author Nathan Wiehoff
  */
 public class Ship extends Celestial {
+
     /*
      * Behaviors are over-arching goals and motivations such as hunting down
      * hostiles or trading. The behave() method will keep track of any
      * variables it needs and call autopilot functions as needed to realize
      * these goals.
      */
-
     public enum Behavior {
 
         NONE,
         TEST,
         PATROL,
-        SECTOR_TRADE,
-    }
+        SECTOR_TRADE,}
 
     /*
      * Autopilot functions are slices of behavior that are useful as part of
@@ -150,6 +152,10 @@ public class Ship extends Celestial {
     protected ArrayList<Item> cargoBay = new ArrayList();
     //RNG
     Random rnd = new Random();
+    //sound que
+    private transient ArrayList<Soundling> soundQue;
+    //sound effects
+    private transient Soundling engineLoop;
 
     public Ship(String name, String type) {
         setName(name);
@@ -185,6 +191,8 @@ public class Ship extends Celestial {
                         }
                     }
                 }
+                //init audio
+                engineLoop = new Soundling("engineLoop", "audio/effects/engine loop.wav", true);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -2525,5 +2533,41 @@ public class Ship extends Celestial {
 
     public void setLastBlow(Ship lastBlow) {
         this.lastBlow = lastBlow;
+    }
+    
+    protected void stopSound(Soundling sound) {
+        sound.reset();
+    }
+
+    protected void playSound(Soundling sound) {
+        if (soundQue == null) {
+            soundQue = new ArrayList<>();
+        }
+        //are we in the player's system?
+        if (currentSystem == getUniverse().getPlayerShip().getCurrentSystem()) {
+            //are we within 1000 units of the player?
+            if (distanceTo(getUniverse().getPlayerShip()) < 1000) {
+                //prepare sound for que
+                //make sure it doesn't already contain this noise
+                boolean safe = true;
+                for (int a = 0; a < soundQue.size(); a++) {
+                    if (soundQue.get(a).getName().matches(name)) {
+                        safe = false;
+                        break;
+                    }
+                }
+                if (safe) {
+                    soundQue.add(sound);
+                }
+            } else {
+                //nope, no need to waste resources
+            }
+        } else {
+            //nope, no need to push anything to the que
+        }
+    }
+
+    public ArrayList<Soundling> getSoundQue() {
+        return soundQue;
     }
 }
