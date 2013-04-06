@@ -39,6 +39,7 @@ import java.net.URL;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.swing.ImageIcon;
 import universe.Universe;
 
 public class AstralIO implements Serializable {
@@ -117,78 +118,18 @@ public class AstralIO implements Serializable {
      * Images
      */
     public Image loadImage(String target) throws NullPointerException, URISyntaxException {
-        Image tmp = null;
-        {
-            System.out.println("Loading image resource " + RESOURCE_DIR + target);
-            URL url = getClass().getResource(RESOURCE_DIR + target);
-            File file = new File(url.toURI());
-            if (file.exists()) {
-                tmp = Toolkit.getDefaultToolkit().getImage(url);
-            } else {
-                throw new NullPointerException();
-            }
-        }
-        return tmp;
-    }
-
-    /*
-     * Audio
-     */
-    public static synchronized Clip getClip(String target) {
-        try {
-            Clip clip = AudioSystem.getClip();
-            AudioInputStream inputStream = AudioSystem.getAudioInputStream(
-                    AstralIO.class.getResourceAsStream(RESOURCE_DIR + target));
-
-
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            byte[] buffer = new byte[1024];
-            int bytesRead = 0;
-
-            while ((bytesRead = inputStream.read(buffer)) != -1) {
-                baos.write(buffer, 0, bytesRead);
-            }
-
-            byte[] dat = baos.toByteArray();
-
-            clip.open(inputStream.getFormat(), dat, 0, dat.length);
-
-            return clip;
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-        return null;
-    }
-
-    public synchronized AudioClip getAudioClip(String target) {
-        URL url = getClass().getResource(RESOURCE_DIR + target);
-        return Applet.newAudioClip(url);
-    }
-
-    public static synchronized void playSound(Clip clip) {
-        clip.start();
-    }
-
-    public static synchronized void playSound(String target) {
-        //new Thread(new Runnable() {
-        //public void run() {
-        try {
-            Clip clip = AudioSystem.getClip();
-            AudioInputStream inputStream = AudioSystem.getAudioInputStream(
-                    AstralIO.class.getResourceAsStream(RESOURCE_DIR + target));
-            clip.open(inputStream);
-            clip.start();
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-        // }
-        //}).start();
+        System.out.println("Loading image resource " + RESOURCE_DIR + target);
+        ImageIcon ico = new ImageIcon(getClass().getResource(RESOURCE_DIR + target));
+        //extract image
+        Image test = ico.getImage();
+        return test;
     }
 
     /*
      * Binary data
      */
     public static InputStream getStream(String target) {
+        //System.out.println("Loading stream resource " + RESOURCE_DIR + target);
         return AstralIO.class.getResourceAsStream(RESOURCE_DIR + "/" + target);
     }
 
