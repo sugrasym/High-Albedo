@@ -68,6 +68,7 @@ public class Main extends JFrame {
         System.setProperty("sun.java2d.opengl", "True");
         System.setProperty("sun.java2d.d3d", "True");
         System.setProperty("sun.java2d.ddforcevram", "True");
+        System.setProperty("javax.sound.sampled.SourceDataLine", "com.sun.media.sound.DirectAudioDeviceProvider");
         //do no allow manual resizing
         setResizable(false);
         //enter full screen
