@@ -30,11 +30,13 @@ public class Soundling {
 
     private String name;
     private Sound sound;
+    private String target;
     private boolean loop;
 
     public Soundling(String name, String target, boolean loop) {
         this.name = name;
         this.loop = loop;
+        this.target = target;
         sound = new Sound(target);
     }
 
@@ -92,13 +94,29 @@ public class Soundling {
         }
 
         private void play() {
-            playing = true;
-            clip.start();
+            Thread th = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    playing = true;
+                    clip.start();
+                }
+            });
+            th.start();
         }
 
         private void loop(final int count) {
-            playing = true;
-            clip.loop(count);
+            Thread th = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    playing = true;
+                    clip.loop(count);
+                }
+            });
+            th.start();
         }
+    }
+
+    public String toString() {
+        return name + ", " + target + ", " + loop;
     }
 }

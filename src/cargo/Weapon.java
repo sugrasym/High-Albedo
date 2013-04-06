@@ -25,8 +25,8 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
-import lib.AstralIO;
 import lib.Parser;
+import lib.Soundling;
 import universe.SolarSystem;
 
 /**
@@ -46,18 +46,36 @@ public class Weapon extends Equipment {
     protected boolean guided;
     protected Item ammoType;
     private String explosion = "None";
+    //special effects
+    private String fireEffectAsset;
     //guided weapons
     double accel;
     double turning;
+    //sounds
+    private transient Soundling fireEffect;
+    private boolean loopFireEffect = false;
+    //sound switched
+    private double timeSinceLastActivation;
 
     public Weapon(String name) {
         super(name);
         init();
     }
 
+    public void periodicUpdate(double tpf) {
+        super.periodicUpdate(tpf);
+        //update last activation timer
+        timeSinceLastActivation += tpf;
+        //update sounds
+        updateSound();
+    }
+
     public void initGraphics() {
         try {
             if (host.getUniverse() != null) {
+                /*
+                 * Generate Graphics
+                 */
                 if (ammoType == null) {
                     //the projectile name is the image
                     //get the image
@@ -71,15 +89,48 @@ public class Weapon extends Equipment {
                 height = (icon.getIconHeight());
                 width = (icon.getIconWidth());
                 tex = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+                /*
+                 * Generate audio
+                 */
+                if (fireEffectAsset != null) {
+                    fireEffect = new Soundling(getName(), fireEffectAsset, loopFireEffect);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    public boolean isFiringEffect() {
+        if (loopFireEffect) {
+            if (timeSinceLastActivation <= (coolDown + (1 / coolDown) * tpf)) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return true;
+        }
+    }
+
+    private void updateSound() {
+        //kill sound if needed
+        if (!isFiringEffect()) {
+            if (fireEffect != null) {
+                if (fireEffect.isPlaying()) {
+                    fireEffect.stop();
+                }
+            }
+        }
+    }
+
     public void disposeGraphics() {
+        //dispose graphics
         raw_tex = null;
         tex = null;
+        //dispose of audio
+        fireEffect.stop();
+        fireEffect = null;
     }
 
     private void init() {
@@ -127,6 +178,14 @@ public class Weapon extends Equipment {
                     //get the item
                     ammoType = new Item(test);
                 }
+            }
+            //go boom?
+            fireEffectAsset = relevant.getValue("fireEffect");
+            String loopClipTest = relevant.getValue("loop");
+            if (loopClipTest != null) {
+                loopFireEffect = Boolean.parseBoolean(loopClipTest);
+            } else {
+                loopFireEffect = false;
             }
         } else {
             System.out.println("The item " + getName() + " does not exist in WEAPONS.txt");
@@ -203,7 +262,19 @@ public class Weapon extends Equipment {
                         tvp.setLastBlow(host);
                     }
                 }
-
+                //play fire effect
+                if (fireEffect != null) {
+                    if (!fireEffect.isPlaying()) {
+                        host.playSound(fireEffect);
+                    } else {
+                        if (!loopFireEffect) {
+                            fireEffect.stop();
+                            fireEffect.play();
+                        }
+                    }
+                }
+                //reset timer
+                timeSinceLastActivation = 0;
             }
         }
     }

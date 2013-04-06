@@ -35,6 +35,8 @@ public class Equipment extends Item implements Serializable {
     protected Ship host;
     protected Hardpoint socket;
     protected double range;
+    //tpf
+    protected double tpf;
 
     public Equipment(String name) {
         super(name);
@@ -42,6 +44,7 @@ public class Equipment extends Item implements Serializable {
 
     @Override
     public void periodicUpdate(double tpf) {
+        this.tpf = tpf;
         //update timer
         if (getActivationTimer() <= getCoolDown()) {
             setActivationTimer(getActivationTimer() + tpf);

@@ -178,6 +178,9 @@ public class Ship extends Celestial {
     public void initGraphics() {
         try {
             if (getUniverse() != null) {
+                /*
+                 * Generate graphics
+                 */
                 //get the image
                 raw_tex = getUniverse().getCache().getShipSprite(getType());
                 //create the usable version
@@ -194,7 +197,10 @@ public class Ship extends Celestial {
                         }
                     }
                 }
-                //init audio
+                /*
+                 * Generate audio
+                 */
+                //engine loop
                 engineLoop = new Soundling("engineLoop", "audio/effects/engine loop.wav", true);
             }
         } catch (Exception e) {
@@ -2368,14 +2374,19 @@ public class Ship extends Celestial {
     }
 
     public int getStandingsToMe(Ship ship) {
-        if (myFaction != null) {
-            if (ship.getFaction().hashCode() == PLAYER_FACTION.hashCode()) {
-                return (int) ship.getMyFaction().getStanding(getFaction());
+        try {
+            if (myFaction != null) {
+                if (ship.getFaction().hashCode() == PLAYER_FACTION.hashCode()) {
+                    return (int) ship.getMyFaction().getStanding(getFaction());
+                } else {
+                    return (int) myFaction.getStanding(ship.getFaction());
+                }
             } else {
-                return (int) myFaction.getStanding(ship.getFaction());
+                installFaction();
+                return 0;
             }
-        } else {
-            installFaction();
+        } catch (Exception e) {
+            e.printStackTrace();
             return 0;
         }
     }
@@ -2565,7 +2576,7 @@ public class Ship extends Celestial {
         }
     }
 
-    protected void playSound(Soundling sound) {
+    public void playSound(Soundling sound) {
         if (soundQue == null) {
             soundQue = new ArrayList<>();
         }
@@ -2594,7 +2605,7 @@ public class Ship extends Celestial {
         }
     }
 
-    protected void stopSound(Soundling sound) {
+    public void stopSound(Soundling sound) {
         if (sound != null) {
             if (sound.isPlaying()) {
                 sound.stop();

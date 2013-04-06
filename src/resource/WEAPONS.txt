@@ -12,6 +12,8 @@ speed=425
 mass=4
 refire=0.12
 explosion=Yellow
+fireEffect=audio/effects/weapons/Thorn A.wav
+loop=true
 [/Weapon]
 
 [Weapon]
@@ -25,6 +27,8 @@ speed=475
 mass=4
 refire=0.11
 explosion=Yellow
+fireEffect=audio/effects/weapons/Thorn B.wav
+loop=true
 [/Weapon]
 
 ########Ageiran Weapons########
@@ -41,6 +45,7 @@ speed=400
 mass=5
 refire=0.35
 explosion=Smoke
+fireEffect=audio/effects/weapons/Talon.wav
 [/Weapon]
 
 [Weapon]
@@ -54,6 +59,7 @@ speed=410
 mass=8
 refire=0.35
 explosion=Smoke
+fireEffect=audio/effects/weapons/Talon.wav
 [/Weapon]
 
 [Weapon]
@@ -67,6 +73,7 @@ speed=415
 mass=11
 refire=0.34
 explosion=Smoke
+fireEffect=audio/effects/weapons/Talon.wav
 [/Weapon]
 
 ########ITC Weapons##########

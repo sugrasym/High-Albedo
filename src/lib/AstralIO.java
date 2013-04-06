@@ -24,6 +24,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
@@ -138,14 +139,27 @@ public class AstralIO implements Serializable {
             Clip clip = AudioSystem.getClip();
             AudioInputStream inputStream = AudioSystem.getAudioInputStream(
                     AstralIO.class.getResourceAsStream(RESOURCE_DIR + target));
-            clip.open(inputStream);
+
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            byte[] buffer = new byte[1024];
+            int bytesRead = 0;
+
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                baos.write(buffer, 0, bytesRead);
+            }
+
+            byte[] dat = baos.toByteArray();
+
+            clip.open(inputStream.getFormat(), dat, 0, dat.length);
+
             return clip;
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
         return null;
     }
-    
+
     public synchronized AudioClip getAudioClip(String target) {
         URL url = getClass().getResource(RESOURCE_DIR + target);
         return Applet.newAudioClip(url);

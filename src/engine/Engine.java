@@ -247,6 +247,7 @@ public class Engine {
             try {
                 if (state == State.RUNNING) {
                     checkForSoundSignals();
+                    updateMusic();
                 } else if (state == State.MENU) {
                 } else {
                     //do nothing
@@ -255,6 +256,10 @@ public class Engine {
                 System.out.println("Audio engine encountered a problem.");
                 e.printStackTrace();
             }
+        }
+        
+        private void updateMusic() {
+            
         }
 
         private void checkForSoundSignals() {
