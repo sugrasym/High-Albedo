@@ -25,10 +25,21 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferStrategy;
+import java.io.File;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import lib.AstralIO;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+import org.lwjgl.LWJGLException;
+import org.lwjgl.openal.AL;
+import org.lwjgl.openal.AL10;
+import org.lwjgl.util.WaveData;
 
 /**
  *
@@ -41,28 +52,108 @@ public class Main extends JFrame {
     private int uiY = 0;
     //engine
     Engine engine;
+    //safety
+    boolean safe = true;
 
     public Main() {
         super("High Albedo");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //initialize display
-        windowInit();
-        //initialize engine
-        engineInit();
-        //add listeners
-        listenerInit();
-        //enter menu
-        engine.menu();
     }
 
     public static void main(String[] args) {
-        Main eg = new Main();
+        new Main().execute();
+    }
+
+    public void execute() {
+        //detect operating system
+        String os = System.getProperty("os.name").toLowerCase();
+        System.out.println("Running on " + os);
+        if (os.contains("linux")) {
+            System.out.println("Trying to unpack Linux libraries.");
+            try {
+                extractLib("liblwjgl.so");
+                extractLib("libopenal.so");
+                extractLib("libjinput-linux.so");
+            } catch (Throwable e) {
+                e.printStackTrace();
+                System.out.println("Failed to extract 32 bit libs");
+            }
+            try {
+                extractLib("liblwjgl64.so");
+                extractLib("libopenal64.so");
+                extractLib("libjinput-linux64.so");
+            } catch (Throwable e) {
+                e.printStackTrace();
+                System.out.println("Failed to extract 64 bit libs");
+            }
+        }
+        // Initialize OpenAL and clear the error bit.
+        try {
+            AL.create();
+            AL10.alGetError();
+        } catch (Throwable le) {
+            safe = false;
+            le.printStackTrace();
+            System.out.println("Audio is unsupported on this system.");
+            String st = JOptionPane.showInputDialog(this, "Greetings, space friend!"
+                    + "\n\n"
+                    + "High Albedo uses LWJGL for audio since the sound\n"
+                    + "system provided by the stock JVM is too buggy.\n\n"
+                    + "This is a message to inform you that the LWJGL\n"
+                    + "libraries could not be located! This is normal if\n"
+                    + "this is the first time you've run High Albedo.\n\n"
+                    + "You need to help set this up. High Albedo planned\n"
+                    + "ahead and extracted the libraries to the folder that\n"
+                    + "High_Albedo.jar is located in. You should copy them\n"
+                    + "to one of these directories, \n\n" + System.getProperty("java.library.path") + "\n\n"
+                    + "and try again. Altenatively, you can launch with the\n"
+                    + "'-Djava.library.path=path/to/dir' flag where path/to/dir\n"
+                    + "is a folder containing these libraries.\n\n"
+                    + "\n\nTo continue without sound, type 'true' (without quotes)!");
+            safe = Boolean.parseBoolean(st);
+        }
+        //create
+        if (safe) {
+            //initialize display
+            windowInit();
+            //initialize engine
+            engineInit();
+            //add listeners
+            listenerInit();
+            //enter menu
+            engine.menu();
+        } else {
+            setVisible(false);
+            dispose();
+            System.exit(0);
+        }
+    }
+
+    private void extractLib(String name) {
+        try {
+            // have to use a stream
+            InputStream in = AstralIO.getStream("native/" + name);
+            // always write to different location
+            File fileOut = new File(name);
+            if (fileOut.exists()) {
+                fileOut.delete();
+            }
+            System.out.println("Writing lib to: " + fileOut.getAbsolutePath());
+            OutputStream out = FileUtils.openOutputStream(fileOut);
+            IOUtils.copy(in, out);
+            in.close();
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Unable to load library " + name);
+        }
     }
 
     /*
      * Initialize the window
      */
     public final void windowInit() {
+        setVisible(false);
         //set properties
         System.setProperty("sun.java2d.transaccel", "True");
         System.setProperty("sun.java2d.opengl", "True");
@@ -75,11 +166,12 @@ public class Main extends JFrame {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         GraphicsDevice gs = ge.getDefaultScreenDevice();
         try {
-            throw new Exception();
+            //throw new Exception();
             setUndecorated(true);
             gs.setFullScreenWindow(this);
             System.out.println("Sucessfully acquired full screen.");
         } catch (Exception e) {
+            e.printStackTrace();
             //fallback to a windowed mode
             setUndecorated(false);
             setSize(1024, 768);
@@ -89,7 +181,7 @@ public class Main extends JFrame {
         uiX = getWidth();
         uiY = getHeight();
         //push frame
-        setVisible(true);
+        show();
         //create buffer strategy
         createBufferStrategy(2);
         System.out.println("Window size of " + uiX + "," + uiY + " stored.");

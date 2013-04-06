@@ -19,8 +19,7 @@
 package lib;
 
 import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineEvent;
-import javax.sound.sampled.LineListener;
+import org.lwjgl.util.WaveData;
 
 /**
  *
@@ -68,21 +67,13 @@ public class Soundling {
      */
     private class Sound {
 
-        private Clip clip;
+        private WaveData waveFile;
         private boolean playing = false;
 
         public Sound(String target) {
             try {
-                clip = AstralIO.getClip(target);
+                waveFile  = WaveData.create(AstralIO.RESOURCE_DIR+"/"+target);
                 //setup listener so we know when it is safe to replay
-                clip.addLineListener(new LineListener() {
-                    public void update(LineEvent event) {
-                        if (event.getType() == LineEvent.Type.STOP) {
-                            playing = false;
-                            clip.setFramePosition(0);
-                        }
-                    }
-                });
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -90,29 +81,15 @@ public class Soundling {
 
         private void stop() {
             playing = false;
-            clip.stop();
         }
 
         private void play() {
-            Thread th = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    playing = true;
-                    clip.start();
-                }
-            });
-            th.start();
+            playing = true;
         }
 
         private void loop(final int count) {
-            Thread th = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    playing = true;
-                    clip.loop(count);
-                }
-            });
-            th.start();
+            playing = true;
+            //TODO LOOPING
         }
     }
 
