@@ -186,6 +186,7 @@ speed=405
 mass=4
 refire=0.33
 explosion=Blue
+fireEffect=audio/effects/weapons/Venom.wav
 [/Weapon]
 
 [Weapon]
@@ -199,6 +200,7 @@ speed=432
 mass=6
 refire=0.32
 explosion=Blue
+fireEffect=audio/effects/weapons/Venom.wav
 [/Weapon]
 
 [Weapon]
@@ -212,6 +214,8 @@ speed=600
 mass=11
 refire=0.04
 explosion=Yellow
+fireEffect=audio/effects/weapons/Bask.wav
+loop=true
 [/Weapon]
 
 [Weapon]
@@ -225,6 +229,7 @@ speed=150
 mass=8
 refire=25
 explosion=Red
+fireEffect=audio/effects/weapons/Frill.wav
 [/Weapon]
 
 
@@ -243,6 +248,7 @@ speed=150
 mass=6
 refire=0.55
 explosion=Red
+fireEffect=audio/effects/weapons/Catapult.wav
 [/Weapon]
 
 [Weapon]
@@ -255,6 +261,7 @@ range=2000
 speed=1200
 mass=5
 refire=0.35
+fireEffect=audio/effects/weapons/Arrow.wav
 explosion=Blue
 [/Weapon]
 
@@ -269,6 +276,7 @@ speed=650
 mass=7
 refire=4.8
 explosion=Smoke
+fireEffect=audio/effects/weapons/Long 9.wav
 [/Weapon]
 
 ########Knights of Orin Weapons########
