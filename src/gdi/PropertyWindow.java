@@ -544,7 +544,7 @@ public class PropertyWindow extends AstralWindow {
                 for (int a = 0; a < st.size(); a++) {
                     choice.add(st.get(a));
                 }
-                if (choice.size() > 0) {
+                if (st.size() > 0) {
                     showInputList(choice);
                 } else {
                     mode = Mode.NONE;
@@ -558,7 +558,7 @@ public class PropertyWindow extends AstralWindow {
                 for (int a = 0; a < sh.size(); a++) {
                     choice.add(sh.get(a));
                 }
-                if (choice.size() > 0) {
+                if (sh.size() > 0) {
                     showInputList(choice);
                 } else {
                     mode = Mode.NONE;
@@ -578,7 +578,7 @@ public class PropertyWindow extends AstralWindow {
                 for (int a = 0; a < jhp.size(); a++) {
                     choice.add(jhp.get(a));
                 }
-                if (choice.size() > 0) {
+                if (tmp.size() > 0 || jhp.size() > 0) {
                     showInputList(choice);
                 } else {
                     mode = Mode.NONE;
@@ -593,7 +593,7 @@ public class PropertyWindow extends AstralWindow {
                 for (int a = 0; a < sh.size(); a++) {
                     choice.add(sh.get(a));
                 }
-                if (choice.size() > 0) {
+                if (sh.size() > 0) {
                     showInputList(choice);
                 } else {
                     mode = Mode.NONE;

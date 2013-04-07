@@ -292,6 +292,7 @@ speed=800
 mass=11
 refire=0.4
 explosion=Blue
+fireEffect=audio/effects/weapons/Rayo Azul.wav
 [/Weapon]
 
 [Weapon]
@@ -305,6 +306,7 @@ speed=300
 mass=13
 refire=0.38
 explosion=Red
+fireEffect=audio/effects/weapons/Sangre Roja.wav
 [/Weapon]
 
 [Weapon]
@@ -320,6 +322,8 @@ refire=0.1
 explosion=Yellow
 #ammo
 ammo=Bala Negro
+fireEffect=audio/effects/weapons/Orgullo Negro.wav
+loop=true
 [/Weapon]
 
 ########Wolves Weapons########
