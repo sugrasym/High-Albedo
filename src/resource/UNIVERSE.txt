@@ -2,10 +2,9 @@
 [NewGame]
 ship=Odin
 system=System 34
-x=-100000
-y=-100000
+near=Planet 0
 cash=750000
-install=Talon 1/Talon 1
+install=Thorn B/Thorn B
 cargo=
 faction=Player
 [/NewGame]

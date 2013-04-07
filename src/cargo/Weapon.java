@@ -93,7 +93,7 @@ public class Weapon extends Equipment {
                  * Generate audio
                  */
                 if (fireEffectAsset != null) {
-                    fireEffect = new Soundling(getName(), fireEffectAsset, loopFireEffect);
+                    fireEffect = new Soundling(getName() + " " + System.nanoTime(), fireEffectAsset, loopFireEffect);
                 }
             }
         } catch (Exception e) {
@@ -129,8 +129,10 @@ public class Weapon extends Equipment {
         raw_tex = null;
         tex = null;
         //dispose of audio
-        fireEffect.stop();
-        fireEffect = null;
+        if (fireEffect != null) {
+            fireEffect.stop();
+            fireEffect = null;
+        }
     }
 
     private void init() {

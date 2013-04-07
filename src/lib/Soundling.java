@@ -20,30 +20,29 @@ package lib;
 
 import java.applet.Applet;
 import java.applet.AudioClip;
-import javax.sound.sampled.Clip;
 
 /**
  *
  * @author nwiehoff
  */
 public class Soundling {
-    
+
     private String name;
     private Sound sound;
     private String target;
     private boolean loop;
-    
+
     public Soundling(String name, String target, boolean loop) {
         this.name = name;
         this.loop = loop;
         this.target = target;
         sound = new Sound(target);
     }
-    
+
     public String getName() {
         return name;
     }
-    
+
     public boolean isPlaying() {
         return sound.playing;
     }
@@ -58,7 +57,7 @@ public class Soundling {
             sound.loop();
         }
     }
-    
+
     public void stop() {
         sound.stop();
     }
@@ -67,10 +66,10 @@ public class Soundling {
      * sound data container
      */
     private class Sound {
-        
+
         private AudioClip clip;
         private boolean playing = false;
-        
+
         public Sound(String target) {
             try {
                 clip = Applet.newAudioClip(AstralIO.class.getResource(AstralIO.RESOURCE_DIR + "/" + target));
@@ -79,23 +78,41 @@ public class Soundling {
                 e.printStackTrace();
             }
         }
-        
+
         private void stop() {
-            clip.stop();
-            playing = false;
+            Thread s = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    clip.stop();
+                    playing = false;
+                }
+            });
+            s.start();
         }
-        
+
         private void play() {
-            clip.play();
-            playing = true;
+            Thread s = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    clip.play();
+                    playing = true;
+                }
+            });
+            s.start();
         }
-        
+
         private void loop() {
-            clip.loop();
-            playing = true;
+            Thread s = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    clip.loop();
+                    playing = true;
+                }
+            });
+            s.start();
         }
     }
-    
+
     public String toString() {
         return name + ", " + target + ", " + loop;
     }

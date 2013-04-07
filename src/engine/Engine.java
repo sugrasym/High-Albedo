@@ -257,21 +257,15 @@ public class Engine {
                 e.printStackTrace();
             }
         }
-        
+
         private void updateMusic() {
-            
         }
 
         private void checkForSoundSignals() {
             /*
              * Ships have to request a sound be played. The sound engine will
              * then evaluate that request to determine whether or not to play
-             * the sound.
-             * 
-             * 
-             * TODO: Volume!
-             * Sounds will only be played if the ship is within 1000 world units
-             * of the player. Sound volume will diminish with distance.
+             * the sound
              */
 
             //get list of ships in the player's system
@@ -290,7 +284,7 @@ public class Engine {
                     if (que.size() > 0) {
                         //is this ship in range of the sound system?
                         double distance = playerShip.distanceTo(ships[a]);
-                        if (distance < 1000) {
+                        if (distance < Math.max(uiX, uiY)) {
                             //yes, play each clip in the list
                             for (int c = 0; c < que.size(); c++) {
                                 //get soundling

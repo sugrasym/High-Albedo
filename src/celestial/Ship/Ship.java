@@ -40,9 +40,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
-import lib.AstralIO;
 import lib.Faction;
 import lib.FastMath;
 import lib.Parser;
@@ -222,10 +220,12 @@ public class Ship extends Celestial {
             }
         }
         //dispose of audio
-        for (int a = 0; a < soundQue.size(); a++) {
-            soundQue.get(a).stop();
+        if (soundQue != null) {
+            for (int a = 0; a < soundQue.size(); a++) {
+                soundQue.get(a).stop();
+            }
+            soundQue.clear();
         }
-        soundQue.clear();
         engineLoop = null;
     }
 
@@ -489,7 +489,7 @@ public class Ship extends Celestial {
                 }
             }
         }
-        if (candidates.size() == 0) {
+        if (candidates.isEmpty()) {
             return null;
         } else {
             Ship ret = candidates.get(0);
@@ -2583,21 +2583,16 @@ public class Ship extends Celestial {
         if (sound != null) {
             //are we in the player's system?
             if (currentSystem == getUniverse().getPlayerShip().getCurrentSystem()) {
-                //are we within 1000 units of the player?
-                if (distanceTo(getUniverse().getPlayerShip()) < 1000) {
-                    //make sure it doesn't already contain this noise
-                    boolean safe = true;
-                    for (int a = 0; a < soundQue.size(); a++) {
-                        if (soundQue.get(a).getName().matches(name)) {
-                            safe = false;
-                            break;
-                        }
+                //make sure it doesn't already contain this noise
+                boolean safe = true;
+                for (int a = 0; a < soundQue.size(); a++) {
+                    if (soundQue.get(a).getName().matches(name)) {
+                        safe = false;
+                        break;
                     }
-                    if (safe && !sound.isPlaying()) {
-                        soundQue.add(sound);
-                    }
-                } else {
-                    //nope, player can't hear it
+                }
+                if (safe && !sound.isPlaying()) {
+                    soundQue.add(sound);
                 }
             } else {
                 //nope, no need to push anything to the que
