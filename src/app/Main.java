@@ -25,21 +25,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferStrategy;
-import java.io.File;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import lib.AstralIO;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
-import org.lwjgl.LWJGLException;
-import org.lwjgl.openal.AL;
-import org.lwjgl.openal.AL10;
-import org.lwjgl.util.WaveData;
 
 /**
  *
@@ -65,55 +54,6 @@ public class Main extends JFrame {
     }
 
     public void execute() {
-        //detect operating system
-        String os = System.getProperty("os.name").toLowerCase();
-        System.out.println("Running on " + os);
-        if (os.contains("linux")) {
-            System.out.println("Trying to unpack Linux libraries.");
-            try {
-                extractLib("liblwjgl.so");
-                extractLib("libopenal.so");
-                extractLib("libjinput-linux.so");
-            } catch (Throwable e) {
-                e.printStackTrace();
-                System.out.println("Failed to extract 32 bit libs");
-            }
-            try {
-                extractLib("liblwjgl64.so");
-                extractLib("libopenal64.so");
-                extractLib("libjinput-linux64.so");
-            } catch (Throwable e) {
-                e.printStackTrace();
-                System.out.println("Failed to extract 64 bit libs");
-            }
-        }
-        // Initialize OpenAL and clear the error bit.
-        try {
-            AL.create();
-            AL10.alGetError();
-        } catch (Throwable le) {
-            safe = false;
-            le.printStackTrace();
-            System.out.println("Audio is unsupported on this system.");
-            String errorString = "Greetings, space friend!"
-                    + "\n\n"
-                    + "High Albedo uses LWJGL for audio since the sound\n"
-                    + "system provided by the stock JVM is too buggy.\n\n"
-                    + "This is a message to inform you that the LWJGL\n"
-                    + "libraries could not be located! This is normal if\n"
-                    + "this is the first time you've run High Albedo.\n\n"
-                    + "You need to help set this up. High Albedo planned\n"
-                    + "ahead and extracted the libraries to the folder that\n"
-                    + "High_Albedo.jar is located in. You should copy them\n"
-                    + "to one of these directories, \n\n" + System.getProperty("java.library.path") + "\n\n"
-                    + "and try again. Altenatively, you can launch with the\n"
-                    + "'-Djava.library.path=path/to/dir' flag where path/to/dir\n"
-                    + "is a folder containing these libraries.\n\n"
-                    + "\n\nTo continue without sound, type 'true' (without quotes)!";
-            System.err.println(errorString);
-            String st = JOptionPane.showInputDialog(this, errorString);
-            safe = Boolean.parseBoolean(st);
-        }
         //create
         if (safe) {
             //initialize display
@@ -128,25 +68,6 @@ public class Main extends JFrame {
             setVisible(false);
             dispose();
             System.exit(0);
-        }
-    }
-
-    private void extractLib(String name) {
-        try {
-            OutputStream out;
-            try (InputStream in = getClass().getResourceAsStream(AstralIO.RESOURCE_DIR + "native/" + name)) {
-                File fileOut = new File(name);
-                if (fileOut.exists()) {
-                    fileOut.delete();
-                }
-                System.out.println("Writing lib to: " + fileOut.getAbsolutePath());
-                out = FileUtils.openOutputStream(fileOut);
-                IOUtils.copy(in, out);
-            }
-            out.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Unable to load library " + name);
         }
     }
 

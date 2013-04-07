@@ -18,31 +18,32 @@
  */
 package lib;
 
+import java.applet.Applet;
+import java.applet.AudioClip;
 import javax.sound.sampled.Clip;
-import org.lwjgl.util.WaveData;
 
 /**
  *
  * @author nwiehoff
  */
 public class Soundling {
-
+    
     private String name;
     private Sound sound;
     private String target;
     private boolean loop;
-
+    
     public Soundling(String name, String target, boolean loop) {
         this.name = name;
         this.loop = loop;
         this.target = target;
         sound = new Sound(target);
     }
-
+    
     public String getName() {
         return name;
     }
-
+    
     public boolean isPlaying() {
         return sound.playing;
     }
@@ -54,10 +55,10 @@ public class Soundling {
         if (!loop) {
             sound.play();
         } else {
-            sound.loop(Clip.LOOP_CONTINUOUSLY);
+            sound.loop();
         }
     }
-
+    
     public void stop() {
         sound.stop();
     }
@@ -66,33 +67,35 @@ public class Soundling {
      * sound data container
      */
     private class Sound {
-
-        private WaveData waveFile;
+        
+        private AudioClip clip;
         private boolean playing = false;
-
+        
         public Sound(String target) {
             try {
-                waveFile  = WaveData.create(AstralIO.RESOURCE_DIR+"/"+target);
+                clip = Applet.newAudioClip(AstralIO.class.getResource(AstralIO.RESOURCE_DIR + "/" + target));
                 //setup listener so we know when it is safe to replay
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-
+        
         private void stop() {
+            clip.stop();
             playing = false;
         }
-
+        
         private void play() {
+            clip.play();
             playing = true;
         }
-
-        private void loop(final int count) {
+        
+        private void loop() {
+            clip.loop();
             playing = true;
-            //TODO LOOPING
         }
     }
-
+    
     public String toString() {
         return name + ", " + target + ", " + loop;
     }

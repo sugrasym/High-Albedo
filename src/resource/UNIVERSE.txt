@@ -5,7 +5,7 @@ system=System 34
 x=-100000
 y=-100000
 cash=750000
-install=Thorn B/Thorn B
+install=Talon 1/Talon 1
 cargo=
 faction=Player
 [/NewGame]

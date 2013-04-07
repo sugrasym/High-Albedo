@@ -118,9 +118,9 @@ public class AstralIO implements Serializable {
     /*
      * Images
      */
-    public Image loadImage(String target) throws NullPointerException, URISyntaxException {
+    public static Image loadImage(String target) throws NullPointerException, URISyntaxException {
         System.out.println("Loading image resource " + RESOURCE_DIR + target);
-        ImageIcon ico = new ImageIcon(getClass().getResource(RESOURCE_DIR + target));
+        ImageIcon ico = new ImageIcon(AstralIO.class.getResource(RESOURCE_DIR + target));
         //extract image
         Image test = ico.getImage();
         return test;
@@ -129,9 +129,9 @@ public class AstralIO implements Serializable {
     /*
      * Binary data
      */
-    public InputStream getStream(String target) {
+    public static InputStream getStream(String target) {
         //System.out.println("Loading stream resource " + RESOURCE_DIR + target);
-        return getClass().getResourceAsStream(RESOURCE_DIR + "/" + target);
+        return AstralIO.class.getResourceAsStream(RESOURCE_DIR + "/" + target);
     }
 
     public void saveGame(Universe universe, String gameName) throws Exception {
