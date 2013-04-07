@@ -182,7 +182,7 @@ public class MenuHomeWindow extends AstralWindow {
 
     private void addSaves(AstralList list) {
         //add all the files
-        String path = System.getProperty("user.home") + "/.highalbedo/";
+        String path = System.getProperty("user.home") + AstralIO.SAVE_GAME_DIR;
         File folder = new File(path);
         File[] listOfFiles = folder.listFiles();
         for (int i = 0; i < listOfFiles.length; i++) {

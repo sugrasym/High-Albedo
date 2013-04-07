@@ -95,7 +95,7 @@ public class Main extends JFrame {
             safe = false;
             le.printStackTrace();
             System.out.println("Audio is unsupported on this system.");
-            String st = JOptionPane.showInputDialog(this, "Greetings, space friend!"
+            String errorString = "Greetings, space friend!"
                     + "\n\n"
                     + "High Albedo uses LWJGL for audio since the sound\n"
                     + "system provided by the stock JVM is too buggy.\n\n"
@@ -109,7 +109,9 @@ public class Main extends JFrame {
                     + "and try again. Altenatively, you can launch with the\n"
                     + "'-Djava.library.path=path/to/dir' flag where path/to/dir\n"
                     + "is a folder containing these libraries.\n\n"
-                    + "\n\nTo continue without sound, type 'true' (without quotes)!");
+                    + "\n\nTo continue without sound, type 'true' (without quotes)!";
+            System.err.println(errorString);
+            String st = JOptionPane.showInputDialog(this, errorString);
             safe = Boolean.parseBoolean(st);
         }
         //create
@@ -131,17 +133,16 @@ public class Main extends JFrame {
 
     private void extractLib(String name) {
         try {
-            // have to use a stream
-            InputStream in = AstralIO.getStream("native/" + name);
-            // always write to different location
-            File fileOut = new File(name);
-            if (fileOut.exists()) {
-                fileOut.delete();
+            OutputStream out;
+            try (InputStream in = getClass().getResourceAsStream(AstralIO.RESOURCE_DIR + "native/" + name)) {
+                File fileOut = new File(name);
+                if (fileOut.exists()) {
+                    fileOut.delete();
+                }
+                System.out.println("Writing lib to: " + fileOut.getAbsolutePath());
+                out = FileUtils.openOutputStream(fileOut);
+                IOUtils.copy(in, out);
             }
-            System.out.println("Writing lib to: " + fileOut.getAbsolutePath());
-            OutputStream out = FileUtils.openOutputStream(fileOut);
-            IOUtils.copy(in, out);
-            in.close();
             out.close();
         } catch (Exception e) {
             e.printStackTrace();

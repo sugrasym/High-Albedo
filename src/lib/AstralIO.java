@@ -45,6 +45,7 @@ import universe.Universe;
 public class AstralIO implements Serializable {
 
     public static final String RESOURCE_DIR = "/resource/";
+    public static final String SAVE_GAME_DIR = "/.highalbedo/";
 
     /*
      * Text
@@ -128,13 +129,13 @@ public class AstralIO implements Serializable {
     /*
      * Binary data
      */
-    public static InputStream getStream(String target) {
+    public InputStream getStream(String target) {
         //System.out.println("Loading stream resource " + RESOURCE_DIR + target);
-        return AstralIO.class.getResourceAsStream(RESOURCE_DIR + "/" + target);
+        return getClass().getResourceAsStream(RESOURCE_DIR + "/" + target);
     }
 
     public void saveGame(Universe universe, String gameName) throws Exception {
-        String home = System.getProperty("user.home") + "/.highalbedo/";
+        String home = System.getProperty("user.home") + SAVE_GAME_DIR;
         //create the subfolder
         File folder = new File(home);
         if (!folder.exists()) {
