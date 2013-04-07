@@ -280,6 +280,11 @@ public class Weapon extends Equipment {
             }
         }
     }
+    
+    @Override
+    public void killSounds() {
+        host.stopSound(fireEffect);
+    }
 
     public void useAmmo() {
         if (ammoType != null) {

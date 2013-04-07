@@ -220,12 +220,7 @@ public class Ship extends Celestial {
             }
         }
         //dispose of audio
-        if (soundQue != null) {
-            for (int a = 0; a < soundQue.size(); a++) {
-                soundQue.get(a).stop();
-            }
-            soundQue.clear();
-        }
+        killSounds();
         engineLoop = null;
     }
 
@@ -1425,6 +1420,7 @@ public class Ship extends Celestial {
     public void dying() {
         //drop explosions
         explode();
+        killSounds();
         //die
         state = State.DEAD;
     }
@@ -2606,16 +2602,19 @@ public class Ship extends Celestial {
         if (sound != null) {
             if (sound.isPlaying()) {
                 sound.stop();
+                soundQue.remove(sound);
             }
         }
     }
 
     private void killSounds() {
         //halt noises
-        if (soundQue != null) {
-            for (int a = 0; a < soundQue.size(); a++) {
-                stopSound(soundQue.get(a));
-            }
+        stopSound(engineLoop);
+        for(int a = 0; a < hardpoints.size(); a++) {
+            hardpoints.get(a).getMounted().killSounds();
+        }
+        //clear que
+        if(soundQue != null) {
             soundQue.clear();
         }
     }

@@ -327,6 +327,8 @@ speed=580
 mass=18
 refire=0.05
 explosion=Red
+fireEffect=audio/effects/weapons/Fang.wav
+loop=true
 [/Weapon]
 
 [Weapon]
@@ -340,6 +342,8 @@ speed=580
 mass=26
 refire=0.05
 explosion=Red
+fireEffect=audio/effects/weapons/Fang.wav
+loop=true
 [/Weapon]
 
 ########Entity Weapons########

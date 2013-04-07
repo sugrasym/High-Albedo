@@ -51,7 +51,7 @@ public class Soundling {
      * controls
      */
     public void play() {
-        if (!loop) {
+        if (!isLoop()) {
             sound.play();
         } else {
             sound.loop();
@@ -60,6 +60,10 @@ public class Soundling {
 
     public void stop() {
         sound.stop();
+    }
+
+    public boolean isLoop() {
+        return loop;
     }
 
     /*
@@ -114,6 +118,6 @@ public class Soundling {
     }
 
     public String toString() {
-        return name + ", " + target + ", " + loop;
+        return name + ", " + target + ", " + isLoop();
     }
 }

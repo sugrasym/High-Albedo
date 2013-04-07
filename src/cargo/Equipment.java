@@ -58,6 +58,10 @@ public class Equipment extends Item implements Serializable {
     public void deactivate() {
         setActive(false);
     }
+    
+    public void killSounds() {
+        //
+    }
 
     public boolean isActive() {
         return active;

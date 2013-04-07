@@ -348,10 +348,9 @@ public class Engine {
                                 Soundling snd = que.get(c);
                                 if (!snd.isPlaying()) {
                                     snd.play();
-                                } else {
-                                    //remove
-                                    que.remove(snd);
                                 }
+                                //pop
+                                que.remove(snd);
                             }
                         } else {
                             //out of range
