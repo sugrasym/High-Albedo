@@ -41,6 +41,8 @@ public class SuperFaction extends Faction {
     private ArrayList<Binling> taxies = new ArrayList<>();
     //station list
     private ArrayList<Binling> stations = new ArrayList<>();
+    //music list
+    private ArrayList<String> ambientMusic = new ArrayList<>();
     /*
      * Like a faction, except it stores information about loadout types,
      * station types, etc that god needs.
@@ -49,10 +51,16 @@ public class SuperFaction extends Faction {
     public SuperFaction(Universe universe, String name) {
         super(name);
         this.universe = universe;
-        initStations();
-        initLoadouts();
-        initSov();
-        initSovHosts();
+        if (universe != null) {
+            initStations();
+            initLoadouts();
+            initSov();
+            initSovHosts();
+        }
+        //check music
+        if (isEmpire() || name.matches("Neutral")) {
+            initAmbientMusic();
+        }
     }
 
     private void initStations() {
@@ -79,6 +87,31 @@ public class SuperFaction extends Faction {
             }
         } else {
             System.out.println(getName() + " doesn't have any stations!");
+        }
+    }
+
+    private void initAmbientMusic() {
+        //get a list of stations for this faction
+        Parser sParse = new Parser("FACTIONS.txt");
+        ArrayList<Term> terms = sParse.getTermsOfType("Music");
+        Term muse = null;
+        for (int a = 0; a < terms.size(); a++) {
+            if (terms.get(a).getValue("name").matches(getName())) {
+                muse = terms.get(a);
+            }
+        }
+        if (muse != null) {
+            //get types of stations
+            int a = 0;
+            String type = "";
+            while ((type = muse.getValue("ambient" + a)) != null) {
+                //store
+                getAmbientMusic().add(type.toString());
+                //iterate
+                a++;
+            }
+        } else {
+            System.out.println(getName() + " doesn't have any ambient music!");
         }
     }
 
@@ -155,7 +188,7 @@ public class SuperFaction extends Faction {
             }
         }
     }
-    
+
     private void initSovHosts() {
         /*
          * Makes a list of all the systems this faction can spawn in if it is
@@ -194,8 +227,8 @@ public class SuperFaction extends Faction {
     }
 
     private boolean canSpawnIn(SolarSystem get) {
-        for(int a = 0; a < hosts.size(); a++) {
-            if(get.getOwner().matches(hosts.get(a))) {
+        for (int a = 0; a < hosts.size(); a++) {
+            if (get.getOwner().matches(hosts.get(a))) {
                 return true;
             }
         }
@@ -204,5 +237,9 @@ public class SuperFaction extends Faction {
 
     public ArrayList<Binling> getTraders() {
         return traders;
+    }
+
+    public ArrayList<String> getAmbientMusic() {
+        return ambientMusic;
     }
 }

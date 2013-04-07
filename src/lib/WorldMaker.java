@@ -19,12 +19,10 @@
  */
 package lib;
 
-import celestial.Planet;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Random;
 import lib.Parser.Term;
-import lib.Faction;
 
 /**
  *
@@ -102,6 +100,7 @@ public class WorldMaker {
                             + "x=" + x + "\n"
                             + "y=" + y + "\n"
                             + "sky=" + skyTypes.get(pick).getValue("name") + "\n"
+                            + "ambient=" + sys.getAmbientMusic() + "\n"
                             + "[/System]\n\n";
                     //get star types
                     pick = rnd.nextInt(starTypes.size());
@@ -383,11 +382,11 @@ public class WorldMaker {
          * Seeds factions
          */
         //make a list of all factions
-        ArrayList<Faction> factions = new ArrayList<>();
+        ArrayList<SuperFaction> factions = new ArrayList<>();
         Parser fParse = new Parser("FACTIONS.txt");
         ArrayList<Term> terms = fParse.getTermsOfType("Faction");
         for (int a = 0; a < terms.size(); a++) {
-            factions.add(new Faction(terms.get(a).getValue("name")));
+            factions.add(new SuperFaction(null, terms.get(a).getValue("name")));
         }
         //for each sov holding faction pick a capital
         for (int a = 0; a < factions.size(); a++) {
@@ -402,6 +401,11 @@ public class WorldMaker {
                 }
                 //mark it
                 pick.setOwner(factions.get(a).getName());
+                //pick music
+                ArrayList<String> ambientMusic = factions.get(a).getAmbientMusic();
+                if (ambientMusic.size() > 0) {
+                    pick.setAmbientMusic(ambientMusic.get(rnd.nextInt(ambientMusic.size())));
+                }
                 //determine system count
                 int numSystems = (int) (factions.get(a).getSpread() * syslings.size());
                 int offset = 0;
@@ -411,6 +415,10 @@ public class WorldMaker {
                         Sysling tmp = pick.findBuddy(syslings, x + offset);
                         if (tmp.getOwner().matches("Neutral")) {
                             tmp.setOwner(factions.get(a).getName());
+                            //pick music
+                            if (ambientMusic.size() > 0) {
+                                pick.setAmbientMusic(ambientMusic.get(rnd.nextInt(ambientMusic.size())));
+                            }
                         } else {
                             offset += 1;
                         }
@@ -486,10 +494,17 @@ public class WorldMaker {
         private ArrayList<Statling> stations = new ArrayList<>();
         private String name;
         private String owner = "Neutral";
+        private String ambientMusic = "audio/music/Undefined.wav";
+        private SuperFaction neutralFaction = new SuperFaction(null, "Neutral");
 
         public Sysling(String name, Point2D.Double loc) {
             this.loc = loc;
             this.name = name;
+            //pick neutral ambient music
+            ArrayList<String> ambientMusic = neutralFaction.getAmbientMusic();
+            if (ambientMusic.size() > 0) {
+                setAmbientMusic(ambientMusic.get(rnd.nextInt(ambientMusic.size())));
+            }
         }
 
         public void addConnection(Sysling sys) {
@@ -561,6 +576,14 @@ public class WorldMaker {
 
         public ArrayList<Statling> getStations() {
             return stations;
+        }
+
+        public String getAmbientMusic() {
+            return ambientMusic;
+        }
+
+        public void setAmbientMusic(String ambientMusic) {
+            this.ambientMusic = ambientMusic;
         }
     }
 

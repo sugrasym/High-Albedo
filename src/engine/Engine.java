@@ -53,7 +53,13 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import lib.AstralIO;
 import lib.Parser;
 import lib.Parser.Term;
@@ -238,8 +244,23 @@ public class Engine {
      */
     public class SoundEngine implements EngineElement {
 
+        private Clip music;
+        private SolarSystem lastSys;
+        private String ambientTrack = "audio/music/Menu Noises.wav";
+        private String dangerTrack = null;
+
         public SoundEngine(Engine engine) {
-            //nothing
+            try {
+                music = AudioSystem.getClip();
+                //load menu track
+                AudioInputStream stream = AudioSystem.getAudioInputStream(getClass().getResource(AstralIO.RESOURCE_DIR + "/" + ambientTrack));
+                music.open(stream);
+                //start
+                music.loop(Clip.LOOP_CONTINUOUSLY);
+            } catch (Exception ex) {
+                Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
+                System.err.println("This likely means music is disabled.");
+            }
         }
 
         @Override
@@ -258,7 +279,43 @@ public class Engine {
             }
         }
 
-        private void updateMusic() {
+        private void updateMusic() throws Exception {
+            /*
+             * See if the player has changed systems
+             */
+            if (lastSys != null) {
+                if (lastSys != playerShip.getCurrentSystem()) {
+                    lastSys = playerShip.getCurrentSystem();
+                    //update tracks
+                }
+            } else {
+                lastSys = playerShip.getCurrentSystem();
+            }
+            /*
+             * Music is determined by region. Each owner has their own music
+             * as defined in 
+             */
+            boolean danger = false;
+            if (!danger) {
+                if (ambientTrack.matches(playerShip.getCurrentSystem().getAmbientMusic())) {
+                    //do nothing
+                } else {
+                    //stop current track
+                    music.stop();
+                    //free the music line
+                    music.close();
+                    //load the correct track
+                    ambientTrack = playerShip.getCurrentSystem().getAmbientMusic();
+                    music = AudioSystem.getClip();
+                    //load stream
+                    AudioInputStream stream = AudioSystem.getAudioInputStream(getClass().getResource(AstralIO.RESOURCE_DIR + "/" + ambientTrack));
+                    music.open(stream);
+                    //start
+                    music.loop(Clip.LOOP_CONTINUOUSLY);
+                }
+            } else if (danger) {
+                //TODO
+            }
         }
 
         private void checkForSoundSignals() {

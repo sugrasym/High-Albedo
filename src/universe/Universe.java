@@ -32,17 +32,17 @@ import lib.Parser.Term;
  * @author Nathan Wiehoff
  */
 public class Universe implements Serializable {
-
+    
     private ArrayList<SolarSystem> systems = new ArrayList<>();
     private transient ResourceCache cache;
     private transient God god;
     protected Ship playerShip;
     private ArrayList<Ship> playerProperty = new ArrayList<>();
-
+    
     public Universe() {
         init();
     }
-
+    
     private void init() {
         //create the universe parser
         Parser parse = new Parser("UNIVERSE.txt");
@@ -59,7 +59,7 @@ public class Universe implements Serializable {
         //there should only be of these, pick the first one
         makePlayer(games.get(0));
     }
-
+    
     private SolarSystem makeSystem(Parser parse, Term thisSystem) {
         SolarSystem system = null;
         {
@@ -68,6 +68,8 @@ public class Universe implements Serializable {
             //get position
             double sx = Double.parseDouble(thisSystem.getValue("x"));
             double sy = Double.parseDouble(thisSystem.getValue("y"));
+            //get music
+            String ambient = thisSystem.getValue("ambient");
             //get list of backs
             String back = "base_plate.png";
             String target = thisSystem.getValue("sky");
@@ -83,12 +85,15 @@ public class Universe implements Serializable {
             system.setY(sy);
             system.setBack(back);
             system.setOwner(owner);
+            if (ambient != null) {
+                system.setAmbientMusic(ambient);
+            }
             system.init(false);
         }
         System.out.println(system.getName() + " solar system created. ");
         return system;
     }
-
+    
     private void makePlayer(Term start) {
         Ship player = null;
         {
@@ -133,23 +138,23 @@ public class Universe implements Serializable {
             playerShip = player;
         }
     }
-
+    
     public ArrayList<SolarSystem> getSystems() {
         return systems;
     }
-
+    
     public void setSystems(ArrayList<SolarSystem> systems) {
         this.systems = systems;
     }
-
+    
     public Ship getPlayerShip() {
         return playerShip;
     }
-
+    
     public void setPlayerShip(Ship playerShip) {
         this.playerShip = playerShip;
     }
-
+    
     public ResourceCache getCache() {
         if (cache != null) {
             return cache;
@@ -158,7 +163,7 @@ public class Universe implements Serializable {
             return cache;
         }
     }
-
+    
     public God getGod() {
         if (god != null) {
             return god;
@@ -167,11 +172,11 @@ public class Universe implements Serializable {
             return god;
         }
     }
-
+    
     public void setGod(God god) {
         this.god = god;
     }
-
+    
     public ArrayList<Ship> getPlayerProperty() {
         return playerProperty;
     }

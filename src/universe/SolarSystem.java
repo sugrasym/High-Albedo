@@ -49,6 +49,8 @@ public class SolarSystem implements Entity, Serializable {
     protected String name;
     double x;
     double y;
+    //music
+    private String ambientMusic = "audio/music/Undefined.wav";
     //backplate
     private String back;
     //what it contains
@@ -519,5 +521,13 @@ public class SolarSystem implements Entity, Serializable {
 
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+    public String getAmbientMusic() {
+        return ambientMusic;
+    }
+
+    public void setAmbientMusic(String ambientMusic) {
+        this.ambientMusic = ambientMusic;
     }
 }

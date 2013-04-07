@@ -269,3 +269,15 @@ name=Wolves
 patrol0=Wolves Cub,75
 patrol1=Wolves Member,25
 [/Loadout]
+
+##########################################
+#Music for each faction
+#This is for the benefit of WorldMaker
+##########################################
+
+[Music]
+name=Neutral
+ambient0=audio/music/Undefined.wav
+ambient1=audio/music/Beyond The Frontier.wav
+ambient2=audio/music/Cold And Dark.wav
+[/Music]

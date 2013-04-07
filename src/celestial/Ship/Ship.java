@@ -347,6 +347,7 @@ public class Ship extends Celestial {
     protected void aliveInDock() {
         fuel = maxFuel;
         autopilot = Autopilot.NONE;
+        killSounds();
     }
 
     protected void aliveInSpace() {
@@ -1430,6 +1431,7 @@ public class Ship extends Celestial {
 
     @Override
     public void dead() {
+        killSounds();
     }
 
     /*
@@ -2386,7 +2388,7 @@ public class Ship extends Celestial {
                 return 0;
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             return 0;
         }
     }
@@ -2605,6 +2607,16 @@ public class Ship extends Celestial {
             if (sound.isPlaying()) {
                 sound.stop();
             }
+        }
+    }
+
+    private void killSounds() {
+        //halt noises
+        if (soundQue != null) {
+            for (int a = 0; a < soundQue.size(); a++) {
+                stopSound(soundQue.get(a));
+            }
+            soundQue.clear();
         }
     }
 
