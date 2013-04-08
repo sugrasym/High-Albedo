@@ -1,6 +1,6 @@
 #New Game Smell
 [NewGame]
-ship=Phantasm
+ship=Poltergeist
 system=System 14
 x=-23157.0
 y=22524.0

@@ -119,6 +119,34 @@ product=Jackal,1
 resource=
 [/Process]
 
+[Process]
+name=CheatMakePoltergeist
+cycle=1560
+product=Poltergeist,1
+resource=
+[/Process]
+
+[Process]
+name=CheatMakeBanshee
+cycle=750
+product=Banshee,1
+resource=
+[/Process]
+
+[Process]
+name=CheatMakeWraith
+cycle=925
+product=Wraith,1
+resource=
+[/Process]
+
+[Process]
+name=CheatMakePhantasm
+cycle=1240
+product=Phantasm,1
+resource=
+[/Process]
+
 #Cheating Weapon Manufacturing
 
 [Process]
@@ -188,6 +216,20 @@ resource=Heavy Water,1/Mass Block,6/Plank Tubes,16/Meat On A Stick,5/Nanoweave T
 name=CainanCheatVenom
 cycle=200
 product=Venom Alpha,4/Venom Beta,2
+resource=
+[/Process]
+
+[Process]
+name=OrinCheatRocketERPC
+cycle=600
+product=ERPC,2/Rocket Pod,4
+resource=
+[/Process]
+
+[Process]
+name=OrinCheatRocket
+cycle=200
+product=Rapid Rocket,25
 resource=
 [/Process]
 

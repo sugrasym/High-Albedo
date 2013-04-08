@@ -288,6 +288,24 @@ height=50
 #Naming Scheme: Ghosts
 #########
 
+#Transports
+ 
+[Ship]
+type=Poltergeist
+accel=20
+turning=2.2
+shield=800000
+shieldRecharge=1
+hull=1200
+fuel=80000
+mass=575
+sensor=3750
+cargo=1925
+hardpoint=missile,15,8,3.925/missile,15,-8,5.495/missile,15,4,3.925/missile,15,-4,5.495/cannon,8,2,3.925/cannon,8,-2,5.495
+width=50
+height=50
+[/Ship]
+
 #Light Fighters
 
 [Ship]

@@ -1,4 +1,17 @@
 ########Ship Stuff#########
+[Item]
+name=Poltergeist
+type=ship
+volume=2500
+mass=575
+HP=100
+minPrice=435000
+maxPrice=1267000
+store=40
+group=transport
+description=With the Knights continuing to attack trade ships the Orin have commissioned the Poltergeist. Armed with 4 Rocket Pods and 2 ERPCs it is perfect at defending itself against close range attackers, such as the Knights.
+[/Item]
+
 
 [Item]
 name=Banshee
