@@ -1615,14 +1615,14 @@ public class Ship extends Celestial {
                 double range = getNearWeaponRange();
                 //compensate for target dimensions
                 if (width > height) {
-                    rad = width / 2;
+                    rad = width;
                 } else {
-                    rad = height / 2;
+                    rad = height;
                 }
                 if (target.getWidth() > target.getHeight()) {
-                    rad += target.getWidth() / 2;
+                    rad += target.getWidth();
                 } else {
-                    rad += target.getHeight() / 2;
+                    rad += target.getHeight();
                 }
                 range += rad;
                 //fire thrusters based on range
@@ -1657,10 +1657,15 @@ public class Ship extends Celestial {
                     autopilotAvoidBlock(avoid);
                 }
                 double enemyX = getFireLeadX();
-                double enemyY = getFireLeadY();
-                /*double enemyX = (getX()) - (target.getX());
-                 double enemyY = (getY()) - (target.getY());*/
-                double desired = FastMath.atan2(enemyY, enemyX);
+                 double enemyY = getFireLeadY();
+                /*double enemyX = (getX()) - (target.getX() + target.getWidth() / 2) + (vx - target.getVx());
+                double enemyY = (getY()) - (target.getY() + target.getHeight() / 2) + (vy - target.getVy());*/
+                double desired = 0;
+                if (currentSystem != getUniverse().getPlayerShip().getCurrentSystem()) {
+                    desired = FastMath.atan2(enemyY, enemyX);
+                } else {
+                    desired = Math.atan2(enemyY, enemyX);
+                }
                 desired = (desired + 2.0 * Math.PI) % (2.0 * Math.PI);
                 //rotate to face the enemy
                 if (Math.abs(theta - desired) > turning * tpf) {
@@ -2498,12 +2503,12 @@ public class Ship extends Celestial {
 
     protected double getFireLeadX() {
         //get the center of the enemy
-        double enemyX = (getX() + width / 2 + vx) - (target.getX() + target.getWidth() / 2 + target.getVx());
+        double enemyX = (getX()) - (target.getX() + target.getWidth() / 2) + (vx - target.getVx());
         return enemyX;
     }
 
     protected double getFireLeadY() {
-        double enemyY = (getY() + height / 2 + vy) - (target.getY() + target.getHeight() / 2 + target.getVy());
+        double enemyY = (getY()) - (target.getY() + target.getHeight() / 2) + (vy - target.getVy());
         return enemyY;
     }
 

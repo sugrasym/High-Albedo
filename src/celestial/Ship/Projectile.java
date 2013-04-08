@@ -27,6 +27,7 @@ import java.awt.Image;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
+import lib.FastMath;
 
 /**
  *
@@ -93,6 +94,11 @@ public class Projectile extends Ship {
     }
 
     @Override
+    protected void autopilotAvoidBlock(Ship avoid) {
+        //lol
+    }
+
+    @Override
     public void initGraphics() {
         try {
             if (getUniverse() != null) {
@@ -142,6 +148,9 @@ public class Projectile extends Ship {
     public void alive() {
         super.alive();
         if (guided) {
+            if (traveled < 1) {
+                fireRearThrusters();
+            }
             seek();
         }
         //update range
@@ -151,7 +160,7 @@ public class Projectile extends Ship {
             traveled += accel * tpf;
         }
         if (traveled > maxRange) {
-            state = State.DEAD;
+            state = State.DYING;
         }
     }
 
@@ -179,13 +188,13 @@ public class Projectile extends Ship {
     @Override
     protected double getFireLeadX() {
         //get the center of the enemy
-        double enemyX = (getX()) - (target.getX());
+        double enemyX = (getX()) - (target.getX() + target.getWidth() / 2);
         return enemyX;
     }
 
     @Override
     protected double getFireLeadY() {
-        double enemyY = (getY()) - (target.getY());
+        double enemyY = (getY()) - (target.getY() + target.getHeight() / 2);
         return enemyY;
     }
 
