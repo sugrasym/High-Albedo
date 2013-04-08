@@ -101,6 +101,7 @@ public class WorldMaker {
                             + "y=" + y + "\n"
                             + "sky=" + skyTypes.get(pick).getValue("name") + "\n"
                             + "ambient=" + sys.getAmbientMusic() + "\n"
+                            + "danger=" + sys.getDangerMusic() + "\n"
                             + "[/System]\n\n";
                     //get star types
                     pick = rnd.nextInt(starTypes.size());
@@ -406,6 +407,10 @@ public class WorldMaker {
                 if (ambientMusic.size() > 0) {
                     pick.setAmbientMusic(ambientMusic.get(rnd.nextInt(ambientMusic.size())));
                 }
+                ArrayList<String> dangerMusic = factions.get(a).getDangerMusic();
+                if (dangerMusic.size() > 0) {
+                    pick.setDangerMusic(dangerMusic.get(rnd.nextInt(dangerMusic.size())));
+                }
                 //determine system count
                 int numSystems = (int) (factions.get(a).getSpread() * syslings.size());
                 int offset = 0;
@@ -418,6 +423,9 @@ public class WorldMaker {
                             //pick music
                             if (ambientMusic.size() > 0) {
                                 pick.setAmbientMusic(ambientMusic.get(rnd.nextInt(ambientMusic.size())));
+                            }
+                            if (dangerMusic.size() > 0) {
+                                pick.setDangerMusic(dangerMusic.get(rnd.nextInt(dangerMusic.size())));
                             }
                         } else {
                             offset += 1;
@@ -495,6 +503,7 @@ public class WorldMaker {
         private String name;
         private String owner = "Neutral";
         private String ambientMusic = "audio/music/Undefined.wav";
+        private String dangerMusic = "audio/music/Committing.wav";
         private SuperFaction neutralFaction = new SuperFaction(null, "Neutral");
 
         public Sysling(String name, Point2D.Double loc) {
@@ -584,6 +593,14 @@ public class WorldMaker {
 
         public void setAmbientMusic(String ambientMusic) {
             this.ambientMusic = ambientMusic;
+        }
+
+        public String getDangerMusic() {
+            return dangerMusic;
+        }
+
+        public void setDangerMusic(String dangerMusic) {
+            this.dangerMusic = dangerMusic;
         }
     }
 

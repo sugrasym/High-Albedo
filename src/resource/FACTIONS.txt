@@ -363,4 +363,5 @@ name=Neutral
 ambient0=audio/music/Undefined.wav
 ambient1=audio/music/Beyond The Frontier.wav
 ambient2=audio/music/Cold And Dark.wav
+danger0=audio/music/Committing.wav
 [/Music]

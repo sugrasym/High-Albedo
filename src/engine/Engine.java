@@ -243,11 +243,11 @@ public class Engine {
      * Sound class, makes sense to put it here
      */
     public class SoundEngine implements EngineElement {
-
         private Clip music;
         private SolarSystem lastSys;
         private String ambientTrack = "audio/music/Menu Noises.wav";
-        private String dangerTrack = null;
+        private String dangerTrack = "audio/music/Committing.wav";
+        boolean isAmbient = true;
 
         public SoundEngine(Engine engine) {
             try {
@@ -296,8 +296,15 @@ public class Engine {
              * as defined in 
              */
             boolean danger = false;
+            ArrayList<Ship> tests = playerShip.getShipsInSensorRange();
+            for (int a = 0; a < tests.size(); a++) {
+                if (playerShip.getStandingsToMe(tests.get(a)) < -2) {
+                    danger = true;
+                    break;
+                }
+            }
             if (!danger) {
-                if (ambientTrack.matches(playerShip.getCurrentSystem().getAmbientMusic())) {
+                if (ambientTrack.matches(playerShip.getCurrentSystem().getAmbientMusic()) && isAmbient) {
                     //do nothing
                 } else {
                     //stop current track
@@ -312,9 +319,26 @@ public class Engine {
                     music.open(stream);
                     //start
                     music.loop(Clip.LOOP_CONTINUOUSLY);
+                    isAmbient = true;
                 }
             } else if (danger) {
-                //TODO
+                if (dangerTrack.matches(playerShip.getCurrentSystem().getDangerMusic()) && !isAmbient) {
+                    //do nothing
+                } else {
+                    //stop current track
+                    music.stop();
+                    //free the music line
+                    music.close();
+                    //load the correct track
+                    dangerTrack = playerShip.getCurrentSystem().getDangerMusic();
+                    music = AudioSystem.getClip();
+                    //load stream
+                    AudioInputStream stream = AudioSystem.getAudioInputStream(getClass().getResource(AstralIO.RESOURCE_DIR + "/" + dangerTrack));
+                    music.open(stream);
+                    //start
+                    music.loop(Clip.LOOP_CONTINUOUSLY);
+                    isAmbient = false;
+                }
             }
         }
 

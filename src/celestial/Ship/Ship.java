@@ -341,6 +341,7 @@ public class Ship extends Celestial {
 
     protected void aliveInDock() {
         fuel = maxFuel;
+        shield = maxShield;
         autopilot = Autopilot.NONE;
         killSounds();
     }

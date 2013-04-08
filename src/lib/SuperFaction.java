@@ -43,6 +43,7 @@ public class SuperFaction extends Faction {
     private ArrayList<Binling> stations = new ArrayList<>();
     //music list
     private ArrayList<String> ambientMusic = new ArrayList<>();
+    private ArrayList<String> dangerMusic = new ArrayList<>();
     /*
      * Like a faction, except it stores information about loadout types,
      * station types, etc that god needs.
@@ -60,6 +61,7 @@ public class SuperFaction extends Faction {
         //check music
         if (isEmpire() || name.matches("Neutral")) {
             initAmbientMusic();
+            initDangerMusic();
         }
     }
 
@@ -112,6 +114,31 @@ public class SuperFaction extends Faction {
             }
         } else {
             System.out.println(getName() + " doesn't have any ambient music!");
+        }
+    }
+    
+    private void initDangerMusic() {
+        //get a list of stations for this faction
+        Parser sParse = new Parser("FACTIONS.txt");
+        ArrayList<Term> terms = sParse.getTermsOfType("Music");
+        Term muse = null;
+        for (int a = 0; a < terms.size(); a++) {
+            if (terms.get(a).getValue("name").matches(getName())) {
+                muse = terms.get(a);
+            }
+        }
+        if (muse != null) {
+            //get types of stations
+            int a = 0;
+            String type = "";
+            while ((type = muse.getValue("danger" + a)) != null) {
+                //store
+                getDangerMusic().add(type.toString());
+                //iterate
+                a++;
+            }
+        } else {
+            System.out.println(getName() + " doesn't have any danger music!");
         }
     }
 
@@ -241,5 +268,9 @@ public class SuperFaction extends Faction {
 
     public ArrayList<String> getAmbientMusic() {
         return ambientMusic;
+    }
+
+    public ArrayList<String> getDangerMusic() {
+        return dangerMusic;
     }
 }

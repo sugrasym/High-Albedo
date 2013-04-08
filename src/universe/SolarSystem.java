@@ -51,6 +51,7 @@ public class SolarSystem implements Entity, Serializable {
     double y;
     //music
     private String ambientMusic = "audio/music/Undefined.wav";
+    private String dangerMusic = "audio/music/Committing.wav";
     //backplate
     private String back;
     //what it contains
@@ -534,5 +535,13 @@ public class SolarSystem implements Entity, Serializable {
 
     public void setAmbientMusic(String ambientMusic) {
         this.ambientMusic = ambientMusic;
+    }
+
+    public String getDangerMusic() {
+        return dangerMusic;
+    }
+
+    public void setDangerMusic(String dangerMusic) {
+        this.dangerMusic = dangerMusic;
     }
 }

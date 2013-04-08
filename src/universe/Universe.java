@@ -70,6 +70,7 @@ public class Universe implements Serializable {
             double sy = Double.parseDouble(thisSystem.getValue("y"));
             //get music
             String ambient = thisSystem.getValue("ambient");
+            String danger = thisSystem.getValue("danger");
             //get list of backs
             String back = "base_plate.png";
             String target = thisSystem.getValue("sky");
@@ -87,6 +88,9 @@ public class Universe implements Serializable {
             system.setOwner(owner);
             if (ambient != null) {
                 system.setAmbientMusic(ambient);
+            }
+            if(danger != null) {
+                system.setDangerMusic(danger);
             }
             system.init(false);
         }
