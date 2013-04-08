@@ -400,3 +400,31 @@ rectBound=96,7,390,161/174,154,310,350/98,335,388,486
 dock=115,222,165,272,-124,242/315,222,365,272,563,249
 process=OrinFood
 [/Station]
+
+[Station]
+type=Orin Waste Converter
+accel=1.5
+turning=0
+shield=1600000
+shieldRecharge=2
+hull=18000
+fuel=2500000000000
+mass=125000
+rectBound=96,7,390,161/174,154,310,350/98,335,388,486
+dock=115,222,165,272,-124,242/315,222,365,272,563,249
+process=OrinMassBlock
+[/Station]
+
+[Station]
+type=Orin Tech Plant
+accel=1.5
+turning=0
+shield=2100000
+shieldRecharge=1
+hull=25000
+fuel=2500000000000
+mass=172000
+rectBound=96,7,390,161/174,154,310,350/98,335,388,486
+dock=115,222,165,272,-124,242/315,222,365,272,563,249
+process=OrinConsumerGoods/OrinAlloyBar/OrinFPGAs
+[/Station]

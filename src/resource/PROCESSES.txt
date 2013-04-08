@@ -518,3 +518,31 @@ cycle=350
 product=Mixed Foods,100
 resource=Standard Energy Unit,100
 [/Process]
+
+[Process]
+name=OrinMassBlock
+cycle=550
+product=Mass Block,1
+resource=Industrial Waste,15/Standard Energy Unit,1
+[/Process]
+
+[Process]
+name=OrinConsumerGoods
+cycle=815
+product=Consumer Goods,1
+resource=Industrial Waste,1/Standard Energy Unit,1
+[/Process]
+
+[Process]
+name=OrinAlloyBar
+cycle=625
+product=Alloy Bar,10
+resource=Industrial Waste,1/Standard Energy Unit,2/Mixed Foods,1/Mass Block,1
+[/Process]
+
+[Process]
+name=OrinFPGAs
+cycle=715
+product=FPGAs,10
+resource=Industrial Waste,1/Standard Energy Unit,1/Mixed Foods,1/Mass Block,1
+[/Process]
