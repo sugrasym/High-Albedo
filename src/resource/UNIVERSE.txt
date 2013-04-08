@@ -1,12 +1,12 @@
 #New Game Smell
 [NewGame]
-ship=Banshee
+ship=Phantasm
 system=System 14
 x=-23157.0
 y=22524.0
 cash=750000
-install=ERPC/ERPC/Rocket Pod/Rocket Pod
-cargo=Rapid Rocket~295
+install=ERPC/ERPC/Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod
+cargo=Rapid Rocket~600
 faction=Player
 [/NewGame]
 

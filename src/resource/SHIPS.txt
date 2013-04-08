@@ -306,6 +306,42 @@ width=50
 height=50
 [/Ship]
 
+#Medium Fighters
+
+[Ship]
+type=Wraith
+accel=32
+turning=4.6
+shield=75000
+shieldRecharge=2
+hull=250
+fuel=59000
+mass=120
+sensor=3800
+cargo=400
+hardpoint=cannon,8,2,3.925/cannon,8,-2,5.495/missile,15,-8,5.495/missile,15,8,3.925
+width=50
+height=50
+[/Ship]
+
+#Heavy Fighters
+
+[Ship]
+type=Phantasm
+accel=28
+turning=4.2
+shield=205000
+shieldRecharge=1
+hull=110
+fuel=48000
+mass=145
+sensor=3200
+cargo=600
+hardpoint=cannon,8,2,3.925/cannon,8,-2,5.495/missile,15,-8,5.495/missile,15,8,3.925/missile,15,-4,5.495/missile,15,4,3.925
+width=50
+height=50
+[/Ship]
+
 #########Knights#######
 #Naming Scheme: Swords
 #########
