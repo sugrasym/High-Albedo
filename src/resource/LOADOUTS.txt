@@ -171,6 +171,36 @@ install=Fang Alpha/Fang Alpha/Python Launcher/Python Launcher
 cargo=Python Missile~32
 [/Loadout]
 
+########Orin Federation Lawful
+
+[Loadout]
+ship=Banshee
+name=OFAF Banshee
+install=ERPC/ERPC/Rocket Pod/Rocket Pod
+cargo=Rapid Rocket~294
+[/Loadout]
+
+[Loadout]
+ship=Wraith
+name=OFAF Wraith
+install=ERPC/ERPC/Rocket Pod/Rocket Pod
+cargo=Rapid Rocket~400
+[/Loadout]
+
+[Loadout]
+ship=Phantasm
+name=OFAF Phantasm
+install=ERPC/ERPC/Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod
+cargo=Rapid Rocket~600
+[/Loadout]
+
+[Loadout]
+ship=Poltergeist
+name=Federal Trade Poltergeist
+install=ERPC/ERPC/Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod
+cargo=Rapid Rocket~400
+[/Loadout]
+
 ########Knights of Orin
 
 [Loadout]

@@ -19,7 +19,6 @@
  * 2. Manage stations - spawn replacements as needed
  * 3. Add 'fun' disasters to the universe. - TODO
  */
-
 package engine;
 
 import celestial.Celestial;
@@ -81,9 +80,9 @@ public class God implements EngineElement {
             //update
             try {
                 /*universe.getPlayerShip().setBehavior(Behavior.SECTOR_TRADE);*/
-                /*checkStations();
+                checkStations();
                 checkPatrols();
-                checkTraders();*/
+                checkTraders();
             } catch (Exception e) {
                 System.out.println("Error manipulating dynamic universe.");
                 e.printStackTrace();

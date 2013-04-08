@@ -1,12 +1,11 @@
 #New Game Smell
 [NewGame]
-ship=Poltergeist
+ship=Banshee
 system=System 14
-x=-23157.0
-y=22524.0
+near=Planet 0
 cash=750000
-install=ERPC/ERPC/Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod
-cargo=Rapid Rocket~600
+install=ERPC/ERPC/Rocket Pod/Rocket Pod
+cargo=Rapid Rocket~294
 faction=Player
 [/NewGame]
 

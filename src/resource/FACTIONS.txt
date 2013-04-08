@@ -309,6 +309,14 @@ trader0=Federal Trade Emu,20
 [/Loadout]
 
 [Loadout]
+name=Orin Federation
+patrol0=OFAF Banshee,100
+patrol1=OFAF Wraith,50
+patrol2=OFAF Phantasm,25
+trader0=Federal Trade Poltergeist,20
+[/Loadout]
+
+[Loadout]
 name=The Archers
 patrol0=Archers' Pillager,15
 patrol1=Archers' Raider,10
