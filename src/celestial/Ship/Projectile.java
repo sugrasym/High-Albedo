@@ -43,6 +43,9 @@ public class Projectile extends Ship {
     private double traveled = 0;
     //info for guided weapons
     protected boolean guided = false;
+    private double lastX = 0;
+    private double lastY = 0;
+    private double range = 0;
 
     public Projectile(Ship owner, String name, String type, Image raw_tex, BufferedImage tex, int width, int height) {
         super(name, type);
@@ -85,6 +88,45 @@ public class Projectile extends Ship {
                 exp.setTheta(rnd.nextDouble() * (2 * Math.PI));
                 //deploy
                 getCurrentSystem().putEntityInSystem(exp);
+            }
+        }
+    }
+
+    @Override
+    protected void fightTarget() {
+        /*
+         * Modified routine for use by missiles
+         */
+        if (getTarget() != null) {
+            //attack
+            if (getTarget().getState() == State.ALIVE) {
+                double distance = distanceTo(target);
+                double range = -10000000;
+                //fire thrusters based on range
+                fireRearThrusters();
+                double enemyX = getFireLeadX();
+                double enemyY = getFireLeadY();
+                double desired = 0;
+                if (currentSystem != getUniverse().getPlayerShip().getCurrentSystem()) {
+                    desired = FastMath.atan2(enemyY, enemyX);
+                } else {
+                    desired = Math.atan2(enemyY, enemyX);
+                }
+                desired = (desired + 2.0 * Math.PI) % (2.0 * Math.PI);
+                //rotate to face the enemy
+                if (Math.abs(theta - desired) > turning * tpf) {
+                    if (distance > width && distance > height) {
+                        if (theta - desired > -0.05) {
+                            rotateMinus();
+                        } else if (theta - desired < 0.05) {
+                            rotatePlus();
+                        }
+                    }
+                } else if (distance <= range) {
+                    fireActiveModules(target);
+                }
+            } else {
+                setTarget(null);
             }
         }
     }
@@ -156,11 +198,16 @@ public class Projectile extends Ship {
         //update range
         if (!guided) {
             traveled += speed * tpf;
+            if (traveled > maxRange) {
+                state = State.DEAD;
+            }
         } else {
-            traveled += accel * tpf;
-        }
-        if (traveled > maxRange) {
-            state = State.DYING;
+            traveled += Math.max(magnitude(getX() - getLastX(), getY() - getLastY()), 1);
+            setLastX(getX());
+            setLastY(getY());
+            if (traveled > getRange() * 4) {
+                state = State.DYING;
+            }
         }
     }
 
@@ -182,19 +229,19 @@ public class Projectile extends Ship {
         /*
          * Returns the range of the closest range onlined weapon.
          */
-        return -1;
+        return -1000000;
     }
 
     @Override
     protected double getFireLeadX() {
         //get the center of the enemy
-        double enemyX = (getX()) - (target.getX() + target.getWidth() / 2);
+        double enemyX = (getX()) - (target.getX() + target.getWidth() / 2) + (getVx() - target.getVx()) * tpf;
         return enemyX;
     }
 
     @Override
     protected double getFireLeadY() {
-        double enemyY = (getY()) - (target.getY() + target.getHeight() / 2);
+        double enemyY = (getY()) - (target.getY() + target.getHeight() / 2) + (getVy() - target.getVy()) * tpf;
         return enemyY;
     }
 
@@ -250,5 +297,29 @@ public class Projectile extends Ship {
 
     public void setGuided(boolean guided) {
         this.guided = guided;
+    }
+
+    public double getLastX() {
+        return lastX;
+    }
+
+    public void setLastX(double lastX) {
+        this.lastX = lastX;
+    }
+
+    public double getLastY() {
+        return lastY;
+    }
+
+    public void setLastY(double lastY) {
+        this.lastY = lastY;
+    }
+
+    public double getRange() {
+        return range;
+    }
+
+    public void setRange(double range) {
+        this.range = range;
     }
 }

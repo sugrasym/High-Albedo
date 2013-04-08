@@ -1657,9 +1657,9 @@ public class Ship extends Celestial {
                     autopilotAvoidBlock(avoid);
                 }
                 double enemyX = getFireLeadX();
-                 double enemyY = getFireLeadY();
+                double enemyY = getFireLeadY();
                 /*double enemyX = (getX()) - (target.getX() + target.getWidth() / 2) + (vx - target.getVx());
-                double enemyY = (getY()) - (target.getY() + target.getHeight() / 2) + (vy - target.getVy());*/
+                 double enemyY = (getY()) - (target.getY() + target.getHeight() / 2) + (vy - target.getVy());*/
                 double desired = 0;
                 if (currentSystem != getUniverse().getPlayerShip().getCurrentSystem()) {
                     desired = FastMath.atan2(enemyY, enemyX);

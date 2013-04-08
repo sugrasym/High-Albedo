@@ -21,6 +21,7 @@ package cargo;
 import celestial.Ship.Projectile;
 import celestial.Ship.Ship;
 import engine.Entity;
+import engine.Entity.State;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -197,14 +198,32 @@ public class Weapon extends Equipment {
     @Override
     public void activate(Entity target) {
         if (getCoolDown() <= getActivationTimer() && enabled) {
-            setActivationTimer(0); //restart cooldown
-            fire();
+            if (fire()) {
+                setActivationTimer(0); //restart cooldown
+            }
         }
     }
 
-    private void fire() {
+    private boolean hasTarget() {
+        if (getType().matches("missile")) {
+            if (host.getTarget() != null) {
+                if (host.distanceTo(host.getTarget()) <= range
+                        && host.getTarget().getState() == State.ALIVE) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return true;
+        }
+    }
+
+    private boolean fire() {
         if (enabled) {
-            if (hasAmmo()) {
+            if (hasAmmo() && hasTarget()) {
                 double theta = host.getTheta();
                 //use any ammo
                 useAmmo();
@@ -225,6 +244,8 @@ public class Weapon extends Equipment {
                 //store position
                 pro.setX((host.getX() + host.getWidth() / 2) - pro.getWidth() / 2 + dx);
                 pro.setY((host.getY() + host.getHeight() / 2) - pro.getHeight() / 2 + dy);
+                pro.setLastX(pro.getX());
+                pro.setLastY(pro.getY());
                 //calculate speed
                 double pdx = speed * Math.cos(theta - Math.PI);
                 double pdy = speed * Math.sin(theta - Math.PI);
@@ -241,6 +262,7 @@ public class Weapon extends Equipment {
                 pro.setExplosion(explosion);
                 //store AI
                 pro.setGuided(guided);
+                pro.setRange(range);
                 if (guided) {
                     pro.setFuel(Double.MAX_VALUE);
                     pro.setMaxFuel(Double.MAX_VALUE);
@@ -276,10 +298,12 @@ public class Weapon extends Equipment {
                 }
                 //reset timer
                 timeSinceLastActivation = 0;
+                return true;
             }
         }
+        return false;
     }
-    
+
     @Override
     public void killSounds() {
         host.stopSound(fireEffect);
