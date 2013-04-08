@@ -284,6 +284,28 @@ width=50
 height=50
 [/Ship]
 
+#########Orin##########
+#Naming Scheme: Ghosts
+#########
+
+#Light Fighters
+
+[Ship]
+type=Banshee
+accel=38
+turning=4.8
+shield=30000
+shieldRecharge=2
+hull=250
+fuel=68000
+mass=95
+sensor=4200
+cargo=295
+hardpoint=cannon,8,2,3.925/cannon,8,-2,5.495/missile,15,-8,5.495/missile,15,8,3.925
+width=50
+height=50
+[/Ship]
+
 #########Knights#######
 #Naming Scheme: Swords
 #########

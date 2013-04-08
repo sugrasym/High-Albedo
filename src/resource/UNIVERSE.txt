@@ -1,12 +1,12 @@
 #New Game Smell
 [NewGame]
-ship=Odin
+ship=Banshee
 system=System 14
 x=-23157.0
 y=22524.0
 cash=750000
-install=Thorn B/Thorn B
-cargo=
+install=ERPC/ERPC/Rocket Pod/Rocket Pod
+cargo=Rapid Rocket~295
 faction=Player
 [/NewGame]
 

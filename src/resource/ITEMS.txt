@@ -1,6 +1,19 @@
 ########Ship Stuff#########
 
 [Item]
+name=Banshee
+type=ship
+volume=2500
+mass=95
+HP=100
+minPrice=62000
+maxPrice=95000
+store=25
+group=fighter
+description=The Banshee is a light fighter with attitude. By trading off shield regeneration speed, a very thick shield buffer is obtained. This allows the Banshee to close range and punish with its rocket pods. Unfortunately, the cannon mounts it carries are undersized compared to most fighters.
+[/Item]
+
+[Item]
 name=Scimitar
 type=ship
 volume=2500
@@ -914,6 +927,32 @@ store=25
 description=ITC missile technology is far in advance of any other nation or faction. This is due to a design policy that forgoes other types of weapons. /br/ /br/ 'Sidewinder' is a modified version of the 'Starstruck' missile that gives up about half its yield for a drastic increase in effective range. This missile is designed to relentlessly hunt fast enemy fighters, and the real limit is the sensor range of the craft firing the missile. This missile is used by some ITC interceptors.
 [/Item]
 
+[Item]
+name=ERPC
+type=cannon
+volume=8
+mass=12
+HP=200
+minPrice=2000
+maxPrice=8000
+group=weapon
+store=1400
+description=ERPCs (Extended Range Pulse Cannons) trade damage for range and rapid fire. The reduced damage output allows the weapon to consume far less space than a traditional pulse cannon. The ERPC is primarily used by the Orin Federation.
+[/Item]
+
+[Item]
+name=Rocket Pod
+type=missile
+volume=15
+mass=10
+HP=200
+minPrice=18000
+maxPrice=31000
+group=weapon
+store=800
+description=Firing Orin's 'Rapid Rocket' the Rocket Pod delivers rapid fire missile punishment at medium range. Rapid deployment increases the probability of a hit, which may raise applied damage output.
+[/Item]
+
 ########Ammo###########
 
 [Item]
@@ -953,6 +992,19 @@ maxPrice=25
 group=ammo
 store=350
 description=Unarmed missile for use with a 'Python Launcher'. This is a Cainan multirole missile primarily used on light fighters. It does decent damage, but its guidance is sub par compared to dogfighting missiles.
+[/Item]
+
+[Item]
+name=Rapid Rocket
+type=commodity
+volume=1
+mass=1
+HP=100
+minPrice=2
+maxPrice=6
+group=ammo
+store=350
+description=Unarmed missile for use with a 'Rocket Pod'. This Orin missile is designed for rapid deployment to overwhelm enemies at close and medium range.
 [/Item]
 
 [Item]

@@ -326,6 +326,42 @@ fireEffect=audio/effects/weapons/Orgullo Negro.wav
 loop=true
 [/Weapon]
 
+########Orin Weapons##########
+
+[Weapon]
+#weapon info
+name=ERPC
+type=cannon
+#shell info
+damage=8
+range=550
+speed=600
+mass=11
+refire=0.04
+explosion=Green
+fireEffect=audio/effects/weapons/ERPC.wav
+loop=true
+[/Weapon]
+
+[Weapon]
+#weapon info
+name=Rocket Pod
+type=missile
+#shell info
+damage=250
+range=800
+speed=7
+mass=1
+refire=0.3
+explosion=Explosion
+#make it a seeker
+guided=true
+#it uses ammo
+ammo=Rapid Rocket
+accel=300
+turning=7
+[/Weapon]
+
 ########Wolves Weapons########
 
 [Weapon]
