@@ -22,6 +22,7 @@ ITC=0
 Caina Conglemerate=0
 Wolves=0
 Knights of Orin=0
+Orin Federation=0
 [/Faction]
 
 ########Anarchy###########
@@ -41,6 +42,7 @@ ITC=-10
 Caina Conglemerate=-10
 Wolves=-10
 Knights of Orin=-10
+Orin Federation=-10
 [/Faction]
 
 ########The Player########
@@ -58,6 +60,7 @@ ITC=0
 Caina Conglemerate=-1
 Wolves=-7
 Knights of Orin=-3
+Orin Federation=0
 [/Faction]
 
 ########Red Sky########
@@ -77,6 +80,7 @@ ITC=0
 Caina Conglemerate=0
 Wolves=-7
 Knights of Orin=-4
+Orin Federation=0
 [/Faction]
 
 ########Ageiran Space########
@@ -95,6 +99,7 @@ ITC=0
 Caina Conglemerate=0
 Wolves=-3
 Knights of Orin=-3
+Orin Federation=3
 [/Faction]
 
 [Faction]
@@ -112,6 +117,7 @@ ITC=0
 Caina Conglemerate=0
 Wolves=-7
 Knights of Orin=0
+Orin Federation=-3
 [/Faction]
 
 ########ITC Space########
@@ -130,6 +136,7 @@ ITC=10
 Caina Conglemerate=4
 Wolves=-7
 Knights of Orin=0
+Orin Federation=0
 [/Faction]
 
 ########Cainan Space########
@@ -147,6 +154,7 @@ ITC=4
 Caina Conglemerate=10
 Wolves=-4
 Knights of Orin=-7
+Orin Federation=0
 [/Faction]
 
 ########'The Wolves' Pirates########
@@ -166,10 +174,27 @@ ITC=-10
 Caina Conglemerate=-4
 Wolves=10
 Knights of Orin=-4
+Orin Federation=-3
 [/Faction]
 
 
-########'Knights' Pirates########
+########Orin Space############
+
+[Faction]
+name=Orin Federation
+var_isEmpire=true
+var_worldPercent=0.2
+Player=0
+Red Sky=0
+Neutral=0
+Entities=-10
+Ageiran Federation=3
+The Archers=-3
+ITC=0
+Caina Conglemerate=0
+Wolves=-3
+Knights of Orin=-7
+[/Faction]
 
 [Faction]
 name=Knights of Orin
@@ -186,6 +211,7 @@ ITC=0
 Caina Conglemerate=-7
 Wolves=-4
 Knights of Orin=10
+Orin Federation=-7
 [/Faction]
 
 ############################
@@ -209,6 +235,12 @@ station3=Ageiran MRE Factory,0.5
 station4=Ageiran Shipyard,0.1
 station5=Ageiran Solar Power Plant,1.0
 station6=Ageiran Weapons Forge,0.1
+[/Stations]
+
+[Stations]
+name=Orin Federation
+station0=Orin Fission Plant,0.5
+station1=Orin Mixed Foods Plant,0.35
 [/Stations]
 
 [Stations]

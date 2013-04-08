@@ -301,6 +301,19 @@ description=Originally a military product, the Ageiran MRE formula is now widely
 [/Item]
 
 [Item]
+name=Mixed Foods
+type=commodity
+volume=1
+mass=1
+HP=100
+minPrice=20
+maxPrice=25
+store=600
+group=food
+description=Various food stuffs containing fruits, meats, and vegetables grown in vertically integrated space farms.
+[/Item]
+
+[Item]
 name=Cainan Produce
 type=commodity
 volume=3

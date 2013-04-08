@@ -504,3 +504,17 @@ cycle=900
 product=Nanoweave Textiles,10
 resource=Mass Block,10/Heavy Water,1
 [/Process]
+
+[Process]
+name=OrinFission
+cycle=400
+product=Standard Energy Unit,10/Industrial Waste,1
+resource=
+[/Process]
+
+[Process]
+name=OrinFood
+cycle=350
+product=Mixed Foods,100
+resource=Standard Energy Unit,100
+[/Process]

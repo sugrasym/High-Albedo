@@ -372,3 +372,31 @@ rectBound=25,5,192,118/192,15,485,39/158,118,192,339
 dock=234,45,284,95,900,305/334,45,384,95,900,305/434,45,484,95,900,305
 process=CheatMakeScimitar/CheatMakeClaymore/KnightsTechSink/CheatMakeBala/CheatKnightsWeapons/CheatKnightsWeapons
 [/Station]
+
+[Station]
+type=Orin Fission Plant
+accel=1.5
+turning=0
+shield=1200000
+shieldRecharge=3
+hull=12000
+fuel=2500000000000
+mass=89000
+rectBound=96,7,390,161/174,154,310,350/98,335,388,486
+dock=115,222,165,272,-124,242/315,222,365,272,563,249
+process=OrinFission
+[/Station]
+
+[Station]
+type=Orin Mixed Foods Plant
+accel=1.5
+turning=0
+shield=1200000
+shieldRecharge=3
+hull=12000
+fuel=2500000000000
+mass=89000
+rectBound=96,7,390,161/174,154,310,350/98,335,388,486
+dock=115,222,165,272,-124,242/315,222,365,272,563,249
+process=OrinFood
+[/Station]
