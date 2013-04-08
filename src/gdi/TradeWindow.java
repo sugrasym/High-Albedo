@@ -28,6 +28,8 @@ import gdi.component.AstralList;
 import gdi.component.AstralWindow;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import lib.Parser;
+import lib.Parser.Term;
 
 public class TradeWindow extends AstralWindow {
 
@@ -41,9 +43,108 @@ public class TradeWindow extends AstralWindow {
     AstralList propertyList = new AstralList(this);
     AstralList optionList = new AstralList(this);
     AstralInput input = new AstralInput();
+    //quick lookup
+    Parser shipParser = new Parser("SHIPS.txt");
+    Parser weaponParser = new Parser("WEAPONS.txt");
     //logical
     AstralList lastFocus = cargoList;
     //behavior
+
+    private void appendShipDetails(Item selected) {
+        //add ship info
+        ArrayList<Term> types = shipParser.getTermsOfType("Ship");
+        Term test = null;
+        for (int a = 0; a < types.size(); a++) {
+            if (types.get(a).getValue("type").matches(selected.getName())) {
+                test = types.get(a);
+                break;
+            }
+        }
+        if (test != null) {
+            propertyList.addToList(" ");
+            propertyList.addToList("--Ship Details--");
+            propertyList.addToList(" ");
+            //it's a ship! time to provide important information about it
+            String hpRaw = test.getValue("hardpoint");
+            if (hpRaw != null) {
+                //show info on loadout possibilities
+                String[] arr = hpRaw.split("/");
+                for (int a = 0; a < arr.length; a++) {
+                    String[] det = arr[a].split(",");
+                    String hpType = det[0];
+                    String hpSize = det[1];
+                    String txt = hpType + " size " + hpSize;
+                    propertyList.addToList("Hardpoint:    " + txt);
+                }
+            }
+            propertyList.addToList(" ");
+            String mShield = test.getValue("shield");
+            String rShield = test.getValue("shieldRecharge");
+            String mHull = test.getValue("hull");
+            String accel = test.getValue("accel");
+            String turn = test.getValue("turning");
+            String sensor = test.getValue("sensor");
+            String fuel = test.getValue("fuel");
+            String mass = test.getValue("mass");
+            String cargo = test.getValue("cargo");
+            //add
+            propertyList.addToList("Shield:       " + mShield);
+            propertyList.addToList("Shield Regen: " + rShield);
+            propertyList.addToList("Hull:         " + mHull);
+            propertyList.addToList("Fuel:         " + fuel);
+            propertyList.addToList("Sensor:       " + sensor);
+            propertyList.addToList("Cargo:        " + cargo);
+            propertyList.addToList("Mass:         " + mass);
+            propertyList.addToList("Accel:        " + accel);
+            propertyList.addToList("Turning:      " + turn);
+        }
+    }
+
+    private void appendWeaponDetails(Item selected) {
+        //add ship info
+        ArrayList<Term> types = weaponParser.getTermsOfType("Weapon");
+        Term test = null;
+        for (int a = 0; a < types.size(); a++) {
+            if (types.get(a).getValue("name").matches(selected.getName())) {
+                test = types.get(a);
+                break;
+            }
+        }
+        if (test != null) {
+            propertyList.addToList(" ");
+            propertyList.addToList("--Weapon Details--");
+            propertyList.addToList(" ");
+            //it's a weapon! time to provide important information about it
+            propertyList.addToList(" ");
+            String type = test.getValue("type");
+            String damage = test.getValue("damage");
+            String range = test.getValue("range");
+            String speed = test.getValue("speed");
+            String refire = test.getValue("refire");
+            String guided = test.getValue("guided");
+            String ammo = test.getValue("ammo");
+            String accel = test.getValue("accel");
+            String turning = test.getValue("turning");
+            //add
+            propertyList.addToList("Type:         " + type);
+            propertyList.addToList("Damage:       " + damage);
+            propertyList.addToList("Range:        " + range);
+            propertyList.addToList("Muzzle Vel:   " + speed);
+            propertyList.addToList("Cooldown:     " + refire);
+            if (guided != null) {
+                propertyList.addToList("Guided:       " + guided);
+            }
+            if (ammo != null) {
+                propertyList.addToList("Ammo:         " + ammo);
+            }
+            if (accel != null) {
+                propertyList.addToList("Accel:        " + accel);
+            }
+            if (turning != null) {
+                propertyList.addToList("Turning:      " + turning);
+            }
+        }
+    }
 
     private enum Behavior {
 
@@ -174,8 +275,8 @@ public class TradeWindow extends AstralWindow {
                     propertyList.addToList(" ");
                     propertyList.addToList("Name:         " + selected.getName());
                     propertyList.addToList("Type:         " + selected.getType());
-                    propertyList.addToList("Mass:         " + selected.getMass());
-                    propertyList.addToList("Volume:       " + selected.getVolume());
+                    propertyList.addToList("Mass:         " + selected.getMass() / selected.getQuantity());
+                    propertyList.addToList("Volume:       " + selected.getVolume() / selected.getQuantity());
                     propertyList.addToList(" ");
                     propertyList.addToList("--MARKET--");
                     propertyList.addToList(" ");
@@ -183,6 +284,7 @@ public class TradeWindow extends AstralWindow {
                     propertyList.addToList("Max Price:    " + selected.getMaxPrice());
                     propertyList.addToList(" ");
                     propertyList.addToList("--DETAIL--");
+                    propertyList.addToList(" ");
                     fillDescriptionLines(selected);
                     fillCommandLines(selected);
                 }
@@ -341,5 +443,7 @@ public class TradeWindow extends AstralWindow {
             }
         }
         propertyList.addToList(tmp.toString());
+        appendShipDetails(selected);
+        appendWeaponDetails(selected);
     }
 }
