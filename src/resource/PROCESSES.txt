@@ -1,6 +1,20 @@
 #Cheating Ship Manufacturing
 
 [Process]
+name=CheatMakeScimitar
+cycle=21250
+product=Scimitar,1
+resource=
+[/Process]
+
+[Process]
+name=CheatMakeClaymore
+cycle=35375
+product=Claymore,1
+resource=
+[/Process]
+
+[Process]
 name=CheatMakeSparrow
 cycle=6400
 product=Sparrow,1
@@ -108,6 +122,20 @@ resource=
 #Cheating Weapon Manufacturing
 
 [Process]
+name=CheatMakeBala
+cycle=250
+product=Bala Negro,100
+resource=Alloy Bar,1
+[/Process]
+
+[Process]
+name=CheatKnightsWeapons
+cycle=4200
+product=Rayo Azul,2/Sangre Roja,1/Orgullo Negro,1
+resource=
+[/Process]
+
+[Process]
 name=ArchersCoveCheatWeapons
 cycle=1600
 product=Arrow,2/Catapult,1/Long 9,1
@@ -210,6 +238,13 @@ name=AgeiranCheatTalonSink
 cycle=60
 product=
 resource=Standard Energy Unit,10/Alloy Bar,2/FPGAs,5/Ageiran MRE,10
+[/Process]
+
+[Process]
+name=KnightsTechSink
+cycle=60
+product=
+resource=Standard Energy Unit,10/Assembly Modules,1/FPGAs,1/Nanoweave Textiles,1/Plank Tubes,1
 [/Process]
 
 #Converters

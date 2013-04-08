@@ -357,3 +357,18 @@ rectBound=9,3,446,448/428,195,529,251
 dock=454,141,504,191,485,-114/454,252,504,302,491,512
 process=WolfOrgans/WolfDenCheatWeapons/CheatMakeCoyote/CheatMakeJackal
 [/Station]
+
+[Station]
+type=Knights Common
+exempt=true
+accel=1.5
+turning=0
+shield=420000
+shieldRecharge=1275
+hull=16500
+fuel=2500000000000
+mass=45000
+rectBound=25,5,192,118/192,15,485,39/158,118,192,339
+dock=234,45,284,95,900,305/334,45,384,95,900,305/434,45,484,95,900,305
+process=CheatMakeScimitar/CheatMakeClaymore/KnightsTechSink/CheatMakeBala/CheatKnightsWeapons/CheatKnightsWeapons
+[/Station]

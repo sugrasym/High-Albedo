@@ -1,6 +1,32 @@
 ########Ship Stuff#########
 
 [Item]
+name=Scimitar
+type=ship
+volume=2500
+mass=105
+HP=100
+minPrice=92000
+maxPrice=158000
+store=7
+group=fighter
+description=The Scimitar is a chimera of components from various factions. The hull draws inspiration from a rejected prototype blueprint for the now mass produced Gecko, but reconfigured to only cannons. The shield generator uses ITC field coils to increase recharge rate at the expense of buffer, and the thruster array has twice as many thrusters as normal, giving it impressive torque. It is primarily used by the 'Knights of Orin' as a raider. 
+[/Item]
+
+[Item]
+name=Claymore
+type=ship
+volume=2500
+mass=150
+HP=100
+minPrice=450000
+maxPrice=850000
+store=6
+group=fighter
+description=At first it appears to be a beefed up Scimitar, however it is a radically different design. Using Orin coils instead of the ITC ones uses on the Scimitar gives this ship a very thick buffer at the expense of regeneration. The hull is also capable of mounting larger turrets than normal, at the expense of most cargo capacity.
+[/Item]
+
+[Item]
 name=Freyr
 type=ship
 volume=2500
@@ -818,7 +844,7 @@ minPrice=70000
 maxPrice=155000
 group=weapon
 store=20
-description=The Knights of Orin have weapons that perform fiercly well at close range but have no damage projection beyond that. /br/ /br/ 'Rayo Azul' is a wicked fast plasma bolt that does heavy damage but dissipates quickly.
+description=The Knights of Orin have weapons that perform fiercely well at close range but have no damage projection beyond that. /br/ /br/ 'Rayo Azul' is a wicked fast plasma bolt that does heavy damage but dissipates quickly.
 [/Item]
 
 [Item]
@@ -831,7 +857,7 @@ minPrice=120000
 maxPrice=781000
 group=weapon
 store=15
-description=The Knights of Orin have weapons that perform fiercly well at close range but have no damage projection beyond that. /br/ /br/ 'Sangre Roja' is an extremely powerful close range weapon, but using it requires closing to extremely close range.
+description=The Knights of Orin have weapons that perform fiercely well at close range but have no damage projection beyond that. /br/ /br/ 'Sangre Roja' is an extremely powerful close range weapon, but using it requires closing to extremely close range.
 [/Item]
 
 [Item]
@@ -844,7 +870,7 @@ minPrice=30000
 maxPrice=50000
 group=weapon
 store=10
-description=The Knights of Orin have weapons that perform fiercly well at close range but have no damage projection beyond that. /br/ /br/ 'Orgullo Negro' is a very powerful cannon when fed with 'Bala Negro' ammunition. It combines the destructive power the Knights are known for at close range with the ability to reach out and touch someone. It does burn through ammo quickly, however.
+description=The Knights of Orin have weapons that perform fiercely well at close range but have no damage projection beyond that. /br/ /br/ 'Orgullo Negro' is a very powerful cannon when fed with 'Bala Negro' ammunition. It combines the destructive power the Knights are known for at close range with the ability to reach out and touch someone. It does burn through ammo quickly, however.
 [/Item]
 
 #ITC Weapons

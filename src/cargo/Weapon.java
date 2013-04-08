@@ -270,7 +270,6 @@ public class Weapon extends Equipment {
                         host.playSound(fireEffect);
                     } else {
                         if (!loopFireEffect) {
-                            fireEffect.stop();
                             fireEffect.play();
                         }
                     }

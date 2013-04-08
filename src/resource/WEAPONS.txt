@@ -286,11 +286,11 @@ fireEffect=audio/effects/weapons/Long 9.wav
 name=Rayo Azul
 type=cannon
 #shell info
-damage=450
+damage=700
 range=200
 speed=800
 mass=11
-refire=0.4
+refire=0.6
 explosion=Blue
 fireEffect=audio/effects/weapons/Rayo Azul.wav
 [/Weapon]
@@ -300,11 +300,11 @@ fireEffect=audio/effects/weapons/Rayo Azul.wav
 name=Sangre Roja
 type=cannon
 #shell info
-damage=900
+damage=1300
 range=150
 speed=300
 mass=13
-refire=0.38
+refire=0.7
 explosion=Red
 fireEffect=audio/effects/weapons/Sangre Roja.wav
 [/Weapon]

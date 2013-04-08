@@ -95,14 +95,8 @@ public class Soundling {
         }
 
         private void play() {
-            Thread s = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    clip.play();
-                    playing = true;
-                }
-            });
-            s.start();
+            clip.play();
+            playing = true;
         }
 
         private void loop() {

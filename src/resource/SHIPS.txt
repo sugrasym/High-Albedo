@@ -284,6 +284,46 @@ width=50
 height=50
 [/Ship]
 
+#########Knights#######
+#Naming Scheme: Swords
+#########
+
+#Light Fighters
+
+[Ship]
+type=Scimitar
+accel=40
+turning=5.0
+shield=10275
+shieldRecharge=190
+hull=1200
+fuel=19000
+mass=105
+sensor=2400
+cargo=280
+hardpoint=cannon,15,12,3.925/cannon,15,-12,5.495/cannon,15,0,0
+width=50
+height=50
+[/Ship]
+
+#Heavy Fighters
+
+[Ship]
+type=Claymore
+accel=30
+turning=4.7
+shield=165000
+shieldRecharge=2
+hull=600
+fuel=18500
+mass=150
+sensor=2200
+cargo=25
+hardpoint=cannon,45,12,3.925/cannon,45,-12,5.495/cannon,45,0,0
+width=50
+height=50
+[/Ship]
+
 #########Wolves########
 #Naming Scheme: Wolves and Their Pals
 #########

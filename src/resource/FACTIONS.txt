@@ -7,7 +7,7 @@
 ##########################################
 #Make sure world percents add up to 100% at most.
 
-########Netural###########
+########Neutral###########
 [Faction]
 name=Neutral
 var_isEmpire=false
@@ -21,6 +21,7 @@ The Archers=0
 ITC=0
 Caina Conglemerate=0
 Wolves=0
+Knights of Orin=0
 [/Faction]
 
 ########Anarchy###########
@@ -39,6 +40,7 @@ The Archers=-10
 ITC=-10
 Caina Conglemerate=-10
 Wolves=-10
+Knights of Orin=-10
 [/Faction]
 
 ########The Player########
@@ -55,6 +57,7 @@ The Archers=-4
 ITC=0
 Caina Conglemerate=-1
 Wolves=-7
+Knights of Orin=-3
 [/Faction]
 
 ########Red Sky########
@@ -73,6 +76,7 @@ The Archers=-5
 ITC=0
 Caina Conglemerate=0
 Wolves=-7
+Knights of Orin=-4
 [/Faction]
 
 ########Ageiran Space########
@@ -90,6 +94,7 @@ The Archers=-10
 ITC=0
 Caina Conglemerate=0
 Wolves=-3
+Knights of Orin=-3
 [/Faction]
 
 [Faction]
@@ -106,6 +111,7 @@ The Archers=10
 ITC=0
 Caina Conglemerate=0
 Wolves=-7
+Knights of Orin=0
 [/Faction]
 
 ########ITC Space########
@@ -123,6 +129,7 @@ The Archers=0
 ITC=10
 Caina Conglemerate=4
 Wolves=-7
+Knights of Orin=0
 [/Faction]
 
 ########Cainan Space########
@@ -139,6 +146,7 @@ The Archers=0
 ITC=4
 Caina Conglemerate=10
 Wolves=-4
+Knights of Orin=-7
 [/Faction]
 
 ########'The Wolves' Pirates########
@@ -157,6 +165,27 @@ The Archers=-10
 ITC=-10
 Caina Conglemerate=-4
 Wolves=10
+Knights of Orin=-4
+[/Faction]
+
+
+########'Knights' Pirates########
+
+[Faction]
+name=Knights of Orin
+var_isEmpire=false
+var_hosts=Orin Federation/Caina Conglemerate
+var_worldPercent=0
+Player=-3
+Red Sky=-4
+Neutral=0
+Entities=-10
+Ageiran Federation=-3
+The Archers=0
+ITC=0
+Caina Conglemerate=-7
+Wolves=-4
+Knights of Orin=10
 [/Faction]
 
 ############################
@@ -216,6 +245,11 @@ name=Wolves
 station0=Wolf Den,0.05
 [/Stations]
 
+[Stations]
+name=Knights of Orin
+station0=Knights Common,0.05
+[/Stations]
+
 ##########################################
 #Loadout lists for each faction
 ##########################################
@@ -268,6 +302,12 @@ trader0=ITC Trade Wildabeast,20
 name=Wolves
 patrol0=Wolves Cub,75
 patrol1=Wolves Member,25
+[/Loadout]
+
+[Loadout]
+name=Knights of Orin
+patrol0=Knights Terrorist,25
+patrol1=Knights Visionary,10
 [/Loadout]
 
 ##########################################

@@ -171,6 +171,22 @@ install=Fang Alpha/Fang Alpha/Python Launcher/Python Launcher
 cargo=Python Missile~32
 [/Loadout]
 
+########Knights of Orin
+
+[Loadout]
+ship=Scimitar
+name=Knights Terrorist
+install=Rayo Azul/Rayo Azul/Orgullo Negro
+cargo=Bala Negro~280
+[/Loadout]
+
+[Loadout]
+ship=Claymore
+name=Knights Visionary
+install=Sangre Roja/Sangre Roja/Sangre Roja
+cargo=Bala Negro~5
+[/Loadout]
+
 ########Entities
 
 [Loadout]
