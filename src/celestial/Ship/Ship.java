@@ -388,7 +388,7 @@ public class Ship extends Celestial {
      * Autopilot
      */
     protected void autopilot() {
-        /*if (faction.matches("Player")) {
+        /*if (currentSystem == getUniverse().getPlayerShip().currentSystem) {
          System.out.println("A: " + autopilot + " :: " + "B: " + behavior);
          }*/
         try {
@@ -400,8 +400,9 @@ public class Ship extends Celestial {
                     autopilotFlyToBlock();
                 } else if (autopilot == Autopilot.FOLLOW) {
                     autopilotFollowBlock();
-                } else {
+                } else if (autopilot == Autopilot.ALL_STOP) {
                     autopilotAllStopBlock();
+                } else {
                     autopilotFightingBlock();
                     autopilotDockingBlock();
                     autopilotUndockingBlock();
@@ -593,6 +594,12 @@ public class Ship extends Celestial {
                         cmdAllStop();
                     } else {
                         moveToPosition(flyToTarget.getX(), flyToTarget.getY());
+                    }
+                } else if (flyToTarget.getCurrentSystem() == null) {
+                    try {
+                        throw new Exception(flyToTarget.getName() + " has null solar system");
+                    } catch (Exception ex) {
+                        Logger.getLogger(Ship.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } else {
                     cmdAllStop();
@@ -2610,11 +2617,11 @@ public class Ship extends Celestial {
     private void killSounds() {
         //halt noises
         stopSound(engineLoop);
-        for(int a = 0; a < hardpoints.size(); a++) {
+        for (int a = 0; a < hardpoints.size(); a++) {
             hardpoints.get(a).getMounted().killSounds();
         }
         //clear que
-        if(soundQue != null) {
+        if (soundQue != null) {
             soundQue.clear();
         }
     }

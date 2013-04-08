@@ -314,6 +314,11 @@ public class SolarSystem implements Entity, Serializable {
 
     public void putEntityInSystem(Entity entity) {
         entities.add(entity);
+        if(entity instanceof Celestial) {
+            //let it know where it is
+            Celestial tmp = (Celestial) entity;
+            tmp.setCurrentSystem(this);
+        }
         //put in the correct sublist
         if (entity instanceof Station) {
             stationList.add(entity);
