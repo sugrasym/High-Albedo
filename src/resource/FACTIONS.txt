@@ -243,7 +243,7 @@ station0=Orin Fission Plant,0.5
 station1=Orin Mixed Foods Plant,0.35
 station2=Orin Waste Converter,0.35
 station3=Orin Tech Plant,0.35
-station4=
+station4=Federal Armory,0.2
 [/Stations]
 
 [Stations]

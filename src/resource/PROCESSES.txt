@@ -247,6 +247,20 @@ product=
 resource=Standard Energy Unit,10/Assembly Modules,1/FPGAs,1/Nanoweave Textiles,1/Plank Tubes,1
 [/Process]
 
+[Process]
+name=OrinShipSink
+cycle=600
+product=
+resource=Standard Energy Unit,25/Alloy Bar,6/FPGAs,3/Mixed Foods,8
+[/Process]
+
+[Process]
+name=OrinTechSink
+cycle=600
+product=
+resource=Hull Plating,1/Assembly Modules,1
+[/Process]
+
 #Converters
 
 [Process]
@@ -546,3 +560,4 @@ cycle=715
 product=FPGAs,10
 resource=Industrial Waste,1/Standard Energy Unit,1/Mixed Foods,1/Mass Block,1
 [/Process]
+[Process]
