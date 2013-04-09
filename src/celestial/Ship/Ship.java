@@ -90,6 +90,7 @@ public class Ship extends Celestial {
     public static final double PATROL_REFUEL_PERCENT = 0.5;
     public static final double TRADER_RESERVE_PERCENT = 0.5;
     public static final double TRADER_REFUEL_PERCENT = 0.5;
+    public static final double PLAYER_AGGRO_SHIELD = 0.5;
     public static final int HOSTILE_STANDING = -2;
     public static final String PLAYER_FACTION = "Player";
     //raw loadout
@@ -1173,7 +1174,8 @@ public class Ship extends Celestial {
                     //wait
                 }
             } else {
-                if ((target.getStandingsToMe(this) < HOSTILE_STANDING) || scanForContraband(target)) {
+                //fight current target
+                if ((target.getStandingsToMe(this) < HOSTILE_STANDING) || scanForContraband(target) || target == lastBlow) {
                     cmdFightTarget(target);
                 }
             }
@@ -1562,6 +1564,14 @@ public class Ship extends Celestial {
                             }
                         }
                     }
+                }
+            }
+        }
+        //see if it's being beaten on by the player
+        if (shield / maxShield < PLAYER_AGGRO_SHIELD) {
+            if (!faction.matches("Player")) {
+                if (lastBlow == getUniverse().getPlayerShip()) {
+                    hostiles.add(getUniverse().getPlayerShip());
                 }
             }
         }
