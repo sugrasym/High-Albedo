@@ -40,10 +40,13 @@ public class Faction implements Serializable {
     public static final int PERMA_GREEN = 10;
     private String name;
     private String description = "No Information Found";
+    //sov and distribution
     private boolean isEmpire = false;
     private double spread = 0;
     protected ArrayList<String> hosts = new ArrayList<>();
     private ArrayList<Binling> standings = new ArrayList<>();
+    //contraband
+    private ArrayList<String> contraband = new ArrayList<>();
 
     public Faction(String name) {
         this.name = name;
@@ -80,9 +83,15 @@ public class Faction implements Serializable {
                         hosts.addAll(Arrays.asList(arr));
                     }
                     //Store description
-                    String desc = tmp2.getValue("description");
+                    String desc = tmp2.getValue("var_description");
                     if (desc != null) {
                         description = desc;
+                    }
+                    //Store contraband
+                    String cntr = tmp2.getValue("var_contraband");
+                    if(cntr != null) {
+                        String[] arr = cntr.split("/");
+                        getContraband().addAll(Arrays.asList(arr));
                     }
                 } catch (Exception e) {
                     System.out.println(name + " is missing information about spread and sov");
@@ -90,6 +99,15 @@ public class Faction implements Serializable {
                 break;
             }
         }
+    }
+    
+    public boolean isContraband(String item) {
+        for(int a = 0; a < contraband.size(); a++) {
+            if(contraband.get(a).matches(item)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void derivedModification(Faction mod, double delta) {
@@ -202,5 +220,9 @@ public class Faction implements Serializable {
 
     public String getDescription() {
         return description;
+    }
+
+    public ArrayList<String> getContraband() {
+        return contraband;
     }
 }

@@ -41,7 +41,7 @@ import universe.Universe;
  * @author nwiehoff
  */
 public class God implements EngineElement {
-
+    
     private Universe universe;
     private ArrayList<SuperFaction> factions = new ArrayList<>();
     private Random rnd = new Random();
@@ -51,13 +51,13 @@ public class God implements EngineElement {
         '3', '4', '5', '6', '7', '8', '9', '0'};
     //timing
     private long lastFrame;
-
+    
     public God(Universe universe) {
         this.universe = universe;
         //generate lists
         initFactions();
     }
-
+    
     private void initFactions() {
         //make a list of all factions
         Parser fParse = new Parser("FACTIONS.txt");
@@ -66,7 +66,7 @@ public class God implements EngineElement {
             factions.add(new SuperFaction(universe, terms.get(a).getValue("name")));
         }
     }
-
+    
     @Override
     public void periodicUpdate() {
         //get time since last frame
@@ -99,14 +99,14 @@ public class God implements EngineElement {
             doTraders(factions.get(a));
         }
     }
-
+    
     private void checkPatrols() {
         //iterate through each faction
         for (int a = 0; a < factions.size(); a++) {
             doPatrols(factions.get(a));
         }
     }
-
+    
     private void checkStations() {
         //iterate through each faction
         for (int a = 0; a < factions.size(); a++) {
@@ -210,7 +210,7 @@ public class God implements EngineElement {
             }
         }
     }
-
+    
     private void doTraders(SuperFaction faction) {
         /*
          * 1. Make sure this faction has patrols
@@ -297,7 +297,7 @@ public class God implements EngineElement {
             }
         }
     }
-
+    
     private void doPatrols(SuperFaction faction) {
         /*
          * 1. Make sure this faction has patrols
@@ -408,7 +408,7 @@ public class God implements EngineElement {
         }
         return count;
     }
-
+    
     public int countShipsByLoadout(Faction faction, SolarSystem system, String loadout) {
         int count = 0;
         {
@@ -429,7 +429,7 @@ public class God implements EngineElement {
         }
         return count;
     }
-
+    
     public int countShipsByRole(Faction faction, SolarSystem system, Behavior behavior) {
         int count = 0;
         {
@@ -446,14 +446,14 @@ public class God implements EngineElement {
         }
         return count;
     }
-
+    
     private Station makeStation(String type, String name, String faction) {
         Station ret = new Station(name, type);
         ret.setFaction(faction);
         ret.init(false);
         return ret;
     }
-
+    
     private Ship makeShip(String template, String name, String faction) {
         /*
          * Generates a ship from a template.
@@ -463,6 +463,7 @@ public class God implements EngineElement {
             String cargo = "";
             String install = "";
             String ship = "Mass Testing Brick";
+            String cargoScan = "false";
             if (template != null) {
                 //load this template
                 Parser lParse = new Parser("LOADOUTS.txt");
@@ -473,12 +474,16 @@ public class God implements EngineElement {
                         cargo = lods.get(a).getValue("cargo");
                         install = lods.get(a).getValue("install");
                         ship = lods.get(a).getValue("ship");
+                        String cs = lods.get(a).getValue("cargoScan");
+                        if (cs != null) {
+                            cargoScan = cs;
+                        }
                         break;
                     }
                 }
             }
 
-            //create player
+            //create ship
             ret = new Ship(name, ship);
             if (template != null) {
                 ret.setTemplate(template);
@@ -488,10 +493,11 @@ public class God implements EngineElement {
             ret.setFaction(faction);
             ret.init(false);
             ret.addInitialCargo(cargo);
+            ret.setScanForContraband(Boolean.parseBoolean(cargoScan));
         }
         return ret;
     }
-
+    
     public String randomIDTag(int size, char[] sample) {
         String ret = "";
         {
@@ -502,7 +508,7 @@ public class God implements EngineElement {
         }
         return ret;
     }
-
+    
     public void spawnShip(Faction faction, SolarSystem system, Point2D.Double loc, Binling loadout, Behavior behavior) {
         String name = loadout.getString() + " " + randomIDTag(5, basicSample);
         //get a basic ship to work with
@@ -518,7 +524,7 @@ public class God implements EngineElement {
         //report
         //System.out.println("Spawned " + loadout.getString() + " in " + system.getName() + " for " + faction.getName());
     }
-
+    
     public void spawnStation(Faction faction, SolarSystem system, Point2D.Double loc, Binling loadout) {
         String name = loadout.getString() + " " + randomIDTag(5, basicSample);
         //get a basic ship to work with

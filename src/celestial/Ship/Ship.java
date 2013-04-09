@@ -53,6 +53,14 @@ import lib.Soundling;
  */
 public class Ship extends Celestial {
 
+    public boolean isScanForContraband() {
+        return scanForContraband;
+    }
+
+    public void setScanForContraband(boolean scanForContraband) {
+        this.scanForContraband = scanForContraband;
+    }
+
     /*
      * Behaviors are over-arching goals and motivations such as hunting down
      * hostiles or trading. The behave() method will keep track of any
@@ -143,6 +151,7 @@ public class Ship extends Celestial {
     //sensor
     protected double sensor;
     protected Ship target;
+    private boolean scanForContraband = false;
     //detecting aggro
     private Ship lastBlow = this;
     //cargo
@@ -1171,7 +1180,7 @@ public class Ship extends Celestial {
                     //wait
                 }
             } else {
-                if (target.getStandingsToMe(this) < HOSTILE_STANDING) {
+                if ((target.getStandingsToMe(this) < HOSTILE_STANDING) || scanForContraband(target)) {
                     cmdFightTarget(target);
                 }
             }
@@ -1481,6 +1490,20 @@ public class Ship extends Celestial {
         autopilot = Autopilot.ATTACK_TARGET;
     }
 
+    public boolean scanForContraband(Ship ship) {
+        if (scanForContraband) {
+            ArrayList<Item> sc = ship.getCargoBay();
+            for (int a = 0; a < sc.size(); a++) {
+                if (myFaction.isContraband(sc.get(a).getName())) {
+                    return true;
+                }
+            }
+            return false;
+        } else {
+            return false;
+        }
+    }
+
     public void targetNearestShip() {
         //get a list of all nearby ships
         ArrayList<Entity> nearby = getCurrentSystem().getEntities();
@@ -1536,7 +1559,7 @@ public class Ship extends Celestial {
                                 //make sure it is alive
                                 if (tmp.getState() == State.ALIVE) {
                                     //check standings
-                                    if (tmp.getStandingsToMe(this) < HOSTILE_STANDING) {
+                                    if (tmp.getStandingsToMe(this) < HOSTILE_STANDING || scanForContraband(tmp)) {
                                         hostiles.add(tmp);
                                     }
                                 }

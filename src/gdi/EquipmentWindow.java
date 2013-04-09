@@ -24,6 +24,7 @@ import celestial.Ship.Projectile;
 import celestial.Ship.Ship;
 import celestial.Ship.Station;
 import engine.Entity;
+import engine.Entity.State;
 import gdi.component.AstralBar;
 import gdi.component.AstralComponent;
 import gdi.component.AstralLabel;
@@ -258,7 +259,7 @@ public class EquipmentWindow extends AstralWindow {
             ey -= ship.getY();
             //calculate distance
             double dist = magnitude(ex, ey);
-            if (dist <= range) {
+            if (dist <= range && ship.getTarget().getState() == State.ALIVE) {
                 //adjust for size
                 ex /= range;
                 ey /= range;
@@ -269,6 +270,8 @@ public class EquipmentWindow extends AstralWindow {
                  */
                 drawShipOnRadar(gfx, ex, ey);
                 drawVectorLines(gfx, ex, ey);
+            } else {
+                ship.setTarget(null);
             }
         }
 

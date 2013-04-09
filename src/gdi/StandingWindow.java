@@ -30,9 +30,9 @@ import lib.Faction;
 import lib.WorldMaker;
 
 public class StandingWindow extends AstralWindow {
+
     public static final String PLAYER_FACTION = "Player";
     public static final int HOSTILE_STANDING = -2;
-
     AstralList factionList = new AstralList(this);
     AstralList infoList = new AstralList(this);
     Faction viewing = null;
@@ -165,9 +165,14 @@ public class StandingWindow extends AstralWindow {
                     }
                 }
             }
-            infoList.addToList(" ");
-            infoList.addToList("--Description-");
-            infoList.addToList(" ");
+            if (selected.getContraband().size() > 0) {
+                infoList.addToList(" ");
+                infoList.addToList("--Contraband--");
+                infoList.addToList(" ");
+                for (int a = 0; a < selected.getContraband().size(); a++) {
+                    infoList.addToList(selected.getContraband().get(a).toString());
+                }
+            }
         }
     }
 
@@ -176,6 +181,10 @@ public class StandingWindow extends AstralWindow {
          * Fills in the item's description being aware of things like line breaking on spaces.
          */
         if (selected != null) {
+            infoList.addToList(" ");
+            infoList.addToList("--Description-");
+            infoList.addToList(" ");
+            //
             String description = selected.getDescription();
             int lineWidth = (((infoList.getWidth() - 10) / (infoList.getFont().getSize())));
             int cursor = 0;

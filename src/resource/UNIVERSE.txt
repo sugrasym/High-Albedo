@@ -1,11 +1,11 @@
 #New Game Smell
 [NewGame]
 ship=Banshee
-system=System 89
+system=System 1
 near=Planet 0
 cash=750000
 install=ERPC/ERPC/Rocket Pod/Rocket Pod
-cargo=Rapid Rocket~294
+cargo=Rapid Rocket~120/Human Organs~2/Pirated Software~5
 faction=Player
 [/NewGame]
 

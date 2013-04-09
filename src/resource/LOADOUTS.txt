@@ -35,6 +35,7 @@ ship=Sparrow
 name=Police Sparrow
 install=Talon 1/Talon 1
 cargo=Standard Energy Unit~5
+cargoScan=true
 [/Loadout]
 
 [Loadout]
@@ -88,6 +89,7 @@ ship=Cheetah
 name=ITC Police
 install=Sidewinder Launcher/Sidewinder Launcher
 cargo=Sidewinder Missile~32
+cargoScan=true
 [/Loadout]
 
 [Loadout]
@@ -118,6 +120,7 @@ ship=Gecko
 name=Air Force Gecko
 install=Python Launcher/Python Launcher/Venom Alpha
 cargo=Python Missile~16
+cargoScan=true
 [/Loadout]
 
 [Loadout]
@@ -178,6 +181,7 @@ ship=Banshee
 name=OFAF Banshee
 install=ERPC/ERPC/Rocket Pod/Rocket Pod
 cargo=Rapid Rocket~294
+cargoScan=true
 [/Loadout]
 
 [Loadout]

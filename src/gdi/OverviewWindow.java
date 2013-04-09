@@ -272,7 +272,7 @@ public class OverviewWindow extends AstralWindow {
             //calculate direction vector
             gfx.setColor(Color.yellow);
             //calculate velocity vector
-            double vTheta = FastMath.atan2(sensorShip.getVy(), sensorShip.getVx());
+            double vTheta = Math.atan2(sensorShip.getVy(), sensorShip.getVx());
             double vpx = Math.cos(vTheta) * width / 2;
             double vpy = Math.sin(vTheta) * height / 2;
             if (!(sensorShip.getVx() == 0 && sensorShip.getVy() == 0)) {
