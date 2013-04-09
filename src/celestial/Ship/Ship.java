@@ -53,14 +53,6 @@ import lib.Soundling;
  */
 public class Ship extends Celestial {
 
-    public boolean isScanForContraband() {
-        return scanForContraband;
-    }
-
-    public void setScanForContraband(boolean scanForContraband) {
-        this.scanForContraband = scanForContraband;
-    }
-
     /*
      * Behaviors are over-arching goals and motivations such as hunting down
      * hostiles or trading. The behave() method will keep track of any
@@ -94,6 +86,7 @@ public class Ship extends Celestial {
         FOLLOW, //follow a target at a range
     }
     //constants
+    public static final double LOOT_DROP_PROBABILITY = 0.21;
     public static final double PATROL_REFUEL_PERCENT = 0.5;
     public static final double TRADER_RESERVE_PERCENT = 0.5;
     public static final double TRADER_REFUEL_PERCENT = 0.5;
@@ -1435,8 +1428,11 @@ public class Ship extends Celestial {
 
     @Override
     public void dying() {
+        //drop cargo
+        dropLoot();
         //drop explosions
         explode();
+        //end sound effects
         killSounds();
         //die
         state = State.DEAD;
@@ -2107,11 +2103,39 @@ public class Ship extends Celestial {
         }
     }
 
+    public void ejectModule(Hardpoint hardpoint) {
+        CargoPod pod = new CargoPod(hardpoint.getMounted());
+        hardpoint.unmount(hardpoint.getMounted());
+        pod.setFaction("Neutral");
+        pod.init(false);
+        //make sure it isn't touching this ship and has the right velocity
+        pod.setVx(vx * 1.1);
+        pod.setVy(vy * 1.1);
+        pod.setX(x - width);
+        pod.setY(y - height);
+        //store position
+        double dT = rnd.nextInt() % (Math.PI * 2.0);
+        double dx = width * 2 * Math.cos(dT);
+        double dy = height * 2 * Math.sin(dT);
+        pod.setX((getX() + getWidth() / 2) - pod.getWidth() / 2 + dx);
+        pod.setY((getY() + getHeight() / 2) - pod.getHeight() / 2 + dy);
+        //calculate speed
+        double speed = rnd.nextInt(25) + 1;
+        double pdx = speed * Math.cos(dT);
+        double pdy = speed * Math.sin(dT);
+        //add to host vector
+        pod.setVx(getVx() + pdx);
+        pod.setVy(getVy() + pdy);
+        pod.setCurrentSystem(currentSystem);
+        //deploy
+        getCurrentSystem().putEntityInSystem(pod);
+    }
+
     public void ejectCargo(Item item) {
         if (cargoBay.contains(item)) {
             cargoBay.remove(item);
             CargoPod pod = new CargoPod(item);
-            pod.faction = faction;
+            pod.setFaction("Neutral");
             pod.init(false);
             //make sure it isn't touching this ship and has the right velocity
             pod.setVx(vx * 1.1);
@@ -2137,6 +2161,21 @@ public class Ship extends Celestial {
         }
     }
 
+    protected void dropLoot() {
+        for (int a = 0; a < cargoBay.size(); a++) {
+            double pick = rnd.nextFloat();
+            if (pick <= LOOT_DROP_PROBABILITY) {
+                ejectCargo(cargoBay.get(a));
+            }
+        }
+        for (int a = 0; a < hardpoints.size(); a++) {
+            double pick = rnd.nextFloat();
+            if (pick <= LOOT_DROP_PROBABILITY) {
+                ejectModule(hardpoints.get(a));
+            }
+        }
+    }
+
     protected void explode() {
         /*
          * Generates explosion effect
@@ -2145,7 +2184,7 @@ public class Ship extends Celestial {
             Point2D.Double size = new Point2D.Double(width, height);
             for (int a = 0; a < 15; a++) {
                 Explosion exp = new Explosion(size, explosion, 3);
-                exp.setFaction(faction);
+                exp.setFaction("Neutral");
                 exp.init(false);
                 //calculate helpers
                 double dT = rnd.nextInt() % (Math.PI * 2.0);
@@ -2664,5 +2703,13 @@ public class Ship extends Celestial {
 
     public ArrayList<Soundling> getSoundQue() {
         return soundQue;
+    }
+
+    public boolean isScanForContraband() {
+        return scanForContraband;
+    }
+
+    public void setScanForContraband(boolean scanForContraband) {
+        this.scanForContraband = scanForContraband;
     }
 }

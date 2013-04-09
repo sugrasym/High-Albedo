@@ -31,7 +31,7 @@ import java.util.Random;
 public class CargoPod extends Ship {
 
     protected Item ware = new Item("NOTHING");
-    int maxLife = 7200;
+    int maxLife = 720;
     double lifeLimit = new Random().nextInt(maxLife);
     double elapsed = 0;
 
