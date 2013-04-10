@@ -176,6 +176,8 @@ public class PropertyWindow extends AstralWindow {
                     mode = Mode.NONE;
                 } catch (Exception e) {
                     System.out.println("Malformed input");
+                    //normal mode
+                    mode = Mode.NONE;
                 }
             }
         } else if (mode == Mode.WAITING_FOR_NAME) {
@@ -190,6 +192,8 @@ public class PropertyWindow extends AstralWindow {
                 }
             } catch (Exception e) {
                 System.out.println("Malformed input");
+                //normal mode
+                mode = Mode.NONE;
             }
         } else if (mode == Mode.WAITING_FOR_STATION) {
             Object raw = inputList.getItemAtIndex(inputList.getIndex());
@@ -249,6 +253,8 @@ public class PropertyWindow extends AstralWindow {
                 }
             } catch (Exception e) {
                 System.out.println("Malformed input");
+                //normal mode
+                mode = Mode.NONE;
             }
         } else if (mode == Mode.WAITING_FOR_FOLLOW) {
             Object raw = inputList.getItemAtIndex(inputList.getIndex());
@@ -279,6 +285,8 @@ public class PropertyWindow extends AstralWindow {
                 }
             } catch (Exception e) {
                 System.out.println("Malformed input");
+                //normal mode
+                mode = Mode.NONE;
             }
         }
     }
@@ -536,7 +544,6 @@ public class PropertyWindow extends AstralWindow {
             } else if (command.matches(CMD_UNDOCK)) {
                 selected.cmdUndock();
             } else if (command.matches(CMD_DOCK)) {
-                mode = Mode.WAITING_FOR_STATION;
                 ArrayList<Object> choice = new ArrayList<>();
                 choice.add("--Select Station To Dock At--");
                 choice.add(" ");
@@ -546,6 +553,7 @@ public class PropertyWindow extends AstralWindow {
                 }
                 if (st.size() > 0) {
                     showInputList(choice);
+                    mode = Mode.WAITING_FOR_STATION;
                 } else {
                     mode = Mode.NONE;
                 }
@@ -560,13 +568,13 @@ public class PropertyWindow extends AstralWindow {
                 }
                 if (sh.size() > 0) {
                     showInputList(choice);
+                    mode = Mode.WAITING_FOR_ATTACK;
                 } else {
                     mode = Mode.NONE;
                 }
             } else if (command.matches(CMD_DESTRUCT)) {
                 selected.setState(State.DYING);
             } else if (command.matches(CMD_FLYTO)) {
-                mode = Mode.WAITING_FOR_CELESTIAL;
                 ArrayList<Object> choice = new ArrayList<>();
                 choice.add("--Select Target To Fly To--");
                 choice.add(" ");
@@ -580,13 +588,12 @@ public class PropertyWindow extends AstralWindow {
                 }
                 if (tmp.size() > 0 || jhp.size() > 0) {
                     showInputList(choice);
+                    mode = Mode.WAITING_FOR_CELESTIAL;
                 } else {
                     mode = Mode.NONE;
                 }
             } else if (command.matches(CMD_FOLLOW)) {
-                mode = Mode.WAITING_FOR_FOLLOW;
                 ArrayList<Object> choice = new ArrayList<>();
-
                 choice.add("--Select Target To Follow--");
                 choice.add(" ");
                 ArrayList<Ship> sh = selected.getShipsInSensorRange();
@@ -595,6 +602,7 @@ public class PropertyWindow extends AstralWindow {
                 }
                 if (sh.size() > 0) {
                     showInputList(choice);
+                    mode = Mode.WAITING_FOR_FOLLOW;
                 } else {
                     mode = Mode.NONE;
                 }

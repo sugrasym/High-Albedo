@@ -319,6 +319,8 @@ public class TradeWindow extends AstralWindow {
                 }
             } catch (Exception e) {
                 System.out.println("Malformed input");
+                //normal mode
+                action = Behavior.NONE;
             }
         } else if (action == Behavior.WAITING_TO_SELL) {
             //check if a value was returned
@@ -338,6 +340,8 @@ public class TradeWindow extends AstralWindow {
                 }
             } catch (Exception e) {
                 System.out.println("Malformed input");
+                //normal mode
+                action = Behavior.NONE;
             }
 
         } else {

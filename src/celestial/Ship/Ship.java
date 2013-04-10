@@ -313,7 +313,9 @@ public class Ship extends Celestial {
             //did the player destroy this ship?
             if (lastBlow.getFaction().matches(PLAYER_FACTION)) {
                 //adjust the player's standings accordingly
-                getUniverse().getPlayerShip().getMyFaction().derivedModification(myFaction, -1.0);
+                if (!faction.matches("Neutral")) {
+                    getUniverse().getPlayerShip().getMyFaction().derivedModification(myFaction, -1.0);
+                }
             }
         } else {
             syncStandings();
@@ -371,12 +373,10 @@ public class Ship extends Celestial {
                     if (target.getCurrentSystem() != getCurrentSystem()) {
                         target = null;
                     } else {
-                        if (!(target instanceof Station)) {
-                            //dereference if the target is no longer in sensor range
-                            if (distanceTo(target) > getSensor()) {
-                                target = null;
-                            }
-                        } else if (target.getState() == State.DEAD) {
+                        if (distanceTo(target) > getSensor()) {
+                            target = null;
+                        }
+                        if (target.getState() == State.DEAD) {
                             target = null;
                         }
                     }
@@ -559,7 +559,7 @@ public class Ship extends Celestial {
         /*
          * Dock at a station
          */
-        target = station;
+        setFlyToTarget(station);
         setAutopilot(Autopilot.DOCK_STAGE1);
     }
 
@@ -734,12 +734,12 @@ public class Ship extends Celestial {
              * The goal of stage 1 is to get permission to dock, get a docking port, and to get to the
              * location of the docking align for that port, and then stop the ship.
              */
-            //make sure we have a target
-            if (target != null) {
+            //make sure we have a flyToTarget
+            if (flyToTarget != null) {
                 //make sure it is a station
-                if (target instanceof Station) {
+                if (flyToTarget instanceof Station && flyToTarget.getState() == State.ALIVE) {
                     //make sure we can actually dock there
-                    Station tmp = (Station) target;
+                    Station tmp = (Station) flyToTarget;
                     if (tmp.canDock(this)) {
                         if (port == null) {
                             //get the docking port to use
@@ -779,7 +779,7 @@ public class Ship extends Celestial {
                                     //check x axis
                                     double dPx = 0;
                                     double d1x = magnitude(ax, 0);
-                                    double d2x = magnitude((x + vx) - (port.getAlignX() + target.getVx()), 0);
+                                    double d2x = magnitude((x + vx) - (port.getAlignX() + flyToTarget.getVx()), 0);
                                     dPx = d2x - d1x;
                                     if (dPx > 0) {
                                         //we're getting further from the goal, slow down
@@ -789,7 +789,7 @@ public class Ship extends Celestial {
                                     //check y axis
                                     double dPy = 0;
                                     double d1y = magnitude(0, ay);
-                                    double d2y = magnitude(0, (y + vy) - (port.getAlignY() + target.getVy()));
+                                    double d2y = magnitude(0, (y + vy) - (port.getAlignY() + flyToTarget.getVy()));
                                     dPy = d2y - d1y;
                                     if (dPy > 0) {
                                         //we're getting further from the goal, slow down
@@ -1464,7 +1464,7 @@ public class Ship extends Celestial {
     public void cmdAbortDock() {
         setAutopilot(Autopilot.NONE);
         port = null;
-        target = null;
+        flyToTarget = null;
     }
 
     public void cmdAllStop() {
@@ -1645,14 +1645,14 @@ public class Ship extends Celestial {
                 double range = getNearWeaponRange();
                 //compensate for target dimensions
                 if (width > height) {
-                    rad = width;
+                    rad = width / 2;
                 } else {
-                    rad = height;
+                    rad = height / 2;
                 }
                 if (target.getWidth() > target.getHeight()) {
-                    rad += target.getWidth();
+                    rad += target.getWidth() / 2;
                 } else {
-                    rad += target.getHeight();
+                    rad += target.getHeight() / 2;
                 }
                 range += rad;
                 //fire thrusters based on range
