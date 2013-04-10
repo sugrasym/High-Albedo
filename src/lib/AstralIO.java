@@ -36,6 +36,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.ConcurrentModificationException;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -135,18 +136,22 @@ public class AstralIO implements Serializable {
     }
 
     public void saveGame(Universe universe, String gameName) throws Exception {
-        String home = System.getProperty("user.home") + SAVE_GAME_DIR;
-        //create the subfolder
-        File folder = new File(home);
-        if (!folder.exists()) {
-            folder.mkdir();
+        try {
+            String home = System.getProperty("user.home") + SAVE_GAME_DIR;
+            //create the subfolder
+            File folder = new File(home);
+            if (!folder.exists()) {
+                folder.mkdir();
+            }
+            //generate serializable universe
+            Everything everything = new Everything(universe);
+            //serialize universe
+            FileOutputStream fos = new FileOutputStream(home + gameName);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(everything);
+        } catch (ConcurrentModificationException e) {
+            saveGame(universe, gameName);
         }
-        //generate serializable universe
-        Everything everything = new Everything(universe);
-        //serialize universe
-        FileOutputStream fos = new FileOutputStream(home + gameName);
-        ObjectOutputStream oos = new ObjectOutputStream(fos);
-        oos.writeObject(everything);
     }
 
     public class Everything implements Serializable {
