@@ -140,7 +140,7 @@ fuel=2500000000000
 mass=57010
 rectBound=5,408,293,561/7,27,509,452
 dock=10,568,60,618,27,738/88,568,138,618,105,738/166,568,216,618,185,738/244,568,294,618,263,738
-process=CainanAsteroidOre/CainanAsteroidHydrocarbon
+process=CainanAsteroidOre/CainanAsteroidHydrocarbon/UseSlaves
 [/Station]
 
 [Station]
@@ -442,4 +442,18 @@ mass=1872000
 rectBound=22,10,693,164/251,126,693,602/29,594,637,661
 dock=189,190,239,240,-146,208/189,265,239,315,-146,283/189,340,239,390,-146,358/189,415,239,465,-146,433/189,490,239,540,-146,508
 process=OrinShipSink/OrinTechSink/OrinCheatRocketERPC/OrinCheatRocket/CheatMakeBanshee/CheatMakeWraith/CheatMakePhantasm/CheatMakePoltergeist
+[/Station]
+
+[Station]
+type=Tengu Outpost
+accel=1.5
+turning=0
+shield=900000
+shieldRecharge=15
+hull=8000
+fuel=2500000000000
+mass=62000
+rectBound=96,7,390,161/174,154,310,350/98,335,388,486
+dock=115,222,165,272,-124,242/315,222,365,272,563,249
+process=TenguTechSink/MakeSlaves/CheatTenguWeapons/CheatTenguAmmo/CheatMakeSamurai/CheatMakeRonin
 [/Station]

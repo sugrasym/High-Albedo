@@ -4,7 +4,7 @@
 ship=Samurai
 name=Tengu Apprentice
 install=Tekko/Tekko
-cargo=Consumer Goods~5
+cargo=Slaves~5
 [/Loadout]
 
 [Loadout]

@@ -147,6 +147,20 @@ product=Phantasm,1
 resource=
 [/Process]
 
+[Process]
+name=CheatMakeSamurai
+cycle=1000
+product=Samurai,1
+resource=
+[/Process]
+
+[Process]
+name=CheatMakeRonin
+cycle=1600
+product=Ronin,1
+resource=
+[/Process]
+
 #Cheating Weapon Manufacturing
 
 [Process]
@@ -160,6 +174,20 @@ resource=Alloy Bar,1
 name=CheatKnightsWeapons
 cycle=4200
 product=Rayo Azul,2/Sangre Roja,1/Orgullo Negro,1
+resource=
+[/Process]
+
+[Process]
+name=CheatTenguWeapons
+cycle=4200
+product=Tekko,2/Katana,1/Dalkyu,2
+resource=
+[/Process]
+
+[Process]
+name=CheatTenguAmmo
+cycle=4200
+product=Dalkyu Rocket,10
 resource=
 [/Process]
 
@@ -303,6 +331,27 @@ product=
 resource=Hull Plating,1/Assembly Modules,1
 [/Process]
 
+[Process]
+name=TenguTechSink
+cycle=300
+product=
+resource=Hull Plating,1/Assembly Modules,1/Plank Tubes,1/ITC Warheads,1/Alloy Bar,1/Consumer Goods,1
+[/Process]
+
+[Process]
+name=MakeSlaves
+cycle=250
+product=Slaves,25
+resource=Heavy Water,1/Mixed Foods,1
+[/Process]
+
+[Process]
+name=UseSlaves
+cycle=800
+product=
+resource=Slaves,1
+[/Process]
+
 #Converters
 
 [Process]
@@ -382,8 +431,8 @@ resource=Consumer Goods,3
 [Process]
 name=WolfOrgans
 cycle=750
-product=Human Organs,5
-resource=Consumer Goods,1/Livestock,1
+product=Human Organs,12
+resource=Consumer Goods,1/Slaves,1
 [/Process]
 
 #Commodity Production

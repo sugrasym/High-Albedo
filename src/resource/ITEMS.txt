@@ -663,7 +663,20 @@ minPrice=25000
 maxPrice=500000
 group=product
 store=500
-description=Human organs, probably 'recovered' by the Wolves. The posession of human organs is strictly prohibited except for government licensed distributors of humanely procured organs.
+description=Human organs, probably 'recovered' by the Wolves. The transfer of human organs is strictly prohibited except for government licensed distributors of humanely procured organs.
+[/Item]
+
+[Item]
+name=Slaves
+type=commodity
+volume=4
+mass=12
+HP=100
+minPrice=1600
+maxPrice=32000
+group=product
+store=500
+description=The Tengus are known to engage in human trafficking, getting victims for diverse sources and backgrounds. Those who fail to satisfy their side of the deal end up as slaves.
 [/Item]
 
 [Item]
