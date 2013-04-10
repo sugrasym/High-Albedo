@@ -313,6 +313,32 @@ group=fighter
 description=If allowed to close range, this fighter lays waste to most adversaries. When fast and hard is the plan, the Jackal delivers.
 [/Item]
 
+[Item]
+name=Samurai
+type=ship
+volume=2500
+mass=75
+HP=100
+minPrice=215000
+maxPrice=342000
+store=5
+group=fighter
+description=The main fighter used by the Tengus. This ship is odd in that it has a shield regeneration rate better than one would expect for a craft this size, and it can mount larger weapons than most light fighters.
+[/Item]
+
+[Item]
+name=Ronin
+type=ship
+volume=2500
+mass=145
+HP=100
+minPrice=1625000
+maxPrice=2589000
+store=4
+group=fighter
+description=The weapon of high rank Tengus, this ship was inspired by the Orin methodology of rapid missile deployment. Unlike those ships, however, this ship has a high shield recharge and can mount large cannons.
+[/Item]
+
 ########Commodities########
 [Item]
 name=Standard Energy Unit
@@ -993,6 +1019,45 @@ store=800
 description=Firing Orin's 'Rapid Rocket' the Rocket Pod delivers rapid fire missile punishment at medium range. Rapid deployment increases the probability of a hit, which may raise applied damage output.
 [/Item]
 
+[Item]
+name=Dalkyu
+type=missile
+volume=30
+mass=10
+HP=200
+minPrice=472000
+maxPrice=792000
+group=weapon
+store=450
+description=An enlarged rocket pod intended to deliver the 'Dalkyu Rocket'. This rocket is similar to the Orin type except that it has a larger warhead and fuel cache.
+[/Item]
+
+[Item]
+name=Tekko
+type=cannon
+volume=25
+mass=10
+HP=200
+minPrice=205000
+maxPrice=310000
+group=weapon
+store=275
+description=Tengu particle weapon capable of delivering a stream of damage at medium range, but with a lower projectile velocity.
+[/Item]
+
+[Item]
+name=Katana
+type=cannon
+volume=30
+mass=10
+HP=200
+minPrice=255000
+maxPrice=427000
+group=weapon
+store=150
+description=Tengu particle weapon capable of delivering impressive damage at medium range, and with an increased muzzle velocity over comparable weapons.
+[/Item]
+
 ########Ammo###########
 
 [Item]
@@ -1045,6 +1110,19 @@ maxPrice=6
 group=ammo
 store=350
 description=Unarmed missile for use with a 'Rocket Pod'. This Orin missile is designed for rapid deployment to overwhelm enemies at close and medium range.
+[/Item]
+
+[Item]
+name=Dalkyu Rocket
+type=commodity
+volume=1
+mass=1
+HP=100
+minPrice=3
+maxPrice=9
+group=ammo
+store=275
+description=Unarmed missile for use with a 'Dalkyu'. This Tengu missile is designed for rapid deployment to overwhelm enemies at close and medium range.
 [/Item]
 
 [Item]

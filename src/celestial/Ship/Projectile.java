@@ -205,7 +205,7 @@ public class Projectile extends Ship {
             traveled += Math.max(magnitude(getX() - getLastX(), getY() - getLastY()), 1);
             setLastX(getX());
             setLastY(getY());
-            if (traveled > getRange() * 4) {
+            if (traveled > getRange() * 8) {
                 state = State.DYING;
             }
         }

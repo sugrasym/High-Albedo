@@ -440,6 +440,46 @@ width=50
 height=50
 [/Ship]
 
+#########Tengus########
+#Naming Scheme: Japanese Warrior
+#########
+
+# Light fighters
+
+[Ship]
+type=Samurai
+accel=39
+turning=3.9
+shield=8000
+shieldRecharge=450
+hull=1100
+fuel=48000
+mass=75
+sensor=3800
+cargo=260
+hardpoint=cannon,25,8,3.925/cannon,25,-8,5.495
+width=50
+height=50
+[/Ship]
+
+# Heavy fighters
+
+[Ship]
+type=Ronin
+accel=31
+turning=3.2
+shield=18000
+shieldRecharge=525
+hull=1600
+fuel=52000
+mass=110
+sensor=3600
+cargo=425
+hardpoint=cannon,30,8,3.925/cannon,30,-8,5.495/missile,30,4,3.925/missile,30,-4,5.495
+width=50
+height=50
+[/Ship]
+
 #########Entities########
 #Naming Scheme: go with it
 #########

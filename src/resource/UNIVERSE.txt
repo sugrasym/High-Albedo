@@ -1,11 +1,11 @@
 #New Game Smell
 [NewGame]
-ship=Banshee
+ship=Ronin
 system=System 42
 near=Planet 0
 cash=750000
-install=ERPC/ERPC/Rocket Pod/Rocket Pod
-cargo=Rapid Rocket~246
+install=Katana/Katana/Dalkyu/Dalkyu
+cargo=Dalkyu Rocket~246
 faction=Player
 [/NewGame]
 

@@ -1,3 +1,53 @@
+########Tengus Weapons########
+
+[Weapon]
+#weapon info
+name=Tekko
+type=cannon
+#shell info
+damage=55
+range=400
+speed=360
+mass=4
+refire=0.13
+explosion=Green
+fireEffect=audio/effects/weapons/Tekko.wav
+loop=true
+[/Weapon]
+
+[Weapon]
+#weapon info
+name=Katana
+type=cannon
+#shell info
+damage=280
+range=425
+speed=600
+mass=10
+refire=0.36
+explosion=Smoke
+fireEffect=audio/effects/weapons/Katana.wav
+[/Weapon]
+
+[Weapon]
+#weapon info
+name=Dalkyu
+type=missile
+#shell info
+damage=300
+range=750
+speed=3
+mass=1
+refire=0.45
+explosion=Explosion
+#make it a seeker
+guided=true
+#it uses ammo
+ammo=Dalkyu Rocket
+accel=575
+turning=10
+[/Weapon]
+
 ########Red Sky Weapons########
 #Red Sky weapons are med damage at med range with a high refire rate.
 

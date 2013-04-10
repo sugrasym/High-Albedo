@@ -5,6 +5,22 @@
 #cargo=Iguana Missile~100
 #[/Loadout]
 
+########Tengus
+
+[Loadout]
+ship=Samurai
+name=Tengu Apprentice
+install=Tekko/Tekko
+cargo=Consumer Goods~5
+[/Loadout]
+
+[Loadout]
+ship=Ronin
+name=Tengu Master
+install=Katana/Katana/Dalkyu/Dalkyu
+cargo=Dalkyu Rocket~420
+[/Loadout]
+
 ########Corportate Lawful
 
 [Loadout]

@@ -23,6 +23,7 @@ Caina Conglemerate=0
 Wolves=0
 Knights of Orin=0
 Orin Federation=0
+Tengus=0
 [/Faction]
 
 ########Anarchy###########
@@ -44,6 +45,7 @@ Caina Conglemerate=-10
 Wolves=-10
 Knights of Orin=-10
 Orin Federation=-10
+Tengus=-10
 [/Faction]
 
 ########The Player########
@@ -62,6 +64,7 @@ Caina Conglemerate=-1
 Wolves=-7
 Knights of Orin=-3
 Orin Federation=0
+Tengus=-8
 [/Faction]
 
 ########Red Sky########
@@ -83,6 +86,7 @@ Caina Conglemerate=0
 Wolves=-7
 Knights of Orin=-4
 Orin Federation=0
+Tengus=-9
 [/Faction]
 
 ########Ageiran Space########
@@ -104,6 +108,7 @@ Caina Conglemerate=0
 Wolves=-3
 Knights of Orin=-3
 Orin Federation=3
+Tengus=-3
 [/Faction]
 
 [Faction]
@@ -123,6 +128,7 @@ Caina Conglemerate=0
 Wolves=-7
 Knights of Orin=0
 Orin Federation=-3
+Tengus=5
 [/Faction]
 
 ########ITC Space########
@@ -144,6 +150,7 @@ Caina Conglemerate=4
 Wolves=-7
 Knights of Orin=0
 Orin Federation=0
+Tengus=-3
 [/Faction]
 
 ########Cainan Space########
@@ -164,6 +171,7 @@ Caina Conglemerate=10
 Wolves=-4
 Knights of Orin=-7
 Orin Federation=0
+Tengus=-3
 [/Faction]
 
 ########'The Wolves' Pirates########
@@ -185,6 +193,7 @@ Caina Conglemerate=-4
 Wolves=10
 Knights of Orin=-4
 Orin Federation=-3
+Tengus=-7
 [/Faction]
 
 
@@ -206,6 +215,7 @@ ITC=0
 Caina Conglemerate=0
 Wolves=-3
 Knights of Orin=-7
+Tengus=-3
 [/Faction]
 
 [Faction]
@@ -225,7 +235,31 @@ Caina Conglemerate=-7
 Wolves=-4
 Knights of Orin=10
 Orin Federation=-7
+Tengus=5
 [/Faction]
+
+########The Tengus############
+
+[Faction]
+name=Tengus
+var_isEmpire=false
+var_hosts=Neutral
+var_worldPercent=0
+var_description=The Tengus are from a group of outcasts who separated themselves from the UN Preliminary Government shortly after colonization. They did their own thing until the foundation war, which gave them the chance to branch into crime syndicate territory. By forging alliances with local pirates the Tengus support and orchestrate a criminal conspiracy empire. Current goals include eradication of the Wolves and Red Sky, the only serious threats to their grip on the unincorporated territories outside imperial control.
+Neutral=0
+Entities=-10
+Player=-8
+Red Sky=-9
+Ageiran Federation=-3
+The Archers=5
+ITC=-3
+Caina Conglemerate=-3
+Wolves=-7
+Knights of Orin=5
+Orin Federation=-3
+Tengus=10
+[/Faction]
+
 
 ############################
 
@@ -364,6 +398,12 @@ patrol1=Wolves Member,25
 name=Knights of Orin
 patrol0=Knights Terrorist,25
 patrol1=Knights Visionary,10
+[/Loadout]
+
+[Loadout]
+name=Tengus
+patrol0=Tengu Apprentice,100
+patrol1=Tengu Master,25
 [/Loadout]
 
 ##########################################
