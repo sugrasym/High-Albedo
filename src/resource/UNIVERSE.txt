@@ -1,7 +1,7 @@
 #New Game Smell
 [NewGame]
 ship=Ronin
-system=System 42
+system=System 14
 near=Planet 0
 cash=750000
 install=Katana/Katana/Dalkyu/Dalkyu

@@ -48,6 +48,7 @@ public class PropertyWindow extends AstralWindow {
         WAITING_FOR_CELESTIAL_RANGE, //waiting for range to fly to celestial to
         WAITING_FOR_FOLLOW, //waiting for a ship to follow
         WAITING_FOR_FOLLOW_RANGE, //waiting for a range to follow at
+        WAITING_FOR_TRADE, //waiting for trading window input
     };
     private Mode mode = Mode.NONE;
     public static final String CMD_SWITCH = "Switch Ship";
@@ -63,12 +64,16 @@ public class PropertyWindow extends AstralWindow {
     public static final String CMD_ATTACK = "Attack";
     public static final String CMD_DESTRUCT = "Self Destruct";
     public static final String CMD_ALLSTOP = "All Stop";
+    public static final String CMD_TRADEWITH = "Trade With Station";
     AstralInput input = new AstralInput();
     AstralList propertyList = new AstralList(this);
     AstralList infoList = new AstralList(this);
     AstralList optionList = new AstralList(this);
     AstralList inputList = new AstralList(this);
     protected Ship ship;
+    //remote operated trading
+    TradeWindow trader = new TradeWindow();
+    protected Ship tmp;
 
     public PropertyWindow() {
         super();
@@ -113,6 +118,11 @@ public class PropertyWindow extends AstralWindow {
         inputList.setHeight((height / 2) - 1);
         inputList.setVisible(false);
         inputList.setY((getHeight() / 2) - inputList.getHeight() / 2);
+        //setup private trade window
+        trader.setX(20);
+        trader.setY(20);
+        trader.setWidth(width - 40);
+        trader.setHeight(height - 40);
         //pack
         addComponent(propertyList);
         addComponent(infoList);
@@ -120,6 +130,14 @@ public class PropertyWindow extends AstralWindow {
         //do last
         addComponent(inputList);
         addComponent(input);
+        addComponent(trader);
+    }
+    
+    @Override
+    public void setVisible(boolean visible) {
+        trader.setVisible(false);
+        super.setVisible(visible);
+        mode = Mode.NONE;
     }
 
     private void showInput(String text) {
@@ -288,6 +306,12 @@ public class PropertyWindow extends AstralWindow {
                 //normal mode
                 mode = Mode.NONE;
             }
+        } else if (mode == Mode.WAITING_FOR_TRADE) {
+            if (!visible) {
+                mode = Mode.NONE;
+            } else {
+                trader.update(tmp);
+            }
         }
     }
 
@@ -370,7 +394,7 @@ public class PropertyWindow extends AstralWindow {
                 }
             }
             /*
-             * More behavior info 
+             * More behavior info
              */
             if (selected.getBehavior() == Behavior.PATROL) {
                 //what are we flying to?
@@ -493,6 +517,7 @@ public class PropertyWindow extends AstralWindow {
              */
             if (selected.isDocked()) {
                 optionList.addToList(CMD_UNDOCK);
+                optionList.addToList(CMD_TRADEWITH);
             } else {
                 optionList.addToList(CMD_DOCK);
                 optionList.addToList(CMD_FLYTO);
@@ -512,10 +537,18 @@ public class PropertyWindow extends AstralWindow {
 
     @Override
     public void handleMouseClickedEvent(MouseEvent me) {
-        super.handleMouseClickedEvent(me);
-        if (optionList.isFocused()) {
-            String command = (String) optionList.getItemAtIndex(optionList.getIndex());
-            parseCommand(command);
+        if (trader.isVisible()) {
+            trader.setX(x+20);
+            trader.setY(y+20);
+            trader.handleMouseClickedEvent(me);
+            trader.setX(20);
+            trader.setY(20);
+        } else {
+            super.handleMouseClickedEvent(me);
+            if (optionList.isFocused()) {
+                String command = (String) optionList.getItemAtIndex(optionList.getIndex());
+                parseCommand(command);
+            }
         }
     }
 
@@ -543,6 +576,10 @@ public class PropertyWindow extends AstralWindow {
                 showInput(selected.getName());
             } else if (command.matches(CMD_UNDOCK)) {
                 selected.cmdUndock();
+            } else if (command.matches(CMD_TRADEWITH)) {
+                mode = Mode.WAITING_FOR_TRADE;
+                trader.setVisible(true);
+                tmp = selected;
             } else if (command.matches(CMD_DOCK)) {
                 ArrayList<Object> choice = new ArrayList<>();
                 choice.add("--Select Station To Dock At--");

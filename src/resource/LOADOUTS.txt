@@ -1,10 +1,3 @@
-#[Loadout]
-#ship=Monitor
-#name=Air Force Monitor
-#install=Iguana Launcher/Iguana Launcher/Bask/Bask
-#cargo=Iguana Missile~100
-#[/Loadout]
-
 ########Tengus
 
 [Loadout]
