@@ -164,7 +164,7 @@ cargo=Iguana Missile~30
 ship=Coyote
 name=Wolves Cub
 install=Fang/Fang
-cargo=Consumer Goods~1
+cargo=Consumer Goods~1/Human Organs~1
 [/Loadout]
 
 [Loadout]

@@ -381,7 +381,6 @@ public class Ship extends Celestial {
                         }
                     }
                 } catch (Exception e) {
-                    e.printStackTrace();
                     target = null;
                 }
             }
@@ -1493,7 +1492,11 @@ public class Ship extends Celestial {
             ArrayList<Item> sc = ship.getCargoBay();
             for (int a = 0; a < sc.size(); a++) {
                 if (myFaction.isContraband(sc.get(a).getName())) {
-                    return true;
+                    if (myFaction.getName().matches(ship.getFaction())) {
+                        return false;
+                    } else {
+                        return true;
+                    }
                 }
             }
             return false;
