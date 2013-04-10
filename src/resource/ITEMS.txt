@@ -680,6 +680,19 @@ description=The Tengus are known to engage in human trafficking, getting victims
 [/Item]
 
 [Item]
+name=Astronaut
+type=commodity
+volume=4
+mass=12
+HP=100
+minPrice=800
+maxPrice=1500
+group=product
+store=500
+description=The pilot of a starfighter or transport, ejected from their ship.
+[/Item]
+
+[Item]
 name=Heavy Water
 type=commodity
 volume=8

@@ -20,14 +20,14 @@ cargo=Dalkyu Rocket~420
 ship=Freyr
 name=RS Bounty Hunter
 install=Thorn A/Thorn A
-cargo=Standard Energy Unit~1
+cargo=Astronaut~1
 [/Loadout]
 
 [Loadout]
 ship=Odin
 name=RS Assassin
 install=Thorn B/Thorn B
-cargo=Standard Energy Unit~1
+cargo=Astronaut~1
 [/Loadout]
 
 ########Ageiran Federation Lawful
@@ -36,14 +36,14 @@ cargo=Standard Energy Unit~1
 ship=Cab
 name=Federal Taxie
 install=Talon 1/Talon 1
-cargo=Standard Energy Unit~1
+cargo=Astronaut~1
 [/Loadout]
 
 [Loadout]
 ship=Sparrow
 name=Police Sparrow
 install=Talon 1/Talon 1
-cargo=Standard Energy Unit~5
+cargo=Astronaut~1
 cargoScan=true
 [/Loadout]
 
@@ -51,21 +51,21 @@ cargoScan=true
 ship=Crow
 name=Naval Crow
 install=Talon 2/Talon 2
-cargo=Standard Energy Unit~5
+cargo=Astronaut~1
 [/Loadout]
 
 [Loadout]
 ship=Raven
 name=Naval Raven
 install=Talon 3/Talon 3/Talon 3
-cargo=Standard Energy Unit~5
+cargo=Astronaut~1
 [/Loadout]
 
 [Loadout]
 ship=Emu
 name=Federal Trade Emu
 install=Talon 3
-cargo=Standard Energy Unit~5
+cargo=Astronaut~1
 [/Loadout]
 
 ########Ageiran Federation Unlawful
@@ -74,21 +74,21 @@ cargo=Standard Energy Unit~5
 ship=Bowman
 name=Archers' Pillager
 install=Arrow/Arrow
-cargo=Consumer Goods~2
+cargo=Astronaut~1/Consumer Goods~2
 [/Loadout]
 
 [Loadout]
 ship=Cavalry
 name=Archers' Raider
 install=Catapult/Catapult/Long 9
-cargo=Consumer Goods~6
+cargo=Astronaut~1/Consumer Goods~6
 [/Loadout]
 
 [Loadout]
 ship=Cavalry
 name=Archers' Vanguard
 install=Catapult/Catapult/Catapult
-cargo=Consumer Goods~10
+cargo=Astronaut~1/Consumer Goods~10
 [/Loadout]
 
 ########ITC Lawful
@@ -173,7 +173,7 @@ cargo=Iguana Missile~30
 ship=Coyote
 name=Wolves Cub
 install=Fang/Fang
-cargo=Consumer Goods~1/Human Organs~1
+cargo=Consumer Goods~1/Human Organs~1/Astronaut~1
 [/Loadout]
 
 [Loadout]
@@ -227,7 +227,7 @@ cargo=Bala Negro~280
 ship=Claymore
 name=Knights Visionary
 install=Sangre Roja/Sangre Roja/Sangre Roja
-cargo=Bala Negro~5
+cargo=Astronaut~1
 [/Loadout]
 
 ########Entities

@@ -455,5 +455,5 @@ fuel=2500000000000
 mass=62000
 rectBound=96,7,390,161/174,154,310,350/98,335,388,486
 dock=115,222,165,272,-124,242/315,222,365,272,563,249
-process=TenguTechSink/MakeSlaves/CheatTenguWeapons/CheatTenguAmmo/CheatMakeSamurai/CheatMakeRonin
+process=TenguTechSink/MakeSlaves/CheatTenguWeapons/CheatTenguAmmo/CheatMakeSamurai/CheatMakeRonin/AstronautToSlave
 [/Station]

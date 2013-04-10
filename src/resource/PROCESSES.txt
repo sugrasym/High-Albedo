@@ -355,6 +355,13 @@ resource=Slaves,1
 #Converters
 
 [Process]
+name=AstronautToSlave
+cycle=250
+product=Slaves,1
+resource=Astronaut,1
+[/Process]
+
+[Process]
 name=ITCEnergy
 cycle=800
 product=Standard Energy Unit,100
