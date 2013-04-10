@@ -49,6 +49,7 @@ public class PropertyWindow extends AstralWindow {
         WAITING_FOR_FOLLOW, //waiting for a ship to follow
         WAITING_FOR_FOLLOW_RANGE, //waiting for a range to follow at
         WAITING_FOR_TRADE, //waiting for trading window input
+        WAITING_FOR_CARGO, //waiting for cargo window input
     };
     private Mode mode = Mode.NONE;
     public static final String CMD_SWITCH = "Switch Ship";
@@ -65,14 +66,16 @@ public class PropertyWindow extends AstralWindow {
     public static final String CMD_DESTRUCT = "Self Destruct";
     public static final String CMD_ALLSTOP = "All Stop";
     public static final String CMD_TRADEWITH = "Trade With Station";
+    public static final String CMD_REMOTECARGO = "Manage Cargo";
     AstralInput input = new AstralInput();
     AstralList propertyList = new AstralList(this);
     AstralList infoList = new AstralList(this);
     AstralList optionList = new AstralList(this);
     AstralList inputList = new AstralList(this);
     protected Ship ship;
-    //remote operated trading
+    //remote operation
     TradeWindow trader = new TradeWindow();
+    CargoWindow cargo = new CargoWindow();
     protected Ship tmp;
 
     public PropertyWindow() {
@@ -123,6 +126,11 @@ public class PropertyWindow extends AstralWindow {
         trader.setY(20);
         trader.setWidth(width - 40);
         trader.setHeight(height - 40);
+        //setup private cargo window
+        cargo.setX(20);
+        cargo.setY(20);
+        cargo.setWidth(width - 40);
+        cargo.setHeight(height - 40);
         //pack
         addComponent(propertyList);
         addComponent(infoList);
@@ -131,11 +139,13 @@ public class PropertyWindow extends AstralWindow {
         addComponent(inputList);
         addComponent(input);
         addComponent(trader);
+        addComponent(cargo);
     }
-    
+
     @Override
     public void setVisible(boolean visible) {
         trader.setVisible(false);
+        cargo.setVisible(false);
         super.setVisible(visible);
         mode = Mode.NONE;
     }
@@ -311,6 +321,12 @@ public class PropertyWindow extends AstralWindow {
                 mode = Mode.NONE;
             } else {
                 trader.update(tmp);
+            }
+        } else if (mode == Mode.WAITING_FOR_CARGO) {
+            if (!visible) {
+                mode = Mode.NONE;
+            } else {
+                cargo.update(tmp);
             }
         }
     }
@@ -506,6 +522,7 @@ public class PropertyWindow extends AstralWindow {
             optionList.addToList("--Console--");
             optionList.addToList(" ");
             optionList.addToList(CMD_RENAME);
+            optionList.addToList(CMD_REMOTECARGO);
             optionList.addToList(" ");
             optionList.addToList(CMD_NONE);
             optionList.addToList(" ");
@@ -538,11 +555,20 @@ public class PropertyWindow extends AstralWindow {
     @Override
     public void handleMouseClickedEvent(MouseEvent me) {
         if (trader.isVisible()) {
-            trader.setX(x+20);
-            trader.setY(y+20);
+            //coordinate transform (windows expect to be the root of the tree)
+            trader.setX(x + 20);
+            trader.setY(y + 20);
+            //handle as normal
             trader.handleMouseClickedEvent(me);
+            //coordinate transform (put it back before anyone notices it moved)
             trader.setX(20);
             trader.setY(20);
+        } else if (cargo.isVisible()) {
+            cargo.setX(x + 20);
+            cargo.setY(y + 20);
+            cargo.handleMouseClickedEvent(me);
+            cargo.setX(20);
+            cargo.setY(20);
         } else {
             super.handleMouseClickedEvent(me);
             if (optionList.isFocused()) {
@@ -594,6 +620,10 @@ public class PropertyWindow extends AstralWindow {
                 } else {
                     mode = Mode.NONE;
                 }
+            } else if (command.matches(CMD_REMOTECARGO)) {
+                mode = Mode.WAITING_FOR_CARGO;
+                cargo.setVisible(true);
+                tmp = selected;
             } else if (command.matches(CMD_ATTACK)) {
                 mode = Mode.WAITING_FOR_ATTACK;
                 ArrayList<Object> choice = new ArrayList<>();
