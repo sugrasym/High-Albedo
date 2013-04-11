@@ -293,7 +293,7 @@ public class Station extends Ship {
                     //make sure station can cover it
                     if (getCash() - price >= 0) {
                         if (rel.getName().matches(getStationBuying().get(a).getName())) {
-                            getStationBuying().get(a).setQuantity(getStationBuying().get(a).getQuantity() + rel.getQuantity());
+                            getStationBuying().get(a).setQuantity(getStationBuying().get(a).getQuantity() + 1);
                             //remove from cargo
                             ship.removeFromCargoBay(rel);
                             //pay the ship

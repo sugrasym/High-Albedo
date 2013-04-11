@@ -166,15 +166,15 @@ public class Process implements Serializable {
     public boolean canDeliver() {
         try {
             //iterate each product
-            for(int a = 0; a < products.size(); a++) {
+            for (int a = 0; a < products.size(); a++) {
                 //check each station's selling list
-                for(int  b= 0; b < stationSelling.size(); b++) {
-                    if(products.get(a).getName().matches(stationSelling.get(b).getName())) {
+                for (int b = 0; b < stationSelling.size(); b++) {
+                    if (products.get(a).getName().matches(stationSelling.get(b).getName())) {
                         //determine if there is room for delivery
                         int stored = stationSelling.get(b).getQuantity();
                         int max = stationSelling.get(b).getStore();
                         int delivering = products.get(a).getQuantity();
-                        if(stored + delivering > max) {
+                        if (stored + delivering > max) {
                             //no room
                             return false;
                         }
@@ -194,5 +194,15 @@ public class Process implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        String ret = getName() + " ";
+        {
+            int percent = (int) (100.0 * (timer / cycleTime));
+            ret += "(" + percent + "%)";
+        }
+        return ret;
     }
 }

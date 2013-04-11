@@ -3,7 +3,7 @@
 ship=Zebra
 system=System 48
 near=Planet 1
-cash=750000
+cash=7500000
 install=Katana/Katana/Dalkyu/Dalkyu
 cargo=Dalkyu Rocket~246
 faction=Player
