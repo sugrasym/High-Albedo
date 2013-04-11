@@ -315,7 +315,7 @@ public class SolarSystem implements Entity, Serializable {
 
     public void putEntityInSystem(Entity entity) {
         entities.add(entity);
-        if(entity instanceof Celestial) {
+        if (entity instanceof Celestial) {
             //let it know where it is
             Celestial tmp = (Celestial) entity;
             tmp.setCurrentSystem(this);
@@ -323,6 +323,11 @@ public class SolarSystem implements Entity, Serializable {
         //put in the correct sublist
         if (entity instanceof Station) {
             stationList.add(entity);
+            Station test = (Station) entity;
+            if (test.getFaction().matches("Player")) {
+                //yep, add it to the global list
+                universe.getPlayerProperty().add(test);
+            }
         } else if (entity instanceof Ship) {
             shipList.add(entity);
             //is this player owned?

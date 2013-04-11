@@ -24,10 +24,13 @@ import cargo.Hardpoint;
 import cargo.Item;
 import cargo.Weapon;
 import celestial.Ship.Ship;
+import celestial.Ship.Station;
 import gdi.component.AstralList;
 import gdi.component.AstralWindow;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import lib.Parser;
+import lib.Parser.Term;
 
 public class CargoWindow extends AstralWindow {
 
@@ -40,6 +43,7 @@ public class CargoWindow extends AstralWindow {
     public static final String CMD_SPLITALL = "Split All";
     public static final String CMD_ASSEMBLE = "Assemble";
     public static final String CMD_PACKAGE = "Package";
+    public static final String CMD_DEPLOY = "Deploy";
     AstralList cargoList = new AstralList(this);
     AstralList propertyList = new AstralList(this);
     AstralList optionList = new AstralList(this);
@@ -104,12 +108,13 @@ public class CargoWindow extends AstralWindow {
             int index = cargoList.getIndex();
             if (index < logicalCargoList.size()) {
                 Item selected = (Item) cargoList.getItemAtIndex(index);
+                //fill
                 propertyList.addToList("--GLOBAL--");
                 propertyList.addToList(" ");
-                propertyList.addToList("Credits:      "+ship.getCash());
-                propertyList.addToList("Bay Volume:   "+ship.getCargo());
-                propertyList.addToList("Volume Used:  "+ship.getBayUsed());
-                propertyList.addToList("Percent Used: "+ship.getBayUsed()/ship.getCargo()*100.0+"%");
+                propertyList.addToList("Credits:      " + ship.getCash());
+                propertyList.addToList("Bay Volume:   " + ship.getCargo());
+                propertyList.addToList("Volume Used:  " + ship.getBayUsed());
+                propertyList.addToList("Percent Used: " + ship.getBayUsed() / ship.getCargo() * 100.0 + "%");
                 propertyList.addToList(" ");
                 propertyList.addToList("--BASIC--");
                 propertyList.addToList(" ");
@@ -194,6 +199,17 @@ public class CargoWindow extends AstralWindow {
             optionList.addToList(" ");
         } else {
             /*
+             * Options for stations
+             */
+            //determine if this is a station
+            if (selected.getGroup().matches("constructionkit")) {
+                if (!ship.isDocked()) {
+                    optionList.addToList("--Setup--");
+                    optionList.addToList(CMD_DEPLOY);
+                    optionList.addToList(" ");
+                }
+            }
+            /*
              * Options for cannons
              */
             if (selected.getType().matches(Item.TYPE_CANNON)) {
@@ -219,7 +235,9 @@ public class CargoWindow extends AstralWindow {
         optionList.addToList(" ");
         optionList.addToList("--Dangerous--");
         optionList.addToList(CMD_TRASH);
-        optionList.addToList(CMD_EJECT);
+        if (!ship.isDocked()) {
+            optionList.addToList(CMD_EJECT);
+        }
     }
 
     @Override
@@ -302,6 +320,30 @@ public class CargoWindow extends AstralWindow {
                     ship.removeFromCargoBay(selected);
                     Item nTmp = new Item(tmp.getName());
                     ship.addToCargoBay(nTmp);
+                }
+            } else if (command.matches(CMD_DEPLOY)) {
+                Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
+                if (selected.getQuantity() == 1) {
+                    //deploy the station
+                    Station ret = new Station(name, selected.getName());
+                    ret.setName("Your "+selected.getName());
+                    ret.setFaction(ship.getFaction());
+                    ret.init(false);
+                    //configure coordinates
+                    double dx = ship.getWidth();
+                    double dy = ship.getHeight();
+                    double sx = (ship.getX() + ship.getWidth() / 2) + dx;
+                    double sy = (ship.getY() + ship.getHeight() / 2) + dy;
+                    ret.setX(sx);
+                    ret.setY(sy);
+                    //finalize
+                    ret.setCurrentSystem(ship.getCurrentSystem());
+                    ship.getCurrentSystem().putEntityInSystem(ret);
+                    //remove item from cargo
+                    selected.setQuantity(0);
+                    ship.removeFromCargoBay(selected);
+                    //since it's not NPC make sure it has no start cash
+                    ret.clearWares();
                 }
             }
         }

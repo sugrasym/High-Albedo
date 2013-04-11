@@ -496,6 +496,10 @@ public class PropertyWindow extends AstralWindow {
 
     private void fillCommandLines(Ship selected) {
         if (selected != null) {
+            boolean isStation = false;
+            if(ship.getCurrentSystem().getStationList().contains(selected)) {
+                isStation = true;
+            }
             /*
              * Funds transfer can happen no matter where the ships are located.
              */
@@ -525,9 +529,11 @@ public class PropertyWindow extends AstralWindow {
             optionList.addToList(CMD_REMOTECARGO);
             optionList.addToList(" ");
             optionList.addToList(CMD_NONE);
-            optionList.addToList(" ");
-            optionList.addToList(CMD_TRADE);
-            optionList.addToList(CMD_PATROL);
+            if (!isStation) {
+                optionList.addToList(" ");
+                optionList.addToList(CMD_TRADE);
+                optionList.addToList(CMD_PATROL);
+            }
             optionList.addToList(" ");
             /*
              * Some things can't be done while docked.
@@ -536,15 +542,17 @@ public class PropertyWindow extends AstralWindow {
                 optionList.addToList(CMD_UNDOCK);
                 optionList.addToList(CMD_TRADEWITH);
             } else {
-                optionList.addToList(CMD_DOCK);
-                optionList.addToList(CMD_FLYTO);
-                optionList.addToList(CMD_FOLLOW);
-                optionList.addToList(CMD_ALLSTOP);
-                optionList.addToList(" ");
-                optionList.addToList("--Combat--");
-                optionList.addToList(" ");
-                optionList.addToList(CMD_ATTACK);
-                optionList.addToList(" ");
+                if (!isStation) {
+                    optionList.addToList(CMD_DOCK);
+                    optionList.addToList(CMD_FLYTO);
+                    optionList.addToList(CMD_FOLLOW);
+                    optionList.addToList(CMD_ALLSTOP);
+                    optionList.addToList(" ");
+                    optionList.addToList("--Combat--");
+                    optionList.addToList(" ");
+                    optionList.addToList(CMD_ATTACK);
+                    optionList.addToList(" ");
+                }
                 optionList.addToList("--Red Zone--");
                 optionList.addToList(" ");
                 optionList.addToList(CMD_DESTRUCT);

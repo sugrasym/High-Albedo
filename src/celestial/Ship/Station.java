@@ -290,15 +290,18 @@ public class Station extends Ship {
             if (rel != null) {
                 //send to station
                 for (int a = 0; a < getStationBuying().size(); a++) {
-                    if (rel.getName().matches(getStationBuying().get(a).getName())) {
-                        getStationBuying().get(a).setQuantity(getStationBuying().get(a).getQuantity() + rel.getQuantity());
-                        //remove from cargo
-                        ship.removeFromCargoBay(rel);
-                        //pay the ship
-                        ship.setCash(ship.getCash() + price);
-                        //remove funds from station wallet
-                        setCash(getCash() - price);
-                        break;
+                    //make sure station can cover it
+                    if (getCash() - price >= 0) {
+                        if (rel.getName().matches(getStationBuying().get(a).getName())) {
+                            getStationBuying().get(a).setQuantity(getStationBuying().get(a).getQuantity() + rel.getQuantity());
+                            //remove from cargo
+                            ship.removeFromCargoBay(rel);
+                            //pay the ship
+                            ship.setCash(ship.getCash() + price);
+                            //remove funds from station wallet
+                            setCash(getCash() - price);
+                            break;
+                        }
                     }
                 }
             }
@@ -560,5 +563,18 @@ public class Station extends Ship {
         if (exemptFromEconomics) {
             System.out.println(getName() + " is exempted from economics.");
         }
+    }
+
+    public void clearWares() {
+        /*
+         * Removes products and resources, and starting cash.
+         */
+        for (int a = 0; a < stationBuying.size(); a++) {
+            stationBuying.get(a).setQuantity(0);
+        }
+        for (int a = 0; a < stationSelling.size(); a++) {
+            stationSelling.get(a).setQuantity(0);
+        }
+        setCash(0);
     }
 }

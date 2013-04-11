@@ -8,7 +8,7 @@ mass=14000
 HP=100
 minPrice=650000
 maxPrice=1500000
-store=5
+store=10
 group=constructionkit
 description=Construction kit for an Ageiran Solar Power Plant. This station converts sunlight and atmospheric gases into standard energy units.
 [/Item]
