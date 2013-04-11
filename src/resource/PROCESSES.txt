@@ -1,3 +1,12 @@
+#Cheating Station Manufacturing
+
+[Process]
+name=CheatMakeAgeiranSolarPowerPlant
+cycle=256000
+product=Ageiran Solar Power Plant,1
+resource=
+[/Process]
+
 #Cheating Ship Manufacturing
 
 [Process]
@@ -74,6 +83,13 @@ resource=
 name=CheatMakeWildabeast
 cycle=5800
 product=Wildabeast,1
+resource=
+[/Process]
+
+[Process]
+name=CheatMakeZebra
+cycle=12500
+product=Zebra,1
 resource=
 [/Process]
 

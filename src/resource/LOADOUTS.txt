@@ -122,6 +122,13 @@ install=Starstruck Launcher/Starstruck Launcher/Starstruck Launcher/Starstruck L
 cargo=Starstruck Missile~80
 [/Loadout]
 
+[Loadout]
+ship=Zebra
+name=ITC Logistics Zebra
+install=Starstruck Launcher/Starstruck Launcher/Starstruck Launcher/Starstruck Launcher
+cargo=Starstruck Missile~1600
+[/Loadout]
+
 ########Caina Lawful
 
 [Loadout]
