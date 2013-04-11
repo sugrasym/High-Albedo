@@ -340,7 +340,7 @@ fuel=2500000000000
 mass=93280
 rectBound=275,558,375,743/117,24,533,217/8,215,641,466/34,464,612,575/107,572,549,651/35,105,618,219
 dock=218,672,268,722,-115,690/376,672,426,722,776,700/300,747,350,797,326,976/100,-500,600,0,300,-1500
-process=ITCCheatStarstruck/ITCCheatSidewinder/ITCCheatStarstruckMissile/ITCCheatSidewinderMissile/ITCCheatWeaponSink/CheatMakeHyena/CheatMakeCheetah/CheatMakeWildabeast/CheatMakeZebra
+process=ITCCheatStarstruck/ITCCheatSidewinder/ITCCheatStarstruckMissile/ITCCheatSidewinderMissile/ITCCheatWeaponSink/CheatMakeHyena/CheatMakeCheetah/CheatMakeWildabeast/CheatMakeZebra/CheatMakeITCPowerConverter/CheatMakeITCIceRefinery/CheatMakeITCOreConverter/CheatMakeITCOrbitalRanch/CheatMakeITCFoodSupply/CheatMakeITCIndustrialReplicator
 [/Station]
 
 [Station]

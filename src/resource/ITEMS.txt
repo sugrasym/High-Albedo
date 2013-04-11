@@ -104,6 +104,84 @@ group=constructionkit
 description=This fab produces Assembly Modules, an important component in Cainan technology.
 [/Item]
 
+[Item]
+name=ITC Power Converter
+type=station
+volume=1520000
+mass=14000
+HP=100
+minPrice=620000
+maxPrice=1200000
+store=10
+group=constructionkit
+description=This fusion reactor converts heavy water into Standard Energy Units for trade beyond ITC space.
+[/Item]
+
+[Item]
+name=ITC Ice Refinery
+type=station
+volume=1520000
+mass=14000
+HP=100
+minPrice=575000
+maxPrice=1600000
+store=10
+group=constructionkit
+description=This factory melts and refines rich ices into heavy water, the energy source of the ITC.
+[/Item]
+
+[Item]
+name=ITC Ore Converter
+type=station
+volume=1520000
+mass=14000
+HP=100
+minPrice=275000
+maxPrice=600000
+store=10
+group=constructionkit
+description=This factory breaks down various ores into their constituent particles and arranges them into a standard mass block.
+[/Item]
+
+[Item]
+name=ITC Orbital Ranch
+type=station
+volume=1520000
+mass=14000
+HP=100
+minPrice=675000
+maxPrice=1100000
+store=10
+group=constructionkit
+description=This factory raises various animals for processing into Meat On A Stick further down the line.
+[/Item]
+
+[Item]
+name=ITC Food Supply
+type=station
+volume=1520000
+mass=14000
+HP=100
+minPrice=824000
+maxPrice=1800000
+store=10
+group=constructionkit
+description=This factory converts animals into Meat On A Stick.
+[/Item]
+
+[Item]
+name=ITC Industrial Replicator
+type=station
+volume=1520000
+mass=14000
+HP=100
+minPrice=12000000
+maxPrice=36000000
+store=10
+group=constructionkit
+description=This massive complex creates the various high end products used by the ITC.
+[/Item]
+
 ########Ship Stuff#########
 [Item]
 name=Poltergeist

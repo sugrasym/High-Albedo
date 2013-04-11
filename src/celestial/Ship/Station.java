@@ -585,5 +585,6 @@ public class Station extends Ship {
             stationSelling.get(a).setQuantity(0);
         }
         setCash(0);
+        exemptFromEconomics = false;
     }
 }

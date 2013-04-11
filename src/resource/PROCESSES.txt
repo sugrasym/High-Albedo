@@ -8,6 +8,13 @@ resource=
 [/Process]
 
 [Process]
+name=CheatMakeAgeiranMREFactory
+cycle=282500
+product=Ageiran MRE Factory,1
+resource=
+[/Process]
+
+[Process]
 name=CheatMakeAgeiranFabricator
 cycle=282500
 product=Ageiran Fabricator,1
@@ -46,6 +53,48 @@ resource=
 name=CheatMakeModuleFabricator
 cycle=282500
 product=Module Fabricator,1
+resource=
+[/Process]
+
+[Process]
+name=CheatMakeITCPowerConverter
+cycle=128000
+product=ITC Power Converter,1
+resource=
+[/Process]
+
+[Process]
+name=CheatMakeITCIceRefinery
+cycle=128000
+product=ITC Ice Refinery,1
+resource=
+[/Process]
+
+[Process]
+name=CheatMakeITCOreConverter
+cycle=128000
+product=ITC Ore Converter,1
+resource=
+[/Process]
+
+[Process]
+name=CheatMakeITCOrbitalRanch
+cycle=128000
+product=ITC Orbital Ranch,1
+resource=
+[/Process]
+
+[Process]
+name=CheatMakeITCFoodSupply
+cycle=128000
+product=ITC Food Supply,1
+resource=
+[/Process]
+
+[Process]
+name=CheatMakeITCIndustrialReplicator
+cycle=128000
+product=ITC Industrial Replicator,1
 resource=
 [/Process]
 
