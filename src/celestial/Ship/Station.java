@@ -512,11 +512,20 @@ public class Station extends Ship {
         g.fillRect((int) (getX() - dx), (int) (getY() - dy), (int) (getWidth() * shieldPercent), 2);
     }
 
-    @Override
     public String toString() {
         String ret = "";
         {
-            ret = name + ", " + faction;
+            if (!isAlternateString()) {
+                /*
+                 * This is the string used for reporting NPC ships.
+                 */
+                ret = name + ", " + faction;
+            } else {
+                /*
+                 * This is the string used for reporting player ships.
+                 */
+                ret = "[FAB]  " + name + ", " + currentSystem.getName();
+            }
         }
         return ret;
     }

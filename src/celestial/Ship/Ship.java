@@ -2491,12 +2491,12 @@ public class Ship extends Celestial {
                  * This is the string used for reporting player ships.
                  */
                 if (currentSystem != getUniverse().getPlayerShip().getCurrentSystem()) {
-                    ret = "(" + type + ") - " + name + ", " + currentSystem.getName();
+                    ret = "[SHIP] (" + type + ") - " + name + ", " + currentSystem.getName();
                     if (docked) {
                         ret += " [" + port.getParent().getName() + "]";
                     }
                 } else {
-                    ret = "(" + type + ") - " + name;
+                    ret = "[SHIP] (" + type + ") - " + name;
                     if (docked) {
                         ret += " [" + port.getParent().getName() + "]";
                     }
