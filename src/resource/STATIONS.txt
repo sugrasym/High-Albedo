@@ -441,7 +441,7 @@ fuel=2500000000000
 mass=1872000
 rectBound=22,10,693,164/251,126,693,602/29,594,637,661
 dock=189,190,239,240,-146,208/189,265,239,315,-146,283/189,340,239,390,-146,358/189,415,239,465,-146,433/189,490,239,540,-146,508/100,-500,600,0,300,-1500
-process=OrinShipSink/OrinTechSink/OrinCheatRocketERPC/OrinCheatRocket/CheatMakeBanshee/CheatMakeWraith/CheatMakePhantasm/CheatMakePoltergeist
+process=OrinShipSink/OrinTechSink/OrinCheatRocketERPC/OrinCheatRocket/CheatMakeBanshee/CheatMakeWraith/CheatMakePhantasm/CheatMakePoltergeist/CheatMakeOrinFissionPlant/CheatMakeOrinMixedFoodsPlant/CheatMakeOrinWasteConverter/CheatMakeOrinTechPlant
 [/Station]
 
 [Station]

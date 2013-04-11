@@ -98,6 +98,34 @@ product=ITC Industrial Replicator,1
 resource=
 [/Process]
 
+[Process]
+name=CheatMakeOrinFissionPlant
+cycle=92000
+product=Orin Fission Plant,1
+resource=
+[/Process]
+
+[Process]
+name=CheatMakeOrinMixedFoodsPlant
+cycle=92000
+product=Orin Mixed Foods Plant,1
+resource=
+[/Process]
+
+[Process]
+name=CheatMakeOrinWasteConverter
+cycle=92000
+product=Orin Waste Converter,1
+resource=
+[/Process]
+
+[Process]
+name=CheatMakeOrinTechPlant
+cycle=92000
+product=Orin Tech Plant,1
+resource=
+[/Process]
+
 #Cheating Ship Manufacturing
 
 [Process]

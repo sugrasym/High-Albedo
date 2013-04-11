@@ -182,6 +182,58 @@ group=constructionkit
 description=This massive complex creates the various high end products used by the ITC.
 [/Item]
 
+[Item]
+name=Orin Fission Plant
+type=station
+volume=740000
+mass=14000
+HP=100
+minPrice=1900000
+maxPrice=3800000
+store=10
+group=constructionkit
+description=This station produces energy as well as industrial waste that must be removed to continue production. It has no resource requirements.
+[/Item]
+
+[Item]
+name=Orin Mixed Foods Plant
+type=station
+volume=740000
+mass=14000
+HP=100
+minPrice=640000
+maxPrice=920000
+store=10
+group=constructionkit
+description=This station produces Orin Mixed Foods, the food commodity used by the Orin Federation.
+[/Item]
+
+[Item]
+name=Orin Waste Converter
+type=station
+volume=740000
+mass=14000
+HP=100
+minPrice=5250000
+maxPrice=10000000
+store=10
+group=constructionkit
+description=This station converts industrial waste into mass blocks in a similar manner to the ITC method.
+[/Item]
+
+[Item]
+name=Orin Tech Plant
+type=station
+volume=740000
+mass=14000
+HP=100
+minPrice=3500000
+maxPrice=6000000
+store=10
+group=constructionkit
+description=This station produces high end Orin-Ageiran products.
+[/Item]
+
 ########Ship Stuff#########
 [Item]
 name=Poltergeist

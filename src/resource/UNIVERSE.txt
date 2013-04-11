@@ -1,7 +1,7 @@
 #New Game Smell
 [NewGame]
 ship=Zebra
-system=System 14
+system=System 3
 near=Planet 1
 cash=7500000
 install=Katana/Katana/Dalkyu/Dalkyu
