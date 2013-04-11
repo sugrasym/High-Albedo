@@ -82,8 +82,6 @@ public class ResourceCache {
     }
 
     private void loadShipSprites() throws Exception {
-        //image loader
-        AstralIO io = new AstralIO();
         //get list of ship types
         Parser shipParser = new Parser("SHIPS.txt");
         ArrayList<Term> shipTerms = shipParser.getTermsOfType("Ship");
@@ -93,7 +91,7 @@ public class ResourceCache {
             //get ship type
             String type = shipTerms.get(a).getValue("type");
             //grab asset
-            Image raw_tex = io.loadImage("ship/" + type + ".png");
+            Image raw_tex = AstralIO.loadImage("ship/" + type + ".png");
             //make a new spriteling
             Spriteling tmp = new Spriteling(type, raw_tex);
             //store
@@ -102,8 +100,6 @@ public class ResourceCache {
     }
 
     private void loadWeaponSprites() throws Exception {
-        //image loader
-        AstralIO io = new AstralIO();
         //get list of weapon types
         Parser projectileParser = new Parser("WEAPONS.txt");
         ArrayList<Term> weaponTerms = projectileParser.getTermsOfType("Weapon");
@@ -116,12 +112,12 @@ public class ResourceCache {
             String ammo = weaponTerms.get(a).getValue("ammo");
             if (ammo != null) {
                 //grab asset
-                Image raw_tex = io.loadImage("projectile/" + ammo + ".png");
+                Image raw_tex = AstralIO.loadImage("projectile/" + ammo + ".png");
                 Spriteling tmp = new Spriteling(ammo, raw_tex);
                 projectiles.add(tmp);
             } else {
                 //grab asset
-                Image raw_tex = io.loadImage("projectile/" + type + ".png");
+                Image raw_tex = AstralIO.loadImage("projectile/" + type + ".png");
                 //make a new spriteling
                 Spriteling tmp = new Spriteling(type, raw_tex);
                 //store
@@ -131,8 +127,6 @@ public class ResourceCache {
     }
 
     private void loadExplosionSprites() throws Exception {
-        //image loader
-        AstralIO io = new AstralIO();
         //get list of ship types
         Parser explosionParser = new Parser("EXPLOSIONS.txt");
         ArrayList<Term> explosionTerms = explosionParser.getTermsOfType("Explosion");
@@ -142,7 +136,7 @@ public class ResourceCache {
             //get ship type
             String type = explosionTerms.get(a).getValue("type");
             //grab asset
-            Image raw_tex = io.loadImage("explosion/" + type + ".png");
+            Image raw_tex = AstralIO.loadImage("explosion/" + type + ".png");
             //make a new spriteling
             Spriteling tmp = new Spriteling(type, raw_tex);
             //store
