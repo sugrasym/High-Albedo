@@ -15,6 +15,7 @@ import java.awt.image.BufferedImage;
 import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import lib.AstralIO;
 import lib.Parser;
 
 /**
@@ -42,10 +43,8 @@ public class Star extends Planet {
             String asset = getTexture().getValue("asset");
             try {
                 //just load an image
-                raw_tex = io.loadImage("planet/" + asset);
-            } catch (NullPointerException ex) {
-                Logger.getLogger(Jumphole.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (URISyntaxException ex) {
+                raw_tex = AstralIO.loadImage("planet/" + asset);
+            } catch (NullPointerException | URISyntaxException ex) {
                 Logger.getLogger(Jumphole.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
