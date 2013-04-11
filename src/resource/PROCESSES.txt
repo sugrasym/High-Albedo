@@ -7,6 +7,48 @@ product=Ageiran Solar Power Plant,1
 resource=
 [/Process]
 
+[Process]
+name=CheatMakeAgeiranFabricator
+cycle=282500
+product=Ageiran Fabricator,1
+resource=
+[/Process]
+
+[Process]
+name=CheatMakeSunfarm
+cycle=282500
+product=Sunfarm,1
+resource=
+[/Process]
+
+[Process]
+name=CheatMakeHydroponicsFacility
+cycle=282500
+product=Hydroponics Facility,1
+resource=
+[/Process]
+
+[Process]
+name=CheatMakeIndustrialKitchen
+cycle=282500
+product=Industrial Kitchen,1
+resource=
+[/Process]
+
+[Process]
+name=CheatMakeHullPlatingFabricator
+cycle=282500
+product=Hull Plating Fabricator,1
+resource=
+[/Process]
+
+[Process]
+name=CheatMakeModuleFabricator
+cycle=282500
+product=Module Fabricator,1
+resource=
+[/Process]
+
 #Cheating Ship Manufacturing
 
 [Process]

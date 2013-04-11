@@ -97,7 +97,7 @@ fuel=2500000000000
 mass=16000
 rectBound=25,5,192,118/192,15,485,39/158,118,192,339
 dock=234,45,284,95,900,305/334,45,384,95,900,305/434,45,484,95,900,305/100,-500,600,0,300,-1500
-process=AgeiranCheatTalonSink/CheatMakeSparrow/CheatMakeCrow/CheatMakeRaven/CheatMakeEmu/CheatMakeAgeiranSolarPowerPlant
+process=AgeiranCheatTalonSink/CheatMakeSparrow/CheatMakeCrow/CheatMakeRaven/CheatMakeEmu/CheatMakeAgeiranSolarPowerPlant/CheatMakeAgeiranMREFactory/CheatMakeAgeiranFabricator
 [/Station]
 
 [Station]
@@ -211,7 +211,7 @@ fuel=2500000000000
 mass=62010
 rectBound=6,6,293,562
 dock=10,568,60,618,27,738/88,568,138,618,105,738/166,568,216,618,185,738/244,568,294,618,263,738/100,-500,600,0,300,-1500
-process=CainanCheatWeaponSink/CainanCheatVenom/CainanCheatHeavy/CainanCheatMissile/CainanCheatMissileAmmo/CainanCheatWasteSink/CheatMakeGecko/CheatMakeMonitor/CheatMakeKomodo/CheatMakeGila
+process=CainanCheatWeaponSink/CainanCheatVenom/CainanCheatHeavy/CainanCheatMissile/CainanCheatMissileAmmo/CainanCheatWasteSink/CheatMakeGecko/CheatMakeMonitor/CheatMakeKomodo/CheatMakeGila/CheatMakeSunfarm/CheatMakeHydroponicsFacility/CheatMakeIndustrialKitchen/CheatMakeHullPlatingFabricator/CheatMakeModuleFabricator
 [/Station]
 
 [Station]

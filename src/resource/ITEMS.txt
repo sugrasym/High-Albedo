@@ -10,7 +10,98 @@ minPrice=650000
 maxPrice=1500000
 store=10
 group=constructionkit
-description=Construction kit for an Ageiran Solar Power Plant. This station converts sunlight and atmospheric gases into standard energy units.
+description=This station converts sunlight and atmospheric gases into Standard Energy Units.
+[/Item]
+
+[Item]
+name=Ageiran MRE Factory
+type=station
+volume=920000
+mass=14000
+HP=100
+minPrice=280000
+maxPrice=720000
+store=10
+group=constructionkit
+description=This station converts Standard Energy Units into Ageiran MREs.
+[/Item]
+
+[Item]
+name=Ageiran Fabricator
+type=station
+volume=920000
+mass=14000
+HP=100
+minPrice=1020000
+maxPrice=1900000
+store=10
+group=constructionkit
+description=This station creates Alloy Bars and FPGAs, important Ageiran technology components.
+[/Item]
+
+[Item]
+name=Sunfarm
+type=station
+volume=1060000
+mass=14000
+HP=100
+minPrice=6250000
+maxPrice=9100000
+store=10
+group=constructionkit
+description=This Cainan station produces solar energy with no resources, making Standard Energy Units very efficiently.
+[/Item]
+
+[Item]
+name=Industrial Kitchen
+type=station
+volume=1060000
+mass=14000
+HP=100
+minPrice=980000
+maxPrice=1750000
+store=10
+group=constructionkit
+description=This factory converts produce into packaged Cainan Lunchboxes for distribution.
+[/Item]
+
+[Item]
+name=Hydroponics Facility
+type=station
+volume=1060000
+mass=14000
+HP=100
+minPrice=1580000
+maxPrice=3150000
+store=10
+group=constructionkit
+description=This farm produces Cainan Produce, an ingredient in Cainan Lunchboxes.
+[/Item]
+
+[Item]
+name=Hull Plating Fabricator
+type=station
+volume=1060000
+mass=14000
+HP=100
+minPrice=8520000
+maxPrice=32190000
+store=10
+group=constructionkit
+description=This fab produces hull plating, an important component in Cainan technology.
+[/Item]
+
+[Item]
+name=Module Fabricator
+type=station
+volume=1060000
+mass=14000
+HP=100
+minPrice=2940000
+maxPrice=40280000
+store=10
+group=constructionkit
+description=This fab produces Assembly Modules, an important component in Cainan technology.
 [/Item]
 
 ########Ship Stuff#########
