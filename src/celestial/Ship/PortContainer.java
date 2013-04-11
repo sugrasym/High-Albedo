@@ -83,12 +83,14 @@ public class PortContainer implements Serializable {
     }
 
     public void render(Graphics f) {
-        if (client == null) {
-            f.setColor(Color.GRAY);
-            f.drawOval((int) x, (int) y, width, height);
-        } else if (time < maxHold && !client.isDocked()) {
-            f.setColor(Color.YELLOW);
-            f.drawOval((int) x, (int) y, width, height);
+        if (width < 100 && height < 100) {
+            if (client == null) {
+                f.setColor(Color.GRAY);
+                f.drawOval((int) x, (int) y, width, height);
+            } else if (time < maxHold && !client.isDocked()) {
+                f.setColor(Color.YELLOW);
+                f.drawOval((int) x, (int) y, width, height);
+            }
         }
     }
 

@@ -1,8 +1,8 @@
 #New Game Smell
 [NewGame]
-ship=Ronin
-system=System 14
-near=Planet 0
+ship=Zebra
+system=System 48
+near=Planet 1
 cash=750000
 install=Katana/Katana/Dalkyu/Dalkyu
 cargo=Dalkyu Rocket~246

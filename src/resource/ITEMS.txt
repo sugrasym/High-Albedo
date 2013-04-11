@@ -236,6 +236,19 @@ description=Slow, lumbering, and armed to the teeth best describes the Wildabeas
 [/Item]
 
 [Item]
+name=Zebra
+type=ship
+volume=122500
+mass=60000
+HP=100
+minPrice=13000000
+maxPrice=25000000
+store=4
+group=superfreighter
+description=When you need a ship capable of laying down new infrastructure, you need a super freighter. Capable of carrying vast amounts of resources, the Zebra delivers (albeit very slowly).
+[/Item]
+
+[Item]
 name=Gecko
 type=ship
 volume=2500

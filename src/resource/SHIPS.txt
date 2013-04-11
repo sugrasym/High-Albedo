@@ -149,18 +149,34 @@ width=50
 height=50
 [/Ship]
 
-#Heavy Fighters
-#The archers do not have a HF
-
 #########ITC##########
 #Naming Scheme: Savanna Animals
 #########
+
+#Super Freighters
+
+[Ship]
+type=Zebra
+accel=17
+turning=0.25
+shield=2500000
+shieldRecharge=110
+hull=210255
+fuel=16000000
+mass=24000
+sensor=18500
+cargo=8650000
+#TODO: REPLACE WITH TURRETS WHEN IMPLEMENTED
+hardpoint=missile,32,8,3.925/missile,32,-8,5.495/missile,32,4,3.925/missile,32,-4,5.495
+width=270
+height=270
+[/Ship]
 
 #Transports
 
 [Ship]
 type=Wildabeast
-accel=17
+accel=19
 turning=1.8
 shield=60000
 shieldRecharge=350
