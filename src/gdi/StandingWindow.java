@@ -182,7 +182,7 @@ public class StandingWindow extends AstralWindow {
          */
         if (selected != null) {
             infoList.addToList(" ");
-            infoList.addToList("--Description-");
+            infoList.addToList("--Description--");
             infoList.addToList(" ");
             //
             String description = selected.getDescription();

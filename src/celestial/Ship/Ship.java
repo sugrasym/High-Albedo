@@ -41,6 +41,8 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import lib.AstralMessage;
+import lib.Binling;
 import lib.Faction;
 import lib.FastMath;
 import lib.Parser;
@@ -154,6 +156,8 @@ public class Ship extends Celestial {
     protected ArrayList<Item> cargoBay = new ArrayList();
     //RNG
     Random rnd = new Random();
+    //communications
+    private ArrayList<AstralMessage> messages = new ArrayList<>();
     //media switches
     protected boolean thrusting = false;
     //sound que
@@ -339,6 +343,7 @@ public class Ship extends Celestial {
         if (faction.hashCode() == PLAYER_FACTION.hashCode()) {
             if (getUniverse() != null) {
                 myFaction = getUniverse().getPlayerShip().getMyFaction();
+                messages = getUniverse().getPlayerShip().getMessages();
                 alternateString = true;
             }
         }
@@ -2723,5 +2728,40 @@ public class Ship extends Celestial {
 
     public void setScanForContraband(boolean scanForContraband) {
         this.scanForContraband = scanForContraband;
+    }
+    
+    public void recieveReply(AstralMessage message, Binling choice) {
+        //TODO : Monitor for replies
+    }
+    
+    public void composeMessage(Ship recieve, String body, ArrayList<Binling> options) {
+        AstralMessage tmp = new AstralMessage(this, body, options);
+        recieve.recieveMessage(tmp);
+    }
+
+    public boolean recieveMessage(AstralMessage message) {
+        /*
+         * NPCs do not use the messaging system to communicate with each other
+         * so any sent message is disregarded if it is not a player ship. Any
+         * message sent to a player ship is automatically forwarded to the
+         * player's current ship.
+         */
+        if (faction.matches("Player")) {
+            if(this == getUniverse().getPlayerShip()) {
+                //add to que
+                messages.add(message);
+                //TODO play sound
+            } else {
+                //forward
+                getUniverse().getPlayerShip().recieveMessage(message);
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public ArrayList<AstralMessage> getMessages() {
+        return messages;
     }
 }

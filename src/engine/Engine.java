@@ -26,6 +26,7 @@ import celestial.Ship.Projectile;
 import celestial.Ship.Ship;
 import celestial.Ship.Station;
 import gdi.CargoWindow;
+import gdi.CommWindow;
 import gdi.EquipmentWindow;
 import gdi.FuelWindow;
 import gdi.HealthWindow;
@@ -58,8 +59,6 @@ import java.util.logging.Logger;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import lib.AstralIO;
 import lib.Parser;
 import lib.Parser.Term;
@@ -406,6 +405,7 @@ public class Engine {
         StarMapWindow starMapWindow = new StarMapWindow();
         StandingWindow standingWindow = new StandingWindow();
         PropertyWindow propertyWindow = new PropertyWindow();
+        CommWindow commWindow = new CommWindow();
 
         public HUD(Engine engine) {
             homeWindow = new MenuHomeWindow(engine);
@@ -426,6 +426,7 @@ public class Engine {
                 standingWindow.setVisible(false);
                 windows.add(propertyWindow);
                 propertyWindow.setVisible(false);
+                windows.add(commWindow);
             } else if (state == State.MENU) {
                 windows.add(homeWindow);
                 homeWindow.setVisible(true);
@@ -461,6 +462,9 @@ public class Engine {
                 //position property window
                 propertyWindow.setX((uiX / 2) - propertyWindow.getWidth() / 2);
                 propertyWindow.setY((uiY / 2) - propertyWindow.getHeight() / 2);
+                //position comm window
+                commWindow.setX(20);
+                commWindow.setY(20);
             } else if (state == State.MENU) {
                 //position home window
                 homeWindow.setX((uiX / 2) - homeWindow.getWidth() / 2);
@@ -504,6 +508,9 @@ public class Engine {
                 }
                 if (propertyWindow.isVisible()) {
                     propertyWindow.update(playerShip);
+                }
+                if(commWindow.isVisible()) {
+                    commWindow.update(playerShip);
                 }
                 //update
                 for (int a = 0; a < windows.size(); a++) {
@@ -781,6 +788,9 @@ public class Engine {
                 }
                 if (ke.getKeyCode() == KeyEvent.VK_P) {
                     propertyWindow.setVisible(!propertyWindow.isVisible());
+                }
+                if (ke.getKeyCode() == KeyEvent.VK_I) {
+                    commWindow.setVisible(!commWindow.isVisible());
                 }
                 /*
                  * Time dilation keys
