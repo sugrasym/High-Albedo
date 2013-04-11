@@ -283,6 +283,13 @@ resource=
 [/Process]
 
 [Process]
+name=CheatMakeApparition
+cycle=2240
+product=Apparition,1
+resource=
+[/Process]
+
+[Process]
 name=CheatMakeSamurai
 cycle=1000
 product=Samurai,1
@@ -355,6 +362,13 @@ resource=
 [/Process]
 
 [Process]
+name=ITCCheatBarrage
+cycle=2400
+product='Fury' Barrage Battery,1/'Swatter' Barrage Battery,1
+resource=
+[/Process]
+
+[Process]
 name=ITCCheatSidewinder
 cycle=1100
 product=Sidewinder Launcher,1
@@ -386,6 +400,13 @@ resource=
 name=OrinCheatRocketERPC
 cycle=600
 product=ERPC,2/Rocket Pod,4
+resource=
+[/Process]
+
+[Process]
+name=OrinCheatHGPC
+cycle=6000
+product=HGPC,1
 resource=
 [/Process]
 

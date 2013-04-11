@@ -166,6 +166,44 @@ accel=300
 turning=6
 [/Weapon]
 
+[Weapon]
+#weapon info
+name='Fury' Barrage Battery
+type=battery
+#shell info
+damage=6250
+range=2000
+speed=5
+mass=1000
+refire=2
+explosion=Explosion
+#make it a seeker
+guided=true
+#it uses ammo
+ammo=Starstruck Missile
+accel=225
+turning=2.5
+[/Weapon]
+
+[Weapon]
+#weapon info
+name='Swatter' Barrage Battery
+type=battery
+#shell info
+damage=3000
+range=6000
+speed=5
+mass=1
+refire=2
+explosion=Explosion
+#make it a seeker
+guided=true
+#it uses ammo
+ammo=Sidewinder Missile
+accel=300
+turning=6
+[/Weapon]
+
 ########Caina Weapons########
 
 [Weapon]
@@ -410,6 +448,21 @@ guided=true
 ammo=Rapid Rocket
 accel=300
 turning=7
+[/Weapon]
+
+[Weapon]
+#weapon info
+name=HGPC
+type=turret
+#shell info
+damage=32
+range=450
+speed=600
+mass=11
+refire=0.04
+explosion=Green
+fireEffect=audio/effects/weapons/HGPC.wav
+loop=true
 [/Weapon]
 
 ########Wolves Weapons########

@@ -9,7 +9,7 @@ hull=10000
 fuel=2500000000000
 mass=10000
 rectBound=20,32,186,234/169,24,572,48/170,236,572,266
-dock=210,50,260,100,900,140/310,50,360,100,900,140/410,50,460,100,900,140/510,50,560,100,900,140
+dock=210,50,260,100,900,140/310,50,360,100,900,140/410,50,460,100,900,140/510,50,560,100,900,140/100,-500,600,0,300,-1500
 process=AgeiranCivilianFoodSink/AgeiranCivilianPirateSink/CivilianConsumerGoods
 [/Station]
 
@@ -24,7 +24,7 @@ hull=3000
 fuel=2500000000000
 mass=50000
 rectBound=20,32,186,234/169,24,572,48/170,236,572,266
-dock=210,50,260,100,900,140/310,50,360,100,900,140/410,50,460,100,900,140/510,50,560,100,900,140
+dock=210,50,260,100,900,140/310,50,360,100,900,140/410,50,460,100,900,140/510,50,560,100,900,140/100,-500,600,0,300,-1500
 process=GoodsToPiracy/ArchersCoveCheatWeapons/OrganSink/CheatMakeBowman/CheatMakeCavalry
 [/Station]
 
@@ -39,7 +39,7 @@ hull=35000
 fuel=2500000000000
 mass=20000
 rectBound=29,32,185,87/29,190,185,235/85,85,187,197/169,24,572,48/170,236,572,266/100,-500,600,0,300,-1500
-dock=210,50,260,100,900,140/310,50,360,100,900,140/410,50,460,100,900,140/510,50,560,100,900,140
+dock=210,50,260,100,900,140/310,50,360,100,900,140/410,50,460,100,900,140/510,50,560,100,900,140/100,-500,600,0,300,-1500
 process=AgeiranCustomsGases/AgeiranCustomsOre/HydrocarbonBurn
 [/Station]
 
@@ -53,7 +53,7 @@ hull=8000
 fuel=2500000000000
 mass=14000
 rectBound=2,5,132,206/124,4,347,25/130,189,348,207
-dock=134,27,184,77,600,85/254,27,304,77,600,85
+dock=134,27,184,77,600,85/254,27,304,77,600,85/100,-500,600,0,300,-1500
 process=AgeiranSolar
 [/Station]
 
@@ -67,7 +67,7 @@ hull=6500
 fuel=2500000000000
 mass=26000
 rectBound=25,5,192,340/192,15,485,39
-dock=234,45,284,95,900,305/334,45,384,95,900,305/434,45,484,95,900,305
+dock=234,45,284,95,900,305/334,45,384,95,900,305/434,45,484,95,900,305/100,-500,600,0,300,-1500
 process=AgeiranMRE/AgeiranWholeFoods
 [/Station]
 
@@ -81,7 +81,7 @@ hull=7200
 fuel=2500000000000
 mass=39000
 rectBound=25,5,192,340/192,15,485,39
-dock=234,45,284,95,900,305/334,45,384,95,900,305/434,45,484,95,900,305
+dock=234,45,284,95,900,305/334,45,384,95,900,305/434,45,484,95,900,305/100,-500,600,0,300,-1500
 process=AgeiranAlloyBar/AgeiranFPGAs
 [/Station]
 
@@ -111,7 +111,7 @@ hull=21000
 fuel=2500000000000
 mass=22010
 rectBound=22,32,186,234/169,24,572,48
-dock=210,50,260,100,900,140/310,50,360,100,900,140/410,50,460,100,900,140/510,50,560,100,900,140
+dock=210,50,260,100,900,140/310,50,360,100,900,140/410,50,460,100,900,140/510,50,560,100,900,140/100,-500,600,0,300,-1500
 process=AgeiranCheatTalon/AgeiranCheatTalonSink
 [/Station]
 
@@ -139,7 +139,7 @@ hull=25600
 fuel=2500000000000
 mass=57010
 rectBound=5,408,293,561/7,27,509,452
-dock=10,568,60,618,27,738/88,568,138,618,105,738/166,568,216,618,185,738/244,568,294,618,263,738
+dock=10,568,60,618,27,738/88,568,138,618,105,738/166,568,216,618,185,738/244,568,294,618,263,738/100,-500,600,0,300,-1500
 process=CainanAsteroidOre/CainanAsteroidHydrocarbon/UseSlaves
 [/Station]
 
@@ -153,7 +153,7 @@ hull=24600
 fuel=2500000000000
 mass=61000
 rectBound=6,6,293,562
-dock=10,568,60,618,27,738/88,568,138,618,105,738/166,568,216,618,185,738/244,568,294,618,263,738
+dock=10,568,60,618,27,738/88,568,138,618,105,738/166,568,216,618,185,738/244,568,294,618,263,738/100,-500,600,0,300,-1500
 process=CainanProduce
 [/Station]
 
@@ -167,7 +167,7 @@ hull=24600
 fuel=2500000000000
 mass=61000
 rectBound=6,6,293,562
-dock=10,568,60,618,27,738/88,568,138,618,105,738/166,568,216,618,185,738/244,568,294,618,263,738
+dock=10,568,60,618,27,738/88,568,138,618,105,738/166,568,216,618,185,738/244,568,294,618,263,738/100,-500,600,0,300,-1500
 process=CainanLunchbox
 [/Station]
 
@@ -181,7 +181,7 @@ hull=12600
 fuel=2500000000000
 mass=81000
 rectBound=6,6,293,562
-dock=10,568,60,618,27,738/88,568,138,618,105,738/166,568,216,618,185,738/244,568,294,618,263,738
+dock=10,568,60,618,27,738/88,568,138,618,105,738/166,568,216,618,185,738/244,568,294,618,263,738/100,-500,600,0,300,-1500
 process=CainanHullPlating
 [/Station]
 
@@ -195,7 +195,7 @@ hull=12600
 fuel=2500000000000
 mass=81000
 rectBound=6,6,293,562
-dock=10,568,60,618,27,738/88,568,138,618,105,738/166,568,216,618,185,738/244,568,294,618,263,738
+dock=10,568,60,618,27,738/88,568,138,618,105,738/166,568,216,618,185,738/244,568,294,618,263,738/100,-500,600,0,300,-1500
 process=CainanAssemblyModule
 [/Station]
 
@@ -340,7 +340,7 @@ fuel=2500000000000
 mass=93280
 rectBound=275,558,375,743/117,24,533,217/8,215,641,466/34,464,612,575/107,572,549,651/35,105,618,219
 dock=218,672,268,722,-115,690/376,672,426,722,776,700/300,747,350,797,326,976/100,-500,600,0,300,-1500
-process=ITCCheatStarstruck/ITCCheatSidewinder/ITCCheatStarstruckMissile/ITCCheatSidewinderMissile/ITCCheatWeaponSink/CheatMakeHyena/CheatMakeCheetah/CheatMakeWildabeast/CheatMakeZebra/CheatMakeITCPowerConverter/CheatMakeITCIceRefinery/CheatMakeITCOreConverter/CheatMakeITCOrbitalRanch/CheatMakeITCFoodSupply/CheatMakeITCIndustrialReplicator
+process=ITCCheatStarstruck/ITCCheatSidewinder/ITCCheatStarstruckMissile/ITCCheatSidewinderMissile/ITCCheatBarrage/ITCCheatWeaponSink/CheatMakeHyena/CheatMakeCheetah/CheatMakeWildabeast/CheatMakeZebra/CheatMakeITCPowerConverter/CheatMakeITCIceRefinery/CheatMakeITCOreConverter/CheatMakeITCOrbitalRanch/CheatMakeITCFoodSupply/CheatMakeITCIndustrialReplicator
 [/Station]
 
 [Station]
@@ -354,7 +354,7 @@ hull=2500
 fuel=2500000000000
 mass=55000
 rectBound=9,3,446,448/428,195,529,251
-dock=454,141,504,191,485,-114/454,252,504,302,491,512
+dock=454,141,504,191,485,-114/454,252,504,302,491,512/100,-500,600,0,300,-1500
 process=WolfOrgans/WolfDenCheatWeapons/CheatMakeCoyote/CheatMakeJackal
 [/Station]
 
@@ -369,7 +369,7 @@ hull=16500
 fuel=2500000000000
 mass=45000
 rectBound=25,5,192,118/192,15,485,39/158,118,192,339
-dock=234,45,284,95,900,305/334,45,384,95,900,305/434,45,484,95,900,305
+dock=234,45,284,95,900,305/334,45,384,95,900,305/434,45,484,95,900,305/100,-500,600,0,300,-1500
 process=CheatMakeScimitar/CheatMakeClaymore/KnightsTechSink/CheatMakeBala/CheatKnightsWeapons/CheatKnightsWeapons
 [/Station]
 
@@ -383,7 +383,7 @@ hull=12000
 fuel=2500000000000
 mass=89000
 rectBound=96,7,390,161/174,154,310,350/98,335,388,486
-dock=115,222,165,272,-124,242/315,222,365,272,563,249
+dock=115,222,165,272,-124,242/315,222,365,272,563,249/100,-500,600,0,300,-1500
 process=OrinFission
 [/Station]
 
@@ -397,7 +397,7 @@ hull=12000
 fuel=2500000000000
 mass=89000
 rectBound=96,7,390,161/174,154,310,350/98,335,388,486
-dock=115,222,165,272,-124,242/315,222,365,272,563,249
+dock=115,222,165,272,-124,242/315,222,365,272,563,249/100,-500,600,0,300,-1500
 process=OrinFood
 [/Station]
 
@@ -411,7 +411,7 @@ hull=18000
 fuel=2500000000000
 mass=125000
 rectBound=96,7,390,161/174,154,310,350/98,335,388,486
-dock=115,222,165,272,-124,242/315,222,365,272,563,249
+dock=115,222,165,272,-124,242/315,222,365,272,563,249/100,-500,600,0,300,-1500
 process=OrinMassBlock
 [/Station]
 
@@ -425,7 +425,7 @@ hull=25000
 fuel=2500000000000
 mass=172000
 rectBound=96,7,390,161/174,154,310,350/98,335,388,486
-dock=115,222,165,272,-124,242/315,222,365,272,563,249
+dock=115,222,165,272,-124,242/315,222,365,272,563,249/100,-500,600,0,300,-1500
 process=OrinConsumerGoods/OrinAlloyBar/OrinFPGAs
 [/Station]
 
@@ -441,7 +441,7 @@ fuel=2500000000000
 mass=1872000
 rectBound=22,10,693,164/251,126,693,602/29,594,637,661
 dock=189,190,239,240,-146,208/189,265,239,315,-146,283/189,340,239,390,-146,358/189,415,239,465,-146,433/189,490,239,540,-146,508/100,-500,600,0,300,-1500
-process=OrinShipSink/OrinTechSink/OrinCheatRocketERPC/OrinCheatRocket/CheatMakeBanshee/CheatMakeWraith/CheatMakePhantasm/CheatMakePoltergeist/CheatMakeOrinFissionPlant/CheatMakeOrinMixedFoodsPlant/CheatMakeOrinWasteConverter/CheatMakeOrinTechPlant
+process=OrinShipSink/OrinTechSink/OrinCheatRocketERPC/OrinCheatRocket/OrinCheatHGPC/CheatMakeBanshee/CheatMakeWraith/CheatMakePhantasm/CheatMakeApparition/CheatMakePoltergeist/CheatMakeOrinFissionPlant/CheatMakeOrinMixedFoodsPlant/CheatMakeOrinWasteConverter/CheatMakeOrinTechPlant
 [/Station]
 
 [Station]
@@ -454,6 +454,6 @@ hull=8000
 fuel=2500000000000
 mass=62000
 rectBound=96,7,390,161/174,154,310,350/98,335,388,486
-dock=115,222,165,272,-124,242/315,222,365,272,563,249
+dock=115,222,165,272,-124,242/315,222,365,272,563,249/100,-500,600,0,300,-1500
 process=TenguTechSink/MakeSlaves/CheatTenguWeapons/CheatTenguAmmo/CheatMakeSamurai/CheatMakeRonin/AstronautToSlave
 [/Station]

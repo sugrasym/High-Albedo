@@ -123,7 +123,7 @@ public class Projectile extends Ship {
                         }
                     }
                 } else if (distance <= range) {
-                    fireActiveModules(target);
+                    fireActiveGuns(target);
                 }
             } else {
                 setTarget(null);

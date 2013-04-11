@@ -1190,7 +1190,8 @@ public class Engine {
                         playerShip.decelerate();
                     }
                     if (firing) {
-                        playerShip.fireActiveModules(null);
+                        playerShip.fireActiveGuns(playerShip.getTarget());
+                        playerShip.fireActiveTurrets(playerShip.getTarget());
                     }
                 }
             } catch (Exception e) {

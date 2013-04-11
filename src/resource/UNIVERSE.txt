@@ -1,11 +1,11 @@
 #New Game Smell
 [NewGame]
-ship=Zebra
+ship=Apparition
 system=System 3
 near=Planet 1
 cash=7500000
-install=Katana/Katana/Dalkyu/Dalkyu
-cargo=Dalkyu Rocket~246
+install=Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod/HGPC/HGPC
+cargo=Rapid Rocket~100000/Standard Energy Unit~5
 faction=Player
 [/NewGame]
 

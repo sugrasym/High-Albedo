@@ -125,8 +125,8 @@ cargo=Starstruck Missile~80
 [Loadout]
 ship=Zebra
 name=ITC Logistics Zebra
-install=Starstruck Launcher/Starstruck Launcher/Starstruck Launcher/Starstruck Launcher
-cargo=Starstruck Missile~1600
+install='Swatter' Barrage Battery/'Swatter' Barrage Battery/'Fury' Barrage Battery/'Fury' Barrage Battery
+cargo=Starstruck Missile~2500/Sidewinder Missile~2500
 [/Loadout]
 
 ########Caina Lawful
@@ -216,9 +216,16 @@ cargo=Rapid Rocket~600
 
 [Loadout]
 ship=Poltergeist
-name=Federal Trade Poltergeist
+name=OFAF Trade Poltergeist
 install=ERPC/ERPC/Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod
 cargo=Rapid Rocket~400
+[/Loadout]
+
+[Loadout]
+ship=Apparition
+name=OFAF Logistics Apparition
+install=Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod/HGPC/HGPC
+cargo=Rapid Rocket~500000
 [/Loadout]
 
 ########Knights of Orin

@@ -166,8 +166,7 @@ fuel=16000000
 mass=24000
 sensor=18500
 cargo=8650000
-#TODO: REPLACE WITH TURRETS WHEN IMPLEMENTED (remember to update LOADOUTS)
-hardpoint=missile,32,8,3.925/missile,32,-8,5.495/missile,32,4,3.925/missile,32,-4,5.495
+hardpoint=battery,1000,40,1.57/battery,1000,-40,1.57/battery,1000,20,1.57/battery,1000,-20,1.57
 width=270
 height=270
 [/Ship]
@@ -303,6 +302,24 @@ height=50
 #########Orin##########
 #Naming Scheme: Ghosts
 #########
+
+#Super Freighters
+
+[Ship]
+type=Apparition
+accel=21
+turning=0.3
+shield=5000000
+shieldRecharge=1
+hull=62000
+fuel=16000000
+mass=24000
+sensor=4200
+cargo=5280000
+hardpoint=missile,15,20,1.57/missile,15,-20,1.57/turret,500,10,3.925/turret,500,-10,5.495/missile,15,-20,3.14/missile,15,20,3.14/missile,15,-40,3.14/missile,15,80,3.14/missile,40,-20,3.14/missile,15,-80,3.14
+width=270
+height=270
+[/Ship]
 
 #Transports
  

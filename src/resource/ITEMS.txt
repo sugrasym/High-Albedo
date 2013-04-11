@@ -275,7 +275,6 @@ group=fighter
 description=Also called the 'Super Banshee' due to being a modified Banshee, the Wraith sports extended cargo capacity and improved shielding to deliver high endurance spam at close to medium range.
 [/Item]
 
-
 [Item]
 name=Phantasm
 type=ship
@@ -287,6 +286,19 @@ maxPrice=972000
 store=12
 group=fighter
 description=When you just need more missiles, the Phantasm delivers. This 'fighter' is designed to mount 4 Rocket Pods and 2 ERPCs for maximum missile spam. With state of the art Orin field coils driving the defenses, the Federal Air Force expects this new design to protect Federal interests even in the most hostile environments.
+[/Item]
+
+[Item]
+name=Apparition
+type=ship
+volume=122500
+mass=60000
+HP=100
+minPrice=28000000
+maxPrice=62000000
+store=6
+group=superfreighter
+description=When you need a ship capable of laying down new infrastructure, you need a super freighter. The Orin, due to serious piracy issues in their space, have armed the Apparition heavily with multiple point defense weapons. Be aware that it will consume large amounts of ammunition even in a short fight.
 [/Item]
 
 [Item]
@@ -1243,6 +1255,32 @@ description=The Knights of Orin have weapons that perform fiercely well at close
 #ITC Weapons
 
 [Item]
+name='Fury' Barrage Battery
+type=battery
+volume=995
+mass=1000
+HP=25
+minPrice=5000000
+maxPrice=7000000
+group=weapon
+store=35
+description=ITC capital missile turret designed for rapid deployment of Starstruck Missiles.
+[/Item]
+
+[Item]
+name='Swatter' Barrage Battery
+type=battery
+volume=995
+mass=1000
+HP=25
+minPrice=4000000
+maxPrice=6000000
+group=weapon
+store=35
+description=ITC capital missile turret designed for rapid deployment of Sidewinder Missiles.
+[/Item]
+
+[Item]
 name=Starstruck Launcher
 type=missile
 volume=31
@@ -1279,6 +1317,19 @@ maxPrice=8000
 group=weapon
 store=1400
 description=ERPCs (Extended Range Pulse Cannons) trade damage for range and rapid fire. The reduced damage output allows the weapon to consume far less space than a traditional pulse cannon. The ERPC is primarily used by the Orin Federation.
+[/Item]
+
+[Item]
+name=HGPC
+type=cannon
+volume=450
+mass=650
+HP=200
+minPrice=2000
+maxPrice=8000
+group=weapon
+store=140
+description=The High Gain Pulse Cannon is a point defense weapon for capital sized ships, primarily used by the Orin Federation.
 [/Item]
 
 [Item]

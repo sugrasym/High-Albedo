@@ -1710,7 +1710,10 @@ public class Ship extends Celestial {
                         }
                     }
                 } else if (distance <= range) {
-                    fireActiveModules(target);
+                    fireActiveGuns(target);
+                }
+                if (distance <= range) {
+                    fireActiveTurrets(target);
                 }
             } else {
                 target = null;
@@ -2308,7 +2311,8 @@ public class Ship extends Celestial {
                  */
                 if (getType() != null) {
                     try {
-                        if (test.getType().matches("cannon") || test.getType().matches("missile")) {
+                        if (test.getType().matches("cannon") || test.getType().matches("missile")
+                                || test.getType().matches("battery") || test.getType().matches("turret")) {
                             Weapon wep = new Weapon(arr[a]);
                             fit(wep);
                         }
@@ -2360,9 +2364,19 @@ public class Ship extends Celestial {
         }
     }
 
-    public void fireActiveModules(Entity target) {
+    public void fireActiveTurrets(Entity target) {
         for (int a = 0; a < hardpoints.size(); a++) {
-            hardpoints.get(a).activate(target);
+            if (hardpoints.get(a).getType().matches("turret") || hardpoints.get(a).getType().matches("battery")) {
+                hardpoints.get(a).activate(target);
+            }
+        }
+    }
+
+    public void fireActiveGuns(Entity target) {
+        for (int a = 0; a < hardpoints.size(); a++) {
+            if (hardpoints.get(a).getType().matches("cannon") || hardpoints.get(a).getType().matches("missile")) {
+                hardpoints.get(a).activate(target);
+            }
         }
     }
 

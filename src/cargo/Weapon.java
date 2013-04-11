@@ -225,80 +225,13 @@ public class Weapon extends Equipment {
         if (enabled) {
             if (hasAmmo() && hasTarget()) {
                 double theta = host.getTheta();
-                //use any ammo
-                useAmmo();
-                //create projectile
-                String tName = "";
-                if (ammoType != null) {
-                    tName = ammoType.getName();
-                } else {
-                    tName = getName();
-                }
-                Projectile pro = new Projectile(host, tName, tName, raw_tex, tex, width, height);
-                pro.init(false);
-                //calculate relative position from hardpoint
-                double hT = getSocket().getT();
-                double hR = getSocket().getR();
-                double dx = Math.cos(hT + (theta) - Math.PI) * hR;
-                double dy = Math.sin(hT + (theta - Math.PI)) * hR;
-                //store position
-                pro.setX((host.getX() + host.getWidth() / 2) - pro.getWidth() / 2 + dx);
-                pro.setY((host.getY() + host.getHeight() / 2) - pro.getHeight() / 2 + dy);
-                pro.setLastX(pro.getX());
-                pro.setLastY(pro.getY());
-                //calculate speed
-                double pdx = speed * Math.cos(theta - Math.PI);
-                double pdy = speed * Math.sin(theta - Math.PI);
-                //add to host vector
-                pro.setVx(host.getVx() + pdx);
-                pro.setVy(host.getVy() + pdy);
-                //store angle
-                pro.setTheta(host.getTheta());
-                //store physics
-                pro.setDamage(damage);
-                pro.setMaxRange(getRange());
-                pro.setMass(getMass());
-                pro.setSpeed(speed);
-                pro.setExplosion(explosion);
-                //store AI
-                pro.setGuided(guided);
-                pro.setRange(range);
-                if (guided) {
-                    pro.setFuel(Double.MAX_VALUE);
-                    pro.setMaxFuel(Double.MAX_VALUE);
-                    //store stats
-                    pro.setSensor(range);
-                    pro.setAccel(accel);
-                    pro.setMaxRange(getRange() * 1.5);
-                    pro.setTurning(turning);
-                }
-                //determine if OOS or not
-                SolarSystem playerSys = host.getUniverse().getPlayerShip().getCurrentSystem();
-                if (host.getCurrentSystem() == playerSys) {
-                    //add to universe
-                    pro.setCurrentSystem(host.getCurrentSystem());
-                    host.getCurrentSystem().putEntityInSystem(pro);
-                } else {
-                    //deal damage directly
-                    Ship tvp = host.getTarget();
-                    if (tvp != null) {
-                        tvp.dealDamage(damage);
-                        tvp.setLastBlow(host);
+                if (getType().matches(Item.TYPE_TURRET) || getType().matches(Item.TYPE_BATTERY)) {
+                    if (host.getTarget() != null) {
+                        return turretFire(theta);
                     }
+                } else {
+                    return simpleFire(theta);
                 }
-                //play fire effect
-                if (fireEffect != null) {
-                    if (!fireEffect.isPlaying()) {
-                        host.playSound(fireEffect);
-                    } else {
-                        if (!loopFireEffect) {
-                            fireEffect.play();
-                        }
-                    }
-                }
-                //reset timer
-                timeSinceLastActivation = 0;
-                return true;
             }
         }
         return false;
@@ -375,5 +308,166 @@ public class Weapon extends Equipment {
 
     public void setExplosion(String explosion) {
         this.explosion = explosion;
+    }
+
+    private boolean turretFire(double theta) {
+        //use any ammo
+        useAmmo();
+        //create projectile
+        String tName = "";
+        if (ammoType != null) {
+            tName = ammoType.getName();
+        } else {
+            tName = getName();
+        }
+        Projectile pro = new Projectile(host, tName, tName, raw_tex, tex, width, height);
+        pro.init(false);
+        //calculate relative position from hardpoint
+        double hT = getSocket().getT();
+        double hR = getSocket().getR();
+        double dx = Math.cos(hT + (theta) - Math.PI) * hR;
+        double dy = Math.sin(hT + (theta - Math.PI)) * hR;
+        //store position
+        pro.setX((host.getX() + host.getWidth() / 2) - pro.getWidth() / 2 + dx);
+        pro.setY((host.getY() + host.getHeight() / 2) - pro.getHeight() / 2 + dy);
+        pro.setLastX(pro.getX());
+        pro.setLastY(pro.getY());
+        //get target position
+        double tx = host.getTarget().getX();
+        double ty = host.getTarget().getY();
+        //calculate theta
+        double mx = pro.getX() - tx;
+        double my = pro.getY() - ty;
+        double tTheta = Math.atan2(my, mx);
+        //calculate speed
+        double pdx = speed * Math.cos(tTheta - Math.PI);
+        double pdy = speed * Math.sin(tTheta - Math.PI);
+        //add to host vector
+        pro.setVx(host.getVx() + pdx);
+        pro.setVy(host.getVy() + pdy);
+        //store angle
+        pro.setTheta(tTheta);
+        //store physics
+        pro.setDamage(damage);
+        pro.setMaxRange(getRange());
+        pro.setMass(getMass());
+        pro.setSpeed(speed);
+        pro.setExplosion(explosion);
+        //store AI
+        pro.setGuided(guided);
+        pro.setRange(range);
+        if (guided) {
+            pro.setFuel(Double.MAX_VALUE);
+            pro.setMaxFuel(Double.MAX_VALUE);
+            //store stats
+            pro.setSensor(range);
+            pro.setAccel(accel);
+            pro.setMaxRange(getRange() * 1.5);
+            pro.setTurning(turning);
+        }
+        //determine if OOS or not
+        SolarSystem playerSys = host.getUniverse().getPlayerShip().getCurrentSystem();
+        if (host.getCurrentSystem() == playerSys) {
+            //add to universe
+            pro.setCurrentSystem(host.getCurrentSystem());
+            host.getCurrentSystem().putEntityInSystem(pro);
+        } else {
+            //deal damage directly
+            Ship tvp = host.getTarget();
+            if (tvp != null) {
+                tvp.dealDamage(damage);
+                tvp.setLastBlow(host);
+            }
+        }
+        //play fire effect
+        if (fireEffect != null) {
+            if (!fireEffect.isPlaying()) {
+                host.playSound(fireEffect);
+            } else {
+                if (!loopFireEffect) {
+                    fireEffect.play();
+                }
+            }
+        }
+        //reset timer
+        timeSinceLastActivation = 0;
+        return true;
+    }
+
+    private boolean simpleFire(double theta) {
+        //use any ammo
+        useAmmo();
+        //create projectile
+        String tName = "";
+        if (ammoType != null) {
+            tName = ammoType.getName();
+        } else {
+            tName = getName();
+        }
+        Projectile pro = new Projectile(host, tName, tName, raw_tex, tex, width, height);
+        pro.init(false);
+        //calculate relative position from hardpoint
+        double hT = getSocket().getT();
+        double hR = getSocket().getR();
+        double dx = Math.cos(hT + (theta) - Math.PI) * hR;
+        double dy = Math.sin(hT + (theta - Math.PI)) * hR;
+        //store position
+        pro.setX((host.getX() + host.getWidth() / 2) - pro.getWidth() / 2 + dx);
+        pro.setY((host.getY() + host.getHeight() / 2) - pro.getHeight() / 2 + dy);
+        pro.setLastX(pro.getX());
+        pro.setLastY(pro.getY());
+        //calculate speed
+        double pdx = speed * Math.cos(theta - Math.PI);
+        double pdy = speed * Math.sin(theta - Math.PI);
+        //add to host vector
+        pro.setVx(host.getVx() + pdx);
+        pro.setVy(host.getVy() + pdy);
+        //store angle
+        pro.setTheta(host.getTheta());
+        //store physics
+        pro.setDamage(damage);
+        pro.setMaxRange(getRange());
+        pro.setMass(getMass());
+        pro.setSpeed(speed);
+        pro.setExplosion(explosion);
+        //store AI
+        pro.setGuided(guided);
+        pro.setRange(range);
+        if (guided) {
+            pro.setFuel(Double.MAX_VALUE);
+            pro.setMaxFuel(Double.MAX_VALUE);
+            //store stats
+            pro.setSensor(range);
+            pro.setAccel(accel);
+            pro.setMaxRange(getRange() * 1.5);
+            pro.setTurning(turning);
+        }
+        //determine if OOS or not
+        SolarSystem playerSys = host.getUniverse().getPlayerShip().getCurrentSystem();
+        if (host.getCurrentSystem() == playerSys) {
+            //add to universe
+            pro.setCurrentSystem(host.getCurrentSystem());
+            host.getCurrentSystem().putEntityInSystem(pro);
+        } else {
+            //deal damage directly
+            Ship tvp = host.getTarget();
+            if (tvp != null) {
+                tvp.dealDamage(damage);
+                tvp.setLastBlow(host);
+            }
+        }
+        //play fire effect
+        if (fireEffect != null) {
+            if (!fireEffect.isPlaying()) {
+                host.playSound(fireEffect);
+            } else {
+                if (!loopFireEffect) {
+                    fireEffect.play();
+                }
+            }
+        }
+        //reset timer
+        timeSinceLastActivation = 0;
+        return true;
     }
 }

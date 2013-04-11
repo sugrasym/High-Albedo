@@ -29,6 +29,8 @@ public class Item implements Serializable {
 
     public static final String TYPE_CANNON = "cannon";
     public static final String TYPE_MISSILE = "missile";
+    public static final String TYPE_TURRET = "turret";
+    public static final String TYPE_BATTERY = "battery";
     public static final String TYPE_COMMODITY = "commodity";
     private int volume;
     private int store;
