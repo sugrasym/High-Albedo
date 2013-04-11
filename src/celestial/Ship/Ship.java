@@ -1643,21 +1643,9 @@ public class Ship extends Celestial {
         if (target != null) {
             //attack
             if (target.state == State.ALIVE) {
+                fireActiveTurrets(target);
                 double distance = distanceTo(target);
-                double rad;
                 double range = getNearWeaponRange();
-                //compensate for target dimensions
-                if (width > height) {
-                    rad = width / 2;
-                } else {
-                    rad = height / 2;
-                }
-                if (target.getWidth() > target.getHeight()) {
-                    rad += target.getWidth() / 2;
-                } else {
-                    rad += target.getHeight() / 2;
-                }
-                range += rad;
                 //fire thrusters based on range
                 Ship avoid = avoidCollission();
                 if (avoid == null && avoid != target) {
@@ -1711,9 +1699,6 @@ public class Ship extends Celestial {
                     }
                 } else if (distance <= range) {
                     fireActiveGuns(target);
-                }
-                if (distance <= range) {
-                    fireActiveTurrets(target);
                 }
             } else {
                 target = null;

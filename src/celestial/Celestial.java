@@ -126,7 +126,8 @@ public class Celestial implements Serializable, Entity {
     public double distanceTo(Celestial celestial) {
         double cx = celestial.getX() + celestial.getWidth() / 2;
         double cy = celestial.getY() + celestial.getHeight() / 2;
-        return Math.sqrt((cx - (x + width / 2)) * (cx - (x + width / 2)) + (cy - (y + height / 2)) * (cy - (y + height / 2)));
+        double off = Math.max(width/2, height/2) + Math.max(celestial.getWidth()/2, celestial.getHeight()/2);
+        return Math.max(Math.sqrt((cx - (x + width / 2)) * (cx - (x + width / 2)) + (cy - (y + height / 2)) * (cy - (y + height / 2))) - off,0);
     }
 
     /*

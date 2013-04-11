@@ -255,8 +255,8 @@ public class EquipmentWindow extends AstralWindow {
             double ex = ship.getTarget().getX() + (ship.getTarget().getWidth() / 2);
             double ey = ship.getTarget().getY() + (ship.getTarget().getHeight() / 2);
             //adjust for player loc
-            ex -= ship.getX();
-            ey -= ship.getY();
+            ex -= (ship.getX()+ship.getWidth()/2);
+            ey -= (ship.getY()+ship.getHeight()/2);
             //calculate distance
             double dist = magnitude(ex, ey);
             if (dist <= range && ship.getTarget().getState() == State.ALIVE) {
