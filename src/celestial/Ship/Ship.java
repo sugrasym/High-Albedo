@@ -166,6 +166,7 @@ public class Ship extends Celestial {
     private transient ArrayList<Soundling> soundQue;
     //sound effects
     private transient Soundling engineLoop;
+    private transient Soundling notifyMessage;
 
     public Ship(String name, String type) {
         setName(name);
@@ -209,6 +210,7 @@ public class Ship extends Celestial {
                  */
                 //engine loop
                 engineLoop = new Soundling("engineLoop", "audio/effects/engine loop.wav", true);
+                notifyMessage = new Soundling("notifyMessage", "audio/effects/notify message.wav", false);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -231,6 +233,7 @@ public class Ship extends Celestial {
         //dispose of audio
         killSounds();
         engineLoop = null;
+        notifyMessage = null;
     }
 
     protected void initStats() {
@@ -1509,6 +1512,13 @@ public class Ship extends Celestial {
                     if (myFaction.getName().matches(ship.getFaction())) {
                         return false;
                     } else {
+                        //notify the player
+                        if (ship.getFaction().matches("Player")) {
+                            if (conversation == null) {
+                                conversation = new Conversation(this, "Contraband " + sc.get(a).getName(), "Contraband0");
+                            }
+                        }
+                        //return true
                         return true;
                     }
                 }
@@ -2711,6 +2721,7 @@ public class Ship extends Celestial {
     private void killSounds() {
         //halt noises
         stopSound(engineLoop);
+        stopSound(notifyMessage);
         for (int a = 0; a < hardpoints.size(); a++) {
             hardpoints.get(a).getMounted().killSounds();
         }
@@ -2740,7 +2751,9 @@ public class Ship extends Celestial {
     }
 
     public void recieveReply(Binling choice) {
-        conversation.reply(choice);
+        if (conversation != null) {
+            conversation.reply(choice);
+        }
     }
 
     public void composeMessage(Ship recieve, String subject, String body, ArrayList<Binling> options) {
@@ -2757,10 +2770,11 @@ public class Ship extends Celestial {
          */
         message.setWasSent(true);
         if (faction.matches("Player")) {
+            stopSound(notifyMessage);
+            playSound(notifyMessage);
             if (this == getUniverse().getPlayerShip()) {
                 //add to que
                 messages.add(message);
-                //TODO play sound
             } else {
                 //forward
                 getUniverse().getPlayerShip().receiveMessage(message);

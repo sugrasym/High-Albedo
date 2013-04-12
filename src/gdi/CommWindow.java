@@ -20,6 +20,7 @@
 package gdi;
 
 import celestial.Ship.Ship;
+import engine.Entity.State;
 import gdi.component.AstralList;
 import gdi.component.AstralWindow;
 import java.awt.event.MouseEvent;
@@ -79,6 +80,9 @@ public class CommWindow extends AstralWindow {
             //add each one
             for (int a = que.size() - 1; a >= 0; a--) {
                 messageLog.addToList(que.get(a));
+                if (!(que.get(a).getSender().getState() == State.ALIVE)) {
+                    que.get(a).setRepliedTo(true);
+                }
             }
         }
     }
@@ -91,16 +95,23 @@ public class CommWindow extends AstralWindow {
         this.ship = ship;
     }
 
-    private void fillMessageLines(String message) {
+    private void fillMessageLines() {
         /*
          * Fills in the item's description being aware of things like line breaking on spaces.
          */
-        if (message != null) {
+        if (working != null) {
+            messageDisplay.addToList(" ");
+            messageDisplay.addToList("--Sender--");
+            messageDisplay.addToList(" ");
+            messageDisplay.addToList("From:         " + working.getSender().getName());
+            messageDisplay.addToList("On Behalf Of: " + working.getSender().getFaction());
+            messageDisplay.addToList("Subject:      " + working.getSubject());
+            messageDisplay.addToList(" ");
             messageDisplay.addToList(" ");
             messageDisplay.addToList("--Message--");
             messageDisplay.addToList(" ");
             //
-            String description = message.toString();
+            String description = working.getMessage().toString();
             int lineWidth = (((messageDisplay.getWidth() - 1) / (messageDisplay.getFont().getSize())));
             int cursor = 0;
             String tmp = "";
@@ -148,7 +159,7 @@ public class CommWindow extends AstralWindow {
             int index = messageLog.getIndex();
             AstralMessage selected = (AstralMessage) messageLog.getItemAtIndex(index);
             //push message
-            fillMessageLines(selected.getMessage());
+            fillMessageLines();
             working = selected;
             //push options
             if (selected.getChoices().size() > 0 && !selected.isRepliedTo()) {
@@ -161,7 +172,7 @@ public class CommWindow extends AstralWindow {
         }
         if (replyList.isFocused()) {
             if (working != null) {
-                int index = messageLog.getIndex();
+                int index = replyList.getIndex();
                 Binling pick = (Binling) replyList.getItemAtIndex(index);
                 if (pick != null) {
                     working.reply(pick);

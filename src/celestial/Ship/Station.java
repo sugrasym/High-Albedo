@@ -30,6 +30,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import lib.Faction;
 import lib.Parser;
 
 /**
@@ -55,6 +56,9 @@ public class Station extends Ship {
 
     @Override
     public void alive() {
+        if(myFaction == null) {
+            myFaction = new Faction(faction);
+        }
         super.alive();
         //check if out of business
         if (cash < 0) {

@@ -18,5 +18,14 @@ choice0=Continue/WelcomeMessage1
 [Node]
 name=WelcomeMessage1
 subject=Property
-body=You are capable of owning and managing many ships and space stations. Press P to see a list of all your property. When you select from this list you can remotely manage the ship computer, cargo, and even self destruct the asset. This window will become vital to your success later on when you have many things going on at once around the universe, but for now I'd use it as an autopilot system for your current craft.\
+body=You are capable of owning and managing many ships and space stations. Press P to see a list of all your property. When you select from this list you can remotely manage the ship computer, cargo, and even self destruct the asset. This window will become vital to your success later on when you have many things going on at once around the universe, but for now I'd use it as an autopilot system for your current craft.
+[/Node]
+
+#Contraband Notification
+
+[Node]
+name=Contraband0
+subject=Drop It
+body=You're carrying illegal goods. Drop them or you will be destroyed.
+choice0=Confirm/END
 [/Node]
