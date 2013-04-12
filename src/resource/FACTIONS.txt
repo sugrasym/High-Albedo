@@ -96,15 +96,15 @@ name=Ageiran Federation
 var_isEmpire=true
 var_worldPercent=0.2
 var_contraband=Human Organs/Pirated Software/Slaves
-var_description=After the first foundation war in 542 and the collapse of the UN Exodus Project's preliminary government three major empires were formed: The ITC, The Caina Conglemerate, and the Union Commonwealth. The Commonwealth didn't last very long.  /br/ /br/ The Commonwealth prospered for 25 years until the Commonwealth Director Antonio Costache used his extensive power as Director to begin a territorial war with the Cainans in 567 to expand the Commonwealth's influence, and hopefully acquire the exceptionally ore rich asteroids their space happened to contain.  /br/ /br/ The war was, obviously, unpopular and a revolutionary movement quickly put pressure on the Commonwealth. With these new internal problems, combined with resistance from the newly formed ITC-Cainan coalition, the Union Commonwealth entered a failure cascade and collapsed.  /br/ /br/ From the ashes rose two new nations, one being the Ageiran Federation. The Ageiran Federation retains the political structure of the former Commonwealth: a parlament with representatives from each planet and a parlament director who wields strong executive power. Their current goal is to remove the Archers pirate faction from their domain, and to remove the massive financial deficit they inherited from the former Commonwealth's Cainan campaign.
+var_description=After the first foundation war in 542 and the collapse of the UN Exodus Project's preliminary government three major empires were formed: The ITC, The Caina Conglemerate, and the Union Commonwealth. The Commonwealth didn't last very long.  /br/ /br/ The Commonwealth prospered for 25 years until the Commonwealth Director Antonio Costache used his extensive power as Director to begin a territorial war with the Cainans in 567 to expand the Commonwealth's influence, and hopefully acquire the exceptionally ore rich asteroids their space happened to contain.  /br/ /br/ The war was, obviously, unpopular and a revolutionary movement quickly put pressure on the Commonwealth. With these new internal problems, combined with resistance from the newly formed ITC-Cainan coalition, the Union Commonwealth entered a failure cascade and collapsed.  /br/ /br/ From the ashes rose two new nations, one being the Ageiran Federation. The Ageiran Federation retains the political structure of the former Commonwealth: a parlament with representatives from each planet and a parlament director who wields strong executive power. Their current goal is to remove the Archers pirate faction from their domain, and to remove the massive financial deficit they inherited from the former Commonwealth's Cainan campaign. This will be difficult due to renewed hostilities between the two factions, forcing periodic skirmishes along the border. The Ageirans fear that these skirmishes may escalate into a full blown war, which some are already calling the Second Foundation War.
 Neutral=0
 Entities=-10
 Player=3
 Red Sky=0
 Ageiran Federation=10
 The Archers=-10
-ITC=0
-Caina Conglemerate=0
+ITC=-3
+Caina Conglemerate=-3
 Wolves=-3
 Knights of Orin=-3
 Orin Federation=3
@@ -137,19 +137,19 @@ Tengus=5
 name=ITC
 var_isEmpire=true
 var_worldPercent=0.2
-var_description=The Exodus Project was an attempt to seed the universe with human colonies using a random wormhole generator to send people who knows where in the universe with ships and supplies to start fresh. The only problem was that it is impossible to make a return trip since you don't even know where you end up after crossing the event horizon, and even if you did the odds of getting a wormhole connection anywhere near your desired target are nearly 0.  /br/ /br/ The ITC never fought the Foundation War. They just sort on inherited their space from the UN Preliminary Government thanks to some clever dealing by Yong Jung; former Chairman of the UN Preliminary Government Special Development Projects. Ultimately, the UN Preliminary Government was doomed to collapse without the ability to travel to or even communicate with Earth. She saw the writing on the wall, and acted fast. She convinced the exodus government to transfer ownership of several solar systems at the edge of settled space to a new group called the 'Interstellar Trade Coalition', which was an economic alliance. In exchange the ITC would pay a high tribute to the UN Preliminary Government (75% of their GDP).  /br/ /br/ The Foundation War started before the ITC even had to make one payment. Today the ITC has expanded. Membership is voluntary, and the member solar systems are allowed to retain their local government as long as they comply to the ITC developmental and human rights standards. Helping the ITC grows is the fact that powerful crime syndicates and dictatorships were gobbling up unclaimed space, and the ITC was an attractive option to avoid becoming owned by such a person.  /br/ /br/ The ITC provides a standard currency, financial regulator body, and armed forces intended to secure a bright and profitable future for all member systems. This shows even today, as the ITC are the only empire without a native pirate faction.
+var_description=The Exodus Project was an attempt to seed the universe with human colonies using a random wormhole generator to send people who knows where in the universe with ships and supplies to start fresh. The only problem was that it is impossible to make a return trip since you don't even know where you end up after crossing the event horizon, and even if you did the odds of getting a wormhole connection anywhere near your desired target are nearly 0.  /br/ /br/ The ITC never fought the Foundation War. They just sort on inherited their space from the UN Preliminary Government thanks to some clever dealing by Yong Jung; former Chairman of the UN Preliminary Government Special Development Projects. Ultimately, the UN Preliminary Government was doomed to collapse without the ability to travel to or even communicate with Earth. She saw the writing on the wall, and acted fast. She convinced the exodus government to transfer ownership of several solar systems at the edge of settled space to a new group called the 'Interstellar Trade Coalition', which was an economic alliance. In exchange the ITC would pay a high tribute to the UN Preliminary Government (75% of their GDP).  /br/ /br/ The Foundation War started before the ITC even had to make one payment. Today the ITC has expanded. Membership is voluntary, and the member solar systems are allowed to retain their local government as long as they comply to the ITC developmental and human rights standards. Helping the ITC grows is the fact that powerful crime syndicates and dictatorships were gobbling up unclaimed space, and the ITC was an attractive option to avoid becoming owned by such a person.  /br/ /br/ The ITC provides a standard currency, financial regulator body, and armed forces intended to secure a bright and profitable future for all member systems. This shows even today, as the ITC are the only empire without a native pirate faction. The ITC have been supportive of their Cainan allies in the recently renewed conflict, but are always seeking a peaceful resolution.
 var_contraband=Human Organs/Slaves/Astronaut
 Neutral=0
 Entities=-10
 Player=0
 Red Sky=0
-Ageiran Federation=0
+Ageiran Federation=-3
 The Archers=0
 ITC=10
 Caina Conglemerate=4
 Wolves=-7
 Knights of Orin=0
-Orin Federation=0
+Orin Federation=-3
 Tengus=-3
 [/Faction]
 
@@ -158,19 +158,19 @@ Tengus=-3
 name=Caina Conglemerate
 var_isEmpire=true
 var_worldPercent=0.15
-var_description=After the foundation wars, Caina formed quickly. During the war there was a General Jordon Daveth who led the fledgling Cainan Air Force to victory against impossible odds. After the war, Daveth was ascended to a Kingly role by popular demand, where he dedicated his life to securing the border territories and ensuring that the Cainan nation would endure into the far future. Even when the Union Commonwealth invaded in 567 he did not falter, and embodied the spirit of the Cainan Conglemerate of Planets.   /br/ /br/ 'Good King Daveth' succeeded, since the Cainans are still here in the year 741, which is nearly 200 years later. Since the death of his son, Daveth II, his grandson, Daveth III, has ascended to the throne in recent years. With recent concerns about growing Knights of Orin influence and crime syndicate encroachment on the border territories, he has a lot to handle and a great legacy to live up to.
+var_description=After the foundation wars, Caina formed quickly. During the war there was a General Jordon Daveth who led the fledgling Cainan Air Force to victory against impossible odds. After the war, Daveth was ascended to a Kingly role by popular demand, where he dedicated his life to securing the border territories and ensuring that the Cainan nation would endure into the far future. Even when the Union Commonwealth invaded in 567 he did not falter, and embodied the spirit of the Cainan Conglemerate of Planets.   /br/ /br/ 'Good King Daveth' succeeded, since the Cainans are still here in the year 741, which is nearly 200 years later. Since the death of his son, Daveth II, his grandson, Daveth III, has ascended to the throne in recent years. With recent concerns about growing Knights of Orin influence and crime syndicate encroachment on the border territories, and continued conflict with the two Federations, he has a lot to handle and a great legacy to live up to.
 var_contraband=Human Organs
 Neutral=0
 Entities=-10
 Player=-1
 Red Sky=0
-Ageiran Federation=0
+Ageiran Federation=-3
 The Archers=0
 ITC=4
 Caina Conglemerate=10
 Wolves=-4
 Knights of Orin=-7
-Orin Federation=0
+Orin Federation=-3
 Tengus=-3
 [/Faction]
 
@@ -203,7 +203,7 @@ Tengus=-7
 name=Orin Federation
 var_isEmpire=true
 var_worldPercent=0.2
-var_description=After the first foundation war in 542 and the collapse of the UN Exodus Project's preliminary government three major empires were formed: The ITC, The Caina Conglemerate, and the Union Commonwealth. The Commonwealth didn't last very long.  /br/ /br/ The Commonwealth prospered for 25 years until the Commonwealth Director Antonio Costache used his extensive power as Director to begin a territorial war with the Cainans in 567 to expand the Commonwealth's influence, and hopefully acquire the exceptionally ore rich asteroids their space happened to contain.  /br/ /br/ The war was, obviously, unpopular and a revolutionary movement quickly put pressure on the Commonwealth. With these new internal problems, combined with resistance from the newly formed ITC-Cainan coalition, the Union Commonwealth entered a failure cascade and collapsed.  /br/ /br/ From the ashes rose two new nations, one being the Orin Federation. Unlike the Ageirans the Orin decided to redo the government to create a headless senate with a homeland defense first policy. The Federal government collects taxes and uses them to fund national defense projects, but for defensive purposes only. The senate has no leader and all actions require 75% majority. Current goals include the end of the Knights of Orin political movement, a confused but strong movement working under the assumption that an Aztec king once ruled all of Earth, and cooperation with their Ageiran allies on the Archers problem.
+var_description=After the first foundation war in 542 and the collapse of the UN Exodus Project's preliminary government three major empires were formed: The ITC, The Caina Conglemerate, and the Union Commonwealth. The Commonwealth didn't last very long.  /br/ /br/ The Commonwealth prospered for 25 years until the Commonwealth Director Antonio Costache used his extensive power as Director to begin a territorial war with the Cainans in 567 to expand the Commonwealth's influence, and hopefully acquire the exceptionally ore rich asteroids their space happened to contain.  /br/ /br/ The war was, obviously, unpopular and a revolutionary movement quickly put pressure on the Commonwealth. With these new internal problems, combined with resistance from the newly formed ITC-Cainan coalition, the Union Commonwealth entered a failure cascade and collapsed.  /br/ /br/ From the ashes rose two new nations, one being the Orin Federation. Unlike the Ageirans the Orin decided to redo the government to create a headless senate with a homeland defense first policy. The Federal government collects taxes and uses them to fund national defense projects, but for defensive purposes only. The senate has no leader and all actions require 75% majority. Current goals include the end of the Knights of Orin political movement, a confused but strong movement working under the assumption that an Aztec king once ruled all of Earth, dealing with renewed hostilities with the ITC and Cainans, and cooperation with their Ageiran allies on the Archers problem.
 var_contraband=Human Organs/Pirated Software/Slaves/Astronaut
 Player=0
 Red Sky=0
@@ -211,10 +211,11 @@ Neutral=0
 Entities=-10
 Ageiran Federation=3
 The Archers=-3
-ITC=0
-Caina Conglemerate=0
+ITC=-3
+Caina Conglemerate=-3
 Wolves=-3
 Knights of Orin=-7
+Orin Federation=10
 Tengus=-3
 [/Faction]
 
@@ -222,7 +223,7 @@ Tengus=-3
 name=Knights of Orin
 var_isEmpire=false
 var_hosts=Orin Federation/Caina Conglemerate
-var_description=The Knights, to external observers, are a bit confused. Motivated by the belief that the Aztec King Mufasa once ruled all of Earth and that his descendents are the rightful heirs to the universe, they are attempting to usurp the governments of the Caina Conglemerate and Orin Federation to create a new kingdom.  /br/ /br/ Of course, this is really stupid for a few reasons: 1. Mufasa was the last great African king, 2. The Knights draw their terminology from British sources, 3. The Knights believe the Aztecs not only spoke Spanish but invented it and passed it on to Europeans. Not to mention the hopelessness of the entire enterprise, considering the Orin and Cainan militaries are having no issues destroying Knights raiders.  /br/ /br/ However they do attract a certain kind of paranoid, antifederalist, and anarchist mind that gives them a massive recruiting pool. Some defenders of the organization rationalize their bizzare beliefs as symbolic and believe the Knights are interested in a better tommorow for all people, but most people think they are crazy and all historians laugh at them for failing history forever.
+var_description=The Knights, to external observers, are a bit confused. Motivated by the belief that the Aztec King Mufasa once ruled all of Earth and that his descendents are the rightful heirs to the universe, they are attempting to usurp the governments of the Caina Conglemerate and Orin Federation to create a new kingdom.  /br/ /br/ Of course, this is really stupid for a few reasons: 1. Mufasa was the last great African king, 2. The Knights draw their terminology from British sources, 3. The Knights believe the Aztecs not only spoke Spanish but invented it and passed it on to Europeans. Not to mention the hopelessness of the entire enterprise, considering the Orin and Cainan militaries are having no issues destroying Knights raiders.  /br/ /br/ However they do attract a certain kind of paranoid, antifederalist, and anarchist mind that gives them a massive recruiting pool. Some defenders of the organization rationalize their bizarre beliefs as symbolic and believe the Knights are interested in a better tomorrow for all people, but most people think they are crazy and all historians laugh at them for failing history forever.
 var_worldPercent=0
 Player=-3
 Red Sky=-4
@@ -357,7 +358,7 @@ name=Ageiran Federation
 patrol0=Police Sparrow,100
 patrol1=Naval Crow,50
 patrol2=Naval Raven,25
-patrol3=Naval Condor,2
+patrol3=Naval Condor,4
 trader0=Federal Trade Emu,20
 [/Loadout]
 
@@ -367,7 +368,7 @@ patrol0=OFAF Banshee,100
 patrol1=OFAF Wraith,50
 patrol2=OFAF Phantasm,25
 trader0=OFAF Trade Poltergeist,20
-trader1=OFAF Logistics Apparition,4
+trader1=OFAF Logistics Apparition,8
 [/Loadout]
 
 [Loadout]
@@ -393,7 +394,7 @@ patrol0=ITC Police,75
 patrol1=ITC Fleet Cheetah,50
 patrol2=ITC Fleet Hyena,25
 trader0=ITC Trade Wildabeast,20
-trader1=ITC Logistics Zebra,4
+trader1=ITC Logistics Zebra,8
 [/Loadout]
 
 [Loadout]
@@ -412,7 +413,7 @@ patrol1=Knights Visionary,10
 name=Tengus
 patrol0=Tengu Apprentice,100
 patrol1=Tengu Master,25
-patrol2=Tengu Shogun,1
+patrol2=Tengu Shogun,2
 [/Loadout]
 
 ##########################################
