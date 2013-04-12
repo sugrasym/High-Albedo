@@ -188,6 +188,13 @@ install=Iguana Launcher/Iguana Launcher/Bask/Bask
 cargo=Iguana Missile~30
 [/Loadout]
 
+[Loadout]
+ship=Goanna
+name=Naval Goanna
+install=PPG/PPG/PPG/PPG/'Viper' Barrage Battery/'Viper' Barrage Battery
+cargo=Astronaut~1000/Python Missile~1000
+[/Loadout]
+
 ########The Wolves
 
 [Loadout]

@@ -168,6 +168,25 @@ turning=6
 
 [Weapon]
 #weapon info
+name='Viper' Barrage Battery
+type=battery
+#shell info
+damage=2500
+range=1100
+speed=5
+mass=4
+refire=1
+explosion=Explosion
+#make it a seeker
+guided=true
+#it uses ammo
+ammo=Python Missile
+accel=175
+turning=3
+[/Weapon]
+
+[Weapon]
+#weapon info
 name='Fury' Barrage Battery
 type=battery
 #shell info
@@ -473,8 +492,8 @@ name=PPG
 type=turret
 #shell info
 damage=3000
-range=900
-speed=70
+range=2200
+speed=130
 mass=10
 refire=1.5
 explosion=Red

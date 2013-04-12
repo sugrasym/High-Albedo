@@ -54,7 +54,7 @@ hull=720000
 fuel=-1
 mass=58000
 sensor=3100
-cargo=25000
+cargo=21000
 hardpoint=turret,1500,-20,3.14/turret,1500,20,3.14/turret,1500,-40,3.14/turret,1500,80,3.14/turret,1500,-80,3.14/turret,1500,40,3.14/turret,1500,60,3.14/turret,1500,-60,3.14
 width=300
 height=300
@@ -245,6 +245,24 @@ height=50
 #########Caina Conglemerate########
 #Naming Scheme: Reptiles
 #########
+
+#Battleships
+
+[Ship]
+type=Goanna
+accel=25
+turning=0.31
+shield=4000000
+shieldRecharge=150
+hull=480000
+fuel=-1
+mass=47000
+sensor=2800
+cargo=28000
+hardpoint=turret,1500,-20,3.14/turret,1500,20,3.14/turret,1500,-40,3.14/turret,1500,80,3.14/battery,800,60,3.14/battery,800,-60,3.14
+width=325
+height=325
+[/Ship]
 
 #Transports
 

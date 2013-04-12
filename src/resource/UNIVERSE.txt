@@ -1,10 +1,11 @@
 #New Game Smell
 [NewGame]
-ship=Sparrow
+ship=Goanna
 system=System 27
 near=Planet 0
 cash=7500000
-install=Talon 1/Talon 1
+install=PPG/PPG/PPG/PPG/'Viper' Barrage Battery/'Viper' Barrage Battery
+cargo=Astronaut~1000/Python Missile~1000
 faction=Player
 [/NewGame]
 

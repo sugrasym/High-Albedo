@@ -248,6 +248,13 @@ resource=
 [/Process]
 
 [Process]
+name=CheatMakeGoanna
+cycle=128000
+product=Goanna,1
+resource=
+[/Process]
+
+[Process]
 name=CheatMakeCoyote
 cycle=8200
 product=Coyote,1
@@ -435,6 +442,13 @@ resource=
 name=CheatPPG
 cycle=14500
 product=PPG,1
+resource=
+[/Process]
+
+[Process]
+name=CheatViperBattery
+cycle=950
+product='Viper' Barrage Battery,1
 resource=
 [/Process]
 

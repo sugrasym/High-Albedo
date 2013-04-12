@@ -385,6 +385,7 @@ patrol1=Naval Monitor,25
 patrol2=Air Force Monitor,25
 patrol2=Air Force Komodo,25
 patrol3=Naval Komodo,12
+patrol4=Naval Goanna,4
 trader0=Royal Trade Gila,20
 [/Loadout]
 

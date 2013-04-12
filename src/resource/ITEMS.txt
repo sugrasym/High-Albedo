@@ -561,6 +561,19 @@ description=The Gila is a fast transport that is reasonably well armed, sacrific
 [/Item]
 
 [Item]
+name=Goanna
+type=ship
+volume=90000
+mass=60000
+HP=100
+minPrice=86000000
+maxPrice=115000000
+store=4
+group=battleship
+description=Designed from the ground up to be the fastest battleship, the Goanna is fast and fierce. Per usual Cainan philosophy, the Goanna is a hybrid gun-missile capital that can deal with both other capitals and quick fighters.
+[/Item]
+
+[Item]
 name=Coyote
 type=ship
 volume=2500
@@ -1357,7 +1370,6 @@ store=140
 description=The High Gain Pulse Cannon is a point defense weapon for capital sized ships, primarily used by the Orin Federation.
 [/Item]
 
-
 [Item]
 name=PPG
 type=turret
@@ -1462,6 +1474,19 @@ maxPrice=25
 group=ammo
 store=350
 description=Unarmed missile for use with a 'Python Launcher'. This is a Cainan multirole missile primarily used on light fighters. It does decent damage, but its guidance is sub par compared to dogfighting missiles.
+[/Item]
+
+[Item]
+name='Viper' Barrage Battery
+type=battery
+volume=750
+mass=1000
+HP=25
+minPrice=3000000
+maxPrice=6500000
+group=weapon
+store=35
+description=Cainan capital missile turret designed for rapid deployment of Python Missiles.
 [/Item]
 
 [Item]
