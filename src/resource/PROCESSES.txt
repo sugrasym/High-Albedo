@@ -171,6 +171,13 @@ resource=
 [/Process]
 
 [Process]
+name=CheatMakeCondor
+cycle=165000
+product=Condor,1
+resource=
+[/Process]
+
+[Process]
 name=CheatMakeBowman
 cycle=5200
 product=Bowman,1
@@ -303,6 +310,13 @@ product=Ronin,1
 resource=
 [/Process]
 
+[Process]
+name=CheatMakeShogun
+cycle=220000
+product=Shogun,1
+resource=
+[/Process]
+
 #Cheating Weapon Manufacturing
 
 [Process]
@@ -414,6 +428,13 @@ resource=
 name=OrinCheatRocket
 cycle=200
 product=Rapid Rocket,25
+resource=
+[/Process]
+
+[Process]
+name=CheatPPG
+cycle=14500
+product=PPG,1
 resource=
 [/Process]
 

@@ -248,7 +248,6 @@ group=transport
 description=With the Knights continuing to attack trade ships the Orin have commissioned the Poltergeist. Armed with 4 Rocket Pods and 2 ERPCs it is perfect at defending itself against close range attackers, such as the Knights.
 [/Item]
 
-
 [Item]
 name=Banshee
 type=ship
@@ -364,6 +363,19 @@ maxPrice=32000
 store=25
 group=fighter
 description=This is a taxie, it goes fast and it isn't well armed or shielded. Only a fool would use this ship outside its intended role of a passenger shuttle.
+[/Item]
+
+[Item]
+name=Condor
+type=ship
+volume=90000
+mass=60000
+HP=100
+minPrice=175000000
+maxPrice=315000000
+store=4
+group=battleship
+description=The Condor class has changed little since the end of the Foundation War. It is based on an old UN design, but modified to work with modern materials. Although expensive to maintain and construct, the Ageirans see great value in being able to defend against capital-class threats without relying on bombers or other asymmetrical warfare tactics.
 [/Item]
 
 [Item]
@@ -598,6 +610,19 @@ maxPrice=2589000
 store=4
 group=fighter
 description=The weapon of high rank Tengus, this ship was inspired by the Orin methodology of rapid missile deployment. Unlike those ships, however, this ship has a high shield recharge and can mount large cannons.
+[/Item]
+
+[Item]
+name=Shogun
+type=ship
+volume=90000
+mass=60000
+HP=100
+minPrice=250000000
+maxPrice=450000000
+store=3
+group=battleship
+description=A testament to the extent of the Tengus in neutral space, the Shogun is a pirate battleship. It typically guards Tengu space, but sometimes it will foray into more populated areas and remind the locals what it means to be an enemy of the Tengus.
 [/Item]
 
 ########Commodities########
@@ -1321,7 +1346,7 @@ description=ERPCs (Extended Range Pulse Cannons) trade damage for range and rapi
 
 [Item]
 name=HGPC
-type=cannon
+type=turret
 volume=450
 mass=650
 HP=200
@@ -1330,6 +1355,20 @@ maxPrice=1200000
 group=weapon
 store=140
 description=The High Gain Pulse Cannon is a point defense weapon for capital sized ships, primarily used by the Orin Federation.
+[/Item]
+
+
+[Item]
+name=PPG
+type=turret
+volume=900
+mass=650
+HP=200
+minPrice=2500000
+maxPrice=8100000
+group=weapon
+store=25
+description=A mainstay of capital warfare, the Plasma Packet Generator fires a slow moving, but high damage and long range, projectile the size of a fighter. 
 [/Item]
 
 [Item]

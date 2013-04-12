@@ -137,6 +137,7 @@ public class Ship extends Celestial {
     //fuel
     protected double fuel;
     protected double maxFuel;
+    protected boolean infiniteFuel = false;
     //shield and hull
     protected double shield;
     protected double maxShield;
@@ -262,6 +263,11 @@ public class Ship extends Celestial {
             shieldRechargeRate = Double.parseDouble(relevant.getValue("shieldRecharge"));
             maxHull = hull = Double.parseDouble(relevant.getValue("hull"));
             maxFuel = fuel = Double.parseDouble(relevant.getValue("fuel"));
+            //check inf fuel
+            if (fuel == -1) {
+                infiniteFuel = true;
+                maxFuel = fuel = Double.MAX_VALUE / 2;
+            }
             setMass(Double.parseDouble(relevant.getValue("mass")));
             sensor = Double.parseDouble(relevant.getValue("sensor"));
             cargo = Double.parseDouble(relevant.getValue("cargo"));
@@ -299,6 +305,10 @@ public class Ship extends Celestial {
     }
 
     protected void aliveAlways() {
+        //check infinite fuel
+        if (infiniteFuel) {
+            fuel = maxFuel;
+        }
         //update conversation
         if (getConversation() != null) {
             getConversation().periodicUpdate(tpf);

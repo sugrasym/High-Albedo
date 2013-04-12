@@ -97,7 +97,7 @@ fuel=2500000000000
 mass=16000
 rectBound=25,5,192,118/192,15,485,39/158,118,192,339
 dock=234,45,284,95,900,305/334,45,384,95,900,305/434,45,484,95,900,305/100,-500,600,0,300,-1500
-process=AgeiranCheatTalonSink/CheatMakeSparrow/CheatMakeCrow/CheatMakeRaven/CheatMakeEmu/CheatMakeAgeiranSolarPowerPlant/CheatMakeAgeiranMREFactory/CheatMakeAgeiranFabricator
+process=AgeiranCheatTalonSink/CheatMakeSparrow/CheatMakeCrow/CheatMakeRaven/CheatMakeEmu/CheatMakeCondor/CheatMakeAgeiranSolarPowerPlant/CheatMakeAgeiranMREFactory/CheatMakeAgeiranFabricator
 [/Station]
 
 [Station]
@@ -112,7 +112,7 @@ fuel=2500000000000
 mass=22010
 rectBound=22,32,186,234/169,24,572,48
 dock=210,50,260,100,900,140/310,50,360,100,900,140/410,50,460,100,900,140/510,50,560,100,900,140/100,-500,600,0,300,-1500
-process=AgeiranCheatTalon/AgeiranCheatTalonSink
+process=AgeiranCheatTalon/AgeiranCheatTalonSink/CheatPPG
 [/Station]
 
 [Station]
@@ -211,7 +211,7 @@ fuel=2500000000000
 mass=62010
 rectBound=6,6,293,562
 dock=10,568,60,618,27,738/88,568,138,618,105,738/166,568,216,618,185,738/244,568,294,618,263,738/100,-500,600,0,300,-1500
-process=CainanCheatWeaponSink/CainanCheatVenom/CainanCheatHeavy/CainanCheatMissile/CainanCheatMissileAmmo/CainanCheatWasteSink/CheatMakeGecko/CheatMakeMonitor/CheatMakeKomodo/CheatMakeGila/CheatMakeSunfarm/CheatMakeHydroponicsFacility/CheatMakeIndustrialKitchen/CheatMakeHullPlatingFabricator/CheatMakeModuleFabricator
+process=CainanCheatWeaponSink/CainanCheatVenom/CainanCheatHeavy/CainanCheatMissile/CainanCheatMissileAmmo/CheatPPG/CainanCheatWasteSink/CheatMakeGecko/CheatMakeMonitor/CheatMakeKomodo/CheatMakeGila/CheatMakeSunfarm/CheatMakeHydroponicsFacility/CheatMakeIndustrialKitchen/CheatMakeHullPlatingFabricator/CheatMakeModuleFabricator
 [/Station]
 
 [Station]
@@ -340,7 +340,7 @@ fuel=2500000000000
 mass=93280
 rectBound=275,558,375,743/117,24,533,217/8,215,641,466/34,464,612,575/107,572,549,651/35,105,618,219
 dock=218,672,268,722,-115,690/376,672,426,722,776,700/300,747,350,797,326,976/100,-500,600,0,300,-1500
-process=ITCCheatStarstruck/ITCCheatSidewinder/ITCCheatStarstruckMissile/ITCCheatSidewinderMissile/ITCCheatBarrage/ITCCheatWeaponSink/CheatMakeHyena/CheatMakeCheetah/CheatMakeWildabeast/CheatMakeZebra/CheatMakeITCPowerConverter/CheatMakeITCIceRefinery/CheatMakeITCOreConverter/CheatMakeITCOrbitalRanch/CheatMakeITCFoodSupply/CheatMakeITCIndustrialReplicator
+process=ITCCheatStarstruck/ITCCheatSidewinder/ITCCheatStarstruckMissile/ITCCheatSidewinderMissile/ITCCheatBarrage/ITCCheatWeaponSink/CheatPPG/CheatMakeHyena/CheatMakeCheetah/CheatMakeWildabeast/CheatMakeZebra/CheatMakeITCPowerConverter/CheatMakeITCIceRefinery/CheatMakeITCOreConverter/CheatMakeITCOrbitalRanch/CheatMakeITCFoodSupply/CheatMakeITCIndustrialReplicator
 [/Station]
 
 [Station]
@@ -441,7 +441,7 @@ fuel=2500000000000
 mass=1872000
 rectBound=22,10,693,164/251,126,693,602/29,594,637,661
 dock=189,190,239,240,-146,208/189,265,239,315,-146,283/189,340,239,390,-146,358/189,415,239,465,-146,433/189,490,239,540,-146,508/100,-500,600,0,300,-1500
-process=OrinShipSink/OrinTechSink/OrinCheatRocketERPC/OrinCheatRocket/OrinCheatHGPC/CheatMakeBanshee/CheatMakeWraith/CheatMakePhantasm/CheatMakeApparition/CheatMakePoltergeist/CheatMakeOrinFissionPlant/CheatMakeOrinMixedFoodsPlant/CheatMakeOrinWasteConverter/CheatMakeOrinTechPlant
+process=OrinShipSink/OrinTechSink/OrinCheatRocketERPC/OrinCheatRocket/OrinCheatHGPC/CheatPPG/CheatMakeBanshee/CheatMakeWraith/CheatMakePhantasm/CheatMakeApparition/CheatMakePoltergeist/CheatMakeOrinFissionPlant/CheatMakeOrinMixedFoodsPlant/CheatMakeOrinWasteConverter/CheatMakeOrinTechPlant
 [/Station]
 
 [Station]
@@ -455,5 +455,5 @@ fuel=2500000000000
 mass=62000
 rectBound=96,7,390,161/174,154,310,350/98,335,388,486
 dock=115,222,165,272,-124,242/315,222,365,272,563,249/100,-500,600,0,300,-1500
-process=TenguTechSink/MakeSlaves/CheatTenguWeapons/CheatTenguAmmo/CheatMakeSamurai/CheatMakeRonin/AstronautToSlave
+process=TenguTechSink/MakeSlaves/CheatTenguWeapons/CheatTenguAmmo/CheatPPG/CheatMakeSamurai/CheatMakeRonin/CheatMakeShogun/AstronautToSlave
 [/Station]

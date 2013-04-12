@@ -1,11 +1,10 @@
 #New Game Smell
 [NewGame]
-ship=Apparition
+ship=Sparrow
 system=System 27
 near=Planet 0
 cash=7500000
-install=Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod/HGPC/HGPC
-cargo=Rapid Rocket~100000/Standard Energy Unit~5/Human Organs~100
+install=Talon 1/Talon 1
 faction=Player
 [/NewGame]
 

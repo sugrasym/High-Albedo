@@ -14,6 +14,13 @@ install=Katana/Katana/Dalkyu/Dalkyu
 cargo=Dalkyu Rocket~420
 [/Loadout]
 
+[Loadout]
+ship=Shogun
+name=Tengu Shogun
+install=PPG/PPG/PPG/PPG/PPG/PPG
+cargo=Slaves~1000
+[/Loadout]
+
 ########Corportate Lawful
 
 [Loadout]
@@ -66,6 +73,13 @@ ship=Emu
 name=Federal Trade Emu
 install=Talon 3
 cargo=Astronaut~1
+[/Loadout]
+
+[Loadout]
+ship=Condor
+name=Naval Condor
+install=PPG/PPG/PPG/PPG/PPG/PPG/PPG/PPG
+cargo=Astronaut~1000
 [/Loadout]
 
 ########Ageiran Federation Unlawful

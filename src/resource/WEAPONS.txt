@@ -465,6 +465,22 @@ fireEffect=audio/effects/weapons/HGPC.wav
 loop=true
 [/Weapon]
 
+########Capital Generic#######
+
+[Weapon]
+#weapon info
+name=PPG
+type=turret
+#shell info
+damage=3000
+range=900
+speed=70
+mass=10
+refire=1.5
+explosion=Red
+fireEffect=audio/effects/weapons/PPG.wav
+[/Weapon]
+
 ########Wolves Weapons########
 
 [Weapon]

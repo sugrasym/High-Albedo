@@ -38,9 +38,28 @@ width=50
 height=50
 [/Ship]
 
-#########Agerian Federation########
+#########Ageiran Federation########
 #Naming Scheme: Birds
 #########
+
+#Battleships
+
+[Ship]
+type=Condor
+accel=21
+turning=0.27
+shield=5275000
+shieldRecharge=170
+hull=720000
+fuel=-1
+mass=58000
+sensor=3100
+cargo=25000
+hardpoint=turret,1500,-20,3.14/turret,1500,20,3.14/turret,1500,-40,3.14/turret,1500,80,3.14/turret,1500,-80,3.14/turret,1500,40,3.14/turret,1500,60,3.14/turret,1500,-60,3.14
+width=300
+height=300
+[/Ship]
+
 #Transports
 
 [Ship]
@@ -162,7 +181,7 @@ turning=0.25
 shield=250000
 shieldRecharge=400
 hull=21255
-fuel=16000000
+fuel=-1
 mass=24000
 sensor=18500
 cargo=8650000
@@ -312,7 +331,7 @@ turning=0.3
 shield=5000000
 shieldRecharge=1
 hull=62000
-fuel=16000000
+fuel=-1
 mass=24000
 sensor=4200
 cargo=5280000
@@ -477,6 +496,24 @@ height=50
 #Naming Scheme: Japanese Warrior
 #########
 
+# Battleships
+
+[Ship]
+type=Shogun
+accel=19
+turning=0.2
+shield=8000000
+shieldRecharge=250
+hull=450000
+fuel=-1
+mass=64000
+sensor=2900
+cargo=25000
+hardpoint=turret,1500,-20,3.14/turret,1500,20,3.14/turret,1500,-40,3.14/turret,1500,80,3.14/turret,1500,-20,3.14/turret,1500,-80,3.14
+width=300
+height=300
+[/Ship]
+
 # Light fighters
 
 [Ship]
@@ -524,7 +561,7 @@ turning=6
 shield=256000
 shieldRecharge=6400
 hull=1
-fuel=999999999
+fuel=-1
 mass=0
 sensor=20000
 cargo=2500

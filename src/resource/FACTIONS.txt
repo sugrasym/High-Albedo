@@ -357,6 +357,7 @@ name=Ageiran Federation
 patrol0=Police Sparrow,100
 patrol1=Naval Crow,50
 patrol2=Naval Raven,25
+patrol3=Naval Condor,2
 trader0=Federal Trade Emu,20
 [/Loadout]
 
@@ -411,6 +412,7 @@ patrol1=Knights Visionary,10
 name=Tengus
 patrol0=Tengu Apprentice,100
 patrol1=Tengu Master,25
+patrol2=Tengu Shogun,1
 [/Loadout]
 
 ##########################################

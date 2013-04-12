@@ -56,7 +56,7 @@ public class Station extends Ship {
 
     @Override
     public void alive() {
-        if(myFaction == null) {
+        if (myFaction == null) {
             myFaction = new Faction(faction);
         }
         super.alive();
@@ -70,11 +70,11 @@ public class Station extends Ship {
                 //so sad
                 state = State.DYING;
                 System.out.println(getName() + " was removed because it is out of business.");
-            } else {
-                //the station is above the system
-                cash = rnd.nextInt(1000000);
-                System.out.println(getName() + " was topped off because it is exempt from economics.");
             }
+        }
+        //top off exempt stations
+        if (isExemptFromEconomics()) {
+            cash = 999999999;
         }
         //check dockers
         for (int a = 0; a < docks.size(); a++) {
