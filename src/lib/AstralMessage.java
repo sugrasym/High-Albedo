@@ -31,13 +31,15 @@ public class AstralMessage implements Serializable {
 
     private Ship sender;
     private String message;
+    private String subject;
     private ArrayList<Binling> choices;
     private boolean repliedTo = false;
 
-    public AstralMessage(Ship sender, String message, ArrayList<Binling> choices) {
+    public AstralMessage(Ship sender, String subject, String message, ArrayList<Binling> choices) {
         this.sender = sender;
         this.message = message;
         this.choices = choices;
+        this.subject = subject;
     }
 
     public Ship getSender() {
@@ -65,5 +67,14 @@ public class AstralMessage implements Serializable {
             sender.recieveReply(this, choice);
         }
         repliedTo = true;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+    
+    @Override
+    public String toString() {
+        return subject;
     }
 }

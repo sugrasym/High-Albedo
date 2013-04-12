@@ -1,0 +1,3 @@
+[Node]
+name=WelcomeMessage0
+[/Node]

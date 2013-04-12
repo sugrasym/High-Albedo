@@ -75,7 +75,7 @@ public class CommWindow extends AstralWindow {
             //get ship's message que
             ArrayList<AstralMessage> que = ship.getMessages();
             //add each one
-            for (int a = 0; a < que.size(); a++) {
+            for (int a = que.size()-1; a >= 0; a--) {
                 messageLog.addToList(que.get(a));
             }
         }
@@ -99,7 +99,7 @@ public class CommWindow extends AstralWindow {
             messageDisplay.addToList(" ");
             //
             String description = message.toString();
-            int lineWidth = (((messageDisplay.getWidth() - 10) / (messageDisplay.getFont().getSize())));
+            int lineWidth = (((messageDisplay.getWidth() - 1) / (messageDisplay.getFont().getSize())));
             int cursor = 0;
             String tmp = "";
             String[] words = description.split(" ");

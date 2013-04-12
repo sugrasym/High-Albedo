@@ -2734,12 +2734,12 @@ public class Ship extends Celestial {
         //TODO : Monitor for replies
     }
     
-    public void composeMessage(Ship recieve, String body, ArrayList<Binling> options) {
-        AstralMessage tmp = new AstralMessage(this, body, options);
-        recieve.recieveMessage(tmp);
+    public void composeMessage(Ship recieve, String subject, String body, ArrayList<Binling> options) {
+        AstralMessage tmp = new AstralMessage(this, subject, body, options);
+        recieve.receiveMessage(tmp);
     }
 
-    public boolean recieveMessage(AstralMessage message) {
+    public boolean receiveMessage(AstralMessage message) {
         /*
          * NPCs do not use the messaging system to communicate with each other
          * so any sent message is disregarded if it is not a player ship. Any
@@ -2753,7 +2753,7 @@ public class Ship extends Celestial {
                 //TODO play sound
             } else {
                 //forward
-                getUniverse().getPlayerShip().recieveMessage(message);
+                getUniverse().getPlayerShip().receiveMessage(message);
             }
             return true;
         } else {

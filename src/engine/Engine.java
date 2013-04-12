@@ -60,6 +60,8 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import lib.AstralIO;
+import lib.AstralMessage;
+import lib.Binling;
 import lib.Parser;
 import lib.Parser.Term;
 import lib.Soundling;
@@ -229,6 +231,15 @@ public class Engine {
     public void newGame() {
         universe = new Universe();
         setUniverse(universe);
+        //send welcome message
+        String text = "Welcome to High Albedo. This is your comm window. It "
+                + "will be used to relay important messages and offers to you. "
+                + "You can hide it by pressing I. You can hide all windows by "
+                + " pressing F6, and toggle your sensor windows with E and S. "
+                + "A complete list of controls was included. /br/ /br/ Fly safe.";
+        ArrayList<Binling> options = new ArrayList<>();
+        AstralMessage welcome = new AstralMessage(universe.getPlayerShip(), "Welcome", text, options);
+        universe.getPlayerShip().receiveMessage(welcome);
     }
 
     /*
@@ -242,6 +253,7 @@ public class Engine {
      * Sound class, makes sense to put it here
      */
     public class SoundEngine implements EngineElement {
+
         private Clip music;
         private SolarSystem lastSys;
         private String ambientTrack = "audio/music/Menu Noises.wav";
@@ -292,7 +304,7 @@ public class Engine {
             }
             /*
              * Music is determined by region. Each owner has their own music
-             * as defined in 
+             * as defined in
              */
             boolean danger = false;
             ArrayList<Ship> tests = playerShip.getShipsInSensorRange();
@@ -509,7 +521,7 @@ public class Engine {
                 if (propertyWindow.isVisible()) {
                     propertyWindow.update(playerShip);
                 }
-                if(commWindow.isVisible()) {
+                if (commWindow.isVisible()) {
                     commWindow.update(playerShip);
                 }
                 //update
