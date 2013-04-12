@@ -32,8 +32,10 @@ public class AstralMessage implements Serializable {
     private Ship sender;
     private String message;
     private String subject;
+    private String name = "";
     private ArrayList<Binling> choices;
     private boolean repliedTo = false;
+    private boolean wasSent = false;
 
     public AstralMessage(Ship sender, String subject, String message, ArrayList<Binling> choices) {
         this.sender = sender;
@@ -64,7 +66,7 @@ public class AstralMessage implements Serializable {
 
     public void reply(Binling choice) {
         if (sender != null) {
-            sender.recieveReply(this, choice);
+            sender.recieveReply(choice);
         }
         repliedTo = true;
     }
@@ -76,5 +78,21 @@ public class AstralMessage implements Serializable {
     @Override
     public String toString() {
         return subject;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public boolean wasSent() {
+        return wasSent;
+    }
+
+    public void setWasSent(boolean wasSent) {
+        this.wasSent = wasSent;
     }
 }

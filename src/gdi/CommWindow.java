@@ -25,19 +25,21 @@ import gdi.component.AstralWindow;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import lib.AstralMessage;
+import lib.Binling;
 
 public class CommWindow extends AstralWindow {
-    
+
     AstralList messageLog = new AstralList(this);
     AstralList replyList = new AstralList(this);
     AstralList messageDisplay = new AstralList(this);
+    AstralMessage working;
     protected Ship ship;
-    
+
     public CommWindow() {
         super();
         generate();
     }
-    
+
     private void generate() {
         backColor = windowGrey;
         //size this window
@@ -46,7 +48,7 @@ public class CommWindow extends AstralWindow {
         setVisible(true);
         //setup the message list
         messageLog.setX(0);
-        messageLog.setY(height/2);
+        messageLog.setY(height / 2);
         messageLog.setWidth(width / 2 - 1);
         messageLog.setHeight((height / 2) - 1);
         messageLog.setVisible(true);
@@ -57,9 +59,9 @@ public class CommWindow extends AstralWindow {
         messageDisplay.setHeight((height / 2) - 1);
         messageDisplay.setVisible(true);
         //setup the list of replies
-        replyList.setX(width/2);
+        replyList.setX(width / 2);
         replyList.setY(height / 2);
-        replyList.setWidth((int) (width/2) - 1);
+        replyList.setWidth((int) (width / 2) - 1);
         replyList.setHeight((height / 2) - 1);
         replyList.setVisible(true);
         //pack
@@ -67,7 +69,7 @@ public class CommWindow extends AstralWindow {
         addComponent(replyList);
         addComponent(messageDisplay);
     }
-    
+
     public void update(Ship ship) {
         setShip(ship);
         if (ship != null) {
@@ -75,20 +77,20 @@ public class CommWindow extends AstralWindow {
             //get ship's message que
             ArrayList<AstralMessage> que = ship.getMessages();
             //add each one
-            for (int a = que.size()-1; a >= 0; a--) {
+            for (int a = que.size() - 1; a >= 0; a--) {
                 messageLog.addToList(que.get(a));
             }
         }
     }
-    
+
     public Ship getShip() {
         return ship;
     }
-    
+
     public void setShip(Ship ship) {
         this.ship = ship;
     }
-    
+
     private void fillMessageLines(String message) {
         /*
          * Fills in the item's description being aware of things like line breaking on spaces.
@@ -134,7 +136,7 @@ public class CommWindow extends AstralWindow {
             messageDisplay.addToList(tmp.toString());
         }
     }
-    
+
     @Override
     public void handleMouseClickedEvent(MouseEvent me) {
         super.handleMouseClickedEvent(me);
@@ -147,6 +149,7 @@ public class CommWindow extends AstralWindow {
             AstralMessage selected = (AstralMessage) messageLog.getItemAtIndex(index);
             //push message
             fillMessageLines(selected.getMessage());
+            working = selected;
             //push options
             if (selected.getChoices().size() > 0 && !selected.isRepliedTo()) {
                 for (int a = 0; a < selected.getChoices().size(); a++) {
@@ -156,8 +159,14 @@ public class CommWindow extends AstralWindow {
                 selected.setRepliedTo(true);
             }
         }
-        if (messageDisplay.isFocused()) {
-            //todo: handle sending reply to sender and archiving message
+        if (replyList.isFocused()) {
+            if (working != null) {
+                int index = messageLog.getIndex();
+                Binling pick = (Binling) replyList.getItemAtIndex(index);
+                if (pick != null) {
+                    working.reply(pick);
+                }
+            }
         }
     }
 }

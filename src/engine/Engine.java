@@ -62,6 +62,7 @@ import javax.sound.sampled.Clip;
 import lib.AstralIO;
 import lib.AstralMessage;
 import lib.Binling;
+import lib.Conversation;
 import lib.Parser;
 import lib.Parser.Term;
 import lib.Soundling;
@@ -232,14 +233,8 @@ public class Engine {
         universe = new Universe();
         setUniverse(universe);
         //send welcome message
-        String text = "Welcome to High Albedo. This is your comm window. It "
-                + "will be used to relay important messages and offers to you. "
-                + "You can hide it by pressing I. You can hide all windows by "
-                + " pressing F6, and toggle your sensor windows with E and S. "
-                + "A complete list of controls was included. /br/ /br/ Fly safe.";
-        ArrayList<Binling> options = new ArrayList<>();
-        AstralMessage welcome = new AstralMessage(universe.getPlayerShip(), "Welcome", text, options);
-        universe.getPlayerShip().receiveMessage(welcome);
+        Conversation welcome = new Conversation(universe.getPlayerShip(), "Introduction", "WelcomeMessage0");
+        universe.getPlayerShip().setConversation(welcome);
     }
 
     /*

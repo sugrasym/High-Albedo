@@ -1,3 +1,22 @@
+#Special final node
+
+[Node]
+name=END
+subject=Channel closed.
+body=Channel closed.
+[/Node]
+
+#Welcome Messages and Tutorial
+
 [Node]
 name=WelcomeMessage0
+subject=Welcome!
+body=Welcome to High Albedo. This is your comm window. It will be used to relay important messages and offers to you. You can hide it by pressing I. You can hide all windows by pressing F6, and toggle your sensor windows with E and S. A complete list of controls was included. /br/ /br/ Fly safe.
+choice0=Continue/WelcomeMessage1
+[/Node]
+
+[Node]
+name=WelcomeMessage1
+subject=Property
+body=You are capable of owning and managing many ships and space stations. Press P to see a list of all your property. When you select from this list you can remotely manage the ship computer, cargo, and even self destruct the asset. This window will become vital to your success later on when you have many things going on at once around the universe, but for now I'd use it as an autopilot system for your current craft.\
 [/Node]

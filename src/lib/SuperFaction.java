@@ -38,7 +38,7 @@ public class SuperFaction extends Faction {
     //loadout lists
     private ArrayList<Binling> patrols = new ArrayList<>();
     private ArrayList<Binling> traders = new ArrayList<>();
-    private ArrayList<Binling> taxies = new ArrayList<>();
+    private ArrayList<Binling> taxies = new ArrayList<>(); //TODO
     //station list
     private ArrayList<Binling> stations = new ArrayList<>();
     //music list

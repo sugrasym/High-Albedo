@@ -16,26 +16,30 @@
 package lib;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Binling implements Serializable {
     /*
-     * Class for storing a string paired with a double
+     * Class for storing strings paired with a double. It is capable
+     * of storing as many strings as you like. For compatibility
+     * with the original binling the getStr() and setStr() methods work
+     * the same as before.
      */
 
-    private String str;
+    private ArrayList<String> str = new ArrayList<>();
     private double num;
 
     public Binling(String str, double num) {
-        this.str = str;
+        this.str.add(str);
         this.num = num;
     }
 
     public String getString() {
-        return str;
+        return getStr().get(0);
     }
 
     public void setString(String str) {
-        this.str = str;
+        this.getStr().set(0, str);
     }
 
     public double getDouble() {
@@ -48,6 +52,10 @@ public class Binling implements Serializable {
     
     @Override
     public String toString() {
+        return getStr().get(0);
+    }
+
+    public ArrayList<String> getStr() {
         return str;
     }
 }

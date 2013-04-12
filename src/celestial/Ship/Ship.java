@@ -43,6 +43,7 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import lib.AstralMessage;
 import lib.Binling;
+import lib.Conversation;
 import lib.Faction;
 import lib.FastMath;
 import lib.Parser;
@@ -158,6 +159,7 @@ public class Ship extends Celestial {
     Random rnd = new Random();
     //communications
     private ArrayList<AstralMessage> messages = new ArrayList<>();
+    private Conversation conversation;
     //media switches
     protected boolean thrusting = false;
     //sound que
@@ -294,6 +296,13 @@ public class Ship extends Celestial {
     }
 
     protected void aliveAlways() {
+        //update conversation
+        if (getConversation() != null) {
+            getConversation().periodicUpdate(tpf);
+            if (getConversation().isDone()) {
+                conversation = null;
+            }
+        }
         //update hard points
         for (int a = 0; a < hardpoints.size(); a++) {
             hardpoints.get(a).periodicUpdate(tpf);
@@ -2729,11 +2738,11 @@ public class Ship extends Celestial {
     public void setScanForContraband(boolean scanForContraband) {
         this.scanForContraband = scanForContraband;
     }
-    
-    public void recieveReply(AstralMessage message, Binling choice) {
-        //TODO : Monitor for replies
+
+    public void recieveReply(Binling choice) {
+        conversation.reply(choice);
     }
-    
+
     public void composeMessage(Ship recieve, String subject, String body, ArrayList<Binling> options) {
         AstralMessage tmp = new AstralMessage(this, subject, body, options);
         recieve.receiveMessage(tmp);
@@ -2746,8 +2755,9 @@ public class Ship extends Celestial {
          * message sent to a player ship is automatically forwarded to the
          * player's current ship.
          */
+        message.setWasSent(true);
         if (faction.matches("Player")) {
-            if(this == getUniverse().getPlayerShip()) {
+            if (this == getUniverse().getPlayerShip()) {
                 //add to que
                 messages.add(message);
                 //TODO play sound
@@ -2759,6 +2769,14 @@ public class Ship extends Celestial {
         } else {
             return false;
         }
+    }
+
+    public Conversation getConversation() {
+        return conversation;
+    }
+
+    public void setConversation(Conversation conversation) {
+        this.conversation = conversation;
     }
 
     public ArrayList<AstralMessage> getMessages() {
