@@ -295,9 +295,11 @@ public class Weapon extends Equipment {
         String ret = "";
         if (ammoType == null) {
             ret = super.toString();
-        } else {
+        } else if(host != null) {
             ret = super.toString();
             ret += " <" + host.getNumInCargoBay(ammoType) + ">";
+        } else {
+            ret = super.toString();
         }
         return ret;
     }

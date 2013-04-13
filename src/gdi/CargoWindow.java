@@ -85,12 +85,12 @@ public class CargoWindow extends AstralWindow {
     }
 
     public void update(Ship ship) {
-        setShip(ship);
-        cargoList.clearList();
-        propertyList.clearList();
-        optionList.clearList();
         ArrayList<Item> logicalCargoList = new ArrayList<>();
         if (ship != null) {
+            setShip(ship);
+            cargoList.clearList();
+            propertyList.clearList();
+            optionList.clearList();
             //add equipment
             for (int a = 0; a < ship.getHardpoints().size(); a++) {
                 logicalCargoList.add(ship.getHardpoints().get(a).getMounted());
@@ -225,6 +225,22 @@ public class CargoWindow extends AstralWindow {
                 optionList.addToList(CMD_ASSEMBLE);
                 optionList.addToList(" ");
             }
+            /*
+             * Options for turret
+             */
+            if (selected.getType().matches(Item.TYPE_TURRET)) {
+                optionList.addToList("--Setup--");
+                optionList.addToList(CMD_ASSEMBLE);
+                optionList.addToList(" ");
+            }
+            /*
+             * Options for battery
+             */
+            if (selected.getType().matches(Item.TYPE_BATTERY)) {
+                optionList.addToList("--Setup--");
+                optionList.addToList(CMD_ASSEMBLE);
+                optionList.addToList(" ");
+            }
         }
         //for packaging and repackaging
         optionList.addToList("--Packaging--");
@@ -310,8 +326,9 @@ public class CargoWindow extends AstralWindow {
                 Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
                 if (selected.getQuantity() == 1) {
                     Weapon tmp = new Weapon(selected.getName());
-                    ship.removeFromCargoBay(selected);
-                    ship.addToCargoBay(tmp);
+                    if (ship.addToCargoBay(tmp)) {
+                        ship.removeFromCargoBay(selected);
+                    }
                 }
             } else if (command.matches(CMD_PACKAGE)) {
                 Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
@@ -326,7 +343,7 @@ public class CargoWindow extends AstralWindow {
                 if (selected.getQuantity() == 1) {
                     //deploy the station
                     Station ret = new Station(name, selected.getName());
-                    ret.setName("Your "+selected.getName());
+                    ret.setName("Your " + selected.getName());
                     ret.setFaction(ship.getFaction());
                     ret.init(false);
                     //configure coordinates
