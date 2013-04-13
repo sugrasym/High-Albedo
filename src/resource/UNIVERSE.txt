@@ -1,11 +1,11 @@
 #New Game Smell
 [NewGame]
-ship=Goanna
+ship=Lion
 system=System 27
 near=Planet 0
 cash=7500000
-install=PPG/PPG/PPG/PPG/'Viper' Barrage Battery/'Viper' Barrage Battery
-cargo=Astronaut~1000/Python Missile~1000
+install='Fury' Barrage Battery/'Fury' Barrage Battery/'Fury' Barrage Battery/'Fury' Barrage Battery/'Swatter' Barrage Battery/'Swatter' Barrage Battery/'Swatter' Barrage Battery/'Swatter' Barrage Battery
+cargo=Starstruck Missile~3500/Sidewinder Missile~3500
 faction=Player
 [/NewGame]
 

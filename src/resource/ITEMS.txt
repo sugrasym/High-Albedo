@@ -509,6 +509,19 @@ description=When you need a ship capable of laying down new infrastructure, you 
 [/Item]
 
 [Item]
+name=Lion
+type=ship
+volume=90000
+mass=60000
+HP=100
+minPrice=452000000
+maxPrice=679000000
+store=4
+group=battleship
+description=The Lion, like the Condor, is based on an old UN design. Unlike the Condor, the Lion has been significantly refitted to be the ultimate missile assault platform. If you can afford the ammunition, this hard hitting monster can destroy almost anything from beyond their sensor range.
+[/Item]
+
+[Item]
 name=Gecko
 type=ship
 volume=2500

@@ -143,6 +143,13 @@ install='Swatter' Barrage Battery/'Swatter' Barrage Battery/'Fury' Barrage Batte
 cargo=Starstruck Missile~2500/Sidewinder Missile~2500
 [/Loadout]
 
+[Loadout]
+ship=Lion
+name=ITC Fleet Lion
+install='Fury' Barrage Battery/'Fury' Barrage Battery/'Fury' Barrage Battery/'Fury' Barrage Battery/'Swatter' Barrage Battery/'Swatter' Barrage Battery/'Swatter' Barrage Battery/'Swatter' Barrage Battery
+cargo=Starstruck Missile~3500/Sidewinder Missile~3500
+[/Loadout]
+
 ########Caina Lawful
 
 [Loadout]

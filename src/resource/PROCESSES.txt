@@ -220,6 +220,13 @@ resource=
 [/Process]
 
 [Process]
+name=CheatMakeLion
+cycle=262500
+product=Lion,1
+resource=
+[/Process]
+
+[Process]
 name=CheatMakeGecko
 cycle=2600
 product=Gecko,1

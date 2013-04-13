@@ -172,7 +172,7 @@ name='Viper' Barrage Battery
 type=battery
 #shell info
 damage=2500
-range=1100
+range=1800
 speed=5
 mass=4
 refire=1
@@ -191,7 +191,7 @@ name='Fury' Barrage Battery
 type=battery
 #shell info
 damage=6250
-range=2000
+range=8000
 speed=5
 mass=1000
 refire=2
@@ -475,7 +475,7 @@ name=HGPC
 type=turret
 #shell info
 damage=32
-range=450
+range=950
 speed=600
 mass=11
 refire=0.04

@@ -172,6 +172,24 @@ height=50
 #Naming Scheme: Savanna Animals
 #########
 
+#Battleships
+
+[Ship]
+type=Lion
+accel=16
+turning=0.22
+shield=2000000
+shieldRecharge=1200
+hull=330000
+fuel=-1
+mass=60000
+sensor=21000
+cargo=42000
+hardpoint=battery,1500,-20,3.14/battery,1500,20,3.14/battery,1500,-40,3.14/battery,1500,80,3.14/battery,1500,-80,3.14/battery,1500,40,3.14/battery,1500,60,3.14/battery,1500,-60,3.14
+width=300
+height=300
+[/Ship]
+
 #Super Freighters
 
 [Ship]

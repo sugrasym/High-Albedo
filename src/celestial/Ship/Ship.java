@@ -534,8 +534,17 @@ public class Ship extends Celestial {
 
     public Line2D getDodgeLine() {
         double iT = theta;
-        double dx = -4 * Math.abs(getWidth()) * Math.cos(iT);
-        double dy = -4 * Math.abs(getHeight()) * Math.sin(iT);
+        double dx = 0;
+        double dy = 0;
+        if (Math.max(getWidth(), getHeight()) < 100) {
+            //small ship code (they go fast)
+            dx = -4 * Math.abs(getWidth()) * Math.cos(iT);
+            dy = -4 * Math.abs(getHeight()) * Math.sin(iT);
+        } else {
+            //cap ship code (they go slow)
+            dx = -1 * Math.abs(getWidth()) * Math.cos(iT);
+            dy = -1 * Math.abs(getHeight()) * Math.sin(iT);
+        }
         Line2D tmp = new Line2D.Double();
         //
         //create the end points
