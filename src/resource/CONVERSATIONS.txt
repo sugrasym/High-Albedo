@@ -19,6 +19,50 @@ choice0=Continue/WelcomeMessage1
 name=WelcomeMessage1
 subject=Property
 body=You are capable of owning and managing many ships and space stations. Press P to see a list of all your property. When you select from this list you can remotely manage the ship computer, cargo, and even self destruct the asset. This window will become vital to your success later on when you have many things going on at once around the universe, but for now I'd use it as an autopilot system for your current craft.
+choice0=Continue/WelcomeMessage2
+[/Node]
+
+[Node]
+name=WelcomeMessage2
+subject=Time
+body=It is possible to control the rate at which time passes. Using the keys 1-5, you can speed up or slow down time. /br/ /br/ 1 : 25% Speed /br/ /br/ 2 : 50% Speed  /br/ /br/ 3 : Normal  /br/ /br/ 4 : 200% Speed  /br/ /br/ 5 : 400% Speed
+[/Node]
+
+#'We Hate You' messages
+
+[Node]
+name=DrinkBleach0
+subject=Your Reputation
+body=Drink bleach.
+choice0=Confirm/END
+[/Node]
+
+[Node]
+name=KillYouMyself0
+subject=Your Reputation
+body=Don't talk to me, I should kill you myself for what you've done.
+choice0=Confirm/END
+[/Node]
+
+[Node]
+name=Infamous0
+subject=Your Reputation
+body=Your reputation's no good around here.
+choice0=Confirm/END
+[/Node]
+
+[Node]
+name=SelfDestruct0
+subject=Your Reputation
+body=Self destruct now and save us the trouble.
+choice0=Confirm/END
+[/Node]
+
+[Node]
+name=NoAssociate0
+subject=Your Reputation
+body=We don't associate with the likes of you.
+choice0=Confirm/END
 [/Node]
 
 #Contraband Notification

@@ -1,2 +1,0 @@
-1. All sprites much be in the shape of a square.
-2. All sprites must contain a buffer area around the image of 100%, so if your object is 50 pixels across the image needs to be 100 across with your object in the center.

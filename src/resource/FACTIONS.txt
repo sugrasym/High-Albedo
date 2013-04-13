@@ -430,6 +430,11 @@ contraband1=Contraband1
 contraband2=Contraband2
 contraband3=Contraband3
 contraband4=Contraband4
+hate0=DrinkBleach0
+hate1=KillYouMyself0
+hate2=Infamous0
+hate3=SelfDestruct0
+hate4=NoAssociate0
 [/Comm]
 
 [Comm]
@@ -439,6 +444,11 @@ contraband1=Contraband1
 contraband2=Contraband2
 contraband3=Contraband3
 contraband4=Contraband4
+hate0=DrinkBleach0
+hate1=KillYouMyself0
+hate2=Infamous0
+hate3=SelfDestruct0
+hate4=NoAssociate0
 [/Comm]
 
 [Comm]
@@ -448,6 +458,11 @@ contraband1=Contraband1
 contraband2=Contraband2
 contraband3=Contraband3
 contraband4=Contraband4
+hate0=DrinkBleach0
+hate1=KillYouMyself0
+hate2=Infamous0
+hate3=SelfDestruct0
+hate4=NoAssociate0
 [/Comm]
 
 [Comm]
@@ -457,6 +472,56 @@ contraband1=Contraband1
 contraband2=Contraband2
 contraband3=Contraband3
 contraband4=Contraband4
+hate0=DrinkBleach0
+hate1=KillYouMyself0
+hate2=Infamous0
+hate3=SelfDestruct0
+hate4=NoAssociate0
+[/Comm]
+
+[Comm]
+name=Red Sky
+hate0=DrinkBleach0
+hate1=KillYouMyself0
+hate2=Infamous0
+hate3=SelfDestruct0
+hate4=NoAssociate0
+[/Comm]
+
+[Comm]
+name=The Archers
+hate0=DrinkBleach0
+hate1=KillYouMyself0
+hate2=Infamous0
+hate3=SelfDestruct0
+hate4=NoAssociate0
+[/Comm]
+
+[Comm]
+name=Wolves
+hate0=DrinkBleach0
+hate1=KillYouMyself0
+hate2=Infamous0
+hate3=SelfDestruct0
+hate4=NoAssociate0
+[/Comm]
+
+[Comm]
+name=Knights of Orin
+hate0=DrinkBleach0
+hate1=KillYouMyself0
+hate2=Infamous0
+hate3=SelfDestruct0
+hate4=NoAssociate0
+[/Comm]
+
+[Comm]
+name=Tengus
+hate0=DrinkBleach0
+hate1=KillYouMyself0
+hate2=Infamous0
+hate3=SelfDestruct0
+hate4=NoAssociate0
 [/Comm]
 
 ##########################################

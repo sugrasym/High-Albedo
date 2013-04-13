@@ -50,7 +50,7 @@ public class SuperFaction extends Faction {
      */
 
     public SuperFaction(Universe universe, String name) {
-        super(name, universe);
+        super(name);
         this.universe = universe;
         if (universe != null) {
             initStations();

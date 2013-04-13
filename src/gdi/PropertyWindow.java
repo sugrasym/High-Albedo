@@ -53,8 +53,8 @@ public class PropertyWindow extends AstralWindow {
     };
     private Mode mode = Mode.NONE;
     public static final String CMD_SWITCH = "Switch Ship";
-    public static final String CMD_PATROL = "Start Patrol AI";
-    public static final String CMD_TRADE = "Start Trade AI";
+    public static final String CMD_PATROL = "Start Patrol";
+    public static final String CMD_TRADE = "Start Trading";
     public static final String CMD_NONE = "End Program";
     public static final String CMD_MOVEFUNDS = "Credit Transfer";
     public static final String CMD_RENAME = "Rename";

@@ -50,20 +50,16 @@ public class Faction implements Serializable {
     private ArrayList<String> contraband = new ArrayList<>();
     //comm hints
     private ArrayList<String> contrabandNotifications = new ArrayList<>();
+    private ArrayList<String> hateNotifications = new ArrayList<>();
 
-    public Faction(String name, Universe universe) {
+    public Faction(String name) {
         this.name = name;
-        init(universe);
-        initComms(universe);
+        init();
+        initComms();
     }
 
-    private void initComms(Universe universe) {
-        Parser tmp;
-        if(universe != null) {
-            tmp = universe.getCache().getFactionCache();
-        } else {
-            tmp = new Parser("FACTIONS.txt");
-        }
+    private void initComms() {
+        Parser tmp = Universe.getCache().getFactionCache();
         ArrayList<Term> comms = tmp.getTermsOfType("Comm");
         for (int a = 0; a < comms.size(); a++) {
             if (comms.get(a).getValue("name").matches(name)) {
@@ -81,19 +77,28 @@ public class Faction implements Serializable {
                         x++;
                     }
                 }
+                /*
+                 * Initialize bad standing (hate) notifications
+                 */
+                {
+                    int x = 0;
+                    String type = "";
+                    while ((type = comms.get(a).getValue("hate" + x)) != null) {
+                        //get station info
+                        String ty = type.toString();
+                        hateNotifications.add(ty);
+                        //iterate
+                        x++;
+                    }
+                }
                 //quit
                 break;
             }
         }
     }
 
-    private void init(Universe universe) {
-        Parser tmp;
-        if(universe != null) {
-            tmp = universe.getCache().getFactionCache();
-        } else {
-            tmp = new Parser("FACTIONS.txt");
-        }
+    private void init() {
+        Parser tmp = Universe.getCache().getFactionCache();
         ArrayList<Term> factions = tmp.getTermsOfType("Faction");
         for (int a = 0; a < factions.size(); a++) {
             if (factions.get(a).getValue("name").matches(name)) {
@@ -267,5 +272,9 @@ public class Faction implements Serializable {
 
     public ArrayList<String> getContrabandNotifications() {
         return contrabandNotifications;
+    }
+
+    public ArrayList<String> getHateNotifications() {
+        return hateNotifications;
     }
 }

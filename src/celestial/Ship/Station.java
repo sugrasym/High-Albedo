@@ -58,7 +58,7 @@ public class Station extends Ship {
     @Override
     public void alive() {
         if (myFaction == null) {
-            myFaction = new Faction(faction, getUniverse());
+            myFaction = new Faction(faction);
         }
         super.alive();
         //check if out of business
@@ -577,6 +577,11 @@ public class Station extends Ship {
         if (exemptFromEconomics) {
             System.out.println(getName() + " is exempted from economics.");
         }
+    }
+    
+    @Override
+    public void hail() {
+        //TODO: comms with person onboard
     }
 
     public void clearWares() {

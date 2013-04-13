@@ -2358,7 +2358,7 @@ public class Ship extends Celestial {
     }
 
     public void installFaction() {
-        myFaction = new Faction(faction, getUniverse());
+        myFaction = new Faction(faction);
     }
 
     /*
@@ -2819,5 +2819,42 @@ public class Ship extends Celestial {
 
     public ArrayList<AstralMessage> getMessages() {
         return messages;
+    }
+
+    public void hail() {
+        /*
+         * Used by the player to hail an NPC. The NPC has a direct line to
+         * the player's ship for replying. Hailing initiates a new conversation
+         * with the NPC.
+         */
+        //get player standings
+        int standings = getUniverse().getPlayerShip().getStandingsToMe(this);
+        if (conversation == null) {
+            if (standings > 2) {
+                //on great terms
+                /*
+                 * Will offer rumors and missions
+                 */
+            } else if (standings > -2) {
+                //on neutral terms
+                /*
+                 * Will offer you missions
+                 */
+            } else {
+                //on bad terms
+                /*
+                 * Will be nasty to you
+                 */
+                ArrayList<String> choices = myFaction.getHateNotifications();
+                if(choices.size() > 0) {
+                    String pick = choices.get(rnd.nextInt(choices.size()));
+                    conversation = new Conversation(this, "Hail", pick);
+                } else {
+                    //nothing to say
+                }
+            }
+        } else {
+            //still talking
+        }
     }
 }

@@ -51,7 +51,7 @@ public class EquipmentWindow extends AstralWindow {
     AstralLabel targetType = new AstralLabel();
     AstralLabel targetFaction = new AstralLabel();
     AstralLabel targetDistance = new AstralLabel();
-    AstralLabel dockInfo = new AstralLabel();
+    AstralLabel commInfo = new AstralLabel();
     AstralBar targetShield = new AstralBar();
     AstralBar targetHull = new AstralBar();
     Font targetFont = new Font("Monospaced", Font.PLAIN, 9);
@@ -93,20 +93,22 @@ public class EquipmentWindow extends AstralWindow {
             if (tmp instanceof Station) {
                 Station st = (Station) tmp;
                 if (ship.isDocked()) {
-                    dockInfo.setText("Press D To Launch");
+                    commInfo.setText("Press D To Launch");
                 } else {
                     if (ship.getPort() != null) {
-                        dockInfo.setText("Request Accepted");
+                        commInfo.setText("Request Accepted");
                     } else {
                         if (st.canDock(ship)) {
-                            dockInfo.setText("Press D For Docking");
+                            commInfo.setText("Press D For Docking");
                         } else {
-                            dockInfo.setText("Docking Denied");
+                            commInfo.setText("Docking Denied");
                         }
                     }
                 }
+            } else if (tmp instanceof Ship) {
+                commInfo.setText("Press H To Hail");
             } else {
-                dockInfo.setText("");
+                commInfo.setText("");
             }
             targetShield.setPercentage(ship.getTarget().getShield() / ship.getTarget().getMaxShield());
             targetHull.setPercentage(ship.getTarget().getHull() / ship.getTarget().getMaxHull());
@@ -115,7 +117,7 @@ public class EquipmentWindow extends AstralWindow {
             targetType.setText("");
             targetFaction.setText("");
             targetDistance.setText("");
-            dockInfo.setText("");
+            commInfo.setText("");
             targetShield.setPercentage(0);
             targetHull.setPercentage(0);
         }
@@ -176,14 +178,14 @@ public class EquipmentWindow extends AstralWindow {
         targetDistance.setHeight(targetFont.getSize() + 1);
         targetDistance.setVisible(true);
         //setup the target distance
-        dockInfo.setName("dock");
-        dockInfo.setText("DOCK");
-        dockInfo.setX(0);
-        dockInfo.setY((height / 2) + 1 + 5 * targetFont.getSize());
-        dockInfo.setFont(targetFont);
-        dockInfo.setWidth(width / 2);
-        dockInfo.setHeight((targetFont.getSize() + 1) * 2);
-        dockInfo.setVisible(true);
+        commInfo.setName("dock");
+        commInfo.setText("DOCK");
+        commInfo.setX(0);
+        commInfo.setY((height / 2) + 1 + 5 * targetFont.getSize());
+        commInfo.setFont(targetFont);
+        commInfo.setWidth(width / 2);
+        commInfo.setHeight((targetFont.getSize() + 1) * 2);
+        commInfo.setVisible(true);
         //setup the shield bar
         targetShield.setX(0);
         targetShield.setName("shield");
@@ -214,7 +216,7 @@ public class EquipmentWindow extends AstralWindow {
         addComponent(targetType);
         addComponent(targetFaction);
         addComponent(targetDistance);
-        addComponent(dockInfo);
+        addComponent(commInfo);
         addComponent(targetShield);
         addComponent(targetHull);
         addComponent(overview);
@@ -255,8 +257,8 @@ public class EquipmentWindow extends AstralWindow {
             double ex = ship.getTarget().getX() + (ship.getTarget().getWidth() / 2);
             double ey = ship.getTarget().getY() + (ship.getTarget().getHeight() / 2);
             //adjust for player loc
-            ex -= (ship.getX()+ship.getWidth()/2);
-            ey -= (ship.getY()+ship.getHeight()/2);
+            ex -= (ship.getX() + ship.getWidth() / 2);
+            ey -= (ship.getY() + ship.getHeight() / 2);
             //calculate distance
             double dist = magnitude(ex, ey);
             if (dist <= range && ship.getTarget().getState() == State.ALIVE) {

@@ -760,6 +760,10 @@ public class Engine {
                      * comms keys
                      */ else if (ke.getKeyCode() == KeyEvent.VK_D) {
                         playerShip.cmdDock(playerShip.getTarget());
+                    } else if (ke.getKeyCode() == KeyEvent.VK_H) {
+                        if (playerShip.getTarget() != null) {
+                            playerShip.getTarget().hail();
+                        }
                     }
                 } else {
                     /*
