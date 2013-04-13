@@ -1,11 +1,11 @@
 #New Game Smell
 [NewGame]
-ship=Lion
-system=System 27
+ship=Sparrow
+system=System 14
 near=Planet 0
 cash=7500000
-install='Fury' Barrage Battery/'Fury' Barrage Battery/'Fury' Barrage Battery/'Fury' Barrage Battery/'Swatter' Barrage Battery/'Swatter' Barrage Battery/'Swatter' Barrage Battery/'Swatter' Barrage Battery
-cargo=Starstruck Missile~3500/Sidewinder Missile~3500
+install=Talon 1/Talon 1
+cargo=
 faction=Player
 [/NewGame]
 
