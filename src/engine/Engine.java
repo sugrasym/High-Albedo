@@ -763,6 +763,7 @@ public class Engine {
                     } else if (ke.getKeyCode() == KeyEvent.VK_H) {
                         if (playerShip.getTarget() != null) {
                             playerShip.getTarget().hail();
+                            commWindow.setVisible(true);
                         }
                     }
                 } else {

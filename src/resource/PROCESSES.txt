@@ -453,6 +453,13 @@ resource=
 [/Process]
 
 [Process]
+name=CheatMakeJumpDrive
+cycle=1800
+product=Jumpdrive,1
+resource=
+[/Process]
+
+[Process]
 name=OrinCheatRocket
 cycle=200
 product=Rapid Rocket,25

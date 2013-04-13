@@ -48,7 +48,7 @@ public class Mission implements Serializable {
     //briefing
     private String briefing = "NO AIM";
     //targets
-    private ArrayList<Ship> targets = new ArrayList<>();
+    private ArrayList<Entity> targets = new ArrayList<>();
 
     public Mission(Ship agent) {
         this.agent = agent;
@@ -119,15 +119,15 @@ public class Mission implements Serializable {
             //pick a group
             String pick = badStandings.get(rnd.nextInt(badStandings.size()));
             //find one of their stations
-            Station toKill = null;
+            Entity toKill = null;
             //get a list of all their stations
-            ArrayList<Station> options = new ArrayList<>();
+            ArrayList<Entity> options = new ArrayList<>();
             for (int a = 0; a < agent.getUniverse().getSystems().size(); a++) {
                 ArrayList<Entity> lStat = agent.getUniverse().getSystems().get(a).getStationList();
                 for (int v = 0; v < lStat.size(); v++) {
-                    Station test = (Station) lStat.get(v);
-                    if (test.getFaction().matches(pick)) {
-                        options.add(test);
+                    Ship test = (Ship) lStat.get(v);
+                    if (test.getFaction().matches(pick) && test.getState() == State.ALIVE) {
+                        options.add(lStat.get(v));
                     }
                 }
             }
@@ -137,11 +137,12 @@ public class Mission implements Serializable {
             }
             //continue
             if (toKill != null) {
+                Station tmp = (Station) toKill;
                 //add station to target list
                 targets.add(toKill);
                 //update briefing
-                briefing = briefing.replace("<TARGET>", toKill.getName());
-                briefing = briefing.replace("<LOCATION>", toKill.getCurrentSystem().getName());
+                briefing = briefing.replace("<TARGET>", tmp.getName());
+                briefing = briefing.replace("<LOCATION>", tmp.getCurrentSystem().getName());
             } else {
                 preAbort();
             }

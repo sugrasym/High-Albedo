@@ -549,4 +549,8 @@ public class SolarSystem implements Entity, Serializable {
     public void setDangerMusic(String dangerMusic) {
         this.dangerMusic = dangerMusic;
     }
+    
+    public String toString() {
+        return name+", "+owner;
+    }
 }

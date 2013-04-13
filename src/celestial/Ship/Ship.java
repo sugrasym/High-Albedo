@@ -49,6 +49,7 @@ import lib.FastMath;
 import lib.Parser;
 import lib.Parser.Term;
 import lib.Soundling;
+import universe.SolarSystem;
 import universe.Universe;
 
 /**
@@ -95,6 +96,8 @@ public class Ship extends Celestial {
     public static final double TRADER_RESERVE_PERCENT = 0.5;
     public static final double TRADER_REFUEL_PERCENT = 0.5;
     public static final double PLAYER_AGGRO_SHIELD = 0.5;
+    public static final double MAX_JUMP_SHIELD_DAMAGE = 0.45;
+    public static final double JUMP_SAFETY_FUEL = 0.25;
     public static final int HOSTILE_STANDING = -2;
     public static final String PLAYER_FACTION = "Player";
     //raw loadout
@@ -1497,6 +1500,25 @@ public class Ship extends Celestial {
         }
     }
 
+    public void cmdJump(SolarSystem destination) {
+        //make sure we have a jump drive group device
+        if (canJump(destination)) {
+            //determine fuel cost
+            double fuelCost = getJumpFuelCost(destination);
+            //deduct fuel
+            fuel -= fuelCost;
+            //move to new system
+            currentSystem.pullEntityFromSystem(this);
+            destination.putEntityInSystem(this);
+            //apply negative effects
+            double dmg = rnd.nextFloat() * MAX_JUMP_SHIELD_DAMAGE * maxShield;
+            dealDamage(dmg);
+            //randomize location
+            x = rnd.nextInt(48000 * 2) - 48000;
+            y = rnd.nextInt(48000 * 2) - 48000;
+        }
+    }
+
     public void cmdAbortDock() {
         setAutopilot(Autopilot.NONE);
         port = null;
@@ -2308,6 +2330,24 @@ public class Ship extends Celestial {
         return cargoBay.contains(item);
     }
 
+    public boolean hasInCargo(String item) {
+        for (int a = 0; a < cargoBay.size(); a++) {
+            if (cargoBay.get(a).getName().matches(item)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean hasGroupInCargo(String group) {
+        for (int a = 0; a < cargoBay.size(); a++) {
+            if (cargoBay.get(a).getGroup().matches(group)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public ArrayList<Item> getCargoBay() {
         return cargoBay;
     }
@@ -2766,6 +2806,29 @@ public class Ship extends Celestial {
         return soundQue;
     }
 
+    public double getJumpFuelCost(SolarSystem destination) {
+        //calculate distance between current system and destination
+        double cx = currentSystem.getX();
+        double cy = currentSystem.getY();
+        double tx = destination.getX();
+        double ty = destination.getY();
+        double dist = magnitude((cx - tx), (cy - ty));
+        //fuel cost is linear
+        double fuelCost = dist * 50;
+        return fuelCost;
+    }
+
+    public boolean canJump(SolarSystem destination) {
+        //make sure we have a jump drive group device
+        if (hasGroupInCargo("jumpdrive")) {
+            //fuel cost is linear
+            if (fuel - getJumpFuelCost(destination) >= JUMP_SAFETY_FUEL * maxFuel) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean isScanForContraband() {
         return scanForContraband;
     }
@@ -2835,13 +2898,21 @@ public class Ship extends Celestial {
                 /*
                  * Will offer rumors and missions
                  */
+                //offer mission
+                ArrayList<String> choices = myFaction.getNeutralNotifications();
+                if (choices.size() > 0) {
+                    String pick = choices.get(rnd.nextInt(choices.size()));
+                    conversation = new Conversation(this, "Hail", pick);
+                } else {
+                    //nothing to say
+                }
             } else if (standings > -2) {
                 //on neutral terms
                 /*
                  * Will offer you missions
                  */
                 ArrayList<String> choices = myFaction.getNeutralNotifications();
-                if(choices.size() > 0) {
+                if (choices.size() > 0) {
                     String pick = choices.get(rnd.nextInt(choices.size()));
                     conversation = new Conversation(this, "Hail", pick);
                 } else {
@@ -2853,7 +2924,7 @@ public class Ship extends Celestial {
                  * Will be nasty to you
                  */
                 ArrayList<String> choices = myFaction.getHateNotifications();
-                if(choices.size() > 0) {
+                if (choices.size() > 0) {
                     String pick = choices.get(rnd.nextInt(choices.size()));
                     conversation = new Conversation(this, "Hail", pick);
                 } else {

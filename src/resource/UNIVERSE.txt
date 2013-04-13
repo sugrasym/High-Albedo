@@ -1,11 +1,11 @@
 #New Game Smell
 [NewGame]
-ship=Sparrow
-system=System 14
+ship=Crow
+system=System 26
 near=Planet 0
-cash=7500000
-install=Talon 1/Talon 1
-cargo=
+cash=250000
+install=Talon 2/Talon 2
+cargo=Jumpdrive~1
 faction=Player
 [/NewGame]
 

@@ -158,24 +158,38 @@ public class CommWindow extends AstralWindow {
             //get the faction
             int index = messageLog.getIndex();
             AstralMessage selected = (AstralMessage) messageLog.getItemAtIndex(index);
+            working = selected;
             //push message
             fillMessageLines();
-            working = selected;
             //push options
-            if (selected.getChoices().size() > 0 && !selected.isRepliedTo()) {
-                for (int a = 0; a < selected.getChoices().size(); a++) {
-                    replyList.addToList(selected.getChoices().get(a));
+            if (selected != null) {
+                if (!selected.isRepliedTo()) {
+                    replyList.addToList("--Reply--");
+                    replyList.addToList(" ");
+                    if (selected.getChoices() != null) {
+                        if (selected.getChoices().size() > 0) {
+                            for (int a = 0; a < selected.getChoices().size(); a++) {
+                                replyList.addToList(selected.getChoices().get(a));
+                            }
+                        } else {
+                            selected.setRepliedTo(true);
+                        }
+                    } else {
+                        selected.setRepliedTo(true);
+                    }
+                } else {
+                    selected.setRepliedTo(true);
                 }
-            } else {
-                selected.setRepliedTo(true);
             }
         }
         if (replyList.isFocused()) {
             if (working != null) {
                 int index = replyList.getIndex();
-                Binling pick = (Binling) replyList.getItemAtIndex(index);
-                if (pick != null) {
-                    working.reply(pick);
+                if (replyList.getItemAtIndex(index) instanceof Binling) {
+                    Binling pick = (Binling) replyList.getItemAtIndex(index);
+                    if (pick != null) {
+                        working.reply(pick);
+                    }
                 }
             }
         }

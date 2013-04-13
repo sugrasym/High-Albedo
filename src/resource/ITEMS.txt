@@ -966,6 +966,19 @@ description=Consumer goods are household items that are relatively easy to produ
 [/Item]
 
 [Item]
+name=Jumpdrive
+type=commodity
+volume=125
+mass=20
+HP=100
+minPrice=836000
+maxPrice=2192000
+group=jumpdrive
+store=10
+description=This device takes advantage of recent discoveries made from studying the natural jumphole phenomena native to this region of space. It manipulates quantum scale holes in the universe, which occur due to vacuum fluctuations but normally close immediately, with a virtual particle field that enlarges them, then a graviton pulse that folds them into the correct shape to bridge distant points in space. It can only lock onto systems who's jump coordinates have been hashed, a process which takes many years to compute, but once computed is readily available for use by travelers.  /br/ /br/ This device was invented by the ITC to make travel easier, however your milage may vary. Initiating a jump consumes a very large amount of fuel for smaller craft, although capital sized power plants won't even bat an eye. The longer the jump, the more fuel is consumed. There are also serious safety concerns, since the exit point in the target system is random, of colliding with or even emerging inside of ships and stations. Jumping is also known to disrupt shield harmonics, and may (rarely) even cause damage to the craft itself, leading to only limited use.
+[/Item]
+
+[Item]
 name=Pirated Software
 type=commodity
 volume=0
