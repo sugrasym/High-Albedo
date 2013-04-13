@@ -2840,6 +2840,13 @@ public class Ship extends Celestial {
                 /*
                  * Will offer you missions
                  */
+                ArrayList<String> choices = myFaction.getNeutralNotifications();
+                if(choices.size() > 0) {
+                    String pick = choices.get(rnd.nextInt(choices.size()));
+                    conversation = new Conversation(this, "Hail", pick);
+                } else {
+                    //nothing to say
+                }
             } else {
                 //on bad terms
                 /*

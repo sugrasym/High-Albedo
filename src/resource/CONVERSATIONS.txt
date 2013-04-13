@@ -1,3 +1,19 @@
+#Special comm nodes
+
+[Node]
+name=MISSION
+subject=Offer
+body=<#MISSION>
+choice0=Sounds Good/START_MISSION
+choice1=No, Thanks/END
+[/Node]
+
+[Node]
+name=START_MISSION
+subject=Mission Accepted
+body=Great, we'll monitor your progress.
+[/Node]
+
 #Special final node
 
 [Node]
@@ -26,6 +42,22 @@ choice0=Continue/WelcomeMessage2
 name=WelcomeMessage2
 subject=Time
 body=It is possible to control the rate at which time passes. Using the keys 1-5, you can speed up or slow down time. /br/ /br/ 1 : 25% Speed /br/ /br/ 2 : 50% Speed  /br/ /br/ 3 : Normal  /br/ /br/ 4 : 200% Speed  /br/ /br/ 5 : 400% Speed
+[/Node]
+
+#Neutral Greetings
+
+[Node]
+name=Hello0
+subject=Hello
+body=Hello?
+choice0=Got anything?/MISSION
+[/Node]
+
+[Node]
+name=Hello1
+subject=Hello
+body=Yes?
+choice0=Got anything?/MISSION
 [/Node]
 
 #'We Hate You' messages

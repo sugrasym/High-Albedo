@@ -435,6 +435,8 @@ hate1=KillYouMyself0
 hate2=Infamous0
 hate3=SelfDestruct0
 hate4=NoAssociate0
+neut0=Hello0
+neut1=Hello1
 [/Comm]
 
 [Comm]
@@ -449,6 +451,8 @@ hate1=KillYouMyself0
 hate2=Infamous0
 hate3=SelfDestruct0
 hate4=NoAssociate0
+neut0=Hello0
+neut1=Hello1
 [/Comm]
 
 [Comm]
@@ -463,6 +467,8 @@ hate1=KillYouMyself0
 hate2=Infamous0
 hate3=SelfDestruct0
 hate4=NoAssociate0
+neut0=Hello0
+neut1=Hello1
 [/Comm]
 
 [Comm]
@@ -477,6 +483,8 @@ hate1=KillYouMyself0
 hate2=Infamous0
 hate3=SelfDestruct0
 hate4=NoAssociate0
+neut0=Hello0
+neut1=Hello1
 [/Comm]
 
 [Comm]
@@ -486,6 +494,8 @@ hate1=KillYouMyself0
 hate2=Infamous0
 hate3=SelfDestruct0
 hate4=NoAssociate0
+neut0=Hello0
+neut1=Hello1
 [/Comm]
 
 [Comm]
@@ -495,6 +505,8 @@ hate1=KillYouMyself0
 hate2=Infamous0
 hate3=SelfDestruct0
 hate4=NoAssociate0
+neut0=Hello0
+neut1=Hello1
 [/Comm]
 
 [Comm]
@@ -504,6 +516,8 @@ hate1=KillYouMyself0
 hate2=Infamous0
 hate3=SelfDestruct0
 hate4=NoAssociate0
+neut0=Hello0
+neut1=Hello1
 [/Comm]
 
 [Comm]
@@ -513,6 +527,8 @@ hate1=KillYouMyself0
 hate2=Infamous0
 hate3=SelfDestruct0
 hate4=NoAssociate0
+neut0=Hello0
+neut1=Hello1
 [/Comm]
 
 [Comm]
@@ -522,6 +538,8 @@ hate1=KillYouMyself0
 hate2=Infamous0
 hate3=SelfDestruct0
 hate4=NoAssociate0
+neut0=Hello0
+neut1=Hello1
 [/Comm]
 
 ##########################################

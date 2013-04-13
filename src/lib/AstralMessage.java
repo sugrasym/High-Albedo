@@ -95,4 +95,12 @@ public class AstralMessage implements Serializable {
     public void setWasSent(boolean wasSent) {
         this.wasSent = wasSent;
     }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
 }

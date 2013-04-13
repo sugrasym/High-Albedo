@@ -38,6 +38,7 @@ public class Universe implements Serializable {
     private transient God god;
     protected Ship playerShip;
     private ArrayList<Ship> playerProperty = new ArrayList<>();
+    private ArrayList<Mission> playerMissions = new ArrayList<>();
     
     static {
         cache = new ResourceCache();
@@ -182,5 +183,9 @@ public class Universe implements Serializable {
     
     public ArrayList<Ship> getPlayerProperty() {
         return playerProperty;
+    }
+
+    public ArrayList<Mission> getPlayerMissions() {
+        return playerMissions;
     }
 }

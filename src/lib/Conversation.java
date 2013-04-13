@@ -23,6 +23,7 @@ import celestial.Ship.Ship;
 import java.io.Serializable;
 import java.util.ArrayList;
 import lib.Parser.Term;
+import universe.Mission;
 import universe.Universe;
 
 /**
@@ -35,6 +36,8 @@ public class Conversation implements Serializable {
     private String name;
     private AstralMessage currentNode;
     private Ship owner;
+    //mission
+    private Mission tmpMission;
 
     public Conversation(Ship owner, String name, String startNode) {
         this.name = name;
@@ -94,16 +97,45 @@ public class Conversation implements Serializable {
 
     public void reply(Binling choice) {
         if (choice != null) {
-            handleBinling(choice);
             //advance
             currentNode = findNode(choice.getStr().get(1));
+            //handle
+            handleBinling(choice);
         } else {
             currentNode = findNode("END");
         }
     }
 
     private void handleBinling(Binling choice) {
-        //TODO: handle consequences of a choice
+        //does this bindling have additional params?
+        if (choice.getStr().size() > 1) {
+            //is this a mission offer?
+            if (choice.getStr().get(1).matches("MISSION")) {
+                //generate a mission
+                tmpMission = new Mission(owner);
+                //append mission body
+                String body = makeMissionDescription(tmpMission);
+                currentNode.setMessage(currentNode.getMessage().replace("<#MISSION>", body));
+            } else if (choice.getStr().get(1).matches("START_MISSION")) {
+                //assign generated mission
+                if(tmpMission != null) {
+                    owner.getUniverse().getPlayerMissions().add(tmpMission);
+                }
+            }
+        } else {
+            //nope
+        }
+    }
+    
+    private String makeMissionDescription(Mission mission) {
+        String ret = "";
+        {
+            ret += mission.getBriefing();
+            //append reward info
+            ret += " /br/ /br/ Cash Reward:     "+mission.getReward();
+            ret += " /br/ /br/ Standings Bonus: "+mission.getDeltaStanding();
+        }
+        return ret;
     }
 
     public String getName() {

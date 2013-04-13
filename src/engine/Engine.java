@@ -1114,6 +1114,10 @@ public class Engine {
                 pvy = playerShip.getVy();
                 //recover player ship
                 playerShip = universe.getPlayerShip();
+                //update player missions
+                for(int a = 0; a < universe.getPlayerMissions().size(); a++) {
+                    universe.getPlayerMissions().get(a).periodicUpdate(tpf);
+                }
             } else if (state == State.MENU) {
                 //update HUD
                 getHud().periodicUpdate();
