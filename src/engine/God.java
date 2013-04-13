@@ -81,9 +81,9 @@ public class God implements EngineElement {
             Thread s = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    /*checkStations();
+                    checkStations();
                     checkPatrols();
-                    checkTraders();*/
+                    checkTraders();
                 }
             });
             s.start();

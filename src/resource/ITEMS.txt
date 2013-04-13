@@ -301,6 +301,19 @@ description=When you need a ship capable of laying down new infrastructure, you 
 [/Item]
 
 [Item]
+name=Fetch
+type=ship
+volume=90000
+mass=60000
+HP=100
+minPrice=49000000
+maxPrice=82000000
+store=4
+group=battleship
+description=While most capital ships are intended to destroy installations and other capitals, the Fetch is designed to remove swarms of support craft first. With HGPCs and Capital Rocket Pods, this ship will dominate the airspace containing it.
+[/Item]
+
+[Item]
 name=Scimitar
 type=ship
 volume=2500
@@ -1407,6 +1420,19 @@ maxPrice=31000
 group=weapon
 store=800
 description=Firing Orin's 'Rapid Rocket' the Rocket Pod delivers rapid fire missile punishment at medium range. Rapid deployment increases the probability of a hit, which may raise applied damage output.
+[/Item]
+
+[Item]
+name='Swarm' Capital Rocket Pod
+type=battery
+volume=600
+mass=1000
+HP=25
+minPrice=600000
+maxPrice=900000
+group=weapon
+store=35
+description=Orin Rocket Pod with a capital auto-targeting system and quick reload extension. When given sufficient ammunition, this can create a cloud of rockets covering the battlefield.
 [/Item]
 
 [Item]

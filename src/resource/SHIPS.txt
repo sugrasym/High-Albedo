@@ -358,6 +358,24 @@ height=50
 #Naming Scheme: Ghosts
 #########
 
+#Battleships
+
+[Ship]
+type=Fetch
+accel=19
+turning=0.20
+shield=11000000
+shieldRecharge=1
+hull=7280000
+fuel=-1
+mass=61000
+sensor=4250
+cargo=25000
+hardpoint=turret,500,-20,3.14/turret,500,20,3.14/turret,500,-40,3.14/turret,500,80,3.14/turret,500,-80,3.14/turret,500,40,3.14/battery,600,60,3.14/battery,600,-60,3.14/battery,600,50,3.14/battery,600,-50,3.14
+width=280
+height=280
+[/Ship]
+
 #Super Freighters
 
 [Ship]

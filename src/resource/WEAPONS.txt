@@ -471,6 +471,25 @@ turning=7
 
 [Weapon]
 #weapon info
+name='Swarm' Capital Rocket Pod
+type=battery
+#shell info
+damage=250
+range=1000
+speed=7
+mass=1
+refire=0.1
+explosion=Explosion
+#make it a seeker
+guided=true
+#it uses ammo
+ammo=Rapid Rocket
+accel=300
+turning=7
+[/Weapon]
+
+[Weapon]
+#weapon info
 name=HGPC
 type=turret
 #shell info

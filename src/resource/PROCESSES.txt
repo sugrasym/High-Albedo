@@ -311,6 +311,13 @@ resource=
 [/Process]
 
 [Process]
+name=CheatMakeFetch
+cycle=62400
+product=Fetch,1
+resource=
+[/Process]
+
+[Process]
 name=CheatMakeSamurai
 cycle=1000
 product=Samurai,1
@@ -386,6 +393,13 @@ resource=
 name=ITCCheatStarstruckMissile
 cycle=310
 product=Starstruck Missile,1
+resource=
+[/Process]
+
+[Process]
+name=OrinCheatSwarm
+cycle=2400
+product='Swarm' Capital Rocket Pod,1
 resource=
 [/Process]
 

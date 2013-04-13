@@ -1,11 +1,11 @@
 #New Game Smell
 [NewGame]
-ship=Sparrow
+ship=Fetch
 system=System 14
 near=Planet 0
 cash=7500000
-install=Talon 1/Talon 1
-cargo=
+install=HGPC/HGPC/HGPC/HGPC/HGPC/HGPC/'Swarm' Capital Rocket Pod/'Swarm' Capital Rocket Pod
+cargo=Rapid Rocket~20000
 faction=Player
 [/NewGame]
 

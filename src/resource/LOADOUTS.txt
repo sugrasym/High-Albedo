@@ -256,6 +256,13 @@ install=Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod/Rocket
 cargo=Rapid Rocket~500000
 [/Loadout]
 
+[Loadout]
+ship=Fetch
+name=OFAF Fetch
+install=HGPC/HGPC/HGPC/HGPC/HGPC/HGPC/'Swarm' Capital Rocket Pod/'Swarm' Capital Rocket Pod/'Swarm' Capital Rocket Pod/'Swarm' Capital Rocket Pod
+cargo=Rapid Rocket~20000
+[/Loadout]
+
 ########Knights of Orin
 
 [Loadout]
