@@ -316,7 +316,7 @@ public class CargoWindow extends AstralWindow {
             } else if (command.matches(CMD_PACKAGE)) {
                 Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
                 if (selected.getQuantity() == 1) {
-                    Weapon tmp = (Weapon) selected;
+                    Equipment tmp = (Equipment) selected;
                     ship.removeFromCargoBay(selected);
                     Item nTmp = new Item(tmp.getName());
                     ship.addToCargoBay(nTmp);
