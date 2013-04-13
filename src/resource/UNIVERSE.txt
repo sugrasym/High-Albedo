@@ -1,11 +1,11 @@
 #New Game Smell
 [NewGame]
 ship=Fetch
-system=System 14
+system=System 48
 near=Planet 0
 cash=7500000
-install=HGPC/HGPC/HGPC/HGPC/HGPC/HGPC/'Swarm' Capital Rocket Pod/'Swarm' Capital Rocket Pod
-cargo=Rapid Rocket~20000
+install=HGPC/HGPC/HGPC/HGPC/HGPC/HGPC/'Swarm' Capital Rocket Pod/'Swarm' Capital Rocket Pod/'Swarm' Capital Rocket Pod/'Swarm' Capital Rocket Pod
+cargo=Rapid Rocket~20000/Human Organs~5
 faction=Player
 [/NewGame]
 

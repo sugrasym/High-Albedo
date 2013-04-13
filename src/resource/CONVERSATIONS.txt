@@ -29,3 +29,31 @@ subject=Drop It
 body=You're carrying illegal goods. Drop them or you will be destroyed.
 choice0=Confirm/END
 [/Node]
+
+[Node]
+name=Contraband1
+subject=Drop It
+body=Surrender and drop your freight, smuggler.
+choice0=Confirm/END
+[/Node]
+
+[Node]
+name=Contraband2
+subject=Drop It
+body=Drop the contraband, now.
+choice0=Confirm/END
+[/Node]
+
+[Node]
+name=Contraband3
+subject=Drop It
+body=Make this easy on yourself and drop your freight.
+choice0=Confirm/END
+[/Node]
+
+[Node]
+name=Contraband4
+subject=Drop It
+body=Drop the contraband. We can do this my way or the hard way.
+choice0=Confirm/END
+[/Node]

@@ -47,10 +47,38 @@ public class Faction implements Serializable {
     private ArrayList<Binling> standings = new ArrayList<>();
     //contraband
     private ArrayList<String> contraband = new ArrayList<>();
+    //comm hints
+    private ArrayList<String> contrabandNotifications = new ArrayList<>();
 
     public Faction(String name) {
         this.name = name;
         init();
+        initComms();
+    }
+
+    private void initComms() {
+        Parser tmp = new Parser("FACTIONS.txt");
+        ArrayList<Term> comms = tmp.getTermsOfType("Comm");
+        for (int a = 0; a < comms.size(); a++) {
+            if (comms.get(a).getValue("name").matches(name)) {
+                /*
+                 * Initialize contraband notifications
+                 */
+                {
+                    int x = 0;
+                    String type = "";
+                    while ((type = comms.get(a).getValue("contraband" + x)) != null) {
+                        //get station info
+                        String ty = type.toString();
+                        contrabandNotifications.add(ty);
+                        //iterate
+                        x++;
+                    }
+                }
+                //quit
+                break;
+            }
+        }
     }
 
     private void init() {
@@ -89,7 +117,7 @@ public class Faction implements Serializable {
                     }
                     //Store contraband
                     String cntr = tmp2.getValue("var_contraband");
-                    if(cntr != null) {
+                    if (cntr != null) {
                         String[] arr = cntr.split("/");
                         getContraband().addAll(Arrays.asList(arr));
                     }
@@ -100,10 +128,10 @@ public class Faction implements Serializable {
             }
         }
     }
-    
+
     public boolean isContraband(String item) {
-        for(int a = 0; a < contraband.size(); a++) {
-            if(contraband.get(a).matches(item)) {
+        for (int a = 0; a < contraband.size(); a++) {
+            if (contraband.get(a).matches(item)) {
                 return true;
             }
         }
@@ -150,7 +178,7 @@ public class Faction implements Serializable {
                             //multiply the delta by that percentage
                             double deltaPrime = (per) * delta;
                             //it's harder to make friends than lose them
-                            if(deltaPrime > 0) {
+                            if (deltaPrime > 0) {
                                 deltaPrime /= 4;
                             }
                             //calculate new standings
@@ -224,5 +252,9 @@ public class Faction implements Serializable {
 
     public ArrayList<String> getContraband() {
         return contraband;
+    }
+
+    public ArrayList<String> getContrabandNotifications() {
+        return contrabandNotifications;
     }
 }

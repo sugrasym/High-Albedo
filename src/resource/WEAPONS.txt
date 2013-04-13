@@ -478,7 +478,7 @@ damage=250
 range=1000
 speed=7
 mass=1
-refire=0.1
+refire=0.25
 explosion=Explosion
 #make it a seeker
 guided=true

@@ -1523,7 +1523,7 @@ public class Ship extends Celestial {
         autopilot = Autopilot.ATTACK_TARGET;
     }
 
-    public boolean scanForContraband(Ship ship) {
+    private boolean scanForContraband(Ship ship) {
         if (scanForContraband) {
             ArrayList<Item> sc = ship.getCargoBay();
             for (int a = 0; a < sc.size(); a++) {
@@ -1534,7 +1534,11 @@ public class Ship extends Celestial {
                         //notify the player
                         if (ship.getFaction().matches("Player")) {
                             if (conversation == null) {
-                                conversation = new Conversation(this, "Contraband " + sc.get(a).getName(), "Contraband0");
+                                if (myFaction.getContrabandNotifications().size() > 0) {
+                                    String pick = myFaction.getContrabandNotifications().
+                                            get(rnd.nextInt(myFaction.getContrabandNotifications().size()));
+                                    conversation = new Conversation(this, "Contraband " + sc.get(a).getName(), pick);
+                                }
                             }
                         }
                         //return true

@@ -420,6 +420,46 @@ patrol2=Tengu Shogun,2
 [/Loadout]
 
 ##########################################
+#Comm hints for each faction
+##########################################
+
+[Comm]
+name=Ageiran Federation
+contraband0=Contraband0
+contraband1=Contraband1
+contraband2=Contraband2
+contraband3=Contraband3
+contraband4=Contraband4
+[/Comm]
+
+[Comm]
+name=Orin Federation
+contraband0=Contraband0
+contraband1=Contraband1
+contraband2=Contraband2
+contraband3=Contraband3
+contraband4=Contraband4
+[/Comm]
+
+[Comm]
+name=ITC
+contraband0=Contraband0
+contraband1=Contraband1
+contraband2=Contraband2
+contraband3=Contraband3
+contraband4=Contraband4
+[/Comm]
+
+[Comm]
+name=Caina Conglemerate
+contraband0=Contraband0
+contraband1=Contraband1
+contraband2=Contraband2
+contraband3=Contraband3
+contraband4=Contraband4
+[/Comm]
+
+##########################################
 #Music for each faction
 #This is for the benefit of WorldMaker
 ##########################################
