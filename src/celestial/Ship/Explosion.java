@@ -28,6 +28,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
 import lib.Parser;
+import universe.Universe;
 
 /**
  *
@@ -64,7 +65,7 @@ public class Explosion extends Ship {
          * Loads the stats for this ship from the ships file.
          */
         //create parser
-        Parser parse = new Parser("EXPLOSIONS.txt");
+        Parser parse = Universe.getCache().getExplosionCache();
         //get the term with this ship's type
         ArrayList<Parser.Term> terms = parse.getTermsOfType("Explosion");
         Parser.Term relevant = null;

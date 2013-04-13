@@ -23,6 +23,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import lib.Parser;
 import lib.Parser.Term;
+import universe.Universe;
 
 public class Item implements Serializable {
     //parameters
@@ -53,7 +54,7 @@ public class Item implements Serializable {
     }
 
     private void init() {
-        Parser parse = new Parser("ITEMS.txt");
+        Parser parse = Universe.getCache().getItemCache();
         ArrayList<Term> terms = parse.getTermsOfType("Item");
         Term relevant = null;
         for (int a = 0; a < terms.size(); a++) {

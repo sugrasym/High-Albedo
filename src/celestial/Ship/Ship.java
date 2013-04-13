@@ -49,6 +49,7 @@ import lib.FastMath;
 import lib.Parser;
 import lib.Parser.Term;
 import lib.Soundling;
+import universe.Universe;
 
 /**
  *
@@ -191,7 +192,7 @@ public class Ship extends Celestial {
                  * Generate graphics
                  */
                 //get the image
-                raw_tex = getUniverse().getCache().getShipSprite(getType());
+                raw_tex = Universe.getCache().getShipSprite(getType());
                 //create the usable version
                 ImageIcon icon = new ImageIcon(raw_tex);
                 setHeight(icon.getIconHeight());
@@ -242,7 +243,7 @@ public class Ship extends Celestial {
          * Loads the stats for this ship from the ships file.
          */
         //create parser
-        Parser parse = new Parser("SHIPS.txt");
+        Parser parse = Universe.getCache().getShipCache();
         //get the term with this ship's type
         ArrayList<Term> terms = parse.getTermsOfType("Ship");
         Term relevant = null;
@@ -2357,7 +2358,7 @@ public class Ship extends Celestial {
     }
 
     public void installFaction() {
-        myFaction = new Faction(faction);
+        myFaction = new Faction(faction, getUniverse());
     }
 
     /*

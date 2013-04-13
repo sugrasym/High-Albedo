@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import lib.Parser.Param;
 import lib.Parser.Term;
+import universe.Universe;
 
 /**
  *
@@ -50,14 +51,19 @@ public class Faction implements Serializable {
     //comm hints
     private ArrayList<String> contrabandNotifications = new ArrayList<>();
 
-    public Faction(String name) {
+    public Faction(String name, Universe universe) {
         this.name = name;
-        init();
-        initComms();
+        init(universe);
+        initComms(universe);
     }
 
-    private void initComms() {
-        Parser tmp = new Parser("FACTIONS.txt");
+    private void initComms(Universe universe) {
+        Parser tmp;
+        if(universe != null) {
+            tmp = universe.getCache().getFactionCache();
+        } else {
+            tmp = new Parser("FACTIONS.txt");
+        }
         ArrayList<Term> comms = tmp.getTermsOfType("Comm");
         for (int a = 0; a < comms.size(); a++) {
             if (comms.get(a).getValue("name").matches(name)) {
@@ -81,8 +87,13 @@ public class Faction implements Serializable {
         }
     }
 
-    private void init() {
-        Parser tmp = new Parser("FACTIONS.txt");
+    private void init(Universe universe) {
+        Parser tmp;
+        if(universe != null) {
+            tmp = universe.getCache().getFactionCache();
+        } else {
+            tmp = new Parser("FACTIONS.txt");
+        }
         ArrayList<Term> factions = tmp.getTermsOfType("Faction");
         for (int a = 0; a < factions.size(); a++) {
             if (factions.get(a).getValue("name").matches(name)) {

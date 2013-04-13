@@ -233,7 +233,7 @@ public class StandingWindow extends AstralWindow {
             if (tmp.getString().matches(PLAYER_FACTION)) {
                 viewing = ship.getUniverse().getPlayerShip().getMyFaction();
             } else {
-                viewing = new Faction(tmp.getString());
+                viewing = new Faction(tmp.getString(), ship.getUniverse());
             }
         }
     }

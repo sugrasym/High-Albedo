@@ -60,7 +60,7 @@ public class God implements EngineElement {
 
     private void initFactions() {
         //make a list of all factions
-        Parser fParse = new Parser("FACTIONS.txt");
+        Parser fParse = Universe.getCache().getFactionCache();
         ArrayList<Term> terms = fParse.getTermsOfType("Faction");
         for (int a = 0; a < terms.size(); a++) {
             factions.add(new SuperFaction(universe, terms.get(a).getValue("name")));
@@ -466,7 +466,7 @@ public class God implements EngineElement {
             String cargoScan = "false";
             if (template != null) {
                 //load this template
-                Parser lParse = new Parser("LOADOUTS.txt");
+                Parser lParse = Universe.getCache().getLoadoutCache();
                 ArrayList<Term> lods = lParse.getTermsOfType("Loadout");
                 for (int a = 0; a < lods.size(); a++) {
                     if (lods.get(a).getValue("name").matches(template)) {

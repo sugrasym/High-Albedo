@@ -34,10 +34,14 @@ import lib.Parser.Term;
 public class Universe implements Serializable {
     
     private ArrayList<SolarSystem> systems = new ArrayList<>();
-    private transient ResourceCache cache;
+    private static transient ResourceCache cache;
     private transient God god;
     protected Ship playerShip;
     private ArrayList<Ship> playerProperty = new ArrayList<>();
+    
+    static {
+        cache = new ResourceCache();
+    }
     
     public Universe() {
         init();
@@ -45,7 +49,7 @@ public class Universe implements Serializable {
     
     private void init() {
         //create the universe parser
-        Parser parse = new Parser("UNIVERSE.txt");
+        Parser parse = Universe.getCache().getUniverseCache();
         //get all the solar system terms
         ArrayList<Term> solars = parse.getTermsOfType("System");
         //generate the systems and add them
@@ -74,7 +78,7 @@ public class Universe implements Serializable {
             //get list of backs
             String back = "base_plate.png";
             String target = thisSystem.getValue("sky");
-            ArrayList<Term> backs = new Parser("SKY.txt").getTermsOfType("Skybox");
+            ArrayList<Term> backs = Universe.getCache().getSkyCache().getTermsOfType("Skybox");
             for (int a = 0; a < backs.size(); a++) {
                 if (backs.get(a).getValue("name").matches(target)) {
                     back = backs.get(a).getValue("asset");
@@ -89,7 +93,7 @@ public class Universe implements Serializable {
             if (ambient != null) {
                 system.setAmbientMusic(ambient);
             }
-            if(danger != null) {
+            if (danger != null) {
                 system.setDangerMusic(danger);
             }
             system.init(false);
@@ -159,13 +163,8 @@ public class Universe implements Serializable {
         this.playerShip = playerShip;
     }
     
-    public ResourceCache getCache() {
-        if (cache != null) {
-            return cache;
-        } else {
-            cache = new ResourceCache();
-            return cache;
-        }
+    public static ResourceCache getCache() {
+        return cache;
     }
     
     public God getGod() {

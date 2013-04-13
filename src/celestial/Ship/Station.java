@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import lib.Faction;
 import lib.Parser;
+import universe.Universe;
 
 /**
  *
@@ -57,7 +58,7 @@ public class Station extends Ship {
     @Override
     public void alive() {
         if (myFaction == null) {
-            myFaction = new Faction(faction);
+            myFaction = new Faction(faction, getUniverse());
         }
         super.alive();
         //check if out of business
@@ -108,7 +109,7 @@ public class Station extends Ship {
          * Loads the stats for this ship from the ships file.
          */
         //create parser
-        Parser parse = new Parser("STATIONS.txt");
+        Parser parse = Universe.getCache().getStationCache();
         //get the term with this ship's type
         ArrayList<Parser.Term> terms = parse.getTermsOfType("Station");
         Parser.Term relevant = null;

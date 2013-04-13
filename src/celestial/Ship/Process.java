@@ -23,6 +23,7 @@ import cargo.Item;
 import java.io.Serializable;
 import java.util.ArrayList;
 import lib.Parser;
+import universe.Universe;
 
 public class Process implements Serializable {
     //for holding information about needed resources and final products
@@ -44,7 +45,7 @@ public class Process implements Serializable {
         this.stationSelling = stationSelling;
         this.stationBuying = stationBuying;
         //create process
-        Parser parse = new Parser("PROCESSES.txt");
+        Parser parse = Universe.getCache().getProcessCache();
         ArrayList<Parser.Term> terms = parse.getTermsOfType("Process");
         Parser.Term relevant = null;
         for (int a = 0; a < terms.size(); a++) {

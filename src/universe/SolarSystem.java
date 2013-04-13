@@ -130,7 +130,7 @@ public class SolarSystem implements Entity, Serializable {
             String pName = starTerm.getValue("name");
             String texture = starTerm.getValue("texture");
             //find logical texture
-            Parser tmp = new Parser("PLANET.txt");
+            Parser tmp = Universe.getCache().getPlanetCache();
             Term tex = null;
             ArrayList<Term> list = tmp.getTermsOfType("Star");
             for (int a = 0; a < list.size(); a++) {
@@ -160,7 +160,7 @@ public class SolarSystem implements Entity, Serializable {
             String pName = planetTerm.getValue("name");
             String texture = planetTerm.getValue("texture");
             //find logical texture
-            Parser tmp = new Parser("PLANET.txt");
+            Parser tmp = Universe.getCache().getPlanetCache();
             Term tex = null;
             ArrayList<Term> list = tmp.getTermsOfType("Planet");
             for (int a = 0; a < list.size(); a++) {
@@ -196,7 +196,7 @@ public class SolarSystem implements Entity, Serializable {
             String template = shipTerm.getValue("template");
             if (template != null) {
                 //load this template
-                Parser lParse = new Parser("LOADOUTS.txt");
+                Parser lParse = Universe.getCache().getUniverseCache();
                 ArrayList<Term> lods = lParse.getTermsOfType("Loadout");
                 for (int a = 0; a < lods.size(); a++) {
                     if (lods.get(a).getValue("name").matches(template)) {

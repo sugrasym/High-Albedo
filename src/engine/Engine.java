@@ -931,7 +931,7 @@ public class Engine {
                     e.printStackTrace();
                 }
                 //get a list of base plates
-                Parser sky = new Parser("SKY.txt");
+                Parser sky = Universe.getCache().getSkyCache();
                 ArrayList<Term> skyTypes = sky.getTermsOfType("Skybox");
                 int pick = new Random().nextInt(skyTypes.size());
                 //get the asset

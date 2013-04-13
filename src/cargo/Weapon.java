@@ -29,6 +29,7 @@ import javax.swing.ImageIcon;
 import lib.Parser;
 import lib.Soundling;
 import universe.SolarSystem;
+import universe.Universe;
 
 /**
  *
@@ -138,7 +139,7 @@ public class Weapon extends Equipment {
 
     private void init() {
         //get weapon stuff now
-        Parser parse = new Parser("WEAPONS.txt");
+        Parser parse = Universe.getCache().getWeaponCache();
         ArrayList<Parser.Term> terms = parse.getTermsOfType("Weapon");
         Parser.Term relevant = null;
         for (int a = 0; a < terms.size(); a++) {

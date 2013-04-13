@@ -30,6 +30,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import lib.Parser;
 import lib.Parser.Term;
+import universe.Universe;
 
 public class TradeWindow extends AstralWindow {
 
@@ -44,8 +45,8 @@ public class TradeWindow extends AstralWindow {
     AstralList optionList = new AstralList(this);
     AstralInput input = new AstralInput();
     //quick lookup
-    Parser shipParser = new Parser("SHIPS.txt");
-    Parser weaponParser = new Parser("WEAPONS.txt");
+    Parser shipParser = Universe.getCache().getShipCache();
+    Parser weaponParser = Universe.getCache().getWeaponCache();
     //logical
     AstralList lastFocus = cargoList;
     //behavior

@@ -23,6 +23,7 @@ import celestial.Ship.Ship;
 import java.io.Serializable;
 import java.util.ArrayList;
 import lib.Parser.Term;
+import universe.Universe;
 
 /**
  *
@@ -63,7 +64,7 @@ public class Conversation implements Serializable {
     }
 
     private void init(Ship owner) {
-        Parser tmp = new Parser("CONVERSATIONS.txt");
+        Parser tmp = Universe.getCache().getConversationCache();
         ArrayList<Term> list = tmp.getTermsOfType("Node");
         for (int a = 0; a < list.size(); a++) {
             String nme = list.get(a).getValue("name");

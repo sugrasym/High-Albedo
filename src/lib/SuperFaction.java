@@ -50,7 +50,7 @@ public class SuperFaction extends Faction {
      */
 
     public SuperFaction(Universe universe, String name) {
-        super(name);
+        super(name, universe);
         this.universe = universe;
         if (universe != null) {
             initStations();
@@ -67,7 +67,7 @@ public class SuperFaction extends Faction {
 
     private void initStations() {
         //get a list of stations for this faction
-        Parser sParse = new Parser("FACTIONS.txt");
+        Parser sParse = Universe.getCache().getFactionCache();
         ArrayList<Term> terms = sParse.getTermsOfType("Stations");
         Term stat = null;
         for (int a = 0; a < terms.size(); a++) {
@@ -94,7 +94,7 @@ public class SuperFaction extends Faction {
 
     private void initAmbientMusic() {
         //get a list of stations for this faction
-        Parser sParse = new Parser("FACTIONS.txt");
+        Parser sParse = Universe.getCache().getFactionCache();
         ArrayList<Term> terms = sParse.getTermsOfType("Music");
         Term muse = null;
         for (int a = 0; a < terms.size(); a++) {
@@ -119,7 +119,7 @@ public class SuperFaction extends Faction {
     
     private void initDangerMusic() {
         //get a list of stations for this faction
-        Parser sParse = new Parser("FACTIONS.txt");
+        Parser sParse = Universe.getCache().getFactionCache();
         ArrayList<Term> terms = sParse.getTermsOfType("Music");
         Term muse = null;
         for (int a = 0; a < terms.size(); a++) {
@@ -145,7 +145,7 @@ public class SuperFaction extends Faction {
     private void initLoadouts() {
 
         //get a list of patrol loadouts for this faction
-        Parser sParse = new Parser("FACTIONS.txt");
+        Parser sParse = Universe.getCache().getFactionCache();
         ArrayList<Term> terms = sParse.getTermsOfType("Loadout");
         Term stat = null;
         for (int a = 0; a < terms.size(); a++) {

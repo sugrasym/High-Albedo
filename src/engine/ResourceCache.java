@@ -30,11 +30,23 @@ import lib.Parser.Term;
  * @author nwiehoff
  */
 public class ResourceCache {
-    //lists
-
+    //sprite cache
     private ArrayList<Spriteling> ships = new ArrayList<>();
     private ArrayList<Spriteling> projectiles = new ArrayList<>();
     private ArrayList<Spriteling> explosions = new ArrayList<>();
+    //parser cache
+    private Parser universeCache = new Parser("UNIVERSE.txt");
+    private Parser shipCache = new Parser("SHIPS.txt");
+    private Parser itemCache = new Parser("ITEMS.txt");
+    private Parser weaponCache = new Parser("WEAPONS.txt");
+    private Parser factionCache = new Parser("FACTIONS.txt");
+    private Parser stationCache = new Parser("STATIONS.txt");
+    private Parser explosionCache = new Parser("EXPLOSIONS.txt");
+    private Parser processCache = new Parser("PROCESSES.txt");
+    private Parser skyCache = new Parser("SKY.txt");
+    private Parser loadoutCache = new Parser("LOADOUTS.txt");
+    private Parser conversationCache = new Parser("CONVERSATIONS.txt");
+    private Parser planetCache = new Parser("PLANET.txt");
 
     public ResourceCache() {
         try {
@@ -142,6 +154,54 @@ public class ResourceCache {
             //store
             explosions.add(tmp);
         }
+    }
+
+    public Parser getUniverseCache() {
+        return universeCache;
+    }
+
+    public Parser getShipCache() {
+        return shipCache;
+    }
+
+    public Parser getItemCache() {
+        return itemCache;
+    }
+
+    public Parser getWeaponCache() {
+        return weaponCache;
+    }
+
+    public Parser getFactionCache() {
+        return factionCache;
+    }
+
+    public Parser getStationCache() {
+        return stationCache;
+    }
+
+    public Parser getExplosionCache() {
+        return explosionCache;
+    }
+
+    public Parser getProcessCache() {
+        return processCache;
+    }
+
+    public Parser getSkyCache() {
+        return skyCache;
+    }
+
+    public Parser getLoadoutCache() {
+        return loadoutCache;
+    }
+
+    public Parser getConversationCache() {
+        return conversationCache;
+    }
+
+    public Parser getPlanetCache() {
+        return planetCache;
     }
 
     private class Spriteling {
