@@ -22,6 +22,7 @@ package lib;
 import celestial.Ship.Ship;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Random;
 import lib.Parser.Term;
 import universe.Mission;
 import universe.Universe;
@@ -36,6 +37,8 @@ public class Conversation implements Serializable {
     private String name;
     private AstralMessage currentNode;
     private Ship owner;
+    //random
+    Random rnd = new Random();
     //mission
     private Mission tmpMission;
 
@@ -124,6 +127,14 @@ public class Conversation implements Serializable {
                 //assign generated mission
                 if (tmpMission != null) {
                     owner.getUniverse().getPlayerMissions().add(tmpMission);
+                }
+            } else if (choice.getStr().get(1).matches("RUMOR")) {
+                //get a rumor
+                if (owner.getMyFaction().getRumorList().size() > 0) {
+                    String pick = owner.getMyFaction().getRumorList().get(rnd.nextInt(owner.getMyFaction().getRumorList().size()));
+                    currentNode = findNode(pick);
+                } else {
+                    currentNode = findNode("END");
                 }
             }
         } else {

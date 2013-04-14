@@ -1,7 +1,7 @@
 #New Game Smell
 [NewGame]
 ship=Crow
-system=System 26
+system=System 48
 near=Planet 0
 cash=250000
 install=Talon 2/Talon 2

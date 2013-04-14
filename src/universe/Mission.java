@@ -69,18 +69,22 @@ public class Mission implements Serializable {
         //get info on min and max
         String sCash = pick.getValue("cash");
         String sDelta = pick.getValue("delta");
-        //calculate payment
-        long min = Long.parseLong(sCash.split(">")[0]);
-        long max = Long.parseLong(sCash.split(">")[1]);
-        long dCash = max - min;
-        long dR = (long) (rnd.nextFloat() * dCash);
-        reward = min + dR;
+        {
+            //calculate payment
+            long min = Long.parseLong(sCash.split(">")[0]);
+            long max = Long.parseLong(sCash.split(">")[1]);
+            long dCash = max - min;
+            long dR = (long) (rnd.nextFloat() * dCash);
+            reward = min + dR;
+        }
         //calculate delta
-        min = Long.parseLong(sDelta.split(">")[0]);
-        max = Long.parseLong(sDelta.split(">")[1]);
-        long dStanding = max - min;
-        dR = (long) (rnd.nextFloat() * dStanding);
-        deltaStanding = min + dR;
+        {
+            double min = Double.parseDouble(sDelta.split(">")[0]);
+            double max = Double.parseDouble(sDelta.split(">")[1]);
+            double dStanding = max - min;
+            double dR = (rnd.nextFloat() * dStanding);
+            deltaStanding = min + dR;
+        }
         //determine mission type
         String rawType = pick.getValue("type");
         if (rawType.matches("DESTROY_STATION")) {
@@ -280,24 +284,7 @@ public class Mission implements Serializable {
         if (missionType == Type.DESTROY_STATION) {
             return checkDestroyStation();
         } else if (missionType == Type.BOUNTY_HUNT) {
-            //are all targets dead?
-            for (int a = 0; a < targets.size(); a++) {
-                if (targets.get(a).getState() == State.ALIVE) {
-                    //nope
-                    return false;
-                } else {
-                    Ship test = (Ship) targets.get(a);
-                    if (test.getLastBlow().getFaction().matches("Player")) {
-                        //this is good news
-                    } else {
-                        //someone else got it first
-                        abortMission();
-                        return false;
-                    }
-                }
-            }
-            //if we made it this far
-            return true;
+            return checkBountyHunt();
         }
         //undefinded
         return true;
@@ -313,6 +300,27 @@ public class Mission implements Serializable {
             if (targets.get(a).getState() == State.ALIVE) {
                 //nope
                 return false;
+            }
+        }
+        //if we made it this far
+        return true;
+    }
+
+    private boolean checkBountyHunt() {
+        //are all targets dead?
+        for (int a = 0; a < targets.size(); a++) {
+            if (targets.get(a).getState() == State.ALIVE) {
+                //nope
+                return false;
+            } else {
+                Ship test = (Ship) targets.get(a);
+                if (test.getLastBlow().getFaction().matches("Player")) {
+                    //this is good news
+                } else {
+                    //someone else got it first
+                    abortMission();
+                    return false;
+                }
             }
         }
         //if we made it this far

@@ -44,6 +44,24 @@ subject=Time
 body=It is possible to control the rate at which time passes. Using the keys 1-5, you can speed up or slow down time. /br/ /br/ 1 : 25% Speed /br/ /br/ 2 : 50% Speed  /br/ /br/ 3 : Normal  /br/ /br/ 4 : 200% Speed  /br/ /br/ 5 : 400% Speed
 [/Node]
 
+#Friendly Greetings
+
+[Node]
+name=Greetings0
+subject=Greetings
+body=Hello friend!
+choice0=Any jobs?/MISSION
+choice1=Heard anything?/RUMOR
+[/Node]
+
+[Node]
+name=Greetings1
+subject=Can I help you friend?
+body=How can I help?
+choice0=Any jobs?/MISSION
+choice1=Heard anything?/RUMOR
+[/Node]
+
 #Neutral Greetings
 
 [Node]
@@ -132,4 +150,127 @@ name=Contraband4
 subject=Drop It
 body=Drop the contraband. We can do this my way or the hard way.
 choice0=Confirm/END
+[/Node]
+
+# Generic Rumors -- all factions should have these
+
+[Node]
+name=GenericRumor0
+subject=Wormholes
+body=I've heard there's a secret team of scientists trying to restart the old UN's exodus project, but I'm not sure why. Maybe they think they can target the wormholes better, although anything is better than random.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=GenericRumor1
+subject=Entities? How Many?
+body=Nobody likes to talk about it, but how many of those entities do you think are out there? Just one of those things can destroy every station in a system before a battleship shows up to deal with it.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=GenericRumor2
+subject=Casual Travel
+body=I personally don't like jumpholes. They scare the hell out of me, but a jumpdrive can be even worse. I knew someone who's ship exploded because it jumped inside an ITC Ice Refinery. Tough luck huh?
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=GenericRumor3
+subject=Cleanup
+body=There's always skirmishes going on in this wretched place, if you're like me you clean up the scraps and see if you can find something handy.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=GenericRumor4
+subject=Beware of Bumping
+body=I'm thankful that we don't splatter instantly in a collision, but it still screws up your flight plan getting shot backwards at high velocity.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=GenericRumor5
+subject=Trading Space
+body=I personally think ITC space is the easiest to trade in, but the militarization is overwhelming. Orin's not too bad, but you can forget about Caina and Ageira.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=GenericRumor6
+subject=Cardinal Heart
+body=I've heard the codename for the region of space we had to settle was 'Cardinal Heart'. That's a weird name for an unknown region of space you've never seen, don't you think?
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=GenericRumor7
+subject=Foundation War
+body=If my history's right the Foundation War was a pretty brutal civil war where the UN Preliminary Government fractured into 3 new nations. The ITC managed to get out of it, barely.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=GenericRumor8
+subject=Very Tense
+body=This region is a powder keg ready to go off for any reason. Border skirmishes are constant, sometimes a battleship captain decides to take a trip into enemy space.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=GenericRumor9
+subject=Economics
+body=I try to buy low and sell high but sometimes I get stuck with a bay full of useless wares. I just eject them and cut my losses.
+choice0=Good To Know/END
+[/Node]
+
+#Ageiran Federation Rumors
+
+[Node]
+name=AgeiranRumor-ITCConspiracy0
+subject=ITC Conspiracy?
+body=Nobody *really* knows for sure, obviously, but a lot of people think the ITC either created or awoke the entities as part of some weapons development or something. The UN was doing lots of experiments, the way I see it the ITC could have inherited those too.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=AgeiranRumor-TheArchers0
+subject=The Archers
+body=The Archers are causing us some serious problems. They destroy trade ships every day and almost always win 1 on 1 against the police and navy patrols. We kill them by boxing them in so their superior acceleration doesn't help, but that's tricky. I can't believe how we let this pirate problem get out of hand!
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=AgeiranRumor-EscalationImminent0
+subject=Escalation Imminent
+body=I've heard from a friend that there's going to be a lot more than skirmishes pretty soon. The Navy is prepping some Condors for a full scale assault on ITC space. So goes the rumor anyway.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=AgeiranRumor-Caina0
+subject=Caina and ITC
+body=The Cainan Dictatorship, that they like to call a Kingdom or Conglemerate, or whatever, would have fallen by now if not for the ITC. They're keeping them propped up for access to their rich asteroid ores and as a meat shield when the Second Foundation War kicks in.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=AgeiranRumor-SecondWarExcited
+subject=I'm Excited
+body=Personally I'm excited there's going to be a new Foundation War soon. It gives us a chance to rebuild the Union Commonwealth, except better. Not to mention the adventure!
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=AgeiranRumor-Deficit0
+subject=Federal Deficit
+body=We can't possibly fight another war even if we wanted to. We have a debt measured in quadrillions of credits, and they've raised the ceiling and borrowed form the Orin Federation dozens of times in the past 20 years. All this posturing is going to do is get us into another pointless war with the ITC and Caina, just like the first time we did this. This time we'll lose because the economy is collapsing. People forget quickly.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=AgeiranRumor-Animosity0
+subject=Ageiran Animosity
+body=This entire cold war thing is pointless. The first war we had with the ITC and Caina was when we *invaded* Caina, unprovoked, for minerals and territory. We, the Ageirans, overthrew our corrupt Union government and built not one but 2 new nations. We swore we'd make peace and do reparations, but that never happened. Truth is neither side is forgiving the other, and that makes it all to easy to spar without justification.
+choice0=Good To Know/END
 [/Node]

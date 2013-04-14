@@ -437,6 +437,26 @@ hate3=SelfDestruct0
 hate4=NoAssociate0
 neut0=Hello0
 neut1=Hello1
+love0=Greetings0
+love1=Greetings1
+#rumors
+rumor0=GenericRumor0
+rumor1=GenericRumor1
+rumor2=GenericRumor2
+rumor3=GenericRumor3
+rumor4=GenericRumor4
+rumor5=GenericRumor5
+rumor6=GenericRumor6
+rumor7=GenericRumor7
+rumor8=GenericRumor8
+rumor9=GenericRumor9
+rumor10=AgeiranRumor-ITCConspiracy0
+rumor11=AgeiranRumor-TheArchers0
+rumor12=AgeiranRumor-EscalationImminent0
+rumor13=AgeiranRumor-Caina0
+rumor14=AgeiranRumor-SecondWarExcited
+rumor15=AgeiranRumor-Deficit0
+rumor16=AgeiranRumor-Animosity0
 [/Comm]
 
 [Comm]
@@ -453,6 +473,19 @@ hate3=SelfDestruct0
 hate4=NoAssociate0
 neut0=Hello0
 neut1=Hello1
+love0=Greetings0
+love1=Greetings1
+#rumors
+rumor0=GenericRumor0
+rumor1=GenericRumor1
+rumor2=GenericRumor2
+rumor3=GenericRumor3
+rumor4=GenericRumor4
+rumor5=GenericRumor5
+rumor6=GenericRumor6
+rumor7=GenericRumor7
+rumor8=GenericRumor8
+rumor9=GenericRumor9
 [/Comm]
 
 [Comm]
@@ -469,6 +502,19 @@ hate3=SelfDestruct0
 hate4=NoAssociate0
 neut0=Hello0
 neut1=Hello1
+love0=Greetings0
+love1=Greetings1
+#rumors
+rumor0=GenericRumor0
+rumor1=GenericRumor1
+rumor2=GenericRumor2
+rumor3=GenericRumor3
+rumor4=GenericRumor4
+rumor5=GenericRumor5
+rumor6=GenericRumor6
+rumor7=GenericRumor7
+rumor8=GenericRumor8
+rumor9=GenericRumor9
 [/Comm]
 
 [Comm]
@@ -485,6 +531,19 @@ hate3=SelfDestruct0
 hate4=NoAssociate0
 neut0=Hello0
 neut1=Hello1
+love0=Greetings0
+love1=Greetings1
+#rumors
+rumor0=GenericRumor0
+rumor1=GenericRumor1
+rumor2=GenericRumor2
+rumor3=GenericRumor3
+rumor4=GenericRumor4
+rumor5=GenericRumor5
+rumor6=GenericRumor6
+rumor7=GenericRumor7
+rumor8=GenericRumor8
+rumor9=GenericRumor9
 [/Comm]
 
 [Comm]
@@ -496,6 +555,19 @@ hate3=SelfDestruct0
 hate4=NoAssociate0
 neut0=Hello0
 neut1=Hello1
+love0=Greetings0
+love1=Greetings1
+#rumors
+rumor0=GenericRumor0
+rumor1=GenericRumor1
+rumor2=GenericRumor2
+rumor3=GenericRumor3
+rumor4=GenericRumor4
+rumor5=GenericRumor5
+rumor6=GenericRumor6
+rumor7=GenericRumor7
+rumor8=GenericRumor8
+rumor9=GenericRumor9
 [/Comm]
 
 [Comm]
@@ -507,6 +579,19 @@ hate3=SelfDestruct0
 hate4=NoAssociate0
 neut0=Hello0
 neut1=Hello1
+love0=Greetings0
+love1=Greetings1
+#rumors
+rumor0=GenericRumor0
+rumor1=GenericRumor1
+rumor2=GenericRumor2
+rumor3=GenericRumor3
+rumor4=GenericRumor4
+rumor5=GenericRumor5
+rumor6=GenericRumor6
+rumor7=GenericRumor7
+rumor8=GenericRumor8
+rumor9=GenericRumor9
 [/Comm]
 
 [Comm]
@@ -518,6 +603,19 @@ hate3=SelfDestruct0
 hate4=NoAssociate0
 neut0=Hello0
 neut1=Hello1
+love0=Greetings0
+love1=Greetings1
+#rumors
+rumor0=GenericRumor0
+rumor1=GenericRumor1
+rumor2=GenericRumor2
+rumor3=GenericRumor3
+rumor4=GenericRumor4
+rumor5=GenericRumor5
+rumor6=GenericRumor6
+rumor7=GenericRumor7
+rumor8=GenericRumor8
+rumor9=GenericRumor9
 [/Comm]
 
 [Comm]
@@ -529,6 +627,19 @@ hate3=SelfDestruct0
 hate4=NoAssociate0
 neut0=Hello0
 neut1=Hello1
+love0=Greetings0
+love1=Greetings1
+#rumors
+rumor0=GenericRumor0
+rumor1=GenericRumor1
+rumor2=GenericRumor2
+rumor3=GenericRumor3
+rumor4=GenericRumor4
+rumor5=GenericRumor5
+rumor6=GenericRumor6
+rumor7=GenericRumor7
+rumor8=GenericRumor8
+rumor9=GenericRumor9
 [/Comm]
 
 [Comm]
@@ -540,6 +651,19 @@ hate3=SelfDestruct0
 hate4=NoAssociate0
 neut0=Hello0
 neut1=Hello1
+love0=Greetings0
+love1=Greetings1
+#rumors
+rumor0=GenericRumor0
+rumor1=GenericRumor1
+rumor2=GenericRumor2
+rumor3=GenericRumor3
+rumor4=GenericRumor4
+rumor5=GenericRumor5
+rumor6=GenericRumor6
+rumor7=GenericRumor7
+rumor8=GenericRumor8
+rumor9=GenericRumor9
 [/Comm]
 
 ##########################################

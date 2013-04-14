@@ -2944,7 +2944,7 @@ public class Ship extends Celestial {
                  * Will offer rumors and missions
                  */
                 //offer mission
-                ArrayList<String> choices = myFaction.getNeutralNotifications();
+                ArrayList<String> choices = myFaction.getFriendlyNotifications();
                 if (choices.size() > 0) {
                     String pick = choices.get(rnd.nextInt(choices.size()));
                     conversation = new Conversation(this, "Hail", pick);

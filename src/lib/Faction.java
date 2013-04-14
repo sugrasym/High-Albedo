@@ -52,7 +52,8 @@ public class Faction implements Serializable {
     private ArrayList<String> contrabandNotifications = new ArrayList<>();
     private ArrayList<String> hateNotifications = new ArrayList<>();
     private ArrayList<String> neutralNotifications = new ArrayList<>();
-
+    private ArrayList<String> friendlyNotifications = new ArrayList<>();
+    private ArrayList<String> rumorList = new ArrayList<>();
     public Faction(String name) {
         this.name = name;
         init();
@@ -102,6 +103,34 @@ public class Faction implements Serializable {
                         //get station info
                         String ty = type.toString();
                         neutralNotifications.add(ty);
+                        //iterate
+                        x++;
+                    }
+                }
+                /*
+                 * Initialize friendly notifications
+                 */
+                {
+                    int x = 0;
+                    String type = "";
+                    while ((type = comms.get(a).getValue("love" + x)) != null) {
+                        //get station info
+                        String ty = type.toString();
+                        getFriendlyNotifications().add(ty);
+                        //iterate
+                        x++;
+                    }
+                }
+                /*
+                 * Initialize rumor list
+                 */
+                {
+                    int x = 0;
+                    String type = "";
+                    while ((type = comms.get(a).getValue("rumor" + x)) != null) {
+                        //get station info
+                        String ty = type.toString();
+                        getRumorList().add(ty);
                         //iterate
                         x++;
                     }
@@ -295,5 +324,13 @@ public class Faction implements Serializable {
 
     public ArrayList<String> getNeutralNotifications() {
         return neutralNotifications;
+    }
+
+    public ArrayList<String> getFriendlyNotifications() {
+        return friendlyNotifications;
+    }
+
+    public ArrayList<String> getRumorList() {
+        return rumorList;
     }
 }
