@@ -137,7 +137,7 @@ public class AstralList extends AstralComponent {
     }
 
     public Object getItemAtIndex(int index) {
-        if (index < listContents.size()) {
+        if (index < listContents.size() && index > -1) {
             return listContents.get(index);
         } else {
             index = 0;

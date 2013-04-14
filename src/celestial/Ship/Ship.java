@@ -47,6 +47,7 @@ import lib.Conversation;
 import lib.Faction;
 import lib.FastMath;
 import lib.Parser;
+import lib.Parser.Param;
 import lib.Parser.Term;
 import lib.Soundling;
 import universe.SolarSystem;
@@ -109,7 +110,9 @@ public class Ship extends Celestial {
     protected transient Image raw_tex;
     protected transient BufferedImage tex;
     protected String type;
-    //behavior
+    //'pilot name'
+    private String pilot = "Unknown";
+    //faction
     protected Faction myFaction;
     protected String faction;
     //death
@@ -176,6 +179,35 @@ public class Ship extends Celestial {
     public Ship(String name, String type) {
         setName(name);
         setType(type);
+    }
+
+    private String makeName() {
+        /*
+         * Generates a random name for this ship's pilot.
+         */
+        ArrayList<Term> fg = Universe.getCache().getNameCache().getTermsOfType("First");
+        ArrayList<Term> lg = Universe.getCache().getNameCache().getTermsOfType("Last");
+        String first = "";
+        String last = "";
+        {
+            for (int a = 0; a < fg.size(); a++) {
+                if (fg.get(a).getValue("name").matches("Generic")) {
+                    Param pick = fg.get(a).getParams().get(rnd.nextInt(fg.get(a).getParams().size() - 1) + 1);
+                    first = pick.getValue();
+                    break;
+                }
+            }
+
+            for (int a = 0; a < lg.size(); a++) {
+                if (lg.get(a).getValue("name").matches("Generic")) {
+                    Param pick = lg.get(a).getParams().get(rnd.nextInt(lg.get(a).getParams().size() - 1) + 1);
+                    last = pick.getValue();
+                    break;
+                }
+            }
+        }
+
+        return first + " " + last;
     }
 
     @Override
@@ -288,6 +320,7 @@ public class Ship extends Celestial {
             installLoadout();
             //faction
             installFaction();
+            pilot = makeName();
             //bring the ship to life
             state = State.ALIVE;
         } else {
@@ -1514,8 +1547,8 @@ public class Ship extends Celestial {
             double dmg = rnd.nextFloat() * MAX_JUMP_SHIELD_DAMAGE * maxShield;
             dealDamage(dmg);
             //randomize location
-            x = rnd.nextInt(48000 * 2) - 48000;
-            y = rnd.nextInt(48000 * 2) - 48000;
+            x = rnd.nextInt(24000 * 2) - 24000;
+            y = rnd.nextInt(24000 * 2) - 24000;
         }
     }
 
@@ -2562,6 +2595,18 @@ public class Ship extends Celestial {
             //e.printStackTrace();
             return 0;
         }
+    }
+
+    public String getPilot() {
+        if (this != getUniverse().getPlayerShip()) {
+            return pilot;
+        } else {
+            return "You";
+        }
+    }
+
+    public void setPilot(String pilot) {
+        this.pilot = pilot;
     }
 
     @Override

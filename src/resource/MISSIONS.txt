@@ -6,7 +6,15 @@
 [Mission]
 name=Destroy Station
 type=DESTROY_STATION
-cash=0>10000000
+cash=250000>10000000
 delta=0>2
-briefing=We want to destroy a station in enemy space, but if we do it ourselves we will escalate the conflict. We are looking for an experienced freelancer to destroy the <TARGET> in <LOCATION>, so that plausible deniability can be constructed. As long as it dies, we don't want to know or care to know how you did it. You should know that a space station takes a fair bit of firepower to knock out, so grab some heavy hitters. Are you interested?
+briefing=We intend to hit an enemy space station, but due to politics can't be connected to the operation. We are looking for an experienced freelancer to destroy <TARGET> in <LOCATION>, so that plausible deniability can be constructed. As long as it dies, we don't want to know or care to know how you did it. You should know that a space station takes a fair bit of firepower to knock out, so grab some heavy hitters. Are you interested?
+[/Mission]
+
+[Mission]
+name=Bounty Hunt
+type=BOUNTY_HUNT
+cash=0>5000000
+delta=0>2
+briefing=Experienced bounty hunters are needed for a search and destroy mission. <NAME> has given us trouble in the past. <NAME> is flying a <SHIP> designated <SHIPNAME> and was last seen in <LOCATION>. Payment will be transferred upon confirmation you have destroyed the target.
 [/Mission]
