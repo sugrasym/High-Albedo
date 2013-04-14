@@ -182,6 +182,7 @@ public class Mission implements Serializable {
         //remove this mission
         agent.getUniverse().getPlayerMissions().remove(this);
         //notify
+        briefing = null;
         agent.composeMessage(agent.getUniverse().getPlayerShip(), "Nevermind", "We don't have anything available at the moment.", null);
     }
 

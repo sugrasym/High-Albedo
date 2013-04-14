@@ -113,12 +113,16 @@ public class Conversation implements Serializable {
             if (choice.getStr().get(1).matches("MISSION")) {
                 //generate a mission
                 tmpMission = new Mission(owner);
-                //append mission body
-                String body = makeMissionDescription(tmpMission);
-                currentNode.setMessage(currentNode.getMessage().replace("<#MISSION>", body));
+                if (tmpMission.getBriefing() != null) {
+                    //append mission body
+                    String body = makeMissionDescription(tmpMission);
+                    currentNode.setMessage(currentNode.getMessage().replace("<#MISSION>", body));
+                } else {
+                    currentNode = findNode("END");
+                }
             } else if (choice.getStr().get(1).matches("START_MISSION")) {
                 //assign generated mission
-                if(tmpMission != null) {
+                if (tmpMission != null) {
                     owner.getUniverse().getPlayerMissions().add(tmpMission);
                 }
             }
@@ -126,14 +130,14 @@ public class Conversation implements Serializable {
             //nope
         }
     }
-    
+
     private String makeMissionDescription(Mission mission) {
         String ret = "";
         {
             ret += mission.getBriefing();
             //append reward info
-            ret += " /br/ /br/ Cash Reward:     "+mission.getReward();
-            ret += " /br/ /br/ Standings Bonus: "+mission.getDeltaStanding();
+            ret += " /br/ /br/ Cash Reward:     " + mission.getReward();
+            ret += " /br/ /br/ Standings Bonus: " + mission.getDeltaStanding();
         }
         return ret;
     }
