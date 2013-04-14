@@ -274,3 +274,110 @@ subject=Ageiran Animosity
 body=This entire cold war thing is pointless. The first war we had with the ITC and Caina was when we *invaded* Caina, unprovoked, for minerals and territory. We, the Ageirans, overthrew our corrupt Union government and built not one but 2 new nations. We swore we'd make peace and do reparations, but that never happened. Truth is neither side is forgiving the other, and that makes it all to easy to spar without justification.
 choice0=Good To Know/END
 [/Node]
+
+[Node]
+name=AgeiranRumor-Economics0
+subject=Ageiran Economics
+body=The Fed runs mining operations on planets, they extract mineral ore and atmospheric gases and lift them to customs offices. From there they make energy and refined products, which we make into anything we need.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=AgeiranRumor-Condor0
+subject=Ageiran Economics
+body=The Condor is a beautiful ship. It flies majestically through the stars defending the Federation and all it stands for. Where the Condor roams, freedom rings.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=AgeiranRumor-Ships0
+subject=Ageiran Ships
+body=Our ships aren't weak, not by a long shot. Our ships are boring, sure, but practical. We aren't criplingly specialized and are very versatile. I've seen Sparrow pilots kill ITC Hyenas in skirmishes, so don't let anyone tell you our ships are poor.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=AgeiranRumor-OrinConcern0
+subject=Orin Concerns
+body=They are allies, but sometimes I wonder why. The Orin share many of our values and a common history and culture, sure, but they *want* a war with the ITC in the worst way. They'll deny that of course, but trust me they want a Second Foundation War.
+choice0=Good To Know/END
+[/Node]
+
+#Orin Federation Rumors
+
+[Node]
+name=OrinRumor-Economics0
+subject=Orin Economics
+body=Our economy is based on converting waste into something useful. We start with a fission reactor, which makes energy and waste. The waste is converted into a mass block, and we can make it into whatever we need. Our process is inefficient though, if those ITC dogs would share with us we could have an economy rivaling theirs.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=OrinRumor-Missiles0
+subject=Missile Massacre
+body=Unlike the Ageirans we appreciate the value in missiles as an anti-fighter platform. Did you know that our capital rocket pods can fire a missile every quarter second? That's firepower.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=OrinRumor-Fetch
+subject=The Fetch
+body=The Fetch is my favorite battleship. I'm biased, sure but you can't deny its ability to tear apart fighters at close range, and it still packs the punch for hitting stations. Of course it eats ammo, but our ammo's cheap.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=OrinRumor-ITC0
+subject=The ITC
+body=I hate the ITC. They got out of fighting the Foundation War with *politics* while real patriots were fighting for their independence. I think they're the UN reincarnated, you can't deny the similarities. No doubt they're responsible for the Entities.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=OrinRumor-ITC1
+subject=The Real ITC
+body=The ITC might as well not even be human. Fine, they're human, but they don't act like normal people. They're conniving, back stabbing, and selfish. Many ITC citizens emigrated from the Union before it collapsed. Traitors, all of them. If you ever get the chance to kill an ITC citizen, do it.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=OrinRumor-Knights0
+subject=The Knights
+body=The Knights are crazy. They think some Aztec King ruled all of Earth and gave Spanish to the Africans or some bull. They want to overthrow both us and the Cainans and institute some kind of 'true monarchy' with the descendents of this so-called King who aren't even the right race! I wish they'd go fight the Cainans only and leave us alone.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=OrinRumor-BorderWar0
+subject=The Border War
+body=I speak for most people when I say we're glad there's border skirmishes with the Cainans and ITC. Especially with the ITC. All ITC citizens will burn in hell for their ways.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=OrinRumor-BorderWar1
+subject=Wrong Border War
+body=Don't get me wrong, I hate the Cainans as much as the next guy, but the ITC is the priority. They're far stronger, far more advanced, and much more villanous. I can't stand how apologetic my senators are to the ITC! The people want justice, we want a war, only the Fed wants to 'make peace'. You can't make peace with the ITC.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=OrinRumor-DeepConcern0
+subject=Deeply Concerned
+body=It's hard to tell how many people really hate the ITC with how vocal they are, but I for one don't. I watch ITC news and don't see this evil empire so many others do. I hope my senator doesn't vote for war. Fortunately, the senate is not interested in a war, only war mongering arm chair generals who've never fought a war are. They are paranoid, conspiracy theorists, who blame their problems on anyone but themselves.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=OrinRumor-ITC3
+subject=The ITC Truth
+body=No doubt my fellow Orin have told you how evil the ITC are. If you ask them why they are evil, they won't be able to give you any specifics - there are none! The ITC have done nothing to provoke us, and we've done everything to villify them. I make my voice heard by writing my senator every now and then to help them keep perspective. I've gotten some great replies!
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=OrinRumor-TheITCIlluminatiConspiracy
+subject=The ITC Illuminati Conspiracy
+body=Face the facts. The ITC invented the Entities as an experimental weapon, and lost control. The ITC have been poisoning consumer good shipments with low levels of lead. The ITC Illuminati intend to conquer the world using business interests and politics. The ITC prop up the Cainan dictatorship. The ITC invest heavily in powerful warships. The ITC are so cowardly they try to fight beyond visual range! They are the scum of the universe.
+choice0=Good To Know/END
+[/Node]

@@ -457,6 +457,10 @@ rumor13=AgeiranRumor-Caina0
 rumor14=AgeiranRumor-SecondWarExcited
 rumor15=AgeiranRumor-Deficit0
 rumor16=AgeiranRumor-Animosity0
+rumor17=AgeiranRumor-Economics0
+rumor18=AgeiranRumor-Condor0
+rumor19=AgeiranRumor-Ships0
+rumor20=AgeiranRumor-OrinConcern0
 [/Comm]
 
 [Comm]
@@ -486,6 +490,17 @@ rumor6=GenericRumor6
 rumor7=GenericRumor7
 rumor8=GenericRumor8
 rumor9=GenericRumor9
+rumor10=OrinRumor-Economics0
+rumor11=OrinRumor-Missiles0
+rumor12=OrinRumor-Fetch
+rumor13=OrinRumor-ITC0
+rumor14=OrinRumor-ITC1
+rumor15=OrinRumor-Knights0
+rumor16=OrinRumor-BorderWar0
+rumor17=OrinRumor-BorderWar1
+rumor18=OrinRumor-DeepConcern0
+rumor19=OrinRumor-ITC3
+rumor20=OrinRumor-TheITCIlluminatiConspiracy
 [/Comm]
 
 [Comm]
