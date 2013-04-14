@@ -460,3 +460,82 @@ subject=Crazy Orin
 body=The Orin call us cowards, thieves, and liars because we didn't fight the bloody Foundation War like they did. A lot of the former political figures from the Union ended up in Orin space, it's a haven for war criminals. They just can't wait to get started again. It's not my fault we solved problems with words.
 choice0=Good To Know/END
 [/Node]
+
+#Caina Conglemerate Rumors
+
+[Node]
+name=CainanRumor-ForeignInsult0
+subject=Insulting The King
+body=Where do these wretched Federations come off calling Good King Daveth III a dictator?! The Daveth legacy has kept Caina alive for over 200 years, and we're still going strong. When you insult the King, you insult me and every other Cainan.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=CainanRumor-Economy0
+subject=Cainan Economy
+body=We use clean solar energy, with no inputs. We got some help from the ITC developing it. We use special asteroid mines to extract ore for refinement into hull plating and assembly modules, which we turn into end products.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=CainanRumor-FederalIncursions
+subject=Federal Incursions
+body=They send patrols into our space, we send patrols into theirs. Tit for tat. Nobody here cares who started it, there's a credible threat to our Kingdom. One time we had a scare when the Orin sent no less than 3 Fetch Battleships into our space, but they turned around without destroying anything.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=CainanRumor-ItsAMess0
+subject=It's a Mess
+body=Caina is a mess right now. The Knights are trying to depose Good King Daveth III and institute some weird guy who thinks he is an Aztec God. Normally we'd be able to deal with this, but with this cold war deal we're having trouble keeping the Knights from doing damage. The Knights recruit out of the Orin Federation, and they really hate us.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=CainanRumor-AgeiranHope0
+subject=Ageiran Hope
+body=The Orin are insane, but the Ageirans are reasonable people. They're the only thing keeping the Orin extremists in check. The common heritage of the two federations makes it difficult for the Ageirans to go against their Orin allies, but the Ageirans will have a choice soon to either dissolve relations with the Orin or get involved in a Second Foundation War.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=CainanRumor-ITCNotSoGood0
+subject=Squeeky Clean ITC?
+body=Nobody will deny the ITC is an amazing country, but as allies they come up a little short. They never help on the offensive, they let us fight the border war on our own. They won't share their more advanced ships with us, nor will they give us the codes to unlock ITC Warheads. They don't seem to understand the importance of this situation. Maybe if their country was falling apart they'd care more.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=CainanRumor-ITCNotSoGood1
+subject=Our ITC Friends
+body=There's some animosity here that the ITC doesn't have our interests at heart. Sure they saved us from the Union Commonwealth, but they won't help us stomp out the Knights problem, or secure our borders. My theory is that they think they're better than us, and that they are the ones in charge.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=CainanRumor-SlaveProblem0
+subject=Slaves
+body=Slavery is legalized here now. Good King Daveth III decreed that prisoners captured from pirate raids or destroying Federal incursions should be put to work in asteroid mines. Some see it as a sort of justice, but I see it as a corruption of this nation and the Daveth legacy. I doubt Daveth I would be proud of what Caina is today.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=CainanRumor-OrganProblem0
+subject=Human Organs
+body=How can we get rid of pirates when we cooperate with them? The Wolves fill a demand for human organs, which we just don't have enough of. The problem is that many of those organs come from Cainan military forces who ejected right before their ship was destroyed by the Wolves. If we want the Wolves to go away we need to stop buying organs from them.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=CainanRumor-Goanna
+subject=The Goanna
+body=We designed our battleship from the ground up! It's faster than your average capital, and makes a good compromise between defense against raiders, attacking hard targets, and not using too much ammo. We're quite proud of it. We wanted to fit ITC missile batteries to it, but they wouldn't let us.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=CainanRumor-Escalation0
+subject=Incoming Escalation
+body=For most people in Caina it isn't a question of who will attack but when. Everyone here expects the Orin to defy their Ageiran friends and launch a new invasion of Caina, or the ITC. They'll hope that the Ageirans feel obligated to assist them, we certainly hope the Ageirans don't.
+choice0=Good To Know/END
+[/Node]
