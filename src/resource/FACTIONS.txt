@@ -530,6 +530,17 @@ rumor6=GenericRumor6
 rumor7=GenericRumor7
 rumor8=GenericRumor8
 rumor9=GenericRumor9
+rumor10=ITCRumor-Economy0
+rumor11=ITCRumor-WeAreStrong0
+rumor12=ITCRumor-Starstruck0
+rumor13=ITCRumor-OrinScary0
+rumor14=ITCRumor-WhyTheyHateUs0
+rumor15=ITCRumor-ITCGovernment0
+rumor16=ITCRumor-Lion
+rumor17=ITCRumor-Inventions0
+rumor18=ITCRumor-Jumpholes
+rumor19=ITCRumor-Isolation
+rumor20=ITCRumor-CrazyOrin
 [/Comm]
 
 [Comm]

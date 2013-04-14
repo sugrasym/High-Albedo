@@ -381,3 +381,82 @@ subject=The ITC Illuminati Conspiracy
 body=Face the facts. The ITC invented the Entities as an experimental weapon, and lost control. The ITC have been poisoning consumer good shipments with low levels of lead. The ITC Illuminati intend to conquer the world using business interests and politics. The ITC prop up the Cainan dictatorship. The ITC invest heavily in powerful warships. The ITC are so cowardly they try to fight beyond visual range! They are the scum of the universe.
 choice0=Good To Know/END
 [/Node]
+
+#ITC Rumors
+
+[Node]
+name=ITCRumor-Economy0
+subject=ITC Economics
+body=We're proud of our strong economic backbone. We convert ices rich in deuterium into pure heavy water, and use it in our fusion reactors. We convert either asteroid or mineral ore into a mass block which we convert into anything we need. The facts are the ITC makes some of the most high tech devices in the world, such as our home-grown Plank Tube.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=ITCRumor-WeAreStrong0
+subject=The ITC Is Strong
+body=Did you know the ITC has no poverty or homelessness? Did you know we've eradicated most diseases in our domain? Did you know we are the only nation without a local pirate faction? The ITC is strong. It has endured since before the fall of the UN, and it will endure long after those around us destroy themselves.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=ITCRumor-Starstruck0
+subject=History of Starstruck
+body=Before the Union Commonwealth, now deceased, invaded Caina we didn't have the Starstruck Missile. We suffered heavy casualties keeping Caina from being conquered for no good reason. We learned our lesson and developed a weapon that, albeit expensive, gives us the advantage. We produce many more Starstruck Missiles than you see on the market, they are being stored just in case the Orin try something.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=ITCRumor-OrinScary0
+subject=Orin Scares Me
+body=I'm not scared of the Ageirans. I like the Ageirans, I like their culture, I like their music. But the Orin are terrifying. For some reason the Orin general public thinks we are the cause of all their problems, including insane claims that we made the Entities. We didn't make those damn things, they do plenty of damage to us too. Why would we make such a thing? At any rate, the Orin might get their war soon. Careful what you wish for.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=ITCRumor-WhyTheyHateUs0
+subject=Why They Hate Us
+body=I finally figured out why they hate us so much. It's because we are the only country that has our act together. We don't have deep economic and sociopolitical problems like they do, and we use that to invest in more infrastructure to make ourselves even richer. They hate us because they want to be us, but they can't. I feel sorry for them in a way.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=ITCRumor-ITCGovernment0
+subject=ITC Government
+body=The ITC is an oversight body that standardizes currency, developmental policies, human rights rules, and military. Each member planet has their own local government, usually a representative republic of some kind. But all of them meet our strict human rights rules, so any ITC planet is a good place to live.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=ITCRumor-Lion
+subject=The Lion
+body=The Lion is a powerful warship, the culmination of centuries of work modernizing older designs. It can fire missile salvos from up to 8000k away, so it's the last word in long range combat. Best of all, it's leopard print!
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=ITCRumor-Inventions0
+subject=ITC Inventions
+body=The ITC have invented lots of neat stuff in our history. We invented the Plank Tube, which replaced the SQUID based quantum computing module. Plank Tubes are far more reliable, our computers are state of the art. We invented nanoweave textiles, which allow the creation of light, think, flexible structures that are very strong. We even invented the jumpdrive, although we don't use it much because it's unsafe.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=ITCRumor-Jumpholes
+subject=Jumpholes
+body=The ITC have studied jumpholes extensively. They occur naturally in this region of space, but we don't know how they form. We do know how they work - they are expanded holes in the topography of the universe which allow vessels to safely pass. We used this information to design and build a working jumpdrive, which generates a jumphole for a few nanoseconds. We're working on generating stable ones to add new trade paths.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=ITCRumor-Isolation
+subject=ITC Isolation
+body=A surprising number of ITC citizens never leave ITC space for any reason, leaving them at a loss to what the rest of the world is like. I've been outside the ITC and it's a ghetto by comparison. Most people here are politically correct and say that we're just as good as everyone else, but facts are the ITC is far superior to any other nation in this region.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=ITCRumor-CrazyOrin
+subject=Crazy Orin
+body=The Orin call us cowards, thieves, and liars because we didn't fight the bloody Foundation War like they did. A lot of the former political figures from the Union ended up in Orin space, it's a haven for war criminals. They just can't wait to get started again. It's not my fault we solved problems with words.
+choice0=Good To Know/END
+[/Node]
