@@ -1580,21 +1580,21 @@ public class Ship extends Celestial {
     }
 
     private boolean scanForContraband(Ship ship) {
-        if (scanForContraband) {
-            ArrayList<Item> sc = ship.getCargoBay();
-            for (int a = 0; a < sc.size(); a++) {
-                if (myFaction.isContraband(sc.get(a).getName())) {
-                    if (myFaction.getName().matches(ship.getFaction())) {
-                        return false;
-                    } else {
+        /*
+         * Only used for detecting contraband being carried by the
+         * player.
+         */
+        if (ship.getFaction().matches("Player")) {
+            if (scanForContraband) {
+                ArrayList<Item> sc = ship.getCargoBay();
+                for (int a = 0; a < sc.size(); a++) {
+                    if (myFaction.isContraband(sc.get(a).getName())) {
                         //notify the player
-                        if (ship.getFaction().matches("Player")) {
-                            if (conversation == null) {
-                                if (myFaction.getContrabandNotifications().size() > 0) {
-                                    String pick = myFaction.getContrabandNotifications().
-                                            get(rnd.nextInt(myFaction.getContrabandNotifications().size()));
-                                    conversation = new Conversation(this, "Contraband " + sc.get(a).getName(), pick);
-                                }
+                        if (conversation == null) {
+                            if (myFaction.getContrabandNotifications().size() > 0) {
+                                String pick = myFaction.getContrabandNotifications().
+                                        get(rnd.nextInt(myFaction.getContrabandNotifications().size()));
+                                conversation = new Conversation(this, "Contraband " + sc.get(a).getName(), pick);
                             }
                         }
                         //return true
