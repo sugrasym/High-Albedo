@@ -112,6 +112,28 @@ public class God implements EngineElement {
         for (int a = 0; a < factions.size(); a++) {
             doStations(factions.get(a));
         }
+        //make sure none are ontop of each other
+        for(int a = 0; a < universe.getSystems().size(); a++) {
+            SolarSystem curr = universe.getSystems().get(a);
+            ArrayList<Entity> stations = curr.getStationList();
+            for(int y = 0; y < stations.size(); y++) {
+                Station prim = (Station) stations.get(y);
+                for(int x = 0; x < stations.size(); x++) {
+                    Station sub = (Station) stations.get(x);
+                    //make sure they aren't the same
+                    if(stations.get(y) != stations.get(x)) {
+                        //check for collission
+                        if(prim.collideWith(sub)) {
+                            //push the sub station away
+                            sub.setX(rnd.nextInt(64000)-32000);
+                            sub.setY(rnd.nextInt(64000)-32000);
+                            //report
+                            System.out.println("Station "+sub+" was moved.");
+                        }
+                    }
+                }
+            } 
+        }
     }
 
     /*
