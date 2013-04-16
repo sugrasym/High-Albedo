@@ -1,3 +1,18 @@
+########Sov Stuff######
+
+[Item]
+name=System Transfer Paperwork
+type=commodity
+volume=0
+mass=0
+HP=100
+minPrice=150000000
+maxPrice=250000000
+store=5
+group=sovtransfer
+description=A team of elite paper pushers and lawyers uses legal trickery to transfer ownership of a system to you. You must have built at least 4 stations in said system to initiate the transfer, and you will incur a massive standings hit to the original owner. If all of your stations in the system are destroyed, you lose ownership of the system and it returns to a different owner. Neutral space cannot be claimed this way due to a lack of laws to exploit.
+[/Item]
+
 ########Station Stuff######
 
 [Item]

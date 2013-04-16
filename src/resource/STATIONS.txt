@@ -355,7 +355,7 @@ fuel=2500000000000
 mass=55000
 rectBound=9,3,446,448/428,195,529,251
 dock=454,141,504,191,485,-114/454,252,504,302,491,512/100,-500,600,0,300,-1500
-process=WolfOrgans/WolfDenCheatWeapons/CheatMakeCoyote/CheatMakeJackal
+process=SeedSovPapers/WolfOrgans/WolfDenCheatWeapons/CheatMakeCoyote/CheatMakeJackal
 [/Station]
 
 [Station]
@@ -455,7 +455,7 @@ fuel=2500000000000
 mass=62000
 rectBound=96,7,390,161/174,154,310,350/98,335,388,486
 dock=115,222,165,272,-124,242/315,222,365,272,563,249/100,-500,600,0,300,-1500
-process=TenguTechSink/MakeSlaves/CheatTenguWeapons/CheatTenguAmmo/CheatPPG/CheatMakeSamurai/CheatMakeRonin/CheatMakeShogun/AstronautToSlave
+process=SeedSovPapers/TenguTechSink/MakeSlaves/CheatTenguWeapons/CheatTenguAmmo/CheatPPG/CheatMakeSamurai/CheatMakeRonin/CheatMakeShogun/AstronautToSlave
 [/Station]
 
 [Station]
@@ -470,5 +470,5 @@ fuel=2500000000000
 mass=16000
 rectBound=25,5,192,118/192,15,485,39/158,118,192,339
 dock=234,45,284,95,900,305/334,45,384,95,900,305/434,45,484,95,900,305/100,-500,600,0,300,-1500
-process=CheatMakeFreyr/CheatMakeOdin/CheatRedSkyWeapons/RedSkyTechSink/RedSkyFoodSink/CheatPPG/CheatMakeJumpDrive
+process=SeedSovPapers/CheatMakeFreyr/CheatMakeOdin/CheatRedSkyWeapons/RedSkyTechSink/RedSkyFoodSink/CheatPPG/CheatMakeJumpDrive
 [/Station]
