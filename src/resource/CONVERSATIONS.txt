@@ -769,3 +769,82 @@ subject=Longevity
 body=In the Federations, you live to be 80. In Caina, you live to be 60. In the ITC you can live to be 150, but here you have an indefinite lifespan. We've mastered biotechnology and we can keep things alive and well as long as we keep an eye on things.
 choice0=Good To Know/END
 [/Node]
+
+#Knights Rumors
+
+[Node]
+name=KnightsOfOrin-Mufasa
+subject=Mufasa
+body=The Aztec King Mufasa Reynolds ruled all of Earth from 600BC to 1100AD. He was unjustly overthrown by a joint venture between the Romans and the British Empire. His lineage survives in the great family Choznikov. Pablo Choznikov is the rightful ruler of the universe.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=KnightsOfOrin-Pablo
+subject=Pabro's Kingly Legacy
+body=The descendant of the Aztec King Mufasa, Pablo Choznikov, is the rightful ruler of the multiverse. He is the sun god, incarnated. His spirit has inhabited great Kings such as John Lenin, Ra, and Hellen Keller.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=KnightsOfOrin-Why0
+subject=Why I Am A Knight
+body=I joined up because all the other governments are crazy, and this is the only option that makes sense. The history is flawless, despite what the illuminati historians claim. How do you explain Babylon without the Aztec Starfleet?
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=KnightsOfOrin-Why1
+subject=The Illuminati
+body=I joined to fight the illuminati who have installed corrupt governments across the universe. They used wormholes to spread lies, and to usurp the rightful domain of the Aztecs. The Aztecs were the first to achieve warp drive, teleportation, and build microwave ovens. They did this millions of years before others discovered fire.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=KnightsOfOrin-Why2
+subject=The Entities
+body=The Entity is God's punishment for not installing the rightful ruler of the universe, Pablo Choznikov, the great descendant of the Aztec king. The Aztec-Russian Federation sent seeder ships across the 7 universes 7,000 light years ago for 7 days. They seeded entities to protect the legacy of the king. We have angered them, and the only way is to reinstall the rightful king.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=KnightsOfOrin-TheTruth
+subject=The Truth
+body=It's out there, man. You gotta believe. Paranormal activity man, the Feds deny knowledge. They want to bury the truth. You can't bury the truth. It's the truth man. If you work hard enough and stare long into a star, you can feel the world through the truth of the cactus.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=KnightsOfOrin-HeavyWaterConspiracy
+subject=ITC Poisining Us
+body=The unholy heavy water, capable of recreating the holy fires of the heart of a star, is the most sinful substance in the universe. The ITC are putting it in our food, man. They're giving it to people as vaccinations, and they're raping the King's asteroids for more devil water. They want to destroy the king's legacy using devil water. Who's gonna stop them?
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=KnightsOfOrin-Hybridization
+subject=Wolf Man
+body=The Illuminati are the wolves. They are creating a war to experiment with a new project: Wolf man. They are engineering a fungus that rewrites DNA of humans to include Wolf DNA, giving them Wolf powers and shit. The Wolf Man super soldiers will kill all the King's warriors and wage war on the God. We're gonna stop them. We read our history books and learned Wolves are allergic to Silver, all we have to do is touch them with a rod of silver!
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=KnightsOfOrin-Chemtrails
+subject=Ageiran Chemical Trails
+body=The Ageirans have these chemicals they leave behind in their exhaust. These chemicals give kids ADHD and Malaria. The Feds are conducting an experiment to convert the ADHD-virus into an aerosol they can spray on any planet they want, giving all kids the deadly ADHD. We're here to stop them.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=KnightsOfOrin-AncientAstronauts
+subject=Aztec Astronauts
+body=The Aztecs were the first to go to the moon. The Aztecs built advanced warships capable of destroying entire planets, and used them to defeat the evil Canadian Dictatorship Alliance. It was an alliance of dictators! They were defeated when the British and Alaskans worked together and cast a spell on the King. We're here to restore his descendant, Pablo Chekoznichov, to power.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=KnightsOfOrin-History
+subject=Real History
+body=The history you've been taught about Earth is an illuminati communist lie. The truth is that after the great war between the Australians and Alaskans that the owners of the oil companies rewrote history and brainwashed the population using orbital control sattelites. They want to erase the legacy of the Aztec King Mufasa and his rightful heir, Pablo.
+choice0=Good To Know/END
+[/Node]

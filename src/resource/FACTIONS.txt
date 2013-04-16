@@ -715,6 +715,17 @@ rumor6=GenericRumor6
 rumor7=GenericRumor7
 rumor8=GenericRumor8
 rumor9=GenericRumor9
+rumor10=KnightsOfOrin-Mufasa
+rumor11=KnightsOfOrin-Pablo
+rumor12=KnightsOfOrin-Why0
+rumor13=KnightsOfOrin-Why1
+rumor14=KnightsOfOrin-Why2
+rumor15=KnightsOfOrin-TheTruth
+rumor16=KnightsOfOrin-HeavyWaterConspiracy
+rumor17=KnightsOfOrin-Hybridization
+rumor18=KnightsOfOrin-Chemtrails
+rumor19=KnightsOfOrin-AncientAstronauts
+rumor20=KnightsOfOrin-History
 [/Comm]
 
 [Comm]
