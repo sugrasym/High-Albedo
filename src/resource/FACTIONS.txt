@@ -680,6 +680,17 @@ rumor6=GenericRumor6
 rumor7=GenericRumor7
 rumor8=GenericRumor8
 rumor9=GenericRumor9
+rumor10=TheWolves-AboutUs
+rumor11=TheWolves-Timberwolf0
+rumor12=TheWolves-Timberwolf1
+rumor13=TheWolves-TheFittest
+rumor14=TheWolves-WolfCode
+rumor15=TheWolves-Customers
+rumor16=TheWolves-Customers2
+rumor17=TheWolves-WeSellLife
+rumor18=TheWolves-WorthyEnemies
+rumor19=TheWolves-OurRanks
+rumor20=TheWolves-Lifespans
 [/Comm]
 
 [Comm]

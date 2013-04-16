@@ -690,3 +690,82 @@ subject=Archers Recruitment
 body=We recruit mainly from Ageira. We're careful about who we bring in, since they're always trying to infiltrate us. Most people who join want adventure, riches, and to stick it to the police. We don't like police.
 choice0=Good To Know/END
 [/Node]
+
+#Wolves Rumors
+
+[Node]
+name=TheWolves-AboutUs
+subject=About Us
+body=We fill a dire need for organs. Nobody is willing to provide them so we liberate them for those who deserve them more.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=TheWolves-Timberwolf0
+subject=The Timberwolf
+body=It's true. We have a live wolf. They aren't all extinct. Soon the planets we control will be filled with them, as we are nearing completion of our experiments in artificial gene punctuation.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=TheWolves-Timberwolf1
+subject=The Timberwolf
+body=We've kept her alive for over 300 years artificially, and cloned her several times. But we can't recreate the species with only 1 wolf. We've been playing with her DNA and artificially diversifying it, so we can create new wolves from her as a template, but they are unique enough to breed without imperfections. Then we will introduce the species to planets capable of supporting it.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=TheWolves-TheFittest
+subject=The Fittest
+body=We believe the fittest survive, no matter what. Nature will weed out those who do not deserve to live, and we're happy to help. The only fit empire is the ITC, the others are doomed to extinction, just a matter of when the invisible fist will strike.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=TheWolves-WolfCode
+subject=Wolf Code
+body=The outsiders think we slaughter our own for parts, but we don't. Anyone who is a Wolf or loyal to us is safe. We have a strict ethical code not to harvest the worthy. But most of the world isn't worthy, no way no how.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=TheWolves-Customers
+subject=Our Customers
+body=We mainly sell to Cainan civilians who get in contact with our organ runners. There's a massive organ shortage in Caina because the military keeps a stockpile of organs for replacing parts in injured soldiers. There are few organ donors as a result. There are always too few donors.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=TheWolves-Customers2
+subject=Our Customers
+body=The great cycle of life and death begins and ends with us in this region. We are the arbiters of who is worthy of continued survival. We only sell to those we deem to be worthy.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=TheWolves-WeSellLife
+subject=We Sell Life
+body=We aren't murderers, we sell life. We sell the continued existence in this world to those who are worthy of it. Nature needs intelligences to help it carry out the just cycle of death and rebirth.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=TheWolves-WorthyEnemies
+subject=Worth Enemies
+body=We consider the ITC to be a worthy prey. We can easily defeat others, but the ITC are a special challenge. They are so powerful we use them as a right of passage - To become a gamma or higher you need to harvest an ITC fighter pilot. Most don't make it past the ritual.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=TheWolves-OurRanks
+subject=Our Ranks
+body=We are a pyramid. Most people are lowly, Omega through Mu. The people you see flying ships are usually Lambda to Delta. There are few Gammas and Betas, and they are highly respected warlords who rule planets. There is only one Alpha. We promote by merit. Justice by combat.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=TheWolves-Lifespans
+subject=Longevity
+body=In the Federations, you live to be 80. In Caina, you live to be 60. In the ITC you can live to be 150, but here you have an indefinite lifespan. We've mastered biotechnology and we can keep things alive and well as long as we keep an eye on things.
+choice0=Good To Know/END
+[/Node]
