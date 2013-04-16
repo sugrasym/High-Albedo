@@ -295,6 +295,11 @@ station4=Federal Armory,0.2
 [/Stations]
 
 [Stations]
+name=Red Sky
+station0=Red Sky Regional HQ,0.05
+[/Stations]
+
+[Stations]
 name=The Archers
 station0=Archer Cove,0.05
 [/Stations]

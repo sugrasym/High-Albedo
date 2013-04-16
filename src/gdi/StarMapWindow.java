@@ -17,7 +17,6 @@
  */
 package gdi;
 
-import celestial.Celestial;
 import celestial.Jumphole;
 import engine.Entity;
 import gdi.component.AstralComponent;
@@ -43,7 +42,7 @@ public class StarMapWindow extends AstralWindow {
     MapCanvas canvas = new MapCanvas();
     AstralLabel modeLabel = new AstralLabel();
     AstralLabel rangeLabel = new AstralLabel();
-    Font radarFont = new Font("Monospaced", Font.PLAIN, 9);
+    Font radarFont = new Font("Monospaced", Font.BOLD, 11);
     private Universe universe;
     private double zoom = 1;
     private Point2D.Double offset = new Point2D.Double(0, 0);

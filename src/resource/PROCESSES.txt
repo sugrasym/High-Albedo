@@ -318,6 +318,20 @@ resource=
 [/Process]
 
 [Process]
+name=CheatMakeFreyr
+cycle=1600
+product=Freyr,1
+resource=
+[/Process]
+
+[Process]
+name=CheatMakeOdin
+cycle=5200
+product=Odin,1
+resource=
+[/Process]
+
+[Process]
 name=CheatMakeSamurai
 cycle=1000
 product=Samurai,1
@@ -345,6 +359,13 @@ name=CheatMakeBala
 cycle=250
 product=Bala Negro,100
 resource=Alloy Bar,1
+[/Process]
+
+[Process]
+name=CheatRedSkyWeapons
+cycle=3500
+product=Thorn A,2/Thorn B,1
+resource=
 [/Process]
 
 [Process]
@@ -534,6 +555,20 @@ name=KnightsTechSink
 cycle=60
 product=
 resource=Standard Energy Unit,10/Assembly Modules,1/FPGAs,1/Nanoweave Textiles,1/Plank Tubes,1
+[/Process]
+
+[Process]
+name=RedSkyTechSink
+cycle=60
+product=
+resource=Standard Energy Unit,10/Alloy Bar,1/FPGAs,1/Nanoweave Textiles,1/Plank Tubes,1/Mass Block,1
+[/Process]
+
+[Process]
+name=RedSkyFoodSink
+cycle=60
+product=
+resource=Ageiran MRE,1/Mixed Foods,1/Cainan Lunchbox,1/Meat On A Stick,1/Ageiran Whole Foods,1
 [/Process]
 
 [Process]

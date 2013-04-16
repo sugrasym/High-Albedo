@@ -381,6 +381,9 @@ public class Ship extends Celestial {
                 }
             }
         } else {
+            if (hull > maxHull) {
+                hull = maxHull;
+            }
             syncStandings();
             behave();
             if (autopilot != Autopilot.NONE) {
