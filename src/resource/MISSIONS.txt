@@ -30,7 +30,7 @@ briefing=Experienced freighter captains are needed for a bulk delivery of <Q> <W
 [Mission]
 name=Escort Me
 type=ESCORT_ME
-cash=0>250000
+cash=0>50000
 delta=0>2
 time=2>30
 briefing=My wingman never showed, want to stick with me for <TIME> minutes? I'll give you <REWARD>, but you'd better stick with me the whole time.

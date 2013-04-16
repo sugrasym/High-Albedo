@@ -23,18 +23,29 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Random;
 import lib.Parser.Term;
+import universe.Universe;
 
 /**
  *
  * @author nwiehoff
  */
 public class WorldMaker {
+    //sample
 
+    private final char[] generic = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
+        'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '1', '2',
+        '3', '4', '5', '6', '7', '8', '9', '0'};
+    private String[] greek = {"Alpha", "Beta", "Gamma", "Delta", "Epsilon", "Zeta", "Eta", "Theta", "Iota",
+        "Kappa", "Lambda", "Mu", "Nu", "Xi", "Omicron", "Pi", "Rho", "Sigma", "Tau", "Upsilon", "Phi", "Chi",
+        "Psi", "Omega"};
+    //rng
     Random rnd = new Random();
+    //used names
+    private ArrayList<String> usedSystemNames = new ArrayList<>();
 
     public WorldMaker() {
         //generate universe
-        String out = generate(1, 10, 75, 120, 1000, 16000, 48000, 900, 2000, 1, 3, 25000, 200000);
+        String out = generate(1, 10, 90, 150, 1000, 16000, 48000, 900, 2000, 1, 3, 25000, 200000);
         //save
         AstralIO tmp = new AstralIO();
         tmp.writeFile("/tmp/UNIVERSE.txt", out);
@@ -188,7 +199,7 @@ public class WorldMaker {
                         Term type = planetTypes.get(pick);
                         String texture = type.getValue("name");
                         //pick name
-                        String name = "Planet " + b;
+                        String name = randomPlanetName();
                         //pick seed
                         seed = rnd.nextInt();
                         //generate position
@@ -303,7 +314,10 @@ public class WorldMaker {
             double x = rnd.nextInt(worldSize * 2) - worldSize;
             double y = rnd.nextInt(worldSize * 2) - worldSize;
             //pick name
-            String name = "System " + a;
+            String name = null;
+            while (name == null) {
+                name = randomSystemName(generic);
+            }
             //make sysling
             Sysling test = new Sysling(name, new Point2D.Double(x, y));
             //check for collission
@@ -320,6 +334,72 @@ public class WorldMaker {
             }
         }
         return syslings;
+    }
+
+    private String randomPlanetName() {
+        /*
+         * Generates a random name for a planet
+         */
+        ArrayList<Term> fg = Universe.getCache().getNameCache().getTermsOfType("First");
+        ArrayList<Term> lg = Universe.getCache().getNameCache().getTermsOfType("Last");
+        String first = "";
+        String last = "";
+        {
+            for (int a = 0; a < fg.size(); a++) {
+                if (fg.get(a).getValue("name").matches("Generic")) {
+                    Parser.Param pick = fg.get(a).getParams().get(rnd.nextInt(fg.get(a).getParams().size() - 1) + 1);
+                    first = pick.getValue();
+                    break;
+                }
+            }
+
+            for (int a = 0; a < lg.size(); a++) {
+                if (lg.get(a).getValue("name").matches("Generic")) {
+                    Parser.Param pick = lg.get(a).getParams().get(rnd.nextInt(lg.get(a).getParams().size() - 1) + 1);
+                    last = pick.getValue();
+                    break;
+                }
+            }
+        }
+        int num = rnd.nextInt(24)+1;
+        if (rnd.nextFloat() > 0.5) {
+            return "'"+first+" "+num+"'";
+        } else {
+            return "'"+last+" "+num+"'";
+        }
+    }
+
+    public String randomSystemName(char[] sample) {
+        String ret = "";
+        {
+            //prefix
+            String prefix = greek[rnd.nextInt(greek.length)];
+            ret += prefix + " ";
+            int l1 = rnd.nextInt(4) + 1;
+            //pass 1
+            for (int a = 0; a < l1; a++) {
+                char pick = sample[rnd.nextInt(sample.length)];
+                ret += pick;
+            }
+            //add tack
+            ret += "-";
+            int l2 = rnd.nextInt(4) + 1;
+            //pass 2
+            for (int a = 0; a < l2; a++) {
+                char pick = sample[rnd.nextInt(sample.length)];
+                ret += pick;
+            }
+            //safety check
+            for (int v = 0; v < usedSystemNames.size(); v++) {
+                if (usedSystemNames.get(v).matches(ret)) {
+                    return null;
+                }
+            }
+        }
+        //add
+        usedSystemNames.add(ret);
+        //return
+        return ret;
     }
 
     private void dropStations(ArrayList<Sysling> syslings, Faction faction) {
