@@ -618,3 +618,75 @@ subject=The Tengus
 body=I'd rather fight Tengus than Wolves. Tengus have honor, they have normal goals, you can understand their motivations. I'd rather be up against someone who wants to pull of billion credit thefts than steal my organs for resale.
 choice0=Good To Know/END
 [/Node]
+
+#Archers Rumors
+
+[Node]
+name=TheArchers-Goals0
+subject=About Us
+body=We don't want to overthrow the Ageirans, why would we want to become a government? We just want to pirate in every way possible.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=TheArchers-Goals1
+subject=About Us
+body=I joined because I got tired of the police telling me what to do.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=TheArchers-Tengus0
+subject=The Tengus
+body=We cooperate with the Tengus because it helps us. They let us in on their heists and we get a nice cut. We usually provide support fire.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=TheArchers-Integration0
+subject=The Integration
+body=We have spies in the Ageiran government from the post office to the high tiers of the navy. How do you think we're always a step ahead?
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=TheArchers-NewWar
+subject=New War Coming?
+body=Our top mates think we've got a new war coming soon. We'll be rich! Think of all the chaos we could cause?
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=TheArchers-Entities
+subject=Evil Entities
+body=The Entities are really nasty. Our ships can't even outrun 'em and that says something. It fires these weird seeking plasma rings that it never runs out of. I've seen it personally level a system in under an hour, then a Condor showed up to deal with it.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=TheArchers-Blueprints
+subject=Blueprint Theft
+body=We use our Navy operatives to get copies of all the experimental fighters they design. We strip out all the crap and put in more thrusters, so we stay a step ahead.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=TheArchers-NeutralSpace
+subject=Neutral Space
+body=Even we avoid neutral space, we like to hang out in the Federations. Neutral space is crawling with Wolves, who want to cut you up for parts, and Red Sky, who want to kill you for bounty. Not for me.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=TheArchers-StupidOrin
+subject=Stupid Orin
+body=Those Orin will start the war. We all know it. We're already making plans to raid military supply lines when it happens. Only people we're scared of are the ITC and they don't care about us.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=TheArchers-Recruiting0
+subject=Archers Recruitment
+body=We recruit mainly from Ageira. We're careful about who we bring in, since they're always trying to infiltrate us. Most people who join want adventure, riches, and to stick it to the police. We don't like police.
+choice0=Good To Know/END
+[/Node]

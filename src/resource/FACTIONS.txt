@@ -645,6 +645,17 @@ rumor6=GenericRumor6
 rumor7=GenericRumor7
 rumor8=GenericRumor8
 rumor9=GenericRumor9
+rumor10=TheArchers-Goals0
+rumor11=TheArchers-Goals1
+rumor12=TheArchers-Tengus0
+rumor13=TheArchers-Integration0
+rumor14=TheArchers-NewWar
+rumor15=TheArchers-Entities
+rumor16=TheArchers-Blueprints
+rumor17=TheArchers-LongRange
+rumor18=TheArchers-NeutralSpace
+rumor19=TheArchers-StupidOrin
+rumor20=TheArchers-Recruiting0
 [/Comm]
 
 [Comm]
