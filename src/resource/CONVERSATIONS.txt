@@ -848,3 +848,82 @@ subject=Real History
 body=The history you've been taught about Earth is an illuminati communist lie. The truth is that after the great war between the Australians and Alaskans that the owners of the oil companies rewrote history and brainwashed the population using orbital control sattelites. They want to erase the legacy of the Aztec King Mufasa and his rightful heir, Pablo.
 choice0=Good To Know/END
 [/Node]
+
+#Tengu Rumors
+
+[Node]
+name=Tengu-About0
+subject=About Us
+body=We're a big deal. We steal billions of credits, depose local rulers who don't allow us to operate our business, and go toe-to-toe with anyone.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=Tengu-About1
+subject=About Us
+body=We fight with honor. Honor among thieves is a cliche but it's real. We just want to make money and be respected, is that too much to ask?
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=Tengu-Friendship
+subject=Power of Friendship
+body=How did we get where we are? We made friends. We fund local pirate operations, even the crazy ones, because they come in handy. We're all working towards crime, so why can't we do it together?
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=Tengu-Shogun
+subject=Shogun
+body=We're powerful, and we wanted to prove it. So we maintain a small group of custom built battleships. The Shogun is our weapon of terror, we use it to prove we can do what we claim. Even if you don't think we can get you, believe me we can.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=Tengu-Recruiting
+subject=Recruiting
+body=Don't let the Japanese stuff fool you, we're diverse. The names just sound cool, and back in the day we were descended from the Yakuza who stowed away on the Exodus mission. But we're different now, we're made of crime syndicates from all over ancient Earth from the Mafia to the Triads. The power of friendship.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=Tengu-WeRuleThem
+subject=We Rule Them
+body=We're more embedded than you think. We have agents in all 4 governments, yeah that includes the ITC. We know everything that goes on. We've been embezzling funds from the ITC Fleet for decades, and they haven't been able to prove it! Don't tell anyone I said that.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=Tengu-TheITC
+subject=The ITC
+body=The ITC are only barely in our grasp. We don't have any direct power over them, only at the local level. They're crazy difficult to infiltrate. But we do have agents stealing money from them, and that's what we care most about.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=Tengu-TheEntities
+subject=The Entities
+body=The official Tengu position is that The Entities are the remnants of an alien national defense network. They're gone now, but they left these behind. But we're happy to make the Orin think they're the ITC's doing, war is good for business.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=Tengu-TheWolves
+subject=The Wolves
+body=The Wolves are the antithesis of the Tengus. They have no honor, don't care about money, and aren't nearly as powerful as we are. They're crazy, and they want to bring their craziness upon everyone. We wish the ITC would have finished the job though, instead of letting them go into neutral space. We're going to beat them, but it's an expensive and avoidable war.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=Tengu-TheEdge
+subject=The Edge
+body=We've heard a rumor that the jumphole network is going to be extended by the ITC soon. They're close to completing their field coil experiments and will be remapping the universe in their image soon. The ITC is going to have a huge trade and military advantage, being able to make new jumpholes. We need to get in on this.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=Tengu-WarGood
+subject=War is Good
+body=We're waiting for the war to start to invade. We're going to claim some key systems which act as choke points for trading, and we're going to remove Red Sky and The Wolves from the map. Once the empires have beaten each other to a pulp we'll move in and become so embedded into them they'll give us a seat on their senate.
+choice0=Good To Know/END
+[/Node]

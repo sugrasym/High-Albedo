@@ -750,6 +750,17 @@ rumor6=GenericRumor6
 rumor7=GenericRumor7
 rumor8=GenericRumor8
 rumor9=GenericRumor9
+rumor10=Tengu-About0
+rumor11=Tengu-About1
+rumor12=Tengu-Friendship
+rumor13=Tengu-Shogun
+rumor14=Tengu-Recruiting
+rumor15=Tengu-WeRuleThem
+rumor16=Tengu-TheITC
+rumor17=Tengu-TheEntities
+rumor18=Tengu-TheWolves
+rumor19=Tengu-TheEdge
+rumor20=Tengu-WarGood
 [/Comm]
 
 ##########################################
