@@ -22,7 +22,16 @@ briefing=Experienced bounty hunters are needed for a search and destroy mission.
 [Mission]
 name=Delivery
 type=WARE_DELIVERY
-cash=0>100000
+cash=0>1000000
 delta=0>2
 briefing=Experienced freighter captains are needed for a bulk delivery of <Q> <WARE> to <STATION> in <LOCATION>. This ware must be delivered in a single stack of the quantity we've requested. No other packaging methods will be accepted. We will pay <BASE REWARD> plus <UNIT PRICE> for each <WARE>. Think you can do it?
+[/Mission]
+
+[Mission]
+name=Escort Me
+type=ESCORT_ME
+cash=0>250000
+delta=0>2
+time=2>30
+briefing=My wingman never showed, want to stick with me for <TIME> minutes? I'll give you <REWARD>, but you'd better stick with me the whole time.
 [/Mission]

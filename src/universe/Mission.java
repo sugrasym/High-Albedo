@@ -37,6 +37,7 @@ public class Mission implements Serializable {
 
     public enum Type {
 
+        ESCORT_ME, //protect the ship for X time staying within 5k
         WARE_DELIVERY, //deliver wares to a station.
         BOUNTY_HUNT, //the player is given a ship to destroy
         DESTROY_STATION, //the player is given a station to destroy
@@ -51,11 +52,16 @@ public class Mission implements Serializable {
     private Ship agent;
     //briefing
     private String briefing = "NO AIM";
-    //targets
+    //destroy missions
     private ArrayList<Entity> targets = new ArrayList<>();
     //ware delivery missions
     private Item deliver;
     private Entity deliverTo;
+    //escort missions
+    private Entity escort;
+    //timer
+    private double timer = 0;
+    private double endTimer = 0;
 
     public Mission(Ship agent) {
         this.agent = agent;
@@ -90,6 +96,18 @@ public class Mission implements Serializable {
             double dR = (rnd.nextFloat() * dStanding);
             deltaStanding = min + dR;
         }
+        //store timing
+        {
+            String timing = pick.getValue("time");
+            if (timing != null) {
+                double min = Double.parseDouble(timing.split(">")[0]);
+                double max = Double.parseDouble(timing.split(">")[1]);
+                int t = (int) (rnd.nextFloat() * (max - min) + min) + 1;
+                t *= 60;
+                //store
+                endTimer = t;
+            }
+        }
         //determine mission type
         String rawType = pick.getValue("type");
         if (rawType.matches("DESTROY_STATION")) {
@@ -101,6 +119,9 @@ public class Mission implements Serializable {
         if (rawType.matches("WARE_DELIVERY")) {
             missionType = Type.WARE_DELIVERY;
         }
+        if (rawType.matches("ESCORT_ME")) {
+            missionType = Type.ESCORT_ME;
+        }
         //store briefing
         briefing = pick.getValue("briefing");
         //build more based on type
@@ -110,6 +131,23 @@ public class Mission implements Serializable {
             buildBountyHunt();
         } else if (missionType == Type.WARE_DELIVERY) {
             buildWareDelivery();
+        } else if (missionType == Type.ESCORT_ME) {
+            buildEscortMe();
+        } else {
+            preAbort();
+        }
+    }
+
+    private void buildEscortMe() {
+        /*
+         * In these missions you have to keep who you hailed from dying without
+         * getting more than 5k away from it. If it dies, or you move out of
+         * range, you fail the mission.
+         */
+        if (agent.distanceTo(agent.getUniverse().getPlayerShip()) < 5000) {
+            escort = agent;
+            briefing = briefing.replace("<TIME>", endTimer/60 + "");
+            briefing = briefing.replace("<REWARD>", reward + "");
         } else {
             preAbort();
         }
@@ -121,7 +159,7 @@ public class Mission implements Serializable {
          * In these missions you have to deliver an exact amount of a stacked
          * ware to the station requested. You will be paid both per unit of
          * item delivered and a fee for your time.
-         * 
+         *
          * If the station is destroyed before the mission is complete, the
          * mission is aborted.
          */
@@ -184,7 +222,7 @@ public class Mission implements Serializable {
         /*
          * In these missions a random enemy station is selected somewhere
          * in the universe, and the player has to find a way to blow it up.
-         * 
+         *
          * There is no time limit, and as long as the station dies the mission
          * will complete.
          */
@@ -240,7 +278,7 @@ public class Mission implements Serializable {
          * In these missions a randomy selected enemy NPC is selected and a
          * bounty placed on it. The player must destroy this NPC before it is
          * destroyed by other causes to get the reward.
-         * 
+         *
          * There is no time limit, but the player must destroy the target.
          * Otherwise the mission will be aborted.
          */
@@ -344,6 +382,9 @@ public class Mission implements Serializable {
     }
 
     public void periodicUpdate(double tpf) {
+        //update timer
+        timer += tpf;
+        //events
         if (!missionComplete()) {
             //waiting
         } else {
@@ -362,12 +403,35 @@ public class Mission implements Serializable {
             return checkBountyHunt();
         } else if (missionType == Type.WARE_DELIVERY) {
             return checkWareDelivery();
+        } else if (missionType == Type.ESCORT_ME) {
+            return checkEscortMe();
         }
         //undefinded
         return true;
     }
 
     private boolean missionFailed() {
+        if (missionType == Type.ESCORT_ME) {
+            return checkFailEscortMe();
+        }
+        return false;
+    }
+
+    private boolean checkFailEscortMe() {
+        Ship test = (Ship) escort;
+        if (test.getState() != State.ALIVE) {
+            return true;
+        }
+        if (test.distanceTo(agent.getUniverse().getPlayerShip()) > 5000) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkEscortMe() {
+        if (timer > endTimer) {
+            return true;
+        }
         return false;
     }
 
@@ -375,17 +439,17 @@ public class Mission implements Serializable {
         if (deliverTo.getState() == State.ALIVE) {
             //iterate through player ships
             for (int a = 0; a < agent.getUniverse().getPlayerProperty().size(); a++) {
-                if(agent.getUniverse().getPlayerProperty().get(a) instanceof Ship) {
-                    Ship test = (Ship)agent.getUniverse().getPlayerProperty().get(a);
+                if (agent.getUniverse().getPlayerProperty().get(a) instanceof Ship) {
+                    Ship test = (Ship) agent.getUniverse().getPlayerProperty().get(a);
                     //get port containers
-                    Station dck = (Station)deliverTo;
-                    if(dck.hasDocked(test)) {
+                    Station dck = (Station) deliverTo;
+                    if (dck.hasDocked(test)) {
                         //find the item
                         ArrayList<Item> bay = test.getCargoBay();
-                        for(int b = 0; b < bay.size(); b++) {
+                        for (int b = 0; b < bay.size(); b++) {
                             Item t = bay.get(b);
-                            if(t.getName().matches(deliver.getName())) {
-                                if(t.getQuantity() == deliver.getQuantity()) {
+                            if (t.getName().matches(deliver.getName())) {
+                                if (t.getQuantity() == deliver.getQuantity()) {
                                     bay.remove(b);
                                     return true;
                                 }

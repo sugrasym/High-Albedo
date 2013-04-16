@@ -105,7 +105,7 @@ public class EquipmentWindow extends AstralWindow {
                         }
                     }
                 }
-            } else if (tmp instanceof Ship) {
+            } else if (tmp instanceof Ship && !ship.isDocked()) {
                 commInfo.setText("Press H To Hail");
             } else {
                 commInfo.setText("");

@@ -743,7 +743,6 @@ group=food
 description=Live animals raised on ranches to be sent for conversion into food products.
 [/Item]
 
-
 [Item]
 name=Ageiran Whole Foods
 type=commodity
@@ -924,19 +923,6 @@ maxPrice=10
 group=ore
 store=1000
 description=Since the dawn of man hydrocarbons have been burned in low tech reactors to generate energy. They have a much higher energy density than solar energy, but a lower energy density than nuclear fusion. One hydrocarbon unit can easily produce ten energy units, however hydrocarbon supplies are harder to locate than the extremely abundant solar energy.  /br/ /br/ Some stations are capable of using hydrocarbons to generate their power, and Ageiran Customs Offices will do the conversion as well so that the resulting energy can be sold at a profit to small scale traders.
-[/Item]
-
-[Item]
-name=Scrap Metal
-type=commodity
-volume=1
-mass=4
-HP=100
-minPrice=1
-maxPrice=10
-group=ore
-store=1000
-description=Scrap metal is often found in wreckage and waste disposal areas. These pieces of metal can be converted into a usable form by the correct factory. 
 [/Item]
 
 [Item]
@@ -1651,7 +1637,7 @@ description=When the entities were encountered in deep space they fired an extre
 ########Plot Commodities########
 [Item]
 name=Exotic Matter
-type=commodity
+type=plot
 volume=-10
 mass=-10
 HP=100
