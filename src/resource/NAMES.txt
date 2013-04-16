@@ -104,6 +104,7 @@ Juliet
 Kathleen
 Katia
 Keli
+Kelly
 Kent
 Keoni
 Khaba
@@ -111,6 +112,7 @@ Khafre
 Khufu
 Kika
 Kirk
+Kurt
 Lala
 Larua
 Lee
@@ -187,6 +189,11 @@ Viola
 Wale
 Wene
 William
+Xu
+Xao
+Yao
+Yong
+Yung
 Zach
 Zachary
 [/First]
@@ -330,6 +337,7 @@ Snyder
 Stevens
 Steward
 Stucker
+Su
 Sullivan
 Taylor
 Terrez
@@ -352,4 +360,5 @@ Wilson
 Woods
 Wright
 Young
+Yu
 [/Last]

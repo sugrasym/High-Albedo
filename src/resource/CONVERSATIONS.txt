@@ -539,3 +539,82 @@ subject=Incoming Escalation
 body=For most people in Caina it isn't a question of who will attack but when. Everyone here expects the Orin to defy their Ageiran friends and launch a new invasion of Caina, or the ITC. They'll hope that the Ageirans feel obligated to assist them, we certainly hope the Ageirans don't.
 choice0=Good To Know/END
 [/Node]
+
+#Red Sky Rumors
+
+[Node]
+name=RedSky-Value0
+subject=Our Value
+body=They won't admit it, but without Red Sky the Ageirans, Cainans, and Orin would all be overrun by Wolves and Tengus. The ITC might survive though.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=RedSky-Value1
+subject=Our Value
+body=We provide an invaluable service to the universe. Without us, neutral space would be impassable and the highly organized criminals out here would be invading.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=RedSky-Recruiting0
+subject=Red Sky Recruiting
+body=We recruit out of all 4 empires. It's a joint operation - Ageirans, Orin, Cainans, even ITC. We're taking it to the syndicates 1 kill at a time.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=RedSky-Recruiting1
+subject=Red Sky Recruiting
+body=People like to call Red Sky recruits wanna-be-vigilantes, but we're out here because we want to make everything better. Lord knows the empires are too busy fighting to deal with it.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=RedSky-Entities0
+subject=The Entities?
+body=We've been studying the entities and their...behavior. We doubt highly they're man made, so you'll find few in Red Sky who blame the ITC for their presence.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=RedSky-Entities1
+subject=The Entities?
+body=Wreckage from Entity ships, or 'Grimm' class as we call them, contains materials we'd never seen before. Anywhere. Not even the ITC could have made those damn things.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=RedSky-NewWar
+subject=New War
+body=The empires are a bigger threat to world security than the syndicates, but we can't really fix that. If a new war starts, the syndicates will use it to gain more space.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=RedSky-TheTengus0
+subject=The Tengus
+body=The Tengus are almost empire 5, but they don't quite measure up. They are into human trafficking, racketeering, and grand theft. Problem is they have their own battleship, the Shogun, and it's pretty nasty albeit rare to find.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=RedSky-TheWolves0
+subject=The Wolves
+body=The Wolves aren't traditional pirates. They're into the illegal human organ trade, and they slaughter anyone they take prisoner for more organs to sell. The Caina Conglemerate buys those organs, perpetuating the cycle. Good news is they can't make friends, so they're the weaker one.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=RedSky-TheWolves1
+subject=The Wolves
+body=The Wolves are creepy. They harvest organs from prisoners and have a pack structure modeled after, you guessed it, wolf packs. Rumor has it they keep a real live Timberwolf as some kind of national mascot, but I heard all those were extinct.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=RedSky-TheTengus1
+subject=The Tengus
+body=I'd rather fight Tengus than Wolves. Tengus have honor, they have normal goals, you can understand their motivations. I'd rather be up against someone who wants to pull of billion credit thefts than steal my organs for resale.
+choice0=Good To Know/END
+[/Node]

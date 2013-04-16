@@ -610,6 +610,17 @@ rumor6=GenericRumor6
 rumor7=GenericRumor7
 rumor8=GenericRumor8
 rumor9=GenericRumor9
+rumor10=RedSky-Value0
+rumor11=RedSky-Value1
+rumor12=RedSky-Recruiting0
+rumor13=RedSky-Recruiting1
+rumor14=RedSky-Entities0
+rumor15=RedSky-Entities1
+rumor16=RedSky-NewWar
+rumor17=RedSky-TheTengus0
+rumor18=RedSky-TheWolves0
+rumor19=RedSky-TheWolves1
+rumor20=RedSky-TheTengus1
 [/Comm]
 
 [Comm]
