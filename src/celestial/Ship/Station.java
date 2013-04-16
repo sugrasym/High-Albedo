@@ -19,7 +19,6 @@
 package celestial.Ship;
 
 import cargo.Item;
-import celestial.Ship.Process;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -557,6 +556,15 @@ public class Station extends Ship {
 
     public void setProcesses(ArrayList<Process> processes) {
         this.processes = processes;
+    }
+    
+    public boolean hasDocked(Ship ship) {
+        for(int a = 0; a < docks.size(); a++) {
+            if(docks.get(a).getClient() == ship && ship.isDocked()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean isExemptFromEconomics() {

@@ -18,6 +18,7 @@
  */
 package universe;
 
+import cargo.Item;
 import celestial.Ship.Ship;
 import celestial.Ship.Station;
 import engine.Entity;
@@ -36,6 +37,7 @@ public class Mission implements Serializable {
 
     public enum Type {
 
+        WARE_DELIVERY, //deliver wares to a station.
         BOUNTY_HUNT, //the player is given a ship to destroy
         DESTROY_STATION, //the player is given a station to destroy
     }
@@ -51,6 +53,9 @@ public class Mission implements Serializable {
     private String briefing = "NO AIM";
     //targets
     private ArrayList<Entity> targets = new ArrayList<>();
+    //ware delivery missions
+    private Item deliver;
+    private Entity deliverTo;
 
     public Mission(Ship agent) {
         this.agent = agent;
@@ -93,6 +98,9 @@ public class Mission implements Serializable {
         if (rawType.matches("BOUNTY_HUNT")) {
             missionType = Type.BOUNTY_HUNT;
         }
+        if (rawType.matches("WARE_DELIVERY")) {
+            missionType = Type.WARE_DELIVERY;
+        }
         //store briefing
         briefing = pick.getValue("briefing");
         //build more based on type
@@ -100,8 +108,75 @@ public class Mission implements Serializable {
             buildDestroyStation();
         } else if (missionType == Type.BOUNTY_HUNT) {
             buildBountyHunt();
+        } else if (missionType == Type.WARE_DELIVERY) {
+            buildWareDelivery();
         } else {
             preAbort();
+        }
+    }
+
+    private void buildWareDelivery() {
+        long base = reward;
+        /*
+         * In these missions you have to deliver an exact amount of a stacked
+         * ware to the station requested. You will be paid both per unit of
+         * item delivered and a fee for your time.
+         * 
+         * If the station is destroyed before the mission is complete, the
+         * mission is aborted.
+         */
+        //find a ware
+        ArrayList<Term> wares = Universe.getCache().getItemCache().getTermsOfType("Item");
+        ArrayList<Item> choices = new ArrayList<>();
+        for (int a = 0; a < wares.size(); a++) {
+            Item test = new Item(wares.get(a).getValue("name"));
+            if (test.getType().matches("commodity")) {
+                choices.add(test);
+            }
+        }
+        //pick one
+        if (choices.isEmpty()) {
+            preAbort();
+        } else {
+            Item pick = choices.get(rnd.nextInt(choices.size()));
+            //pick a quantity
+            int q = rnd.nextInt(pick.getStore()) + 1;
+            pick.setQuantity(q);
+            //pick a price
+            long p = (long) (rnd.nextFloat() * (pick.getMaxPrice() - pick.getMinPrice()) + pick.getMinPrice());
+            //update reward
+            long dR = p * q;
+            reward += dR;
+            //store item
+            deliver = pick;
+            //now pick one of this faction's stations to deliver to
+            ArrayList<Entity> stations = new ArrayList<>();
+            Entity dTo = null;
+            for (int a = 0; a < agent.getUniverse().getSystems().size(); a++) {
+                ArrayList<Entity> lStat = agent.getUniverse().getSystems().get(a).getStationList();
+                for (int v = 0; v < lStat.size(); v++) {
+                    Ship test = (Ship) lStat.get(v);
+                    if (test.getFaction().matches(agent.getFaction()) && test.getState() == State.ALIVE) {
+                        stations.add(lStat.get(v));
+                    }
+                }
+            }
+            //pick a station
+            if (!stations.isEmpty()) {
+                dTo = stations.get(rnd.nextInt(stations.size()));
+            }
+            if (dTo != null) {
+                deliverTo = dTo;
+                Station test = (Station) dTo;
+                briefing = briefing.replace("<STATION>", test.getName());
+                briefing = briefing.replace("<LOCATION>", test.getCurrentSystem().getName());
+                briefing = briefing.replace("<Q>", deliver.getQuantity() + "");
+                briefing = briefing.replace("<WARE>", deliver.getName() + "");
+                briefing = briefing.replace("<UNIT PRICE>", p + "");
+                briefing = briefing.replace("<BASE REWARD>", base + "");
+            } else {
+                preAbort();
+            }
         }
     }
 
@@ -285,12 +360,46 @@ public class Mission implements Serializable {
             return checkDestroyStation();
         } else if (missionType == Type.BOUNTY_HUNT) {
             return checkBountyHunt();
+        } else if (missionType == Type.WARE_DELIVERY) {
+            return checkWareDelivery();
         }
         //undefinded
         return true;
     }
 
     private boolean missionFailed() {
+        return false;
+    }
+
+    private boolean checkWareDelivery() {
+        if (deliverTo.getState() == State.ALIVE) {
+            //iterate through player ships
+            for (int a = 0; a < agent.getUniverse().getPlayerProperty().size(); a++) {
+                if(agent.getUniverse().getPlayerProperty().get(a) instanceof Ship) {
+                    Ship test = (Ship)agent.getUniverse().getPlayerProperty().get(a);
+                    //get port containers
+                    Station dck = (Station)deliverTo;
+                    if(dck.hasDocked(test)) {
+                        //find the item
+                        ArrayList<Item> bay = test.getCargoBay();
+                        for(int b = 0; b < bay.size(); b++) {
+                            Item t = bay.get(b);
+                            if(t.getName().matches(deliver.getName())) {
+                                if(t.getQuantity() == deliver.getQuantity()) {
+                                    bay.remove(b);
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            //abort
+            abortMission();
+            return false;
+        }
+        //if we got this far
         return false;
     }
 
