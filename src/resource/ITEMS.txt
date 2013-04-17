@@ -1134,11 +1134,63 @@ type=missile
 volume=20
 mass=5
 HP=62
-minPrice=60000
-maxPrice=90000
+minPrice=72000
+maxPrice=210000
 group=weapon
 store=512
 description=This launcher fires a 'M-AM Missile', which is a warhead that releases a massive gamma radiation pulse using matter antimatter reactions. It is similar to the Starstruck missile, from which it is derived, but inferior in most capacities.
+[/Item]
+
+[Item]
+name=ERPC
+type=cannon
+volume=8
+mass=12
+HP=200
+minPrice=2000
+maxPrice=8000
+group=weapon
+store=1400
+description=ERPCs (Extended Range Pulse Cannons) trade damage for range and rapid fire. The reduced damage output allows the weapon to consume far less space than a traditional pulse cannon. The ERPC is primarily used by the Orin Federation.
+[/Item]
+
+[Item]
+name=HGPC
+type=turret
+volume=450
+mass=650
+HP=200
+minPrice=600000
+maxPrice=1200000
+group=weapon
+store=140
+description=The High Gain Pulse Cannon is a point defense weapon for capital sized ships, primarily used by the Orin Federation but widely available to corporations.
+[/Item]
+
+[Item]
+name=PPG
+type=turret
+volume=900
+mass=650
+HP=200
+minPrice=2500000
+maxPrice=8100000
+group=weapon
+store=25
+description=A mainstay of capital warfare, the Plasma Packet Generator fires a slow moving, but high damage and long range, projectile the size of a fighter. This weapon is a generic, but no branded variants currently exist due to the cost of research in this field.
+[/Item]
+
+[Item]
+name=Rocket Pod
+type=missile
+volume=15
+mass=10
+HP=200
+minPrice=18000
+maxPrice=31000
+group=weapon
+store=800
+description=Firing Orin's 'Rapid Rocket' the Rocket Pod delivers rapid fire missile punishment at medium range. Rapid deployment increases the probability of a hit, which may raise applied damage output. This weapon is considered generic, as blueprints are widely available to corporations.
 [/Item]
 
 #Ageiran Weapons
@@ -1439,58 +1491,6 @@ description=ITC missile technology is far in advance of any other nation or fact
 [/Item]
 
 [Item]
-name=ERPC
-type=cannon
-volume=8
-mass=12
-HP=200
-minPrice=2000
-maxPrice=8000
-group=weapon
-store=1400
-description=ERPCs (Extended Range Pulse Cannons) trade damage for range and rapid fire. The reduced damage output allows the weapon to consume far less space than a traditional pulse cannon. The ERPC is primarily used by the Orin Federation.
-[/Item]
-
-[Item]
-name=HGPC
-type=turret
-volume=450
-mass=650
-HP=200
-minPrice=600000
-maxPrice=1200000
-group=weapon
-store=140
-description=The High Gain Pulse Cannon is a point defense weapon for capital sized ships, primarily used by the Orin Federation.
-[/Item]
-
-[Item]
-name=PPG
-type=turret
-volume=900
-mass=650
-HP=200
-minPrice=2500000
-maxPrice=8100000
-group=weapon
-store=25
-description=A mainstay of capital warfare, the Plasma Packet Generator fires a slow moving, but high damage and long range, projectile the size of a fighter. 
-[/Item]
-
-[Item]
-name=Rocket Pod
-type=missile
-volume=15
-mass=10
-HP=200
-minPrice=18000
-maxPrice=31000
-group=weapon
-store=800
-description=Firing Orin's 'Rapid Rocket' the Rocket Pod delivers rapid fire missile punishment at medium range. Rapid deployment increases the probability of a hit, which may raise applied damage output.
-[/Item]
-
-[Item]
 name='Swarm' Capital Rocket Pod
 type=battery
 volume=600
@@ -1576,8 +1576,8 @@ type=commodity
 volume=5
 mass=4
 HP=100
-minPrice=75000
-maxPrice=256000
+minPrice=7500
+maxPrice=25600
 group=ammo
 store=1000
 description=Unarmed missile for use with a 'M-AM Launcher'. /br/ /br/ This missile is an open variant of the ITC Starstruck missile and uses the same basic principles, but the lack of release of ITC fabrication techniques leaves it a more expensive and inferior missile to the Starstruck.  It is still quite powerful, however.

@@ -472,3 +472,17 @@ rectBound=25,5,192,118/192,15,485,39/158,118,192,339
 dock=234,45,284,95,900,305/334,45,384,95,900,305/434,45,484,95,900,305/100,-500,600,0,300,-1500
 process=SeedSovPapers/CheatMakeFreyr/CheatMakeOdin/CheatRedSkyWeapons/RedSkyTechSink/RedSkyFoodSink/CheatPPG/CheatMakeJumpDrive
 [/Station]
+
+[Station]
+type=Gunpower Munitions Plant
+accel=1.5
+turning=0
+shield=26000
+shieldRecharge=3100
+hull=3260
+fuel=2500000000000
+mass=85000
+rectBound=275,558,375,743/117,24,533,217/8,215,641,466/34,464,612,575/107,572,549,651/35,105,618,219
+dock=218,672,268,722,-115,690/376,672,426,722,776,700/100,-500,600,0,300,-1500
+process=FairMakePNBC/FairMakeHAPC/FairMakeOGMLauncher/FairMakeM-AMLauncher/FairMakeERPC/FairMakeHGPC/FairMakePPG/FairMakeRocketPod/FairMakeRocketPod/FairMakeOGMMissile/FairMakeRapidRocket/FairMakeM-AMMissile
+[/Station]

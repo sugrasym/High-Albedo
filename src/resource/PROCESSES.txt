@@ -7,6 +7,85 @@ product=System Transfer Paperwork,1
 resource=
 [/Process]
 
+#Fair weapons manufacturing
+
+[Process]
+name=FairMakePNBC
+cycle=155
+product=PNBC,1
+resource=Alloy Bar,4/Standard Energy Unit,8/Ageiran MRE,6/Mass Block,2/Assembly Modules,1/Plank Tubes,1
+[/Process]
+
+[Process]
+name=FairMakeHAPC
+cycle=225
+product=HAPC,1
+resource=Alloy Bar,6/Standard Energy Unit,10/Ageiran MRE,4/Mass Block,2/Assembly Modules,1/Plank Tubes,1/Cainan Lunchbox,1
+[/Process]
+
+[Process]
+name=FairMakeOGMLauncher
+cycle=402
+product=OGM Launcher,1
+resource=Alloy Bar,8/Standard Energy Unit,8/Mixed Foods,2/Mass Block,1/Assembly Modules,2/Plank Tubes,1/FPGAs,2
+[/Process]
+
+[Process]
+name=FairMakeM-AMLauncher
+cycle=1255
+product=M-AM Launcher,1
+resource=Alloy Bar,4/Standard Energy Unit,12/Mixed Foods,6/Mass Block,2/Assembly Modules,4/Plank Tubes,2/FPGAs,8
+[/Process]
+
+[Process]
+name=FairMakeERPC
+cycle=73
+product=ERPC,1
+resource=Alloy Bar,1/Standard Energy Unit,3/Ageiran MRE,1/Mass Block,1/FPGAs,1
+[/Process]
+
+[Process]
+name=FairMakeHGPC
+cycle=6223
+product=HGPC,1
+resource=Alloy Bar,100/Standard Energy Unit,300/Ageiran MRE,100/Mass Block,100/FPGAs,100/Nanoweave Textiles,2/Plank Tubes,10/Hull Plating,15/Meat On A Stick,16
+[/Process]
+
+[Process]
+name=FairMakePPG
+cycle=8577
+product=PPG,1
+resource=Alloy Bar,220/Standard Energy Unit,670/Ageiran MRE,160/Mass Block,210/FPGAs,390/Nanoweave Textiles,8/Plank Tubes,25/Hull Plating,32/Meat On A Stick,60
+[/Process]
+
+[Process]
+name=FairMakeRocketPod
+cycle=363
+product=Rocket Pod,1
+resource=Alloy Bar,1/Standard Energy Unit,4/Mixed Foods,1/Mass Block,1/Assembly Modules,2/FPGAs,2
+[/Process]
+
+[Process]
+name=FairMakeOGMMissile
+cycle=52
+product=OGM Missile,10
+resource=Alloy Bar,1/Hull Plating,1/Standard Energy Unit,4/FPGAs,1
+[/Process]
+
+[Process]
+name=FairMakeRapidRocket
+cycle=314
+product=Rapid Rocket,100
+resource=Alloy Bar,1/Standard Energy Unit,1
+[/Process]
+
+[Process]
+name=FairMakeM-AMMissile
+cycle=22
+product=M-AM Missile,1
+resource=Alloy Bar,8/Industrial Waste,10/ITC Warheads,1/Plank Tubes,10/Heavy Water,1
+[/Process]
+
 #Cheating Station Manufacturing
 
 [Process]
