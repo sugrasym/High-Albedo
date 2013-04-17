@@ -1115,7 +1115,6 @@ public class Engine {
                 pvy = playerShip.getVy();
                 //recover player ship
                 playerShip = universe.getPlayerShip();
-                playerShip.setCash(100000000);
                 //update player missions
                 for(int a = 0; a < universe.getPlayerMissions().size(); a++) {
                     universe.getPlayerMissions().get(a).periodicUpdate(tpf);

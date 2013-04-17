@@ -38,6 +38,20 @@ cargo=Astronaut~1
 [/Loadout]
 
 [Loadout]
+ship=Raven
+name=GP Security Raven
+install=PNBC/PNBC/PNBC
+cargo=Astronaut~1
+[/Loadout]
+
+[Loadout]
+ship=Hyena
+name=GP Security Hyena
+install=M-AM Launcher/M-AM Launcher/M-AM Launcher/M-AM Launcher
+cargo=M-AM Missile~60
+[/Loadout]
+
+[Loadout]
 ship=Crow
 name=LFL Security Crow
 install=PNBC/PNBC
@@ -52,6 +66,27 @@ cargo=Rapid Rocket~400
 [/Loadout]
 
 [Loadout]
+ship=Emu
+name=LFL Supply Emu
+install=PNBC
+cargo=Jumpdrive~1/Astronaut~1
+[/Loadout]
+
+[Loadout]
+ship=Poltergeist
+name=LFL Supply Poltergeist
+install=ERPC/ERPC/Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod
+cargo=Rapid Rocket~400/Jumpdrive~1
+[/Loadout]
+
+[Loadout]
+ship=Apparition
+name=LFL Supply Apparition
+install=Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod/HGPC/HGPC
+cargo=Rapid Rocket~500000/Jumpdrive~1
+[/Loadout]
+
+[Loadout]
 ship=Monitor
 name=PE Security Monitor
 install=OGM Launcher/OGM Launcher/HAPC
@@ -63,6 +98,13 @@ ship=Cheetah
 name=PE Security Cheetah
 install=M-AM Launcher/M-AM Launcher
 cargo=M-AM Missile~38
+[/Loadout]
+
+[Loadout]
+ship=Gila
+name=PE Supply Gila
+install=OGM Launcher/OGM Launcher/PNBC/HAPC
+cargo=OGM Missile~30/Jumpdrive~1
 [/Loadout]
 
 ########Ageiran Federation Lawful

@@ -469,15 +469,25 @@ patrol1=RS Assassin,25
 [/Loadout]
 
 [Loadout]
+name=Gunpower
+patrol0=GP Security Raven,20
+patrol1=GP Security Hyena,10
+[/Loadout]
+
+[Loadout]
 name=Prism Exhuming
 patrol0=PE Security Cheetah,15
-patrol1=PE Security Monitor,15
+patrol1=PE Security Monitor,30
+merchant0=PE Supply Gila,5
 [/Loadout]
 
 [Loadout]
 name=Leap Frog Logistics
-patrol0=LFL Security Crow,15
+patrol0=LFL Security Crow,30
 patrol1=LFL Security Wraith,15
+merchant0=LFL Supply Emu,5
+merchant1=LFL Supply Poltergeist,5
+merchant2=LFL Supply Apparition,3
 [/Loadout]
 
 [Loadout]

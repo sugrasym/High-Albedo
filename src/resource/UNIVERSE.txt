@@ -1,12 +1,12 @@
 #New Game Smell
 [NewGame]
-ship=Apparition
+ship=Gila
 system=Sigma S-L1
 x=10000
 y=10000
 cash=25000000
-install=HGPC/HGPC
-cargo=
+install=OGM Launcher/OGM Launcher/PNBC/HAPC
+cargo=OGM Missile~30
 faction=Player
 [/NewGame]
 
