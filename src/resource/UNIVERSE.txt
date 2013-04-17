@@ -1,11 +1,11 @@
 #New Game Smell
 [NewGame]
-ship=Crow
+ship=Gila
 system=Psi 8UJO-YP4
 x=10000
 y=10000
 cash=25000000
-install=Talon 2/Talon 2
+install=Bask/Bask
 cargo=Jumpdrive~1
 faction=Player
 [/NewGame]

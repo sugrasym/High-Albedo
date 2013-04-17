@@ -56,7 +56,8 @@ public class PropertyWindow extends AstralWindow {
     private Mode mode = Mode.NONE;
     public static final String CMD_SWITCH = "Switch Ship";
     public static final String CMD_PATROL = "Start Patrol";
-    public static final String CMD_TRADE = "Start Trading";
+    public static final String CMD_TRADE = "Start Local Trading";
+    public static final String CMD_UTRADE = "Start Wide Trading";
     public static final String CMD_NONE = "End Program";
     public static final String CMD_MOVEFUNDS = "Credit Transfer";
     public static final String CMD_RENAME = "Rename";
@@ -474,6 +475,17 @@ public class PropertyWindow extends AstralWindow {
                     infoList.addToList("From:         " + start.getName());
                     infoList.addToList("To:           " + end.getName());
                 }
+            } else if (selected.getBehavior() == Behavior.UNIVERSE_TRADE) {
+                Station start = selected.getBuyFromStation();
+                Station end = selected.getSellToStation();
+                Item ware = selected.getWorkingWare();
+                if (start != null && end != null && ware != null) {
+                    infoList.addToList("Ware:         " + selected.getWorkingWare().getName());
+                    infoList.addToList("From:         " + start.getName());
+                    infoList.addToList("              " + start.getCurrentSystem());
+                    infoList.addToList("To:           " + end.getName());
+                    infoList.addToList("              " + end.getCurrentSystem());
+                }
             }
         }
     }
@@ -578,6 +590,9 @@ public class PropertyWindow extends AstralWindow {
             if (!isStation) {
                 optionList.addToList(" ");
                 optionList.addToList(CMD_TRADE);
+                if(selected.hasGroupInCargo("jumpdrive")) {
+                    optionList.addToList(CMD_UTRADE);
+                }
                 optionList.addToList(CMD_PATROL);
             }
             optionList.addToList(" ");
@@ -650,6 +665,8 @@ public class PropertyWindow extends AstralWindow {
                 selected.cmdAbortDock();
             } else if (command.matches(CMD_TRADE)) {
                 selected.setBehavior(Behavior.SECTOR_TRADE);
+            } else if (command.matches(CMD_UTRADE)) {
+                selected.setBehavior(Behavior.UNIVERSE_TRADE);
             } else if (command.matches(CMD_PATROL)) {
                 selected.setBehavior(Behavior.PATROL);
             } else if (command.matches(CMD_MOVEFUNDS)) {
