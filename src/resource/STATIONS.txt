@@ -477,6 +477,7 @@ process=SeedSovPapers/CheatMakeFreyr/CheatMakeOdin/CheatRedSkyWeapons/RedSkyTech
 type=Gunpower Munitions Plant
 accel=1.5
 turning=0
+exempt=true
 shield=26000
 shieldRecharge=3100
 hull=3260
@@ -484,5 +485,47 @@ fuel=2500000000000
 mass=85000
 rectBound=275,558,375,743/117,24,533,217/8,215,641,466/34,464,612,575/107,572,549,651/35,105,618,219
 dock=218,672,268,722,-115,690/376,672,426,722,776,700/100,-500,600,0,300,-1500
-process=FairMakePNBC/FairMakeHAPC/FairMakeOGMLauncher/FairMakeM-AMLauncher/FairMakeERPC/FairMakeHGPC/FairMakePPG/FairMakeRocketPod/FairMakeRocketPod/FairMakeOGMMissile/FairMakeRapidRocket/FairMakeM-AMMissile
+process=FairMakePNBC/FairMakeHAPC/FairMakeOGMLauncher/FairMakeM-AMLauncher/FairMakeERPC/FairMakeHGPC/FairMakePPG/FairMakeRocketPod/FairMakeRocketPod/FairMakeOGMMissile/FairMakeRapidRocket/FairMakeM-AMMissile/CheatMakeLightWeaponsComplex/CheatMakeMediumWeaponsComplex/CheatMakeHeavyWeaponsComplex
+[/Station]
+
+[Station]
+type=Light Weapons Complex
+accel=1.5
+turning=0
+shield=21000
+shieldRecharge=440
+hull=8200
+fuel=2500000000000
+mass=68000
+rectBound=26,17,516,340/250,334,296,406
+dock=198,346,248,396,-82,374/296,346,346,396,614,368/100,-500,600,0,300,-1500
+process=FairMakePNBC/FairMakeERPC/FairMakeRocketPod/FairMakeRocketPod
+[/Station]
+
+[Station]
+type=Medium Weapons Complex
+accel=1.5
+turning=0
+shield=21000
+shieldRecharge=440
+hull=8200
+fuel=2500000000000
+mass=68000
+rectBound=26,17,516,340/250,334,296,406
+dock=198,346,248,396,-82,374/296,346,346,396,614,368/100,-500,600,0,300,-1500
+process=FairMakeHAPC/FairMakeOGMLauncher/FairMakeM-AMLauncher/FairMakeOGMMissile/FairMakeM-AMMissile
+[/Station]
+
+[Station]
+type=Heavy Weapons Complex
+accel=1.5
+turning=0
+shield=21000
+shieldRecharge=440
+hull=8200
+fuel=2500000000000
+mass=68000
+rectBound=26,17,516,340/250,334,296,406
+dock=198,346,248,396,-82,374/296,346,346,396,614,368/100,-500,600,0,300,-1500
+process=FairMakeHGPC/FairMakePPG
 [/Station]

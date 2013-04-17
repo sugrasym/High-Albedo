@@ -89,6 +89,27 @@ resource=Alloy Bar,8/Industrial Waste,10/ITC Warheads,1/Plank Tubes,10/Heavy Wat
 #Cheating Station Manufacturing
 
 [Process]
+name=CheatMakeLightWeaponsComplex
+cycle=256000
+product=Light Weapons Complex,1
+resource=
+[/Process]
+
+[Process]
+name=CheatMakeMediumWeaponsComplex
+cycle=256000
+product=Medium Weapons Complex,1
+resource=
+[/Process]
+
+[Process]
+name=CheatMakeHeavyWeaponsComplex
+cycle=256000
+product=Heavy Weapons Complex,1
+resource=
+[/Process]
+
+[Process]
 name=CheatMakeAgeiranSolarPowerPlant
 cycle=256000
 product=Ageiran Solar Power Plant,1

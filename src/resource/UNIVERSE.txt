@@ -1,12 +1,12 @@
 #New Game Smell
 [NewGame]
-ship=Cheetah
+ship=Apparition
 system=Sigma S-L1
 x=10000
 y=10000
 cash=25000000
-install=M-AM Launcher/M-AM Launcher
-cargo=M-AM Missile~38
+install=HGPC/HGPC
+cargo=
 faction=Player
 [/NewGame]
 

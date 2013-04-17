@@ -16,6 +16,45 @@ description=A team of elite paper pushers and lawyers uses legal trickery to tra
 ########Station Stuff######
 
 [Item]
+name=Light Weapons Complex
+type=station
+volume=1100000
+mass=23600
+HP=100
+minPrice=12700000
+maxPrice=19800000
+store=10
+group=constructionkit
+description=This station builds light generic weapons and the ammunition they require.
+[/Item]
+
+[Item]
+name=Medium Weapons Complex
+type=station
+volume=1100000
+mass=23600
+HP=100
+minPrice=25200000
+maxPrice=28000000
+store=10
+group=constructionkit
+description=This station builds medium generic weapons and the ammunition they require.
+[/Item]
+
+[Item]
+name=Heavy Weapons Complex
+type=station
+volume=1100000
+mass=23600
+HP=100
+minPrice=52000000
+maxPrice=61000000
+store=10
+group=constructionkit
+description=This station builds capital class generic weapons.
+[/Item]
+
+[Item]
 name=Ageiran Solar Power Plant
 type=station
 volume=870000
