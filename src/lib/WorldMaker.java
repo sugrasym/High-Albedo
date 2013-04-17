@@ -266,47 +266,47 @@ public class WorldMaker {
                                 objects.add(test);
                             }
                         }
-                        /*
-                         * Add Initial Stations
-                         */
-                        ArrayList<Statling> stations = sys.getStations();
-                        for (int b = 0; b < stations.size(); b++) {
-                            //pick a random planet
-                            int pa = rnd.nextInt(objects.size());
-                            //add owner stations near planets
-                            Statling tmp = stations.get(b);
-                            if (tmp.getOwner().matches(sys.getOwner())) {
-                                //drop it near it
-                                Simpling host = objects.get(pa);
-                                //get root coordinates
-                                x = host.getLoc().getX();
-                                y = host.getLoc().getY();
-                                //mutate
-                                x += rnd.nextInt(10000) - 5000;
-                                y += rnd.nextInt(10000) - 5000;
-                                //drop
-                                thisSystem += "[Station]\n"
-                                        + "name=" + tmp.getName() + "\n"
-                                        + "system=" + systemName + "\n"
-                                        + "ship=" + tmp.getType() + "\n"
-                                        + "x=" + x + "\n"
-                                        + "y=" + y + "\n"
-                                        + "faction=" + tmp.getOwner() + "\n"
-                                        + "[/Station]\n\n";
-                            } else {
-                                //it is probably a pirate base drop it somewhere
-                                x = rnd.nextInt(2 * size) - size;
-                                y = rnd.nextInt(2 * size) - size;
-                                //drop
-                                thisSystem += "[Station]\n"
-                                        + "name=" + tmp.getName() + "\n"
-                                        + "system=" + systemName + "\n"
-                                        + "ship=" + tmp.getType() + "\n"
-                                        + "x=" + x + "\n"
-                                        + "y=" + y + "\n"
-                                        + "faction=" + tmp.getOwner() + "\n"
-                                        + "[/Station]\n\n";
-                            }
+                    }
+                    /*
+                     * Add Initial Stations
+                     */
+                    ArrayList<Statling> stations = sys.getStations();
+                    for (int b = 0; b < stations.size(); b++) {
+                        //pick a random planet
+                        int pa = rnd.nextInt(objects.size());
+                        //add owner stations near planets
+                        Statling tmp = stations.get(b);
+                        if (tmp.getOwner().matches(sys.getOwner())) {
+                            //drop it near it
+                            Simpling host = objects.get(pa);
+                            //get root coordinates
+                            x = host.getLoc().getX();
+                            y = host.getLoc().getY();
+                            //mutate
+                            x += rnd.nextInt(10000) - 5000;
+                            y += rnd.nextInt(10000) - 5000;
+                            //drop
+                            thisSystem += "[Station]\n"
+                                    + "name=" + tmp.getName() + "\n"
+                                    + "system=" + systemName + "\n"
+                                    + "ship=" + tmp.getType() + "\n"
+                                    + "x=" + x + "\n"
+                                    + "y=" + y + "\n"
+                                    + "faction=" + tmp.getOwner() + "\n"
+                                    + "[/Station]\n\n";
+                        } else {
+                            //it is probably a pirate base drop it somewhere
+                            x = rnd.nextInt(2 * size) - size;
+                            y = rnd.nextInt(2 * size) - size;
+                            //drop
+                            thisSystem += "[Station]\n"
+                                    + "name=" + tmp.getName() + "\n"
+                                    + "system=" + systemName + "\n"
+                                    + "ship=" + tmp.getType() + "\n"
+                                    + "x=" + x + "\n"
+                                    + "y=" + y + "\n"
+                                    + "faction=" + tmp.getOwner() + "\n"
+                                    + "[/Station]\n\n";
                         }
                     }
                 }

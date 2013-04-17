@@ -128,7 +128,7 @@ public class Ship extends Celestial {
     private double autopilotRange = 0; //how close to fly to something
     private Celestial flyToTarget;
     //wallet
-    protected long cash = 1000000;
+    protected long cash = 100000000;
     //behavior and autopilot
     protected Behavior behavior = Behavior.NONE;
     protected Autopilot autopilot = Autopilot.NONE;

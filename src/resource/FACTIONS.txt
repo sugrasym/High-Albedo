@@ -498,6 +498,7 @@ patrol0=LFL Security Crow,30
 patrol1=LFL Security Wraith,15
 merchant0=LFL Supply Emu,10
 merchant1=LFL Supply Poltergeist,10
+merchant2=LFL Supply Apparition,5
 [/Loadout]
 
 [Loadout]
