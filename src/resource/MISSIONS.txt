@@ -1,6 +1,3 @@
-#[Campaign]
-#[/Campaign] for campaigns
-
 #Generic Missions
 
 [Mission]

@@ -89,6 +89,13 @@ resource=Alloy Bar,8/Industrial Waste,10/ITC Warheads,1/Plank Tubes,10/Heavy Wat
 #Cheating Station Manufacturing
 
 [Process]
+name=CheatMakeMiningOutpost
+cycle=256000
+product=Mining Outpost,1
+resource=
+[/Process]
+
+[Process]
 name=CheatMakeLightWeaponsComplex
 cycle=256000
 product=Light Weapons Complex,1
@@ -771,6 +778,29 @@ name=ConvertMineral
 cycle=900
 product=Mass Block,10
 resource=Mineral Ore,10/Heavy Water,1
+[/Process]
+
+[Process]
+name=AMConverter
+cycle=300
+product=Mineral Ore,5
+resource=Asteroid Ore,1/Standard Energy Unit,1
+[/Process]
+
+#Mining
+
+[Process]
+name=OutpostMiningRichIce
+cycle=25
+product=Rich Ice,10
+resource=Standard Energy Unit,1
+[/Process]
+
+[Process]
+name=OutpostMiningAsteroidOre
+cycle=45
+product=Asteroid Ore,1
+resource=Standard Energy Unit,1
 [/Process]
 
 #Misc Sinks

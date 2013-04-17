@@ -407,6 +407,7 @@ station0=Red Sky Regional HQ,0.1
 [Stations]
 name=Prism Exhuming
 station0=PE Regional HQ,0.1
+station1=Mining Outpost,0.3
 [/Stations]
 
 [Stations]

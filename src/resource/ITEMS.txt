@@ -16,6 +16,19 @@ description=A team of elite paper pushers and lawyers uses legal trickery to tra
 ########Station Stuff######
 
 [Item]
+name=Mining Outpost
+type=station
+volume=2850000
+mass=140000
+HP=100
+minPrice=425000
+maxPrice=913000
+store=10
+group=constructionkit
+description=This outpost is capable of extracting asteroid ore and rich ices from the asteroid it is built ontop of. When constructing, the closest asteroid will be used to make this station. An asteroid is required.
+[/Item]
+
+[Item]
 name=Light Weapons Complex
 type=station
 volume=1100000

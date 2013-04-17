@@ -542,7 +542,7 @@ fuel=2500000000000
 mass=52000
 rectBound=6,6,293,562
 dock=10,568,60,618,27,738/88,568,138,618,105,738/166,568,216,618,185,738/244,568,294,618,263,738
-process=PE-WeaponSink/PEFoodSink/PETechSink
+process=PE-WeaponSink/PEFoodSink/PETechSink/CheatMakeJumpDrive/AMConverter/CheatMakeMiningOutpost
 [/Station]
 
 [Station]
@@ -557,5 +557,19 @@ fuel=2500000000000
 mass=26000
 rectBound=25,5,192,340/192,15,485,39
 dock=234,45,284,95,900,305/334,45,384,95,900,305/434,45,484,95,900,305/100,-500,600,0,300,-1500
-process=LFL-WeaponSink/LFLFoodSink/LFLTechSink
+process=LFL-WeaponSink/LFLFoodSink/LFLTechSink/CheatMakeJumpDrive
+[/Station]
+
+[Station]
+type=Mining Outpost
+accel=1.5
+turning=0
+shield=1500000
+shieldRecharge=3000
+hull=625000
+fuel=2500000000000
+mass=856000
+rectBound=153,189,648,606/367,116,413,657/111,370,682,405
+dock=364,17,414,67,384,-408/364,668,414,718,384,-1065/38,365,88,415,-280,393/710,365,760,415,1059,393
+process=OutpostMiningRichIce/OutpostMiningAsteroidOre
 [/Station]
