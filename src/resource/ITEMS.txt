@@ -1194,6 +1194,19 @@ description=This launcher fires a 'M-AM Missile', which is a warhead that releas
 [/Item]
 
 [Item]
+name=Repair Beam
+type=cannon
+volume=4
+mass=12
+HP=200
+minPrice=8000
+maxPrice=12000
+group=weapon
+store=20
+description=This beam regenerates any ship it comes in contact with.
+[/Item]
+
+[Item]
 name=ERPC
 type=cannon
 volume=8

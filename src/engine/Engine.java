@@ -282,9 +282,7 @@ public class Engine {
                     }
                     if (universe.getSettings().SOUND_EFFECTS) {
                         checkForSoundSignals();
-                    } else {
                     }
-
                 } else if (state == State.MENU) {
                 } else {
                     //do nothing

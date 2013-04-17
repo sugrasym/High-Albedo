@@ -587,6 +587,20 @@ explosion=Red
 fireEffect=audio/effects/weapons/PPG.wav
 [/Weapon]
 
+[Weapon]
+#weapon info
+name=Repair Beam
+type=cannon
+#shell info
+damage=-100
+range=550
+speed=600
+mass=11
+refire=5
+explosion=Yellow
+fireEffect=audio/effects/weapons/PPG.wav
+[/Weapon]
+
 ########Wolves Weapons########
 
 [Weapon]

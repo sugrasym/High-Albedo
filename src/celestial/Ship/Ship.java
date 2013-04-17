@@ -1263,8 +1263,8 @@ public class Ship extends Celestial {
                                 //get the best stations
                                 ArrayList<SolarSystem> curr = new ArrayList<>();
                                 curr.add(currentSystem);
-                                Station pickUp = getBestPickup(curr,ware);
-                                Station dropOff = getBestDropOff(curr,ware);
+                                Station pickUp = getBestPickup(curr, ware);
+                                Station dropOff = getBestDropOff(curr, ware);
                                 //get prices
                                 if (pickUp != null && dropOff != null) {
                                     int pickUpPrice = pickUp.getPrice(ware);
@@ -2193,10 +2193,14 @@ public class Ship extends Celestial {
     }
 
     public void dealDamage(double damage) {
-        shield -= damage;
-        if (shield < 0) {
-            hull += shield;
-            shield = 0;
+        if (damage > 0) {
+            shield -= damage;
+            if (shield < 0) {
+                hull += shield;
+                shield = 0;
+            }
+        } else {
+            hull -= damage;
         }
     }
 

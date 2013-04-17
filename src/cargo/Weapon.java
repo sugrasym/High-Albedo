@@ -241,6 +241,11 @@ public class Weapon extends Equipment {
     @Override
     public void killSounds() {
         host.stopSound(fireEffect);
+        if (fireEffect != null) {
+            if (fireEffect.isPlaying()) {
+                fireEffect.stop();
+            }
+        }
     }
 
     public void useAmmo() {
@@ -296,7 +301,7 @@ public class Weapon extends Equipment {
         String ret = "";
         if (ammoType == null) {
             ret = super.toString();
-        } else if(host != null) {
+        } else if (host != null) {
             ret = super.toString();
             ret += " <" + host.getNumInCargoBay(ammoType) + ">";
         } else {
@@ -336,8 +341,8 @@ public class Weapon extends Equipment {
         pro.setLastX(pro.getX());
         pro.setLastY(pro.getY());
         //get target position
-        double tx = host.getTarget().getX() + host.getTarget().getWidth()/2;
-        double ty = host.getTarget().getY() + host.getTarget().getHeight()/2;
+        double tx = host.getTarget().getX() + host.getTarget().getWidth() / 2;
+        double ty = host.getTarget().getY() + host.getTarget().getHeight() / 2;
         //calculate theta
         double mx = pro.getX() - tx;
         double my = pro.getY() - ty;

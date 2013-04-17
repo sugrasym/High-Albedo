@@ -225,86 +225,88 @@ public class WorldMaker {
                         }
                     }
                     /*
-                     * CREATE ASTEROIDS
+                     * CREATE ASTEROIDS (only in neutral space)
                      */
-                    int numAsteroids = rnd.nextInt(maxAsteroidsPerSystem);
-                    if (numAsteroids < minPlanetsPerSystem) {
-                        numAsteroids = minPlanetsPerSystem;
-                    }
-                    for (int b = 0; b < numAsteroids; b++) {
-                        //pick name
-                        String name = "Asteroid " + b;
-                        //generate position
-                        x = rnd.nextInt(size * 2) - size;
-                        y = rnd.nextInt(size * 2) - size;
-                        //generate rotation
-                        double theta = rnd.nextFloat() * 2.0 * Math.PI;
-                        //pick size
-                        dRS = maxPlanetSize - minPlanetSize;
-                        dRB = (int) (rnd.nextFloat() * dRS);
-                        r = minPlanetSize + dRB;
-                        //create a simpling for testing
-                        Simpling test = new Simpling(new Point2D.Float((float) x, (float) y), r);
-                        boolean safe = true;
-                        for (int c = 0; c < objects.size(); c++) {
-                            if (objects.get(c).collideWith(test)) {
-                                safe = false;
-                                break;
+                    if (sys.getOwner().matches("Neutral")) {
+                        int numAsteroids = rnd.nextInt(maxAsteroidsPerSystem);
+                        if (numAsteroids < minAsteroidsPerSystem) {
+                            numAsteroids = minAsteroidsPerSystem;
+                        }
+                        for (int b = 0; b < numAsteroids; b++) {
+                            //pick name
+                            String name = "Asteroid " + b;
+                            //generate position
+                            x = rnd.nextInt(size * 2) - size;
+                            y = rnd.nextInt(size * 2) - size;
+                            //generate rotation
+                            double theta = rnd.nextFloat() * 2.0 * Math.PI;
+                            //pick size
+                            dRS = maxPlanetSize - minPlanetSize;
+                            dRB = (int) (rnd.nextFloat() * dRS);
+                            r = minPlanetSize + dRB;
+                            //create a simpling for testing
+                            Simpling test = new Simpling(new Point2D.Float((float) x, (float) y), r);
+                            boolean safe = true;
+                            for (int c = 0; c < objects.size(); c++) {
+                                if (objects.get(c).collideWith(test)) {
+                                    safe = false;
+                                    break;
+                                }
+                            }
+                            //if it is safe add it
+                            if (safe) {
+                                thisSystem +=
+                                        "[Asteroid]\n"
+                                        + "name=" + name + "\n"
+                                        + "system=" + systemName + "\n"
+                                        + "x=" + x + "\n"
+                                        + "y=" + y + "\n"
+                                        + "t=" + theta + "\n"
+                                        + "[/Asteroid]\n\n";
+                                objects.add(test);
                             }
                         }
-                        //if it is safe add it
-                        if (safe) {
-                            thisSystem +=
-                                    "[Asteroid]\n"
-                                    + "name=" + name + "\n"
-                                    + "system=" + systemName + "\n"
-                                    + "x=" + x + "\n"
-                                    + "y=" + y + "\n"
-                                    + "t=" + theta + "\n"
-                                    + "[/Asteroid]\n\n";
-                            objects.add(test);
-                        }
-                    }
-                    /*
-                     * Add Initial Stations
-                     */
-                    ArrayList<Statling> stations = sys.getStations();
-                    for (int b = 0; b < stations.size(); b++) {
-                        //pick a random planet
-                        int pa = rnd.nextInt(objects.size());
-                        //add owner stations near planets
-                        Statling tmp = stations.get(b);
-                        if (tmp.getOwner().matches(sys.getOwner())) {
-                            //drop it near it
-                            Simpling host = objects.get(pa);
-                            //get root coordinates
-                            x = host.getLoc().getX();
-                            y = host.getLoc().getY();
-                            //mutate
-                            x += rnd.nextInt(10000) - 5000;
-                            y += rnd.nextInt(10000) - 5000;
-                            //drop
-                            thisSystem += "[Station]\n"
-                                    + "name=" + tmp.getName() + "\n"
-                                    + "system=" + systemName + "\n"
-                                    + "ship=" + tmp.getType() + "\n"
-                                    + "x=" + x + "\n"
-                                    + "y=" + y + "\n"
-                                    + "faction=" + tmp.getOwner() + "\n"
-                                    + "[/Station]\n\n";
-                        } else {
-                            //it is probably a pirate base drop it somewhere
-                            x = rnd.nextInt(2 * size) - size;
-                            y = rnd.nextInt(2 * size) - size;
-                            //drop
-                            thisSystem += "[Station]\n"
-                                    + "name=" + tmp.getName() + "\n"
-                                    + "system=" + systemName + "\n"
-                                    + "ship=" + tmp.getType() + "\n"
-                                    + "x=" + x + "\n"
-                                    + "y=" + y + "\n"
-                                    + "faction=" + tmp.getOwner() + "\n"
-                                    + "[/Station]\n\n";
+                        /*
+                         * Add Initial Stations
+                         */
+                        ArrayList<Statling> stations = sys.getStations();
+                        for (int b = 0; b < stations.size(); b++) {
+                            //pick a random planet
+                            int pa = rnd.nextInt(objects.size());
+                            //add owner stations near planets
+                            Statling tmp = stations.get(b);
+                            if (tmp.getOwner().matches(sys.getOwner())) {
+                                //drop it near it
+                                Simpling host = objects.get(pa);
+                                //get root coordinates
+                                x = host.getLoc().getX();
+                                y = host.getLoc().getY();
+                                //mutate
+                                x += rnd.nextInt(10000) - 5000;
+                                y += rnd.nextInt(10000) - 5000;
+                                //drop
+                                thisSystem += "[Station]\n"
+                                        + "name=" + tmp.getName() + "\n"
+                                        + "system=" + systemName + "\n"
+                                        + "ship=" + tmp.getType() + "\n"
+                                        + "x=" + x + "\n"
+                                        + "y=" + y + "\n"
+                                        + "faction=" + tmp.getOwner() + "\n"
+                                        + "[/Station]\n\n";
+                            } else {
+                                //it is probably a pirate base drop it somewhere
+                                x = rnd.nextInt(2 * size) - size;
+                                y = rnd.nextInt(2 * size) - size;
+                                //drop
+                                thisSystem += "[Station]\n"
+                                        + "name=" + tmp.getName() + "\n"
+                                        + "system=" + systemName + "\n"
+                                        + "ship=" + tmp.getType() + "\n"
+                                        + "x=" + x + "\n"
+                                        + "y=" + y + "\n"
+                                        + "faction=" + tmp.getOwner() + "\n"
+                                        + "[/Station]\n\n";
+                            }
                         }
                     }
                 }

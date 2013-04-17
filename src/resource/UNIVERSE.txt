@@ -1,11 +1,11 @@
 #New Game Smell
 [NewGame]
-ship=Apparition
-system=Tau VLSA-Q
+ship=Sparrow
+system=Beta VQ-XP
 x=10000
 y=10000
 cash=25000000
-install=HGPC/HGPC
+install=Talon 1/Talon 1
 cargo=Jumpdrive~1
 faction=Player
 [/NewGame]

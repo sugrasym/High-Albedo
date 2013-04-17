@@ -26,10 +26,6 @@ import java.io.Serializable;
  * @author nwiehoff
  */
 public class SettingsManager implements Serializable {
-    static {
-        //check to see if there are settings to load
-        
-    }
     public int RENDER_SIZE = 2048;
     public boolean SOUND_EFFECTS = true;
     public boolean MUSIC = true;

@@ -506,6 +506,13 @@ resource=
 [/Process]
 
 [Process]
+name=CheatMakeRepairBeam
+cycle=4200
+product=Repair Beam,1
+resource=
+[/Process]
+
+[Process]
 name=ArchersCoveCheatWeapons
 cycle=1600
 product=Arrow,2/Catapult,1/Long 9,1
