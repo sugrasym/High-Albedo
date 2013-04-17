@@ -496,9 +496,8 @@ merchant0=PE Supply Gila,5
 name=Leap Frog Logistics
 patrol0=LFL Security Crow,30
 patrol1=LFL Security Wraith,15
-merchant0=LFL Supply Emu,5
-merchant1=LFL Supply Poltergeist,5
-merchant2=LFL Supply Apparition,3
+merchant0=LFL Supply Emu,10
+merchant1=LFL Supply Poltergeist,10
 [/Loadout]
 
 [Loadout]
