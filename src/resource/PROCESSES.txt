@@ -681,6 +681,34 @@ resource=Ageiran MRE,1/Mixed Foods,1/Cainan Lunchbox,1/Meat On A Stick,1/Ageiran
 [/Process]
 
 [Process]
+name=PEFoodSink
+cycle=60
+product=
+resource=Cainan Lunchbox,1/Meat On A Stick,1
+[/Process]
+
+[Process]
+name=PETechSink
+cycle=60
+product=
+resource=Nanoweave Textiles,1/Plank Tubes,1/Mass Block,1/Assembly Modules,1/Hull Plating,1
+[/Process]
+
+[Process]
+name=LFLFoodSink
+cycle=60
+product=
+resource=Ageiran MRE,1/Mixed Foods,1
+[/Process]
+
+[Process]
+name=LFLTechSink
+cycle=60
+product=
+resource=Alloy Bar,1/FPGAs,1/Consumer Goods,1
+[/Process]
+
+[Process]
 name=OrinShipSink
 cycle=600
 product=
@@ -746,6 +774,20 @@ resource=Mineral Ore,10/Heavy Water,1
 [/Process]
 
 #Misc Sinks
+
+[Process]
+name=PE-WeaponSink
+cycle=450
+product=
+resource=PNBC,1/M-AM Launcher,1/M-AM Missile,10/OGM Launcher,1/OGM Missile,10/HAPC,1/PPG,1
+[/Process]
+
+[Process]
+name=LFL-WeaponSink
+cycle=450
+product=
+resource=PNBC,1/ERPC,1/Rapid Rocket,10/Rocket Pod,1/HGPC,1/HAPC,1/PPG,1
+[/Process]
 
 [Process]
 name=OrganSink

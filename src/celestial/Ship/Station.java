@@ -445,7 +445,7 @@ public class Station extends Ship {
     public void initGraphics() {
         try {
             //get the image
-            raw_tex = io.loadImage("station/" + type + ".png");
+            raw_tex = Universe.getCache().getStationSprite(type);
             //create the usable version
             ImageIcon icon = new ImageIcon(raw_tex);
             setHeight(icon.getIconHeight());

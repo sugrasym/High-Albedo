@@ -31,7 +31,9 @@ import lib.Parser.Term;
  */
 public class ResourceCache {
     //sprite cache
+
     private ArrayList<Spriteling> ships = new ArrayList<>();
+    private ArrayList<Spriteling> stations = new ArrayList<>();
     private ArrayList<Spriteling> projectiles = new ArrayList<>();
     private ArrayList<Spriteling> explosions = new ArrayList<>();
     //parser cache
@@ -61,6 +63,7 @@ public class ResourceCache {
     private void init() throws Exception {
         //load groups
         loadShipSprites();
+        loadStationSprites();
         loadWeaponSprites();
         loadExplosionSprites();
     }
@@ -71,7 +74,17 @@ public class ResourceCache {
                 return ships.get(a).getSprite();
             }
         }
-        System.out.println("Warning: "+sprite+" not found in ship cache!");
+        System.out.println("Warning: " + sprite + " not found in ship cache!");
+        return null;
+    }
+
+    public Image getStationSprite(String sprite) {
+        for (int a = 0; a < getStations().size(); a++) {
+            if (getStations().get(a).matches(sprite)) {
+                return getStations().get(a).getSprite();
+            }
+        }
+        System.out.println("Warning: " + sprite + " not found in station cache!");
         return null;
     }
 
@@ -81,7 +94,7 @@ public class ResourceCache {
                 return projectiles.get(a).getSprite();
             }
         }
-        System.out.println("Warning: "+sprite+" not found in projectile cache!");
+        System.out.println("Warning: " + sprite + " not found in projectile cache!");
         return null;
     }
 
@@ -91,7 +104,7 @@ public class ResourceCache {
                 return explosions.get(a).getSprite();
             }
         }
-        System.out.println("Warning: "+sprite+" not found in explosion cache!");
+        System.out.println("Warning: " + sprite + " not found in explosion cache!");
         return null;
     }
 
@@ -110,6 +123,24 @@ public class ResourceCache {
             Spriteling tmp = new Spriteling(type, raw_tex);
             //store
             ships.add(tmp);
+        }
+    }
+
+    private void loadStationSprites() throws Exception {
+        //get list of ship types
+        Parser shipParser = new Parser("STATIONS.txt");
+        ArrayList<Term> stationTerms = shipParser.getTermsOfType("Station");
+        //load their sprites
+        System.out.println("Loading station sprites into cache");
+        for (int a = 0; a < stationTerms.size(); a++) {
+            //get ship type
+            String type = stationTerms.get(a).getValue("type");
+            //grab asset
+            Image raw_tex = AstralIO.loadImage("station/" + type + ".png");
+            //make a new spriteling
+            Spriteling tmp = new Spriteling(type, raw_tex);
+            //store
+            getStations().add(tmp);
         }
     }
 
@@ -212,6 +243,10 @@ public class ResourceCache {
 
     public Parser getNameCache() {
         return nameCache;
+    }
+
+    public ArrayList<Spriteling> getStations() {
+        return stations;
     }
 
     private class Spriteling {

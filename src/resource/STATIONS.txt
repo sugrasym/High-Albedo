@@ -529,3 +529,33 @@ rectBound=26,17,516,340/250,334,296,406
 dock=198,346,248,396,-82,374/296,346,346,396,614,368/100,-500,600,0,300,-1500
 process=FairMakeHGPC/FairMakePPG
 [/Station]
+
+[Station]
+type=PE Regional HQ
+accel=1.5
+exempt=true
+turning=0
+shield=600000
+shieldRecharge=128
+hull=4600
+fuel=2500000000000
+mass=52000
+rectBound=6,6,293,562
+dock=10,568,60,618,27,738/88,568,138,618,105,738/166,568,216,618,185,738/244,568,294,618,263,738
+process=PE-WeaponSink/PEFoodSink/PETechSink
+[/Station]
+
+[Station]
+type=LFL Regional HQ
+accel=1.5
+exempt=true
+turning=0
+shield=110000
+shieldRecharge=1275
+hull=6500
+fuel=2500000000000
+mass=26000
+rectBound=25,5,192,340/192,15,485,39
+dock=234,45,284,95,900,305/334,45,384,95,900,305/434,45,484,95,900,305/100,-500,600,0,300,-1500
+process=LFL-WeaponSink/LFLFoodSink/LFLTechSink
+[/Station]

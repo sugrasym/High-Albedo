@@ -401,12 +401,22 @@ station4=Federal Armory,0.2
 
 [Stations]
 name=Red Sky
-station0=Red Sky Regional HQ,0.05
+station0=Red Sky Regional HQ,0.1
+[/Stations]
+
+[Stations]
+name=Prism Exhuming
+station0=PE Regional HQ,0.1
+[/Stations]
+
+[Stations]
+name=Leap Frog Logistics
+station0=LFL Regional HQ,0.1
 [/Stations]
 
 [Stations]
 name=Gunpower
-station0=Gunpower Munitions Plant,0.05
+station0=Gunpower Munitions Plant,0.1
 [/Stations]
 
 [Stations]
@@ -563,6 +573,93 @@ patrol2=Tengu Shogun,2
 ##########################################
 #Comm hints for each faction
 ##########################################
+
+[Comm]
+name=Prism Exhuming
+contraband0=Contraband0
+contraband1=Contraband1
+contraband2=Contraband2
+contraband3=Contraband3
+contraband4=Contraband4
+hate0=DrinkBleach0
+hate1=KillYouMyself0
+hate2=Infamous0
+hate3=SelfDestruct0
+hate4=NoAssociate0
+neut0=Hello0
+neut1=Hello1
+love0=Greetings0
+love1=Greetings1
+#rumors
+rumor0=GenericRumor0
+rumor1=GenericRumor1
+rumor2=GenericRumor2
+rumor3=GenericRumor3
+rumor4=GenericRumor4
+rumor5=GenericRumor5
+rumor6=GenericRumor6
+rumor7=GenericRumor7
+rumor8=GenericRumor8
+rumor9=GenericRumor9
+[/Comm]
+
+[Comm]
+name=Leap Frog Logistics
+contraband0=Contraband0
+contraband1=Contraband1
+contraband2=Contraband2
+contraband3=Contraband3
+contraband4=Contraband4
+hate0=DrinkBleach0
+hate1=KillYouMyself0
+hate2=Infamous0
+hate3=SelfDestruct0
+hate4=NoAssociate0
+neut0=Hello0
+neut1=Hello1
+love0=Greetings0
+love1=Greetings1
+#rumors
+rumor0=GenericRumor0
+rumor1=GenericRumor1
+rumor2=GenericRumor2
+rumor3=GenericRumor3
+rumor4=GenericRumor4
+rumor5=GenericRumor5
+rumor6=GenericRumor6
+rumor7=GenericRumor7
+rumor8=GenericRumor8
+rumor9=GenericRumor9
+[/Comm]
+
+[Comm]
+name=Gunpower
+contraband0=Contraband0
+contraband1=Contraband1
+contraband2=Contraband2
+contraband3=Contraband3
+contraband4=Contraband4
+hate0=DrinkBleach0
+hate1=KillYouMyself0
+hate2=Infamous0
+hate3=SelfDestruct0
+hate4=NoAssociate0
+neut0=Hello0
+neut1=Hello1
+love0=Greetings0
+love1=Greetings1
+#rumors
+rumor0=GenericRumor0
+rumor1=GenericRumor1
+rumor2=GenericRumor2
+rumor3=GenericRumor3
+rumor4=GenericRumor4
+rumor5=GenericRumor5
+rumor6=GenericRumor6
+rumor7=GenericRumor7
+rumor8=GenericRumor8
+rumor9=GenericRumor9
+[/Comm]
 
 [Comm]
 name=Ageiran Federation
