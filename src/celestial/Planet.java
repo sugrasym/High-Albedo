@@ -36,6 +36,7 @@ import org.ankh.unfall.planet.texgen.palette.ranges.HospitablePalette;
 import org.ankh.unfall.planet.texgen.palette.ranges.LavaPalette;
 import org.ankh.unfall.planet.texgen.palette.ranges.MarsPalette;
 import org.ankh.unfall.planet.texgen.palette.ranges.StrangePalette;
+import universe.Universe;
 
 /**
  *
@@ -43,7 +44,6 @@ import org.ankh.unfall.planet.texgen.palette.ranges.StrangePalette;
  */
 public class Planet extends Celestial {
 
-    public static final int RENDER_SIZE = 2048;
     private Term texture;
     private int seed = 0;
     protected int diameter;
@@ -66,16 +66,16 @@ public class Planet extends Celestial {
          * Load the image for this planet and scale it
          */
         try {
-            BufferedImage tmp = new BufferedImage(RENDER_SIZE, RENDER_SIZE, BufferedImage.TYPE_INT_ARGB);
+            BufferedImage tmp = new BufferedImage(getUniverse().getSettings().RENDER_SIZE, getUniverse().getSettings().RENDER_SIZE, BufferedImage.TYPE_INT_ARGB);
             //get graphics
-            Shape circle = new Ellipse2D.Float(0, 0, RENDER_SIZE, RENDER_SIZE);
+            Shape circle = new Ellipse2D.Float(0, 0, getUniverse().getSettings().RENDER_SIZE, getUniverse().getSettings().RENDER_SIZE);
             Graphics2D gfx = (Graphics2D) tmp.getGraphics();
             //only draw inside the circle
             gfx.setClip(circle);
             gfx.clip(circle);
             //debug background
             gfx.setColor(Color.PINK);
-            gfx.fillRect(0, 0, RENDER_SIZE, RENDER_SIZE);
+            gfx.fillRect(0, 0, getUniverse().getSettings().RENDER_SIZE, getUniverse().getSettings().RENDER_SIZE);
             if (texture.getValue("group").matches("rock")) {
                 /*
                  * The procedural planet generator in the com package gets to do
@@ -111,7 +111,7 @@ public class Planet extends Celestial {
                     palette = new AlienPalette(info);
                 }
                 //call the procedural planet generator
-                PlanetGenerator plan = new ContinentalGenerator(2*RENDER_SIZE, RENDER_SIZE, info, palette);
+                PlanetGenerator plan = new ContinentalGenerator(2 * getUniverse().getSettings().RENDER_SIZE, getUniverse().getSettings().RENDER_SIZE, info, palette);
                 //paint texture
                 gfx.drawImage(plan.getDebugImageMap(PlanetGenerator.MAP_COLOR), 0, 0, null);
                 //store texture
@@ -127,12 +127,12 @@ public class Planet extends Celestial {
                  * the planet.
                  */
                 //setup stroke
-                int range = (int) (0.007 * RENDER_SIZE);
+                int range = (int) (0.007 * getUniverse().getSettings().RENDER_SIZE);
                 int min = (int) (0.01 * range) + 1;
                 gfx.setStroke(new WobblyStroke(sRand.nextInt(range) + min, sRand.nextInt(range) + min, seed));
                 //determine band count
                 int bands = sRand.nextInt(75) + 25;
-                int bandHeight = (RENDER_SIZE / bands);
+                int bandHeight = (getUniverse().getSettings().RENDER_SIZE / bands);
                 //pick sat and val
                 float sat = sRand.nextFloat();
                 float value = sRand.nextFloat();
@@ -143,7 +143,7 @@ public class Planet extends Celestial {
                 float hue = sRand.nextFloat();
                 //draw a baseplate
                 gfx.setColor(new Color(Color.HSBtoRGB(hue, sat, value)));
-                gfx.fillRect(0, 0, RENDER_SIZE, RENDER_SIZE);
+                gfx.fillRect(0, 0, getUniverse().getSettings().RENDER_SIZE, getUniverse().getSettings().RENDER_SIZE);
                 //pass 1, big bands
                 for (int a = 0; a < bands; a++) {
                     //vary saturation
@@ -152,7 +152,7 @@ public class Planet extends Celestial {
                     Color raw = new Color(Color.HSBtoRGB(hue, sat, value));
                     Color col = new Color(raw.getRed(), raw.getGreen(), raw.getBlue(), 64);
                     gfx.setColor(col);
-                    gfx.drawRect(0, sRand.nextInt(RENDER_SIZE), RENDER_SIZE, bandHeight);
+                    gfx.drawRect(0, sRand.nextInt(getUniverse().getSettings().RENDER_SIZE), getUniverse().getSettings().RENDER_SIZE, bandHeight);
                 }
                 //pick a hue
                 hue = sRand.nextFloat();
@@ -164,14 +164,14 @@ public class Planet extends Celestial {
                     Color raw = new Color(Color.HSBtoRGB(hue, sat, value));
                     Color col = new Color(raw.getRed(), raw.getGreen(), raw.getBlue(), 16);
                     gfx.setColor(col);
-                    gfx.drawRect(0, sRand.nextInt(RENDER_SIZE), RENDER_SIZE, bandHeight);
+                    gfx.drawRect(0, sRand.nextInt(getUniverse().getSettings().RENDER_SIZE), getUniverse().getSettings().RENDER_SIZE, bandHeight);
                 }
                 //store
                 raw_tex = tmp;
             } else if (texture.getValue("group").matches("singlegas")) {
                 Random sRand = new Random(seed);
                 //setup stroke
-                int range = (int) (0.007 * RENDER_SIZE);
+                int range = (int) (0.007 * getUniverse().getSettings().RENDER_SIZE);
                 int min = (int) (0.125 * range) + 1;
                 gfx.setStroke(new WobblyStroke(sRand.nextInt(range) + min, sRand.nextInt(range) + min, seed));
                 /*
@@ -184,7 +184,7 @@ public class Planet extends Celestial {
                  */
                 //determine band count
                 int bands = sRand.nextInt(75) + 25;
-                int bandHeight = (RENDER_SIZE / bands);
+                int bandHeight = (getUniverse().getSettings().RENDER_SIZE / bands);
                 //pick sat and val
                 float sat = sRand.nextFloat();
                 float value = sRand.nextFloat();
@@ -195,7 +195,7 @@ public class Planet extends Celestial {
                 float hue = sRand.nextFloat();
                 //draw a baseplate
                 gfx.setColor(new Color(Color.HSBtoRGB(hue, sat, value)));
-                gfx.fillRect(0, 0, RENDER_SIZE, RENDER_SIZE);
+                gfx.fillRect(0, 0, getUniverse().getSettings().RENDER_SIZE, getUniverse().getSettings().RENDER_SIZE);
                 //pass 1, big bands
                 for (int a = 0; a < bands; a++) {
                     //vary saturation
@@ -204,7 +204,7 @@ public class Planet extends Celestial {
                     Color raw = new Color(Color.HSBtoRGB(hue, sat, value));
                     Color col = new Color(raw.getRed(), raw.getGreen(), raw.getBlue(), 64);
                     gfx.setColor(col);
-                    gfx.drawRect(0, sRand.nextInt(RENDER_SIZE), RENDER_SIZE, bandHeight);
+                    gfx.drawRect(0, sRand.nextInt(getUniverse().getSettings().RENDER_SIZE), getUniverse().getSettings().RENDER_SIZE, bandHeight);
                 }
                 //pass 2, small secondary bands
                 for (int a = 0; a < bands * 4; a++) {
@@ -214,7 +214,7 @@ public class Planet extends Celestial {
                     Color raw = new Color(Color.HSBtoRGB(hue, sat, value));
                     Color col = new Color(raw.getRed(), raw.getGreen(), raw.getBlue(), 16);
                     gfx.setColor(col);
-                    gfx.drawRect(0, sRand.nextInt(RENDER_SIZE), RENDER_SIZE, bandHeight);
+                    gfx.drawRect(0, sRand.nextInt(getUniverse().getSettings().RENDER_SIZE), getUniverse().getSettings().RENDER_SIZE, bandHeight);
                 }
                 //store
                 raw_tex = tmp;

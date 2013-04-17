@@ -18,10 +18,6 @@
  */
 package celestial;
 
-import cargo.Equipment;
-import cargo.Weapon;
-import celestial.Ship.Ship;
-import engine.Entity;
 import java.awt.AlphaComposite;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -30,20 +26,17 @@ import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.net.URISyntaxException;
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import lib.AstralIO;
-import universe.SolarSystem;
-import universe.Universe;
 
 public class Asteroid extends Planet {
 
     private transient BufferedImage tex;
 
     public Asteroid(String name) {
-        super(name, null, 1000);
+        super(name, null, 800);
         setState(State.ALIVE);
     }
 
@@ -98,6 +91,6 @@ public class Asteroid extends Planet {
     public void alive() {
         //update bound
         getBounds().clear();
-        getBounds().add(new Rectangle((int) getX()-getDiameter()/2, (int) getY()-getDiameter()/2, getDiameter(), getDiameter()));
+        getBounds().add(new Rectangle((int) getX(), (int) getY(), getDiameter(), getDiameter()));
     }
 }

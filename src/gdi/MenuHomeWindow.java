@@ -13,6 +13,8 @@ import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import lib.AstralIO;
+import lib.Binling;
+import universe.Universe;
 
 /**
  *
@@ -24,6 +26,7 @@ public class MenuHomeWindow extends AstralWindow {
     AstralList mainList = new AstralList(this);
     AstralList gameList = new AstralList(this);
     AstralList saveList = new AstralList(this);
+    AstralList settingList = new AstralList(this);
     private Engine engine;
 
     public MenuHomeWindow(Engine engine) {
@@ -54,22 +57,12 @@ public class MenuHomeWindow extends AstralWindow {
         mainList.setHeight(400);
         mainList.setVisible(true);
         mainList.setFont(new Font("Monospaced", Font.PLAIN, 16));
-        //store text
-        mainList.addToList("Select an Option");
-        mainList.addToList("");
-        mainList.addToList("New Game");
-        mainList.addToList("");
-        mainList.addToList("Load Quicksave");
-        mainList.addToList("Load Game");
-        mainList.addToList("");
-        mainList.addToList("Save Game");
-        mainList.addToList("");
+        populateMainMenuList();
         //setup save game list
         gameList.setX(getWidth() / 2 - 200);
         gameList.setY(getHeight() / 2 - 200);
         gameList.setWidth(400);
         gameList.setHeight(400);
-        gameList.setVisible(true);
         gameList.setFont(new Font("Monospaced", Font.PLAIN, 16));
         gameList.setVisible(false);
         //setup load game list
@@ -77,25 +70,41 @@ public class MenuHomeWindow extends AstralWindow {
         saveList.setY(getHeight() / 2 - 200);
         saveList.setWidth(400);
         saveList.setHeight(400);
-        saveList.setVisible(true);
         saveList.setFont(new Font("Monospaced", Font.PLAIN, 16));
         saveList.setVisible(false);
+        //setup settings list
+        settingList.setX(getWidth() / 2 - 200);
+        settingList.setY(getHeight() / 2 - 200);
+        settingList.setWidth(400);
+        settingList.setHeight(400);
+        settingList.setFont(new Font("Monospaced", Font.PLAIN, 16));
+        settingList.setVisible(false);
         //add components
         addComponent(logoLabel);
         addComponent(mainList);
         addComponent(gameList);
         addComponent(saveList);
+        addComponent(settingList);
         //make visible
         setVisible(true);
+    }
+
+    public void setVisible(boolean visible) {
+        super.setVisible(visible);
+        if (mainList.isVisible()) {
+            populateMainMenuList();
+        }
     }
 
     public void handleMouseClickedEvent(MouseEvent me) {
         super.handleMouseClickedEvent(me);
         String command = "";
-        if (mainList.isFocused()) {
+        if (mainList.isVisible()) {
             command = (String) mainList.getItemAtIndex(mainList.getIndex());
-        } else if (gameList.isFocused()) {
+        } else if (gameList.isVisible()) {
             command = (String) gameList.getItemAtIndex(gameList.getIndex());
+        } else if (settingList.isVisible()) {
+            command = (String) settingList.getItemAtIndex(settingList.getIndex());
         }
         parseCommand(command);
     }
@@ -114,18 +123,21 @@ public class MenuHomeWindow extends AstralWindow {
             } else if (command.matches("Load Game")) {
                 mainList.setVisible(false);
                 saveList.setVisible(false);
+                settingList.setVisible(false);
                 populateLoadGameList();
                 gameList.setVisible(true);
             } else if (command.matches("Save Game")) {
                 mainList.setVisible(false);
                 gameList.setVisible(false);
+                settingList.setVisible(false);
                 populateSaveGameList();
                 saveList.setVisible(true);
-            } else if (command.matches("Resume")) {
-                mainList.setVisible(true);
+            } else if (command.matches("Settings")) {
+                mainList.setVisible(false);
                 saveList.setVisible(false);
                 gameList.setVisible(false);
-                engine.start();
+                populateSettingList();
+                settingList.setVisible(true);
             }
         } else if (gameList.isVisible()) {
             int index = gameList.getIndex();
@@ -136,6 +148,8 @@ public class MenuHomeWindow extends AstralWindow {
                 mainList.setVisible(true);
                 gameList.setVisible(false);
                 saveList.setVisible(false);
+                settingList.setVisible(false);
+                populateMainMenuList();
             }
         } else if (saveList.isVisible()) {
             int index = saveList.getIndex();
@@ -150,6 +164,70 @@ public class MenuHomeWindow extends AstralWindow {
                 mainList.setVisible(true);
                 gameList.setVisible(false);
                 saveList.setVisible(false);
+                settingList.setVisible(false);
+                populateMainMenuList();
+            }
+        } else if (settingList.isVisible()) {
+            int index = settingList.getIndex();
+            if (index > 2) {
+                try {
+                    String[] arr = command.split(":");
+                    if (arr.length == 2) {
+                        String set = arr[0];
+                        if (set.matches("Planet Detail")) {
+                            int curr = Integer.parseInt(arr[1].trim());
+                            int pick = 0;
+                            //find current in array
+                            for (int a = 0; a < getUniverse().getSettings().RENDER_SIZE_OPTS.length; a++) {
+                                if (curr == getUniverse().getSettings().RENDER_SIZE_OPTS[a]) {
+                                    pick = a + 1;
+                                    break;
+                                }
+                            }
+                            //modulo
+                            pick %= getUniverse().getSettings().RENDER_SIZE_OPTS.length;
+                            //store
+                            getUniverse().getSettings().RENDER_SIZE = getUniverse().getSettings().RENDER_SIZE_OPTS[pick];
+                            //refresh
+                            populateSettingList();
+                        } else if (set.matches("Enable Sound Effects")) {
+                            boolean curr = Boolean.parseBoolean(arr[1].trim());
+                            getUniverse().getSettings().SOUND_EFFECTS = !curr;
+                            populateSettingList();
+                        } else if (set.matches("Enable Music")) {
+                            boolean curr = Boolean.parseBoolean(arr[1].trim());
+                            getUniverse().getSettings().MUSIC = !curr;
+                            populateSettingList();
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else if (index == 1) {
+                mainList.setVisible(true);
+                gameList.setVisible(false);
+                saveList.setVisible(false);
+                settingList.setVisible(false);
+                populateMainMenuList();
+            }
+        }
+    }
+
+    private void populateMainMenuList() {
+        mainList.clearList();
+        //store text
+        mainList.addToList("Select an Option");
+        mainList.addToList("");
+        mainList.addToList("New Game");
+        mainList.addToList("");
+        mainList.addToList("Load Quicksave");
+        mainList.addToList("Load Game");
+        if (engine.getUniverse() != null) {
+            if (engine.getUniverse().isReady()) {
+                mainList.addToList("");
+                mainList.addToList("Save Game");
+                mainList.addToList("");
+                mainList.addToList("Settings");
             }
         }
     }
@@ -171,6 +249,24 @@ public class MenuHomeWindow extends AstralWindow {
         gameList.addToList("Return to Main Menu");
         gameList.addToList("");
         addSaves(gameList);
+    }
+
+    private void populateSettingList() {
+        settingList.clearList();
+        //add menu cruft
+        settingList.addToList("Select a Setting to Change");
+        settingList.addToList("Return to Main Menu");
+        settingList.addToList("");
+        //options
+        settingList.addToList("Planet Detail: " + getUniverse().getSettings().RENDER_SIZE);
+        settingList.addToList("Enable Sound Effects: " + getUniverse().getSettings().SOUND_EFFECTS);
+        settingList.addToList("Enable Music: " + getUniverse().getSettings().MUSIC);
+        //settings
+
+    }
+
+    private Universe getUniverse() {
+        return engine.getUniverse();
     }
 
     private int countSaves() {

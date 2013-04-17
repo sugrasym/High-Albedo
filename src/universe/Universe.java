@@ -18,10 +18,10 @@
  */
 package universe;
 
-import cargo.Item;
 import celestial.Ship.Ship;
 import engine.God;
 import engine.ResourceCache;
+import engine.SettingsManager;
 import java.io.Serializable;
 import java.util.ArrayList;
 import lib.Parser;
@@ -32,23 +32,25 @@ import lib.Parser.Term;
  * @author Nathan Wiehoff
  */
 public class Universe implements Serializable {
-    
+
     private ArrayList<SolarSystem> systems = new ArrayList<>();
+    private SettingsManager settings;
     private static transient ResourceCache cache;
     private transient God god;
     protected Ship playerShip;
     private ArrayList<Ship> playerProperty = new ArrayList<>();
     private ArrayList<Mission> playerMissions = new ArrayList<>();
-    
+
     static {
         cache = new ResourceCache();
     }
-    
+
     public Universe() {
         init();
     }
-    
+
     private void init() {
+        settings = new SettingsManager();
         //create the universe parser
         Parser parse = Universe.getCache().getUniverseCache();
         //get all the solar system terms
@@ -64,7 +66,7 @@ public class Universe implements Serializable {
         //there should only be of these, pick the first one
         makePlayer(games.get(0));
     }
-    
+
     private SolarSystem makeSystem(Parser parse, Term thisSystem) {
         SolarSystem system = null;
         {
@@ -102,7 +104,7 @@ public class Universe implements Serializable {
         System.out.println(system.getName() + " solar system created. ");
         return system;
     }
-    
+
     private void makePlayer(Term start) {
         Ship player = null;
         {
@@ -147,27 +149,27 @@ public class Universe implements Serializable {
             playerShip = player;
         }
     }
-    
+
     public ArrayList<SolarSystem> getSystems() {
         return systems;
     }
-    
+
     public void setSystems(ArrayList<SolarSystem> systems) {
         this.systems = systems;
     }
-    
+
     public Ship getPlayerShip() {
         return playerShip;
     }
-    
+
     public void setPlayerShip(Ship playerShip) {
         this.playerShip = playerShip;
     }
-    
+
     public static ResourceCache getCache() {
         return cache;
     }
-    
+
     public God getGod() {
         if (god != null) {
             return god;
@@ -176,16 +178,24 @@ public class Universe implements Serializable {
             return god;
         }
     }
-    
+
     public void setGod(God god) {
         this.god = god;
     }
-    
+
     public ArrayList<Ship> getPlayerProperty() {
         return playerProperty;
     }
 
     public ArrayList<Mission> getPlayerMissions() {
         return playerMissions;
+    }
+
+    public SettingsManager getSettings() {
+        return settings;
+    }
+
+    public boolean isReady() {
+        return !systems.isEmpty();
     }
 }

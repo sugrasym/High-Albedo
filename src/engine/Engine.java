@@ -273,8 +273,18 @@ public class Engine {
         public void periodicUpdate() {
             try {
                 if (state == State.RUNNING) {
-                    checkForSoundSignals();
-                    updateMusic();
+                    if (universe.getSettings().MUSIC) {
+                        updateMusic();
+                    } else {
+                        if (music.isRunning()) {
+                            music.stop();
+                        }
+                    }
+                    if (universe.getSettings().SOUND_EFFECTS) {
+                        checkForSoundSignals();
+                    } else {
+                    }
+
                 } else if (state == State.MENU) {
                 } else {
                     //do nothing
