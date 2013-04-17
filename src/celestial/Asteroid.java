@@ -18,6 +18,8 @@
  */
 package celestial;
 
+import cargo.Equipment;
+import cargo.Weapon;
 import celestial.Ship.Ship;
 import engine.Entity;
 import java.awt.AlphaComposite;
@@ -42,6 +44,7 @@ public class Asteroid extends Planet {
 
     public Asteroid(String name) {
         super(name, null, 1000);
+        setState(State.ALIVE);
     }
 
     public void initGraphics() {
@@ -86,9 +89,15 @@ public class Asteroid extends Planet {
     }
 
     @Override
+    public void disposeGraphics() {
+        raw_tex = null;
+        tex = null;
+    }
+
+    @Override
     public void alive() {
         //update bound
         getBounds().clear();
-        getBounds().add(new Rectangle((int) getX() + getDiameter() / 2, (int) getY() + getDiameter() / 2, getDiameter(), getDiameter()));
+        getBounds().add(new Rectangle((int) getX()-getDiameter()/2, (int) getY()-getDiameter()/2, getDiameter(), getDiameter()));
     }
 }

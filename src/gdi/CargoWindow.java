@@ -23,8 +23,11 @@ import cargo.Equipment;
 import cargo.Hardpoint;
 import cargo.Item;
 import cargo.Weapon;
+import celestial.Asteroid;
 import celestial.Ship.Ship;
 import celestial.Ship.Station;
+import engine.Entity;
+import engine.Entity.State;
 import gdi.component.AstralList;
 import gdi.component.AstralWindow;
 import java.awt.event.MouseEvent;
@@ -346,21 +349,51 @@ public class CargoWindow extends AstralWindow {
                     ret.setName("Your " + selected.getName());
                     ret.setFaction(ship.getFaction());
                     ret.init(false);
-                    //configure coordinates
-                    double dx = ship.getWidth();
-                    double dy = ship.getHeight();
-                    double sx = (ship.getX() + ship.getWidth() / 2) + dx;
-                    double sy = (ship.getY() + ship.getHeight() / 2) + dy;
-                    ret.setX(sx);
-                    ret.setY(sy);
-                    //finalize
-                    ret.setCurrentSystem(ship.getCurrentSystem());
-                    ship.getCurrentSystem().putEntityInSystem(ret);
-                    //remove item from cargo
-                    selected.setQuantity(0);
-                    ship.removeFromCargoBay(selected);
-                    //since it's not NPC make sure it has no start cash
-                    ret.clearWares();
+                    //
+                    boolean safe = false;
+                    double sx = 0;
+                    double sy = 0;
+                    if (!ret.isNeedAsteroid()) {
+                        safe = true;
+                        //configure coordinates
+                        double dx = ship.getWidth();
+                        double dy = ship.getHeight();
+                        sx = (ship.getX() + ship.getWidth() / 2) + dx;
+                        sy = (ship.getY() + ship.getHeight() / 2) + dy;
+                    } else {
+                        //find a nearby asteroid
+                        ArrayList<Entity> asts = ship.getCurrentSystem().getAsteroidList();
+                        if (asts.size() > 0) {
+                            Asteroid pick = (Asteroid) asts.get(0);
+                            double record = Double.MAX_VALUE;
+                            for (int a = 0; a < asts.size(); a++) {
+                                Asteroid test = (Asteroid) asts.get(a);
+                                if(ship.distanceTo(test) < record) {
+                                    record = ship.distanceTo(test);
+                                    pick = test;
+                                }
+                            }
+                            safe = true;
+                            sx = pick.getX();
+                            sy = pick.getY();
+                            //remove asteroid
+                            pick.setState(State.DEAD);
+                        } else {
+                            //nowhere to put it
+                        }
+                    }
+                    if (safe) {
+                        ret.setX(sx);
+                        ret.setY(sy);
+                        //finalize
+                        ret.setCurrentSystem(ship.getCurrentSystem());
+                        ship.getCurrentSystem().putEntityInSystem(ret);
+                        //remove item from cargo
+                        selected.setQuantity(0);
+                        ship.removeFromCargoBay(selected);
+                        //since it's not NPC make sure it has no start cash
+                        ret.clearWares();
+                    }
                 }
             }
         }

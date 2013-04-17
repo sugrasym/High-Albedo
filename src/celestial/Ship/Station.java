@@ -19,6 +19,7 @@
 package celestial.Ship;
 
 import cargo.Item;
+import celestial.Asteroid;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -49,6 +50,8 @@ public class Station extends Ship {
     protected ArrayList<Process> processes = new ArrayList<>();
     //cheating is needed sometimes
     private boolean exemptFromEconomics = false;
+    //flag
+    private boolean needAsteroid = false;
 
     public Station(String name, String type) {
         super(name, type);
@@ -94,6 +97,30 @@ public class Station extends Ship {
     }
 
     @Override
+    public void dying() {
+        super.dying();
+        //is this a player station?
+        if (faction.matches("Player")) {
+            //did it need an asteroid?
+            if (needAsteroid) {
+                //lets avoid the X3R problem and put the asteroid back
+                /*
+                 * For those who don't know, the X3R problem was a somewhat frustrating bug in X3R where
+                 * the destruction of an asteroid mine would permanently remove the asteroid. It would
+                 * never respawn. This meant universal conquests would end up removing vital resources
+                 * from the game that were irreplacable.
+                 */
+                Asteroid tmp = new Asteroid("Asteroid");
+                tmp.setX(x);
+                tmp.setY(y);
+                tmp.setTheta(rnd.nextFloat() * 2.0 * Math.PI);
+                currentSystem.putEntityInSystem(tmp);
+                System.out.println("Replaced asteroid used by dead asteroid mine " + getName());
+            }
+        }
+    }
+
+    @Override
     protected void autopilot() {
         //do nothing
     }
@@ -128,6 +155,13 @@ public class Station extends Ship {
         shieldRechargeRate = Double.parseDouble(relevant.getValue("shieldRecharge"));
         maxHull = hull = Double.parseDouble(relevant.getValue("hull"));
         maxFuel = fuel = Double.parseDouble(relevant.getValue("fuel"));
+        String needAst = relevant.getValue("needAsteroid");
+        if (needAst != null) {
+            needAsteroid = Boolean.parseBoolean(needAst);
+            System.out.println(getName() + " Needs an asteroid");
+        } else {
+            needAsteroid = false;
+        }
         //exemption block
         String exempt = relevant.getValue("exempt");
         exemptionSetup(exempt);
@@ -557,10 +591,10 @@ public class Station extends Ship {
     public void setProcesses(ArrayList<Process> processes) {
         this.processes = processes;
     }
-    
+
     public boolean hasDocked(Ship ship) {
-        for(int a = 0; a < docks.size(); a++) {
-            if(docks.get(a).getClient() == ship && ship.isDocked()) {
+        for (int a = 0; a < docks.size(); a++) {
+            if (docks.get(a).getClient() == ship && ship.isDocked()) {
                 return true;
             }
         }
@@ -586,7 +620,7 @@ public class Station extends Ship {
             System.out.println(getName() + " is exempted from economics.");
         }
     }
-    
+
     @Override
     public void hail() {
         //TODO: comms with person onboard
@@ -604,5 +638,13 @@ public class Station extends Ship {
         }
         setCash(0);
         exemptFromEconomics = false;
+    }
+
+    public boolean isNeedAsteroid() {
+        return needAsteroid;
+    }
+
+    public void setNeedAsteroid(boolean needAsteroid) {
+        this.needAsteroid = needAsteroid;
     }
 }
