@@ -1087,6 +1087,60 @@ store=121
 description=Red Sky weapon used on Red Sky's heavy interceptors. This weapon delivers a steady stream of damage at medium range.
 [/Item]
 
+#Generic Weapons
+
+[Item]
+name=PNBC
+type=cannon
+volume=10
+mass=12
+HP=100
+minPrice=8000
+maxPrice=11000
+group=weapon
+store=512
+description=Pulsed Neutron Bolt Cannons fire a spherical neutron pulse at a target. This is a generic weapon, branded implementations include the Talon series and Venom series cannons.
+[/Item]
+
+[Item]
+name=HAPC
+type=cannon
+volume=15
+mass=20
+HP=210
+minPrice=21000
+maxPrice=32000
+group=weapon
+store=512
+description=High Amplitude Plasma Cannons fire a highly charged, very dense, plasma bolt at a target. They refire slowly but deliver substantial damage on impact. This is a generic weapon, branded implementations include the Frill cannon.
+[/Item]
+
+[Item]
+name=OGM Launcher
+type=missile
+volume=10
+mass=5
+HP=62
+minPrice=60000
+maxPrice=90000
+group=weapon
+store=512
+description=This launcher fires an 'OGM Missile', or Optical Guided Missiles. Optically guided missiles track their target visually, the same way you would, by keeping an eye on identifying features of the target. This makes them very difficult to jam. This is a generic weapon, branded implementations include the Python and Iguana missile systems.
+[/Item]
+
+[Item]
+name=M-AM Launcher
+type=missile
+volume=20
+mass=5
+HP=62
+minPrice=60000
+maxPrice=90000
+group=weapon
+store=512
+description=This launcher fires a 'M-AM Missile', which is a warhead that releases a massive gamma radiation pulse using matter antimatter reactions. It is similar to the Starstruck missile, from which it is derived, but inferior in most capacities.
+[/Item]
+
 #Ageiran Weapons
 [Item]
 name=Talon 1
@@ -1517,6 +1571,19 @@ description=Unarmed missile for use with a 'Sidewinder Launcher'. /br/ /br/ 'Sid
 [/Item]
 
 [Item]
+name=M-AM Missile
+type=commodity
+volume=5
+mass=4
+HP=100
+minPrice=75000
+maxPrice=256000
+group=ammo
+store=1000
+description=Unarmed missile for use with a 'M-AM Launcher'. /br/ /br/ This missile is an open variant of the ITC Starstruck missile and uses the same basic principles, but the lack of release of ITC fabrication techniques leaves it a more expensive and inferior missile to the Starstruck.  It is still quite powerful, however.
+[/Item]
+
+[Item]
 name=Python Missile
 type=commodity
 volume=15
@@ -1592,6 +1659,19 @@ maxPrice=600
 group=ammo
 store=450
 description=Unarmed missile for use with a 'Iguana Launcher'. This is a Cainan anti-fighter missile that is designed to get to the target quickly and accurately, but delivers less damage than a multi-role missile.
+[/Item]
+
+[Item]
+name=OGM Missile
+type=commodity
+volume=8
+mass=4
+HP=50
+minPrice=200
+maxPrice=600
+group=ammo
+store=1000
+description=Unarmed missile for use with an 'OGM Launcher'. This generic missile is similar to the Iguana and Python missile, but slightly worse in most areas.
 [/Item]
 
 [Item]

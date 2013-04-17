@@ -48,6 +48,74 @@ accel=575
 turning=10
 [/Weapon]
 
+########Generic Weapons########
+
+[Weapon]
+#weapon info
+name=PNBC
+type=cannon
+#shell info
+damage=105
+range=370
+speed=406
+mass=8
+refire=0.38
+explosion=Smoke
+fireEffect=audio/effects/weapons/PNBC.wav
+[/Weapon]
+
+[Weapon]
+#weapon info
+name=HAPC
+type=cannon
+#shell info
+damage=3600
+range=340
+speed=125
+mass=8
+refire=28
+explosion=Red
+fireEffect=audio/effects/weapons/HAPC.wav
+[/Weapon]
+
+[Weapon]
+#weapon info
+name=OGM Launcher
+type=missile
+#shell info
+damage=1400
+range=900
+speed=6
+mass=4
+refire=4.2
+explosion=Explosion
+#make it a seeker
+guided=true
+#it uses ammo
+ammo=OGM Missile
+accel=240
+turning=4
+[/Weapon]
+
+[Weapon]
+#weapon info
+name=M-AM Launcher
+type=missile
+#shell info
+damage=4425
+range=1500
+speed=4
+mass=1
+refire=8
+explosion=Explosion
+#make it a seeker
+guided=true
+#it uses ammo
+ammo=M-AM Missile
+accel=220
+turning=2.2
+[/Weapon]
+
 ########Red Sky Weapons########
 #Red Sky weapons are med damage at med range with a high refire rate.
 

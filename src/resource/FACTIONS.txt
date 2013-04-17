@@ -16,6 +16,8 @@ Neutral=0
 Entities=-10
 Player=0
 Red Sky=0
+Prism Exhuming=0
+Leap Frog Logistics=0
 Ageiran Federation=0
 The Archers=0
 ITC=0
@@ -36,6 +38,8 @@ var_description=The Entities are an enigma. Nobody knows what they are, where th
 var_worldPercent=0
 Player=-10
 Red Sky=-10
+Prism Exhuming=-10
+Leap Frog Logistics=-10
 Neutral=-10
 Entities=10
 Ageiran Federation=-10
@@ -57,6 +61,8 @@ Neutral=0
 Entities=-10
 Player=10
 Red Sky=0
+Prism Exhuming=0
+Leap Frog Logistics=0
 Ageiran Federation=3
 The Archers=-4
 ITC=0
@@ -67,7 +73,7 @@ Orin Federation=0
 Tengus=-8
 [/Faction]
 
-########Red Sky########
+########Corporations########
 
 [Faction]
 name=Red Sky
@@ -79,12 +85,58 @@ Neutral=0
 Entities=-10
 Player=0
 Red Sky=10
+Prism Exhuming=5
+Leap Frog Logistics=5
 Ageiran Federation=0
 The Archers=-5
 ITC=0
 Caina Conglemerate=0
 Wolves=-7
 Knights of Orin=-4
+Orin Federation=0
+Tengus=-9
+[/Faction]
+
+[Faction]
+name=Prism Exhuming
+var_isEmpire=false
+var_hosts=Neutral
+var_worldPercent=0
+var_description=Originally from Caina, Prism is a powerful mining corporation that operates in the lawless, neutral, space between empires. This is a tricky commitment, and only close ties to Red Sky have made this enterprise a reality. Prism have long since given up their Cainan nationality to avoid the hostilities between the empires, and are now a fully international entity.
+Neutral=0
+Entities=-10
+Player=0
+Red Sky=5
+Prism Exhuming=10
+Leap Frog Logistics=5
+Ageiran Federation=0
+The Archers=-5
+ITC=0
+Caina Conglemerate=0
+Wolves=-5
+Knights of Orin=-5
+Orin Federation=0
+Tengus=-9
+[/Faction]
+
+[Faction]
+name=Leap Frog Logistics
+var_isEmpire=false
+var_hosts=Neutral
+var_worldPercent=0
+var_description=Originally from the Ageiran Federation, LFL is the premier logistics entity in Cardinal Heart. Although they operate in neutral space, they can be found across the universe snatching up good deals and working shipping contracts. To avoid the hostilities with the ITC and Caina, they have given up their Ageiran national protections and are an international, independent, entity.
+Neutral=0
+Entities=-10
+Player=0
+Red Sky=5
+Prism Exhuming=5
+Leap Frog Logistics=10
+Ageiran Federation=0
+The Archers=-5
+ITC=0
+Caina Conglemerate=0
+Wolves=-5
+Knights of Orin=-5
 Orin Federation=0
 Tengus=-9
 [/Faction]
@@ -101,6 +153,8 @@ Neutral=0
 Entities=-10
 Player=3
 Red Sky=0
+Prism Exhuming=0
+Leap Frog Logistics=0
 Ageiran Federation=10
 The Archers=-10
 ITC=-3
@@ -121,6 +175,8 @@ Neutral=0
 Entities=-10
 Player=-4
 Red Sky=-5
+Prism Exhuming=-5
+Leap Frog Logistics=-5
 Ageiran Federation=-10
 The Archers=10
 ITC=0
@@ -143,6 +199,8 @@ Neutral=0
 Entities=-10
 Player=0
 Red Sky=0
+Prism Exhuming=0
+Leap Frog Logistics=0
 Ageiran Federation=-3
 The Archers=0
 ITC=10
@@ -164,6 +222,8 @@ Neutral=0
 Entities=-10
 Player=-1
 Red Sky=0
+Prism Exhuming=0
+Leap Frog Logistics=0
 Ageiran Federation=-3
 The Archers=0
 ITC=4
@@ -184,6 +244,8 @@ var_description=The Wolves are a powerful criminal syndicate that operates in ne
 var_worldPercent=0
 Player=-7
 Red Sky=-10
+Prism Exhuming=-5
+Leap Frog Logistics=-5
 Neutral=0
 Entities=-10
 Ageiran Federation=-3
@@ -207,6 +269,8 @@ var_description=After the first foundation war in 542 and the collapse of the UN
 var_contraband=Human Organs/Pirated Software/Slaves/Astronaut
 Player=0
 Red Sky=0
+Prism Exhuming=0
+Leap Frog Logistics=0
 Neutral=0
 Entities=-10
 Ageiran Federation=3
@@ -227,6 +291,8 @@ var_description=The Knights, to external observers, are a bit confused. Motivate
 var_worldPercent=0
 Player=-3
 Red Sky=-4
+Prism Exhuming=-5
+Leap Frog Logistics=-5
 Neutral=0
 Entities=-10
 Ageiran Federation=-3
@@ -251,6 +317,8 @@ Neutral=0
 Entities=-10
 Player=-8
 Red Sky=-9
+Prism Exhuming=-5
+Leap Frog Logistics=-5
 Ageiran Federation=-3
 The Archers=5
 ITC=-3
@@ -356,6 +424,18 @@ patrol0=Nightmare,1
 name=Red Sky
 patrol0=RS Bounty Hunter,75
 patrol1=RS Assassin,25
+[/Loadout]
+
+[Loadout]
+name=Prism Exhuming
+patrol0=PE Security Cheetah,15
+patrol1=PE Security Monitor,15
+[/Loadout]
+
+[Loadout]
+name=Leap Frog Logistics
+patrol0=LFL Security Crow,15
+patrol1=LFL Security Wraith,15
 [/Loadout]
 
 [Loadout]

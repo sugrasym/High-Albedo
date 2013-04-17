@@ -37,6 +37,34 @@ install=Thorn B/Thorn B
 cargo=Astronaut~1
 [/Loadout]
 
+[Loadout]
+ship=Crow
+name=LFL Security Crow
+install=PNBC/PNBC
+cargo=Astronaut~1
+[/Loadout]
+
+[Loadout]
+ship=Wraith
+name=LFL Security Wraith
+install=ERPC/ERPC/Rocket Pod/Rocket Pod
+cargo=Rapid Rocket~400
+[/Loadout]
+
+[Loadout]
+ship=Monitor
+name=PE Security Monitor
+install=OGM Launcher/OGM Launcher/HAPC
+cargo=OGM Missile~34
+[/Loadout]
+
+[Loadout]
+ship=Cheetah
+name=PE Security Cheetah
+install=M-AM Launcher/M-AM Launcher
+cargo=M-AM Missile~38
+[/Loadout]
+
 ########Ageiran Federation Lawful
 
 [Loadout]
