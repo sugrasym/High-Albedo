@@ -991,6 +991,7 @@ public class Engine {
                         SolarSystem current = playerShip.getCurrentSystem();
                         if (current != null) {
                             ArrayList<Entity> celestialList = current.getCelestialList();
+                            ArrayList<Entity> asteroidList = current.getAsteroidList();
                             ArrayList<Entity> stationList = current.getStationList();
                             ArrayList<Entity> shipList = current.getShipList();
                             ArrayList<Entity> jumpholeList = current.getJumpholeList();
@@ -1002,6 +1003,12 @@ public class Engine {
                             for (int a = 0; a < celestialList.size(); a++) {
                                 if (celestialList.get(a).collideWith(view)) {
                                     celestialList.get(a).render(f, dx, dy);
+                                }
+                            }
+
+                            for (int a = 0; a < asteroidList.size(); a++) {
+                                if (asteroidList.get(a).collideWith(view)) {
+                                    asteroidList.get(a).render(f, dx, dy);
                                 }
                             }
 
@@ -1116,7 +1123,7 @@ public class Engine {
                 //recover player ship
                 playerShip = universe.getPlayerShip();
                 //update player missions
-                for(int a = 0; a < universe.getPlayerMissions().size(); a++) {
+                for (int a = 0; a < universe.getPlayerMissions().size(); a++) {
                     universe.getPlayerMissions().get(a).periodicUpdate(tpf);
                 }
             } else if (state == State.MENU) {

@@ -45,7 +45,7 @@ public class WorldMaker {
 
     public WorldMaker() {
         //generate universe
-        String out = generate(1, 10, 90, 150, 1000, 16000, 48000, 900, 2000, 1, 3, 25000, 200000);
+        String out = generate(1, 10, 90, 150, 1000, 16000, 48000, 900, 2000, 0, 100);
         //save
         AstralIO tmp = new AstralIO();
         tmp.writeFile("/tmp/UNIVERSE.txt", out);
@@ -58,7 +58,7 @@ public class WorldMaker {
 
     public final String generate(int minPlanetsPerSystem, int maxPlanetsPerSystem, int minSystems, int maxSystems,
             int worldSize, int minSystemSize, int maxSystemSize, int minPlanetSize,
-            int maxPlanetSize, int minNebulaPerSystem, int maxNebulaPerSystem, int minNebulaSize, int maxNebulaSize) {
+            int maxPlanetSize, int minAsteroidsPerSystem, int maxAsteroidsPerSystem) {
         String ret = "";
         {
             //precache parsers
@@ -148,16 +148,6 @@ public class WorldMaker {
                             //name holes
                             String inName = out.getName() + " Jumphole";
                             String outName = sys.getName() + " Jumphole";
-                            //build a bridge
-                        /*
-                             * [Jumphole]
-                             name=System 9 Gate
-                             system=System 16
-                             out=System 9/System 16 Gate
-                             x=-6000
-                             y=-2000
-                             [/Jumphole]
-                             */
                             //build in gate
                             x = rnd.nextInt(size * 2) - size;
                             y = rnd.nextInt(size * 2) - size;
@@ -231,6 +221,47 @@ public class WorldMaker {
                                     + "d=" + 2 * r + "\n"
                                     + "seed=" + seed + "\n"
                                     + "[/Planet]\n\n";
+                            objects.add(test);
+                        }
+                    }
+                    /*
+                     * CREATE ASTEROIDS
+                     */
+                    int numAsteroids = rnd.nextInt(maxAsteroidsPerSystem);
+                    if (numAsteroids < minPlanetsPerSystem) {
+                        numAsteroids = minPlanetsPerSystem;
+                    }
+                    for (int b = 0; b < numAsteroids; b++) {
+                        //pick name
+                        String name = "Asteroid " + b;
+                        //generate position
+                        x = rnd.nextInt(size * 2) - size;
+                        y = rnd.nextInt(size * 2) - size;
+                        //generate rotation
+                        double theta = rnd.nextFloat() * 2.0 * Math.PI;
+                        //pick size
+                        dRS = maxPlanetSize - minPlanetSize;
+                        dRB = (int) (rnd.nextFloat() * dRS);
+                        r = minPlanetSize + dRB;
+                        //create a simpling for testing
+                        Simpling test = new Simpling(new Point2D.Float((float) x, (float) y), r);
+                        boolean safe = true;
+                        for (int c = 0; c < objects.size(); c++) {
+                            if (objects.get(c).collideWith(test)) {
+                                safe = false;
+                                break;
+                            }
+                        }
+                        //if it is safe add it
+                        if (safe) {
+                            thisSystem +=
+                                    "[Asteroid]\n"
+                                    + "name=" + name + "\n"
+                                    + "system=" + systemName + "\n"
+                                    + "x=" + x + "\n"
+                                    + "y=" + y + "\n"
+                                    + "t=" + theta + "\n"
+                                    + "[/Asteroid]\n\n";
                             objects.add(test);
                         }
                     }
@@ -361,11 +392,11 @@ public class WorldMaker {
                 }
             }
         }
-        int num = rnd.nextInt(24)+1;
+        int num = rnd.nextInt(24) + 1;
         if (rnd.nextFloat() > 0.5) {
-            return "'"+first+" "+num+"'";
+            return "'" + first + " " + num + "'";
         } else {
-            return "'"+last+" "+num+"'";
+            return "'" + last + " " + num + "'";
         }
     }
 

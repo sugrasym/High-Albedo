@@ -14,6 +14,7 @@
  */
 package gdi;
 
+import celestial.Asteroid;
 import celestial.Jumphole;
 import celestial.Planet;
 import celestial.Ship.Explosion;
@@ -133,6 +134,8 @@ public class OverviewWindow extends AstralWindow {
                      */
                     if (entities.get(a) instanceof Jumphole) {
                         doJumphole(entities, a, range, gfx);
+                    } else if (entities.get(a) instanceof Asteroid) {
+                        doAsteroid(entities, a, range, gfx, ex, ey);
                     } else if (entities.get(a) instanceof Planet) {
                         doPlanet(entities, a, range, gfx, ex, ey);
                     } else if (entities.get(a) == sensorShip) {
@@ -181,6 +184,19 @@ public class OverviewWindow extends AstralWindow {
                 gfx.setFont(radarFont);
                 gfx.drawString("NO AIM", (int) (ex + diam / 2) + (width / 2) - 1, (int) (ey + diam / 2) + (height / 2) - 1);
             }
+        }
+
+        protected void doAsteroid(ArrayList<Entity> entities, int a, double range, Graphics2D gfx, double ex, double ey) {
+            //get radius
+            Asteroid pl = (Asteroid) entities.get(a);
+            double diam = pl.getDiameter();
+            diam /= (range);
+            diam *= width / 2;
+            //determine whether to draw the name based on range
+            gfx.setColor(planetGrey);
+            gfx.fillOval((int) ex + (width / 2), (int) ey + (height / 2), (int) diam, (int) diam);
+            gfx.setColor(Color.orange);
+            gfx.drawOval((int) ex + (width / 2), (int) ey + (height / 2), (int) diam, (int) diam);
         }
 
         protected void doPlanet(ArrayList<Entity> entities, int a, double range, Graphics2D gfx, double ex, double ey) {

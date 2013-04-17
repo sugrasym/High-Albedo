@@ -22,6 +22,7 @@ package universe;
 import cargo.Equipment;
 import cargo.Hardpoint;
 import cargo.Weapon;
+import celestial.Asteroid;
 import celestial.Celestial;
 import celestial.Jumphole;
 import celestial.Planet;
@@ -59,6 +60,7 @@ public class SolarSystem implements Entity, Serializable {
     //quick reference
     private ArrayList<Entity> jumpholeList = new ArrayList<>();
     private ArrayList<Entity> celestialList = new ArrayList<>();
+    private ArrayList<Entity> asteroidList = new ArrayList<>();
     private ArrayList<Entity> stationList = new ArrayList<>();
     private ArrayList<Entity> shipList = new ArrayList<>();
     //who owns it
@@ -81,6 +83,7 @@ public class SolarSystem implements Entity, Serializable {
          * 
          * Star
          * Planet
+         * Asteroid
          * Ship
          * Station
          */
@@ -96,6 +99,13 @@ public class SolarSystem implements Entity, Serializable {
             if (planets.get(a).getValue("system").matches(getName())) {
                 //this planet needs to be created and stored
                 putEntityInSystem(makePlanet(planets.get(a)));
+            }
+        }
+        ArrayList<Term> asteroids = parse.getTermsOfType("Asteroid");
+        for (int a = 0; a < asteroids.size(); a++) {
+            if (asteroids.get(a).getValue("system").matches(getName())) {
+                //this asteroid needs to be created and stored
+                putEntityInSystem(makeAsteroid(asteroids.get(a)));
             }
         }
         ArrayList<Term> ships = parse.getTermsOfType("Ship");
@@ -151,6 +161,23 @@ public class SolarSystem implements Entity, Serializable {
             star.setSeed(seed);
         }
         return star;
+    }
+
+    private Asteroid makeAsteroid(Term asteroidTerm) {
+        Asteroid asteroid = null;
+        {
+            String pName = asteroidTerm.getValue("name");
+            double px = Double.parseDouble(asteroidTerm.getValue("x"));
+            double py = Double.parseDouble(asteroidTerm.getValue("y"));
+            double th = Double.parseDouble(asteroidTerm.getValue("t"));
+            Asteroid ast = new Asteroid(pName);
+            ast.setX(px);
+            ast.setY(py);
+            ast.setTheta(th);
+            ast.setCurrentSystem(this);
+            asteroid = ast;
+        }
+        return asteroid;
     }
 
     private Planet makePlanet(Term planetTerm) {
@@ -315,10 +342,15 @@ public class SolarSystem implements Entity, Serializable {
 
     public void putEntityInSystem(Entity entity) {
         entities.add(entity);
-        if (entity instanceof Celestial) {
+        if (entity instanceof Asteroid) {
+            Asteroid tmp = (Asteroid) entity;
+            tmp.setCurrentSystem(this);
+            asteroidList.add(tmp);
+        } else if (entity instanceof Celestial) {
             //let it know where it is
             Celestial tmp = (Celestial) entity;
             tmp.setCurrentSystem(this);
+            celestialList.add(tmp);
         }
         //put in the correct sublist
         if (entity instanceof Station) {
@@ -351,6 +383,7 @@ public class SolarSystem implements Entity, Serializable {
         shipList.remove(entity);
         celestialList.remove(entity);
         jumpholeList.remove(entity);
+        asteroidList.remove(entity);
         //remove from global list
         universe.getPlayerProperty().remove(entity);
     }
@@ -556,5 +589,9 @@ public class SolarSystem implements Entity, Serializable {
 
     public String toString() {
         return name + ", " + owner;
+    }
+
+    public ArrayList<Entity> getAsteroidList() {
+        return asteroidList;
     }
 }
