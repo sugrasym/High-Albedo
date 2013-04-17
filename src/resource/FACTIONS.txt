@@ -365,6 +365,7 @@ patrol1=Naval Crow,50
 patrol2=Naval Raven,25
 patrol3=Naval Condor,4
 trader0=Federal Trade Emu,20
+merchant0=Federal Supply Emu,5
 [/Loadout]
 
 [Loadout]
@@ -375,6 +376,7 @@ patrol2=OFAF Phantasm,25
 patrol3=OFAF Fetch,4
 trader0=OFAF Trade Poltergeist,20
 trader1=OFAF Logistics Apparition,8
+merchant0=OFAF Supply Poltergeist,5
 [/Loadout]
 
 [Loadout]
@@ -393,6 +395,7 @@ patrol2=Air Force Komodo,25
 patrol3=Naval Komodo,12
 patrol4=Naval Goanna,4
 trader0=Royal Trade Gila,20
+merchant0=Royal Supply Gila,5
 [/Loadout]
 
 [Loadout]
@@ -403,6 +406,7 @@ patrol2=ITC Fleet Hyena,25
 patrol3=ITC Fleet Lion,4
 trader0=ITC Trade Wildabeast,20
 trader1=ITC Logistics Zebra,8
+merchant0=ITC Supply Wildabeast,5
 [/Loadout]
 
 [Loadout]

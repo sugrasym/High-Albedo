@@ -1143,7 +1143,7 @@ public class Ship extends Celestial {
                     Station near = getNearestFriendlyStationInSystem();
                     if (near != null) {
                         cmdDock(near);
-                        System.out.println(getName() + " [ST] is low on fuel and docking at "
+                        System.out.println(getName() + " [UT] is low on fuel and docking at "
                                 + near.getName() + " (" + (int) (100 * (fuel / maxFuel)) + "%)");
                     } else {
                         leaveSystem();
@@ -1153,7 +1153,7 @@ public class Ship extends Celestial {
                 }
             }
         } else {
-            System.out.println(getName() + " [ST] sucessfully docked at " + port.getParent().getName()
+            System.out.println(getName() + " [UT] sucessfully docked at " + port.getParent().getName()
                     + " in " + port.getParent().getCurrentSystem().getName());
             //restore fuel
             fuel = maxFuel;

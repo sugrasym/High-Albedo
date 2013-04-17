@@ -38,7 +38,7 @@ public class SuperFaction extends Faction {
     //loadout lists
     private ArrayList<Binling> patrols = new ArrayList<>();
     private ArrayList<Binling> traders = new ArrayList<>();
-    private ArrayList<Binling> taxies = new ArrayList<>(); //TODO
+    private ArrayList<Binling> merchants = new ArrayList<>(); //TODO
     //station list
     private ArrayList<Binling> stations = new ArrayList<>();
     //music list
@@ -185,16 +185,16 @@ public class SuperFaction extends Faction {
                 }
             }
             /*
-             * Taxie loadouts
+             * Universe Trader Loadouts
              */
             {
                 int a = 0;
                 String type = "";
-                while ((type = stat.getValue("taxie" + a)) != null) {
+                while ((type = stat.getValue("merchant" + a)) != null) {
                     //get taxie info
                     String ty = type.split(",")[0];
                     double spread = Float.parseFloat(type.split(",")[1]);
-                    taxies.add(new Binling(ty, spread));
+                    getMerchants().add(new Binling(ty, spread));
                     //iterate
                     a++;
                 }
@@ -272,5 +272,9 @@ public class SuperFaction extends Faction {
 
     public ArrayList<String> getDangerMusic() {
         return dangerMusic;
+    }
+
+    public ArrayList<Binling> getMerchants() {
+        return merchants;
     }
 }

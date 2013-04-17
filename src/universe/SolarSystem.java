@@ -384,52 +384,56 @@ public class SolarSystem implements Entity, Serializable {
     public void periodicUpdate(double tpf) {
         for (int a = 0; a < entities.size(); a++) {
             entities.get(a).periodicUpdate(tpf);
-            if (entities.get(a).getState() == Entity.State.DEAD) {
-                //remove the entity
-                pullEntityFromSystem(entities.get(a));
-            } else if (entities.get(a) instanceof Ship) {
-                if (!entities.contains(universe.getPlayerShip())) {
-                    Ship test = (Ship) entities.get(a);
-                    //don't do OOS checks on player property obviously
-                    if (!test.getFaction().matches(universe.getPlayerShip().getFaction())) {
-                        //remove entities the player can't see that are out of fuel
-                        double fuelPercent = test.getFuel() / test.getMaxFuel();
-                        if (fuelPercent < 0.03) {
-                            System.out.println("Removing derelict ship [F] " + test.getName() + " :: " + test.getAutopilot());
-                            test.setState(State.DYING);
-                        }
-                        //see if this entity has a weapon with ammo left
-                        boolean hasAmmo = false;
-                        ArrayList<Hardpoint> hp = test.getHardpoints();
-                        if (hp.size() > 0) {
-                            for (int l = 0; l < hp.size(); l++) {
-                                Equipment mounted = hp.get(l).getMounted();
-                                if (mounted instanceof Weapon) {
-                                    Weapon tmp = (Weapon) mounted;
-                                    if (tmp.hasAmmo()) {
-                                        hasAmmo = true;
-                                        break;
+            if (a < entities.size()) {
+                if (entities.get(a).getState() == Entity.State.DEAD) {
+                    //remove the entity
+                    pullEntityFromSystem(entities.get(a));
+                } else if (entities.get(a) instanceof Ship) {
+                    if (!entities.contains(universe.getPlayerShip())) {
+                        Ship test = (Ship) entities.get(a);
+                        //don't do OOS checks on player property obviously
+                        if (!test.getFaction().matches(universe.getPlayerShip().getFaction())) {
+                            //remove entities the player can't see that are out of fuel
+                            double fuelPercent = test.getFuel() / test.getMaxFuel();
+                            if (fuelPercent < 0.03) {
+                                System.out.println("Removing derelict ship [F] " + test.getName() + " :: " + test.getAutopilot());
+                                test.setState(State.DYING);
+                            }
+                            //see if this entity has a weapon with ammo left
+                            boolean hasAmmo = false;
+                            ArrayList<Hardpoint> hp = test.getHardpoints();
+                            if (hp.size() > 0) {
+                                for (int l = 0; l < hp.size(); l++) {
+                                    Equipment mounted = hp.get(l).getMounted();
+                                    if (mounted instanceof Weapon) {
+                                        Weapon tmp = (Weapon) mounted;
+                                        if (tmp.hasAmmo()) {
+                                            hasAmmo = true;
+                                            break;
+                                        }
                                     }
                                 }
+                            } else {
+                                hasAmmo = true;
                             }
-                        } else {
-                            hasAmmo = true;
-                        }
-                        //remove entities that are completely out of ammo
-                        if (hasAmmo) {
-                            //do nothing
-                        } else {
-                            System.out.println("Removing derelict ship [A] " + test.getName() + " :: " + test.getAutopilot());
-                            test.setState(State.DYING);
+                            //remove entities that are completely out of ammo
+                            if (hasAmmo) {
+                                //do nothing
+                            } else {
+                                System.out.println("Removing derelict ship [A] " + test.getName() + " :: " + test.getAutopilot());
+                                test.setState(State.DYING);
+                            }
                         }
                     }
+                } else {
+                    //don't do this OOS stuff when the player is watching
+                }
+                //cleanup graphics if the player is not present
+                if (!entities.contains(universe.playerShip) && universe.playerShip.getState() == State.ALIVE) {
+                    disposeGraphics();
                 }
             } else {
-                //don't do this OOS stuff when the player is watching
-            }
-            //cleanup graphics if the player is not present
-            if (!entities.contains(universe.playerShip) && universe.playerShip.getState() == State.ALIVE) {
-                disposeGraphics();
+                //it jumped out
             }
         }
     }
@@ -549,8 +553,8 @@ public class SolarSystem implements Entity, Serializable {
     public void setDangerMusic(String dangerMusic) {
         this.dangerMusic = dangerMusic;
     }
-    
+
     public String toString() {
-        return name+", "+owner;
+        return name + ", " + owner;
     }
 }
