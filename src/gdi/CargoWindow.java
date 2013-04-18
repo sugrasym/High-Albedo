@@ -37,7 +37,7 @@ import lib.Parser;
 import lib.Parser.Term;
 
 public class CargoWindow extends AstralWindow {
-    
+
     public static final String CMD_TRASH = "Trash";
     public static final String CMD_EJECT = "Eject";
     public static final String CMD_UNMOUNT = "Unmount";
@@ -53,12 +53,12 @@ public class CargoWindow extends AstralWindow {
     AstralList propertyList = new AstralList(this);
     AstralList optionList = new AstralList(this);
     protected Ship ship;
-    
+
     public CargoWindow() {
         super();
         generate();
     }
-    
+
     private void generate() {
         backColor = windowGrey;
         //size this window
@@ -88,7 +88,7 @@ public class CargoWindow extends AstralWindow {
         addComponent(propertyList);
         addComponent(optionList);
     }
-    
+
     public void update(Ship ship) {
         ArrayList<Item> logicalCargoList = new ArrayList<>();
         if (ship != null) {
@@ -139,15 +139,15 @@ public class CargoWindow extends AstralWindow {
             }
         }
     }
-    
+
     public Ship getShip() {
         return ship;
     }
-    
+
     public void setShip(Ship ship) {
         this.ship = ship;
     }
-    
+
     private void fillDescriptionLines(Item selected) {
         /*
          * Fills in the item's description being aware of things like line breaking on spaces.
@@ -187,7 +187,7 @@ public class CargoWindow extends AstralWindow {
         }
         propertyList.addToList(tmp.toString());
     }
-    
+
     private void fillCommandLines(Item selected) {
         if (selected instanceof Equipment) {
             optionList.addToList("--Fitting--");
@@ -270,7 +270,7 @@ public class CargoWindow extends AstralWindow {
             optionList.addToList(CMD_EJECT);
         }
     }
-    
+
     @Override
     public void handleMouseClickedEvent(MouseEvent me) {
         super.handleMouseClickedEvent(me);
@@ -280,7 +280,7 @@ public class CargoWindow extends AstralWindow {
             parseCommand(command);
         }
     }
-    
+
     private void parseCommand(String command) {
         if (command != null) {
             if (command.matches(CMD_TRASH)) {
@@ -410,20 +410,42 @@ public class CargoWindow extends AstralWindow {
             } else if (command.matches(CMD_CLAIMSOV)) {
                 Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
                 if (selected.getQuantity() == 1) {
-                    //standings hit
-                    Faction tmp = new Faction(ship.getCurrentSystem().getOwner());
-                    ship.getUniverse().getPlayerShip().getMyFaction().derivedModification(tmp, -8.0);
-                    //transfer
-                    ship.getCurrentSystem().setOwner("Player");
-                    //notify player
-                    ship.composeMessage(ship, ship.getCurrentSystem().getName(), "Congratulations on your "
-                            + "recent acquisition! If you fail to maintain at least 1 station in this system "
-                            + "you will lose control, and it will return to a new owner. Fly safe.", null);
+                    if (!ship.getCurrentSystem().getOwner().matches("Neutral")) {
+                        //count stations
+                        int count = 0;
+                        ArrayList<Entity> stationList = ship.getCurrentSystem().getStationList();
+                        for (int a = 0; a < stationList.size(); a++) {
+                            Station test = (Station) stationList.get(a);
+                            if (test.getFaction().matches("Player")) {
+                                count++;
+                            }
+                        }
+                        if (count >= 4) {
+                            //standings hit
+                            Faction tmp = new Faction(ship.getCurrentSystem().getOwner());
+                            ship.getUniverse().getPlayerShip().getMyFaction().derivedModification(tmp, -8.0);
+                            //transfer
+                            ship.getCurrentSystem().setOwner("Player");
+                            //notify player
+                            ship.composeMessage(ship, ship.getCurrentSystem().getName() + " claimed", "Congratulations on your "
+                                    + "recent acquisition! If you fail to maintain at least 1 station in this system "
+                                    + "you will lose control, and it will return to a new owner. Fly safe. /br/ /br/ "
+                                    + "Paralegal: Beyond the Law", null);
+                            //remove papers
+                            ship.removeFromCargoBay(selected);
+                        } else {
+                            ship.composeMessage(ship, "Terms of Service", "You need at least 4 stations here for us to transfer ownership. /br/ /br/ "
+                                    + "Paralegal: Beyond the Law", null);
+                        }
+                    } else {
+                        ship.composeMessage(ship, "Terms of Service", "We can't work with neutral space, sorry /br/ /br/ "
+                                + "Paralegal: Beyond the Law", null);
+                    }
                 }
             }
         }
     }
-    
+
     private void stackItem(ArrayList<Item> cargoBay, Item selected) {
         if (cargoBay.contains(selected)) {
             for (int a = 0; a < cargoBay.size(); a++) {
