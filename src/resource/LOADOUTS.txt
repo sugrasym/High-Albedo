@@ -24,6 +24,20 @@ cargo=Slaves~1000
 ########Corportate Lawful
 
 [Loadout]
+ship=Cab
+name=Skybus Executioner
+install=ERPC/ERPC
+cargo=Astronaut~1
+[/Loadout]
+
+[Loadout]
+ship=Cab
+name=Skybus Shuttle
+install=ERPC/ERPC
+cargo=Astronaut~1
+[/Loadout]
+
+[Loadout]
 ship=Freyr
 name=RS Bounty Hunter
 install=Thorn A/Thorn A

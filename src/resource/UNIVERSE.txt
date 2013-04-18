@@ -1,11 +1,10 @@
 #New Game Smell
 [NewGame]
-ship=Apparition
-system=Beta CHH-XW
-near='Turner 19'
-cash=250000000
-install=HGPC/HGPC
-cargo=System Transfer Paperwork
+ship=Cab
+near='Ema 2'
+system=Xi 7IG-7U4
+cash=25000
+install=ERPC/ERPC
 faction=Player
 [/NewGame]
 
@@ -1839,7 +1838,7 @@ texture=DoubleBandedGas
 x=5766.0
 y=-16405.0
 d=3742
-seed=267511429
+seed=2675114
 [/Planet]
 
 [System]
