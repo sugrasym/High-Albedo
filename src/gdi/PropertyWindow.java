@@ -359,13 +359,32 @@ public class PropertyWindow extends AstralWindow {
         ArrayList<Ship> logicalPropertyList = new ArrayList<>();
         if (ship != null) {
             //get global list
-            ArrayList<Ship> prop = ship.getUniverse().getPlayerProperty();
+            ArrayList<Entity> prop = ship.getUniverse().getPlayerProperty();
+            //make sub lists
+            ArrayList<Ship> pShips = new ArrayList<>();
+            ArrayList<Ship> pStats = new ArrayList<>();
             for (int a = 0; a < prop.size(); a++) {
-                logicalPropertyList.add(prop.get(a));
+                //add to correct sub list
+                if (prop.get(a) instanceof Station) {
+                    pStats.add((Station) prop.get(a));
+                } else if (prop.get(a) instanceof Ship) {
+                    pShips.add((Ship) prop.get(a));
+                }
+            }
+            //add to logical list
+            /*
+             * Ships go first.
+             * Then stations.
+             */
+            for (int a = 0; a < pShips.size(); a++) {
+                logicalPropertyList.add(pShips.get(a));
+            }
+            for (int a = 0; a < pStats.size(); a++) {
+                logicalPropertyList.add(pStats.get(a));
             }
             //push list to window
             for (int a = 0; a < prop.size(); a++) {
-                propertyList.addToList(prop.get(a));
+                propertyList.addToList(logicalPropertyList.get(a));
             }
             //display detailed information about the selected item
             int index = propertyList.getIndex();

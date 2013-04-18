@@ -19,6 +19,7 @@
 package universe;
 
 import celestial.Ship.Ship;
+import engine.Entity;
 import engine.God;
 import engine.ResourceCache;
 import engine.SettingsManager;
@@ -38,7 +39,7 @@ public class Universe implements Serializable {
     private static transient ResourceCache cache;
     private transient God god;
     protected Ship playerShip;
-    private ArrayList<Ship> playerProperty = new ArrayList<>();
+    private ArrayList<Entity> playerProperty = new ArrayList<>();
     private ArrayList<Mission> playerMissions = new ArrayList<>();
 
     static {
@@ -183,7 +184,7 @@ public class Universe implements Serializable {
         this.god = god;
     }
 
-    public ArrayList<Ship> getPlayerProperty() {
+    public ArrayList<Entity> getPlayerProperty() {
         return playerProperty;
     }
 

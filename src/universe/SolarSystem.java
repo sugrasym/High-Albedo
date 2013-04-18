@@ -359,7 +359,7 @@ public class SolarSystem implements Entity, Serializable {
             Station test = (Station) entity;
             if (test.getFaction().matches("Player")) {
                 //yep, add it to the global list
-                universe.getPlayerProperty().add(test);
+                universe.getPlayerProperty().add(entity);
             }
         } else if (entity instanceof Ship) {
             shipList.add(entity);
@@ -368,7 +368,7 @@ public class SolarSystem implements Entity, Serializable {
                 Ship test = (Ship) entity;
                 if (test.getFaction().matches("Player")) {
                     //yep, add it to the global list
-                    universe.getPlayerProperty().add(test);
+                    universe.getPlayerProperty().add(entity);
                 }
             }
         } else if (entity instanceof Jumphole) {

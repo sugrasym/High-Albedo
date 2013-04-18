@@ -91,7 +91,7 @@ Neutral=0
 Entities=-10
 Player=0
 Red Sky=10
-Skybus Interstellar=5
+Skybus Interstellar=0
 Prism Exhuming=5
 Leap Frog Logistics=5
 Gunpower=5
@@ -114,11 +114,11 @@ var_description=An international shuttle service with a special relationship to 
 Neutral=0
 Entities=-10
 Player=-4
-Red Sky=5
+Red Sky=0
 Skybus Interstellar=10
-Prism Exhuming=5
-Leap Frog Logistics=5
-Gunpower=5
+Prism Exhuming=0
+Leap Frog Logistics=0
+Gunpower=0
 Ageiran Federation=0
 The Archers=-5
 ITC=0
@@ -139,7 +139,7 @@ Neutral=0
 Entities=-10
 Player=0
 Red Sky=5
-Skybus Interstellar=5
+Skybus Interstellar=0
 Prism Exhuming=10
 Leap Frog Logistics=5
 Gunpower=5
@@ -163,7 +163,7 @@ Neutral=0
 Entities=-10
 Player=0
 Red Sky=5
-Skybus Interstellar=5
+Skybus Interstellar=0
 Prism Exhuming=5
 Gunpower=5
 Leap Frog Logistics=10
@@ -187,7 +187,7 @@ Neutral=0
 Entities=-10
 Player=0
 Red Sky=5
-Skybus Interstellar=5
+Skybus Interstellar=0
 Prism Exhuming=5
 Gunpower=10
 Leap Frog Logistics=5
@@ -598,8 +598,8 @@ merchant0=ITC Supply Wildabeast,5
 
 [Loadout]
 name=Wolves
-patrol0=Wolves Cub,200
-patrol1=Wolves Member,50
+patrol0=Wolves Cub,100
+patrol1=Wolves Member,25
 [/Loadout]
 
 [Loadout]
@@ -610,7 +610,7 @@ patrol1=Knights Visionary,10
 
 [Loadout]
 name=Tengus
-patrol0=Tengu Apprentice,250
+patrol0=Tengu Apprentice,125
 patrol1=Tengu Master,50
 patrol2=Tengu Shogun,2
 [/Loadout]
