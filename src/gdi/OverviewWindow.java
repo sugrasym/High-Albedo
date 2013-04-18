@@ -15,6 +15,7 @@
 package gdi;
 
 import celestial.Asteroid;
+import celestial.Celestial;
 import celestial.Jumphole;
 import celestial.Planet;
 import celestial.Ship.Explosion;
@@ -122,7 +123,12 @@ public class OverviewWindow extends AstralWindow {
                 ex -= sensorShip.getX();
                 ey -= sensorShip.getY();
                 //calculate distance
-                double dist = magnitude(ex, ey);
+                double dist;
+                if (entities.get(a) instanceof Celestial) {
+                    dist = sensorShip.distanceTo((Celestial) entities.get(a));
+                } else {
+                    dist = magnitude(ex, ey);
+                }
                 if (dist <= range || entities.get(a) instanceof Planet) {
                     //adjust for size
                     ex /= range;

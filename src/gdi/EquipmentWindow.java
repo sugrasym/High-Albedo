@@ -76,7 +76,7 @@ public class EquipmentWindow extends AstralWindow {
                 if (!(celestials.get(a) instanceof Projectile)) {
                     if (!(celestials.get(a) instanceof Explosion)) {
                         Ship tmp = (Ship) celestials.get(a);
-                        if (ship.distanceTo(tmp) < ship.getSensor() && ship != tmp) {
+                        if (ship.distanceTo(tmp) <= ship.getSensor() && ship != tmp) {
                             targetList.addToList(tmp);
                         }
                     }
@@ -260,7 +260,7 @@ public class EquipmentWindow extends AstralWindow {
             ex -= (ship.getX() + ship.getWidth() / 2);
             ey -= (ship.getY() + ship.getHeight() / 2);
             //calculate distance
-            double dist = magnitude(ex, ey);
+            double dist = ship.distanceTo(ship.getTarget());
             if (dist <= range && ship.getTarget().getState() == State.ALIVE) {
                 //adjust for size
                 ex /= range;
@@ -329,9 +329,5 @@ public class EquipmentWindow extends AstralWindow {
 
     public void scrollDown() {
         weaponList.scrollDown();
-    }
-
-    private double magnitude(double dx, double dy) {
-        return Math.sqrt((dx * dx) + (dy * dy));
     }
 }
