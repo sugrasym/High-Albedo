@@ -163,10 +163,10 @@ public class StarMapWindow extends AstralWindow {
                         if (systems.get(a).getOwner().matches("Player")) {
                             tfx.setColor(Color.MAGENTA);
                         } else {
-                            tfx.setColor(Color.WHITE);
+                            tfx.setColor(Color.GRAY);
                         }
                         tfx.fillRect((int) rx - 2, (int) ry - 2, 4, 4);
-                        tfx.setColor(Color.PINK);
+                        tfx.setColor(Color.WHITE);
                     }
                     tfx.drawString(systems.get(a).getName(), (int) rx - 2, (int) ry - 2);
                 }
@@ -204,20 +204,20 @@ public class StarMapWindow extends AstralWindow {
         } else if (ke.getKeyCode() == KeyEvent.VK_HOME) {
             decrementMode();
         } else if (ke.getKeyCode() == KeyEvent.VK_UP) {
-            offset.y += 2;
+            offset.y += 20;
             offset.x += 0;
         }
         if (ke.getKeyCode() == KeyEvent.VK_DOWN) {
-            offset.y -= 2;
+            offset.y -= 20;
             offset.x += 0;
         }
         if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
             offset.y += 0;
-            offset.x += 2;
+            offset.x += 20;
         }
         if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
             offset.y += 0;
-            offset.x -= 2;
+            offset.x -= 20;
         }
     }
 }

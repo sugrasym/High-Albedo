@@ -590,7 +590,7 @@ public class PropertyWindow extends AstralWindow {
             if (!isStation) {
                 optionList.addToList(" ");
                 optionList.addToList(CMD_TRADE);
-                if(selected.hasGroupInCargo("jumpdrive")) {
+                if (selected.hasGroupInCargo("jumpdrive")) {
                     optionList.addToList(CMD_UTRADE);
                 }
                 optionList.addToList(CMD_PATROL);
@@ -720,15 +720,11 @@ public class PropertyWindow extends AstralWindow {
                 ArrayList<Object> choice = new ArrayList<>();
                 choice.add("--Select Target To Fly To--");
                 choice.add(" ");
-                ArrayList<Entity> tmp = selected.getCurrentSystem().getCelestialList();
-                for (int a = 0; a < tmp.size(); a++) {
-                    choice.add(tmp.get(a));
-                }
                 ArrayList<Entity> jhp = selected.getCurrentSystem().getJumpholeList();
                 for (int a = 0; a < jhp.size(); a++) {
                     choice.add(jhp.get(a));
                 }
-                if (tmp.size() > 0 || jhp.size() > 0) {
+                if (jhp.size() > 0) {
                     showInputList(choice);
                     mode = Mode.WAITING_FOR_CELESTIAL;
                 } else {
