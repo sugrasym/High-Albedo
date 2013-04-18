@@ -50,7 +50,9 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -259,7 +261,8 @@ public class Engine {
             try {
                 music = AudioSystem.getClip();
                 //load menu track
-                AudioInputStream stream = AudioSystem.getAudioInputStream(getClass().getResource(AstralIO.RESOURCE_DIR + "/" + ambientTrack));
+                URL snURL =  getClass().getClassLoader().getResource("resource/"+ambientTrack);
+                AudioInputStream stream = AudioSystem.getAudioInputStream(snURL);
                 music.open(stream);
                 //start
                 music.loop(Clip.LOOP_CONTINUOUSLY);
@@ -329,7 +332,7 @@ public class Engine {
                     ambientTrack = playerShip.getCurrentSystem().getAmbientMusic();
                     music = AudioSystem.getClip();
                     //load stream
-                    AudioInputStream stream = AudioSystem.getAudioInputStream(getClass().getResource(AstralIO.RESOURCE_DIR + "/" + ambientTrack));
+                    AudioInputStream stream = AudioSystem.getAudioInputStream(getClass().getClassLoader().getResource("resource/"+ambientTrack));
                     music.open(stream);
                     //start
                     music.loop(Clip.LOOP_CONTINUOUSLY);
@@ -347,7 +350,7 @@ public class Engine {
                     dangerTrack = playerShip.getCurrentSystem().getDangerMusic();
                     music = AudioSystem.getClip();
                     //load stream
-                    AudioInputStream stream = AudioSystem.getAudioInputStream(getClass().getResource(AstralIO.RESOURCE_DIR + "/" + dangerTrack));
+                    AudioInputStream stream = AudioSystem.getAudioInputStream(getClass().getClassLoader().getResource("resource/"+dangerTrack));
                     music.open(stream);
                     //start
                     music.loop(Clip.LOOP_CONTINUOUSLY);

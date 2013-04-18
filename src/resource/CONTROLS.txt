@@ -32,7 +32,7 @@ Weapons/Equipment
 * Click on a piece of equipment in the equipment list to toggle it.
 
 SPACE - Fire onlined equipment.
-
+ 
 UI Components
 ---------------------
 * Click on a window to focus it so you can send commands to it, click in empty space to deselect everything.
