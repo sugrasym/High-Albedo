@@ -49,15 +49,11 @@ public class Main extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    public static void main(String[] args) {
-        new Main().execute();
-    }
-
-    public void execute() {
+    public void execute(boolean fullScreen, int wx, int wy) {
         //create
         if (safe) {
             //initialize display
-            windowInit();
+            windowInit(fullScreen, wx, wy);
             //initialize engine
             engineInit();
             //add listeners
@@ -74,12 +70,17 @@ public class Main extends JFrame {
     /*
      * Initialize the window
      */
-    public final void windowInit() {
+    public final void windowInit(boolean fullScreen, int wx, int wy) {
         setVisible(false);
         //set properties
         System.setProperty("sun.java2d.transaccel", "True");
-        System.setProperty("sun.java2d.opengl", "True");
-        System.setProperty("sun.java2d.d3d", "True");
+        if (System.getProperty("os.name").toLowerCase().contains("windows")) {
+            System.setProperty("sun.java2d.d3d", "True");
+            System.out.println("Running on "+System.getProperty("os.name")+" using DirectX");
+        } else {
+            System.setProperty("sun.java2d.opengl", "True");
+            System.out.println("Running on "+System.getProperty("os.name")+" using OpenGL");
+        }
         System.setProperty("sun.java2d.ddforcevram", "True");
         System.setProperty("javax.sound.sampled.SourceDataLine", "com.sun.media.sound.DirectAudioDeviceProvider");
         //do no allow manual resizing
@@ -88,10 +89,16 @@ public class Main extends JFrame {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         GraphicsDevice gs = ge.getDefaultScreenDevice();
         try {
-            //throw new Exception();
-            setUndecorated(true);
-            gs.setFullScreenWindow(this);
-            System.out.println("Sucessfully acquired full screen.");
+            if (fullScreen) {
+                //throw new Exception();
+                setUndecorated(true);
+                gs.setFullScreenWindow(this);
+                System.out.println("Sucessfully acquired full screen.");
+            } else {
+                setUndecorated(false);
+                setSize(wx, wy);
+                System.out.println("Sucessfully acquired windowed mode.");
+            }
         } catch (Exception e) {
             e.printStackTrace();
             //fallback to a windowed mode
