@@ -65,7 +65,7 @@ Neutral=0
 Entities=-10
 Player=10
 Red Sky=0
-Skybus Interstellar=-9
+Skybus Interstellar=-4
 Prism Exhuming=0
 Leap Frog Logistics=0
 Gunpower=0
@@ -113,7 +113,7 @@ var_worldPercent=0
 var_description=An international shuttle service with a special relationship to you. You've stolen their property, and they'll get you for it. Somehow. Someday.
 Neutral=0
 Entities=-10
-Player=-9
+Player=-4
 Red Sky=5
 Skybus Interstellar=10
 Prism Exhuming=5
@@ -520,27 +520,27 @@ patrol1=RS Assassin,25
 
 [Loadout]
 name=Skybus Interstellar
-patrol0=Skybus Executioner,25
-trader0=Skybus Shuttle,50
+patrol0=Skybus Executioner,12
+trader0=Skybus Shuttle,25
 [/Loadout]
 
 [Loadout]
 name=Gunpower
-patrol0=GP Security Raven,20
-patrol1=GP Security Hyena,10
+patrol0=GP Security Raven,15
+patrol1=GP Security Hyena,6
 [/Loadout]
 
 [Loadout]
 name=Prism Exhuming
-patrol0=PE Security Cheetah,15
-patrol1=PE Security Monitor,30
+patrol0=PE Security Cheetah,10
+patrol1=PE Security Monitor,5
 merchant0=PE Supply Gila,5
 [/Loadout]
 
 [Loadout]
 name=Leap Frog Logistics
-patrol0=LFL Security Crow,30
-patrol1=LFL Security Wraith,15
+patrol0=LFL Security Crow,10
+patrol1=LFL Security Wraith,5
 merchant0=LFL Supply Emu,10
 merchant1=LFL Supply Poltergeist,10
 [/Loadout]
@@ -598,8 +598,8 @@ merchant0=ITC Supply Wildabeast,5
 
 [Loadout]
 name=Wolves
-patrol0=Wolves Cub,100
-patrol1=Wolves Member,25
+patrol0=Wolves Cub,200
+patrol1=Wolves Member,50
 [/Loadout]
 
 [Loadout]
@@ -610,8 +610,8 @@ patrol1=Knights Visionary,10
 
 [Loadout]
 name=Tengus
-patrol0=Tengu Apprentice,125
-patrol1=Tengu Master,25
+patrol0=Tengu Apprentice,250
+patrol1=Tengu Master,50
 patrol2=Tengu Shogun,2
 [/Loadout]
 

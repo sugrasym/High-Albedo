@@ -102,8 +102,8 @@ turning=4
 name=M-AM Launcher
 type=missile
 #shell info
-damage=4425
-range=1500
+damage=2900
+range=1400
 speed=4
 mass=1
 refire=8
