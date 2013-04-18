@@ -38,7 +38,7 @@ public class AstralList extends AstralComponent {
 
     ArrayList<Object> listContents = new ArrayList<>();
     //appearance
-    protected Font font = new Font("Monospaced", Font.PLAIN, 11);
+    protected Font font = new Font("Monospaced", Font.PLAIN, 10);
     protected Color fontColor = amber;
     protected Color backColor = windowGrey;
     protected Color selectColor = Color.darkGray;

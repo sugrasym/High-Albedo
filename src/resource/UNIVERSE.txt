@@ -1,10 +1,11 @@
 #New Game Smell
 [NewGame]
-ship=Cab
-near='Ema 2'
-system=Xi 7IG-7U4
+ship=Wraith
+near=name='Moke 4'
+system=Beta 90A-2TPC
 cash=25000
-install=ERPC/ERPC
+install=ERPC/ERPC/Rocket Pod/Rocket Pod
+cargo=Rapid Rocket~600
 faction=Player
 [/NewGame]
 
