@@ -21,6 +21,7 @@ Left/Right Arrow - Rotate
 HOME - hold to decelerate
 
 D - dock with selected station / undock if docked
+H - hail selected ship (only possible in space)
 
 Targeting
 ---------------------
