@@ -160,7 +160,11 @@ public class StarMapWindow extends AstralWindow {
                         tfx.fillRect((int) rx - 2, (int) ry - 2, 4, 4);
                         tfx.setColor(Color.GREEN);
                     } else {
-                        tfx.setColor(Color.WHITE);
+                        if (systems.get(a).getOwner().matches("Player")) {
+                            tfx.setColor(Color.MAGENTA);
+                        } else {
+                            tfx.setColor(Color.WHITE);
+                        }
                         tfx.fillRect((int) rx - 2, (int) ry - 2, 4, 4);
                         tfx.setColor(Color.PINK);
                     }
@@ -179,8 +183,8 @@ public class StarMapWindow extends AstralWindow {
     public void decrementMode() {
         zoom /= 2;
         /*if (zoom < 0.25) {
-            zoom = 0.25;
-        }*/
+         zoom = 0.25;
+         }*/
         offset.x = offset.x / 2;
         offset.y = offset.y / 2;
         if (Math.abs(offset.x) < 1) {

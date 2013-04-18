@@ -32,11 +32,12 @@ import gdi.component.AstralList;
 import gdi.component.AstralWindow;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import lib.Faction;
 import lib.Parser;
 import lib.Parser.Term;
 
 public class CargoWindow extends AstralWindow {
-
+    
     public static final String CMD_TRASH = "Trash";
     public static final String CMD_EJECT = "Eject";
     public static final String CMD_UNMOUNT = "Unmount";
@@ -47,16 +48,17 @@ public class CargoWindow extends AstralWindow {
     public static final String CMD_ASSEMBLE = "Assemble";
     public static final String CMD_PACKAGE = "Package";
     public static final String CMD_DEPLOY = "Deploy";
+    public static final String CMD_CLAIMSOV = "Claim System";
     AstralList cargoList = new AstralList(this);
     AstralList propertyList = new AstralList(this);
     AstralList optionList = new AstralList(this);
     protected Ship ship;
-
+    
     public CargoWindow() {
         super();
         generate();
     }
-
+    
     private void generate() {
         backColor = windowGrey;
         //size this window
@@ -86,7 +88,7 @@ public class CargoWindow extends AstralWindow {
         addComponent(propertyList);
         addComponent(optionList);
     }
-
+    
     public void update(Ship ship) {
         ArrayList<Item> logicalCargoList = new ArrayList<>();
         if (ship != null) {
@@ -137,15 +139,15 @@ public class CargoWindow extends AstralWindow {
             }
         }
     }
-
+    
     public Ship getShip() {
         return ship;
     }
-
+    
     public void setShip(Ship ship) {
         this.ship = ship;
     }
-
+    
     private void fillDescriptionLines(Item selected) {
         /*
          * Fills in the item's description being aware of things like line breaking on spaces.
@@ -185,7 +187,7 @@ public class CargoWindow extends AstralWindow {
         }
         propertyList.addToList(tmp.toString());
     }
-
+    
     private void fillCommandLines(Item selected) {
         if (selected instanceof Equipment) {
             optionList.addToList("--Fitting--");
@@ -201,6 +203,16 @@ public class CargoWindow extends AstralWindow {
             }
             optionList.addToList(" ");
         } else {
+            /*
+             * Options for sov papers
+             */
+            if (selected.getGroup().matches("sovtransfer")) {
+                if (!ship.isDocked()) {
+                    optionList.addToList("--Setup--");
+                    optionList.addToList(CMD_CLAIMSOV);
+                    optionList.addToList(" ");
+                }
+            }
             /*
              * Options for stations
              */
@@ -258,7 +270,7 @@ public class CargoWindow extends AstralWindow {
             optionList.addToList(CMD_EJECT);
         }
     }
-
+    
     @Override
     public void handleMouseClickedEvent(MouseEvent me) {
         super.handleMouseClickedEvent(me);
@@ -268,7 +280,7 @@ public class CargoWindow extends AstralWindow {
             parseCommand(command);
         }
     }
-
+    
     private void parseCommand(String command) {
         if (command != null) {
             if (command.matches(CMD_TRASH)) {
@@ -368,7 +380,7 @@ public class CargoWindow extends AstralWindow {
                             double record = Double.MAX_VALUE;
                             for (int a = 0; a < asts.size(); a++) {
                                 Asteroid test = (Asteroid) asts.get(a);
-                                if(ship.distanceTo(test) < record) {
+                                if (ship.distanceTo(test) < record) {
                                     record = ship.distanceTo(test);
                                     pick = test;
                                 }
@@ -395,10 +407,23 @@ public class CargoWindow extends AstralWindow {
                         ret.clearWares();
                     }
                 }
+            } else if (command.matches(CMD_CLAIMSOV)) {
+                Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
+                if (selected.getQuantity() == 1) {
+                    //standings hit
+                    Faction tmp = new Faction(ship.getCurrentSystem().getOwner());
+                    ship.getUniverse().getPlayerShip().getMyFaction().derivedModification(tmp, -8.0);
+                    //transfer
+                    ship.getCurrentSystem().setOwner("Player");
+                    //notify player
+                    ship.composeMessage(ship, ship.getCurrentSystem().getName(), "Congratulations on your "
+                            + "recent acquisition! If you fail to maintain at least 1 station in this system "
+                            + "you will lose control, and it will return to a new owner. Fly safe.", null);
+                }
             }
         }
     }
-
+    
     private void stackItem(ArrayList<Item> cargoBay, Item selected) {
         if (cargoBay.contains(selected)) {
             for (int a = 0; a < cargoBay.size(); a++) {
