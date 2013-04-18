@@ -45,6 +45,7 @@ public class God implements EngineElement {
     private Universe universe;
     private ArrayList<SuperFaction> factions = new ArrayList<>();
     private Random rnd = new Random();
+    boolean firstRun = true;
     //sample
     private final char[] basicSample = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
         'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '1', '2',
@@ -74,7 +75,8 @@ public class God implements EngineElement {
         //calculate time per frame
         double tpf = Math.abs(dt / 1000000000.0);
         //only run it every 16 minutes because it's a performance hog!
-        if (tpf > 960) {
+        if (tpf > 960 || firstRun) {
+            firstRun = false;
             //store time
             lastFrame = System.nanoTime();
             //update
@@ -100,7 +102,7 @@ public class God implements EngineElement {
             doMerchants(factions.get(a));
         }
     }
-    
+
     private void checkTraders() {
         //iterate through each faction
         for (int a = 0; a < factions.size(); a++) {
@@ -121,26 +123,26 @@ public class God implements EngineElement {
             doStations(factions.get(a));
         }
         //make sure none are ontop of each other
-        for(int a = 0; a < universe.getSystems().size(); a++) {
+        for (int a = 0; a < universe.getSystems().size(); a++) {
             SolarSystem curr = universe.getSystems().get(a);
             ArrayList<Entity> stations = curr.getStationList();
-            for(int y = 0; y < stations.size(); y++) {
+            for (int y = 0; y < stations.size(); y++) {
                 Station prim = (Station) stations.get(y);
-                for(int x = 0; x < stations.size(); x++) {
+                for (int x = 0; x < stations.size(); x++) {
                     Station sub = (Station) stations.get(x);
                     //make sure they aren't the same
-                    if(stations.get(y) != stations.get(x)) {
+                    if (stations.get(y) != stations.get(x)) {
                         //check for collission
-                        if(prim.collideWith(sub)) {
+                        if (prim.collideWith(sub)) {
                             //push the sub station away
-                            sub.setX(rnd.nextInt(64000)-32000);
-                            sub.setY(rnd.nextInt(64000)-32000);
+                            sub.setX(rnd.nextInt(64000) - 32000);
+                            sub.setY(rnd.nextInt(64000) - 32000);
                             //report
-                            System.out.println("Station "+sub+" was moved.");
+                            System.out.println("Station " + sub + " was moved.");
                         }
                     }
                 }
-            } 
+            }
         }
     }
 
@@ -240,7 +242,7 @@ public class God implements EngineElement {
             }
         }
     }
-    
+
     private void doMerchants(SuperFaction faction) {
         /*
          * 1. Make sure this faction has patrols
