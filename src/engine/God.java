@@ -73,8 +73,8 @@ public class God implements EngineElement {
         long dt = System.nanoTime() - lastFrame;
         //calculate time per frame
         double tpf = Math.abs(dt / 1000000000.0);
-        //only run it every 480 seconds because it's a performance hog!
-        if (tpf > 480) {
+        //only run it every 16 minutes because it's a performance hog!
+        if (tpf > 960) {
             //store time
             lastFrame = System.nanoTime();
             //update
