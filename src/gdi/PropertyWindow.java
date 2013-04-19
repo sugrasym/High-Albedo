@@ -574,7 +574,7 @@ public class PropertyWindow extends AstralWindow {
     private void fillCommandLines(Ship selected) {
         if (selected != null) {
             boolean isStation = false;
-            if (ship.getCurrentSystem().getStationList().contains(selected)) {
+            if (selected.getCurrentSystem().getStationList().contains(selected)) {
                 isStation = true;
             }
             /*
