@@ -646,6 +646,17 @@ rumor6=GenericRumor6
 rumor7=GenericRumor7
 rumor8=GenericRumor8
 rumor9=GenericRumor9
+rumor10=PE-MiningOutpost
+rumor11=PE-FreeAsteroids
+rumor12=PE-Subsidization
+rumor13=PE-AboutUs
+rumor14=PE-Security
+rumor15=PE-AgeiranMinerals
+rumor16=PE-TheEntities
+rumor17=PE-TheEntities2
+rumor18=PE-TheFrontier
+rumor19=PE-Planets
+rumor20=PE-SuckZone
 [/Comm]
 
 [Comm]
@@ -675,6 +686,17 @@ rumor6=GenericRumor6
 rumor7=GenericRumor7
 rumor8=GenericRumor8
 rumor9=GenericRumor9
+rumor10=LFL-AboutUs
+rumor11=LFL-PPG
+rumor12=LFL-Jumpdrive
+rumor13=LFL-Jumpdrive2
+rumor14=LFL-TotalMonopoly
+rumor15=LFL-Jumpholes
+rumor16=LFL-Jumpgates
+rumor17=LFL-Energy
+rumor18=LFL-IndustrialWaste
+rumor19=LFL-Economy
+rumor20=LFL-Economy2
 [/Comm]
 
 [Comm]
@@ -704,6 +726,17 @@ rumor6=GenericRumor6
 rumor7=GenericRumor7
 rumor8=GenericRumor8
 rumor9=GenericRumor9
+rumor10=GP-Arms
+rumor11=GP-EveryoneShouldHaveAGun
+rumor12=GP-GunsAreGood
+rumor13=GP-GunFactories
+rumor14=GP-MAMMissile
+rumor15=GP-HGPC
+rumor16=GP-RocketsAndMissiles
+rumor17=GP-HAPC
+rumor18=GP-PNBCs
+rumor19=GP-OGMMissile
+rumor20=GP-ERPC
 [/Comm]
 
 [Comm]

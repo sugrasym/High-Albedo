@@ -927,3 +927,212 @@ subject=War is Good
 body=We're waiting for the war to start to invade. We're going to claim some key systems which act as choke points for trading, and we're going to remove Red Sky and The Wolves from the map. Once the empires have beaten each other to a pulp we'll move in and become so embedded into them they'll give us a seat on their senate.
 choice0=Good To Know/END
 [/Node]
+
+#Prism Exhuming Rumors
+
+[Node]
+name=PE-MiningOutpost
+subject=Mining Outposts
+body=We fabricate and sell a high end mining outpost to anyone on good terms with us. It can be built on any asteroid, and it produces both ore and ices. You can pick it up at one of our regional headquarters.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=PE-FreeAsteroids
+subject=Free Asteroids
+body=The empires have used up most of the minable asteroid in their regions, and they don't hold neutral space well enough to mine here. We have bulk mineral contracts to deliver resources to them, in addition to the public resources we sell.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=PE-Subsidization
+subject=Subsidization
+body=All 4 empires subsidize mineral costs within their borders. They do this to keep their economies from feeling the lack of cheap minerals in their borders. The cost they charge actually reflects the cost of extraction in the neutral systems which, although more dangerous, is cheap.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=PE-AboutUs
+subject=About Us
+body=We originated in Caina but when all this cold war crap started we broke off and went international. Now that they're shooting each other we're glad we did, there's a huge demand for minerals on both sides.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=PE-Security
+subject=Security
+body=Red Sky handles most of the security but we have our own armed forces. It's an uphill battle keeping the pirate syndicates out but it's worth it. 
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=PE-AgeiranMinerals
+subject=Ageiran Minerals
+body=The Ageiran Federation mines the surface of their planets for minerals, mainly because of the lack of viable space based operations their region can support. They're good enough at it that they are competitive, but they have difficulty pulling up high quantities of rare alkali metals.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=PE-TheEntities
+subject=The Entities
+body=The entities aren't nearly as dangerous as the pirates are. When you look at the cost-benefit ratio of fighting the entity, compared with fighting piracy, you'll see it makes more sense to focus on piracy.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=PE-TheEntities2
+subject=The Entities
+body=The entities are made of a material we've never seen anywhere else, and that says something. It's a super strong, super light, composite material that is beyond the technology of any human organization to fabricate, even the ITC.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=PE-Planets
+subject=Planets
+body=We don't land on planets for any reason in neutral space. We don't want to interfere with the warlords who rule them, because we would like to keep mining.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=PE-SuckZone
+subject=The Suck Zone
+body=It's the point at which, basically, the black hole sucks you up. That's not the technical term for it obviously.
+choice0=Good To Know/END
+[/Node]
+
+#LFL rumors
+
+[Node]
+name=LFL-AboutUs
+subject=About Us
+body=The LFL corporation started small in Ageira but we spread everywhere. We are the best inter-system transport service.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=LFL-PPG
+subject=Trading PPGs
+body=If you can afford it, PPGs are always nice to trade. They're a capital size turret that is used by Ageira and Caina.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=LFL-Jumpdrive
+subject=Jumpdrive
+body=We've built a trading empire on the jump drive. Most people are afraid of freak accidents but we see that risk as acceptable compared to the money you can make by inter-system trading.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=LFL-Jumpdrive2
+subject=Jumpdrive Advantage
+body=Sure you can fly system to system via the jumphole network and trade, but you won't make much. The travel time is too long, so by the time you get there some local trader probably got it. That's why we use jump drives, to level the playing field with the locals.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=LFL-Jumpholes
+subject=Jumpholes
+body=While perfectly safe they're too inefficient for serious trading. Only amateurs use them.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=LFL-Jumpgates
+subject=Jumpgates
+body=Rumor has it the ITC are almost ready to start deploying a network of artificial jumpholes. This could net them a huge advantage in trade, and we see that as a direct threat to LFL's survival.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=LFL-Energy
+subject=Energy
+body=Everyone needs energy! Most buy it as standard energy units, except the ITC who use nuclear fusion to convert rich ice into their own power source. The ITC also convert the surplus into energy units for sale to everyone else.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=LFL-IndustrialWaste
+subject=Industrial Waste
+body=Some of it is from factory runoff, some of it is from fission byproducts, but all of it is valuable. You can grab it for as low as 0 credits a unit if the owner is desperate enough, and sell it to be repurposed.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=LFL-Economy
+subject=Economy
+body=Did you know that LFL is the world's 5th largest economy? Yeah, we're that good.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=LFL-Economy2
+subject=Economics
+body=It all flows upward. Every raw material wants to become an end product, but it needs help to get there.
+choice0=Good To Know/END
+[/Node]
+
+#Gunpower Rumors
+
+[Node]
+name=GP-Arms
+subject=Arms
+body=Everyone needs as many as they can get, between pirates, war, and entities.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=GP-EveryoneShouldHaveAGun
+subject=Everyone Should
+body=Everyone should have a gun! We sell them in all sizes, from personal defense weapons to capital siege weapons. We have all your home defense and military conquest needs at our one stop shop.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=GP-GunsAreGood
+subject=Guns are Good
+body=Guns save lives. That's why we build and sell everything from handheld pulse lasers to cruise missiles. We're always looking for more weapons to make available, in our dream to let every citizen own military grade hardware.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=GP-GunFactories
+subject=Gun Factories
+body=We don't just sell guns, we sell whole gun factories! Now you too can build your own high tech military weapons from the comfort of your home base. You can pick up a gun fab in 3 sizes at a regional hq.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=GP-MAMMissile
+subject=M-AM Missiles
+body=They're not as good as a starstruck but you can mass produce them! They work on the same principles as the ITC ones but we can't seem to get the same yield they do.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=GP-RocketsAndMissiles
+subject=Rockets and Missiles
+body=Missiles are longer range, and they do lots of damage in one package. They fly a long time and refire slowly. Rockets on the other hand have short range, aren't too accurate, and do less damage. But they're cheat and fire quickly. Both can be useful.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=GP-PNBCs
+subject=PNBCs
+body=Pulsed Neutron Bolt Cannons fire a high energy neutron packet at the target. They're a mainstream weapon that's pretty reliable, and small enough to fit on most fighters.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=GP-OGMMissile
+subject=OG Missile
+body=OGM or Optically Guided Missiles are a good substitute for proprietary Cainan missiles. They deliver less punch but they're smaller and you can carry a few more of them.
+choice0=Good To Know/END
+[/Node]
+
+[Node]
+name=GP-ERPC
+subject=ERPCs
+body=Extended Range Pulse Cannons deliver a little damage at a decent range, and refire fast. They're small enough to fit on any known fighter and they're really cheap. We sell them like crack.
+choice0=Good To Know/END
+[/Node]
