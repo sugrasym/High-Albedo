@@ -1140,6 +1140,8 @@ public class Engine {
             } else if (state == State.MENU) {
                 //update HUD
                 getHud().periodicUpdate();
+            } else {
+                //
             }
         }
 

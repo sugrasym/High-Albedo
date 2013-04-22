@@ -28,7 +28,6 @@ import celestial.Jumphole;
 import celestial.Planet;
 import celestial.Ship.Projectile;
 import celestial.Ship.Ship;
-import celestial.Ship.Ship.Autopilot;
 import celestial.Ship.Station;
 import celestial.Star;
 import engine.Entity;
@@ -586,10 +585,12 @@ public class SolarSystem implements Entity, Serializable {
                                 System.out.println("Removing derelict ship [A] " + test.getName() + " :: " + test.getAutopilot());
                                 test.setState(State.DYING);
                             }
+                        } else {
+                            discover();
                         }
+                    } else {
+                        discover();
                     }
-                } else {
-                    //don't do this OOS stuff when the player is watching
                 }
                 //cleanup graphics if the player is not present
                 if (!entities.contains(universe.playerShip) && universe.playerShip.getState() == State.ALIVE) {
@@ -635,6 +636,16 @@ public class SolarSystem implements Entity, Serializable {
             }
         } else {
             //do nothing
+        }
+    }
+
+    private void discover() {
+        //add to discovered list if needed
+        if(universe.getDiscoveredSpace().contains(this)) {
+            //do nothing
+        } else {
+            //add to discovered space
+            universe.getDiscoveredSpace().add(this);
         }
     }
 }

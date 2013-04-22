@@ -38,9 +38,11 @@ public class Universe implements Serializable {
     private SettingsManager settings;
     private static transient ResourceCache cache;
     private transient God god;
+    //player globals
     protected Ship playerShip;
     private ArrayList<Entity> playerProperty = new ArrayList<>();
     private ArrayList<Mission> playerMissions = new ArrayList<>();
+    private ArrayList<SolarSystem> discoveredSpace = new ArrayList<>();
 
     static {
         cache = new ResourceCache();
@@ -198,5 +200,9 @@ public class Universe implements Serializable {
 
     public boolean isReady() {
         return !systems.isEmpty();
+    }
+
+    public ArrayList<SolarSystem> getDiscoveredSpace() {
+        return discoveredSpace;
     }
 }

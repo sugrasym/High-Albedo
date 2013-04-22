@@ -1,11 +1,11 @@
 #New Game Smell
 [NewGame]
-ship=Apparition
+ship=Cab
 near='Turner 19'
 system=Beta CHH-XW
 cash=25000000
-install=HGPC/HGPC
-cargo=Rapid Rocket~600
+install=ERPC/ERPC
+cargo=
 faction=Player
 [/NewGame]
 

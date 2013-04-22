@@ -44,7 +44,7 @@ public class StarMapWindow extends AstralWindow {
     AstralLabel rangeLabel = new AstralLabel();
     Font radarFont = new Font("Monospaced", Font.BOLD, 11);
     private Universe universe;
-    private double zoom = 1;
+    private double zoom = 0.25;
     private Point2D.Double offset = new Point2D.Double(0, 0);
 
     public StarMapWindow() {
@@ -112,8 +112,9 @@ public class StarMapWindow extends AstralWindow {
 
         private void fillMap(Graphics2D gfx, Graphics2D tfx) {
             if (universe != null) {
-                //get a list of solar systems
-                ArrayList<SolarSystem> systems = universe.getSystems();
+                //get a list of solar systems the player has visited
+                //ArrayList<SolarSystem> systems = universe.getSystems();
+                ArrayList<SolarSystem> systems = universe.getDiscoveredSpace();
                 //iterate through and draw an icon for each one
                 for (int a = 0; a < systems.size(); a++) {
                     //compute offset
