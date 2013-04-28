@@ -139,7 +139,7 @@ public class WorldMaker {
                      * CREATE JUMPHOLES
                      */
                     //calculate the number of connections to make
-                    int density = rnd.nextInt(3) + 1;
+                    int density = rnd.nextInt(4) + 1;
                     for (int v = 0; v < density; v++) {
                         //get the sysling to connect to
                         Sysling in = sys;

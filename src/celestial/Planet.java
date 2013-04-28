@@ -87,7 +87,7 @@ public class Planet extends Celestial {
                 PlanetInformation info = new PlanetInformation();
                 info.setDaytime(360);
                 info.setEquatorTemperature(sRand.nextInt(100));
-                info.setPoleTemperature(sRand.nextInt(info.getEquatorTemperature()) - 50);
+                info.setPoleTemperature(sRand.nextInt(Math.max(info.getEquatorTemperature(), 1)) - 50);
                 info.setRadius(diameter / 2);
                 info.setWaterInPercent(sRand.nextFloat());
                 info.setHeightFactor(sRand.nextFloat());
