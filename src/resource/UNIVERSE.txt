@@ -1,7 +1,7 @@
 #New Game Smell
 [NewGame]
 ship=Cab
-near='Adam 9'
+near='Irene 15'
 system=Beta R-T
 cash=25000
 install=ERPC/ERPC

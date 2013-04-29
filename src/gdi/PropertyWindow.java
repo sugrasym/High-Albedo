@@ -34,12 +34,14 @@ import gdi.component.AstralWindow;
 import java.awt.event.MouseEvent;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import universe.SolarSystem;
 
 public class PropertyWindow extends AstralWindow {
-
+    
     private enum Mode {
-
+        
         NONE, //idle
         WAITING_FOR_STATION, //waiting for a station to dock at
         WAITING_FOR_CREDITS, //waiting for credits to be specified
@@ -81,12 +83,12 @@ public class PropertyWindow extends AstralWindow {
     TradeWindow trader = new TradeWindow();
     CargoWindow cargo = new CargoWindow();
     protected Ship tmp;
-
+    
     public PropertyWindow() {
         super();
         generate();
     }
-
+    
     private void generate() {
         backColor = windowGrey;
         //size this window
@@ -145,7 +147,7 @@ public class PropertyWindow extends AstralWindow {
         addComponent(trader);
         addComponent(cargo);
     }
-
+    
     @Override
     public void setVisible(boolean visible) {
         trader.setVisible(false);
@@ -155,13 +157,13 @@ public class PropertyWindow extends AstralWindow {
         input.setVisible(false);
         inputList.setVisible(false);
     }
-
+    
     private void showInput(String text) {
         input.setText(text);
         input.setVisible(true);
         input.setFocused(true);
     }
-
+    
     private void showInputList(ArrayList<Object> options) {
         inputList.clearList();
         for (int a = 0; a < options.size(); a++) {
@@ -170,12 +172,12 @@ public class PropertyWindow extends AstralWindow {
         inputList.setVisible(true);
         inputList.setFocused(true);
     }
-
+    
     private void hideInputList() {
         inputList.setVisible(false);
         inputList.setIndex(0);
     }
-
+    
     private void behave(Ship selected) {
         if (mode == Mode.NONE) {
             //do nothing
@@ -350,7 +352,7 @@ public class PropertyWindow extends AstralWindow {
             }
         }
     }
-
+    
     public void update(Ship ship) {
         setShip(ship);
         propertyList.clearList();
@@ -376,9 +378,25 @@ public class PropertyWindow extends AstralWindow {
              * Ships go first.
              * Then stations.
              */
+            //sort
+            Collections.sort(pShips, new Comparator<Ship>() {
+                @Override
+                public int compare(Ship left, Ship right) {
+                    return left.getName().compareTo(right.getName());
+                }
+            });
+            //add
             for (int a = 0; a < pShips.size(); a++) {
                 logicalPropertyList.add(pShips.get(a));
             }
+            //sort
+            Collections.sort(pStats, new Comparator<Ship>() {
+                @Override
+                public int compare(Ship left, Ship right) {
+                    return left.getName().compareTo(right.getName());
+                }
+            });
+            //add
             for (int a = 0; a < pStats.size(); a++) {
                 logicalPropertyList.add(pStats.get(a));
             }
@@ -430,7 +448,7 @@ public class PropertyWindow extends AstralWindow {
             }
         }
     }
-
+    
     private void fillSpecifics(Ship selected) {
         if (selected != null) {
             boolean isStation = false;
@@ -508,7 +526,7 @@ public class PropertyWindow extends AstralWindow {
             }
         }
     }
-
+    
     private double roundTwoDecimal(double d) {
         try {
             DecimalFormat twoDForm = new DecimalFormat("#.##");
@@ -518,15 +536,15 @@ public class PropertyWindow extends AstralWindow {
             return 0;
         }
     }
-
+    
     public Ship getShip() {
         return ship;
     }
-
+    
     public void setShip(Ship ship) {
         this.ship = ship;
     }
-
+    
     private void fillDescriptionLines(Ship selected) {
         /*
          * Fills in the item's description being aware of things like line breaking on spaces.
@@ -570,7 +588,7 @@ public class PropertyWindow extends AstralWindow {
             infoList.addToList(tmp.toString());
         }
     }
-
+    
     private void fillCommandLines(Ship selected) {
         if (selected != null) {
             boolean isStation = false;
@@ -643,7 +661,7 @@ public class PropertyWindow extends AstralWindow {
             }
         }
     }
-
+    
     @Override
     public void handleMouseClickedEvent(MouseEvent me) {
         if (trader.isVisible()) {
@@ -669,7 +687,7 @@ public class PropertyWindow extends AstralWindow {
             }
         }
     }
-
+    
     private void parseCommand(String command) {
         if (command != null && mode == Mode.NONE) {
             Ship selected = (Ship) propertyList.getItemAtIndex(propertyList.getIndex());
