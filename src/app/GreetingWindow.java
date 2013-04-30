@@ -61,7 +61,7 @@ public class GreetingWindow extends javax.swing.JFrame {
 
         jLabel1.setText("High Albedo: Twisted Skies");
 
-        jLabel2.setText("Pre-Launch");
+        jLabel2.setText("v1.0");
 
         windowGroup.add(fullScreenButton);
         fullScreenButton.setSelected(true);
