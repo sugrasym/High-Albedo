@@ -1,3 +1,8 @@
+Load and Save
+---------------------
+F11 - Quicksave
+F12 - Quickload
+
 Time Dilation
 ---------------------
 1 - TIDI = 0.25x
