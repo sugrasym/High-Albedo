@@ -652,7 +652,7 @@ public class Ship extends Celestial {
                         decelerate();
                     } else {
                         if (dist > (autopilotRange) + (getWidth() * 6)) {
-                            moveToPosition(flyToTarget.getX(), flyToTarget.getY());
+                            moveToPositionWithHold(flyToTarget.getX(), flyToTarget.getY(), Double.POSITIVE_INFINITY);
                         } else {
                             //wait
                         }
@@ -1492,12 +1492,18 @@ public class Ship extends Celestial {
     }
 
     protected void moveToPosition(double tx, double ty) {
+        /*
+         * Maintains compatibility with most flight methods.
+         */
+        moveToPositionWithHold(tx, ty, 2 * accel);
+    }
+
+    protected void moveToPositionWithHold(double tx, double ty, double hold) {
         //get the destination
         double ax = x - tx;
         double ay = y - ty;
         double dist = magnitude((ax), (ay));
         double speed = magnitude(vx, vy);
-        double hold = accel * 2;
         //
         double desired = FastMath.atan2(ay, ax);
         desired = (desired + 2.0 * Math.PI) % (2.0 * Math.PI);
@@ -1508,7 +1514,7 @@ public class Ship extends Celestial {
                 rotatePlus();
             }
         } else {
-            if (dist < hold) {
+            if ((dist < hold) && hold != Double.POSITIVE_INFINITY) {
                 decelerate();
                 if (speed == 0) {
                     //disable autopilot destination reached
