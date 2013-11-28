@@ -1,11 +1,11 @@
 #New Game Smell
 [NewGame]
-ship=Cab
+ship=Raven
 near='Irene 15'
 system=Half Measure
 cash=25000
-install=ERPC/ERPC
-cargo=
+install=ERPC/ERPC/ERPC
+cargo=Jumpdrive
 faction=Player
 [/NewGame]
 

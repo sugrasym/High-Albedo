@@ -211,23 +211,11 @@ public class OverviewWindow extends AstralWindow {
             double diam = pl.getDiameter();
             diam /= (range);
             diam *= width / 2;
-            //determine whether to draw the name based on range
-            double fuzz = 1.0 - rnd.nextDouble() * 0.1f;
-            double view = PLANET_AIM_LIMIT * sensorShip.getSensor() * fuzz;
-            double dist = sensorShip.distanceTo(pl);
-            if ((area < PLANET_AIM_LIMIT) || dist < view) {
-                gfx.setColor(planetGrey);
-                gfx.fillOval((int) ex + (width / 2), (int) ey + (height / 2), (int) diam, (int) diam);
-                gfx.setColor(Color.DARK_GRAY);
-                gfx.drawOval((int) ex + (width / 2), (int) ey + (height / 2), (int) diam, (int) diam);
-                gfx.setColor(Color.pink);
-                gfx.setFont(radarFont);
-                gfx.drawString(pl.getName(), (int) (ex + diam / 2) + (width / 2) - 1, (int) (ey + diam / 2) + (height / 2) - 1);
-            } else {
-                gfx.setColor(Color.PINK);
-                gfx.setFont(radarFont);
-                gfx.drawString("NO AIM", (int) (ex + diam / 2) + (width / 2) - 1, (int) (ey + diam / 2) + (height / 2) - 1);
-            }
+            //draw planet
+            gfx.setColor(planetGrey);
+            gfx.fillOval((int) ex + (width / 2), (int) ey + (height / 2), (int) diam, (int) diam);
+            gfx.setColor(Color.DARK_GRAY);
+            gfx.drawOval((int) ex + (width / 2), (int) ey + (height / 2), (int) diam, (int) diam);
         }
 
         protected void doSensorShip(Graphics2D gfx, double ex, double ey) {

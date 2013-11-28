@@ -59,9 +59,9 @@ public class GreetingWindow extends javax.swing.JFrame {
         setTitle("High Albedo: Twisted Skies Settings");
         setResizable(false);
 
-        jLabel1.setText("High Albedo: Twisted Skies");
+        jLabel1.setText("High Albedo: Development Build");
 
-        jLabel2.setText("v1.0");
+        jLabel2.setText("v1.0+");
 
         windowGroup.add(fullScreenButton);
         fullScreenButton.setSelected(true);

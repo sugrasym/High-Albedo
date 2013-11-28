@@ -787,7 +787,7 @@ public class PropertyWindow extends AstralWindow {
                 ArrayList<Object> choice = new ArrayList<>();
                 choice.add("--Select Target System--");
                 choice.add(" ");
-                ArrayList<SolarSystem> sh = ship.getUniverse().getSystems();
+                ArrayList<SolarSystem> sh = ship.getUniverse().getDiscoveredSpace();
                 for (int a = 0; a < sh.size(); a++) {
                     if (ship.canJump(sh.get(a))) {
                         choice.add(sh.get(a));

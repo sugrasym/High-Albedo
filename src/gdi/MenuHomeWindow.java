@@ -13,7 +13,6 @@ import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import lib.AstralIO;
-import lib.Binling;
 import universe.Universe;
 
 /**
@@ -43,7 +42,7 @@ public class MenuHomeWindow extends AstralWindow {
         setWidth(800);
         setHeight(600);
         //setup logo label
-        logoLabel.setText("High Albedo: Twisted Skies");
+        logoLabel.setText("High Albedo: Development Build");
         logoLabel.setFont(new Font("Monospaced", Font.PLAIN, 36));
         logoLabel.setX(0);
         logoLabel.setY(0);
