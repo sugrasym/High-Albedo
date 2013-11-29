@@ -37,6 +37,13 @@ public class AstralComponent {
     protected boolean focused;
     protected boolean visible;
     protected String name;
+    //scaling
+    protected double sX = 1;
+    protected double sY = 1;
+    protected double viewX = 1;
+    protected double viewY = 1;
+    protected double uiX = 1;
+    protected double uiY = 1;
     //colors
     protected Color windowGrey = new Color(25, 25, 25);
     protected Color amber = new Color(255, 126, 0);
@@ -57,6 +64,28 @@ public class AstralComponent {
     }
 
     public void periodicUpdate() {
+    }
+
+    public void setUIScaling(double sX, double sY, double viewX, double viewY,
+            double uiX, double uiY) {
+        this.sX = sX;
+        this.sY = sY;
+        this.uiX = uiX;
+        this.uiY = uiY;
+        this.viewX = viewX;
+        this.viewY = viewY;
+    }
+
+    protected int getScaledMouseX(MouseEvent me) {
+        double absX = me.getX();
+        double perX = absX / uiX;
+        return (int) (perX * viewX);
+    }
+
+    protected int getScaledMouseY(MouseEvent me) {
+        double absY = me.getY();
+        double perY = absY / uiY;
+        return (int) (perY * viewY);
     }
 
     /*

@@ -39,6 +39,8 @@ public class Main extends JFrame {
 
     private int uiX = 0;
     private int uiY = 0;
+    private int viewX = 0;
+    private int viewY = 0;
     //engine
     Engine engine;
     //safety
@@ -109,11 +111,15 @@ public class Main extends JFrame {
         //store size
         uiX = getWidth();
         uiY = getHeight();
+        //store view
+        viewX = wx;
+        viewY = wy;
         //push frame
         show();
         //create buffer strategy
         createBufferStrategy(2);
         System.out.println("Window size of " + uiX + "," + uiY + " stored.");
+        System.out.println("Frame size of " + viewX + "," + viewY + " stored.");
     }
 
     /*
@@ -124,7 +130,7 @@ public class Main extends JFrame {
         while (bf == null) {
             bf = getBufferStrategy();
         }
-        engine = new Engine(bf, uiX, uiY);
+        engine = new Engine(bf, uiX, uiY, viewX, viewY);
     }
 
     /*

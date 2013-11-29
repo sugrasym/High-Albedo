@@ -83,10 +83,8 @@ public class GreetingWindow extends javax.swing.JFrame {
         });
 
         xResBox.setText("1024");
-        xResBox.setEnabled(false);
 
         yResBox.setText("768");
-        yResBox.setEnabled(false);
 
         launchButton.setText("Launch");
         launchButton.addActionListener(new java.awt.event.ActionListener() {
@@ -168,13 +166,11 @@ public class GreetingWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void windowScreenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_windowScreenButtonActionPerformed
-        xResBox.setEnabled(true);
-        yResBox.setEnabled(true);
+
     }//GEN-LAST:event_windowScreenButtonActionPerformed
 
     private void fullScreenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fullScreenButtonActionPerformed
-        xResBox.setEnabled(false);
-        yResBox.setEnabled(false);
+
     }//GEN-LAST:event_fullScreenButtonActionPerformed
 
     private void launchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_launchButtonActionPerformed

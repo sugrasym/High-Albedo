@@ -50,7 +50,6 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
-import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.net.URL;
 import java.util.ArrayList;
@@ -62,8 +61,6 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import lib.AstralIO;
-import lib.AstralMessage;
-import lib.Binling;
 import lib.Conversation;
 import lib.Parser;
 import lib.Parser.Term;
@@ -88,8 +85,12 @@ public class Engine {
     //Sound
     protected SoundEngine sound = new SoundEngine(this);
     //dimensions
-    private int uiX;
-    private int uiY;
+    private int uiX; //width to render frame to
+    private int uiY; //height to render frame to
+    private int viewX = 1024; //width of frame
+    private int viewY = 768; //height of frame
+    private double sX;
+    private double sY;
     //game entities
     ArrayList<Entity> entities;
     private Universe universe;
@@ -125,11 +126,13 @@ public class Engine {
     //io
     AstralIO io = new AstralIO();
 
-    public Engine(BufferStrategy bf, int uiX, int uiY) {
+    public Engine(BufferStrategy bf, int uiX, int uiY, int viewX, int viewY) {
         //store graphics
         this.uiX = uiX;
         this.uiY = uiY;
         this.bf = bf;
+        this.viewX = viewX;
+        this.viewY = viewY;
         //initialize entities
         entities = new ArrayList<>();
         //create components
@@ -261,7 +264,7 @@ public class Engine {
             try {
                 music = AudioSystem.getClip();
                 //load menu track
-                URL snURL =  getClass().getClassLoader().getResource("resource/"+ambientTrack);
+                URL snURL = getClass().getClassLoader().getResource("resource/" + ambientTrack);
                 AudioInputStream stream = AudioSystem.getAudioInputStream(snURL);
                 music.open(stream);
                 //start
@@ -332,7 +335,7 @@ public class Engine {
                     ambientTrack = playerShip.getCurrentSystem().getAmbientMusic();
                     music = AudioSystem.getClip();
                     //load stream
-                    AudioInputStream stream = AudioSystem.getAudioInputStream(getClass().getClassLoader().getResource("resource/"+ambientTrack));
+                    AudioInputStream stream = AudioSystem.getAudioInputStream(getClass().getClassLoader().getResource("resource/" + ambientTrack));
                     music.open(stream);
                     //start
                     music.loop(Clip.LOOP_CONTINUOUSLY);
@@ -350,7 +353,7 @@ public class Engine {
                     dangerTrack = playerShip.getCurrentSystem().getDangerMusic();
                     music = AudioSystem.getClip();
                     //load stream
-                    AudioInputStream stream = AudioSystem.getAudioInputStream(getClass().getClassLoader().getResource("resource/"+dangerTrack));
+                    AudioInputStream stream = AudioSystem.getAudioInputStream(getClass().getClassLoader().getResource("resource/" + dangerTrack));
                     music.open(stream);
                     //start
                     music.loop(Clip.LOOP_CONTINUOUSLY);
@@ -454,39 +457,39 @@ public class Engine {
         public void render(Graphics f) {
             if (state == State.RUNNING) {
                 //position health window
-                healthWindow.setX((uiX / 2) - healthWindow.getWidth() / 2);
-                healthWindow.setY(uiY - 55);
+                healthWindow.setX((viewX / 2) - healthWindow.getWidth() / 2);
+                healthWindow.setY(viewY - 55);
                 //position fuel window
-                fuelWindow.setX((uiX / 2) - fuelWindow.getWidth() / 2);
-                fuelWindow.setY(uiY - 40);
+                fuelWindow.setX((viewX / 2) - fuelWindow.getWidth() / 2);
+                fuelWindow.setY(viewY - 40);
                 //position overview window
-                overviewWindow.setX((uiX - (overviewWindow.getWidth() + 20)));
-                overviewWindow.setY(uiY - (overviewWindow.getHeight() + 20));
+                overviewWindow.setX((viewX - (overviewWindow.getWidth() + 20)));
+                overviewWindow.setY(viewY - (overviewWindow.getHeight() + 20));
                 //position equipment window
                 equipmentWindow.setX(20);
-                equipmentWindow.setY(uiY - (equipmentWindow.getHeight() + 20));
+                equipmentWindow.setY(viewY - (equipmentWindow.getHeight() + 20));
                 //position cargo window
-                cargoWindow.setX((uiX / 2) - cargoWindow.getWidth() / 2);
-                cargoWindow.setY((uiY / 2) - cargoWindow.getHeight() / 2);
+                cargoWindow.setX((viewX / 2) - cargoWindow.getWidth() / 2);
+                cargoWindow.setY((viewY / 2) - cargoWindow.getHeight() / 2);
                 //position trade window
-                tradeWindow.setX((uiX / 2) - tradeWindow.getWidth() / 2);
-                tradeWindow.setY((uiY / 2) - tradeWindow.getHeight() / 2);
+                tradeWindow.setX((viewX / 2) - tradeWindow.getWidth() / 2);
+                tradeWindow.setY((viewY / 2) - tradeWindow.getHeight() / 2);
                 //position map window
-                starMapWindow.setX((uiX / 2) - starMapWindow.getWidth() / 2);
-                starMapWindow.setY((uiY / 2) - starMapWindow.getHeight() / 2);
+                starMapWindow.setX((viewX / 2) - starMapWindow.getWidth() / 2);
+                starMapWindow.setY((viewY / 2) - starMapWindow.getHeight() / 2);
                 //position standing window
-                standingWindow.setX((uiX / 2) - standingWindow.getWidth() / 2);
-                standingWindow.setY((uiY / 2) - standingWindow.getHeight() / 2);
+                standingWindow.setX((viewX / 2) - standingWindow.getWidth() / 2);
+                standingWindow.setY((viewY / 2) - standingWindow.getHeight() / 2);
                 //position property window
-                propertyWindow.setX((uiX / 2) - propertyWindow.getWidth() / 2);
-                propertyWindow.setY((uiY / 2) - propertyWindow.getHeight() / 2);
+                propertyWindow.setX((viewX / 2) - propertyWindow.getWidth() / 2);
+                propertyWindow.setY((viewY / 2) - propertyWindow.getHeight() / 2);
                 //position comm window
                 commWindow.setX(20);
                 commWindow.setY(20);
             } else if (state == State.MENU) {
                 //position home window
-                homeWindow.setX((uiX / 2) - homeWindow.getWidth() / 2);
-                homeWindow.setY((uiY / 2) - homeWindow.getHeight() / 2);
+                homeWindow.setX((viewX / 2) - homeWindow.getWidth() / 2);
+                homeWindow.setY((viewY / 2) - homeWindow.getHeight() / 2);
             }
             //render
             for (int a = windows.size() - 1; a >= 0; a--) {
@@ -532,9 +535,11 @@ public class Engine {
                 }
                 //update
                 for (int a = 0; a < windows.size(); a++) {
+                    windows.get(a).setUIScaling(sX, sY, viewX, viewY, uiX, uiY);
                     windows.get(a).periodicUpdate();
                 }
             } else if (state == State.MENU) {
+                homeWindow.setUIScaling(sX, sY, viewX, viewY, uiX, uiY);
             }
         }
 
@@ -581,9 +586,18 @@ public class Engine {
         }
 
         public void handleMouseMovedEvent(MouseEvent me) {
-            //store mouse position
-            mouseX = me.getX();
-            mouseY = me.getY();
+            //get mouse position in window
+            double absX = me.getX();
+            double absY = me.getY();
+            //determine mouse position as a percentage if ui dimension
+            double perX = absX / uiX;
+            double perY = absY / uiY;
+            //store scaling
+            sX = (double) viewX / (double) uiX;
+            sY = (double) viewY / (double) uiY;
+            //clamp position to frame
+            mouseX = (int)(perX * viewX);
+            mouseY = (int)(perY * viewY);
             //check to see if this needs to be intercepted
             boolean windowIntercepted = false;
             for (int a = 0; a < windows.size(); a++) {
@@ -642,7 +656,7 @@ public class Engine {
              * Now game logic
              */
             if (!windowIntercepted) {
-                Rectangle mRect = new Rectangle((int) dx + me.getX(), (int) dy + me.getY(), 1, 1);
+                Rectangle mRect = new Rectangle((int) dx + mouseX, (int) dy + mouseY, 1, 1);
                 //check to see if it intersected any ships or objects
                 ArrayList<Entity> tmpE = playerShip.getCurrentSystem().getEntities();
                 for (int a = 0; a < tmpE.size(); a++) {
@@ -845,7 +859,7 @@ public class Engine {
 
         private long lastFrame;
         //rendering helpers
-        BufferedImage frame = new BufferedImage(uiX, uiY, BufferedImage.TYPE_INT_RGB); //double buffered frame
+        BufferedImage frame = new BufferedImage(viewX, viewY, BufferedImage.TYPE_INT_RGB); //double buffered frame
         Graphics2D f = (Graphics2D) frame.getGraphics(); //graphics context for the frame
         Rectangle clip = null;
         //per system
@@ -892,7 +906,7 @@ public class Engine {
         }
 
         private double getAspectRatio() {
-            return ((double) uiX / (double) uiY);
+            return ((double) viewX / (double) viewY);
         }
 
         private void createStars() {
@@ -924,7 +938,7 @@ public class Engine {
                         e.printStackTrace();
                     }
                     //scale backplate to screen size
-                    stars = stars.getScaledInstance(uiX, uiY, Image.SCALE_SMOOTH);
+                    stars = stars.getScaledInstance(viewX, viewY, Image.SCALE_SMOOTH);
                     backplate = stars;
                     lastPlate = playerShip.getCurrentSystem().getBack();
                 }
@@ -975,7 +989,7 @@ public class Engine {
             f.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             //setup clip
             if (clip != null) {
-                clip = new Rectangle(0, 0, uiX, uiY);
+                clip = new Rectangle(0, 0, viewX, viewY);
             }
             //setup graphics
             Graphics g = bf.getDrawGraphics();
@@ -995,7 +1009,7 @@ public class Engine {
                     element.generateBackdrop();
                 }
                 //update render view
-                Rectangle view = new Rectangle((int) dx, (int) dy, uiX, uiY);
+                Rectangle view = new Rectangle((int) dx, (int) dy, viewX, viewY);
                 //render entities in current solar system
                 try {
                     if (playerShip != null) {
@@ -1010,7 +1024,6 @@ public class Engine {
                             /*
                              * Render celestials first
                              */
-
                             for (int a = 0; a < celestialList.size(); a++) {
                                 if (celestialList.get(a).collideWith(view)) {
                                     celestialList.get(a).render(f, dx, dy);
@@ -1026,7 +1039,6 @@ public class Engine {
                             /*
                              * Now render stations
                              */
-
                             for (int a = 0; a < stationList.size(); a++) {
                                 if (stationList.get(a).getState() != Entity.State.DEAD) {
                                     if (stationList.get(a).collideWith(view)) {
@@ -1043,7 +1055,6 @@ public class Engine {
                             /*
                              * Now render ships
                              */
-
                             for (int a = 0; a < shipList.size(); a++) {
                                 if (shipList.get(a).getState() != Entity.State.DEAD) {
                                     if (shipList.get(a).collideWith(view)) {
@@ -1086,7 +1097,7 @@ public class Engine {
             getHud().render(f);
             //use ui graphics context to draw
             if (!bf.contentsLost()) {
-                g.drawImage(frame, 0, 0, null);
+                g.drawImage(frame, 0, 0, uiX, uiY, null);
                 bf.show();
             }
         }
@@ -1127,8 +1138,8 @@ public class Engine {
                 //update hud
                 hud.periodicUpdate();
                 //update differentials for rendering
-                dx = (int) playerShip.getX() - (uiX / 2) + (playerShip.getWidth() / 2);
-                dy = (int) playerShip.getY() - (uiY / 2) + (playerShip.getHeight() / 2);
+                dx = (int) playerShip.getX() - (viewX / 2) + (playerShip.getWidth() / 2);
+                dy = (int) playerShip.getY() - (viewY / 2) + (playerShip.getHeight() / 2);
                 pvx = playerShip.getVx();
                 pvy = playerShip.getVy();
                 //recover player ship
