@@ -162,6 +162,8 @@ public class GreetingWindow extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        getAccessibleContext().setAccessibleName("High Albedo: Development Build Settings");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 

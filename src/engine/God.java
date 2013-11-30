@@ -87,6 +87,7 @@ public class God implements EngineElement {
                     checkPatrols();
                     checkTraders();
                     checkMerchants();
+                    System.out.println("God cycled.");
                 }
             });
             s.start();

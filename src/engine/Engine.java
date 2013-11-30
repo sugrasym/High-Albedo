@@ -87,8 +87,8 @@ public class Engine {
     //dimensions
     private int uiX; //width to render frame to
     private int uiY; //height to render frame to
-    private int viewX = 1024; //width of frame
-    private int viewY = 768; //height of frame
+    private int viewX; //width of frame
+    private int viewY; //height of frame
     private double sX;
     private double sY;
     //game entities
