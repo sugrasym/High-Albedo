@@ -2,3 +2,17 @@
 ----------
 * Aborting a dock then manually docking with a different station docks you in the station you aborted. [UNCONFIRMED]
 * UTs seem to decide to fly into infinity. [UNCONFIRMED]
+* Sometimes undock stage 3 never ends [CONFIRMED]
+* Sometimes the autopilot avoid code does not avoid stations while in UT [CONFIRMED]
+* NPCs stop firing when the target gets too close to them [CONFIRMED]
+
+Also, need to take a look at
+-> NPCs getting stuck on stuff (until their fuel runs out / they kill themselves)
+-> NPCs nudging stations off the map
+-> UTs filling with useless wares due to failed trade runs
+        -> either sell the stuff somewhere else or dump it and cut losses
+
+Would be nice
+-> UTs jump away when in danger
+-> Report lost property to the player via message
+-> Visible way of detecting incoming new messages (currently audio only)
