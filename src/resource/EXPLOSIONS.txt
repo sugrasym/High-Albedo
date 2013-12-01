@@ -25,3 +25,7 @@ type=Blue
 [Explosion]
 type=Yellow
 [/Explosion]
+
+[Explosion]
+type=Jump
+[/Explosion]

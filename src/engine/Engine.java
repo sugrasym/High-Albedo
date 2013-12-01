@@ -510,7 +510,7 @@ public class Engine {
                     fuelWindow.updateFuel(playerShip.getFuel() / playerShip.getMaxFuel());
                 }
                 if (overviewWindow.isVisible()) {
-                    overviewWindow.updateOverview(playerShip,dilation);
+                    overviewWindow.updateOverview(playerShip, dilation);
                 }
                 if (equipmentWindow.isVisible()) {
                     equipmentWindow.update(playerShip);
@@ -596,8 +596,8 @@ public class Engine {
             sX = (double) viewX / (double) uiX;
             sY = (double) viewY / (double) uiY;
             //clamp position to frame
-            mouseX = (int)(perX * viewX);
-            mouseY = (int)(perY * viewY);
+            mouseX = (int) (perX * viewX);
+            mouseY = (int) (perY * viewY);
             //check to see if this needs to be intercepted
             boolean windowIntercepted = false;
             for (int a = 0; a < windows.size(); a++) {

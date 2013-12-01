@@ -1760,6 +1760,8 @@ public class Ship extends Celestial {
     public void cmdJump(SolarSystem destination) {
         //make sure we have a jump drive group device
         if (canJump(destination)) {
+            //drop jump effect
+            dropJumpEffect();
             //determine fuel cost
             double fuelCost = getJumpFuelCost(destination);
             //deduct fuel
@@ -1773,6 +1775,8 @@ public class Ship extends Celestial {
             //randomize location
             x = rnd.nextInt(24000 * 2) - 24000;
             y = rnd.nextInt(24000 * 2) - 24000;
+            //drop the jump effect
+            dropJumpEffect();
         }
     }
 
@@ -2178,7 +2182,7 @@ public class Ship extends Celestial {
                     double my = vy - tmp.getVy();
                     double q = Math.sqrt(mx * mx + my * my);
                     //take it as damage
-                    dealDamage(10*q);
+                    dealDamage(10 * q);
                 }
             } else {
                 //is it owned by me? if not apply damage
@@ -2505,6 +2509,29 @@ public class Ship extends Celestial {
             if (pick <= LOOT_DROP_PROBABILITY) {
                 ejectModule(hardpoints.get(a));
             }
+        }
+    }
+
+    protected void dropJumpEffect() {
+        /*
+         Generates jump effect
+         */
+        if (tex != null) {
+            Point2D.Double size = new Point2D.Double(width*15, height*15);
+            Explosion jumpEffect = new Explosion(size, "Jump", 0.5);
+            jumpEffect.setFaction("Neutral");
+            jumpEffect.init(false);
+            //store position
+            jumpEffect.setX((getX() + getWidth() / 2) - size.x/2);
+            jumpEffect.setY((getY() + getHeight() / 2) - size.y/2);
+            //use host velocity as jump effect velocity
+            jumpEffect.setVx(getVx());
+            jumpEffect.setVy(getVy());
+            jumpEffect.setCurrentSystem(currentSystem);
+            //randomize rotation
+            jumpEffect.setTheta(rnd.nextDouble() * (2 * Math.PI));
+            //deploy
+            getCurrentSystem().putEntityInSystem(jumpEffect);
         }
     }
 
@@ -3050,8 +3077,10 @@ public class Ship extends Celestial {
         if (sound != null) {
             if (sound.isPlaying()) {
                 sound.stop();
-                soundQue.remove(sound);
             }
+        }
+        if (soundQue != null) {
+            soundQue.remove(sound);
         }
     }
 

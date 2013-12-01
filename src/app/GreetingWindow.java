@@ -64,7 +64,6 @@ public class GreetingWindow extends javax.swing.JFrame {
         jLabel2.setText("v1.0+");
 
         windowGroup.add(fullScreenButton);
-        fullScreenButton.setSelected(true);
         fullScreenButton.setText("Full Screen");
         fullScreenButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,6 +74,7 @@ public class GreetingWindow extends javax.swing.JFrame {
         jLabel3.setText("Window Mode");
 
         windowGroup.add(windowScreenButton);
+        windowScreenButton.setSelected(true);
         windowScreenButton.setText("Windowed");
         windowScreenButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,9 +82,14 @@ public class GreetingWindow extends javax.swing.JFrame {
             }
         });
 
-        xResBox.setText("1024");
+        xResBox.setText("1440");
+        xResBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                xResBoxActionPerformed(evt);
+            }
+        });
 
-        yResBox.setText("768");
+        yResBox.setText("900");
 
         launchButton.setText("Launch");
         launchButton.addActionListener(new java.awt.event.ActionListener() {
@@ -162,8 +167,6 @@ public class GreetingWindow extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        getAccessibleContext().setAccessibleName("High Albedo: Development Build Settings");
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -196,6 +199,10 @@ public class GreetingWindow extends javax.swing.JFrame {
         ControlWindow ctr = new ControlWindow();
         ctr.setVisible(true);
     }//GEN-LAST:event_controlButtonActionPerformed
+
+    private void xResBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xResBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_xResBoxActionPerformed
 
     /**
      * @param args the command line arguments

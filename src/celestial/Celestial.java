@@ -76,16 +76,20 @@ public class Celestial implements Serializable, Entity {
 
     @Override
     public boolean collideWith(Entity target) {
-        ArrayList<Rectangle> myBox = getBounds();
-        ArrayList<Rectangle> targBox = target.getBounds();
-        for (int a = 0; a < myBox.size(); a++) {
-            for (int b = 0; b < targBox.size(); b++) {
-                if (myBox.get(a).intersects(targBox.get(b))) {
-                    return true;
+        try {
+            ArrayList<Rectangle> myBox = getBounds();
+            ArrayList<Rectangle> targBox = target.getBounds();
+            for (int a = 0; a < myBox.size(); a++) {
+                for (int b = 0; b < targBox.size(); b++) {
+                    if (myBox.get(a).intersects(targBox.get(b))) {
+                        return true;
+                    }
                 }
             }
+            return false;
+        } catch (Exception e) {
+            return false;
         }
-        return false;
     }
 
     @Override
@@ -126,8 +130,8 @@ public class Celestial implements Serializable, Entity {
     public double distanceTo(Celestial celestial) {
         double cx = celestial.getX() + celestial.getWidth() / 2;
         double cy = celestial.getY() + celestial.getHeight() / 2;
-        double off = Math.max(width/2, height/2) + Math.max(celestial.getWidth()/2, celestial.getHeight()/2);
-        return Math.max(Math.sqrt((cx - (x + width / 2)) * (cx - (x + width / 2)) + (cy - (y + height / 2)) * (cy - (y + height / 2))) - off,0);
+        double off = Math.max(width / 2, height / 2) + Math.max(celestial.getWidth() / 2, celestial.getHeight() / 2);
+        return Math.max(Math.sqrt((cx - (x + width / 2)) * (cx - (x + width / 2)) + (cy - (y + height / 2)) * (cy - (y + height / 2))) - off, 0);
     }
 
     /*
@@ -253,7 +257,7 @@ public class Celestial implements Serializable, Entity {
             return null;
         }
     }
-    
+
     @Override
     public String toString() {
         return name;
