@@ -510,7 +510,7 @@ public class Engine {
                     fuelWindow.updateFuel(playerShip.getFuel() / playerShip.getMaxFuel());
                 }
                 if (overviewWindow.isVisible()) {
-                    overviewWindow.updateOverview(playerShip);
+                    overviewWindow.updateOverview(playerShip,dilation);
                 }
                 if (equipmentWindow.isVisible()) {
                     equipmentWindow.update(playerShip);

@@ -35,7 +35,6 @@ import java.awt.image.BufferedImage;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Random;
-import lib.FastMath;
 
 /**
  *
@@ -48,6 +47,7 @@ public class OverviewWindow extends AstralWindow {
     AstralLabel stationLabel = new AstralLabel();
     AstralLabel shipLabel = new AstralLabel();
     AstralLabel velLabel = new AstralLabel();
+    AstralLabel tidiLabel = new AstralLabel();
     OverviewCanvas radar = new OverviewCanvas();
     private Ship sensorShip;
     private double area = 1;
@@ -61,11 +61,16 @@ public class OverviewWindow extends AstralWindow {
         generate();
     }
 
-    public void updateOverview(Ship sensorShip) {
+    public void updateOverview(Ship sensorShip, double dilation) {
         this.sensorShip = sensorShip;
         shipLabel.setVisible(showShipNames);
         stationLabel.setVisible(showStationNames);
         velLabel.setText("REL SPEED: " + roundTwoDecimal(magnitude(sensorShip.getVx(), sensorShip.getVy())));
+        if (dilation != 1) {
+            tidiLabel.setText("TIME: " + roundTwoDecimal(dilation) + "x");
+        } else {
+            tidiLabel.setText("");
+        }
     }
 
     public void incrementMode() {
@@ -329,6 +334,14 @@ public class OverviewWindow extends AstralWindow {
         shipLabel.setWidth(100);
         shipLabel.setHeight(25);
         shipLabel.setVisible(true);
+        //setup tidi label
+        tidiLabel.setText("TIDI");
+        tidiLabel.setName("tidi");
+        tidiLabel.setX(0);
+        tidiLabel.setY(getHeight() - 30);
+        tidiLabel.setWidth(200);
+        tidiLabel.setHeight(25);
+        tidiLabel.setVisible(true);
         //setup vel label
         velLabel.setText("REL SPEED");
         velLabel.setName("vel");
@@ -350,6 +363,7 @@ public class OverviewWindow extends AstralWindow {
         addComponent(modeLabel);
         addComponent(shipLabel);
         addComponent(stationLabel);
+        addComponent(tidiLabel);
         addComponent(velLabel);
     }
 
