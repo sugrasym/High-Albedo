@@ -2178,7 +2178,7 @@ public class Ship extends Celestial {
                     double my = vy - tmp.getVy();
                     double q = Math.sqrt(mx * mx + my * my);
                     //take it as damage
-                    dealDamage(q);
+                    dealDamage(10*q);
                 }
             } else {
                 //is it owned by me? if not apply damage
