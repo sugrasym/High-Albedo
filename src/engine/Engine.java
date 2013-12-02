@@ -811,20 +811,40 @@ public class Engine {
                 }
                 if (ke.getKeyCode() == KeyEvent.VK_M) {
                     starMapWindow.setVisible(!starMapWindow.isVisible());
+                    standingWindow.setVisible(false);
+                    propertyWindow.setVisible(false);
+                    tradeWindow.setVisible(false);
+                    cargoWindow.setVisible(false);
                 }
                 if (ke.getKeyCode() == KeyEvent.VK_C) {
                     cargoWindow.setVisible(!cargoWindow.isVisible());
+                    standingWindow.setVisible(false);
+                    propertyWindow.setVisible(false);
+                    starMapWindow.setVisible(false);
+                    tradeWindow.setVisible(false);
                 }
                 if (ke.getKeyCode() == KeyEvent.VK_T) {
                     if (playerShip.isDocked()) {
                         tradeWindow.setVisible(!tradeWindow.isVisible());
+                        standingWindow.setVisible(false);
+                        propertyWindow.setVisible(false);
+                        starMapWindow.setVisible(false);
+                        cargoWindow.setVisible(false);
                     }
                 }
                 if (ke.getKeyCode() == KeyEvent.VK_L) {
                     standingWindow.setVisible(!standingWindow.isVisible());
+                    propertyWindow.setVisible(false);
+                    starMapWindow.setVisible(false);
+                    cargoWindow.setVisible(false);
+                    tradeWindow.setVisible(false);
                 }
                 if (ke.getKeyCode() == KeyEvent.VK_P) {
                     propertyWindow.setVisible(!propertyWindow.isVisible());
+                    standingWindow.setVisible(false);
+                    starMapWindow.setVisible(false);
+                    cargoWindow.setVisible(false);
+                    tradeWindow.setVisible(false);
                 }
                 if (ke.getKeyCode() == KeyEvent.VK_I) {
                     commWindow.setVisible(!commWindow.isVisible());
