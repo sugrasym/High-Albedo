@@ -1,6 +1,16 @@
 2013-12-2
 ----------
+Removed from Que
+* Sometimes undock stage 3 never ends [MAYBE FIXED]
+* UTs seem to decide to fly into infinity. [COULD NOT REPRODUCE]
+* Aborting a dock then manually docking with a different station docks you in the station you aborted. [COULD NOT REPRODUCE]
 
+Still in Que
+* Sometimes the autopilot avoid code does not avoid stations while in UT [CONFIRMED]
+* NPCs stop firing when the target gets too close to them [CONFIRMED]
+
+New
+* Looped weapon effects don't always stop when their ship is destroyed [CONFIRMED]
 
 2013-12-1
 ----------
