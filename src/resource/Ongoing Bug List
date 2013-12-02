@@ -12,6 +12,20 @@ Still in Que
 New
 * Looped weapon effects don't always stop when their ship is destroyed [CONFIRMED]
 
+Also, need to take a look at
+-> Trade code, both ST and UT, needs a serious overhaul.
+    - traders often fill up on goods they can't sell
+        - problem is that they abort the sell operation because they'd sell at a loss
+            - possibly make them keep looking for a place to sell this good?
+            - possibly sell what you can and trash the rest?
+        - another problem: they don't make sure their trade is still profitable right before buying
+            - so they buy, fly all the way to the bad sell price station, and then can't sell.
+    - traders leave profitable areas when there is momentarily no trade route
+            - definately want them to migrate if there are no possible routes ever
+            - but they need to stay if there was a trade route that is temporarily depleted
+
+It might also help if players could see the price of goods at a station without docking.
+
 2013-12-1
 ----------
 * Aborting a dock then manually docking with a different station docks you in the station you aborted. [UNCONFIRMED]
