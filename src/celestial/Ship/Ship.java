@@ -81,6 +81,8 @@ public class Ship extends Celestial {
     public enum Autopilot {
 
         NONE, //nothing
+        WAIT, //waiting
+        WAITED, //done waiting
         DOCK_STAGE1, //get permission, go to the alignment vector
         DOCK_STAGE2, //fly into docking area
         DOCK_STAGE3, //fly into docking port
@@ -103,6 +105,8 @@ public class Ship extends Celestial {
     public static final double JUMP_SAFETY_FUEL = 0.25;
     public static final int HOSTILE_STANDING = -2;
     public static final String PLAYER_FACTION = "Player";
+    public static final double MAX_WAIT_TIME = 25;
+    public static final double MIN_WAIT_TIME = 5;
     //raw loadout
     protected String equip = "";
     private String template = "";
@@ -117,6 +121,9 @@ public class Ship extends Celestial {
     //faction
     protected Faction myFaction;
     protected String faction;
+    //timing and waiting
+    private double waitTimer = 0;
+    private double waitTimerLength = 0;
     //death
     private String explosion = "Explosion";
     //remove control (ex player control) switches
@@ -388,14 +395,6 @@ public class Ship extends Celestial {
             }
             syncStandings();
             behave();
-            if (autopilot != Autopilot.NONE) {
-                Ship obstruction = avoidCollission();
-                if (obstruction == null || isExemptFromAvoidance()) {
-                    autopilot();
-                } else {
-                    autopilotAvoidBlock(obstruction);
-                }
-            }
         }
     }
 
@@ -414,10 +413,20 @@ public class Ship extends Celestial {
     }
 
     protected void aliveInDock() {
+        //stop ship
+        vx = 0;
+        vy = 0;
+        //refuel
         fuel = maxFuel;
         shield = maxShield;
-        autopilot = Autopilot.NONE;
+        //kill non waiting autopilots
+        if (autopilot != Autopilot.WAIT && autopilot != autopilot.WAITED) {
+            autopilot = Autopilot.NONE;
+        }
+        //stop sounds
         killSounds();
+        //run autopilot block (should only be running wait)
+        autopilot();
     }
 
     protected void aliveInSpace() {
@@ -453,6 +462,15 @@ public class Ship extends Celestial {
                     target = null;
                 }
             }
+            //avoidance code
+            if (autopilot != Autopilot.NONE) {
+                Ship obstruction = avoidCollission();
+                if (obstruction == null || isExemptFromAvoidance()) {
+                    autopilot();
+                } else {
+                    autopilotAvoidBlock(obstruction);
+                }
+            }
         }
     }
 
@@ -470,6 +488,8 @@ public class Ship extends Celestial {
                 if (autopilot == Autopilot.FLY_TO_CELESTIAL) {
                     //call components
                     autopilotFlyToBlock();
+                } else if (autopilot == Autopilot.WAIT) {
+                    autopilotWaitBlock();
                 } else if (autopilot == Autopilot.FOLLOW) {
                     autopilotFollowBlock();
                 } else if (autopilot == Autopilot.ALL_STOP) {
@@ -490,14 +510,11 @@ public class Ship extends Celestial {
     protected boolean isExemptFromAvoidance() {
         if (getAutopilot() == Autopilot.DOCK_STAGE2) {
             return true;
-        }
-        if (getAutopilot() == Autopilot.DOCK_STAGE3) {
+        } else if (getAutopilot() == Autopilot.DOCK_STAGE3) {
             return true;
-        }
-        if (getAutopilot() == Autopilot.UNDOCK_STAGE1) {
+        } else if (getAutopilot() == Autopilot.UNDOCK_STAGE1) {
             return true;
-        }
-        if (getAutopilot() == Autopilot.UNDOCK_STAGE2) {
+        } else if (getAutopilot() == Autopilot.UNDOCK_STAGE2) {
             return true;
         }
         return false;
@@ -760,9 +777,18 @@ public class Ship extends Celestial {
             double dist = magnitude((ax), (ay));
             double speed = magnitude(vx, vy);
             fireRearThrusters();
-            if (speed > dist) {
+            if (dist > 1000 || (speed > dist)) {
                 autopilot = Autopilot.NONE;
                 port = null;
+            }
+        }
+    }
+
+    protected void autopilotWaitBlock() {
+        if (autopilot == Autopilot.WAIT) {
+            waitTimer += tpf;
+            if (waitTimer >= waitTimerLength) {
+                autopilot = Autopilot.WAITED;
             }
         }
     }
@@ -1153,43 +1179,53 @@ public class Ship extends Celestial {
                 }
             }
         } else {
-            System.out.println(getName() + " [UT] sucessfully docked at " + port.getParent().getName()
-                    + " in " + port.getParent().getCurrentSystem().getName());
-            //restore fuel
-            fuel = maxFuel;
-            //do buying and selling
-            Station curr = port.getParent();
-            if (curr == buyFromStation) {
-                //make sure the price is still ok
-                if (curr.getPrice(workingWare) <= buyFromPrice) {
-                    //how much of the ware can we carry
-                    int maxQ = (int) (cargo - getBayUsed()) / Math.max(1, (int) workingWare.getVolume());
-                    //how much can we carry if we want to follow reserve rules
-                    int q = (int) ((1 - TRADER_RESERVE_PERCENT) * maxQ);
-                    //buy as much as we can carry
-                    curr.buy(this, workingWare, q);
-                    System.out.println(getName() + " bought " + getNumInCargoBay(workingWare)
-                            + " " + workingWare.getName() + " from " + curr.getName());
-                } else {
-                    //abort trading operation
-                    abortTrade();
-                    System.out.println(getName() + " aborted trading operation (Bad buy price)");
+            //setup wait
+            if (autopilot == Autopilot.NONE) {
+                //notify
+                System.out.println(getName() + " [UT] sucessfully docked at " + port.getParent().getName()
+                        + " in " + port.getParent().getCurrentSystem().getName());
+                //restore fuel
+                fuel = maxFuel;
+                //do buying and selling
+                Station curr = port.getParent();
+                if (curr == buyFromStation) {
+                    //make sure the price is still ok
+                    if (curr.getPrice(workingWare) <= buyFromPrice) {
+                        //how much of the ware can we carry
+                        int maxQ = (int) (cargo - getBayUsed()) / Math.max(1, (int) workingWare.getVolume());
+                        //how much can we carry if we want to follow reserve rules
+                        int q = (int) ((1 - TRADER_RESERVE_PERCENT) * maxQ);
+                        //buy as much as we can carry
+                        curr.buy(this, workingWare, q);
+                        System.out.println(getName() + " bought " + getNumInCargoBay(workingWare)
+                                + " " + workingWare.getName() + " from " + curr.getName());
+                    } else {
+                        //abort trading operation
+                        abortTrade();
+                        System.out.println(getName() + " aborted trading operation (Bad buy price)");
+                    }
+                } else if (curr == sellToStation) {
+                    if (curr.getPrice(workingWare) >= sellToPrice) {
+                        //sell everything
+                        int q = getNumInCargoBay(workingWare);
+                        curr.sell(this, workingWare, q);
+                        System.out.println(getName() + " sold " + (q - getNumInCargoBay(workingWare))
+                                + " " + workingWare.getName() + " to " + curr.getName());
+                    } else {
+                        //abort trading operation
+                        abortTrade();
+                        System.out.println(getName() + " aborted trading operation (Bad sell price)");
+                        //TODO: Handle the fact we have a ware we can't sell
+                    }
                 }
-            } else if (curr == sellToStation) {
-                if (curr.getPrice(workingWare) >= sellToPrice) {
-                    //sell everything
-                    int q = getNumInCargoBay(workingWare);
-                    curr.sell(this, workingWare, q);
-                    System.out.println(getName() + " sold " + (q - getNumInCargoBay(workingWare))
-                            + " " + workingWare.getName() + " to " + curr.getName());
-                } else {
-                    //abort trading operation
-                    abortTrade();
-                    System.out.println(getName() + " aborted trading operation (Bad sell price)");
-                }
+                //wait
+                double diff = MAX_WAIT_TIME - MIN_WAIT_TIME;
+                double delt = rnd.nextDouble() * diff;
+                cmdWait(MIN_WAIT_TIME + delt);
+            } //finally undock when waiting is over
+            else if (autopilot == Autopilot.WAITED) {
+                cmdUndock();
             }
-            //finally undock
-            cmdUndock();
         }
     }
 
@@ -1338,43 +1374,50 @@ public class Ship extends Celestial {
                 }
             }
         } else {
-            System.out.println(getName() + " [ST] sucessfully docked at " + port.getParent().getName()
-                    + " in " + port.getParent().getCurrentSystem().getName());
-            //restore fuel
-            fuel = maxFuel;
-            //do buying and selling
-            Station curr = port.getParent();
-            if (curr == buyFromStation) {
-                //make sure the price is still ok
-                if (curr.getPrice(workingWare) <= buyFromPrice) {
-                    //how much of the ware can we carry
-                    int maxQ = (int) (cargo - getBayUsed()) / Math.max(1, (int) workingWare.getVolume());
-                    //how much can we carry if we want to follow reserve rules
-                    int q = (int) ((1 - TRADER_RESERVE_PERCENT) * maxQ);
-                    //buy as much as we can carry
-                    curr.buy(this, workingWare, q);
-                    System.out.println(getName() + " bought " + getNumInCargoBay(workingWare)
-                            + " " + workingWare.getName() + " from " + curr.getName());
-                } else {
-                    //abort trading operation
-                    abortTrade();
-                    System.out.println(getName() + " aborted trading operation (Bad buy price)");
+            if (autopilot == Autopilot.NONE) {
+                System.out.println(getName() + " [ST] sucessfully docked at " + port.getParent().getName()
+                        + " in " + port.getParent().getCurrentSystem().getName());
+                //restore fuel
+                fuel = maxFuel;
+                //do buying and selling
+                Station curr = port.getParent();
+                if (curr == buyFromStation) {
+                    //make sure the price is still ok
+                    if (curr.getPrice(workingWare) <= buyFromPrice) {
+                        //how much of the ware can we carry
+                        int maxQ = (int) (cargo - getBayUsed()) / Math.max(1, (int) workingWare.getVolume());
+                        //how much can we carry if we want to follow reserve rules
+                        int q = (int) ((1 - TRADER_RESERVE_PERCENT) * maxQ);
+                        //buy as much as we can carry
+                        curr.buy(this, workingWare, q);
+                        System.out.println(getName() + " bought " + getNumInCargoBay(workingWare)
+                                + " " + workingWare.getName() + " from " + curr.getName());
+                    } else {
+                        //abort trading operation
+                        abortTrade();
+                        System.out.println(getName() + " aborted trading operation (Bad buy price)");
+                    }
+                } else if (curr == sellToStation) {
+                    if (curr.getPrice(workingWare) >= sellToPrice) {
+                        //sell everything
+                        int q = getNumInCargoBay(workingWare);
+                        curr.sell(this, workingWare, q);
+                        System.out.println(getName() + " sold " + (q - getNumInCargoBay(workingWare))
+                                + " " + workingWare.getName() + " to " + curr.getName());
+                    } else {
+                        //abort trading operation
+                        abortTrade();
+                        System.out.println(getName() + " aborted trading operation (Bad sell price)");
+                    }
                 }
-            } else if (curr == sellToStation) {
-                if (curr.getPrice(workingWare) >= sellToPrice) {
-                    //sell everything
-                    int q = getNumInCargoBay(workingWare);
-                    curr.sell(this, workingWare, q);
-                    System.out.println(getName() + " sold " + (q - getNumInCargoBay(workingWare))
-                            + " " + workingWare.getName() + " to " + curr.getName());
-                } else {
-                    //abort trading operation
-                    abortTrade();
-                    System.out.println(getName() + " aborted trading operation (Bad sell price)");
-                }
+                //wait
+                double diff = MAX_WAIT_TIME - MIN_WAIT_TIME;
+                double delt = rnd.nextDouble() * diff;
+                cmdWait(MIN_WAIT_TIME + delt);
+            } else if (autopilot == Autopilot.WAITED) {
+                //finally undock
+                cmdUndock();
             }
-            //finally undock
-            cmdUndock();
         }
     }
 
@@ -1780,10 +1823,20 @@ public class Ship extends Celestial {
         }
     }
 
+    public void cmdWait(double duration) {
+        autopilot = Autopilot.WAIT;
+        waitTimerLength = duration;
+        waitTimer = 0;
+    }
+
     public void cmdAbortDock() {
         setAutopilot(Autopilot.NONE);
         port = null;
         flyToTarget = null;
+        if (behavior == Behavior.UNIVERSE_TRADE || behavior == Behavior.SECTOR_TRADE) {
+            //stop trading
+            abortTrade();
+        }
     }
 
     public void cmdAllStop() {
@@ -2517,13 +2570,13 @@ public class Ship extends Celestial {
          Generates jump effect
          */
         if (tex != null) {
-            Point2D.Double size = new Point2D.Double(width*15, height*15);
+            Point2D.Double size = new Point2D.Double(width * 15, height * 15);
             Explosion jumpEffect = new Explosion(size, "Jump", 0.5);
             jumpEffect.setFaction("Neutral");
             jumpEffect.init(false);
             //store position
-            jumpEffect.setX((getX() + getWidth() / 2) - size.x/2);
-            jumpEffect.setY((getY() + getHeight() / 2) - size.y/2);
+            jumpEffect.setX((getX() + getWidth() / 2) - size.x / 2);
+            jumpEffect.setY((getY() + getHeight() / 2) - size.y / 2);
             //use host velocity as jump effect velocity
             jumpEffect.setVx(getVx());
             jumpEffect.setVy(getVy());
