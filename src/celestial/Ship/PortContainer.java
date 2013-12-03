@@ -58,7 +58,11 @@ public class PortContainer implements Serializable {
                         //it might still be trying to dock
                         if (client.collideWith(getBound())) {
                             if (client.getPort() == this) {
+                                //dock the ship
                                 client.setDocked(true);
+                                //message
+                                System.out.println(client.getName() + " [" + client.getBehavior() + "] sucessfully docked at " + getParent().getName()
+                                        + " in " + getParent().getCurrentSystem().getName());
                             } else {
                                 fullAbort();
                             }

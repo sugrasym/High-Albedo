@@ -843,7 +843,7 @@ public class Ship extends Celestial {
                 if (flyToTarget instanceof Station && flyToTarget.getState() == State.ALIVE) {
                     //make sure we can actually dock there
                     Station tmp = (Station) flyToTarget;
-                    if (tmp.canDock(this)) {
+                    if (tmp.canDock(this) && tmp.getCurrentSystem() == currentSystem) {
                         if (port == null) {
                             //get the docking port to use
                             port = tmp.requestDockPort(this);
@@ -1181,9 +1181,6 @@ public class Ship extends Celestial {
         } else {
             //setup wait
             if (autopilot == Autopilot.NONE) {
-                //notify
-                System.out.println(getName() + " [UT] sucessfully docked at " + port.getParent().getName()
-                        + " in " + port.getParent().getCurrentSystem().getName());
                 //restore fuel
                 fuel = maxFuel;
                 //do buying and selling
@@ -1204,24 +1201,29 @@ public class Ship extends Celestial {
                         abortTrade();
                         System.out.println(getName() + " aborted trading operation (Bad buy price)");
                     }
+                    //wait
+                    double diff = MAX_WAIT_TIME - MIN_WAIT_TIME;
+                    double delt = rnd.nextDouble() * diff;
+                    cmdWait(MIN_WAIT_TIME + delt);
                 } else if (curr == sellToStation) {
                     if (curr.getPrice(workingWare) >= sellToPrice) {
-                        //sell everything
+                        //try to dump all our wares at this price
                         int q = getNumInCargoBay(workingWare);
                         curr.sell(this, workingWare, q);
                         System.out.println(getName() + " sold " + (q - getNumInCargoBay(workingWare))
                                 + " " + workingWare.getName() + " to " + curr.getName());
                     } else {
-                        //abort trading operation
-                        abortTrade();
-                        System.out.println(getName() + " aborted trading operation (Bad sell price)");
-                        //TODO: Handle the fact we have a ware we can't sell
+                        //System.out.println(getName() + " did not sell (Bad sell price)");
+                    }
+                    //wait
+                    if (getNumInCargoBay(workingWare) == 0) {
+                        double diff = MAX_WAIT_TIME - MIN_WAIT_TIME;
+                        double delt = rnd.nextDouble() * diff;
+                        cmdWait(MIN_WAIT_TIME + delt);
+                    } else {
+                        //not everything sold yet
                     }
                 }
-                //wait
-                double diff = MAX_WAIT_TIME - MIN_WAIT_TIME;
-                double delt = rnd.nextDouble() * diff;
-                cmdWait(MIN_WAIT_TIME + delt);
             } //finally undock when waiting is over
             else if (autopilot == Autopilot.WAITED) {
                 cmdUndock();
@@ -1375,8 +1377,6 @@ public class Ship extends Celestial {
             }
         } else {
             if (autopilot == Autopilot.NONE) {
-                System.out.println(getName() + " [ST] sucessfully docked at " + port.getParent().getName()
-                        + " in " + port.getParent().getCurrentSystem().getName());
                 //restore fuel
                 fuel = maxFuel;
                 //do buying and selling
@@ -1397,23 +1397,29 @@ public class Ship extends Celestial {
                         abortTrade();
                         System.out.println(getName() + " aborted trading operation (Bad buy price)");
                     }
+                    //wait
+                    double diff = MAX_WAIT_TIME - MIN_WAIT_TIME;
+                    double delt = rnd.nextDouble() * diff;
+                    cmdWait(MIN_WAIT_TIME + delt);
                 } else if (curr == sellToStation) {
                     if (curr.getPrice(workingWare) >= sellToPrice) {
-                        //sell everything
+                        //try to dump all our wares at this price
                         int q = getNumInCargoBay(workingWare);
                         curr.sell(this, workingWare, q);
                         System.out.println(getName() + " sold " + (q - getNumInCargoBay(workingWare))
                                 + " " + workingWare.getName() + " to " + curr.getName());
                     } else {
-                        //abort trading operation
-                        abortTrade();
-                        System.out.println(getName() + " aborted trading operation (Bad sell price)");
+                        //System.out.println(getName() + " did not sell (Bad sell price)");
+                    }
+                    //wait
+                    if (getNumInCargoBay(workingWare) == 0) {
+                        double diff = MAX_WAIT_TIME - MIN_WAIT_TIME;
+                        double delt = rnd.nextDouble() * diff;
+                        cmdWait(MIN_WAIT_TIME + delt);
+                    } else {
+                        //not everything sold yet
                     }
                 }
-                //wait
-                double diff = MAX_WAIT_TIME - MIN_WAIT_TIME;
-                double delt = rnd.nextDouble() * diff;
-                cmdWait(MIN_WAIT_TIME + delt);
             } else if (autopilot == Autopilot.WAITED) {
                 //finally undock
                 cmdUndock();
@@ -1505,8 +1511,6 @@ public class Ship extends Celestial {
                 }
             }
         } else {
-            System.out.println(getName() + " [P] sucessfully docked at " + port.getParent().getName()
-                    + " in " + port.getParent().getCurrentSystem().getName());
             //restore fuel
             fuel = maxFuel;
             //undock
@@ -1526,6 +1530,25 @@ public class Ship extends Celestial {
     }
 
     private void abortTrade() {
+        /*
+         * This segment is dedicated to cutting losses.
+         * In X3TC, you'd often have to babysit traders who fuck up their trade
+         * run, and you'll probably just eject the ware they failed to sell and
+         * tell them to restart the trade script.
+         *
+         * I think this behavior should be automatic.
+         */
+        //eject working ware
+        if (workingWare != null) {
+            for (int a = 0; a < cargoBay.size(); a++) {
+                if (cargoBay.get(a) != null) {
+                    if (cargoBay.get(a).getName().matches(workingWare.getName())) {
+                        ejectCargo(cargoBay.get(a));
+                    }
+                }
+            }
+        }
+        //end trade
         autopilot = Autopilot.NONE;
         buyFromStation = null;
         sellToStation = null;
