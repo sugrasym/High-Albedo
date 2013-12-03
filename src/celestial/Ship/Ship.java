@@ -1816,8 +1816,8 @@ public class Ship extends Celestial {
             double dmg = rnd.nextFloat() * MAX_JUMP_SHIELD_DAMAGE * maxShield;
             dealDamage(dmg);
             //randomize location
-            x = rnd.nextInt(24000 * 2) - 24000;
-            y = rnd.nextInt(24000 * 2) - 24000;
+            x = rnd.nextInt(12000 * 2) - 12000;
+            y = rnd.nextInt(12000 * 2) - 12000;
             //drop the jump effect
             dropJumpEffect();
         }
