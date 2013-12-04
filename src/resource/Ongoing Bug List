@@ -1,3 +1,69 @@
+2013-12-4
+----------
+Still in Que
+* Sometimes the autopilot avoid code does not avoid stations while in UT [CONFIRMED]
+* NPCs stop firing when the target gets too close to them [CONFIRMED]
+* Looped weapon effects don't always stop when their ship is destroyed [CONFIRMED]
+
+New
+* Debris shows up in your property window and throws null pointer exceptions when viewing it [CONFIRMED]
+
+Progress has been made!
+-> Trade code
+    - UTs will now use their jumpdrives to escape when shields drop below 40%
+    - STs/UTs will now verify selling price again before buying goods, saving wasted trips.
+    - STs/UTs will now wait in a station to sell their goods no matter how long it takes.
+    - STs/UTs will dump goods that cannot be sold and try a new route.
+        - Will have to see how this goes. If too much money is being lost, might be changed.
+
+-> Station code
+    - Docking reservations changed from 10 minutes to 20 minutes.
+        - also benefits UTs and STs in big systems.
+        - some systems were just too big for 10 minutes.
+    - A station that enters dying() will now kill any docked ships.
+
+Things that need to be added... (to be done in future versions)
+-> Frigates
+    - An intermediate ship class to bridge the gap between capitals and fighters.
+    - Capable of mounting capital size weapons, but fewer of them.
+    - Size is smaller than a superfreighter but bigger than a transport.
+
+-> New Weapons
+    - Flak Weapons
+        - Capital sized anti-fighter weapons.
+        - The HGPC is pretty good already.
+        - AoE flak would be badass.
+
+    - More Ammo Based Fighter Weapons
+        - Since there's no weapon energy, ammo based weapons need to be 'special'.
+        - Phased Meson Cannon
+            - Penetrates shields and does damage directly to hull.
+            - Does low damage, but has a high refire rate.
+            - Short range.
+            - Sold by Gunpower.
+        - Inverse Field Thrower
+            - Extremely strong against shields but does little hull damage.
+            - High damage, low refire rate.
+            - Medium range.
+            - Sold by Gunpower.
+
+-> Capturable fighters
+    - All fighters have a bail chance determined in FACTION.txt
+    - Bail is calculated every time the hull drops by _another_ 10%.
+        - but only if the player is shooting at it!
+    - When a ship bails it ejects an astronaut.
+    - The ship will become neutral and can be claimed by hotkey when targeted.
+    - The ship will "self destruct" if the player leaves the system.
+        - read despawn
+
+-> Sellable ships
+    - Will have to think how to do this well.
+
+-> After that is all done, stations need some love.
+    - Customizable prices for buying and selling.
+    - Ability to assign a ship to buy or sell a ware for a station.
+    - Maybe deployable point defenses to protect stations?
+
 2013-12-2
 ----------
 Removed from Que
