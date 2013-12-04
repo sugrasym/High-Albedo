@@ -118,6 +118,16 @@ public class Station extends Ship {
                 System.out.println("Replaced asteroid used by dead asteroid mine " + getName());
             }
         }
+        //kill any docked ships
+        for (int a = 0; a < docks.size(); a++) {
+            if (docks.get(a).getClient() != null) {
+                if (docks.get(a).getClient().isDocked()) {
+                    docks.get(a).getClient().setState(State.DYING);
+                } else {
+                    //don't kill things that are en-route
+                }
+            }
+        }
     }
 
     @Override
