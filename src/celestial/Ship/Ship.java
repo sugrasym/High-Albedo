@@ -1187,7 +1187,7 @@ public class Ship extends Celestial {
                 Station curr = port.getParent();
                 if (curr == buyFromStation) {
                     //make sure the price is still ok
-                    if (curr.getPrice(workingWare) <= buyFromPrice) {
+                    if ((curr.getPrice(workingWare) <= buyFromPrice) && (sellToStation.getPrice(workingWare) >= sellToPrice)) {
                         //how much of the ware can we carry
                         int maxQ = (int) (cargo - getBayUsed()) / Math.max(1, (int) workingWare.getVolume());
                         //how much can we carry if we want to follow reserve rules
@@ -1383,7 +1383,7 @@ public class Ship extends Celestial {
                 Station curr = port.getParent();
                 if (curr == buyFromStation) {
                     //make sure the price is still ok
-                    if (curr.getPrice(workingWare) <= buyFromPrice) {
+                    if ((curr.getPrice(workingWare) <= buyFromPrice) && (sellToStation.getPrice(workingWare) >= sellToPrice)) {
                         //how much of the ware can we carry
                         int maxQ = (int) (cargo - getBayUsed()) / Math.max(1, (int) workingWare.getVolume());
                         //how much can we carry if we want to follow reserve rules

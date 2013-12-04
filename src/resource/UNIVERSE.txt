@@ -1,6 +1,6 @@
 #New Game Smell
 [NewGame]
-ship=Sparrow
+ship=Gila
 near='Gomez 15'
 system=The Highway
 cash=25000
