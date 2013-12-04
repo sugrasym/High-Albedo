@@ -1017,8 +1017,27 @@ public class Ship extends Celestial {
             //give this thing a chance of fighting back against hostiles
             if (shieldPercent > 75) {
                 behaviorUniverseTrade();
-            } else {
+            } else if (shieldPercent > 40) {
                 behaviorPatrol();
+            } else {
+                //get a list of systems in jump range
+                ArrayList<SolarSystem> zone = new ArrayList<>();
+                for (int a = 0; a < getUniverse().getSystems().size(); a++) {
+                    if (canJump(getUniverse().getSystems().get(a))) {
+                        zone.add(getUniverse().getSystems().get(a));
+                    }
+                }
+                if (zone.size() > 0 && target != null) {
+                    //abort trade
+                    abortTrade();
+                    //jump
+                    cmdJump(zone.get(rnd.nextInt(zone.size())));
+                    //notify
+                    System.out.println(getName() + " escaped to " + currentSystem.getName());
+                } else {
+                    //keep fighting
+                    behaviorPatrol();
+                }
             }
         }
     }
