@@ -34,7 +34,7 @@ public class PortContainer implements Serializable {
     protected Station parent;
     private Ship client;
     //timing
-    private double maxHold = 1200;
+    private double maxHold = 2400;
     private double time = 0;
 
     public PortContainer(Station parent, double x, double y, int w, int h, double ax, double ay) {
