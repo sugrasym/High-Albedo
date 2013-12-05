@@ -1199,7 +1199,7 @@ public class Ship extends Celestial {
             }
         } else {
             //setup wait
-            if (autopilot == Autopilot.NONE) {
+            if (autopilot == Autopilot.NONE && port != null) {
                 //restore fuel
                 fuel = maxFuel;
                 //do buying and selling
@@ -1265,6 +1265,11 @@ public class Ship extends Celestial {
                 } else {
                     cmdUndock();
                 }
+            } else if (port == null) {
+                abortTrade();
+                cmdUndock();
+            } else {
+                //do nothing
             }
         }
     }
@@ -1883,13 +1888,18 @@ public class Ship extends Celestial {
     }
 
     public void cmdAbortDock() {
-        setAutopilot(Autopilot.NONE);
-        port = null;
-        flyToTarget = null;
+        if (!docked) {
+            setAutopilot(Autopilot.NONE);
+            port = null;
+        } else {
+            //don't null the port
+        }
         if (behavior == Behavior.UNIVERSE_TRADE || behavior == Behavior.SECTOR_TRADE) {
             //stop trading
             abortTrade();
         }
+        flyToTarget = null;
+        setAutopilot(Autopilot.NONE);
     }
 
     public void cmdAllStop() {
