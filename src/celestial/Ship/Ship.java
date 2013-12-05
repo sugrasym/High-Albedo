@@ -1254,13 +1254,14 @@ public class Ship extends Celestial {
             else if (autopilot == Autopilot.WAITED) {
                 if (getNumInCargoBay(workingWare) > 0) {
                     cmdUndock();
-                    //skippy skip
-                    /*
-                     * Undocking might use too much fuel to reach our destination
-                     * causing a failed trade run. Just jump right out of the gate.
-                     */
-                    autopilot = Autopilot.NONE;
-                    port = null;
+                    if (currentSystem != sellToStation.getCurrentSystem()) {
+                        /*
+                         * Undocking might use too much fuel to reach our destination
+                         * causing a failed trade run. Just jump right out of the gate.
+                         */
+                        autopilot = Autopilot.NONE;
+                        port = null;
+                    }
                 } else {
                     cmdUndock();
                 }
@@ -1413,7 +1414,7 @@ public class Ship extends Celestial {
                 }
             }
         } else {
-            if (autopilot == Autopilot.NONE) {
+            if (autopilot == Autopilot.NONE && port != null) {
                 //restore fuel
                 fuel = maxFuel;
                 //do buying and selling
@@ -1465,6 +1466,11 @@ public class Ship extends Celestial {
             } else if (autopilot == Autopilot.WAITED) {
                 //finally undock
                 cmdUndock();
+            } else if (port == null) {
+                abortTrade();
+                cmdUndock();
+            } else {
+                //do nothing
             }
         }
     }

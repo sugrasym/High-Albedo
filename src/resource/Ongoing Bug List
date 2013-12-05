@@ -1,3 +1,25 @@
+2013-12-5
+----------
+Removed From Que
+* Debris shows up in your property window and throws null pointer exceptions when viewing it [FIXED]
+
+Still in Que
+* Sometimes the autopilot avoid code does not avoid stations while in UT [CONFIRMED]
+* NPCs stop firing when the target gets too close to them [CONFIRMED]
+* Looped weapon effects don't always stop when their ship is destroyed [CONFIRMED -- Not Observed Recently]
+    - Was possibly fixed in an earlier fix I implemented for another sound issue?
+
+New
+* Ships sometimes get stuck on DOCK_STAGE_3 when using the capital docking port.
+
+Progress has been made!
+-> Trade code
+    - UTs (and STs) are even more profitable!
+        - Located a leak in the trade code where after buying wares and undocking they used slightly too much fuel.
+        - Fixed leak by making them jump directly from the docking port. Trade failure rate significantly reduced.
+        - Traders also validate jump fuel before buying.
+        - Traders no longer drop goods on trade failure. They will sell them eventually, it's just delayed profits.
+
 2013-12-4
 ----------
 Still in Que
