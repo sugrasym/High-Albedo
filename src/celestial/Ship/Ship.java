@@ -1242,6 +1242,11 @@ public class Ship extends Celestial {
                     } else {
                         //not everything sold yet
                     }
+                } else {
+                    //wait
+                    double diff = MAX_WAIT_TIME - MIN_WAIT_TIME;
+                    double delt = rnd.nextDouble() * diff;
+                    cmdWait(MIN_WAIT_TIME + delt);
                 }
             } //finally undock when waiting is over
             else if (autopilot == Autopilot.WAITED) {
@@ -1438,6 +1443,11 @@ public class Ship extends Celestial {
                     } else {
                         //not everything sold yet
                     }
+                } else {
+                    //wait
+                    double diff = MAX_WAIT_TIME - MIN_WAIT_TIME;
+                    double delt = rnd.nextDouble() * diff;
+                    cmdWait(MIN_WAIT_TIME + delt);
                 }
             } else if (autopilot == Autopilot.WAITED) {
                 //finally undock
@@ -1549,24 +1559,6 @@ public class Ship extends Celestial {
     }
 
     private void abortTrade() {
-        /*
-         * This segment is dedicated to cutting losses.
-         * In X3TC, you'd often have to babysit traders who fuck up their trade
-         * run, and you'll probably just eject the ware they failed to sell and
-         * tell them to restart the trade script.
-         *
-         * I think this behavior should be automatic.
-         */
-        //eject working ware
-        if (workingWare != null) {
-            for (int a = 0; a < cargoBay.size(); a++) {
-                if (cargoBay.get(a) != null) {
-                    if (cargoBay.get(a).getName().matches(workingWare.getName())) {
-                        ejectCargo(cargoBay.get(a));
-                    }
-                }
-            }
-        }
         //end trade
         autopilot = Autopilot.NONE;
         buyFromStation = null;

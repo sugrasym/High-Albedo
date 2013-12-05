@@ -4,7 +4,7 @@ ship=Sparrow
 near='Gomez 15'
 system=The Highway
 cash=25000
-install=ERPC/ERPC
+install=PNBC/PNBC
 cargo=Jumpdrive
 faction=Player
 [/NewGame]
