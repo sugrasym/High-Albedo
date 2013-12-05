@@ -856,7 +856,7 @@ public class Ship extends Celestial {
                             double hold = 0;
                             //calculate hold
                             if (dist > 500) {
-                                hold = accel * 1.8;
+                                hold = accel * 3;
                             } else {
                                 hold = width / 2;
                             }
@@ -1206,7 +1206,9 @@ public class Ship extends Celestial {
                 Station curr = port.getParent();
                 if (curr == buyFromStation) {
                     //make sure the price is still ok
-                    if ((curr.getPrice(workingWare) <= buyFromPrice) && (sellToStation.getPrice(workingWare) >= sellToPrice)) {
+                    if ((curr.getPrice(workingWare) <= buyFromPrice)
+                            && (sellToStation.getPrice(workingWare) >= sellToPrice)
+                            && canJump(sellToStation.getCurrentSystem())) {
                         //how much of the ware can we carry
                         int maxQ = (int) (cargo - getBayUsed()) / Math.max(1, (int) workingWare.getVolume());
                         //how much can we carry if we want to follow reserve rules
@@ -1218,7 +1220,7 @@ public class Ship extends Celestial {
                     } else {
                         //abort trading operation
                         abortTrade();
-                        System.out.println(getName() + " aborted trading operation (Bad buy price)");
+                        System.out.println(getName() + " aborted trading operation.");
                     }
                     //wait
                     double diff = MAX_WAIT_TIME - MIN_WAIT_TIME;
@@ -1250,7 +1252,18 @@ public class Ship extends Celestial {
                 }
             } //finally undock when waiting is over
             else if (autopilot == Autopilot.WAITED) {
-                cmdUndock();
+                if (getNumInCargoBay(workingWare) > 0) {
+                    cmdUndock();
+                    //skippy skip
+                    /*
+                     * Undocking might use too much fuel to reach our destination
+                     * causing a failed trade run. Just jump right out of the gate.
+                     */
+                    autopilot = Autopilot.NONE;
+                    port = null;
+                } else {
+                    cmdUndock();
+                }
             }
         }
     }
@@ -1572,7 +1585,7 @@ public class Ship extends Celestial {
         /*
          * Maintains compatibility with most flight methods.
          */
-        moveToPositionWithHold(tx, ty, 2 * accel);
+        moveToPositionWithHold(tx, ty, 3 * accel);
     }
 
     protected void moveToPositionWithHold(double tx, double ty, double hold) {
@@ -1975,8 +1988,8 @@ public class Ship extends Celestial {
                     if (!(nearby.get(a) instanceof Projectile)) {
                         if (!(nearby.get(a) instanceof Explosion)) {
                             if (tmp != this) {
-                                //make sure it is alive
-                                if (tmp.getState() == State.ALIVE) {
+                                //make sure it is alive and isn't docked
+                                if (tmp.getState() == State.ALIVE && !tmp.isDocked()) {
                                     //check standings
                                     if (tmp.getStandingsToMe(this) < HOSTILE_STANDING || scanForContraband(tmp)) {
                                         hostiles.add(tmp);
