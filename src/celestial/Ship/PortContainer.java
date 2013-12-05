@@ -63,6 +63,8 @@ public class PortContainer implements Serializable {
                                 //message
                                 System.out.println(client.getName() + " [" + client.getBehavior() + "] sucessfully docked at " + getParent().getName()
                                         + " in " + getParent().getCurrentSystem().getName());
+                                //center client
+                                centerClient();
                             } else {
                                 fullAbort();
                             }
@@ -71,7 +73,8 @@ public class PortContainer implements Serializable {
                         fullAbort();
                     }
                 } else {
-                    keepClientCentered();
+                    client.setVx(0);
+                    client.setVy(0);
                 }
             } else {
                 //client died somehow
@@ -107,19 +110,19 @@ public class PortContainer implements Serializable {
     }
 
     public double getPortX() {
-        return x + getParent().getX() + height / 2;
+        return x + parent.getX() + height / 2;
     }
 
     public double getPortY() {
-        return y + getParent().getY() + width / 2;
+        return y + parent.getY() + width / 2;
     }
 
     public double getAlignX() {
-        return getParent().getX() + ax;
+        return parent.getX() + ax;
     }
 
     public double getAlignY() {
-        return getParent().getY() + ay;
+        return parent.getY() + ay;
     }
 
     public Ship getClient() {
@@ -162,7 +165,7 @@ public class PortContainer implements Serializable {
         time = 0;
     }
 
-    private void keepClientCentered() {
+    private void centerClient() {
         client.setX(getPortX() - width / 2);
         client.setY(getPortY() - height / 2);
         client.setVx(0);
