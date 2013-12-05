@@ -59,6 +59,10 @@ public class Station extends Ship {
 
     @Override
     public void alive() {
+        //kill velocity
+        vx = 0;
+        vy = 0;
+        //setup faction if needed
         if (myFaction == null) {
             myFaction = new Faction(faction);
         }
