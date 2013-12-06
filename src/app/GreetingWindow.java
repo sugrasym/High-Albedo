@@ -56,12 +56,12 @@ public class GreetingWindow extends javax.swing.JFrame {
         jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("High Albedo: Development Build Settings");
+        setTitle("High Albedo: Twisted Skies Settings");
         setResizable(false);
 
-        jLabel1.setText("High Albedo: Development Build");
+        jLabel1.setText("High Albedo: Twisted Skies");
 
-        jLabel2.setText("v1.0+");
+        jLabel2.setText("v1.1");
 
         windowGroup.add(fullScreenButton);
         fullScreenButton.setText("Full Screen");

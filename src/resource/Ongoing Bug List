@@ -2,6 +2,12 @@
 ----------
 Removed From Que
 * Sometimes the autopilot avoid code does not avoid stations while in UT [FIXED]
+* Looped weapon effects don't always stop when their ship is destroyed [FIXED]
+    - was observed again, fixed it by making the stop method more aggressive.
+* Ships sometimes get stuck on DOCK_STAGE_3 when using the capital docking port. [FIXED]
+
+The Board is Clean!
+Ready for publishing of v1.1!
 
 2013-12-5
 ----------
