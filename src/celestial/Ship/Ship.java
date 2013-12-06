@@ -595,15 +595,10 @@ public class Ship extends Celestial {
         double iT = theta;
         double dx = 0;
         double dy = 0;
-        if (Math.max(getWidth(), getHeight()) < 100) {
-            //small ship code (they go fast)
-            dx = -4 * Math.abs(getWidth()) * Math.cos(iT);
-            dy = -4 * Math.abs(getHeight()) * Math.sin(iT);
-        } else {
-            //cap ship code (they go slow)
-            dx = -1 * Math.abs(getWidth()) * Math.cos(iT);
-            dy = -1 * Math.abs(getHeight()) * Math.sin(iT);
-        }
+        //generate differences
+        dx = -4 * Math.abs(getWidth()) * Math.cos(iT);
+        dy = -4 * Math.abs(getHeight()) * Math.sin(iT);
+        //generate dodge line
         Line2D tmp = new Line2D.Double();
         //
         //create the end points
@@ -615,7 +610,6 @@ public class Ship extends Celestial {
         double fuzzX = getWidth() * (rnd.nextDouble()) - getWidth() / 2;
         double fuzzY = getHeight() * (rnd.nextDouble()) - getHeight() / 2;
         tmp.setLine(ax, ay, bx + fuzzX, by + fuzzY);
-
         return tmp;
     }
 
@@ -1385,7 +1379,12 @@ public class Ship extends Celestial {
                                      * and wait. Sector traders shouldn't leave system unless there is
                                      * literally nothing to trade.
                                      */
-                                    cmdAllStop();
+                                    Station near = getNearestFriendlyStationInSystem();
+                                    if (near != null) {
+                                        cmdDock(near);
+                                    } else {
+                                        cmdAllStop();
+                                    }
                                 } else {
                                     /*
                                      * I honestly don't give a damn if some random NPC trader dies.
@@ -1475,7 +1474,7 @@ public class Ship extends Celestial {
                 abortTrade();
                 cmdUndock();
             } else {
-                //do nothing
+
             }
         }
     }
