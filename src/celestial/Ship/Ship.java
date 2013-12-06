@@ -1379,7 +1379,8 @@ public class Ship extends Celestial {
                                      * and wait. Sector traders shouldn't leave system unless there is
                                      * literally nothing to trade.
                                      */
-                                    Station near = getNearestFriendlyStationInSystem();
+                                    ArrayList<Station> fstat = getFriendlyStationsInSystem();
+                                    Station near = fstat.get(rnd.nextInt(fstat.size()));
                                     if (near != null) {
                                         cmdDock(near);
                                     } else {
