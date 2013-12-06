@@ -3191,9 +3191,7 @@ public class Ship extends Celestial {
 
     public void stopSound(Soundling sound) {
         if (sound != null) {
-            if (sound.isPlaying()) {
-                sound.stop();
-            }
+            sound.stop();
         }
         if (soundQue != null) {
             soundQue.remove(sound);
@@ -3209,6 +3207,9 @@ public class Ship extends Celestial {
         }
         //clear que
         if (soundQue != null) {
+            for(int a = 0; a < soundQue.size(); a++) {
+                soundQue.get(a).stop();
+            }
             soundQue.clear();
         }
     }

@@ -1,11 +1,10 @@
 #New Game Smell
 [NewGame]
-ship=Gila
+ship=Cab
 near='Gomez 15'
 system=The Highway
 cash=25000
-install=PNBC/PNBC/Python Launcher/Python Launcher
-cargo=Jumpdrive/Python Missile~50
+install=PNBC/PNBC
 faction=Player
 [/NewGame]
 

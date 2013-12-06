@@ -240,11 +240,10 @@ public class Weapon extends Equipment {
 
     @Override
     public void killSounds() {
+        super.killSounds();
         host.stopSound(fireEffect);
         if (fireEffect != null) {
-            if (fireEffect.isPlaying()) {
-                fireEffect.stop();
-            }
+            fireEffect.stop();
         }
     }
 
