@@ -42,7 +42,7 @@ public class MenuHomeWindow extends AstralWindow {
         setWidth(800);
         setHeight(600);
         //setup logo label
-        logoLabel.setText("High Albedo: Twisted Skies");
+        logoLabel.setText("High Albedo: Development Build");
         logoLabel.setFont(new Font("Monospaced", Font.PLAIN, 36));
         logoLabel.setX(0);
         logoLabel.setY(0);
@@ -137,6 +137,8 @@ public class MenuHomeWindow extends AstralWindow {
                 gameList.setVisible(false);
                 populateSettingList();
                 settingList.setVisible(true);
+            } else if (command.matches("Resume")) {
+                engine.menu();
             }
         } else if (gameList.isVisible()) {
             int index = gameList.getIndex();
@@ -227,6 +229,8 @@ public class MenuHomeWindow extends AstralWindow {
                 mainList.addToList("Save Game");
                 mainList.addToList("");
                 mainList.addToList("Settings");
+                mainList.addToList("");
+                mainList.addToList("Resume");
             }
         }
     }
