@@ -2832,8 +2832,12 @@ public class Ship extends Celestial {
         try {
             for (int a = 0; a < hardpoints.size(); a++) {
                 if (hardpoints.get(a).getMounted() == equipment) {
-                    hardpoints.get(a).unmount(equipment);
-                    cargoBay.add(equipment);
+                    if (getBayUsed() + equipment.getVolume() <= cargo) {
+                        hardpoints.get(a).unmount(equipment);
+                        cargoBay.add(equipment);
+                    } else {
+                        //not enough room
+                    }
                 }
             }
         } catch (Exception ex) {
@@ -3207,7 +3211,7 @@ public class Ship extends Celestial {
         }
         //clear que
         if (soundQue != null) {
-            for(int a = 0; a < soundQue.size(); a++) {
+            for (int a = 0; a < soundQue.size(); a++) {
                 soundQue.get(a).stop();
             }
             soundQue.clear();
