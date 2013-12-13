@@ -44,7 +44,7 @@ public class AstralBar extends AstralComponent {
             if (buffer == null) {
                 buffer = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
             }
-            Graphics2D s = (Graphics2D)buffer.getGraphics();
+            Graphics2D s = (Graphics2D) buffer.getGraphics();
             //draw the background
             s.setColor(getBarColor());
             s.fillRect(0, 0, (int) (percentage * width), height);

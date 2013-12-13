@@ -96,7 +96,7 @@ public class Parser implements Serializable {
                         Param param = new Param(tmp[0], tmp[1]);
                         term.addParam(param);
                     } else {
-                        Param param = new Param("unknown"+a, tmp[0]);
+                        Param param = new Param("unknown" + a, tmp[0]);
                         term.addParam(param);
                     }
                 } catch (Exception e) {

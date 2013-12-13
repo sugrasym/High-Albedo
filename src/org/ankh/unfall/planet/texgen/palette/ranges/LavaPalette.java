@@ -39,7 +39,7 @@ public class LavaPalette extends TerrainPalette {
                 getInformations().getWaterLevel(), -1, getInformations().getWaterLevel() * 1.1f, 3,
                 -1, -1, 5, 6,
                 -15, 50, 25, 2,
-                new Color(25,23,24), Color.black);
+                new Color(25, 23, 24), Color.black);
 
         TerrainRange very_deep_water = new GaussianTerrainRange(
                 -1, getInformations().getWaterLevel(), 0, 50,
@@ -57,26 +57,26 @@ public class LavaPalette extends TerrainPalette {
                 -1, getInformations().getWaterLevel(), getInformations().getWaterLevel(), 5,
                 -1, -1, 0, 1.0f,
                 -258, 100, 50, 5,
-                new Color(255,35,78), Color.white);
+                new Color(255, 35, 78), Color.white);
 
         TerrainRange desert = new GaussianTerrainRange(
                 getInformations().getWaterLevel(), -1, getInformations().getWaterLevel() * 1.2f, 4,
                 -1, -1, 0, 2f,
                 -258, 100, 0, 3.0f,
-                new Color(45,43,44), Color.black);
+                new Color(45, 43, 44), Color.black);
 
         TerrainRange desert_dune = new GaussianTerrainRange(
                 getInformations().getWaterLevel(), -1, getInformations().getWaterLevel() * 1.3f, 4,
                 -1, -1, 0, 2f,
                 -1, 100, 50, 3.0f,
-                new Color(35,33,34), Color.black);
+                new Color(35, 33, 34), Color.black);
 
         TerrainRange moutain = new GaussianTerrainRange(
                 getInformations().getWaterLevel(), -1, getInformations().getWaterLevel() * 2f, 4,
                 -1, -1, 10, 1.5f,
                 -258, -258, 5, 3,
                 Color.LIGHT_GRAY, Color.black);
-        
+
         attachTerrainRange(upstairs);
         attachTerrainRange(upupstairs);
         attachTerrainRange(deep_water);

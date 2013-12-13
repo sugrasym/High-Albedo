@@ -1,59 +1,91 @@
 /*    
-This file is part of jME Planet Demo.
+ This file is part of jME Planet Demo.
 
-jME Planet Demo is free software: you can redistribute it and/or modify
-it under the terms of the GNU Lesser General Public License as published by
-the Free Software Foundation.
+ jME Planet Demo is free software: you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License as published by
+ the Free Software Foundation.
 
-jME Planet Demo is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Lesser General Public License for more details.
+ jME Planet Demo is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Lesser General Public License for more details.
 
-You should have received a copy of the GNU General Public License
-along with jME Planet Demo.  If not, see <http://www.gnu.org/licenses/>.
+ You should have received a copy of the GNU General Public License
+ along with jME Planet Demo.  If not, see <http://www.gnu.org/licenses/>.
  */
 package org.ankh.unfall.planet;
 
 //import com.jme3.math.ColorRGBA;
-
 /**
  * List of params used to generate planet
+ *
  * @author Yacine Petitprez
  */
 public class PlanetInformation {
 
-    /** Equator temperatures */
+    /**
+     * Equator temperatures
+     */
     private int equatorTemperature;
-    /** Poles temperatures */
+    /**
+     * Poles temperatures
+     */
     private int poleTemperature;
-    /** Height of water ([0..255] */
+    /**
+     * Height of water ([0..255]
+     */
     private int waterLevel;
-    /** Percentage of water on planet */
+    /**
+     * Percentage of water on planet
+     */
     private float waterInPercent;
-    /** Height factor */
+    /**
+     * Height factor
+     */
     private float heightFactor;
-    /** Random seed for this planet */
+    /**
+     * Random seed for this planet
+     */
     private int seed;
-    /** Planet radius (in km) */
+    /**
+     * Planet radius (in km)
+     */
     private float radius;
-    /** day/night cycle time (in sec, Earth  ~= 88000sec) */
+    /**
+     * day/night cycle time (in sec, Earth ~= 88000sec)
+     */
     private int daytime;
-    /** XXX Humidity factor is NOT USED ACTUALLY */
+    /**
+     * XXX Humidity factor is NOT USED ACTUALLY
+     */
     private float humidity;
-    /** This planet has cloud? */
+    /**
+     * This planet has cloud?
+     */
     private boolean hasCloud = false;
-    /** Atmosphere density */
+    /**
+     * Atmosphere density
+     */
     private float atmosphereDensity = 1.f;
-    /** Atmosphere color */
+    /**
+     * Atmosphere color
+     */
     //private ColorRGBA atmosphereColor = new ColorRGBA(.7f, .8f, 1f, 1f);
-    /** Atmosphere absorption power */
+    /**
+     * Atmosphere absorption power
+     */
     private float atmosphereAbsorptionPower = 2f;
-    /** Atmosphere glow power */
+    /**
+     * Atmosphere glow power
+     */
     private float atmosphereGlowPower = 20f;
-    /** Set the cloud height int percentage of the radius size */
+    /**
+     * Set the cloud height int percentage of the radius size
+     */
     private float cloudHeight = 0.004f;
-    /** Smoothness */
+    /**
+     * Smoothness
+     */
     private int smoothness = 7;
 
     public float getHumidity() {
@@ -146,13 +178,12 @@ public class PlanetInformation {
     }
 
     /*public ColorRGBA getAtmosphereColor() {
-        return atmosphereColor;
-    }
+     return atmosphereColor;
+     }
 
-    public void setAtmosphereColor(ColorRGBA atmosphereColor) {
-        this.atmosphereColor = atmosphereColor;
-    }*/
-
+     public void setAtmosphereColor(ColorRGBA atmosphereColor) {
+     this.atmosphereColor = atmosphereColor;
+     }*/
     public float getAtmosphereAbsorptionPower() {
         return atmosphereAbsorptionPower;
     }
@@ -174,10 +205,12 @@ public class PlanetInformation {
     }
 
     /**
-     * Set the cloud height factor. To compute real cloud height, you must make this:<br>
+     * Set the cloud height factor. To compute real cloud height, you must make
+     * this:<br>
      * <code>realCloudHeight = (1.f+cloudHeight) * radius</code><br>
      * The end of atmosphere is compute like this:<br>
      * <code>endAtmosphere = (1.f+(10*cloudHeight)) * radius</code>
+     *
      * @param cloudHeight
      */
     public void setCloudHeight(float cloudHeight) {
@@ -185,9 +218,12 @@ public class PlanetInformation {
     }
 
     /**
-     * Compute the radius of atmosphere to the <code>cloudHeight</code> factor 
-     * @param atmoSize The size of atmosphere, in 3D unity. For example, if your Planet has a radius of 7000 u3D, 
-     * and you call {@link #setAtmosphereSizeInUnity(500)}, the atmosphere pass will have a size of 7500 u3D.
+     * Compute the radius of atmosphere to the <code>cloudHeight</code> factor
+     *
+     * @param atmoSize The size of atmosphere, in 3D unity. For example, if your
+     * Planet has a radius of 7000 u3D, and you call
+     * {@link #setAtmosphereSizeInUnity(500)}, the atmosphere pass will have a
+     * size of 7500 u3D.
      */
     public void setAtmosphereSizeInUnity(float atmoSize) {
         cloudHeight = 0.1f * ((getRadius() / (atmoSize + getRadius())) - 1.f);

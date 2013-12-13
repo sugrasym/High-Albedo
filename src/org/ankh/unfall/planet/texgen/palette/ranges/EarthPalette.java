@@ -1,17 +1,17 @@
 /*    
-This file is part of jME Planet Demo.
+ This file is part of jME Planet Demo.
 
-jME Planet Demo is free software: you can redistribute it and/or modify
-it under the terms of the GNU Lesser General Public License as published by
-the Free Software Foundation.
+ jME Planet Demo is free software: you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License as published by
+ the Free Software Foundation.
 
-jME Planet Demo is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Lesser General Public License for more details.
+ jME Planet Demo is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Lesser General Public License for more details.
 
-You should have received a copy of the GNU General Public License
-along with jME Planet Demo.  If not, see <http://www.gnu.org/licenses/>.
+ You should have received a copy of the GNU General Public License
+ along with jME Planet Demo.  If not, see <http://www.gnu.org/licenses/>.
  */
 package org.ankh.unfall.planet.texgen.palette.ranges;
 
@@ -21,16 +21,14 @@ import org.ankh.unfall.planet.texgen.palette.GaussianTerrainRange;
 import org.ankh.unfall.planet.texgen.palette.TerrainPalette;
 import org.ankh.unfall.planet.texgen.palette.TerrainRange;
 
-public class EarthPalette extends TerrainPalette
-{
-    public EarthPalette(PlanetInformation informations)
-    {
+public class EarthPalette extends TerrainPalette {
+
+    public EarthPalette(PlanetInformation informations) {
         super(informations);
     }
 
     @Override
-    public void initPalette()
-    {
+    public void initPalette() {
 
         TerrainRange tundra = new GaussianTerrainRange(
                 getInformations().getWaterLevel(), -1, getInformations().getWaterLevel(), 4,
@@ -67,7 +65,6 @@ public class EarthPalette extends TerrainPalette
                 -1, -1, 0, 1.0f,
                 -258, 100, 50, 5,
                 new Color(0x4FAAA8), Color.white);
-
 
         TerrainRange arctic = new GaussianTerrainRange(
                 -1, -1, 0, -1f,

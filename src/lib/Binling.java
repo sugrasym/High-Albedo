@@ -12,7 +12,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package lib;
 
 import java.io.Serializable;
@@ -49,7 +48,7 @@ public class Binling implements Serializable {
     public void setDouble(double num) {
         this.num = num;
     }
-    
+
     @Override
     public String toString() {
         return getStr().get(0);

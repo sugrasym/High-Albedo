@@ -1,17 +1,17 @@
 /*    
-This file is part of jME Planet Demo.
+ This file is part of jME Planet Demo.
 
-jME Planet Demo is free software: you can redistribute it and/or modify
-it under the terms of the GNU Lesser General Public License as published by
-the Free Software Foundation.
+ jME Planet Demo is free software: you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License as published by
+ the Free Software Foundation.
 
-jME Planet Demo is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Lesser General Public License for more details.
+ jME Planet Demo is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Lesser General Public License for more details.
 
-You should have received a copy of the GNU General Public License
-along with jME Planet Demo.  If not, see <http://www.gnu.org/licenses/>.
+ You should have received a copy of the GNU General Public License
+ along with jME Planet Demo.  If not, see <http://www.gnu.org/licenses/>.
  */
 package org.ankh.unfall.planet.texgen;
 
@@ -23,10 +23,11 @@ import org.ankh.unfall.system.thread.ForRunnable;
 
 /**
  * {@link ForRunnable} used to compute color and specular map of a Planet
+ *
  * @author Yacine Petitprez
  */
-public class ColorForRunnable implements ForRunnable
-{
+public class ColorForRunnable implements ForRunnable {
+
     private ColorMixer mixer = new ColorMixer();
     private TerrainPalette palette;
     private int[] heightMap;
@@ -41,8 +42,7 @@ public class ColorForRunnable implements ForRunnable
     private int widthm1;
     private int halfwidth;
 
-    protected float getTemperature(int y, int height)
-    {
+    protected float getTemperature(int y, int height) {
 
         float latitude = (float) Math.cos((Math.abs(y - halfheight) / ((float) this.height)) * Math.PI);
 
@@ -50,12 +50,10 @@ public class ColorForRunnable implements ForRunnable
                 + infos.getPoleTemperature() - infos.getHeightFactor() * Math.max(0, height - infos.getWaterLevel());
     }
 
-    private ColorForRunnable()
-    {
+    private ColorForRunnable() {
     }
 
-    public ColorForRunnable(TerrainPalette palette, PlanetInformation infos, int height, int width, int[] heightMap, int[] specMap, int[] colMap)
-    {
+    public ColorForRunnable(TerrainPalette palette, PlanetInformation infos, int height, int width, int[] heightMap, int[] specMap, int[] colMap) {
         this.infos = infos;
 
         this.palette = palette;
@@ -71,17 +69,14 @@ public class ColorForRunnable implements ForRunnable
         this.heightm1 = height - 1;
         this.halfheight = height >> 1;
 
-
-        while (width != 1)
-        {
+        while (width != 1) {
             width >>= 1;
             ++shift;
         }
     }
 
     //@Override
-    public ForRunnable copy()
-    {
+    public ForRunnable copy() {
         ColorForRunnable copie = new ColorForRunnable();
 
         copie.infos = this.infos;
@@ -103,8 +98,7 @@ public class ColorForRunnable implements ForRunnable
     }
 
     //@Override
-    public void run(int index)
-    {
+    public void run(int index) {
         int x = index & widthm1;
         int y = index >> shift;
 
@@ -118,8 +112,7 @@ public class ColorForRunnable implements ForRunnable
         colMap[index] = colors.getTerrain().getRGB() | 0xFF000000;
     }
 
-    protected int getSlope(int x, int y)
-    {
+    protected int getSlope(int x, int y) {
         int s_a = Math.abs(heightMap[at(x, y)] - heightMap[at(x - 1, y)]);
         int s_b = Math.abs(heightMap[at(x, y)] - heightMap[at(x + 1, y)]);
         int s_c = Math.abs(heightMap[at(x, y)] - heightMap[at(x, y - 1)]);
@@ -128,29 +121,24 @@ public class ColorForRunnable implements ForRunnable
         return (int) MathUtil.max(s_a, s_b, s_c, s_d);
     }
 
-    protected int at(int x, int y)
-    {
-        while (x < 0)
-        {
+    protected int at(int x, int y) {
+        while (x < 0) {
             x += width;
         }
 
         y = y & ((height << 1) - 1);
 
-        if (y > heightm1)
-        {
+        if (y > heightm1) {
             y = (heightm1 << 1) - y;
             x += halfwidth;
         }
 
-        if (y < 0)
-        {
+        if (y < 0) {
             y = -y;
             x += width >> 1;
         }
 
         x = x & widthm1;
-
 
         return (y * width) + x;
     }

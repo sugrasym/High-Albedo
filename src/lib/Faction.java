@@ -54,6 +54,7 @@ public class Faction implements Serializable {
     private ArrayList<String> neutralNotifications = new ArrayList<>();
     private ArrayList<String> friendlyNotifications = new ArrayList<>();
     private ArrayList<String> rumorList = new ArrayList<>();
+
     public Faction(String name) {
         this.name = name;
         init();

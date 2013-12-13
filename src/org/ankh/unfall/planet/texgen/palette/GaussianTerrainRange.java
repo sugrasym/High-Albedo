@@ -1,24 +1,24 @@
 /*    
-This file is part of jME Planet Demo.
+ This file is part of jME Planet Demo.
 
-jME Planet Demo is free software: you can redistribute it and/or modify
-it under the terms of the GNU Lesser General Public License as published by
-the Free Software Foundation.
+ jME Planet Demo is free software: you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License as published by
+ the Free Software Foundation.
 
-jME Planet Demo is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Lesser General Public License for more details.
+ jME Planet Demo is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Lesser General Public License for more details.
 
-You should have received a copy of the GNU General Public License
-along with jME Planet Demo.  If not, see <http://www.gnu.org/licenses/>.
+ You should have received a copy of the GNU General Public License
+ along with jME Planet Demo.  If not, see <http://www.gnu.org/licenses/>.
  */
 package org.ankh.unfall.planet.texgen.palette;
 
 import java.awt.Color;
 
-public class GaussianTerrainRange implements TerrainRange
-{
+public class GaussianTerrainRange implements TerrainRange {
+
     //Height
     private int m_minh, m_maxh; //Maximum height
     private float m_mediumh, m_varianceh;
@@ -34,8 +34,7 @@ public class GaussianTerrainRange implements TerrainRange
     public GaussianTerrainRange(int m_minh, int m_maxh, float m_mediumh,
             float m_varianceh, int m_mins, int m_maxs, float m_mediums,
             float m_variances, int m_mint, int m_maxt, float m_mediumt,
-            float m_variancet, Color m_color_terrain, Color m_color_specular)
-    {
+            float m_variancet, Color m_color_terrain, Color m_color_specular) {
         super();
         this.m_minh = m_minh;
         this.m_maxh = m_maxh;
@@ -56,33 +55,26 @@ public class GaussianTerrainRange implements TerrainRange
         this.m_color_specular = m_color_specular;
     }
 
-    public float getFactor(int x, int y, int height, int slope, float temperature)
-    {
+    public float getFactor(int x, int y, int height, int slope, float temperature) {
 
-        if (m_maxh != -1 && height > m_maxh)
-        {
+        if (m_maxh != -1 && height > m_maxh) {
             return 0;
         }
-        if (m_minh != -1 && height < m_minh)
-        {
+        if (m_minh != -1 && height < m_minh) {
             return 0;
         }
 
-        if (m_maxs != -1 && slope > m_maxs)
-        {
+        if (m_maxs != -1 && slope > m_maxs) {
             return 0;
         }
-        if (m_mins != -1 && slope < m_mins)
-        {
+        if (m_mins != -1 && slope < m_mins) {
             return 0;
         }
 
-        if (m_maxt != -1 && temperature > m_maxt)
-        {
+        if (m_maxt != -1 && temperature > m_maxt) {
             return 0;
         }
-        if (m_mint != -1 && temperature < m_mint)
-        {
+        if (m_mint != -1 && temperature < m_mint) {
             return 0;
         }
 
@@ -90,37 +82,31 @@ public class GaussianTerrainRange implements TerrainRange
         /* Min/Max value clipping */
         float mhsqr = 0.0f, mssqr = 0.0f, mtsqr = 0.0f;
 
-        if (m_varianceh != -1.0)
-        {
+        if (m_varianceh != -1.0) {
             mhsqr = (m_mediumh - height) / m_varianceh;
             mhsqr = Math.abs(mhsqr);
         }
 
-
-        if (m_variances != -1.0)
-        {
+        if (m_variances != -1.0) {
             mssqr = (m_mediums - slope) / m_variances;
             mssqr = Math.abs(mssqr);
         }
 
-        if (m_variancet != -1.0)
-        {
+        if (m_variancet != -1.0) {
             mtsqr = (m_mediumt - temperature) / m_variancet;
             mtsqr = Math.abs(mtsqr);
         }
         /* e^-dh * e^-ds * e^-dt function */
-        return (float)(Math.exp(-(mhsqr + mssqr + mtsqr)));
+        return (float) (Math.exp(-(mhsqr + mssqr + mtsqr)));
     }
 
     //@Override
-    public Color getTerrainColor()
-    {
+    public Color getTerrainColor() {
         return m_color_terrain;
     }
 
     //@Override
-    public Color getTerrainSpecular()
-    {
+    public Color getTerrainSpecular() {
         return m_color_specular;
     }
 }

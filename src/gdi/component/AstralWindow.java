@@ -17,31 +17,31 @@ import java.util.ArrayList;
  * @author Nathan Wiehoff
  */
 public class AstralWindow extends AstralComponent {
-    
+
     protected Color backColor = Color.PINK;
     protected int order = 0;
     ArrayList<AstralComponent> components = new ArrayList<>();
     BufferedImage buffer;
-    
+
     public AstralWindow() {
         super();
     }
-    
+
     public void addComponent(AstralComponent component) {
         components.add(component);
     }
-    
+
     public void removeComponent(AstralComponent component) {
         components.remove(component);
     }
-    
+
     @Override
     public void periodicUpdate() {
         for (int a = 0; a < components.size(); a++) {
             components.get(a).periodicUpdate();
         }
     }
-    
+
     @Override
     public void setUIScaling(double sX, double sY, double viewX, double viewY,
             double uiX, double uiY) {
@@ -50,7 +50,7 @@ public class AstralWindow extends AstralComponent {
             components.get(a).setUIScaling(sX, sY, viewX, viewY, uiX, uiY);
         }
     }
-    
+
     @Override
     public void render(Graphics f) {
         try {
@@ -79,7 +79,7 @@ public class AstralWindow extends AstralComponent {
             e.printStackTrace();
         }
     }
-    
+
     @Override
     public void handleKeyTypedEvent(KeyEvent ke) {
         if (visible) {
@@ -90,7 +90,7 @@ public class AstralWindow extends AstralComponent {
             }
         }
     }
-    
+
     @Override
     public void handleKeyPressedEvent(KeyEvent ke) {
         if (visible) {
@@ -101,7 +101,7 @@ public class AstralWindow extends AstralComponent {
             }
         }
     }
-    
+
     @Override
     public void handleKeyReleasedEvent(KeyEvent ke) {
         if (visible) {
@@ -112,7 +112,7 @@ public class AstralWindow extends AstralComponent {
             }
         }
     }
-    
+
     @Override
     public void handleMouseClickedEvent(MouseEvent me) {
         /*
@@ -130,7 +130,7 @@ public class AstralWindow extends AstralComponent {
             }
         }
     }
-    
+
     @Override
     public void handleMousePressedEvent(MouseEvent me) {
         if (visible) {
@@ -141,7 +141,7 @@ public class AstralWindow extends AstralComponent {
             }
         }
     }
-    
+
     @Override
     public void handleMouseReleasedEvent(MouseEvent me) {
         if (visible) {
@@ -152,7 +152,7 @@ public class AstralWindow extends AstralComponent {
             }
         }
     }
-    
+
     @Override
     public void handleMouseMovedEvent(MouseEvent me) {
         if (visible) {
@@ -166,19 +166,19 @@ public class AstralWindow extends AstralComponent {
             }
         }
     }
-    
+
     public Color getBackColor() {
         return backColor;
     }
-    
+
     public void setBackColor(Color backColor) {
         this.backColor = backColor;
     }
-    
+
     public int getOrder() {
         return order;
     }
-    
+
     public void setOrder(int order) {
         this.order = order;
     }

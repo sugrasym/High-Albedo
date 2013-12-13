@@ -27,13 +27,14 @@ import java.awt.Color;
  * @author nwiehoff
  */
 public class FuelWindow extends AstralWindow {
+
     AstralBar fuelBar = new AstralBar();
+
     public FuelWindow() {
         super();
         create();
     }
-    
-    
+
     private void create() {
         //color
         backColor = new Color(25, 25, 25, 200);
@@ -52,7 +53,7 @@ public class FuelWindow extends AstralWindow {
         //pack
         addComponent(fuelBar);
     }
-    
+
     public void updateFuel(double fuelPercent) {
         fuelBar.setPercentage(fuelPercent);
     }

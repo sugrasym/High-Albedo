@@ -116,10 +116,10 @@ public class Process implements Serializable {
 
     public void periodicUpdate(double tpf) {
         /*for(int a = 0; a < stationBuying.size(); a++) {
-            if(stationBuying.get(a).getQuantity() > stationBuying.get(a).getStore()) {
-                System.out.println(host.getName()+" overflowed on "+stationBuying.get(a)+" by "+ (stationBuying.get(a).getQuantity() - stationBuying.get(a).getStore()));
-            }
-        }*/
+         if(stationBuying.get(a).getQuantity() > stationBuying.get(a).getStore()) {
+         System.out.println(host.getName()+" overflowed on "+stationBuying.get(a)+" by "+ (stationBuying.get(a).getQuantity() - stationBuying.get(a).getStore()));
+         }
+         }*/
         if (timer == 0) {
             //collect resources and start
             boolean hasResources = true;

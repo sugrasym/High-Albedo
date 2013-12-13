@@ -116,7 +116,7 @@ public class SuperFaction extends Faction {
             System.out.println(getName() + " doesn't have any ambient music!");
         }
     }
-    
+
     private void initDangerMusic() {
         //get a list of stations for this faction
         Parser sParse = Universe.getCache().getFactionCache();

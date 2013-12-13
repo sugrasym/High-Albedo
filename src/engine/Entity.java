@@ -26,6 +26,7 @@ import java.util.ArrayList;
  * @author Nathan Wiehoff
  */
 public interface Entity {
+
     public enum State {
 
         ALIVE,
@@ -52,7 +53,7 @@ public interface Entity {
     public boolean collideWith(Entity target);
 
     public boolean collideWith(Rectangle target);
-    
+
     public void informOfCollisionWith(Entity target);
     /*
      * Position information

@@ -52,11 +52,11 @@ public class Station extends Ship {
     private boolean exemptFromEconomics = false;
     //flag
     private boolean needAsteroid = false;
-    
+
     public Station(String name, String type) {
         super(name, type);
     }
-    
+
     @Override
     public void alive() {
         //kill velocity
@@ -99,7 +99,7 @@ public class Station extends Ship {
             decelerate();
         }
     }
-    
+
     @Override
     public void dying() {
         super.dying();
@@ -133,16 +133,16 @@ public class Station extends Ship {
             }
         }
     }
-    
+
     @Override
     protected void autopilot() {
         //do nothing
     }
-    
+
     @Override
     protected void behaviorTest() {
     }
-    
+
     @Override
     protected void initStats() {
         /*
@@ -188,7 +188,7 @@ public class Station extends Ship {
         //bring the ship to life
         state = State.ALIVE;
     }
-    
+
     public boolean buysWare(Item ware) {
         {
             for (int a = 0; a < stationBuying.size(); a++) {
@@ -199,7 +199,7 @@ public class Station extends Ship {
         }
         return false;
     }
-    
+
     public boolean sellsWare(Item ware) {
         {
             for (int a = 0; a < stationSelling.size(); a++) {
@@ -210,7 +210,7 @@ public class Station extends Ship {
         }
         return false;
     }
-    
+
     public int getPrice(Item item) {
         int max = 0;
         int min = 0;
@@ -252,7 +252,7 @@ public class Station extends Ship {
         }
         return price;
     }
-    
+
     public void buy(Ship ship, Item item, int quantity) {
         //get current offer
         int price = getPrice(item);
@@ -328,7 +328,7 @@ public class Station extends Ship {
             }
         }
     }
-    
+
     public void sell(Ship ship, Item item, int quantity) {
         //get current offer
         int price = getPrice(item);
@@ -362,7 +362,7 @@ public class Station extends Ship {
             }
         }
     }
-    
+
     protected void randomizeInitialGoods() {
         if (stationSelling.size() > 0) {
             for (int a = 0; a < stationSelling.size(); a++) {
@@ -375,7 +375,7 @@ public class Station extends Ship {
             }
         }
     }
-    
+
     protected void computeComplexRectangularBounds(Parser.Term relevant) throws NumberFormatException {
         //do complex rectangular bounds (useful for stations)
         {
@@ -402,7 +402,7 @@ public class Station extends Ship {
             }
         }
     }
-    
+
     protected void computeDockBounds(Parser.Term relevant) throws NumberFormatException {
         //do complex rectangular bounds (useful for stations)
         {
@@ -430,7 +430,7 @@ public class Station extends Ship {
             }
         }
     }
-    
+
     protected void computeProcesses(Parser.Term relevant) throws NumberFormatException {
         //generates the processes that were linked to this station
         {
@@ -446,7 +446,7 @@ public class Station extends Ship {
             }
         }
     }
-    
+
     @Override
     protected void updateBound() {
         bound.clear();
@@ -462,7 +462,7 @@ public class Station extends Ship {
             }
         }
     }
-    
+
     public boolean canDock(Ship ship) {
         for (int a = 0; a < docks.size(); a++) {
             if (docks.get(a).canFit(ship) && docks.get(a).isAvailable(ship)) {
@@ -475,7 +475,7 @@ public class Station extends Ship {
         }
         return false;
     }
-    
+
     public PortContainer requestDockPort(Ship ship) {
         /*
          * Returns an available docking port if docking is permitted and there
@@ -491,7 +491,7 @@ public class Station extends Ship {
         }
         return null;
     }
-    
+
     @Override
     public void initGraphics() {
         try {
@@ -506,13 +506,13 @@ public class Station extends Ship {
             e.printStackTrace();
         }
     }
-    
+
     @Override
     public void disposeGraphics() {
         raw_tex = null;
         tex = null;
     }
-    
+
     @Override
     public void render(Graphics g, double dx, double dy) {
         theta = 0;
@@ -546,7 +546,7 @@ public class Station extends Ship {
             initGraphics();
         }
     }
-    
+
     @Override
     protected void drawHealthBars(Graphics g, double dx, double dy) {
         /*//draw the bounds
@@ -566,7 +566,7 @@ public class Station extends Ship {
         g.setColor(Color.GREEN);
         g.fillRect((int) (getX() - dx), (int) (getY() - dy), (int) (getWidth() * shieldPercent), 2);
     }
-    
+
     public String toString() {
         String ret = "";
         {
@@ -584,31 +584,31 @@ public class Station extends Ship {
         }
         return ret;
     }
-    
+
     public ArrayList<Item> getStationSelling() {
         return stationSelling;
     }
-    
+
     public void setStationSelling(ArrayList<Item> stationSelling) {
         this.stationSelling = stationSelling;
     }
-    
+
     public ArrayList<Item> getStationBuying() {
         return stationBuying;
     }
-    
+
     public void setStationBuying(ArrayList<Item> stationBuying) {
         this.stationBuying = stationBuying;
     }
-    
+
     public ArrayList<Process> getProcesses() {
         return processes;
     }
-    
+
     public void setProcesses(ArrayList<Process> processes) {
         this.processes = processes;
     }
-    
+
     public boolean hasDocked(Ship ship) {
         for (int a = 0; a < docks.size(); a++) {
             if (docks.get(a).getClient() == ship && ship.isDocked()) {
@@ -617,15 +617,15 @@ public class Station extends Ship {
         }
         return false;
     }
-    
+
     public boolean isExemptFromEconomics() {
         return exemptFromEconomics;
     }
-    
+
     public void setExemptFromEconomics(boolean exemptFromEconomics) {
         this.exemptFromEconomics = exemptFromEconomics;
     }
-    
+
     private void exemptionSetup(String exempt) {
         //exemption block
         if (exempt != null) {
@@ -637,12 +637,12 @@ public class Station extends Ship {
             System.out.println(getName() + " is exempted from economics.");
         }
     }
-    
+
     @Override
     public void hail() {
         //TODO: comms with person onboard
     }
-    
+
     public void clearWares() {
         /*
          * Removes products and resources, and starting cash.
@@ -656,11 +656,11 @@ public class Station extends Ship {
         setCash(0);
         exemptFromEconomics = false;
     }
-    
+
     public boolean isNeedAsteroid() {
         return needAsteroid;
     }
-    
+
     public void setNeedAsteroid(boolean needAsteroid) {
         this.needAsteroid = needAsteroid;
     }

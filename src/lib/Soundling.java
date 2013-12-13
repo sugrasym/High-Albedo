@@ -76,7 +76,7 @@ public class Soundling {
 
         public Sound(String target) {
             try {
-                clip = Applet.newAudioClip(getClass().getClassLoader().getResource("resource/"+target));
+                clip = Applet.newAudioClip(getClass().getClassLoader().getResource("resource/" + target));
                 //setup listener so we know when it is safe to replay
             } catch (Exception e) {
                 e.printStackTrace();

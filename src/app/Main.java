@@ -78,10 +78,10 @@ public class Main extends JFrame {
         System.setProperty("sun.java2d.transaccel", "True");
         if (System.getProperty("os.name").toLowerCase().contains("windows")) {
             System.setProperty("sun.java2d.d3d", "True");
-            System.out.println("Running on "+System.getProperty("os.name")+" using DirectX");
+            System.out.println("Running on " + System.getProperty("os.name") + " using DirectX");
         } else {
             System.setProperty("sun.java2d.opengl", "True");
-            System.out.println("Running on "+System.getProperty("os.name")+" using OpenGL");
+            System.out.println("Running on " + System.getProperty("os.name") + " using OpenGL");
         }
         System.setProperty("sun.java2d.ddforcevram", "True");
         System.setProperty("javax.sound.sampled.SourceDataLine", "com.sun.media.sound.DirectAudioDeviceProvider");

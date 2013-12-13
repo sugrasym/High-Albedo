@@ -104,8 +104,8 @@ public class WorldMaker {
                     x += 2.0 * rnd.nextDouble() - 1;
                     y += 2.0 * rnd.nextDouble() - 1;
                     //create the system entry
-                    thisSystem +=
-                            "[System]\n"
+                    thisSystem
+                            += "[System]\n"
                             + "name=" + systemName + "\n"
                             + "owner=" + sys.getOwner() + "\n"
                             + "x=" + x + "\n"
@@ -123,8 +123,8 @@ public class WorldMaker {
                     int dB = (int) (rnd.nextFloat() * dR);
                     int r = minPlanetSize + dB;
                     int seed = rnd.nextInt();
-                    thisSystem +=
-                            "[Star]\n"
+                    thisSystem
+                            += "[Star]\n"
                             + "name=" + systemName + "\n"
                             + "system=" + systemName + "\n"
                             + "texture=" + starTypes.get(pick).getValue("name") + "\n"
@@ -151,8 +151,8 @@ public class WorldMaker {
                             //build in gate
                             x = rnd.nextInt(size * 2) - size;
                             y = rnd.nextInt(size * 2) - size;
-                            thisSystem +=
-                                    "[Jumphole]\n"
+                            thisSystem
+                                    += "[Jumphole]\n"
                                     + "name=" + inName + "\n"
                                     + "x=" + x + "\n"
                                     + "y=" + y + "\n"
@@ -162,8 +162,8 @@ public class WorldMaker {
                             //build out gate
                             x = rnd.nextInt(size * 2) - size;
                             y = rnd.nextInt(size * 2) - size;
-                            thisSystem +=
-                                    "[Jumphole]\n"
+                            thisSystem
+                                    += "[Jumphole]\n"
                                     + "name=" + outName + "\n"
                                     + "x=" + x + "\n"
                                     + "y=" + y + "\n"
@@ -211,8 +211,8 @@ public class WorldMaker {
                         }
                         //if it is safe add it
                         if (safe) {
-                            thisSystem +=
-                                    "[Planet]\n"
+                            thisSystem
+                                    += "[Planet]\n"
                                     + "name=" + name + "\n"
                                     + "system=" + systemName + "\n"
                                     + "texture=" + texture + "\n"
@@ -255,8 +255,8 @@ public class WorldMaker {
                             }
                             //if it is safe add it
                             if (safe) {
-                                thisSystem +=
-                                        "[Asteroid]\n"
+                                thisSystem
+                                        += "[Asteroid]\n"
                                         + "name=" + name + "\n"
                                         + "system=" + systemName + "\n"
                                         + "x=" + x + "\n"

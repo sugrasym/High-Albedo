@@ -52,29 +52,29 @@ public class Jumphole extends Planet {
             Logger.getLogger(Jumphole.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void render(Graphics f, double dx, double dy) {
         if (raw_tex != null) {
-            int size = (int)(2* flux * diameter);
+            int size = (int) (2 * flux * diameter);
             Graphics2D s = (Graphics2D) (f);
-            s.drawImage(raw_tex, (int) (getX() - dx) - (size/2), (int) (getY() - dy)-(size/2), size, size, null);
+            s.drawImage(raw_tex, (int) (getX() - dx) - (size / 2), (int) (getY() - dy) - (size / 2), size, size, null);
         } else {
             initGraphics();
         }
     }
-    
+
     @Override
     public void alive() {
         //update flux
-        flux += (2*rnd.nextDouble()-1)*tpf;
-        if(flux > 1) {
+        flux += (2 * rnd.nextDouble() - 1) * tpf;
+        if (flux > 1) {
             flux = rnd.nextDouble();
-        } else if(flux < 0.5) {
+        } else if (flux < 0.5) {
             flux = rnd.nextDouble();
         }
         //update bound
         getBounds().clear();
-        getBounds().add(new Rectangle((int) getX()-getDiameter()/4, (int) getY()-getDiameter()/4, getDiameter()/2, getDiameter()/2));
+        getBounds().add(new Rectangle((int) getX() - getDiameter() / 4, (int) getY() - getDiameter() / 4, getDiameter() / 2, getDiameter() / 2));
     }
 
     public void createLink(String out) {

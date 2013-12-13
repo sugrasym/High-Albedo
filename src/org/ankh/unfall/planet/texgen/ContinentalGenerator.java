@@ -114,10 +114,7 @@ public class ContinentalGenerator extends PlanetGenerator {
         float seuil = heightmap.length * getInformations().getWaterInPercent();
 
         //double angle = Math.PI/2 - 0.001;
-
         //System.out.println( 0.5 * Math.log((1 + Math.sin(angle) )/(1 - Math.sin(angle))));
-
-
         //Utilisation de la methode multithread:
         if (MultiThreadUtil.PROCESSORS_COUNT > 1) {
 
@@ -219,11 +216,8 @@ public class ContinentalGenerator extends PlanetGenerator {
             return;
         }
 
-
         boolean allvisited = visited.contains(a) & visited.contains(b) & visited.contains(c)
                 & visited.contains(d) & visited.contains(e) & visited.contains(f) & visited.contains(g);
-
-
 
         int best = a;
         if (!allvisited) {

@@ -58,7 +58,7 @@ public class Equipment extends Item implements Serializable {
     public void deactivate() {
         setActive(false);
     }
-    
+
     public void killSounds() {
         //
     }
@@ -104,10 +104,10 @@ public class Equipment extends Item implements Serializable {
             }
             ret = "(" + percent + "%) " + getName();
         } else {
-            ret = (getName()+ " [OFFLINE]");
+            ret = (getName() + " [OFFLINE]");
         }
-        if(quantity != 1) {
-            ret += " ["+quantity+"]";
+        if (quantity != 1) {
+            ret += " [" + quantity + "]";
         }
         return ret;
     }

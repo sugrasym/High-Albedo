@@ -146,7 +146,7 @@ public class Mission implements Serializable {
          */
         if (agent.distanceTo(agent.getUniverse().getPlayerShip()) < 5000) {
             escort = agent;
-            briefing = briefing.replace("<TIME>", endTimer/60 + "");
+            briefing = briefing.replace("<TIME>", endTimer / 60 + "");
             briefing = briefing.replace("<REWARD>", reward + "");
         } else {
             preAbort();

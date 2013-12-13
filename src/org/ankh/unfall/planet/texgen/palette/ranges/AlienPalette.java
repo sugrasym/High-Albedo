@@ -28,7 +28,7 @@ public class AlienPalette extends TerrainPalette {
 
     @Override
     public void initPalette() {
-        
+
         TerrainRange tundra = new GaussianTerrainRange(
                 getInformations().getWaterLevel(), -1, getInformations().getWaterLevel(), 4,
                 -1, -1, 0, 2.5f,
@@ -46,30 +46,30 @@ public class AlienPalette extends TerrainPalette {
                 -1, -1, 5, 6,
                 -15, 50, 25, 2,
                 new Color(0x272f16), Color.black);
-        
+
         TerrainRange very_deep_water = new GaussianTerrainRange(
                 -1, getInformations().getWaterLevel(), 0, 50,
                 -1, -1, 0, 5,
                 -258, 100, 50, 5,
-                new Color(0,200,0), Color.white);
+                new Color(0, 200, 0), Color.white);
 
         TerrainRange deep_water = new GaussianTerrainRange(
                 -1, getInformations().getWaterLevel(), getInformations().getWaterLevel() * .5f, 50,
                 -1, -1, 0, 5,
                 -258, 100, 50, 5,
-                new Color(25,75,50), Color.white);
+                new Color(25, 75, 50), Color.white);
 
         TerrainRange light_water = new GaussianTerrainRange(
                 -1, getInformations().getWaterLevel(), getInformations().getWaterLevel(), 5,
                 -1, -1, 0, 1.0f,
                 -258, 100, 50, 5,
                 Color.CYAN, Color.white);
-        
+
         TerrainRange arctic = new GaussianTerrainRange(
                 -1, -1, 0, -1f,
                 -1, -1, 0, -1f,
                 -258, 5, -50, 3.5f,
-                new Color(125,175,125), Color.white);
+                new Color(125, 175, 125), Color.white);
 
         TerrainRange desert = new GaussianTerrainRange(
                 getInformations().getWaterLevel(), -1, getInformations().getWaterLevel() * 1.2f, 4,
@@ -88,7 +88,7 @@ public class AlienPalette extends TerrainPalette {
                 -1, -1, 10, 1.5f,
                 -258, -258, 5, 3,
                 new Color(0x4a2e31), Color.black);
-        
+
         TerrainRange upstairs = new GaussianTerrainRange(
                 getInformations().getWaterLevel(), -1, getInformations().getWaterLevel(), 4,
                 -1, -1, 0, 0.8f,

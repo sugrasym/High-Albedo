@@ -27,13 +27,15 @@ import java.awt.Color;
  * @author Nathan Wiehoff
  */
 public class HealthWindow extends AstralWindow {
+
     AstralBar shieldBar = new AstralBar();
     AstralBar hullBar = new AstralBar();
+
     public HealthWindow() {
         super();
         create();
     }
-    
+
     private void create() {
         //color
         backColor = new Color(25, 25, 25, 200);
@@ -61,7 +63,7 @@ public class HealthWindow extends AstralWindow {
         addComponent(shieldBar);
         addComponent(hullBar);
     }
-    
+
     public void updateHealth(double shieldPercent, double hullPercent) {
         shieldBar.setPercentage(shieldPercent);
         hullBar.setPercentage(hullPercent);

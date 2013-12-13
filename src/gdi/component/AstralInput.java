@@ -26,27 +26,28 @@ import java.awt.event.KeyEvent;
  * @author nwiehoff
  */
 public class AstralInput extends AstralLabel {
+
     private boolean canReturn = false;
-    
+
     public AstralInput() {
         setFocusColor(Color.PINK);
         setBackColor(windowGrey);
     }
-    
+
     public void handleKeyReleasedEvent(KeyEvent ke) {
-        if(ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-            if(getText().length() > 0) {
-                setText(getText().substring(0, getText().length()-1));
+        if (ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+            if (getText().length() > 0) {
+                setText(getText().substring(0, getText().length() - 1));
             }
-        } else if(ke.getKeyCode() == KeyEvent.VK_ENTER) {
+        } else if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
             //return
             setVisible(false);
             setCanReturn(true);
         } else {
-            setText(getText()+ke.getKeyChar());
+            setText(getText() + ke.getKeyChar());
         }
     }
-    
+
     public void setVisible(boolean visible) {
         this.visible = visible;
         canReturn = false;

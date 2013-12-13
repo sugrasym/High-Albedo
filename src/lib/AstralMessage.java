@@ -74,7 +74,7 @@ public class AstralMessage implements Serializable {
     public String getSubject() {
         return subject;
     }
-    
+
     @Override
     public String toString() {
         return subject;

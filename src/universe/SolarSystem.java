@@ -641,7 +641,7 @@ public class SolarSystem implements Entity, Serializable {
 
     private void discover() {
         //add to discovered list if needed
-        if(universe.getDiscoveredSpace().contains(this)) {
+        if (universe.getDiscoveredSpace().contains(this)) {
             //do nothing
         } else {
             //add to discovered space

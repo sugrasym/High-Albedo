@@ -58,7 +58,7 @@ public class Explosion extends Ship {
     public void init(boolean loadedGame) {
         super.init(loadedGame);
     }
-    
+
     @Override
     protected void initStats() {
         /*
@@ -118,7 +118,7 @@ public class Explosion extends Ship {
             super.informOfCollisionWith(target);
         }
     }
-    
+
     protected void behave() {
         //these entities have no behavior
     }
@@ -137,10 +137,10 @@ public class Explosion extends Ship {
             //draw the updated version
             {
                 //calculate size
-                double sx = size * (1 - (elapsed/lifeLimit));
+                double sx = size * (1 - (elapsed / lifeLimit));
                 //create an affine transform
                 AffineTransform rot = new AffineTransform();
-                rot.rotate(getTheta() - (Math.PI / 2), sx/2, sx/2);
+                rot.rotate(getTheta() - (Math.PI / 2), sx / 2, sx / 2);
                 //apply transform
                 f.transform(rot);
                 //calculate size
@@ -167,7 +167,7 @@ public class Explosion extends Ship {
             //create the usable version
             setHeight((int) size);
             setWidth((int) size);
-            tex = new BufferedImage(getWidth()+1, getHeight()+1, BufferedImage.TYPE_INT_ARGB);
+            tex = new BufferedImage(getWidth() + 1, getHeight() + 1, BufferedImage.TYPE_INT_ARGB);
         } catch (Exception e) {
             e.printStackTrace();
         }
