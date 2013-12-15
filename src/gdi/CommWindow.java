@@ -46,7 +46,7 @@ public class CommWindow extends AstralWindow {
         //size this window
         width = 300;
         height = 300;
-        setVisible(true);
+        setVisible(false);
         //setup the message list
         messageLog.setX(0);
         messageLog.setY(height / 2);

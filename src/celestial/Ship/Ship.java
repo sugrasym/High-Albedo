@@ -516,6 +516,8 @@ public class Ship extends Celestial {
             return true;
         } else if (getAutopilot() == Autopilot.UNDOCK_STAGE2) {
             return true;
+        } else if (getAutopilot() == Autopilot.ATTACK_TARGET) {
+            return true;
         }
         return false;
     }
@@ -2095,7 +2097,7 @@ public class Ship extends Celestial {
                 double range = getNearWeaponRange();
                 //fire thrusters based on range
                 Ship avoid = avoidCollission();
-                if (avoid == null && avoid != target) {
+                if (avoid == null || avoid == target) {
                     if (distance < (range / 3)) {
                         /*
                          * The enemy is getting too close to the ship, so fire the reverse
@@ -3086,12 +3088,12 @@ public class Ship extends Celestial {
 
     protected double getFireLeadX() {
         //get the center of the enemy
-        double enemyX = (getX()) - (target.getX() + target.getWidth() / 2) + (vx - target.getVx());
+        double enemyX = (getX() + getWidth() / 2) - (target.getX() + target.getWidth() / 2) + (vx - target.getVx());
         return enemyX;
     }
 
     protected double getFireLeadY() {
-        double enemyY = (getY()) - (target.getY() + target.getHeight() / 2) + (vy - target.getVy());
+        double enemyY = (getY() + getHeight() / 2) - (target.getY() + target.getHeight() / 2) + (vy - target.getVy());
         return enemyY;
     }
 

@@ -676,7 +676,7 @@ public class Engine {
                 /*
                  * Now game logic
                  */
-                if (!windowIntercepted) {
+                if (!windowIntercepted && playerShip != null) {
                     Rectangle mRect = new Rectangle((int) dx + mouseX, (int) dy + mouseY, 1, 1);
                     //check to see if it intersected any ships or objects
                     ArrayList<Entity> tmpE = playerShip.getCurrentSystem().getEntities();
@@ -785,7 +785,7 @@ public class Engine {
                 /*
                  * Now game logic
                  */
-                if (!windowIntercepted) {
+                if (!windowIntercepted && playerShip != null) {
                     /*
                      * In-space
                      */
