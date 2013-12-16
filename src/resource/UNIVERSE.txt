@@ -11,8 +11,8 @@
 #Test Game Please Ignore
 [NewGame]
 ship=Gila
-near='Christine 24'
-system=Out of Mind
+near='Gomez 15'
+system=The Highway
 cash=50000000
 cargo=Jumpdrive~1
 install=ERPC/ERPC
@@ -21,8 +21,8 @@ faction=Player
 
 [Station]
 name=Test Station Please Ignore
-system=Out of Mind
-ship=ITC Food Supply
+system=The Highway
+ship=Ageiran Solar Power Plant
 x=-25981.0
 y=5788.0
 faction=Player
