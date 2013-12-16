@@ -10,13 +10,23 @@
 
 #Test Game Please Ignore
 [NewGame]
-ship=Zebra
+ship=Gila
 near='Christine 24'
 system=Out of Mind
 cash=50000000
 cargo=Jumpdrive~1
+install=ERPC/ERPC
 faction=Player
 [/NewGame]
+
+[Station]
+name=Test Station Please Ignore
+system=Out of Mind
+ship=ITC Food Supply
+x=-25981.0
+y=5788.0
+faction=Player
+[/Station]
 
 ########
 
