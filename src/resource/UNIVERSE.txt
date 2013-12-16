@@ -1,32 +1,12 @@
 #New Game Smell
-#[NewGame]
-#ship=Cab
-#near='Gomez 15'
-#system=The Highway
-#cash=50000
-#install=ERPC/ERPC
-#faction=Player
-#[/NewGame]
-
-#Test Game Please Ignore
 [NewGame]
-ship=Gila
+ship=Cab
 near='Gomez 15'
 system=The Highway
-cash=50000000
-cargo=Jumpdrive~1
+cash=50000
 install=ERPC/ERPC
 faction=Player
 [/NewGame]
-
-[Station]
-name=Test Station Please Ignore
-system=The Highway
-ship=Ageiran Solar Power Plant
-x=-25981.0
-y=5788.0
-faction=Player
-[/Station]
 
 ########
 
