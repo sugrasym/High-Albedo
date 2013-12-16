@@ -55,6 +55,7 @@ public class PropertyWindow extends AstralWindow {
         WAITING_FOR_TRADE, //waiting for trading window input
         WAITING_FOR_CARGO, //waiting for cargo window input
         WAITING_FOR_JUMP, //waiting for a target system to jump to
+        WAITING_FOR_BASE, //waiting for a home base to assign
     };
     private Mode mode = Mode.NONE;
     public static final String CMD_SWITCH = "Switch Ship";
@@ -74,6 +75,9 @@ public class PropertyWindow extends AstralWindow {
     public static final String CMD_TRADEWITH = "Trade With Station";
     public static final String CMD_REMOTECARGO = "Manage Cargo";
     public static final String CMD_JUMP = "Jump";
+    public static final String CMD_SETHOME = "Set Homebase";
+    public static final String CMD_CLEARHOME = "Clear Homebase";
+    public static final String CMD_SUPPLYHOME = "Supply Homebase";
     AstralInput input = new AstralInput();
     AstralList propertyList = new AstralList(this);
     AstralList infoList = new AstralList(this);
@@ -351,6 +355,18 @@ public class PropertyWindow extends AstralWindow {
             } else {
                 //probably selected some info text
             }
+        } else if (mode == Mode.WAITING_FOR_BASE) {
+            Object raw = inputList.getItemAtIndex(inputList.getIndex());
+            if(raw instanceof Station) {
+                //grab it
+                Station pick = (Station) raw;
+                //set base
+                selected.setHomeBase(pick);
+                //hide it
+                hideInputList();
+                //normal mode
+                mode = Mode.NONE;
+            }
         }
     }
 
@@ -423,6 +439,9 @@ public class PropertyWindow extends AstralWindow {
                 infoList.addToList(" ");
                 infoList.addToList("--Advanced--");
                 infoList.addToList(" ");
+                if (selected.getHomeBase() != null) {
+                    infoList.addToList("Homebase: " + selected.getHomeBase());
+                }
                 fillSpecifics(selected);
                 infoList.addToList(" ");
                 infoList.addToList("--Integrity--");
@@ -632,6 +651,16 @@ public class PropertyWindow extends AstralWindow {
                 optionList.addToList(CMD_TRADE);
                 if (selected.hasGroupInCargo("jumpdrive")) {
                     optionList.addToList(CMD_UTRADE);
+                    if (selected.getHomeBase() != null) {
+                        optionList.addToList(" ");
+                        optionList.addToList(CMD_CLEARHOME);
+                        optionList.addToList(CMD_SUPPLYHOME);
+                        optionList.addToList(" ");
+                    } else {
+                        optionList.addToList(" ");
+                        optionList.addToList(CMD_SETHOME);
+                        optionList.addToList(" ");
+                    }
                 }
                 optionList.addToList(CMD_PATROL);
             }
@@ -802,6 +831,26 @@ public class PropertyWindow extends AstralWindow {
                 } else {
                     mode = Mode.NONE;
                 }
+            } else if (command.matches(CMD_CLEARHOME)) {
+                selected.clearHomeBase();
+            } else if (command.matches(CMD_SETHOME)) {
+                ArrayList<Object> choice = new ArrayList<>();
+                choice.add("--Select Home Base In System--");
+                choice.add(" ");
+                ArrayList<Entity> stat = selected.getCurrentSystem().getStationList();
+                for (int a = 0; a < stat.size(); a++) {
+                    if (selected.getUniverse().getPlayerProperty().contains(stat.get(a))) {
+                        choice.add(stat.get(a));
+                    }
+                }
+                if (stat.size() > 0) {
+                    showInputList(choice);
+                    mode = Mode.WAITING_FOR_BASE;
+                } else {
+                    mode = Mode.NONE;
+                }
+            } else if (command.matches(CMD_SUPPLYHOME)) {
+                selected.setBehavior(Behavior.SUPPLY_HOMEBASE);
             }
         }
     }

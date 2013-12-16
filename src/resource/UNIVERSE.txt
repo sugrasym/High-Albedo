@@ -1,10 +1,20 @@
 #New Game Smell
+#[NewGame]
+#ship=Cab
+#near='Gomez 15'
+#system=The Highway
+#cash=50000
+#install=ERPC/ERPC
+#faction=Player
+#[/NewGame]
+
+#Test Game Please Ignore
 [NewGame]
-ship=Cab
-near='Gomez 15'
-system=The Highway
-cash=50000
-install=ERPC/ERPC
+ship=Zebra
+near='Christine 24'
+system=Out of Mind
+cash=50000000
+cargo=Jumpdrive~1
 faction=Player
 [/NewGame]
 

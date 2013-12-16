@@ -72,6 +72,7 @@ public class Ship extends Celestial {
         PATROL,
         SECTOR_TRADE,
         UNIVERSE_TRADE, //requires a jump drive
+        SUPPLY_HOMEBASE, //requires a jump drive
     }
 
     /*
@@ -136,6 +137,7 @@ public class Ship extends Celestial {
     private Celestial flyToTarget;
     //wallet
     protected long cash = 10000000;
+    protected Station homeBase;
     //behavior and autopilot
     protected Behavior behavior = Behavior.NONE;
     protected Autopilot autopilot = Autopilot.NONE;
@@ -351,6 +353,15 @@ public class Ship extends Celestial {
     }
 
     protected void aliveAlways() {
+        //check homebase
+        if (homeBase != null) {
+            if (homeBase.getState() == State.ALIVE) {
+                //do nothing
+            } else {
+                //clear homebase
+                clearHomeBase();
+            }
+        }
         //check infinite fuel
         if (infiniteFuel) {
             fuel = maxFuel;
@@ -1016,25 +1027,41 @@ public class Ship extends Celestial {
             } else if (shieldPercent > 40) {
                 behaviorPatrol();
             } else {
-                //get a list of systems in jump range
-                ArrayList<SolarSystem> zone = new ArrayList<>();
-                for (int a = 0; a < getUniverse().getSystems().size(); a++) {
-                    if (canJump(getUniverse().getSystems().get(a))) {
-                        zone.add(getUniverse().getSystems().get(a));
-                    }
-                }
-                if (zone.size() > 0 && target != null) {
-                    //abort trade
-                    abortTrade();
-                    //jump
-                    cmdJump(zone.get(rnd.nextInt(zone.size())));
-                    //notify
-                    System.out.println(getName() + " escaped to " + currentSystem.getName());
-                } else {
-                    //keep fighting
-                    behaviorPatrol();
-                }
+                tryJumpRetreat();
             }
+        } else if (getBehavior() == Behavior.SUPPLY_HOMEBASE) {
+            if (shieldPercent > 75) {
+                behaviorSupplyHomeBase();
+            } else if (shieldPercent > 40) {
+                behaviorPatrol();
+            } else {
+                tryJumpRetreat();
+            }
+        }
+    }
+
+    private void tryJumpRetreat() {
+        /*
+         * Attempts to retreat using the jump drive. If there is nowhere to
+         * retreat to, it will continue to fight.
+         */
+        //get a list of systems in jump range
+        ArrayList<SolarSystem> zone = new ArrayList<>();
+        for (int a = 0; a < getUniverse().getSystems().size(); a++) {
+            if (canJump(getUniverse().getSystems().get(a))) {
+                zone.add(getUniverse().getSystems().get(a));
+            }
+        }
+        if (zone.size() > 0 && target != null) {
+            //abort trade
+            abortTrade();
+            //jump
+            cmdJump(zone.get(rnd.nextInt(zone.size())));
+            //notify
+            System.out.println(getName() + " escaped to " + currentSystem.getName());
+        } else {
+            //keep fighting
+            behaviorPatrol();
         }
     }
 
@@ -1479,6 +1506,23 @@ public class Ship extends Celestial {
             } else {
 
             }
+        }
+    }
+
+    protected void behaviorSupplyHomeBase() {
+        /*
+         * Supplies the selected home base with wares it is low on. Basically, it goes out and buys
+         * the ware the station is lowest on.
+         */
+        if (homeBase != null) {
+            if (!docked) {
+
+            } else {
+
+            }
+        } else {
+            //exit, no home base
+            setBehavior(Behavior.NONE);
         }
     }
 
@@ -3365,5 +3409,23 @@ public class Ship extends Celestial {
         } else {
             //still talking
         }
+    }
+
+    public void clearHomeBase() {
+        setHomeBase(null);
+    }
+
+    /**
+     * @return the homeBase
+     */
+    public Station getHomeBase() {
+        return homeBase;
+    }
+
+    /**
+     * @param homeBase the homeBase to set
+     */
+    public void setHomeBase(Station homeBase) {
+        this.homeBase = homeBase;
     }
 }
