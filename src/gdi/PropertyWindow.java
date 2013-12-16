@@ -357,7 +357,7 @@ public class PropertyWindow extends AstralWindow {
             }
         } else if (mode == Mode.WAITING_FOR_BASE) {
             Object raw = inputList.getItemAtIndex(inputList.getIndex());
-            if(raw instanceof Station) {
+            if (raw instanceof Station) {
                 //grab it
                 Station pick = (Station) raw;
                 //set base
@@ -440,7 +440,9 @@ public class PropertyWindow extends AstralWindow {
                 infoList.addToList("--Advanced--");
                 infoList.addToList(" ");
                 if (selected.getHomeBase() != null) {
-                    infoList.addToList("Homebase: " + selected.getHomeBase());
+                    infoList.addToList("Homebase:     " + selected.getHomeBase().getName());
+                    infoList.addToList("              " + selected.getHomeBase().getCurrentSystem());
+                    infoList.addToList(" ");
                 }
                 fillSpecifics(selected);
                 infoList.addToList(" ");
@@ -535,6 +537,17 @@ public class PropertyWindow extends AstralWindow {
                     infoList.addToList("To:           " + end.getName());
                 }
             } else if (selected.getBehavior() == Behavior.UNIVERSE_TRADE) {
+                Station start = selected.getBuyFromStation();
+                Station end = selected.getSellToStation();
+                Item ware = selected.getWorkingWare();
+                if (start != null && end != null && ware != null) {
+                    infoList.addToList("Ware:         " + selected.getWorkingWare().getName());
+                    infoList.addToList("From:         " + start.getName());
+                    infoList.addToList("              " + start.getCurrentSystem());
+                    infoList.addToList("To:           " + end.getName());
+                    infoList.addToList("              " + end.getCurrentSystem());
+                }
+            } else if (selected.getBehavior() == Behavior.SUPPLY_HOMEBASE) {
                 Station start = selected.getBuyFromStation();
                 Station end = selected.getSellToStation();
                 Item ware = selected.getWorkingWare();
