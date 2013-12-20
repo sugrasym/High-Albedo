@@ -112,7 +112,7 @@ fuel=2500000000000
 mass=22010
 rectBound=22,32,186,234/169,24,572,48
 dock=210,50,260,100,900,140/310,50,360,100,900,140/410,50,460,100,900,140/510,50,560,100,900,140/100,-500,600,0,300,-1500
-process=AgeiranCheatTalon/AgeiranCheatTalonSink/CheatPPG/CheatMakeJumpDrive/CheatMakeRepairBeam
+process=AgeiranCheatTalon/AgeiranCheatTalonSink/CheatPNBT/CheatPPG/CheatMakeJumpDrive/CheatMakeRepairBeam
 [/Station]
 
 [Station]
@@ -513,7 +513,7 @@ fuel=2500000000000
 mass=68000
 rectBound=26,17,516,340/250,334,296,406
 dock=198,346,248,396,-82,374/296,346,346,396,614,368/100,-500,600,0,300,-1500
-process=FairMakeHAPC/FairMakeOGMLauncher/FairMakeM-AMLauncher/FairMakeOGMMissile/FairMakeM-AMMissile
+process=FairMakeHAPC/FairMakePNBT/FairMakeOGMLauncher/FairMakeM-AMLauncher/FairMakeOGMMissile/FairMakeM-AMMissile
 [/Station]
 
 [Station]

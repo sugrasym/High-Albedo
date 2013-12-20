@@ -76,6 +76,7 @@ cargo=5255
 hardpoint=cannon,200,42,0.5/cannon,200,42,5.78/cannon,200,42,0.25/cannon,200,42,6.03/turret,250,30,3.14/turret,250,-30,3.14
 width=135
 height=135
+[/Ship]
 
 #Transports
 

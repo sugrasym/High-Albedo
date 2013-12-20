@@ -625,6 +625,13 @@ resource=
 [/Process]
 
 [Process]
+name=CheatPNBT
+cycle=12205
+product=PNBT,1
+resource=
+[/Process]
+
+[Process]
 name=CheatPPG
 cycle=14500
 product=PPG,1
