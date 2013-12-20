@@ -18,7 +18,7 @@ cargo=Dalkyu Rocket~420
 ship=Shogun
 name=Tengu Shogun
 install=PPG/PPG/PPG/PPG/PPG/PPG
-cargo=Slaves~1000
+cargo=Jumpdrive~1/Slaves~1000
 [/Loadout]
 
 ########Corportate Lawful
@@ -167,10 +167,17 @@ cargo=Jumpdrive~1/Astronaut~1
 [/Loadout]
 
 [Loadout]
+ship=Robin
+name=Naval Robin
+install=Talon 3/Talon 3/Talon 3/Talon 3/PNBT/PNBT
+cargo=Jumpdrive~1/Astronaut~100
+[/Loadout]
+
+[Loadout]
 ship=Condor
 name=Naval Condor
 install=PPG/PPG/PPG/PPG/PPG/PPG/PPG/PPG
-cargo=Astronaut~1000
+cargo=Jumpdrive~1/Astronaut~1000
 [/Loadout]
 
 ########Ageiran Federation Unlawful
@@ -238,14 +245,14 @@ cargo=Starstruck Missile~80/Jumpdrive~1
 ship=Zebra
 name=ITC Logistics Zebra
 install='Swatter' Barrage Battery/'Swatter' Barrage Battery/'Fury' Barrage Battery/'Fury' Barrage Battery
-cargo=Starstruck Missile~2500/Sidewinder Missile~2500
+cargo=Jumpdrive~1/Starstruck Missile~2500/Sidewinder Missile~2500
 [/Loadout]
 
 [Loadout]
 ship=Lion
 name=ITC Fleet Lion
 install='Fury' Barrage Battery/'Fury' Barrage Battery/'Fury' Barrage Battery/'Fury' Barrage Battery/'Swatter' Barrage Battery/'Swatter' Barrage Battery/'Swatter' Barrage Battery/'Swatter' Barrage Battery
-cargo=Starstruck Missile~3500/Sidewinder Missile~3500
+cargo=Jumpdrive~1/Starstruck Missile~3500/Sidewinder Missile~3500
 [/Loadout]
 
 ########Caina Lawful
@@ -304,7 +311,7 @@ cargo=Iguana Missile~30/Jumpdrive~1
 ship=Goanna
 name=Naval Goanna
 install=PPG/PPG/PPG/PPG/'Viper' Barrage Battery/'Viper' Barrage Battery
-cargo=Astronaut~1000/Python Missile~1000
+cargo=Jumpdrive~1/Astronaut~1000/Python Missile~1000
 [/Loadout]
 
 ########The Wolves
@@ -365,14 +372,14 @@ cargo=Rapid Rocket~400/Jumpdrive~1
 ship=Apparition
 name=OFAF Logistics Apparition
 install=Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod/HGPC/HGPC
-cargo=Rapid Rocket~500000
+cargo=Jumpdrive~1/Rapid Rocket~500000
 [/Loadout]
 
 [Loadout]
 ship=Fetch
 name=OFAF Fetch
 install=HGPC/HGPC/HGPC/HGPC/HGPC/HGPC/'Swarm' Capital Rocket Pod/'Swarm' Capital Rocket Pod/'Swarm' Capital Rocket Pod/'Swarm' Capital Rocket Pod
-cargo=Rapid Rocket~20000
+cargo=Jumpdrive~1/Rapid Rocket~20000
 [/Loadout]
 
 ########Knights of Orin

@@ -498,6 +498,19 @@ description=The addition of a 3rd turret gives the Raven significantly improved 
 [/Item]
 
 [Item]
+name=Robin
+type=ship
+volume=18225
+mass=14500
+HP=100
+minPrice=1562500
+maxPrice=2241305
+store=4
+group=frigate
+description=In an effort to bridge the gap between battleships and snub craft, the Ageirans have developed the Robin, a marauding frigate capable of many combat roles.
+[/Item]
+
+[Item]
 name=Emu
 type=ship
 volume=2500
@@ -1256,6 +1269,19 @@ maxPrice=31000
 group=weapon
 store=800
 description=Firing Orin's 'Rapid Rocket' the Rocket Pod delivers rapid fire missile punishment at medium range. Rapid deployment increases the probability of a hit, which may raise applied damage output. This weapon is considered generic, as blueprints are widely available to corporations.
+[/Item]
+
+[Item]
+name=PNBT
+type=turret
+volume=125
+mass=48
+HP=100
+minPrice=69000
+maxPrice=120000
+group=weapon
+store=128
+description=Pulsed Neutron Bolt Turrets fire a spherical neutron pulse at a target. This cannon has been mounted on a rapid-rotation swivel in order to track marauding fighters.
 [/Item]
 
 #Ageiran Weapons

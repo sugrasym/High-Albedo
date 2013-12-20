@@ -551,6 +551,7 @@ patrol0=Police Sparrow,100
 patrol1=Naval Crow,50
 patrol2=Naval Raven,25
 patrol3=Naval Condor,4
+patrol4=Naval Robin,12
 trader0=Federal Trade Emu,20
 merchant0=Federal Supply Emu,5
 [/Loadout]

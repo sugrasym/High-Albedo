@@ -97,7 +97,7 @@ fuel=2500000000000
 mass=16000
 rectBound=25,5,192,118/192,15,485,39/158,118,192,339
 dock=234,45,284,95,900,305/334,45,384,95,900,305/434,45,484,95,900,305/100,-500,600,0,300,-1500
-process=AgeiranCheatTalonSink/CheatMakeSparrow/CheatMakeCrow/CheatMakeRaven/CheatMakeEmu/CheatMakeCondor/CheatMakeAgeiranSolarPowerPlant/CheatMakeAgeiranMREFactory/CheatMakeAgeiranFabricator
+process=AgeiranCheatTalonSink/CheatMakeSparrow/CheatMakeCrow/CheatMakeRaven/CheatMakeEmu/CheatMakeRobin/CheatMakeCondor/CheatMakeAgeiranSolarPowerPlant/CheatMakeAgeiranMREFactory/CheatMakeAgeiranFabricator
 [/Station]
 
 [Station]
@@ -485,7 +485,7 @@ fuel=2500000000000
 mass=85000
 rectBound=275,558,375,743/117,24,533,217/8,215,641,466/34,464,612,575/107,572,549,651/35,105,618,219
 dock=218,672,268,722,-115,690/376,672,426,722,776,700/100,-500,600,0,300,-1500
-process=FairMakePNBC/FairMakeHAPC/FairMakeOGMLauncher/FairMakeM-AMLauncher/FairMakeERPC/FairMakeHGPC/FairMakePPG/FairMakeRocketPod/FairMakeRocketPod/FairMakeOGMMissile/FairMakeRapidRocket/FairMakeM-AMMissile/CheatMakeLightWeaponsComplex/CheatMakeMediumWeaponsComplex/CheatMakeHeavyWeaponsComplex/CheatMakeRepairBeam
+process=FairMakePNBC/FairMakeHAPC/FairMakeOGMLauncher/FairMakeM-AMLauncher/FairMakeERPC/FairMakePNBT/FairMakeHGPC/FairMakePPG/FairMakeRocketPod/FairMakeRocketPod/FairMakeOGMMissile/FairMakeRapidRocket/FairMakeM-AMMissile/CheatMakeLightWeaponsComplex/CheatMakeMediumWeaponsComplex/CheatMakeHeavyWeaponsComplex/CheatMakeRepairBeam
 [/Station]
 
 [Station]
@@ -557,7 +557,7 @@ fuel=2500000000000
 mass=26000
 rectBound=25,5,192,340/192,15,485,39
 dock=234,45,284,95,900,305/334,45,384,95,900,305/434,45,484,95,900,305/100,-500,600,0,300,-1500
-process=LFL-WeaponSink/LFLFoodSink/LFLTechSink/CheatMakeJumpDrive/CheatMakeRepairBeam
+process=LFL-WeaponSink1/LFL-WeaponSink2/LFL-WeaponSink3/LFLFoodSink/LFLTechSink/CheatMakeJumpDrive/CheatMakeRepairBeam
 [/Station]
 
 [Station]

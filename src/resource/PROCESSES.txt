@@ -10,6 +10,13 @@ resource=
 #Fair weapons manufacturing
 
 [Process]
+name=FairMakePNBT
+cycle=214
+product=PNBT,1
+resource=Alloy Bar,9/Standard Energy Unit,12/Ageiran MRE,8/Mass Block,2/Assembly Modules,2/Plank Tubes,3
+[/Process]
+
+[Process]
 name=FairMakePNBC
 cycle=155
 product=PNBC,1
@@ -290,6 +297,13 @@ resource=
 name=CheatMakeCondor
 cycle=165000
 product=Condor,1
+resource=
+[/Process]
+
+[Process]
+name=CheatMakeRobin
+cycle=13750
+product=Robin,1
 resource=
 [/Process]
 
@@ -820,10 +834,24 @@ resource=PNBC,1/M-AM Launcher,1/M-AM Missile,10/OGM Launcher,1/OGM Missile,10/HA
 [/Process]
 
 [Process]
-name=LFL-WeaponSink
+name=LFL-WeaponSink1
 cycle=450
 product=
-resource=PNBC,1/ERPC,1/Rapid Rocket,10/Rocket Pod,1/HGPC,1/HAPC,1/PPG,1
+resource=HGPC,1/HAPC,1/PPG,1
+[/Process]
+
+[Process]
+name=LFL-WeaponSink2
+cycle=450
+product=
+resource=Rapid Rocket,10/Rocket Pod,1
+[/Process]
+
+[Process]
+name=LFL-WeaponSink3
+cycle=450
+product=
+resource=PNBC,1/PNBT,1/ERPC,1
 [/Process]
 
 [Process]

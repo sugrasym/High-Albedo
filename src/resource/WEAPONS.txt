@@ -116,6 +116,20 @@ accel=220
 turning=2.2
 [/Weapon]
 
+[Weapon]
+#weapon info
+name=PNBT
+type=turret
+#shell info
+damage=135
+range=475
+speed=398
+mass=8
+refire=0.39
+explosion=Smoke
+fireEffect=audio/effects/weapons/PNBC.wav
+[/Weapon]
+
 ########Red Sky Weapons########
 #Red Sky weapons are med damage at med range with a high refire rate.
 

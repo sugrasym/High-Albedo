@@ -60,6 +60,23 @@ width=300
 height=300
 [/Ship]
 
+#Frigates
+
+[Ship]
+type=Robin
+accel=25
+turning=3.1
+shield=131870
+shieldRecharge=172
+hull=120000
+fuel=130400
+mass=14500
+sensor=3050
+cargo=5255
+hardpoint=cannon,200,42,0.5/cannon,200,42,5.78/cannon,200,42,0.25/cannon,200,42,6.03/turret,250,30,3.14/turret,250,-30,3.14
+width=135
+height=135
+
 #Transports
 
 [Ship]
