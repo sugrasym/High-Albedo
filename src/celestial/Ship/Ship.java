@@ -2324,12 +2324,12 @@ public class Ship extends Celestial {
 
     @Override
     public void dying() {
+        //end sound effects
+        killSounds();
         //drop cargo
         dropLoot();
         //drop explosions
-        explode();
-        //end sound effects
-        killSounds();
+        explode();        
         //die
         state = State.DEAD;
     }

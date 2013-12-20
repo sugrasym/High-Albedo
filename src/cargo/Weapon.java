@@ -242,6 +242,7 @@ public class Weapon extends Equipment {
     public void killSounds() {
         super.killSounds();
         host.stopSound(fireEffect);
+        timeSinceLastActivation = coolDown + 1;
         if (fireEffect != null) {
             fireEffect.stop();
         }

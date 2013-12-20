@@ -1290,14 +1290,18 @@ public class Engine {
          */
         private void handlePlayerEvents() {
             try {
-                if (!playerShip.isDocked()) {
-                    if (allStopPressed) {
-                        playerShip.decelerate();
+                if (playerShip.getState() == Ship.State.ALIVE) {
+                    if (!playerShip.isDocked()) {
+                        if (allStopPressed) {
+                            playerShip.decelerate();
+                        }
+                        if (firing) {
+                            playerShip.fireActiveGuns(playerShip.getTarget());
+                            playerShip.fireActiveTurrets(playerShip.getTarget());
+                        }
                     }
-                    if (firing) {
-                        playerShip.fireActiveGuns(playerShip.getTarget());
-                        playerShip.fireActiveTurrets(playerShip.getTarget());
-                    }
+                } else {
+                    firing = false;
                 }
             } catch (Exception e) {
                 System.out.println("Failure to pass player input event.");
