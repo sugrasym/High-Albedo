@@ -3082,6 +3082,13 @@ public class Ship extends Celestial {
 
     public void ejectCargo(Item item) {
         if (cargoBay.contains(item)) {
+            //if this equipment, stop the sound
+            if(item instanceof Equipment) {
+                Equipment tmp = (Equipment) item;
+                tmp.deactivate();
+                tmp.killSounds();
+            }
+            //remove
             cargoBay.remove(item);
             CargoPod pod = new CargoPod(item);
             pod.setFaction("Neutral");
