@@ -381,6 +381,19 @@ description=While most capital ships are intended to destroy installations and o
 [/Item]
 
 [Item]
+name=Spectre
+type=ship
+volume=19600
+mass=13100
+HP=100
+minPrice=12000000
+maxPrice=29000000
+store=4
+group=frigate
+description=The Orin 'Spectre' is a fast frigate designed to interfere with swarms of incoming fighters and protect larger vessels.
+[/Item]
+
+[Item]
 name=Scimitar
 type=ship
 volume=2500

@@ -562,6 +562,7 @@ patrol0=OFAF Banshee,100
 patrol1=OFAF Wraith,50
 patrol2=OFAF Phantasm,25
 patrol3=OFAF Fetch,4
+patrol4=OFAF Spectre,12
 trader0=OFAF Trade Poltergeist,20
 trader1=OFAF Logistics Apparition,8
 merchant0=OFAF Supply Poltergeist,5

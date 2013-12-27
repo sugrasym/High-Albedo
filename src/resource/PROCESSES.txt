@@ -448,6 +448,13 @@ resource=
 [/Process]
 
 [Process]
+name=CheatMakeSpectre
+cycle=12810
+product=Spectre,1
+resource=
+[/Process]
+
+[Process]
 name=CheatMakeFreyr
 cycle=1600
 product=Freyr,1

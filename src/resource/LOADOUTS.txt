@@ -382,6 +382,13 @@ install=HGPC/HGPC/HGPC/HGPC/HGPC/HGPC/'Swarm' Capital Rocket Pod/'Swarm' Capital
 cargo=Jumpdrive~1/Rapid Rocket~20000
 [/Loadout]
 
+[Loadout]
+ship=Spectre
+name=OFAF Spectre
+install='Swarm' Capital Rocket Pod/'Swarm' Capital Rocket Pod/HGPC/HGPC
+cargo=Rapid Rocket~4800/Jumpdrive~1
+[/Loadout]
+
 ########Knights of Orin
 
 [Loadout]

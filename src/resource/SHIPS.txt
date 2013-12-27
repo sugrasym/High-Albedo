@@ -383,7 +383,7 @@ type=Fetch
 accel=19
 turning=0.20
 shield=11000000
-shieldRecharge=1
+shieldRecharge=10
 hull=7280000
 fuel=-1
 mass=61000
@@ -401,7 +401,7 @@ type=Apparition
 accel=21
 turning=0.3
 shield=5000000
-shieldRecharge=1
+shieldRecharge=10
 hull=62000
 fuel=-1
 mass=24000
@@ -410,6 +410,24 @@ cargo=5280000
 hardpoint=missile,15,20,1.57/missile,15,-20,1.57/turret,500,10,3.925/turret,500,-10,5.495/missile,15,-20,3.14/missile,15,20,3.14/missile,15,-40,3.14/missile,15,80,3.14/missile,40,-20,3.14/missile,15,-80,3.14
 width=270
 height=270
+[/Ship]
+
+#Frigates
+
+[Ship]
+type=Spectre
+accel=28
+turning=3.4
+shield=2750000
+shieldRecharge=10
+hull=1820000
+fuel=192000
+mass=13950
+sensor=4250
+cargo=5100
+hardpoint=battery,600,40,0.5/battery,600,40,5.78/turret,500,-20,3.14/turret,500,20,3.14
+width=140
+height=140
 [/Ship]
 
 #Transports
