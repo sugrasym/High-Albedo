@@ -336,8 +336,6 @@ width=140
 height=140
 [/Ship]
 
-#cannon,200,42,0.5/cannon,200,42,5.78/cannon,200,40,0.25/cannon,200,40,6.03/cannon,200,42,0.75/cannon,200,42,5.53
-
 #Transports
 
 [Ship]
