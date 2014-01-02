@@ -580,9 +580,10 @@ name=Caina Conglemerate
 patrol0=Air Force Gecko,100
 patrol1=Naval Monitor,25
 patrol2=Air Force Monitor,25
-patrol2=Air Force Komodo,25
-patrol3=Naval Komodo,12
-patrol4=Naval Goanna,4
+patrol3=Air Force Komodo,25
+patrol4=Naval Komodo,12
+patrol5=Naval Goanna,4
+patrol6=Naval Alligator,12
 trader0=Royal Trade Gila,20
 merchant0=Royal Supply Gila,5
 [/Loadout]

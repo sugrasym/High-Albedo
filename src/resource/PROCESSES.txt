@@ -392,6 +392,13 @@ resource=
 [/Process]
 
 [Process]
+name=CheatMakeAlligator
+cycle=12825
+product=Alligator,1
+resource=
+[/Process]
+
+[Process]
 name=CheatMakeGoanna
 cycle=128000
 product=Goanna,1

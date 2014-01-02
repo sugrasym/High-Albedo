@@ -315,6 +315,13 @@ cargo=Iguana Missile~30/Jumpdrive~1
 [/Loadout]
 
 [Loadout]
+ship=Alligator
+name=Naval Alligator
+install=Bask/Bask/Bask/Bask/Bask/Bask/'Viper' Barrage Battery/'Viper' Barrage Battery
+cargo=Jumpdrive~1/Python Missile~450/Astronaut~200
+[/Loadout]
+
+[Loadout]
 ship=Goanna
 name=Naval Goanna
 install=PPG/PPG/PPG/PPG/'Viper' Barrage Battery/'Viper' Barrage Battery

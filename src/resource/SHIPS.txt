@@ -318,6 +318,26 @@ width=325
 height=325
 [/Ship]
 
+#Frigates
+
+[Ship]
+type=Alligator
+accel=30
+turning=1.5
+shield=112000
+shieldRecharge=225
+hull=160000
+fuel=1525000
+mass=12580
+sensor=3260
+cargo=7000
+hardpoint=cannon,200,42,0.5/cannon,200,42,5.78/cannon,200,40,0.25/cannon,200,40,6.03/cannon,200,44,0.75/cannon,200,44,5.53/battery,800,30,3.14/battery,800,-30,3.14
+width=140
+height=140
+[/Ship]
+
+#cannon,200,42,0.5/cannon,200,42,5.78/cannon,200,40,0.25/cannon,200,40,6.03/cannon,200,42,0.75/cannon,200,42,5.53
+
 #Transports
 
 [Ship]

@@ -1,8 +1,8 @@
 #New Game Smell
 [NewGame]
 ship=Cab
-near='Gomez 15'
-system=The Highway
+near='Hamilton 23'
+system=Likely Story
 cash=50000
 install=ERPC/ERPC
 faction=Player

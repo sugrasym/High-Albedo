@@ -693,6 +693,19 @@ description=The Gila is a fast transport that is reasonably well armed, sacrific
 [/Item]
 
 [Item]
+name=Alligator
+type=ship
+volume=19600
+mass=12580
+HP=100
+minPrice=21525000
+maxPrice=28792050
+store=4
+group=frigate
+description=A fast frigate with devastating forward fire power. As a Cainan gun-missile hybrid, the Alligator also has spinal mounted missile batteries.
+[/Item]
+
+[Item]
 name=Goanna
 type=ship
 volume=90000
