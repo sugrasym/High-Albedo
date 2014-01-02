@@ -615,6 +615,19 @@ description=When you need a ship capable of laying down new infrastructure, you 
 [/Item]
 
 [Item]
+name=Elephant
+type=ship
+volume=18225
+mass=12750
+HP=100
+minPrice=16298000
+maxPrice=24271950
+store=4
+group=frigate
+description=This ITC frigate is designed to mount capital siege batteries and engage hard enemy targets from a safe distance.
+[/Item]
+
+[Item]
 name=Lion
 type=ship
 volume=90000

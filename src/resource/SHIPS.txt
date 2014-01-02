@@ -208,6 +208,24 @@ width=300
 height=300
 [/Ship]
 
+#Frigates
+
+[Ship]
+type=Elephant
+accel=18
+turning=0.27
+shield=500000
+shieldRecharge=800
+hull=82500
+fuel=241000
+mass=12750
+sensor=1305
+cargo=10500
+hardpoint=battery,1500,-20,3.14/battery,1500,20,3.14
+width=135
+height=135
+[/Ship]
+
 #Super Freighters
 
 [Ship]

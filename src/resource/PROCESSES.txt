@@ -350,6 +350,13 @@ resource=
 [/Process]
 
 [Process]
+name=CheatMakeElephant
+cycle=13750
+product=Elephant,1
+resource=
+[/Process]
+
+[Process]
 name=CheatMakeLion
 cycle=262500
 product=Lion,1

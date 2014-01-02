@@ -593,6 +593,7 @@ patrol0=ITC Police,75
 patrol1=ITC Fleet Cheetah,50
 patrol2=ITC Fleet Hyena,25
 patrol3=ITC Fleet Lion,4
+patrol4=ITC Fleet Elephant,12
 trader0=ITC Trade Wildabeast,20
 trader1=ITC Logistics Zebra,8
 merchant0=ITC Supply Wildabeast,5
