@@ -559,8 +559,6 @@ public class Ship extends Celestial {
             } else {
                 straffNegative();
             }
-            //also back up
-            fireForwardThrusters();
         }
     }
 
