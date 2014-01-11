@@ -559,6 +559,8 @@ public class Ship extends Celestial {
             } else {
                 straffNegative();
             }
+            //also back up
+            fireForwardThrusters();
         }
     }
 
@@ -621,8 +623,54 @@ public class Ship extends Celestial {
         double bx = (ax) + dx;
         double by = (ay) + dy;
         //get some fuzziness for negotiating hard situations
-        double fuzzX = getWidth() * (rnd.nextDouble()) - getWidth() / 2;
-        double fuzzY = getHeight() * (rnd.nextDouble()) - getHeight() / 2;
+        double fuzzX = getWidth() * (rnd.nextDouble() - 0.5);
+        double fuzzY = getHeight() * (rnd.nextDouble() - 0.5);
+        //handle edge cases
+        {
+            //literally, this alorithm fails on 0* 90* 180* 270*
+            //this algorithm uses a 0.5 tolerance, 0.25 in each direction.
+            if (theta > 6.03 || theta < 0.25) {
+                //remove fuzziness in special cases
+                fuzzX = 0;
+                fuzzY = 0;
+                //this is the pi and 2pi case
+                ax = getX() + (getWidth() / 2);
+                ay = getY();
+                bx = (ax) + dx;
+                by = (ay) + getHeight();
+            }
+            if (theta > 1.32 && theta < 1.82) {
+                //remove fuzziness in special cases
+                fuzzX = 0;
+                fuzzY = 0;
+                //this is the pi/2 case
+                ax = getX();
+                ay = getY() + (getHeight() / 2);
+                bx = ax + getWidth();
+                by = ay + dy;
+            }
+            if (theta > 2.89 && theta < 3.39) {
+                //remove fuzziness in special cases
+                fuzzX = 0;
+                fuzzY = 0;
+                //this is the pi case
+                ax = getX() + (getWidth() / 2);
+                ay = getY();
+                bx = (ax) + dx;
+                by = (ay) + getHeight();
+            }
+            if (theta > 4.46 && theta < 4.96) {
+                //remove fuzziness in special cases
+                fuzzX = 0;
+                fuzzY = 0;
+                //this is the 3pi/2 case
+                ax = getX();
+                ay = getY() + (getHeight() / 2);
+                bx = ax + getWidth();
+                by = ay + dy;
+            }
+        }
+        //set line
         tmp.setLine(ax, ay, bx + fuzzX, by + fuzzY);
         return tmp;
     }
@@ -2329,7 +2377,7 @@ public class Ship extends Celestial {
         //drop cargo
         dropLoot();
         //drop explosions
-        explode();        
+        explode();
         //die
         state = State.DEAD;
     }
@@ -2855,12 +2903,12 @@ public class Ship extends Celestial {
             if (this != getUniverse().getPlayerShip()) {
                 drawHealthBars(g, dx, dy);
             }
-            /*//draw avoidance info
-             Line2D tmp = getDodgeLine();
-             g.setColor(Color.WHITE);
-             g.drawLine((int) (tmp.getX1() - dx), (int) (tmp.getY1() - dy), (int) (tmp.getX2() - dx), (int) (tmp.getY2() - dy));
-             Rectangle tmp2 = tmp.getBounds();
-             g.drawRect((int) (tmp2.getX() - dx), (int) (tmp2.getY() - dy), (int) tmp2.getWidth(), (int) tmp2.getHeight());*/
+            //draw avoidance info
+            /*Line2D tmp = getDodgeLine();
+            g.setColor(Color.WHITE);
+            g.drawLine((int) (tmp.getX1() - dx), (int) (tmp.getY1() - dy), (int) (tmp.getX2() - dx), (int) (tmp.getY2() - dy));
+            Rectangle tmp2 = tmp.getBounds();
+            g.drawRect((int) (tmp2.getX() - dx), (int) (tmp2.getY() - dy), (int) tmp2.getWidth(), (int) tmp2.getHeight());*/
             //draw the buffer onto the main frame
             g.drawImage(tex, (int) (getX() - dx), (int) (getY() - dy), null);
         } else {
@@ -3083,7 +3131,7 @@ public class Ship extends Celestial {
     public void ejectCargo(Item item) {
         if (cargoBay.contains(item)) {
             //if this equipment, stop the sound
-            if(item instanceof Equipment) {
+            if (item instanceof Equipment) {
                 Equipment tmp = (Equipment) item;
                 tmp.deactivate();
                 tmp.killSounds();
