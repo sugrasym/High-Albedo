@@ -13,6 +13,7 @@ import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import lib.AstralIO;
+import static lib.AstralIO.SAVE_GAME_DIR;
 import universe.Universe;
 
 /**
@@ -221,7 +222,12 @@ public class MenuHomeWindow extends AstralWindow {
         mainList.addToList("");
         mainList.addToList("New Game");
         mainList.addToList("");
-        mainList.addToList("Load Quicksave");
+        //make sure there is a quicksave to load before showing this option
+        File quickSaveFile = new File(System.getProperty("user.home") + SAVE_GAME_DIR + "/quicksave");
+        if (quickSaveFile.exists()) {
+            mainList.addToList("Load Quicksave");
+        }
+        //load game can always safely be shown
         mainList.addToList("Load Game");
         if (engine.getUniverse() != null) {
             if (engine.getUniverse().isReady()) {
@@ -273,7 +279,7 @@ public class MenuHomeWindow extends AstralWindow {
     }
 
     private int countSaves() {
-        String path = System.getProperty("user.home") + "/.highalbedo/";
+        String path = System.getProperty("user.home") + AstralIO.SAVE_GAME_DIR;
         File folder = new File(path);
         File[] listOfFiles = folder.listFiles();
         return listOfFiles.length;

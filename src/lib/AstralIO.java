@@ -18,13 +18,9 @@
  */
 package lib;
 
-import java.applet.Applet;
-import java.applet.AudioClip;
 import java.awt.Image;
-import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
@@ -35,18 +31,19 @@ import java.io.InputStreamReader;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.ConcurrentModificationException;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import universe.Universe;
 
 public class AstralIO implements Serializable {
 
+    //resource folder (should be in jar file)
     public static final String RESOURCE_DIR = "/resource/";
-    public static final String SAVE_GAME_DIR = "/.highalbedo/";
+    //name of local storage directory
+    public static final String STORE_DIR = "/.highalbedo/";
+    //saved game and setting locations
+    public static final String SAVE_GAME_DIR = STORE_DIR + "saves/";
+    public static final String CONFIG_FILE_LOC = STORE_DIR + "config";
 
     /*
      * Text
@@ -76,7 +73,7 @@ public class AstralIO implements Serializable {
         return ret;
     }
 
-    public void writeFile(String target, String text) {
+    public static void writeFile(String target, String text) {
         try {
             FileWriter fstream = new FileWriter(target);
             BufferedWriter out = new BufferedWriter(fstream);
@@ -135,14 +132,24 @@ public class AstralIO implements Serializable {
         return AstralIO.class.getResourceAsStream(RESOURCE_DIR + "/" + target);
     }
 
+    public static void setupGameDir() {
+        String home = System.getProperty("user.home") + STORE_DIR;
+        String saves = System.getProperty("user.home") + SAVE_GAME_DIR;
+        //create the main folder
+        File homeFolder = new File(home);
+        if (!homeFolder.exists()) {
+            homeFolder.mkdir();
+        }
+        //create the subfolder
+        File saveFolder = new File(saves);
+        if (!saveFolder.exists()) {
+            saveFolder.mkdir();
+        }
+    }
+
     public void saveGame(Universe universe, String gameName) throws Exception {
         try {
             String home = System.getProperty("user.home") + SAVE_GAME_DIR;
-            //create the subfolder
-            File folder = new File(home);
-            if (!folder.exists()) {
-                folder.mkdir();
-            }
             //generate serializable universe
             Everything everything = new Everything(universe);
             //serialize universe

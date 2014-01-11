@@ -61,6 +61,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import lib.AstralIO;
+import static lib.AstralIO.SAVE_GAME_DIR;
 import lib.Conversation;
 import lib.Parser;
 import lib.Parser.Term;
@@ -212,7 +213,7 @@ public class Engine {
 
     public void load(String savePath) {
         try {
-            String home = System.getProperty("user.home") + "/.highalbedo/";
+            String home = System.getProperty("user.home") + SAVE_GAME_DIR;
             System.out.println("Starting Quickload.");
             //get everything
             AstralIO.Everything everything;

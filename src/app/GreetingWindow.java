@@ -18,6 +18,12 @@
  */
 package app;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import lib.AstralIO;
+
 /**
  *
  * @author nwiehoff
@@ -28,7 +34,38 @@ public class GreetingWindow extends javax.swing.JFrame {
      * Creates new form GreetingWindow
      */
     public GreetingWindow() {
+        //setup local storage
+        AstralIO.setupGameDir();
+        //netbeans's little init thingy
         initComponents();
+        //read in the config file
+        String configFilePath = System.getProperty("user.home") + AstralIO.CONFIG_FILE_LOC;
+        File poke = new File(configFilePath);
+        if (poke.exists()) {
+            try {
+                //read the file
+                String config = AstralIO.readFile(configFilePath, false);
+                //parse
+                String[] arr = config.split(",");
+                //determine whether it is fullscreen
+                boolean fullScreen = Boolean.parseBoolean(arr[0].trim());
+                fullScreenButton.setSelected(fullScreen);
+                windowScreenButton.setSelected(!fullScreen);
+                //store resolution
+                xResBox.setText(arr[1].trim());
+                yResBox.setText(arr[2].trim());
+            } catch (Exception e) {
+                System.out.println("Config file is corrupt.");
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                //create the file for use later
+                poke.createNewFile();
+            } catch (IOException ex) {
+                Logger.getLogger(GreetingWindow.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     /**
@@ -185,6 +222,9 @@ public class GreetingWindow extends javax.swing.JFrame {
         boolean fullScreen = fullScreenButton.isSelected();
         int wx = Integer.parseInt(xResBox.getText());
         int wy = Integer.parseInt(yResBox.getText());
+        //save settings to the config file
+        String out = fullScreen + "," + wx + "," + wy;
+        AstralIO.writeFile(System.getProperty("user.home") + AstralIO.CONFIG_FILE_LOC, out);
         //launch
         app.execute(fullScreen, wx, wy);
         dispose();
