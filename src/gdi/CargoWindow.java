@@ -49,6 +49,7 @@ public class CargoWindow extends AstralWindow {
     public static final String CMD_PACKAGE = "Package";
     public static final String CMD_DEPLOY = "Deploy";
     public static final String CMD_CLAIMSOV = "Claim System";
+    public static final String CMD_USEPASTE = "Use Repair Paste";
     AstralList cargoList = new AstralList(this);
     AstralList propertyList = new AstralList(this);
     AstralList optionList = new AstralList(this);
@@ -223,6 +224,11 @@ public class CargoWindow extends AstralWindow {
                     optionList.addToList(CMD_DEPLOY);
                     optionList.addToList(" ");
                 }
+            }
+            if (selected.getGroup().matches("repairkit")) {
+                optionList.addToList("--Setup--");
+                optionList.addToList(CMD_USEPASTE);
+                optionList.addToList(" ");
             }
             /*
              * Options for cannons
@@ -445,6 +451,23 @@ public class CargoWindow extends AstralWindow {
                         ship.composeMessage(ship, "Terms of Service", "We can't work with neutral space, sorry /br/ /br/ "
                                 + "Paralegal: Beyond the Law", null);
                     }
+                }
+            } else if (command.matches(CMD_USEPASTE)) {
+                Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
+                for (int a = 0; a < selected.getQuantity(); a++) {
+                    //if the hp of the ship is less than the max, use a unit of paste
+                    if (ship.getHull() < ship.getMaxHull()) {
+                        ship.setHull(ship.getHull() + selected.getHP());
+                        selected.setQuantity(selected.getQuantity() - 1);
+                    }
+                    //limit to max hull
+                    if (ship.getHull() > ship.getMaxHull()) {
+                        ship.setHull(ship.getMaxHull());
+                    }
+                }
+                //remove if needed
+                if (selected.getQuantity() <= 0) {
+                    ship.removeFromCargoBay(selected);
                 }
             }
         }

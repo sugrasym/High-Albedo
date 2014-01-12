@@ -7,6 +7,22 @@ product=System Transfer Paperwork,1
 resource=
 [/Process]
 
+#Seed Repair Paste
+
+[Process]
+name=SeedRepairPaste
+cycle=7500
+product=Repair Paste,1
+resource=
+[/Process]
+
+[Process]
+name=SeedCapitalRepairPaste
+cycle=9250
+product=Capital Repair Paste,1
+resource=
+[/Process]
+
 #Fair weapons manufacturing
 
 [Process]

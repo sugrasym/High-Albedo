@@ -25,7 +25,7 @@ fuel=2500000000000
 mass=50000
 rectBound=20,32,186,234/169,24,572,48/170,236,572,266
 dock=210,50,260,100,900,140/310,50,360,100,900,140/410,50,460,100,900,140/510,50,560,100,900,140/100,-500,600,0,300,-1500
-process=GoodsToPiracy/ArchersCoveCheatWeapons/OrganSink/CheatMakeBowman/CheatMakeCavalry
+process=GoodsToPiracy/ArchersCoveCheatWeapons/OrganSink/CheatMakeBowman/CheatMakeCavalry/SeedRepairPaste/SeedCapitalRepairPaste
 [/Station]
 
 [Station]
@@ -97,7 +97,7 @@ fuel=2500000000000
 mass=16000
 rectBound=25,5,192,118/192,15,485,39/158,118,192,339
 dock=234,45,284,95,900,305/334,45,384,95,900,305/434,45,484,95,900,305/100,-500,600,0,300,-1500
-process=AgeiranCheatTalonSink/CheatMakeSparrow/CheatMakeCrow/CheatMakeRaven/CheatMakeEmu/CheatMakeRobin/CheatMakeCondor/CheatMakeAgeiranSolarPowerPlant/CheatMakeAgeiranMREFactory/CheatMakeAgeiranFabricator
+process=AgeiranCheatTalonSink/CheatMakeSparrow/CheatMakeCrow/CheatMakeRaven/CheatMakeEmu/CheatMakeRobin/CheatMakeCondor/SeedRepairPaste/SeedCapitalRepairPaste/CheatMakeAgeiranSolarPowerPlant/CheatMakeAgeiranMREFactory/CheatMakeAgeiranFabricator
 [/Station]
 
 [Station]
@@ -211,7 +211,7 @@ fuel=2500000000000
 mass=62010
 rectBound=6,6,293,562
 dock=10,568,60,618,27,738/88,568,138,618,105,738/166,568,216,618,185,738/244,568,294,618,263,738/100,-500,600,0,300,-1500
-process=CainanCheatWeaponSink/CainanCheatVenom/CainanCheatHeavy/CainanCheatMissile/CainanCheatMissileAmmo/CheatPPG/CheatViperBattery/CainanCheatWasteSink/CheatMakeGecko/CheatMakeMonitor/CheatMakeKomodo/CheatMakeGila/CheatMakeAlligator/CheatMakeGoanna/CheatMakeSunfarm/CheatMakeHydroponicsFacility/CheatMakeIndustrialKitchen/CheatMakeHullPlatingFabricator/CheatMakeModuleFabricator/CheatMakeRepairBeam
+process=CainanCheatWeaponSink/CainanCheatVenom/CainanCheatHeavy/CainanCheatMissile/CainanCheatMissileAmmo/CheatPPG/CheatViperBattery/CainanCheatWasteSink/CheatMakeGecko/CheatMakeMonitor/CheatMakeKomodo/CheatMakeGila/CheatMakeAlligator/CheatMakeGoanna/SeedRepairPaste/SeedCapitalRepairPaste/CheatMakeSunfarm/CheatMakeHydroponicsFacility/CheatMakeIndustrialKitchen/CheatMakeHullPlatingFabricator/CheatMakeModuleFabricator/CheatMakeRepairBeam
 [/Station]
 
 [Station]
@@ -340,7 +340,7 @@ fuel=2500000000000
 mass=93280
 rectBound=275,558,375,743/117,24,533,217/8,215,641,466/34,464,612,575/107,572,549,651/35,105,618,219
 dock=218,672,268,722,-115,690/376,672,426,722,776,700/300,747,350,797,326,976/100,-500,600,0,300,-1500
-process=ITCCheatStarstruck/ITCCheatSidewinder/ITCCheatStarstruckMissile/ITCCheatSidewinderMissile/CheatMakeJumpDrive/ITCCheatBarrage/ITCCheatWeaponSink/CheatPPG/CheatMakeHyena/CheatMakeCheetah/CheatMakeWildabeast/CheatMakeZebra/CheatMakeElephant/CheatMakeLion/CheatMakeITCPowerConverter/CheatMakeITCIceRefinery/CheatMakeITCOreConverter/CheatMakeITCOrbitalRanch/CheatMakeITCFoodSupply/CheatMakeITCIndustrialReplicator/CheatMakeRepairBeam
+process=ITCCheatStarstruck/ITCCheatSidewinder/ITCCheatStarstruckMissile/ITCCheatSidewinderMissile/CheatMakeJumpDrive/ITCCheatBarrage/ITCCheatWeaponSink/CheatPPG/CheatMakeHyena/CheatMakeCheetah/CheatMakeWildabeast/CheatMakeZebra/CheatMakeElephant/CheatMakeLion/SeedRepairPaste/SeedCapitalRepairPaste/CheatMakeITCPowerConverter/CheatMakeITCIceRefinery/CheatMakeITCOreConverter/CheatMakeITCOrbitalRanch/CheatMakeITCFoodSupply/CheatMakeITCIndustrialReplicator/CheatMakeRepairBeam
 [/Station]
 
 [Station]
@@ -355,7 +355,7 @@ fuel=2500000000000
 mass=55000
 rectBound=9,3,446,448/428,195,529,251
 dock=454,141,504,191,485,-114/454,252,504,302,491,512/100,-500,600,0,300,-1500
-process=SeedSovPapers/WolfOrgans/WolfDenCheatWeapons/CheatMakeCoyote/CheatMakeJackal/CheatMakeRepairBeam
+process=SeedSovPapers/WolfOrgans/WolfDenCheatWeapons/CheatMakeCoyote/CheatMakeJackal/CheatMakeRepairBeam/SeedRepairPaste/SeedCapitalRepairPaste
 [/Station]
 
 [Station]
@@ -441,7 +441,7 @@ fuel=2500000000000
 mass=1872000
 rectBound=22,10,693,164/251,126,693,602/29,594,637,661
 dock=189,190,239,240,-146,208/189,265,239,315,-146,283/189,340,239,390,-146,358/189,415,239,465,-146,433/189,490,239,540,-146,508/100,-500,600,0,300,-1500
-process=OrinShipSink/OrinTechSink/OrinCheatRocketERPC/OrinCheatRocket/OrinCheatHGPC/CheatPPG/OrinCheatSwarm/CheatMakeBanshee/CheatMakeWraith/CheatMakePhantasm/CheatMakeSpectre/CheatMakeApparition/CheatMakeFetch/CheatMakePoltergeist/CheatMakeOrinFissionPlant/CheatMakeOrinMixedFoodsPlant/CheatMakeOrinWasteConverter/CheatMakeOrinTechPlant/CheatMakeRepairBeam
+process=OrinShipSink/OrinTechSink/OrinCheatRocketERPC/OrinCheatRocket/OrinCheatHGPC/CheatPPG/OrinCheatSwarm/CheatMakeBanshee/CheatMakeWraith/CheatMakePhantasm/CheatMakeSpectre/CheatMakeApparition/CheatMakeFetch/SeedRepairPaste/SeedCapitalRepairPaste/CheatMakePoltergeist/CheatMakeOrinFissionPlant/CheatMakeOrinMixedFoodsPlant/CheatMakeOrinWasteConverter/CheatMakeOrinTechPlant/CheatMakeRepairBeam
 [/Station]
 
 [Station]
@@ -455,7 +455,7 @@ fuel=2500000000000
 mass=62000
 rectBound=96,7,390,161/174,154,310,350/98,335,388,486
 dock=115,222,165,272,-124,242/315,222,365,272,563,249/100,-500,600,0,300,-1500
-process=SeedSovPapers/TenguTechSink/MakeSlaves/CheatTenguWeapons/CheatTenguAmmo/CheatPPG/CheatMakeSamurai/CheatMakeRonin/CheatMakeShogun/AstronautToSlave/CheatMakeRepairBeam
+process=SeedSovPapers/TenguTechSink/MakeSlaves/CheatTenguWeapons/CheatTenguAmmo/CheatPPG/CheatMakeSamurai/CheatMakeRonin/CheatMakeShogun/AstronautToSlave/CheatMakeRepairBeam/SeedRepairPaste/SeedCapitalRepairPaste
 [/Station]
 
 [Station]
@@ -470,7 +470,7 @@ fuel=2500000000000
 mass=16000
 rectBound=25,5,192,118/192,15,485,39/158,118,192,339
 dock=234,45,284,95,900,305/334,45,384,95,900,305/434,45,484,95,900,305/100,-500,600,0,300,-1500
-process=SeedSovPapers/CheatMakeFreyr/CheatMakeOdin/CheatRedSkyWeapons/RedSkyTechSink/RedSkyFoodSink/CheatPPG/CheatMakeJumpDrive/CheatMakeRepairBeam
+process=SeedSovPapers/CheatMakeFreyr/CheatMakeOdin/CheatRedSkyWeapons/RedSkyTechSink/RedSkyFoodSink/CheatPPG/CheatMakeJumpDrive/CheatMakeRepairBeam/SeedRepairPaste/SeedCapitalRepairPaste
 [/Station]
 
 [Station]
@@ -542,7 +542,7 @@ fuel=2500000000000
 mass=52000
 rectBound=6,6,293,562
 dock=10,568,60,618,27,738/88,568,138,618,105,738/166,568,216,618,185,738/244,568,294,618,263,738/100,-500,600,0,300,-1500
-process=PE-WeaponSink/PEFoodSink/PETechSink/CheatMakeJumpDrive/AMConverter/CheatMakeMiningOutpost/CheatMakeRepairBeam
+process=PE-WeaponSink/PEFoodSink/PETechSink/CheatMakeJumpDrive/AMConverter/CheatMakeMiningOutpost/CheatMakeRepairBeam/SeedRepairPaste/SeedCapitalRepairPaste
 [/Station]
 
 [Station]
@@ -557,7 +557,7 @@ fuel=2500000000000
 mass=26000
 rectBound=25,5,192,340/192,15,485,39
 dock=234,45,284,95,900,305/334,45,384,95,900,305/434,45,484,95,900,305/100,-500,600,0,300,-1500
-process=LFL-WeaponSink1/LFL-WeaponSink2/LFL-WeaponSink3/LFLFoodSink/LFLTechSink/CheatMakeJumpDrive/CheatMakeRepairBeam
+process=LFL-WeaponSink1/LFL-WeaponSink2/LFL-WeaponSink3/LFLFoodSink/LFLTechSink/CheatMakeJumpDrive/CheatMakeRepairBeam/SeedRepairPaste/SeedCapitalRepairPaste
 [/Station]
 
 [Station]
