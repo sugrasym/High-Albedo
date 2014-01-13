@@ -109,6 +109,9 @@ public class Ship extends Celestial {
     public static final String PLAYER_FACTION = "Player";
     public static final double MAX_WAIT_TIME = 25;
     public static final double MIN_WAIT_TIME = 5;
+    public static final double BAIL_CHECK_SHIELD_RESET = 1;
+    public static final double BAIL_CHECK_SHIELD_STOP = 0.1;
+    public static final double BAIL_CHECK_HULL_DAMAGE = 0.5;
     //raw loadout
     protected String equip = "";
     private String template = "";
@@ -144,6 +147,10 @@ public class Ship extends Celestial {
     protected Autopilot autopilot = Autopilot.NONE;
     protected boolean docked;
     protected PortContainer port;
+    //bailing
+    protected double courage = 1; //determines how likely a ship is NOT to bail.
+    protected boolean checkedBail = false;
+    protected boolean bailed = false;
     //trading
     private Station buyFromStation;
     private int buyFromPrice;
@@ -482,6 +489,11 @@ public class Ship extends Celestial {
                 } else {
                     autopilotAvoidBlock(obstruction);
                 }
+            }
+            //bail code
+            if (!faction.matches(PLAYER_FACTION)) {
+                //player ships do not bail
+                checkBail();
             }
         }
     }
@@ -2903,10 +2915,10 @@ public class Ship extends Celestial {
             }
             //draw avoidance info
             /*Line2D tmp = getDodgeLine();
-            g.setColor(Color.WHITE);
-            g.drawLine((int) (tmp.getX1() - dx), (int) (tmp.getY1() - dy), (int) (tmp.getX2() - dx), (int) (tmp.getY2() - dy));
-            Rectangle tmp2 = tmp.getBounds();
-            g.drawRect((int) (tmp2.getX() - dx), (int) (tmp2.getY() - dy), (int) tmp2.getWidth(), (int) tmp2.getHeight());*/
+             g.setColor(Color.WHITE);
+             g.drawLine((int) (tmp.getX1() - dx), (int) (tmp.getY1() - dy), (int) (tmp.getX2() - dx), (int) (tmp.getY2() - dy));
+             Rectangle tmp2 = tmp.getBounds();
+             g.drawRect((int) (tmp2.getX() - dx), (int) (tmp2.getY() - dy), (int) tmp2.getWidth(), (int) tmp2.getHeight());*/
             //draw the buffer onto the main frame
             g.drawImage(tex, (int) (getX() - dx), (int) (getY() - dy), null);
         } else {
@@ -3940,4 +3952,88 @@ public class Ship extends Celestial {
     public void setHomeBase(Station homeBase) {
         this.homeBase = homeBase;
     }
+
+    /*
+     * Bailing Code
+     */
+    public double getCourage() {
+        return courage;
+    }
+
+    public void setCourage(double courage) {
+        this.courage = courage;
+    }
+
+    protected void checkBail() {
+        /*
+         * Determines whether or not a ship will bail. Bail is checked when the
+         * hull is less than the mark. It will not be rechecked until the shields are
+         * back to the reset %.
+         */
+        if (courage < 1) {
+            if (checkedBail()) {
+                //set to false if shields are back to 100%
+                if ((shield / maxShield) >= BAIL_CHECK_SHIELD_RESET) {
+                    setCheckedBail(false);
+                }
+            } else if ((shield / maxShield) <= BAIL_CHECK_SHIELD_STOP) {
+                //is the hull below 50%?
+                if ((hull / maxHull) <= BAIL_CHECK_HULL_DAMAGE) {
+                    //roll the dice
+                    double dice = rnd.nextDouble();
+                    if (dice > courage) {
+                        //bail
+                        bail();
+                    } else {
+                        //sad christmas
+                        //System.out.println(getName() + " did not bail " + dice + " < " + courage);
+                    }
+                    //and stop
+                    setCheckedBail(true);
+                }
+            }
+        } else {
+            //this can never bail
+        }
+    }
+
+    public void bail() {
+        /*
+         * Causes the pilot to bail.
+         */
+        //abort autopilot commands and behaviors
+        setBehavior(Behavior.NONE);
+        setAutopilot(Autopilot.NONE);
+        cmdAbortDock();
+        //standing loss, not as bad as actually destroying the ship
+        System.out.println(getName() + " bailed in " + currentSystem.getName());
+        if (lastBlow.getFaction().matches(PLAYER_FACTION)) {
+            //adjust the player's standings accordingly
+            if (!faction.matches("Neutral")) {
+                getUniverse().getPlayerShip().getMyFaction().derivedModification(myFaction, -0.5);
+            }
+        }
+        //mark this ship as bailed
+        setBailed(true);
+        //set the faction to neutral
+        setFaction("Neutral");
+        installFaction();
+    }
+
+    public boolean checkedBail() {
+        return checkedBail;
+    }
+
+    public void setCheckedBail(boolean checkedBail) {
+        this.checkedBail = checkedBail;
+    }
+
+    public boolean isBailed() {
+        return bailed;
+    }
+
+    public void setBailed(boolean bailed) {
+        this.bailed = bailed;
+    }
+
 }

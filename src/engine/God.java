@@ -584,6 +584,8 @@ public class God implements EngineElement {
             String install = "";
             String ship = "Mass Testing Brick";
             String cargoScan = "false";
+            String minCourage = null;
+            String maxCourage = null;
             if (template != null) {
                 //load this template
                 Parser lParse = Universe.getCache().getLoadoutCache();
@@ -598,6 +600,9 @@ public class God implements EngineElement {
                         if (cs != null) {
                             cargoScan = cs;
                         }
+                        //bailing
+                        minCourage = lods.get(a).getValue("minCourage");
+                        maxCourage = lods.get(a).getValue("maxCourage");
                         break;
                     }
                 }
@@ -614,6 +619,17 @@ public class God implements EngineElement {
             ret.init(false);
             ret.addInitialCargo(cargo);
             ret.setScanForContraband(Boolean.parseBoolean(cargoScan));
+            //bailing
+            if (minCourage != null && maxCourage != null) {
+                double lowC = Double.parseDouble(minCourage);
+                double hiC = Double.parseDouble(maxCourage);
+                //pick a random number between these
+                double d = hiC - lowC;
+                double del = rnd.nextDouble() * d;
+                double pick = lowC + del;
+                //store courage
+                ret.setCourage(pick);
+            }
         }
         return ret;
     }

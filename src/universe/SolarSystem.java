@@ -585,6 +585,13 @@ public class SolarSystem implements Entity, Serializable {
                                 System.out.println("Removing derelict ship [A] " + test.getName() + " :: " + test.getAutopilot());
                                 test.setState(State.DYING);
                             }
+                            //remove entities that bailed outside the player system
+                            if(test.isBailed()) {
+                                System.out.println("Removing bailed ship " + test.getName());
+                                test.setState(State.DYING);
+                            } else {
+                                //do nothing
+                            }
                         } else {
                             discover();
                         }

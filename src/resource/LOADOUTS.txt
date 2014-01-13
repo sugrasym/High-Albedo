@@ -5,6 +5,8 @@ ship=Samurai
 name=Tengu Apprentice
 install=Tekko/Tekko
 cargo=Slaves~5
+minCourage=0.95
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -12,6 +14,8 @@ ship=Ronin
 name=Tengu Master
 install=Katana/Katana/Dalkyu/Dalkyu
 cargo=Dalkyu Rocket~420
+minCourage=0.97
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -28,6 +32,8 @@ ship=Cab
 name=Skybus Executioner
 install=ERPC/ERPC
 cargo=Astronaut~1
+minCourage=0.85
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -35,6 +41,8 @@ ship=Cab
 name=Skybus Shuttle
 install=ERPC/ERPC
 cargo=Astronaut~1
+minCourage=0.85
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -42,6 +50,8 @@ ship=Freyr
 name=RS Bounty Hunter
 install=Thorn A/Thorn A
 cargo=Astronaut~1
+minCourage=0.87
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -49,6 +59,8 @@ ship=Odin
 name=RS Assassin
 install=Thorn B/Thorn B
 cargo=Astronaut~1
+minCourage=0.91
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -56,6 +68,8 @@ ship=Raven
 name=GP Security Raven
 install=PNBC/PNBC/PNBC
 cargo=Astronaut~1
+minCourage=0.85
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -63,6 +77,8 @@ ship=Hyena
 name=GP Security Hyena
 install=M-AM Launcher/M-AM Launcher/M-AM Launcher/M-AM Launcher
 cargo=M-AM Missile~60
+minCourage=0.85
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -70,6 +86,8 @@ ship=Crow
 name=LFL Security Crow
 install=PNBC/PNBC
 cargo=Astronaut~1
+minCourage=0.85
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -77,6 +95,8 @@ ship=Wraith
 name=LFL Security Wraith
 install=ERPC/ERPC/Rocket Pod/Rocket Pod
 cargo=Rapid Rocket~400
+minCourage=0.85
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -84,6 +104,8 @@ ship=Emu
 name=LFL Supply Emu
 install=PNBC
 cargo=Jumpdrive~1/Astronaut~1
+minCourage=0.75
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -91,6 +113,8 @@ ship=Poltergeist
 name=LFL Supply Poltergeist
 install=ERPC/ERPC/Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod
 cargo=Rapid Rocket~400/Jumpdrive~1
+minCourage=0.75
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -105,6 +129,8 @@ ship=Monitor
 name=PE Security Monitor
 install=OGM Launcher/OGM Launcher/HAPC
 cargo=OGM Missile~34
+minCourage=0.90
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -112,6 +138,8 @@ ship=Cheetah
 name=PE Security Cheetah
 install=M-AM Launcher/M-AM Launcher
 cargo=M-AM Missile~38
+minCourage=0.90
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -119,6 +147,8 @@ ship=Gila
 name=PE Supply Gila
 install=OGM Launcher/OGM Launcher/PNBC/HAPC
 cargo=OGM Missile~30/Jumpdrive~1
+minCourage=0.90
+maxCourage=1.00
 [/Loadout]
 
 ########Ageiran Federation Lawful
@@ -136,6 +166,8 @@ name=Police Sparrow
 install=Talon 1/Talon 1
 cargo=Astronaut~1
 cargoScan=true
+minCourage=0.90
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -143,6 +175,8 @@ ship=Crow
 name=Naval Crow
 install=Talon 2/Talon 2
 cargo=Astronaut~1
+minCourage=0.90
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -150,6 +184,8 @@ ship=Raven
 name=Naval Raven
 install=Talon 3/Talon 3/Talon 3
 cargo=Astronaut~1
+minCourage=0.90
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -157,6 +193,8 @@ ship=Emu
 name=Federal Trade Emu
 install=Talon 3
 cargo=Astronaut~1
+minCourage=0.90
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -164,6 +202,8 @@ ship=Emu
 name=Federal Supply Emu
 install=Talon 3
 cargo=Jumpdrive~1/Astronaut~1
+minCourage=0.90
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -187,6 +227,8 @@ ship=Bowman
 name=Archers' Pillager
 install=Arrow/Arrow
 cargo=Astronaut~1/Consumer Goods~2
+minCourage=0.87
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -194,6 +236,8 @@ ship=Cavalry
 name=Archers' Raider
 install=Catapult/Catapult/Long 9
 cargo=Astronaut~1/Consumer Goods~6
+minCourage=0.89
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -201,6 +245,8 @@ ship=Cavalry
 name=Archers' Vanguard
 install=Catapult/Catapult/Catapult
 cargo=Astronaut~1/Consumer Goods~10
+minCourage=0.91
+maxCourage=1.00
 [/Loadout]
 
 ########ITC Lawful
@@ -211,6 +257,8 @@ name=ITC Police
 install=Sidewinder Launcher/Sidewinder Launcher
 cargo=Sidewinder Missile~32
 cargoScan=true
+minCourage=0.95
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -218,6 +266,8 @@ ship=Cheetah
 name=ITC Fleet Cheetah
 install=Starstruck Launcher/Starstruck Launcher
 cargo=Starstruck Missile~32
+minCourage=0.95
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -225,6 +275,8 @@ ship=Hyena
 name=ITC Fleet Hyena
 install=Starstruck Launcher/Starstruck Launcher/Starstruck Launcher/Starstruck Launcher
 cargo=Starstruck Missile~74
+minCourage=0.95
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -232,6 +284,8 @@ ship=Wildabeast
 name=ITC Trade Wildabeast
 install=Starstruck Launcher/Starstruck Launcher/Starstruck Launcher/Starstruck Launcher
 cargo=Starstruck Missile~80
+minCourage=0.93
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -239,6 +293,8 @@ ship=Wildabeast
 name=ITC Supply Wildabeast
 install=Starstruck Launcher/Starstruck Launcher/Starstruck Launcher/Starstruck Launcher
 cargo=Starstruck Missile~80/Jumpdrive~1
+minCourage=0.93
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -270,6 +326,8 @@ name=Air Force Gecko
 install=Python Launcher/Python Launcher/Venom Alpha
 cargo=Python Missile~16
 cargoScan=true
+minCourage=0.90
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -277,6 +335,8 @@ ship=Monitor
 name=Naval Monitor
 install=Iguana Launcher/Iguana Launcher/Venom Beta
 cargo=Iguana Missile~28
+minCourage=0.92
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -284,6 +344,8 @@ ship=Monitor
 name=Air Force Monitor
 install=Iguana Launcher/Iguana Launcher/Bask
 cargo=Iguana Missile~28
+minCourage=0.94
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -291,6 +353,8 @@ ship=Komodo
 name=Air Force Komodo
 install=Iguana Launcher/Iguana Launcher/Bask/Bask
 cargo=Iguana Missile~30
+minCourage=0.93
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -298,6 +362,8 @@ ship=Komodo
 name=Naval Komodo
 install=Anaconda Launcher/Anaconda Launcher/Frill/Bask
 cargo=Anaconda Missile~14
+minCourage=0.96
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -305,6 +371,8 @@ ship=Gila
 name=Royal Trade Gila
 install=Iguana Launcher/Iguana Launcher/Bask/Bask
 cargo=Iguana Missile~30
+minCourage=0.90
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -312,6 +380,8 @@ ship=Gila
 name=Royal Supply Gila
 install=Iguana Launcher/Iguana Launcher/Bask/Bask
 cargo=Iguana Missile~30/Jumpdrive~1
+minCourage=0.90
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -335,6 +405,8 @@ ship=Coyote
 name=Wolves Cub
 install=Fang/Fang
 cargo=Consumer Goods~1/Human Organs~1/Astronaut~1
+minCourage=0.97
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -342,6 +414,8 @@ ship=Jackal
 name=Wolves Member
 install=Fang Alpha/Fang Alpha/Python Launcher/Python Launcher
 cargo=Python Missile~32
+minCourage=0.99
+maxCourage=1.00
 [/Loadout]
 
 ########Orin Federation Lawful
@@ -352,6 +426,8 @@ name=OFAF Banshee
 install=ERPC/ERPC/Rocket Pod/Rocket Pod
 cargo=Rapid Rocket~294
 cargoScan=true
+minCourage=0.90
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -359,6 +435,8 @@ ship=Wraith
 name=OFAF Wraith
 install=ERPC/ERPC/Rocket Pod/Rocket Pod
 cargo=Rapid Rocket~400
+minCourage=0.90
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -366,6 +444,8 @@ ship=Phantasm
 name=OFAF Phantasm
 install=ERPC/ERPC/Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod
 cargo=Rapid Rocket~600
+minCourage=0.90
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -373,6 +453,8 @@ ship=Poltergeist
 name=OFAF Trade Poltergeist
 install=ERPC/ERPC/Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod
 cargo=Rapid Rocket~400
+minCourage=0.90
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -380,6 +462,8 @@ ship=Poltergeist
 name=OFAF Supply Poltergeist
 install=ERPC/ERPC/Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod
 cargo=Rapid Rocket~400/Jumpdrive~1
+minCourage=0.90
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -410,6 +494,8 @@ ship=Scimitar
 name=Knights Terrorist
 install=Rayo Azul/Rayo Azul/Orgullo Negro
 cargo=Bala Negro~280
+minCourage=0.85
+maxCourage=1.00
 [/Loadout]
 
 [Loadout]
@@ -417,6 +503,8 @@ ship=Claymore
 name=Knights Visionary
 install=Sangre Roja/Sangre Roja/Sangre Roja
 cargo=Astronaut~1
+minCourage=0.95
+maxCourage=1.00
 [/Loadout]
 
 ########Entities
