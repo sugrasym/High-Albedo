@@ -106,7 +106,14 @@ public class EquipmentWindow extends AstralWindow {
                     }
                 }
             } else if (tmp instanceof Ship && !ship.isDocked()) {
-                commInfo.setText("Press H To Hail");
+                if (tmp.isBailed()) {
+                    //does the player have salvage software?
+                    if(ship.hasSalvageSoftware()) {
+                        commInfo.setText("Press Z To Claim");
+                    }
+                } else {
+                    commInfo.setText("Press H To Hail");
+                }
             } else {
                 commInfo.setText("");
             }

@@ -818,6 +818,13 @@ public class Engine {
                                 playerShip.getTarget().hail();
                                 commWindow.setVisible(true);
                             }
+                        } else if (ke.getKeyCode() == KeyEvent.VK_Z) {
+                            if (playerShip.getTarget() != null) {
+                                if (playerShip.getTarget().isBailed()) {
+                                    //claim the ship
+                                    playerShip.getTarget().claim(playerShip);
+                                }
+                            }
                         }
                     } else {
                         /*

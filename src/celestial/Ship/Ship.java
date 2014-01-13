@@ -3189,6 +3189,12 @@ public class Ship extends Celestial {
             }
         }
     }
+    
+    protected void dumpCargo() {
+        for (int a = 0; a < cargoBay.size(); a++) {
+            ejectCargo(cargoBay.get(a));
+        }
+    }
 
     protected void dropJumpEffect() {
         /*
@@ -3828,6 +3834,10 @@ public class Ship extends Celestial {
         return false;
     }
 
+    public boolean hasSalvageSoftware() {
+        return hasGroupInCargo("salvagesoftware");
+    }
+
     public boolean isScanForContraband() {
         return scanForContraband;
     }
@@ -4015,6 +4025,8 @@ public class Ship extends Celestial {
         }
         //mark this ship as bailed
         setBailed(true);
+        //eject cargo
+        dumpCargo();
         //set the faction to neutral
         setFaction("Neutral");
         installFaction();
@@ -4034,6 +4046,23 @@ public class Ship extends Celestial {
 
     public void setBailed(boolean bailed) {
         this.bailed = bailed;
+    }
+
+    public void claim(Ship claimant) {
+        if (bailed) {
+            //make sure it won't be removed by setting bailed to false
+            bailed = false;
+            //store new faction
+            faction = claimant.getFaction().toString();
+            installFaction();
+            //push and pull
+            getCurrentSystem().pullEntityFromSystem(this);
+            getCurrentSystem().putEntityInSystem(this);
+            //give it the behavior of the ship claiming it
+            setBehavior(claimant.getBehavior());
+        } else {
+            //cannot be claimed
+        }
     }
 
 }
