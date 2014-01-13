@@ -41,6 +41,21 @@ group=repairkit
 description=A really big vat of paste with an impressively large plastic applicator designed to repair the hull of capital ships. The label states that the manufacturer is not liable for injuries caused by swimming in the vat of paste.
 [/Item]
 
+########Software###########
+
+[Item]
+name=Salvage Software
+type=commodity
+volume=0
+mass=0
+HP=10
+minPrice=64000
+maxPrice=512000
+store=8
+group=salvagesoftware
+description=This shady looking software is capable of connecting to the computers onboard abandoned vessels and asserting control over them. After much debate over the legal status of salvage software, it has been agreed that the ownership and use of the software is legal even if the actions leading to its use are not. The sale of this software, however, is not meaning that only shady organizations trade in it.
+[/Item]
+
 ########Station Stuff######
 
 [Item]

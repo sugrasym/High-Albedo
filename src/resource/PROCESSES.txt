@@ -23,6 +23,15 @@ product=Capital Repair Paste,1
 resource=
 [/Process]
 
+#Seed Salvage Software
+
+[Process]
+name=SeedSalvageSoftware
+cycle=5120
+product=Salvage Software,1
+resource=
+[/Process]
+
 #Fair weapons manufacturing
 
 [Process]

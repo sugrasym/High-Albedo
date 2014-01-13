@@ -226,7 +226,7 @@ cargo=Jumpdrive~1/Astronaut~1000
 ship=Bowman
 name=Archers' Pillager
 install=Arrow/Arrow
-cargo=Astronaut~1/Consumer Goods~2
+cargo=Astronaut~1/Consumer Goods~2/Salvage Software~1
 minCourage=0.87
 maxCourage=1.00
 [/Loadout]
@@ -235,7 +235,7 @@ maxCourage=1.00
 ship=Cavalry
 name=Archers' Raider
 install=Catapult/Catapult/Long 9
-cargo=Astronaut~1/Consumer Goods~6
+cargo=Astronaut~1/Consumer Goods~6/Salvage Software~1
 minCourage=0.89
 maxCourage=1.00
 [/Loadout]
@@ -244,7 +244,7 @@ maxCourage=1.00
 ship=Cavalry
 name=Archers' Vanguard
 install=Catapult/Catapult/Catapult
-cargo=Astronaut~1/Consumer Goods~10
+cargo=Astronaut~1/Consumer Goods~10/Salvage Software~1
 minCourage=0.91
 maxCourage=1.00
 [/Loadout]

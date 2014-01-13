@@ -2483,7 +2483,7 @@ public class Ship extends Celestial {
          * Only used for detecting contraband being carried by the
          * player.
          */
-        if (ship.getFaction().matches("Player")) {
+        if (ship.getFaction().matches(PLAYER_FACTION)) {
             if (scanForContraband) {
                 ArrayList<Item> sc = ship.getCargoBay();
                 for (int a = 0; a < sc.size(); a++) {
@@ -2574,7 +2574,7 @@ public class Ship extends Celestial {
         }
         //see if it's being beaten on by the player
         if (shield / maxShield < PLAYER_AGGRO_SHIELD) {
-            if (!faction.matches("Player")) {
+            if (!faction.matches(PLAYER_FACTION)) {
                 if (lastBlow == getUniverse().getPlayerShip()) {
                     hostiles.add(getUniverse().getPlayerShip());
                 }
@@ -3855,7 +3855,7 @@ public class Ship extends Celestial {
          * player's current ship.
          */
         message.setWasSent(true);
-        if (faction.matches("Player")) {
+        if (faction.matches(PLAYER_FACTION)) {
             stopSound(notifyMessage);
             playSound(notifyMessage);
             if (this == getUniverse().getPlayerShip()) {
