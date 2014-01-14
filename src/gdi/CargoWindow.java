@@ -347,20 +347,25 @@ public class CargoWindow extends AstralWindow {
                 Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
                 if (selected.getQuantity() == 1) {
                     Weapon tmp = new Weapon(selected.getName());
+                    ship.removeFromCargoBay(selected);
                     if (ship.addToCargoBay(tmp)) {
-                        ship.removeFromCargoBay(selected);
+                        //success
+                    } else {
+                        //failure, add the old one back
+                        ship.addToCargoBay(selected);
                     }
                 }
             } else if (command.matches(CMD_PACKAGE)) {
                 Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
                 if (selected.getQuantity() == 1) {
-                    if (ship.getBayUsed() + selected.getVolume() <= ship.getCargo()) {
-                        Equipment tmp = (Equipment) selected;
-                        ship.removeFromCargoBay(selected);
-                        Item nTmp = new Item(tmp.getName());
-                        ship.addToCargoBay(nTmp);
+                    Equipment tmp = (Equipment) selected;
+                    ship.removeFromCargoBay(selected);
+                    Item nTmp = new Item(tmp.getName());
+                    if (ship.addToCargoBay(nTmp)) {
+                        //success!
                     } else {
-                        //not enough room
+                        //failure
+                        ship.addToCargoBay(selected);
                     }
                 }
             } else if (command.matches(CMD_DEPLOY)) {
