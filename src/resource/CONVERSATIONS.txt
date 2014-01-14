@@ -152,7 +152,7 @@ body=Drop the contraband. We can do this my way or the hard way.
 choice0=Confirm/END
 [/Node]
 
-# Generic Rumors -- all factions should have these
+# Generic Rumours -- all factions should have these
 
 [Node]
 name=GenericRumor0
@@ -224,7 +224,7 @@ body=I try to buy low and sell high but sometimes I get stuck with a bay full of
 choice0=Good To Know/END
 [/Node]
 
-#Ageiran Federation Rumors
+#Ageiran Federation Rumours
 
 [Node]
 name=AgeiranRumor-ITCConspiracy0
@@ -243,7 +243,7 @@ choice0=Good To Know/END
 [Node]
 name=AgeiranRumor-EscalationImminent0
 subject=Escalation Imminent
-body=I've heard from a friend that there's going to be a lot more than skirmishes pretty soon. The Navy is prepping some Condors for a full scale assault on ITC space. So goes the rumor anyway.
+body=I've heard from a friend that there's going to be a lot more than skirmishes pretty soon. The Navy are prepping some Condors for a full scale assault on ITC space. So goes the rumor anyway.
 choice0=Good To Know/END
 [/Node]
 
@@ -292,7 +292,7 @@ choice0=Good To Know/END
 [Node]
 name=AgeiranRumor-Ships0
 subject=Ageiran Ships
-body=Our ships aren't weak, not by a long shot. Our ships are boring, sure, but practical. We aren't criplingly specialized and are very versatile. I've seen Sparrow pilots kill ITC Hyenas in skirmishes, so don't let anyone tell you our ships are poor.
+body=Our ships aren't weak, not by a long shot. Our ships are boring, sure, but practical. We aren't cripplingly specialized and are very versatile. I've seen Sparrow pilots kill ITC Hyenas in skirmishes, so don't let anyone tell you our ships are poor.
 choice0=Good To Know/END
 [/Node]
 
@@ -303,12 +303,12 @@ body=They are allies, but sometimes I wonder why. The Orin share many of our val
 choice0=Good To Know/END
 [/Node]
 
-#Orin Federation Rumors
+#Orin Federation Rumours
 
 [Node]
 name=OrinRumor-Economics0
 subject=Orin Economics
-body=Our economy is based on converting waste into something useful. We start with a fission reactor, which makes energy and waste. The waste is converted into a mass block, and we can make it into whatever we need. Our process is inefficient though, if those ITC dogs would share with us we could have an economy rivaling theirs.
+body=Our economy is based on converting waste into something useful. We start with a fission reactor, which makes energy and waste. The waste is converted into a mass block, and we can make it into whatever we need. Our process is inefficient though, if those ITC dogs would share with us we could have an economy rivalling theirs.
 choice0=Good To Know/END
 [/Node]
 
@@ -322,7 +322,7 @@ choice0=Good To Know/END
 [Node]
 name=OrinRumor-Fetch
 subject=The Fetch
-body=The Fetch is my favorite battleship. I'm biased, sure but you can't deny its ability to tear apart fighters at close range, and it still packs the punch for hitting stations. Of course it eats ammo, but our ammo's cheap.
+body=The Fetch is my favourite battleship. I'm biased, sure but you can't deny its ability to tear apart fighters at close range, and it still packs the punch for hitting stations. Of course it eats ammo, but our ammo's cheap.
 choice0=Good To Know/END
 [/Node]
 
@@ -343,7 +343,7 @@ choice0=Good To Know/END
 [Node]
 name=OrinRumor-Knights0
 subject=The Knights
-body=The Knights are crazy. They think some Aztec King ruled all of Earth and gave Spanish to the Africans or some bull. They want to overthrow both us and the Cainans and institute some kind of 'true monarchy' with the descendents of this so-called King who aren't even the right race! I wish they'd go fight the Cainans only and leave us alone.
+body=The Knights are crazy. They think some Aztec King ruled all of Earth and gave Spanish to the Africans or some bull. They want to overthrow both us and the Cainans and institute some kind of 'true monarchy' with the descendants of this so-called King who aren't even the right race! I wish they'd go fight the Cainans only and leave us alone.
 choice0=Good To Know/END
 [/Node]
 
@@ -357,21 +357,21 @@ choice0=Good To Know/END
 [Node]
 name=OrinRumor-BorderWar1
 subject=Wrong Border War
-body=Don't get me wrong, I hate the Cainans as much as the next guy, but the ITC is the priority. They're far stronger, far more advanced, and much more villanous. I can't stand how apologetic my senators are to the ITC! The people want justice, we want a war, only the Fed wants to 'make peace'. You can't make peace with the ITC.
+body=Don't get me wrong, I hate the Cainans as much as the next guy, but the ITC are the priority. They're far stronger, far more advanced, and much more villainous. I can't stand how apologetic my senators are to the ITC! The people want justice, we want a war, only the Fed wants to 'make peace'. You can't make peace with the ITC.
 choice0=Good To Know/END
 [/Node]
 
 [Node]
 name=OrinRumor-DeepConcern0
 subject=Deeply Concerned
-body=It's hard to tell how many people really hate the ITC with how vocal they are, but I for one don't. I watch ITC news and don't see this evil empire so many others do. I hope my senator doesn't vote for war. Fortunately, the senate is not interested in a war, only war mongering arm chair generals who've never fought a war are. They are paranoid, conspiracy theorists, who blame their problems on anyone but themselves.
+body=It's hard to tell how many people really hate the ITC with how vocal they are, but I for one don't. I watch ITC news and don't see this evil empire so many others do. I hope my senator doesn't vote for war. Fortunately, the senate is not interested in a war, only warmongering arm chair generals who've never fought a war are. They are paranoid, conspiracy theorists, who blame their problems on anyone but themselves.
 choice0=Good To Know/END
 [/Node]
 
 [Node]
 name=OrinRumor-ITC3
 subject=The ITC Truth
-body=No doubt my fellow Orin have told you how evil the ITC are. If you ask them why they are evil, they won't be able to give you any specifics - there are none! The ITC have done nothing to provoke us, and we've done everything to villify them. I make my voice heard by writing my senator every now and then to help them keep perspective. I've gotten some great replies!
+body=No doubt my fellow Orin have told you how evil the ITC are. If you ask them why they are evil, they won't be able to give you any specifics - there are none! The ITC have done nothing to provoke us, and we've done everything to vilify them. I make my voice heard by writing my senator every now and then to help them keep perspective. I've gotten some great replies!
 choice0=Good To Know/END
 [/Node]
 
@@ -382,7 +382,7 @@ body=Face the facts. The ITC invented the Entities as an experimental weapon, an
 choice0=Good To Know/END
 [/Node]
 
-#ITC Rumors
+#ITC Rumours
 
 [Node]
 name=ITCRumor-Economy0
@@ -436,7 +436,7 @@ choice0=Good To Know/END
 [Node]
 name=ITCRumor-Inventions0
 subject=ITC Inventions
-body=The ITC have invented lots of neat stuff in our history. We invented the Plank Tube, which replaced the SQUID based quantum computing module. Plank Tubes are far more reliable, our computers are state of the art. We invented nanoweave textiles, which allow the creation of light, think, flexible structures that are very strong. We even invented the jumpdrive, although we don't use it much because it's unsafe.
+body=The ITC have invented lots of neat stuff in our history. We invented the Plank Tube, which replaced the SQUID based quantum computing module. Plank Tubes are far more reliable, our computers are state of the art. We invented nanoweave textiles, which allow the creation of light, thick, flexible structures that are very strong. We even invented the jumpdrive, although we don't use it much because it's unsafe.
 choice0=Good To Know/END
 [/Node]
 
@@ -461,7 +461,7 @@ body=The Orin call us cowards, thieves, and liars because we didn't fight the bl
 choice0=Good To Know/END
 [/Node]
 
-#Caina Conglemerate Rumors
+#Caina Conglemerate Rumours
 
 [Node]
 name=CainanRumor-ForeignInsult0
@@ -500,8 +500,8 @@ choice0=Good To Know/END
 
 [Node]
 name=CainanRumor-ITCNotSoGood0
-subject=Squeeky Clean ITC?
-body=Nobody will deny the ITC is an amazing country, but as allies they come up a little short. They never help on the offensive, they let us fight the border war on our own. They won't share their more advanced ships with us, nor will they give us the codes to unlock ITC Warheads. They don't seem to understand the importance of this situation. Maybe if their country was falling apart they'd care more.
+subject=Squeaky Clean ITC?
+body=Nobody will deny the ITC are an amazing country, but as allies they come up a little short. They never help on the offensive, they let us fight the border war on our own. They won't share their more advanced ships with us, nor will they give us the codes to unlock ITC Warheads. They don't seem to understand the importance of this situation. Maybe if their country was falling apart they'd care more.
 choice0=Good To Know/END
 [/Node]
 
@@ -529,7 +529,7 @@ choice0=Good To Know/END
 [Node]
 name=CainanRumor-Goanna
 subject=The Goanna
-body=We designed our battleship from the ground up! It's faster than your average capital, and makes a good compromise between defense against raiders, attacking hard targets, and not using too much ammo. We're quite proud of it. We wanted to fit ITC missile batteries to it, but they wouldn't let us.
+body=We designed our battleship from the ground up! It's faster than your average capital, and makes a good compromise between defence against raiders, attacking hard targets, and not using too much ammo. We're quite proud of it. We wanted to fit ITC missile batteries to it, but they wouldn't let us.
 choice0=Good To Know/END
 [/Node]
 
@@ -540,7 +540,7 @@ body=For most people in Caina it isn't a question of who will attack but when. E
 choice0=Good To Know/END
 [/Node]
 
-#Red Sky Rumors
+#Red Sky Rumours
 
 [Node]
 name=RedSky-Value0
@@ -573,7 +573,7 @@ choice0=Good To Know/END
 [Node]
 name=RedSky-Entities0
 subject=The Entities?
-body=We've been studying the entities and their...behavior. We doubt highly they're man made, so you'll find few in Red Sky who blame the ITC for their presence.
+body=We've been studying the entities and their...behaviour. We doubt highly they're man made, so you'll find few in Red Sky who blame the ITC for their presence.
 choice0=Good To Know/END
 [/Node]
 
@@ -608,18 +608,18 @@ choice0=Good To Know/END
 [Node]
 name=RedSky-TheWolves1
 subject=The Wolves
-body=The Wolves are creepy. They harvest organs from prisoners and have a pack structure modeled after, you guessed it, wolf packs. Rumor has it they keep a real live Timberwolf as some kind of national mascot, but I heard all those were extinct.
+body=The Wolves are creepy. They harvest organs from prisoners and have a pack structure modeled after, you guessed it, wolf packs. Rumour has it they keep a real live Timberwolf as some kind of national mascot, but I heard all those were extinct.
 choice0=Good To Know/END
 [/Node]
 
 [Node]
 name=RedSky-TheTengus1
 subject=The Tengus
-body=I'd rather fight Tengus than Wolves. Tengus have honor, they have normal goals, you can understand their motivations. I'd rather be up against someone who wants to pull of billion credit thefts than steal my organs for resale.
+body=I'd rather fight Tengus than Wolves. Tengus have honour, they have normal goals, you can understand their motivations. I'd rather be up against someone who wants to pull of billion credit thefts than steal my organs for resale.
 choice0=Good To Know/END
 [/Node]
 
-#Archers Rumors
+#Archers Rumours
 
 [Node]
 name=TheArchers-Goals0
@@ -691,7 +691,7 @@ body=We recruit mainly from Ageira. We're careful about who we bring in, since t
 choice0=Good To Know/END
 [/Node]
 
-#Wolves Rumors
+#Wolves Rumours
 
 [Node]
 name=TheWolves-AboutUs
@@ -770,7 +770,7 @@ body=In the Federations, you live to be 80. In Caina, you live to be 60. In the 
 choice0=Good To Know/END
 [/Node]
 
-#Knights Rumors
+#Knights Rumours
 
 [Node]
 name=KnightsOfOrin-Mufasa
@@ -816,7 +816,7 @@ choice0=Good To Know/END
 
 [Node]
 name=KnightsOfOrin-HeavyWaterConspiracy
-subject=ITC Poisining Us
+subject=ITC Poisoning Us
 body=The unholy heavy water, capable of recreating the holy fires of the heart of a star, is the most sinful substance in the universe. The ITC are putting it in our food, man. They're giving it to people as vaccinations, and they're raping the King's asteroids for more devil water. They want to destroy the king's legacy using devil water. Who's gonna stop them?
 choice0=Good To Know/END
 [/Node]
@@ -845,11 +845,11 @@ choice0=Good To Know/END
 [Node]
 name=KnightsOfOrin-History
 subject=Real History
-body=The history you've been taught about Earth is an illuminati communist lie. The truth is that after the great war between the Australians and Alaskans that the owners of the oil companies rewrote history and brainwashed the population using orbital control sattelites. They want to erase the legacy of the Aztec King Mufasa and his rightful heir, Pablo.
+body=The history you've been taught about Earth is an illuminati communist lie. The truth is that after the great war between the Australians and Alaskans that the owners of the oil companies rewrote history and brainwashed the population using orbital control satellites. They want to erase the legacy of the Aztec King Mufasa and his rightful heir, Pablo.
 choice0=Good To Know/END
 [/Node]
 
-#Tengu Rumors
+#Tengu Rumours
 
 [Node]
 name=Tengu-About0
@@ -861,7 +861,7 @@ choice0=Good To Know/END
 [Node]
 name=Tengu-About1
 subject=About Us
-body=We fight with honor. Honor among thieves is a cliche but it's real. We just want to make money and be respected, is that too much to ask?
+body=We fight with honour. Honour among thieves is a cliche but it's real. We just want to make money and be respected, is that too much to ask?
 choice0=Good To Know/END
 [/Node]
 
@@ -903,21 +903,21 @@ choice0=Good To Know/END
 [Node]
 name=Tengu-TheEntities
 subject=The Entities
-body=The official Tengu position is that The Entities are the remnants of an alien national defense network. They're gone now, but they left these behind. But we're happy to make the Orin think they're the ITC's doing, war is good for business.
+body=The official Tengu position is that The Entities are the remnants of an alien national defence network. They're gone now, but they left these behind. But we're happy to make the Orin think they're the ITC's doing, war is good for business.
 choice0=Good To Know/END
 [/Node]
 
 [Node]
 name=Tengu-TheWolves
 subject=The Wolves
-body=The Wolves are the antithesis of the Tengus. They have no honor, don't care about money, and aren't nearly as powerful as we are. They're crazy, and they want to bring their craziness upon everyone. We wish the ITC would have finished the job though, instead of letting them go into neutral space. We're going to beat them, but it's an expensive and avoidable war.
+body=The Wolves are the antithesis of the Tengus. They have no honour, don't care about money, and aren't nearly as powerful as we are. They're crazy, and they want to bring their craziness upon everyone. We wish the ITC would have finished the job though, instead of letting them go into neutral space. We're going to beat them, but it's an expensive and avoidable war.
 choice0=Good To Know/END
 [/Node]
 
 [Node]
 name=Tengu-TheEdge
 subject=The Edge
-body=We've heard a rumor that the jumphole network is going to be extended by the ITC soon. They're close to completing their field coil experiments and will be remapping the universe in their image soon. The ITC is going to have a huge trade and military advantage, being able to make new jumpholes. We need to get in on this.
+body=We've heard a rumour that the jumphole network is going to be extended by the ITC soon. They're close to completing their field coil experiments and will be remapping the universe in their image soon. The ITC is going to have a huge trade and military advantage, being able to make new jumpholes. We need to get in on this.
 choice0=Good To Know/END
 [/Node]
 
@@ -928,7 +928,7 @@ body=We're waiting for the war to start to invade. We're going to claim some key
 choice0=Good To Know/END
 [/Node]
 
-#Prism Exhuming Rumors
+#Prism Exhuming Rumours
 
 [Node]
 name=PE-MiningOutpost
@@ -1000,7 +1000,7 @@ body=It's the point at which, basically, the black hole sucks you up. That's not
 choice0=Good To Know/END
 [/Node]
 
-#LFL rumors
+#LFL rumours
 
 [Node]
 name=LFL-AboutUs
@@ -1040,7 +1040,7 @@ choice0=Good To Know/END
 [Node]
 name=LFL-Jumpgates
 subject=Jumpgates
-body=Rumor has it the ITC are almost ready to start deploying a network of artificial jumpholes. This could net them a huge advantage in trade, and we see that as a direct threat to LFL's survival.
+body=Rumour has it the ITC are almost ready to start deploying a network of artificial jumpholes. This could net them a huge advantage in trade, and we see that as a direct threat to LFL's survival.
 choice0=Good To Know/END
 [/Node]
 
@@ -1054,7 +1054,7 @@ choice0=Good To Know/END
 [Node]
 name=LFL-IndustrialWaste
 subject=Industrial Waste
-body=Some of it is from factory runoff, some of it is from fission byproducts, but all of it is valuable. You can grab it for as low as 0 credits a unit if the owner is desperate enough, and sell it to be repurposed.
+body=Some of it is from factory run-off, some of it is from fission by-products, but all of it is valuable. You can grab it for as low as 0 credits a unit if the owner is desperate enough, and sell it to be re-purposed.
 choice0=Good To Know/END
 [/Node]
 
@@ -1072,7 +1072,7 @@ body=It all flows upward. Every raw material wants to become an end product, but
 choice0=Good To Know/END
 [/Node]
 
-#Gunpower Rumors
+#Gunpower Rumours
 
 [Node]
 name=GP-Arms
@@ -1084,14 +1084,14 @@ choice0=Good To Know/END
 [Node]
 name=GP-EveryoneShouldHaveAGun
 subject=Everyone Should
-body=Everyone should have a gun! We sell them in all sizes, from personal defense weapons to capital siege weapons. We have all your home defense and military conquest needs at our one stop shop.
+body=Everyone should have a gun! We sell them in all sizes, from personal defence weapons to capital siege weapons. We have all your home defence and military conquest needs at our one stop shop.
 choice0=Good To Know/END
 [/Node]
 
 [Node]
 name=GP-GunsAreGood
 subject=Guns are Good
-body=Guns save lives. That's why we build and sell everything from handheld pulse lasers to cruise missiles. We're always looking for more weapons to make available, in our dream to let every citizen own military grade hardware.
+body=Guns save lives. That's why we build and sell everything from hand-held pulse lasers to cruise missiles. We're always looking for more weapons to make available, in our dream to let every citizen own military grade hardware.
 choice0=Good To Know/END
 [/Node]
 
