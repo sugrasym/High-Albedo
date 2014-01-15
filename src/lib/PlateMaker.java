@@ -90,7 +90,7 @@ public class PlateMaker {
                     System.out.println("Finished processing file " + (a + 1) + " / " + listOfFiles.length);
                 } catch (Exception e) {
                     System.out.println("Failed to convert image " + raw);
-                    e.printStackTrace();
+                    //e.printStackTrace();
                 }
             }
         } else {
