@@ -15,24 +15,30 @@
 
 /*
  * Program for automatically taking the plates found in the resource directory
- * and generating a sky file for them.
+ * and generating a sky file for them. It can also read in an old universe file
+ * and replace all the skies with new ones.
  */
 package lib;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
+import lib.Parser.Term;
 
 /**
  *
  * @author nwiehoff
  */
 public class SkyMaker {
-
+    
     String inputDirectory;
+    String inputUniverse;
     String outputFile;
-
+    String outputUniverse;
+    
     public SkyMaker() {
-        if (setup()) {
+        if (skyFileSetup()) {
             //this string will hold the final product
             String out = "";
             //get a list of all files in the input directory
@@ -67,9 +73,46 @@ public class SkyMaker {
         } else {
             System.out.println("Aborted.");
         }
+        if (universeFileSetup()) {
+            //read input universe
+            String uIn = AstralIO.readFile(inputUniverse, false);
+            //make a list of possible skies
+            Parser skyCache = new Parser("SKY.txt");
+            ArrayList<Term> skies = skyCache.getTermsOfType("Skybox");
+            //split the universe
+            String[] uSplit = uIn.split("\n");
+            //find and randomly replace skies
+            Random rnd = new Random();
+            for (int a = 0; a < uSplit.length; a++) {
+                if (uSplit[a].contains("sky=")) {
+                    System.out.println("Found old sky line at " + (a + 1) + ": " + uSplit[a]);
+                    //select a random sky
+                    String pick = skies.get(rnd.nextInt(skies.size())).getValue("name");
+                    //replace
+                    uSplit[a] = "sky=" + pick;
+                    System.out.println("New line: " + uSplit[a]);
+                } else {
+                    //skip
+                }
+            }
+            //rebuild the output universe file
+            String uOut = "";
+            for (int a = 0; a < uSplit.length; a++) {
+                uOut += uSplit[a] + "\n";
+                if (uSplit[a].contains("[/")) {
+                    uOut += "\n";
+                } else {
+                    //do nothing
+                }
+            }
+            //write the new universe
+            AstralIO.writeFile(outputUniverse, uOut);
+        } else {
+            System.out.println("Aborted.");
+        }
     }
-
-    private boolean setup() {
+    
+    private boolean skyFileSetup() {
         Scanner scan = new Scanner(System.in);
         System.out.print("Input directory: ");
         inputDirectory = scan.nextLine();
@@ -87,7 +130,26 @@ public class SkyMaker {
             return false;
         }
     }
-
+    
+    private boolean universeFileSetup() {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Input universe: ");
+        inputUniverse = scan.nextLine();
+        System.out.print("Output universe: ");
+        outputUniverse = scan.nextLine();
+        //verify
+        System.out.println("You have selected");
+        System.out.println("Input Universe:   " + inputUniverse);
+        System.out.println("Output Universe:  " + outputUniverse);
+        System.out.println("Y/N?: ");
+        String pick = scan.nextLine();
+        if (pick.trim().toUpperCase().matches("Y")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     public static void main(String[] args) {
         new SkyMaker();
     }
