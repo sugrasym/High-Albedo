@@ -549,10 +549,10 @@ public class Ship extends Celestial {
     protected void autopilotAvoidBlock(Ship obstruction) {
         if (obstruction != null) {
             //calculate angle between our centers
-            double tcx = obstruction.getX() + (obstruction.getWidth() / 2);
-            double tcy = obstruction.getY() + (obstruction.getHeight() / 2);
-            double cx = x + getWidth() / 2;
-            double cy = y + getHeight() / 2;
+            double tcx = obstruction.getCenterX();
+            double tcy = obstruction.getCenterY();
+            double cx = getCenterX();
+            double cy = getCenterY();
             //solution distances
             double solPlus = 0;
             double solMinus = 0;
@@ -777,8 +777,8 @@ public class Ship extends Celestial {
                             hold = getFlightHold();
                         }
                         //move to position using our hold
-                        double tCx = flyToTarget.getX() + (flyToTarget.getWidth() / 2);
-                        double tCy = flyToTarget.getY() + (flyToTarget.getHeight() / 2);
+                        double tCx = flyToTarget.getCenterX();
+                        double tCy = flyToTarget.getCenterY();
                         moveToPositionWithHold(tCx, tCy, hold);
                         //detect if autopilot kicked off
                         if (autopilot == Autopilot.NONE) {
@@ -3692,12 +3692,12 @@ public class Ship extends Celestial {
 
     protected double getFireLeadX() {
         //get the center of the enemy
-        double enemyX = getCenterX() - (target.getX() + target.getWidth() / 2) + (vx - target.getVx());
+        double enemyX = getCenterX() - (target.getCenterX()) + (vx - target.getVx());
         return enemyX;
     }
 
     protected double getFireLeadY() {
-        double enemyY = getCenterY() - (target.getY() + target.getHeight() / 2) + (vy - target.getVy());
+        double enemyY = getCenterY() - (target.getCenterY()) + (vy - target.getVy());
         return enemyY;
     }
 
