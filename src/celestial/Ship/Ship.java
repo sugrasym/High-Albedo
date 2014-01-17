@@ -747,7 +747,7 @@ public class Ship extends Celestial {
                         decelerate();
                     } else {
                         if (dist > (autopilotRange) + (getWidth() * 6)) {
-                            moveToPositionWithHold(flyToTarget.getX(), flyToTarget.getY(), Double.POSITIVE_INFINITY);
+                            moveToPositionWithHold(flyToTarget.getX(), flyToTarget.getY(), getFollowHold());
                         } else {
                             //wait
                         }
@@ -766,10 +766,33 @@ public class Ship extends Celestial {
             if (flyToTarget != null) {
                 if (flyToTarget.getCurrentSystem() == currentSystem) {
                     double dist = distanceTo(flyToTarget);
-                    if (dist < autopilotRange) {
+                    if (dist <= autopilotRange) {
                         cmdAllStop();
                     } else {
-                        moveToPosition(flyToTarget.getX(), flyToTarget.getY());
+                        //determine correct hold to use
+                        double hold = 0;
+                        if (dist <= getFlightHold()) {
+                            hold = dist;
+                        } else {
+                            hold = getFlightHold();
+                        }
+                        //move to position using our hold
+                        double tCx = flyToTarget.getX() + (flyToTarget.getWidth() / 2);
+                        double tCy = flyToTarget.getY() + (flyToTarget.getHeight() / 2);
+                        moveToPositionWithHold(tCx, tCy, hold);
+                        //detect if autopilot kicked off
+                        if (autopilot == Autopilot.NONE) {
+                            /*
+                             * moveToPosition() detects when the ship has stopped
+                             * moving and corrects itself by turning off the autopilot.
+                             * 
+                             * Since we aren't here yet, we need to re-issue the command
+                             * to fine tune our approach to the target.
+                             */
+                            cmdFlyToCelestial(flyToTarget, autopilotRange);
+                        } else {
+                            //do nothing, we are still on autopilot
+                        }
                     }
                 } else if (flyToTarget.getCurrentSystem() == null) {
                     try {
@@ -2147,17 +2170,25 @@ public class Ship extends Celestial {
         sellToPrice = 0;
     }
 
+    protected double getFlightHold() {
+        return 3 * accel;
+    }
+
+    protected double getFollowHold() {
+        return Double.POSITIVE_INFINITY;
+    }
+
     protected void moveToPosition(double tx, double ty) {
         /*
          * Maintains compatibility with most flight methods.
          */
-        moveToPositionWithHold(tx, ty, 3 * accel);
+        moveToPositionWithHold(tx, ty, getFlightHold());
     }
 
     protected void moveToPositionWithHold(double tx, double ty, double hold) {
         //get the destination
-        double ax = x - tx;
-        double ay = y - ty;
+        double ax = (x + getWidth() / 2) - tx;
+        double ay = (y + getHeight() / 2) - ty;
         double dist = magnitude((ax), (ay));
         double speed = magnitude(vx, vy);
         //
@@ -2181,8 +2212,8 @@ public class Ship extends Celestial {
                 //this is damage control - it deals with bad initial velocities and out of control spirals
                 double d2x = 0;
                 double d2y = 0;
-                d2x = magnitude((x + vx) - (tx), 0);
-                d2y = magnitude(0, (y + vy) - (ty));
+                d2x = magnitude(((x + getWidth() / 2) + vx) - (tx), 0);
+                d2y = magnitude(0, ((y + getHeight() / 2) + vy) - (ty));
                 //check x axis
                 double dPx = 0;
                 double d1x = magnitude(ax, 0);
@@ -3189,7 +3220,7 @@ public class Ship extends Celestial {
             }
         }
     }
-    
+
     protected void dumpCargo() {
         for (int a = 0; a < cargoBay.size(); a++) {
             ejectCargo(cargoBay.get(a));
