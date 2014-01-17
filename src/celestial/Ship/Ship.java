@@ -2187,8 +2187,8 @@ public class Ship extends Celestial {
 
     protected void moveToPositionWithHold(double tx, double ty, double hold) {
         //get the destination
-        double ax = (x + getWidth() / 2) - tx;
-        double ay = (y + getHeight() / 2) - ty;
+        double ax = getCenterX() - tx;
+        double ay = getCenterY() - ty;
         double dist = magnitude((ax), (ay));
         double speed = magnitude(vx, vy);
         //
@@ -2212,8 +2212,8 @@ public class Ship extends Celestial {
                 //this is damage control - it deals with bad initial velocities and out of control spirals
                 double d2x = 0;
                 double d2y = 0;
-                d2x = magnitude(((x + getWidth() / 2) + vx) - (tx), 0);
-                d2y = magnitude(0, ((y + getHeight() / 2) + vy) - (ty));
+                d2x = magnitude((getCenterX() + vx) - (tx), 0);
+                d2y = magnitude(0, (getCenterY() + vy) - (ty));
                 //check x axis
                 double dPx = 0;
                 double d1x = magnitude(ax, 0);
@@ -2789,7 +2789,6 @@ public class Ship extends Celestial {
 
     public void decelerate() {
         //stops the ship entirely, good panic button in zero g motion.
-        //stop if we're near the origin of our velocity
         decelX();
         decelY();
     }
@@ -3155,8 +3154,8 @@ public class Ship extends Celestial {
         double dT = rnd.nextInt() % (Math.PI * 2.0);
         double dx = width * 2 * Math.cos(dT);
         double dy = height * 2 * Math.sin(dT);
-        pod.setX((getX() + getWidth() / 2) - pod.getWidth() / 2 + dx);
-        pod.setY((getY() + getHeight() / 2) - pod.getHeight() / 2 + dy);
+        pod.setX(getCenterX() - pod.getWidth() / 2 + dx);
+        pod.setY(getCenterY() - pod.getHeight() / 2 + dy);
         //calculate speed
         double speed = rnd.nextInt(25) + 1;
         double pdx = speed * Math.cos(dT);
@@ -3191,8 +3190,8 @@ public class Ship extends Celestial {
             double dT = rnd.nextInt() % (Math.PI * 2.0);
             double dx = width * 2 * Math.cos(dT);
             double dy = height * 2 * Math.sin(dT);
-            pod.setX((getX() + getWidth() / 2) - pod.getWidth() / 2 + dx);
-            pod.setY((getY() + getHeight() / 2) - pod.getHeight() / 2 + dy);
+            pod.setX(getCenterX() - pod.getWidth() / 2 + dx);
+            pod.setY(getCenterY() - pod.getHeight() / 2 + dy);
             //calculate speed
             double speed = rnd.nextInt(25) + 1;
             double pdx = speed * Math.cos(dT);
@@ -3237,8 +3236,8 @@ public class Ship extends Celestial {
             jumpEffect.setFaction("Neutral");
             jumpEffect.init(false);
             //store position
-            jumpEffect.setX((getX() + getWidth() / 2) - size.x / 2);
-            jumpEffect.setY((getY() + getHeight() / 2) - size.y / 2);
+            jumpEffect.setX(getCenterX() - size.x / 2);
+            jumpEffect.setY(getCenterY() - size.y / 2);
             //use host velocity as jump effect velocity
             jumpEffect.setVx(getVx());
             jumpEffect.setVy(getVy());
@@ -3266,8 +3265,8 @@ public class Ship extends Celestial {
                 double dx = ew * Math.cos(dT);
                 double dy = ew * Math.sin(dT);
                 //store position
-                exp.setX((getX() + getWidth() / 2) - exp.getWidth() / 2 + dx);
-                exp.setY((getY() + getHeight() / 2) - exp.getHeight() / 2 + dy);
+                exp.setX(getCenterX() - exp.getWidth() / 2 + dx);
+                exp.setY(getCenterY() - exp.getHeight() / 2 + dy);
                 //calculate speed
                 double speed = rnd.nextInt(40) + 50;
                 double pdx = speed * Math.cos(dT);
@@ -3693,12 +3692,12 @@ public class Ship extends Celestial {
 
     protected double getFireLeadX() {
         //get the center of the enemy
-        double enemyX = (getX() + getWidth() / 2) - (target.getX() + target.getWidth() / 2) + (vx - target.getVx());
+        double enemyX = getCenterX() - (target.getX() + target.getWidth() / 2) + (vx - target.getVx());
         return enemyX;
     }
 
     protected double getFireLeadY() {
-        double enemyY = (getY() + getHeight() / 2) - (target.getY() + target.getHeight() / 2) + (vy - target.getVy());
+        double enemyY = getCenterY() - (target.getY() + target.getHeight() / 2) + (vy - target.getVy());
         return enemyY;
     }
 

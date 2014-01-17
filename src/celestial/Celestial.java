@@ -172,6 +172,14 @@ public class Celestial implements Serializable, Entity {
         return y;
     }
 
+    public double getCenterX() {
+        return getX() + getWidth() / 2;
+    }
+
+    protected double getCenterY() {
+        return getY() + getHeight() / 2;
+    }
+
     @Override
     public void setX(double x) {
         this.x = x;
