@@ -286,7 +286,7 @@ public class Station extends Ship {
                         //find an open hanger
                         PortContainer pick = null;
                         for (int a = 0; a < docks.size(); a++) {
-                            if (docks.get(a).isAvailable(newShip)) {
+                            if (docks.get(a).canFit(newShip) && docks.get(a).isAvailable(newShip)) {
                                 //got one
                                 pick = docks.get(a);
                                 break;
