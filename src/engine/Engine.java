@@ -381,37 +381,31 @@ public class Engine {
              */
 
             //get list of ships in the player's system
-            ArrayList<Entity> tmp = playerShip.getCurrentSystem().getShipList();
-            //use an array because it's faster
-            Ship[] ships = new Ship[tmp.size()];
-            for (int a = 0; a < ships.length; a++) {
-                ships[a] = (Ship) tmp.get(a);
-            }
+            ArrayList<Entity> ships = playerShip.getCurrentSystem().getShipList();
             //iterate through each ship
-            for (int a = 0; a < ships.length; a++) {
+            for (int a = 0; a < ships.size(); a++) {
                 //get the sound que
-                ArrayList<Soundling> que = ships[a].getSoundQue();
+                Ship ship = (Ship) ships.get(a);
+                ArrayList<Soundling> que = ship.getSoundQue();
                 //does it have anything waiting?
                 if (que != null) {
-                    if (que.size() > 0) {
-                        //is this ship in range of the sound system?
-                        double distance = playerShip.distanceTo(ships[a]);
+                    //is this ship in range of the sound system?
+                    for (int c = 0; c < que.size(); c++) {
+                        double distance = playerShip.distanceTo(ship);
                         if (distance < Math.max(uiX, uiY)) {
                             //yes, play each clip in the list
-                            for (int c = 0; c < que.size(); c++) {
-                                //get soundling
-                                Soundling snd = que.get(c);
-                                if (!snd.isPlaying()) {
-                                    snd.play();
-                                }
-                                //pop
-                                que.remove(snd);
+                            Soundling snd = que.get(c);
+                            if (!snd.isPlaying()) {
+                                snd.play();
+                                //System.out.println("played " + snd);
                             }
+                            que.remove(snd);
+                            //System.out.println("skipped " + snd);
                         } else {
                             //out of range
+                            //System.out.println("stopping " + que.get(c));
+                            ship.stopSound(que.get(c));
                         }
-                    } else {
-                        //nope
                     }
                 }
             }
@@ -1104,6 +1098,10 @@ public class Engine {
                                             renderIFFMarker((Ship) stationList.get(a));
                                         }
                                         stationList.get(a).render(f, dx, dy);
+                                    } else {
+                                        //cleanup graphics on stations outside our view
+                                        Station tmp = (Station) stationList.get(a);
+                                        tmp.disposeGraphics();
                                     }
                                 }
                             }
@@ -1120,6 +1118,10 @@ public class Engine {
                                             renderIFFMarker((Ship) shipList.get(a));
                                         }
                                         shipList.get(a).render(f, dx, dy);
+                                    } else {
+                                        //cleanup graphics on ships outside our view
+                                        Ship tmp = (Ship) shipList.get(a);
+                                        tmp.disposeGraphics();
                                     }
                                 }
                             }
