@@ -267,7 +267,7 @@ public class Engine {
 
         private Clip music;
         private SolarSystem lastSys;
-        private String ambientTrack = "audio/music/Over Your Head.wav";
+        private String ambientTrack = "audio/music/Success and Failure.wav";
         private String dangerTrack = "audio/music/Committing.wav";
         boolean isAmbient = true;
 
