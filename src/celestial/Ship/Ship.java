@@ -2577,6 +2577,93 @@ public class Ship extends Celestial {
         target = closest;
     }
 
+    public void targetNearestNeutralShip() {
+        target = null;
+        //get a list of all nearby hostiles
+        ArrayList<Entity> nearby = getCurrentSystem().getShipList();
+        ArrayList<Ship> neutrals = new ArrayList<>();
+        for (int a = 0; a < nearby.size(); a++) {
+            Ship tmp = (Ship) nearby.get(a);
+            //make sure it is in range
+            if (distanceTo(tmp) < getSensor()) {
+                if (nearby.get(a) instanceof Ship) {
+                    if (!(nearby.get(a) instanceof Projectile)) {
+                        if (!(nearby.get(a) instanceof Explosion)) {
+                            if (tmp != this) {
+                                //make sure it is alive and isn't docked
+                                if (tmp.getState() == State.ALIVE && !tmp.isDocked()) {
+                                    //check standings
+                                    double standing = tmp.getStandingsToMe(this);
+                                    if (standing > HOSTILE_STANDING && standing <= 2) {
+                                        neutrals.add(tmp);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        //target the nearest one
+        Ship closest = null;
+        for (int a = 0; a < neutrals.size(); a++) {
+            if (closest == null) {
+                closest = neutrals.get(a);
+            } else {
+                double distClosest = distanceTo(closest);
+                double distTest = distanceTo(neutrals.get(a));
+                if (distTest < distClosest) {
+                    closest = neutrals.get(a);
+                }
+            }
+        }
+        //store
+        target = closest;
+    }
+
+    public void targetNearestFriendlyShip() {
+        target = null;
+        //get a list of all nearby hostiles
+        ArrayList<Entity> nearby = getCurrentSystem().getShipList();
+        ArrayList<Ship> friendlies = new ArrayList<>();
+        for (int a = 0; a < nearby.size(); a++) {
+            Ship tmp = (Ship) nearby.get(a);
+            //make sure it is in range
+            if (distanceTo(tmp) < getSensor()) {
+                if (nearby.get(a) instanceof Ship) {
+                    if (!(nearby.get(a) instanceof Projectile)) {
+                        if (!(nearby.get(a) instanceof Explosion)) {
+                            if (tmp != this) {
+                                //make sure it is alive and isn't docked
+                                if (tmp.getState() == State.ALIVE && !tmp.isDocked()) {
+                                    //check standings
+                                    if (tmp.getStandingsToMe(this) > 2) {
+                                        friendlies.add(tmp);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        //target the nearest one
+        Ship closest = null;
+        for (int a = 0; a < friendlies.size(); a++) {
+            if (closest == null) {
+                closest = friendlies.get(a);
+            } else {
+                double distClosest = distanceTo(closest);
+                double distTest = distanceTo(friendlies.get(a));
+                if (distTest < distClosest) {
+                    closest = friendlies.get(a);
+                }
+            }
+        }
+        //store
+        target = closest;
+    }
+
     public void targetNearestHostileShip() {
         target = null;
         //get a list of all nearby hostiles

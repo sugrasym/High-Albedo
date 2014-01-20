@@ -32,6 +32,8 @@ Z - claim selected ship (must have bailed)
 Targeting
 ---------------------
 R - Target nearest enemy ship.
+F - Target nearest friendly ship.
+V - Target nearest neutral ship.
 
 Weapons/Equipment
 ---------------------

@@ -77,7 +77,11 @@ public class EquipmentWindow extends AstralWindow {
                     if (!(celestials.get(a) instanceof Explosion)) {
                         Ship tmp = (Ship) celestials.get(a);
                         if (ship.distanceTo(tmp) <= ship.getSensor() && ship != tmp) {
-                            targetList.addToList(tmp);
+                            if (!tmp.isDocked()) {
+                                targetList.addToList(tmp);
+                            } else {
+                                //do not display docked ships
+                            }
                         }
                     }
                 }
@@ -108,7 +112,7 @@ public class EquipmentWindow extends AstralWindow {
             } else if (tmp instanceof Ship && !ship.isDocked()) {
                 if (tmp.isBailed()) {
                     //does the player have salvage software?
-                    if(ship.hasSalvageSoftware()) {
+                    if (ship.hasSalvageSoftware()) {
                         commInfo.setText("Press Z To Claim");
                     }
                 } else {

@@ -229,15 +229,19 @@ public class OverviewWindow extends AstralWindow {
         }
 
         protected void doShip(Graphics2D gfx, double ex, double ey, ArrayList<Entity> entities, int a) {
-            if (area < SHIP_AIM_LIMIT) {
-                drawShipOnRadar(gfx, ex, ey, entities, a);
-            } else if (area < STATION_AIM_LIMIT && entities.get(a) instanceof Station) {
-                drawShipOnRadar(gfx, ex, ey, entities, a);
-            }
-            //player ships always visible
             Ship test = (Ship) entities.get(a);
-            if (test.getUniverse().getPlayerProperty().contains(test)) {
-                drawShipOnRadar(gfx, ex, ey, entities, a);
+            if (!test.isDocked()) {
+                if (area < SHIP_AIM_LIMIT) {
+                    drawShipOnRadar(gfx, ex, ey, entities, a);
+                } else if (area < STATION_AIM_LIMIT && entities.get(a) instanceof Station) {
+                    drawShipOnRadar(gfx, ex, ey, entities, a);
+                }
+                //player ships always visible
+                if (test.getUniverse().getPlayerProperty().contains(test)) {
+                    drawShipOnRadar(gfx, ex, ey, entities, a);
+                }
+            } else {
+                //do not draw docked ships
             }
         }
 

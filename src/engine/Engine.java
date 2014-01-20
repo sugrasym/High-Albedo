@@ -803,7 +803,11 @@ public class Engine {
                          * targeting keys
                          */ else if (ke.getKeyCode() == KeyEvent.VK_R) {
                             playerShip.targetNearestHostileShip();
-                        } /*
+                        } else if (ke.getKeyCode() == KeyEvent.VK_F) {
+                            playerShip.targetNearestFriendlyShip();
+                        } else if (ke.getKeyCode() == KeyEvent.VK_V) {
+                            playerShip.targetNearestNeutralShip();
+                        }/*
                          * comms keys
                          */ else if (ke.getKeyCode() == KeyEvent.VK_D) {
                             playerShip.cmdDock(playerShip.getTarget());
