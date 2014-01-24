@@ -439,7 +439,7 @@ public class Ship extends Celestial {
         fuel = maxFuel;
         shield = maxShield;
         //kill non waiting autopilots
-        if (autopilot != Autopilot.WAIT && autopilot != autopilot.WAITED) {
+        if (autopilot != Autopilot.WAIT && autopilot != Autopilot.WAITED) {
             autopilot = Autopilot.NONE;
         }
         //stop sounds

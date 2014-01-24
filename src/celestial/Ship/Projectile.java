@@ -28,6 +28,7 @@ import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
 import lib.FastMath;
+import universe.Universe;
 
 /**
  *
@@ -57,6 +58,7 @@ public class Projectile extends Ship {
         this.faction = owner.getFaction();
     }
 
+    @Override
     protected void explode() {
         /*
          * Generates explosion effect
@@ -131,6 +133,7 @@ public class Projectile extends Ship {
         }
     }
 
+    @Override
     protected Ship avoidCollission() {
         return null;
     }
@@ -145,7 +148,7 @@ public class Projectile extends Ship {
         try {
             if (getUniverse() != null) {
                 //get the image
-                raw_tex = getUniverse().getCache().getProjectileSprite(getType());
+                raw_tex = Universe.getCache().getProjectileSprite(getType());
                 //create the usable version
                 ImageIcon icon = new ImageIcon(raw_tex);
                 setHeight(icon.getIconHeight());
@@ -221,10 +224,12 @@ public class Projectile extends Ship {
         fightTarget();
     }
 
+    @Override
     public void fireForwardThrusters() {
         //ramming speed only
     }
 
+    @Override
     public double getNearWeaponRange() {
         /*
          * Returns the range of the closest range onlined weapon.

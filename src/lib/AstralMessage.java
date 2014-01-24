@@ -29,11 +29,11 @@ import java.util.ArrayList;
  */
 public class AstralMessage implements Serializable {
 
-    private Ship sender;
+    private final Ship sender;
     private String message;
     private String subject;
     private String name = "";
-    private ArrayList<Binling> choices;
+    private final ArrayList<Binling> choices;
     private boolean repliedTo = false;
     private boolean wasSent = false;
 

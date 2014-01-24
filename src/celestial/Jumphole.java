@@ -27,15 +27,16 @@ import java.net.URISyntaxException;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import lib.AstralIO;
 import universe.SolarSystem;
 import universe.Universe;
 
 public class Jumphole extends Planet {
 
     private Jumphole outGate;
-    private Universe universe;
+    private final Universe universe;
     protected String out = "n/n";
-    private Random rnd = new Random(1);
+    private final Random rnd = new Random(1);
     private double flux = 1;
 
     public Jumphole(String name, Universe universe) {
@@ -43,16 +44,16 @@ public class Jumphole extends Planet {
         this.universe = universe;
     }
 
+    @Override
     public void initGraphics() {
         try {
-            raw_tex = io.loadImage("planet/Jumphole.png");
-        } catch (NullPointerException ex) {
-            Logger.getLogger(Jumphole.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (URISyntaxException ex) {
+            raw_tex = AstralIO.loadImage("planet/Jumphole.png");
+        } catch (NullPointerException | URISyntaxException ex) {
             Logger.getLogger(Jumphole.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
+    @Override
     public void render(Graphics f, double dx, double dy) {
         if (raw_tex != null) {
             int size = (int) (2 * flux * diameter);

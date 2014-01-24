@@ -45,7 +45,7 @@ public class StarMapWindow extends AstralWindow {
     Font radarFont = new Font("Monospaced", Font.BOLD, 11);
     private Universe universe;
     private double zoom = 0.25;
-    private Point2D.Double offset = new Point2D.Double(0, 0);
+    private final Point2D.Double offset = new Point2D.Double(0, 0);
 
     public StarMapWindow() {
         super();

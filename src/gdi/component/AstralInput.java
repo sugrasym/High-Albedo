@@ -34,6 +34,7 @@ public class AstralInput extends AstralLabel {
         setBackColor(windowGrey);
     }
 
+    @Override
     public void handleKeyReleasedEvent(KeyEvent ke) {
         if (ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
             if (getText().length() > 0) {
@@ -48,6 +49,7 @@ public class AstralInput extends AstralLabel {
         }
     }
 
+    @Override
     public void setVisible(boolean visible) {
         this.visible = visible;
         canReturn = false;

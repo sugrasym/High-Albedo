@@ -23,6 +23,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Scanner;
 import javax.imageio.ImageIO;
@@ -88,7 +89,7 @@ public class PlateMaker {
                     ImageIO.write(wide, "png", wideOut);
                     //report
                     System.out.println("Finished processing file " + (a + 1) + " / " + listOfFiles.length);
-                } catch (Exception e) {
+                } catch (NullPointerException | URISyntaxException | IOException e) {
                     System.out.println("Failed to convert image " + raw);
                     //e.printStackTrace();
                 }
@@ -113,11 +114,7 @@ public class PlateMaker {
         System.out.println("Name: " + name);
         System.out.println("Y/N?: ");
         String pick = scan.nextLine();
-        if (pick.trim().toUpperCase().matches("Y")) {
-            return true;
-        } else {
-            return false;
-        }
+        return pick.trim().toUpperCase().matches("Y");
     }
 
     public static Image loadImage(File target) throws NullPointerException, URISyntaxException {

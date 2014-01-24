@@ -25,7 +25,7 @@ public class Binling implements Serializable {
      * the same as before.
      */
 
-    private ArrayList<String> str = new ArrayList<>();
+    private final ArrayList<String> str = new ArrayList<>();
     private double num;
 
     public Binling(String str, double num) {

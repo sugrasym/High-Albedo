@@ -64,6 +64,7 @@ public class Weapon extends Equipment {
         init();
     }
 
+    @Override
     public void periodicUpdate(double tpf) {
         super.periodicUpdate(tpf);
         //update last activation timer
@@ -81,10 +82,10 @@ public class Weapon extends Equipment {
                 if (ammoType == null) {
                     //the projectile name is the image
                     //get the image
-                    raw_tex = host.getUniverse().getCache().getProjectileSprite(getName());
+                    raw_tex = Universe.getCache().getProjectileSprite(getName());
                 } else {
                     //the ammo type is the image
-                    raw_tex = host.getUniverse().getCache().getProjectileSprite(ammoType.getName());
+                    raw_tex = Universe.getCache().getProjectileSprite(ammoType.getName());
                 }
                 //create the usable version
                 ImageIcon icon = new ImageIcon(raw_tex);
@@ -105,11 +106,7 @@ public class Weapon extends Equipment {
 
     public boolean isFiringEffect() {
         if (loopFireEffect) {
-            if (timeSinceLastActivation <= (coolDown + (1 / coolDown) * tpf)) {
-                return true;
-            } else {
-                return false;
-            }
+            return timeSinceLastActivation <= (coolDown + (1 / coolDown) * tpf);
         } else {
             return true;
         }
@@ -208,12 +205,8 @@ public class Weapon extends Equipment {
     private boolean hasTarget() {
         if (getType().matches("missile") || getType().matches("battery") || getType().matches("turret")) {
             if (host.getTarget() != null) {
-                if (host.distanceTo(host.getTarget()) <= range
-                        && host.getTarget().getState() == State.ALIVE) {
-                    return true;
-                } else {
-                    return false;
-                }
+                return host.distanceTo(host.getTarget()) <= range
+                        && host.getTarget().getState() == State.ALIVE;
             } else {
                 return false;
             }
@@ -271,11 +264,7 @@ public class Weapon extends Equipment {
 
     public boolean hasAmmo() {
         if (ammoType != null) {
-            if (host.getNumInCargoBay(ammoType) > 0) {
-                //and return true;
-                return true;
-            }
-            return false;
+            return host.getNumInCargoBay(ammoType) > 0;
         } else {
             return true;
         }
@@ -297,6 +286,7 @@ public class Weapon extends Equipment {
         this.speed = speed;
     }
 
+    @Override
     public String toString() {
         String ret = "";
         if (ammoType == null) {

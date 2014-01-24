@@ -49,11 +49,11 @@ public class Mission implements Serializable {
     //reward and agent
     private long reward;
     private double deltaStanding;
-    private Ship agent;
+    private final Ship agent;
     //briefing
     private String briefing = "NO AIM";
     //destroy missions
-    private ArrayList<Entity> targets = new ArrayList<>();
+    private final ArrayList<Entity> targets = new ArrayList<>();
     //ware delivery missions
     private Item deliver;
     private Entity deliverTo;
@@ -422,17 +422,11 @@ public class Mission implements Serializable {
         if (test.getState() != State.ALIVE) {
             return true;
         }
-        if (test.distanceTo(agent.getUniverse().getPlayerShip()) > 5000) {
-            return true;
-        }
-        return false;
+        return test.distanceTo(agent.getUniverse().getPlayerShip()) > 5000;
     }
 
     private boolean checkEscortMe() {
-        if (timer > endTimer) {
-            return true;
-        }
-        return false;
+        return timer > endTimer;
     }
 
     private boolean checkWareDelivery() {

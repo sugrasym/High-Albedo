@@ -50,7 +50,9 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -60,6 +62,8 @@ import java.util.logging.Logger;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import lib.AstralIO;
 import static lib.AstralIO.SAVE_GAME_DIR;
 import lib.Conversation;
@@ -86,10 +90,10 @@ public class Engine {
     //Sound
     protected SoundEngine sound = new SoundEngine(this);
     //dimensions
-    private int uiX; //width to render frame to
-    private int uiY; //height to render frame to
-    private int viewX; //width of frame
-    private int viewY; //height of frame
+    private final int uiX; //width to render frame to
+    private final int uiY; //height to render frame to
+    private final int viewX; //width of frame
+    private final int viewY; //height of frame
     private double sX;
     private double sY;
     //game entities
@@ -194,7 +198,7 @@ public class Engine {
      * Enters the menu state
      */
     public final void menu() {
-        if (state != state.MENU) {
+        if (state != State.MENU) {
             state = State.MENU;
             hud.pack();
         } else {
@@ -225,7 +229,7 @@ public class Engine {
             //restore transient objects
             loadUniverse(universe);
             System.out.println("Quickload Complete.");
-        } catch (Exception e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -280,7 +284,7 @@ public class Engine {
                 music.open(stream);
                 //start
                 music.loop(Clip.LOOP_CONTINUOUSLY);
-            } catch (Exception ex) {
+            } catch (LineUnavailableException | UnsupportedAudioFileException | IOException ex) {
                 Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
                 System.err.println("This likely means music is disabled.");
             }
@@ -504,6 +508,7 @@ public class Engine {
             }
         }
 
+        @Override
         public void periodicUpdate() {
             if (state == State.RUNNING) {
                 //push hud changes
@@ -980,15 +985,15 @@ public class Engine {
                     //for safety reasons grab the generic plate first
                     Image stars = null;
                     try {
-                        stars = io.loadImage("plate/" + plateGroup + "/base_plate.png");
-                    } catch (Exception e) {
+                        stars = AstralIO.loadImage("plate/" + plateGroup + "/base_plate.png");
+                    } catch (NullPointerException | URISyntaxException e) {
                         e.printStackTrace();
                     }
                     //get base plate
                     try {
-                        Image test = io.loadImage("plate/" + plateGroup + "/" + playerShip.getCurrentSystem().getBack());
+                        Image test = AstralIO.loadImage("plate/" + plateGroup + "/" + playerShip.getCurrentSystem().getBack());
                         stars = test;
-                    } catch (Exception e) {
+                    } catch (NullPointerException | URISyntaxException e) {
                         e.printStackTrace();
                     }
                     //scale backplate to screen size
@@ -1010,8 +1015,8 @@ public class Engine {
                 //for safety reasons grab the generic plate first
                 Image stars = null;
                 try {
-                    stars = io.loadImage("plate/" + plateGroup + "/base_plate.png");
-                } catch (Exception e) {
+                    stars = AstralIO.loadImage("plate/" + plateGroup + "/base_plate.png");
+                } catch (NullPointerException | URISyntaxException e) {
                     e.printStackTrace();
                 }
                 //get a list of base plates
@@ -1022,9 +1027,9 @@ public class Engine {
                 String asset = skyTypes.get(pick).getValue("asset");
                 //store
                 try {
-                    Image test = io.loadImage("plate/" + plateGroup + "/" + asset);
+                    Image test = AstralIO.loadImage("plate/" + plateGroup + "/" + asset);
                     stars = test;
-                } catch (Exception e) {
+                } catch (NullPointerException | URISyntaxException e) {
                     e.printStackTrace();
                 }
                 //scale backplate to screen size

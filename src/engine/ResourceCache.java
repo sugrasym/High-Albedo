@@ -255,9 +255,9 @@ public class ResourceCache {
          * easily referenced.
          */
 
-        private String name;
-        private Image sprite;
-        private int hash;
+        private final String name;
+        private final Image sprite;
+        private final int hash;
 
         public Spriteling(String name, Image sprite) {
             //hash
@@ -268,11 +268,7 @@ public class ResourceCache {
         }
 
         public boolean matches(String test) {
-            if (test.hashCode() == hash) {
-                return true;
-            } else {
-                return false;
-            }
+            return test.hashCode() == hash;
         }
 
         public String getName() {

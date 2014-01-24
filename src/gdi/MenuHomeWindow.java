@@ -27,7 +27,7 @@ public class MenuHomeWindow extends AstralWindow {
     AstralList gameList = new AstralList(this);
     AstralList saveList = new AstralList(this);
     AstralList settingList = new AstralList(this);
-    private Engine engine;
+    private final Engine engine;
 
     public MenuHomeWindow(Engine engine) {
         super();
@@ -89,6 +89,7 @@ public class MenuHomeWindow extends AstralWindow {
         setVisible(true);
     }
 
+    @Override
     public void setVisible(boolean visible) {
         super.setVisible(visible);
         if (mainList.isVisible()) {
@@ -96,6 +97,7 @@ public class MenuHomeWindow extends AstralWindow {
         }
     }
 
+    @Override
     public void handleMouseClickedEvent(MouseEvent me) {
         super.handleMouseClickedEvent(me);
         String command = "";

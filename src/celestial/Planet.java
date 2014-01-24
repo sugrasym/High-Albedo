@@ -36,7 +36,6 @@ import org.ankh.unfall.planet.texgen.palette.ranges.HospitablePalette;
 import org.ankh.unfall.planet.texgen.palette.ranges.LavaPalette;
 import org.ankh.unfall.planet.texgen.palette.ranges.MarsPalette;
 import org.ankh.unfall.planet.texgen.palette.ranges.StrangePalette;
-import universe.Universe;
 
 /**
  *
@@ -48,7 +47,7 @@ public class Planet extends Celestial {
     private int seed = 0;
     protected int diameter;
     protected transient Image raw_tex;
-    private ArrayList<Rectangle> bound = new ArrayList<>();
+    private final ArrayList<Rectangle> bound = new ArrayList<>();
 
     public Planet(String name, Term texture, int diameter) {
         setName(name);
@@ -61,6 +60,7 @@ public class Planet extends Celestial {
         state = State.ALIVE;
     }
 
+    @Override
     public void initGraphics() {
         /*
          * Load the image for this planet and scale it
@@ -224,6 +224,7 @@ public class Planet extends Celestial {
         }
     }
 
+    @Override
     public void disposeGraphics() {
         raw_tex = null;
     }

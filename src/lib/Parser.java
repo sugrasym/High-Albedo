@@ -31,7 +31,7 @@ import java.util.ArrayList;
 public class Parser implements Serializable {
 
     String text;
-    private ArrayList<Term> terms = new ArrayList<>();
+    private final ArrayList<Term> terms = new ArrayList<>();
 
     public Parser(String file) {
         //read the text
@@ -134,7 +134,7 @@ public class Parser implements Serializable {
          * Stores a term, which is a collection of params with a name.
          */
 
-        private ArrayList<Param> params = new ArrayList<>();
+        private final ArrayList<Param> params = new ArrayList<>();
         private final String name;
 
         public Term(String name) {

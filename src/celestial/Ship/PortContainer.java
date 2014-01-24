@@ -25,16 +25,16 @@ public class PortContainer implements Serializable {
      * the size of the ship, and allows a ship to be aware of 
      */
 
-    private double x;
-    private double y;
-    private int width;
-    private int height;
-    private double ax;
-    private double ay;
+    private final double x;
+    private final double y;
+    private final int width;
+    private final int height;
+    private final double ax;
+    private final double ay;
     protected Station parent;
     private Ship client;
     //timing
-    private double maxHold = 2400;
+    private final double maxHold = 2400;
     private double time = 0;
 
     public PortContainer(Station parent, double x, double y, int w, int h, double ax, double ay) {
@@ -102,11 +102,7 @@ public class PortContainer implements Serializable {
     }
 
     public boolean canFit(Ship ship) {
-        if (ship.getWidth() / 2 <= width && ship.getHeight() / 2 <= height) {
-            return true;
-        } else {
-            return false;
-        }
+        return ship.getWidth() / 2 <= width && ship.getHeight() / 2 <= height;
     }
 
     public double getPortX() {
@@ -135,11 +131,7 @@ public class PortContainer implements Serializable {
 
     public boolean isAvailable(Ship test) {
         if (client != null) {
-            if (client == test) {
-                return true;
-            } else {
-                return false;
-            }
+            return client == test;
         } else {
             return true;
         }

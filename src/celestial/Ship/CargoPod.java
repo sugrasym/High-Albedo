@@ -20,7 +20,6 @@
 package celestial.Ship;
 
 import cargo.Item;
-import cargo.Weapon;
 import engine.Entity;
 import java.util.Random;
 

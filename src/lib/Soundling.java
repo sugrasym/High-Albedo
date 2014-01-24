@@ -27,10 +27,10 @@ import java.applet.AudioClip;
  */
 public class Soundling {
 
-    private String name;
-    private Sound sound;
-    private String target;
-    private boolean loop;
+    private final String name;
+    private final Sound sound;
+    private final String target;
+    private final boolean loop;
 
     public Soundling(String name, String target, boolean loop) {
         this.name = name;
@@ -111,6 +111,7 @@ public class Soundling {
         }
     }
 
+    @Override
     public String toString() {
         return name + ", " + target + ", " + isLoop();
     }

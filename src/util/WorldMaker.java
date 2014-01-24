@@ -39,20 +39,20 @@ public class WorldMaker {
     private final char[] generic = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
         'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '1', '2',
         '3', '4', '5', '6', '7', '8', '9', '0'};
-    private String[] greek = {"Alpha", "Beta", "Gamma", "Delta", "Epsilon", "Zeta", "Eta", "Theta", "Iota",
+    private final String[] greek = {"Alpha", "Beta", "Gamma", "Delta", "Epsilon", "Zeta", "Eta", "Theta", "Iota",
         "Kappa", "Lambda", "Mu", "Nu", "Xi", "Omicron", "Pi", "Rho", "Sigma", "Tau", "Upsilon", "Phi", "Chi",
         "Psi", "Omega"};
     //rng
     Random rnd = new Random();
     //used names
-    private ArrayList<String> usedSystemNames = new ArrayList<>();
+    private final ArrayList<String> usedSystemNames = new ArrayList<>();
 
     public WorldMaker() {
         //generate universe
         String out = generate(1, 10, 90, 150, 1000, 16000, 48000, 900, 2000, 0, 100);
         //save
         AstralIO tmp = new AstralIO();
-        tmp.writeFile("/tmp/UNIVERSE.txt", out);
+        AstralIO.writeFile("/tmp/UNIVERSE.txt", out);
         System.out.println(out);
     }
 
@@ -613,15 +613,15 @@ public class WorldMaker {
          * Solar system template used for jump hole mapping.
          */
 
-        private Point2D.Double loc;
+        private final Point2D.Double loc;
         private Sysling[] neighbors;
-        private ArrayList<Sysling> connections = new ArrayList<>();
-        private ArrayList<Statling> stations = new ArrayList<>();
-        private String name;
+        private final ArrayList<Sysling> connections = new ArrayList<>();
+        private final ArrayList<Statling> stations = new ArrayList<>();
+        private final String name;
         private String owner = "Neutral";
         private String ambientMusic = "audio/music/Undefined.wav";
         private String dangerMusic = "audio/music/Committing.wav";
-        private SuperFaction neutralFaction = new SuperFaction(null, "Neutral");
+        private final SuperFaction neutralFaction = new SuperFaction(null, "Neutral");
 
         public Sysling(String name, Point2D.Double loc) {
             this.loc = loc;
@@ -669,11 +669,7 @@ public class WorldMaker {
         }
 
         public boolean collideWith(Sysling test) {
-            if (test.getName().matches(name)) {
-                return true;
-            } else {
-                return false;
-            }
+            return test.getName().matches(name);
         }
 
         public double distance(Sysling comp) {
@@ -688,6 +684,7 @@ public class WorldMaker {
             return name;
         }
 
+        @Override
         public String toString() {
             return name;
         }
@@ -727,8 +724,8 @@ public class WorldMaker {
          * the sole purpose of avoiding collisions.
          */
 
-        private Point2D.Float loc;
-        private float rad;
+        private final Point2D.Float loc;
+        private final float rad;
 
         public Simpling(Point2D.Float loc, float rad) {
             this.loc = loc;
@@ -744,10 +741,7 @@ public class WorldMaker {
             minRad *= 1.5f;
             //determine if they are colliding using distance
             float dist = (float) loc.distance(testLoc);
-            if (dist < minRad) {
-                return true;
-            }
-            return false;
+            return dist < minRad;
         }
 
         public Point2D getLoc() {

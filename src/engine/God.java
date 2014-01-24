@@ -42,9 +42,9 @@ import universe.Universe;
  */
 public class God implements EngineElement {
 
-    private Universe universe;
-    private ArrayList<SuperFaction> factions = new ArrayList<>();
-    private Random rnd = new Random();
+    private final Universe universe;
+    private final ArrayList<SuperFaction> factions = new ArrayList<>();
+    private final Random rnd = new Random();
     boolean firstRun = true;
     //sample
     private final char[] basicSample = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',

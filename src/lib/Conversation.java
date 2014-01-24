@@ -33,10 +33,10 @@ import universe.Universe;
  */
 public class Conversation implements Serializable {
 
-    private ArrayList<AstralMessage> nodes = new ArrayList<>();
-    private String name;
+    private final ArrayList<AstralMessage> nodes = new ArrayList<>();
+    private final String name;
     private AstralMessage currentNode;
-    private Ship owner;
+    private final Ship owner;
     //random
     Random rnd = new Random();
     //mission
@@ -160,11 +160,7 @@ public class Conversation implements Serializable {
     public boolean isDone() {
         if (currentNode.getName().matches("END")) {
             return true;
-        } else if (currentNode.getChoices().isEmpty()) {
-            return true;
-        } else {
-            return false;
-        }
+        } else return currentNode.getChoices().isEmpty();
     }
 
     private AstralMessage findNode(String startNode) {

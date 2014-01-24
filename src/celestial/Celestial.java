@@ -194,10 +194,12 @@ public class Celestial implements Serializable, Entity {
         this.state = state;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public void setName(String name) {
         this.name = name;
     }

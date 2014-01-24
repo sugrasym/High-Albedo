@@ -59,14 +59,14 @@ public class SolarSystem implements Entity, Serializable {
     private ArrayList<Entity> entities = new ArrayList<>();
     //quick reference
     private ArrayList<Entity> jumpholeList = new ArrayList<>();
-    private ArrayList<Entity> celestialList = new ArrayList<>();
-    private ArrayList<Entity> asteroidList = new ArrayList<>();
-    private ArrayList<Entity> stationList = new ArrayList<>();
-    private ArrayList<Entity> shipList = new ArrayList<>();
+    private final ArrayList<Entity> celestialList = new ArrayList<>();
+    private final ArrayList<Entity> asteroidList = new ArrayList<>();
+    private final ArrayList<Entity> stationList = new ArrayList<>();
+    private final ArrayList<Entity> shipList = new ArrayList<>();
     //who owns it
     private String owner = "Neutral";
     //what contains it
-    private Universe universe;
+    private final Universe universe;
 
     public SolarSystem(Universe universe, String name, Parser parse) {
         this.name = name; //needed for lookup
@@ -535,6 +535,7 @@ public class SolarSystem implements Entity, Serializable {
         this.dangerMusic = dangerMusic;
     }
 
+    @Override
     public String toString() {
         return name + ", " + owner;
     }

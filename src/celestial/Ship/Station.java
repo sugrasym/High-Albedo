@@ -567,6 +567,7 @@ public class Station extends Ship {
         g.fillRect((int) (getX() - dx), (int) (getY() - dy), (int) (getWidth() * shieldPercent), 2);
     }
 
+    @Override
     public String toString() {
         String ret = "";
         {

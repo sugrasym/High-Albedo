@@ -31,19 +31,19 @@ import universe.Universe;
 public class SuperFaction extends Faction {
     //universe
 
-    private Universe universe;
+    private final Universe universe;
     //sov
-    private ArrayList<SolarSystem> sov = new ArrayList<>();
-    private ArrayList<SolarSystem> sovHost = new ArrayList<>();
+    private final ArrayList<SolarSystem> sov = new ArrayList<>();
+    private final ArrayList<SolarSystem> sovHost = new ArrayList<>();
     //loadout lists
     private ArrayList<Binling> patrols = new ArrayList<>();
-    private ArrayList<Binling> traders = new ArrayList<>();
-    private ArrayList<Binling> merchants = new ArrayList<>(); //TODO
+    private final ArrayList<Binling> traders = new ArrayList<>();
+    private final ArrayList<Binling> merchants = new ArrayList<>(); //TODO
     //station list
     private ArrayList<Binling> stations = new ArrayList<>();
     //music list
-    private ArrayList<String> ambientMusic = new ArrayList<>();
-    private ArrayList<String> dangerMusic = new ArrayList<>();
+    private final ArrayList<String> ambientMusic = new ArrayList<>();
+    private final ArrayList<String> dangerMusic = new ArrayList<>();
     /*
      * Like a faction, except it stores information about loadout types,
      * station types, etc that god needs.

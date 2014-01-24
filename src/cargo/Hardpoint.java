@@ -70,11 +70,7 @@ public class Hardpoint implements Serializable {
     }
 
     public boolean isEmpty() {
-        if (getMounted().getName().matches("NOTHING")) {
-            return true;
-        } else {
-            return false;
-        }
+        return getMounted().getName().matches("NOTHING");
     }
 
     public double getR() {
@@ -123,11 +119,7 @@ public class Hardpoint implements Serializable {
     }
 
     public boolean notNothing() {
-        if (mounted.getName().matches("NOTHING")) {
-            return false;
-        } else {
-            return true;
-        }
+        return !mounted.getName().matches("NOTHING");
     }
 
     public String getType() {

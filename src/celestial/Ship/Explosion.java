@@ -102,10 +102,12 @@ public class Explosion extends Ship {
         }
     }
 
+    @Override
     protected void drawHealthBars(Graphics g, double dx, double dy) {
         //derp
     }
 
+    @Override
     public void explode() {
         //avoid some recursion
     }
@@ -119,10 +121,12 @@ public class Explosion extends Ship {
         }
     }
 
+    @Override
     protected void behave() {
         //these entities have no behavior
     }
 
+    @Override
     public void render(Graphics g, double dx, double dy) {
         if (tex != null) {
             //setup the buffer's graphics
@@ -163,7 +167,7 @@ public class Explosion extends Ship {
     public void initGraphics() {
         try {
             //get the image
-            raw_tex = getUniverse().getCache().getExplosionSprite(type);
+            raw_tex = Universe.getCache().getExplosionSprite(type);
             //create the usable version
             setHeight((int) size);
             setWidth((int) size);

@@ -36,13 +36,13 @@ public class Universe implements Serializable {
 
     private ArrayList<SolarSystem> systems = new ArrayList<>();
     private SettingsManager settings;
-    private static transient ResourceCache cache;
+    private static final transient ResourceCache cache;
     private transient God god;
     //player globals
     protected Ship playerShip;
-    private ArrayList<Entity> playerProperty = new ArrayList<>();
-    private ArrayList<Mission> playerMissions = new ArrayList<>();
-    private ArrayList<SolarSystem> discoveredSpace = new ArrayList<>();
+    private final ArrayList<Entity> playerProperty = new ArrayList<>();
+    private final ArrayList<Mission> playerMissions = new ArrayList<>();
+    private final ArrayList<SolarSystem> discoveredSpace = new ArrayList<>();
 
     static {
         cache = new ResourceCache();

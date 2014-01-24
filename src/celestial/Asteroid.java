@@ -40,6 +40,7 @@ public class Asteroid extends Planet {
         setState(State.ALIVE);
     }
 
+    @Override
     public void initGraphics() {
         try {
             raw_tex = AstralIO.loadImage("planet/Asteroid.png");
@@ -66,13 +67,12 @@ public class Asteroid extends Planet {
                 g.transform(rot);
                 g.drawImage(raw_tex, 0, 0, null);
             }
-        } catch (NullPointerException ex) {
-            Logger.getLogger(Asteroid.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (URISyntaxException ex) {
+        } catch (NullPointerException | URISyntaxException ex) {
             Logger.getLogger(Asteroid.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
+    @Override
     public void render(Graphics f, double dx, double dy) {
         if (tex != null) {
             f.drawImage(tex, (int) (getX() - dx), (int) (getY() - dy), null);

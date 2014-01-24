@@ -33,8 +33,6 @@ import gdi.component.AstralWindow;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import lib.Faction;
-import lib.Parser;
-import lib.Parser.Term;
 
 public class CargoWindow extends AstralWindow {
 

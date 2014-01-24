@@ -39,21 +39,21 @@ public class Faction implements Serializable {
 
     public static final int PERMA_RED = -10;
     public static final int PERMA_GREEN = 10;
-    private String name;
+    private final String name;
     private String description = "No Information Found";
     //sov and distribution
     private boolean isEmpire = false;
     private double spread = 0;
     protected ArrayList<String> hosts = new ArrayList<>();
-    private ArrayList<Binling> standings = new ArrayList<>();
+    private final ArrayList<Binling> standings = new ArrayList<>();
     //contraband
-    private ArrayList<String> contraband = new ArrayList<>();
+    private final ArrayList<String> contraband = new ArrayList<>();
     //comm hints
-    private ArrayList<String> contrabandNotifications = new ArrayList<>();
-    private ArrayList<String> hateNotifications = new ArrayList<>();
-    private ArrayList<String> neutralNotifications = new ArrayList<>();
-    private ArrayList<String> friendlyNotifications = new ArrayList<>();
-    private ArrayList<String> rumorList = new ArrayList<>();
+    private final ArrayList<String> contrabandNotifications = new ArrayList<>();
+    private final ArrayList<String> hateNotifications = new ArrayList<>();
+    private final ArrayList<String> neutralNotifications = new ArrayList<>();
+    private final ArrayList<String> friendlyNotifications = new ArrayList<>();
+    private final ArrayList<String> rumorList = new ArrayList<>();
 
     public Faction(String name) {
         this.name = name;

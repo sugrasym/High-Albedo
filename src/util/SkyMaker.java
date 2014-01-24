@@ -126,11 +126,7 @@ public class SkyMaker {
         System.out.println("Out:  " + outputFile);
         System.out.println("Y/N?: ");
         String pick = scan.nextLine();
-        if (pick.trim().toUpperCase().matches("Y")) {
-            return true;
-        } else {
-            return false;
-        }
+        return pick.trim().toUpperCase().matches("Y");
     }
     
     private boolean universeFileSetup() {
@@ -145,11 +141,7 @@ public class SkyMaker {
         System.out.println("Output Universe:  " + outputUniverse);
         System.out.println("Y/N?: ");
         String pick = scan.nextLine();
-        if (pick.trim().toUpperCase().matches("Y")) {
-            return true;
-        } else {
-            return false;
-        }
+        return pick.trim().toUpperCase().matches("Y");
     }
     
     public static void main(String[] args) {
