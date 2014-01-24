@@ -2666,9 +2666,9 @@ public class Ship extends Celestial {
 
     public void targetNearestHostileShip() {
         target = null;
+        Ship closest = null;
         //get a list of all nearby hostiles
         ArrayList<Entity> nearby = getCurrentSystem().getShipList();
-        ArrayList<Ship> hostiles = new ArrayList<>();
         for (int a = 0; a < nearby.size(); a++) {
             Ship tmp = (Ship) nearby.get(a);
             //make sure it is in range
@@ -2681,7 +2681,16 @@ public class Ship extends Celestial {
                                 if (tmp.getState() == State.ALIVE && !tmp.isDocked()) {
                                     //check standings
                                     if (tmp.getStandingsToMe(this) < HOSTILE_STANDING || scanForContraband(tmp)) {
-                                        hostiles.add(tmp);
+                                        //determine if this one is closer
+                                        if (closest == null) {
+                                            closest = tmp;
+                                        } else {
+                                            double distClosest = distanceTo(closest);
+                                            double distTest = distanceTo(tmp);
+                                            if (distTest < distClosest) {
+                                                closest = tmp;
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -2694,20 +2703,15 @@ public class Ship extends Celestial {
         if (shield / maxShield < PLAYER_AGGRO_SHIELD) {
             if (!faction.matches(PLAYER_FACTION)) {
                 if (lastBlow == getUniverse().getPlayerShip()) {
-                    hostiles.add(getUniverse().getPlayerShip());
-                }
-            }
-        }
-        //target the nearest one
-        Ship closest = null;
-        for (int a = 0; a < hostiles.size(); a++) {
-            if (closest == null) {
-                closest = hostiles.get(a);
-            } else {
-                double distClosest = distanceTo(closest);
-                double distTest = distanceTo(hostiles.get(a));
-                if (distTest < distClosest) {
-                    closest = hostiles.get(a);
+                    if (closest != null) {
+                        double distClosest = distanceTo(closest);
+                        double distTest = distanceTo(getUniverse().getPlayerShip());
+                        if (distTest < distClosest) {
+                            closest = getUniverse().getPlayerShip();
+                        }
+                    } else {
+                        closest = getUniverse().getPlayerShip();
+                    }
                 }
             }
         }
