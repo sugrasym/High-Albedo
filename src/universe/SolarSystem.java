@@ -67,6 +67,8 @@ public class SolarSystem implements Entity, Serializable {
     private String owner = "Neutral";
     //what contains it
     private final Universe universe;
+    //for making cleanup more efficient
+    private boolean hasGraphics = false;
 
     public SolarSystem(Universe universe, String name, Parser parse) {
         this.name = name; //needed for lookup
@@ -402,6 +404,8 @@ public class SolarSystem implements Entity, Serializable {
                 tmp.initGraphics();
             }
         }
+        //mark system as having graphics
+        hasGraphics = true;
     }
 
     public void disposeGraphics() {
@@ -411,6 +415,8 @@ public class SolarSystem implements Entity, Serializable {
                 tmp.disposeGraphics();
             }
         }
+        //mark system as not having graphics
+        hasGraphics = false;
     }
 
     @Override
@@ -587,7 +593,7 @@ public class SolarSystem implements Entity, Serializable {
                                 test.setState(State.DYING);
                             }
                             //remove entities that bailed outside the player system
-                            if(test.isBailed()) {
+                            if (test.isBailed()) {
                                 System.out.println("Removing bailed ship " + test.getName());
                                 test.setState(State.DYING);
                             } else {
@@ -600,13 +606,20 @@ public class SolarSystem implements Entity, Serializable {
                         discover();
                     }
                 }
-                //cleanup graphics if the player is not present
-                if (!entities.contains(universe.playerShip) && universe.playerShip.getState() == State.ALIVE) {
-                    disposeGraphics();
-                }
             } else {
                 //it jumped out
             }
+        }
+        //cleanup graphics if the player is not present
+        if (!entities.contains(universe.playerShip)) {
+            if (hasGraphics) {
+                //ony called when the system had graphics
+                disposeGraphics();
+                System.out.println("System " + getName() + " disposed graphics.");
+            }
+        } else {
+            //system must have graphics if the player is inside it
+            hasGraphics = true;
         }
     }
 
