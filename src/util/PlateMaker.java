@@ -17,7 +17,7 @@
  * Program for automatically converting a set of images into widescreen and
  * standard backplates.
  */
-package lib;
+package util;
 
 import java.awt.Graphics;
 import java.awt.Image;

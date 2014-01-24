@@ -18,12 +18,14 @@
  * and generating a sky file for them. It can also read in an old universe file
  * and replace all the skies with new ones.
  */
-package lib;
+package util;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import lib.AstralIO;
+import lib.Parser;
 import lib.Parser.Term;
 
 /**

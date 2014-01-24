@@ -17,12 +17,16 @@
  * Program for generating universes. This allows decent looking, arbitrarily
  * large worlds to be made automatically, and then manaully tuned.
  */
-package lib;
+package util;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Random;
+import lib.AstralIO;
+import lib.Faction;
+import lib.Parser;
 import lib.Parser.Term;
+import lib.SuperFaction;
 import universe.Universe;
 
 /**
@@ -446,7 +450,7 @@ public class WorldMaker {
             }
         } else {
             //figure out who hosts this faction
-            ArrayList<String> hosts = faction.hosts;
+            ArrayList<String> hosts = faction.getHosts();
             for (int a = 0; a < hosts.size(); a++) {
                 //make a list of the host's systems
                 for (int v = 0; v < syslings.size(); v++) {

@@ -169,7 +169,7 @@ public class Faction implements Serializable {
                     String ho = tmp2.getValue("var_hosts");
                     if (ho != null) {
                         String[] arr = ho.split("/");
-                        hosts.addAll(Arrays.asList(arr));
+                        getHosts().addAll(Arrays.asList(arr));
                     }
                     //Store description
                     String desc = tmp2.getValue("var_description");
@@ -333,5 +333,9 @@ public class Faction implements Serializable {
 
     public ArrayList<String> getRumorList() {
         return rumorList;
+    }
+
+    public ArrayList<String> getHosts() {
+        return hosts;
     }
 }

@@ -27,7 +27,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import lib.Binling;
 import lib.Faction;
-import lib.WorldMaker;
 
 public class StandingWindow extends AstralWindow {
 

@@ -254,8 +254,8 @@ public class SuperFaction extends Faction {
     }
 
     private boolean canSpawnIn(SolarSystem get) {
-        for (int a = 0; a < hosts.size(); a++) {
-            if (get.getOwner().matches(hosts.get(a))) {
+        for (int a = 0; a < getHosts().size(); a++) {
+            if (get.getOwner().matches(getHosts().get(a))) {
                 return true;
             }
         }
