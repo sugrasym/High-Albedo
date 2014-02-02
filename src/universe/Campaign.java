@@ -21,6 +21,7 @@ package universe;
 
 import celestial.Ship.Ship;
 import celestial.Ship.Station;
+import engine.Entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import lib.Parser;
@@ -77,6 +78,11 @@ public class Campaign implements Serializable {
                 //this is the end of the campaign
                 node = null;
                 messagePlayer("Campaign Complete", "Congratulations! You've finished '" + name + "'");
+                //stop campaign by removing reference
+                universe.getPlayerCampaigns().remove(this);
+            } else if (advance.equals("SILENT_END")) {
+                //this is the end of the campaign, but doesn't say anything
+                node = null;
                 //stop campaign by removing reference
                 universe.getPlayerCampaigns().remove(this);
             } else {
@@ -139,31 +145,65 @@ public class Campaign implements Serializable {
             int a = 0;
             String function = null;
             while ((function = node.getValue("call" + a)) != null) {
-                System.out.println("Calling "+function);
+                System.out.println("Calling " + function);
                 //call this function
                 String[] arr = function.split("::");
                 if (arr.length == 2) {
-                    //object::method
-                    String object = arr[0].trim();
-                    String method = arr[1].trim();
-                    if (object.equals("CURRENT_STATION")) {
-                        //modify the current station the player is at
-                        Station station = universe.getPlayerShip().getPort().getParent();
-                        if (station != null && universe.getPlayerShip().isDocked()) {
-                            if (method.equals("makeMortal()")) {
-                                //make this station mortal
-                                station.makeMortal();
-                            }
-                        } else {
-                            //do nothing
-                        }
-                    }
+                    do2FieldFunction(arr);
+                } else if (arr.length == 4) {
+                    do4FieldFunction(arr);
                 }
                 //increment
                 a++;
             }
         } else {
             messagePlayer("Error", "Unexpected end of story.");
+        }
+    }
+
+    private void do2FieldFunction(String[] arr) {
+        //object::method
+        String object = arr[0].trim();
+        String method = arr[1].trim();
+        if (object.equals("CURRENT_STATION")) {
+            //modify the current station the player is at
+            Station station = universe.getPlayerShip().getPort().getParent();
+            if (station != null && universe.getPlayerShip().isDocked()) {
+                if (method.equals("makeMortal()")) {
+                    //make this station mortal
+                    station.makeMortal();
+                }
+            } else {
+                //do nothing
+            }
+        }
+    }
+
+    private void do4FieldFunction(String[] arr) {
+        //type::system::entity::method
+        String type = arr[0];
+        String system = arr[1];
+        String entity = arr[2];
+        String method = arr[3];
+        if (type.equals("STATION")) {
+            //working with a space station
+            for (int x = 0; x < universe.getSystems().size(); x++) {
+                if (universe.getSystems().get(x).getName().matches(system)) {
+                    SolarSystem sys = universe.getSystems().get(x);
+                    for (int b = 0; b < sys.getEntities().size(); b++) {
+                        Entity working = sys.getEntities().get(b);
+                        if (working instanceof Station) {
+                            Station tmpStat = (Station) working;
+                            if (tmpStat.getName().equals(entity)) {
+                                if (method.equals("makeMortal()")) {
+                                    //make this station mortal
+                                    tmpStat.makeMortal();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 

@@ -49,7 +49,7 @@ choice0=Continue/WelcomeMessage3
 name=WelcomeMessage3
 subject=Flight School
 body=Go to flight school?
-choice0=No/END
+choice0=No/START_CAMPAIGN::Flight School Cleanup
 choice1=Yes/START_CAMPAIGN::Flight School
 [/Node]
 

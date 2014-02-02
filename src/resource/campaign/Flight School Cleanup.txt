@@ -1,0 +1,17 @@
+#This script cleans up after the flight school campaign which the player opted
+#not to play.
+
+[Node]
+name=CAMPAIGN_START
+advance=none
+next=Cleanup
+[/Node]
+
+[Node]
+name=Cleanup
+advance=SILENT_END
+chapter=Flight School
+objective=Aborted
+body=You have opted out of flight school.
+call0=STATION::Native Land::Ageiran Shipyard 1::makeMortal()
+[/Node]
