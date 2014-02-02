@@ -1222,6 +1222,10 @@ public class Engine {
                 for (int a = 0; a < universe.getPlayerMissions().size(); a++) {
                     universe.getPlayerMissions().get(a).periodicUpdate(tpf);
                 }
+                //update campaigns
+                for(int a = 0; a < universe.getPlayerCampaigns().size(); a++) {
+                    universe.getPlayerCampaigns().get(a).periodicUpdate(tpf);
+                }
             } else if (state == State.MENU) {
                 //update HUD
                 getHud().periodicUpdate();

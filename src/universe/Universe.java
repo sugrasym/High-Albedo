@@ -42,6 +42,7 @@ public class Universe implements Serializable {
     protected Ship playerShip;
     private final ArrayList<Entity> playerProperty = new ArrayList<>();
     private final ArrayList<Mission> playerMissions = new ArrayList<>();
+    private final ArrayList<Campaign> playerCampaigns = new ArrayList<>();
     private final ArrayList<SolarSystem> discoveredSpace = new ArrayList<>();
 
     static {
@@ -204,5 +205,9 @@ public class Universe implements Serializable {
 
     public ArrayList<SolarSystem> getDiscoveredSpace() {
         return discoveredSpace;
+    }
+
+    public ArrayList<Campaign> getPlayerCampaigns() {
+        return playerCampaigns;
     }
 }

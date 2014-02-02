@@ -24,6 +24,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 import lib.Parser.Term;
+import universe.Campaign;
 import universe.Mission;
 import universe.Universe;
 
@@ -41,6 +42,8 @@ public class Conversation implements Serializable {
     Random rnd = new Random();
     //mission
     private Mission tmpMission;
+    //campaign
+    private Campaign tmpCampaign;
 
     public Conversation(Ship owner, String name, String startNode) {
         this.name = name;
@@ -136,6 +139,17 @@ public class Conversation implements Serializable {
                 } else {
                     currentNode = findNode("END");
                 }
+            } else {
+                //these are the more complex options
+                String[] split = choice.getStr().get(1).split("::");
+                if (split.length > 1) {
+                    if (split[0].matches("START_CAMPAIGN")) {
+                        tmpCampaign = new Campaign(split[1]);
+                        owner.getUniverse().getPlayerCampaigns().add(tmpCampaign);
+                    }
+                } else {
+                    //I got nothing
+                }
             }
         } else {
             //nope
@@ -160,7 +174,9 @@ public class Conversation implements Serializable {
     public boolean isDone() {
         if (currentNode.getName().matches("END")) {
             return true;
-        } else return currentNode.getChoices().isEmpty();
+        } else {
+            return currentNode.getChoices().isEmpty();
+        }
     }
 
     private AstralMessage findNode(String startNode) {
