@@ -12,4 +12,13 @@ chapter=Jumphole Navigation
 objective=Fly to 'Native Land'
 body=Let's see if you can go to another system. Open up your property window with P and order your ship to fly to the 'Native Land Jumphole'.
 advance=ENTERSYSTEM::Native Land
+next=Ageiran Shipyard
+[/Node]
+
+[Node]
+name=Ageiran Shipyard
+chapter=Docking
+objective=Dock at 'Ageiran Shipyard 1'
+body=Ok hotshot, so you've got the intelligence of a cow. Lets see if you can make it to dolphin. Open your property window again and dock with 'Ageiran Shipyard 1'.
+advance=DOCK::Ageiran Shipyard 1
 [/Node]

@@ -70,15 +70,38 @@ public class Campaign implements Serializable {
             //check to see if we can advance
             String advance = node.getValue("advance");
             if (advance.matches("none")) {
-                //automatically advance to next node
-                String next = node.getValue("next");
-                advance(next);
+                next();
             } else if (advance.matches("END")) {
                 //this is the end of the campaign
                 node = null;
                 messagePlayer("Campaign Complete", "Congratulations! You've finished '" + name + "'");
+                //stop campaign by removing reference
+                universe.getPlayerCampaigns().remove(this);
+            } else {
+                //these are the more complex ones which have parameters
+                String[] split = advance.split("::");
+                //condition::parameter
+                if (split.length == 2) {
+                    String condition = split[0];
+                    String parameter = split[1];
+                    if (condition.matches("ENTERSYSTEM")) {
+                        //triggered when the player is in a certain system
+                        if (universe.getPlayerShip().getCurrentSystem().getName().matches(parameter)) {
+                            //trigger reached
+                            next();
+                        } else {
+                            //not yet
+                        }
+                    }
+                }
             }
         }
+    }
+
+    private void next() {
+        //automatically advance to next node
+        String next = node.getValue("next");
+        advance(next);
     }
 
     private void advance(String next) {
