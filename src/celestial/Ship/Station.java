@@ -50,6 +50,7 @@ public class Station extends Ship {
     protected ArrayList<Process> processes = new ArrayList<>();
     //cheating is needed sometimes
     private boolean exemptFromEconomics = false;
+    private boolean immortal = false;
     //flag
     private boolean needAsteroid = false;
 
@@ -69,7 +70,7 @@ public class Station extends Ship {
         super.alive();
         //check if out of business
         if (cash < 0) {
-            if (!isExemptFromEconomics()) {
+            if (!isExemptFromEconomics() && !isImmortal()) {
                 //out of business :(
                 for (int a = 0; a < docks.size(); a++) {
                     docks.get(a).kickOut();
@@ -102,35 +103,43 @@ public class Station extends Ship {
 
     @Override
     public void dying() {
-        super.dying();
-        //is this a player station?
-        if (faction.matches("Player")) {
-            //did it need an asteroid?
-            if (needAsteroid) {
+        if (!isImmortal()) {
+            super.dying();
+            //is this a player station?
+            if (faction.matches("Player")) {
+                //did it need an asteroid?
+                if (needAsteroid) {
                 //lets avoid the X3R problem and put the asteroid back
                 /*
-                 * For those who don't know, the X3R problem was a somewhat frustrating bug in X3R where
-                 * the destruction of an asteroid mine would permanently remove the asteroid. It would
-                 * never respawn. This meant universal conquests would end up removing vital resources
-                 * from the game that were irreplacable.
-                 */
-                Asteroid tmp = new Asteroid("Asteroid");
-                tmp.setX(x);
-                tmp.setY(y);
-                tmp.setTheta(rnd.nextFloat() * 2.0 * Math.PI);
-                currentSystem.putEntityInSystem(tmp);
-                System.out.println("Replaced asteroid used by dead asteroid mine " + getName());
-            }
-        }
-        //kill any docked ships
-        for (int a = 0; a < docks.size(); a++) {
-            if (docks.get(a).getClient() != null) {
-                if (docks.get(a).getClient().isDocked()) {
-                    docks.get(a).getClient().setState(State.DYING);
-                } else {
-                    //don't kill things that are en-route
+                     * For those who don't know, the X3R problem was a somewhat frustrating bug in X3R where
+                     * the destruction of an asteroid mine would permanently remove the asteroid. It would
+                     * never respawn. This meant universal conquests would end up removing vital resources
+                     * from the game that were irreplacable.
+                     */
+                    Asteroid tmp = new Asteroid("Asteroid");
+                    tmp.setX(x);
+                    tmp.setY(y);
+                    tmp.setTheta(rnd.nextFloat() * 2.0 * Math.PI);
+                    currentSystem.putEntityInSystem(tmp);
+                    System.out.println("Replaced asteroid used by dead asteroid mine " + getName());
                 }
             }
+            //kill any docked ships
+            for (int a = 0; a < docks.size(); a++) {
+                if (docks.get(a).getClient() != null) {
+                    if (docks.get(a).getClient().isDocked()) {
+                        docks.get(a).getClient().setState(State.DYING);
+                    } else {
+                        //don't kill things that are en-route
+                    }
+                }
+            }
+        } else {
+            //bring it back
+            state = State.ALIVE;
+            shield = maxShield;
+            hull = maxHull;
+            System.out.println(getName()+" was killed but was brought back because it is immortal.");
         }
     }
 
@@ -664,5 +673,18 @@ public class Station extends Ship {
 
     public void setNeedAsteroid(boolean needAsteroid) {
         this.needAsteroid = needAsteroid;
+    }
+
+    public boolean isImmortal() {
+        return immortal;
+    }
+    
+    public void setImmortal(boolean immortal) {
+        this.immortal = immortal;
+    }
+
+    public void makeMortal() {
+        immortal = false;
+        System.out.println(getName()+" is now mortal.");
     }
 }

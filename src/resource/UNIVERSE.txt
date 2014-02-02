@@ -11121,6 +11121,7 @@ ship=Ageiran Shipyard
 x=-5439.0
 y=11587.0
 faction=Ageiran Federation
+immortal=true
 [/Station]
 
 

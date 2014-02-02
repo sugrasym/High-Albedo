@@ -69,14 +69,14 @@ public class SolarSystem implements Entity, Serializable {
     private final Universe universe;
     //for making cleanup more efficient
     private boolean hasGraphics = false;
-
+    
     public SolarSystem(Universe universe, String name, Parser parse) {
         this.name = name; //needed for lookup
         this.universe = universe;
         //generate
         generateSystem(parse);
     }
-
+    
     private void generateSystem(Parser parse) {
         /*
          * Adds all member objects. Member objects are any object that is
@@ -117,7 +117,7 @@ public class SolarSystem implements Entity, Serializable {
                 putEntityInSystem(makeShip(ships.get(a)));
             }
         }
-
+        
         ArrayList<Term> stations = parse.getTermsOfType("Station");
         for (int a = 0; a < stations.size(); a++) {
             if (stations.get(a).getValue("system").matches(getName())) {
@@ -125,7 +125,7 @@ public class SolarSystem implements Entity, Serializable {
                 putEntityInSystem(makeStation(stations.get(a)));
             }
         }
-
+        
         ArrayList<Term> jumpholes = parse.getTermsOfType("Jumphole");
         for (int a = 0; a < jumpholes.size(); a++) {
             if (jumpholes.get(a).getValue("system").matches(getName())) {
@@ -134,7 +134,7 @@ public class SolarSystem implements Entity, Serializable {
             }
         }
     }
-
+    
     private Star makeStar(Term starTerm) {
         Star star = null;
         {
@@ -164,7 +164,7 @@ public class SolarSystem implements Entity, Serializable {
         }
         return star;
     }
-
+    
     private Asteroid makeAsteroid(Term asteroidTerm) {
         Asteroid asteroid = null;
         {
@@ -181,7 +181,7 @@ public class SolarSystem implements Entity, Serializable {
         }
         return asteroid;
     }
-
+    
     private Planet makePlanet(Term planetTerm) {
         Planet planet = null;
         {
@@ -211,7 +211,7 @@ public class SolarSystem implements Entity, Serializable {
         }
         return planet;
     }
-
+    
     private Ship makeShip(Term shipTerm) {
         Ship ret = null;
         Random rnd = new Random();
@@ -276,7 +276,7 @@ public class SolarSystem implements Entity, Serializable {
         }
         return ret;
     }
-
+    
     private Station makeStation(Term shipTerm) {
         Station ret = null;
         Random rnd = new Random();
@@ -285,6 +285,7 @@ public class SolarSystem implements Entity, Serializable {
             String near = shipTerm.getValue("near");
             String name = shipTerm.getValue("name");
             String faction = shipTerm.getValue("faction");
+            String immortal = shipTerm.getValue("immortal");
             //create player
             ret = new Station(name, ship);
             ret.setFaction(faction);
@@ -312,11 +313,15 @@ public class SolarSystem implements Entity, Serializable {
                     ret.setY(rnd.nextInt(100000) - 50000);
                 }
             }
+            if (immortal != null) {
+                ret.setImmortal(Boolean.parseBoolean(immortal));
+                System.out.println("Warning: "+ret.getName()+" is immortal! It is probably a plot object, call makeMortal() asap!");
+            }
             ret.setCurrentSystem(this);
         }
         return ret;
     }
-
+    
     private Jumphole makeJumphole(Term planetTerm) {
         Jumphole ret = null;
         {
@@ -333,15 +338,15 @@ public class SolarSystem implements Entity, Serializable {
         }
         return ret;
     }
-
+    
     public ArrayList<Entity> getEntities() {
         return entities;
     }
-
+    
     public void setEntities(ArrayList<Entity> celestials) {
         this.entities = celestials;
     }
-
+    
     public void putEntityInSystem(Entity entity) {
         entities.add(entity);
         if (entity instanceof Asteroid) {
@@ -378,7 +383,7 @@ public class SolarSystem implements Entity, Serializable {
             celestialList.add(entity);
         }
     }
-
+    
     public void pullEntityFromSystem(Entity entity) {
         entities.remove(entity);
         stationList.remove(entity);
@@ -389,14 +394,14 @@ public class SolarSystem implements Entity, Serializable {
         //remove from global list
         universe.getPlayerProperty().remove(entity);
     }
-
+    
     @Override
     public void init(boolean loadedGame) {
         for (int a = 0; a < entities.size(); a++) {
             entities.get(a).init(loadedGame);
         }
     }
-
+    
     public void initGraphics() {
         for (int a = 0; a < entities.size(); a++) {
             if (entities.get(a) instanceof Celestial) {
@@ -407,7 +412,7 @@ public class SolarSystem implements Entity, Serializable {
         //mark system as having graphics
         hasGraphics = true;
     }
-
+    
     public void disposeGraphics() {
         for (int a = 0; a < entities.size(); a++) {
             if (entities.get(a) instanceof Celestial) {
@@ -418,138 +423,138 @@ public class SolarSystem implements Entity, Serializable {
         //mark system as not having graphics
         hasGraphics = false;
     }
-
+    
     @Override
     public void periodicUpdate(double tpf) {
         updateEntities(tpf);
         updateSov();
     }
-
+    
     @Override
     public void render(Graphics f, double dx, double dy) {
         //please never call this, talk to the entities directly.
     }
-
+    
     @Override
     public State getState() {
         return State.ALIVE;
     }
-
+    
     @Override
     public ArrayList<Rectangle> getBounds() {
         return new ArrayList<>();
     }
-
+    
     @Override
     public boolean collideWith(Entity target) {
         return false;
     }
-
+    
     @Override
     public boolean collideWith(Rectangle target) {
         return false;
     }
-
+    
     @Override
     public double getX() {
         return x;
     }
-
+    
     @Override
     public double getY() {
         return y;
     }
-
+    
     @Override
     public void setX(double x) {
         this.x = (int) x;
     }
-
+    
     @Override
     public void setY(double y) {
         this.y = (int) y;
     }
-
+    
     @Override
     public String getName() {
         return name;
     }
-
+    
     @Override
     public void setName(String name) {
         this.name = name;
     }
-
+    
     @Override
     public void informOfCollisionWith(Entity target) {
         //?!
     }
-
+    
     public ArrayList<Entity> getCelestialList() {
         return celestialList;
     }
-
+    
     public ArrayList<Entity> getStationList() {
         return stationList;
     }
-
+    
     public ArrayList<Entity> getShipList() {
         return shipList;
     }
-
+    
     public String getBack() {
         return back;
     }
-
+    
     public void setBack(String back) {
         this.back = back;
     }
-
+    
     public ArrayList<Entity> getJumpholeList() {
         return jumpholeList;
     }
-
+    
     public void setJumpholeList(ArrayList<Entity> jumpholeList) {
         this.jumpholeList = jumpholeList;
     }
-
+    
     public Universe getUniverse() {
         return universe;
     }
-
+    
     public String getOwner() {
         return owner;
     }
-
+    
     public void setOwner(String owner) {
         this.owner = owner;
     }
-
+    
     public String getAmbientMusic() {
         return ambientMusic;
     }
-
+    
     public void setAmbientMusic(String ambientMusic) {
         this.ambientMusic = ambientMusic;
     }
-
+    
     public String getDangerMusic() {
         return dangerMusic;
     }
-
+    
     public void setDangerMusic(String dangerMusic) {
         this.dangerMusic = dangerMusic;
     }
-
+    
     @Override
     public String toString() {
         return name + ", " + owner;
     }
-
+    
     public ArrayList<Entity> getAsteroidList() {
         return asteroidList;
     }
-
+    
     private void updateEntities(double tpf) {
         for (int a = 0; a < entities.size(); a++) {
             entities.get(a).periodicUpdate(tpf);
@@ -622,7 +627,7 @@ public class SolarSystem implements Entity, Serializable {
             hasGraphics = true;
         }
     }
-
+    
     private void updateSov() {
         if (owner.matches("Player")) {
             //count player's stations
@@ -659,7 +664,7 @@ public class SolarSystem implements Entity, Serializable {
             //do nothing
         }
     }
-
+    
     private void discover() {
         //add to discovered list if needed
         if (universe.getDiscoveredSpace().contains(this)) {

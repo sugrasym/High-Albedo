@@ -251,7 +251,10 @@ public class Mission implements Serializable {
                 for (int v = 0; v < lStat.size(); v++) {
                     Ship test = (Ship) lStat.get(v);
                     if (test.getFaction().matches(pick) && test.getState() == State.ALIVE) {
-                        options.add(lStat.get(v));
+                        Station tmp = (Station) test;
+                        if (!tmp.isImmortal()) {
+                            options.add(lStat.get(v));
+                        }
                     }
                 }
             }

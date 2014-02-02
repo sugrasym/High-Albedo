@@ -19,6 +19,8 @@
  */
 package universe;
 
+import celestial.Ship.Ship;
+import celestial.Ship.Station;
 import java.io.Serializable;
 import java.util.ArrayList;
 import lib.Parser;
@@ -54,7 +56,7 @@ public class Campaign implements Serializable {
     private Term findNode(String name) {
         ArrayList<Term> nodes = script.getTermsOfType("Node");
         for (int a = 0; a < nodes.size(); a++) {
-            if (nodes.get(a).getValue("name").matches(name)) {
+            if (nodes.get(a).getValue("name").equals(name)) {
                 return nodes.get(a);
             }
         }
@@ -69,9 +71,9 @@ public class Campaign implements Serializable {
         if (node != null) {
             //check to see if we can advance
             String advance = node.getValue("advance");
-            if (advance.matches("none")) {
+            if (advance.equals("none")) {
                 next();
-            } else if (advance.matches("END")) {
+            } else if (advance.equals("END")) {
                 //this is the end of the campaign
                 node = null;
                 messagePlayer("Campaign Complete", "Congratulations! You've finished '" + name + "'");
@@ -82,15 +84,27 @@ public class Campaign implements Serializable {
                 String[] split = advance.split("::");
                 //condition::parameter
                 if (split.length == 2) {
-                    String condition = split[0];
-                    String parameter = split[1];
-                    if (condition.matches("ENTERSYSTEM")) {
+                    String condition = split[0].trim();
+                    String parameter = split[1].trim();
+                    if (condition.equals("ENTERSYSTEM")) {
                         //triggered when the player is in a certain system
-                        if (universe.getPlayerShip().getCurrentSystem().getName().matches(parameter)) {
+                        if (universe.getPlayerShip().getCurrentSystem().getName().equals(parameter)) {
                             //trigger reached
                             next();
                         } else {
                             //not yet
+                        }
+                    } else if (condition.equals("DOCK")) {
+                        //triggered when a player docks at a certain station
+                        Ship player = universe.getPlayerShip();
+                        if (player.isDocked()) {
+                            Station host = player.getPort().getParent();
+                            if (host.getName().equals(parameter)) {
+                                //trigger reached
+                                next();
+                            } else {
+                                //not yet
+                            }
                         }
                     }
                 }
@@ -121,6 +135,33 @@ public class Campaign implements Serializable {
             }
             //send
             messagePlayer(chapter, main);
+            //call any functions this node has
+            int a = 0;
+            String function = null;
+            while ((function = node.getValue("call" + a)) != null) {
+                System.out.println("Calling "+function);
+                //call this function
+                String[] arr = function.split("::");
+                if (arr.length == 2) {
+                    //object::method
+                    String object = arr[0].trim();
+                    String method = arr[1].trim();
+                    if (object.equals("CURRENT_STATION")) {
+                        //modify the current station the player is at
+                        Station station = universe.getPlayerShip().getPort().getParent();
+                        if (station != null && universe.getPlayerShip().isDocked()) {
+                            if (method.equals("makeMortal()")) {
+                                //make this station mortal
+                                station.makeMortal();
+                            }
+                        } else {
+                            //do nothing
+                        }
+                    }
+                }
+                //increment
+                a++;
+            }
         } else {
             messagePlayer("Error", "Unexpected end of story.");
         }

@@ -21,4 +21,15 @@ chapter=Docking
 objective=Dock at 'Ageiran Shipyard 1'
 body=Ok hotshot, so you've got the intelligence of a cow. Lets see if you can make it to dolphin. Open your property window again and dock with 'Ageiran Shipyard 1'.
 advance=DOCK::Ageiran Shipyard 1
+next=Station Defense
+[/Node]
+
+[Node]
+name=Station Defense
+chapter=Pirates!
+objective=Defend Ageiran Shipyard 1
+body=Pirates! Press D to undock and go defend the station!
+call0=CURRENT_STATION::makeMortal()
+#TODO: SPAWN PIRATES
+advance=TODO WHEN PIRATES ARE DEAD
 [/Node]
