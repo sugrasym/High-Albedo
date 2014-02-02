@@ -96,6 +96,7 @@ public class Engine {
     private final int viewY; //height of frame
     private double sX;
     private double sY;
+    private boolean windowed; //whether or not the application is windowed
     //game entities
     ArrayList<Entity> entities;
     private Universe universe;
@@ -132,13 +133,14 @@ public class Engine {
     //io
     AstralIO io = new AstralIO();
 
-    public Engine(BufferStrategy bf, int uiX, int uiY, int viewX, int viewY) {
+    public Engine(BufferStrategy bf, int uiX, int uiY, int viewX, int viewY, boolean fullScreen) {
         //store graphics
         this.uiX = uiX;
         this.uiY = uiY;
         this.bf = bf;
         this.viewX = viewX;
         this.viewY = viewY;
+        this.windowed = !fullScreen;
         //initialize entities
         entities = new ArrayList<>();
         //create components
@@ -493,8 +495,13 @@ public class Engine {
                 propertyWindow.setX((viewX / 2) - propertyWindow.getWidth() / 2);
                 propertyWindow.setY((viewY / 2) - propertyWindow.getHeight() / 2);
                 //position comm window
-                commWindow.setX(20);
-                commWindow.setY(20);
+                if (windowed) {
+                    commWindow.setX(20);
+                    commWindow.setY(60);
+                } else {
+                    commWindow.setX(20);
+                    commWindow.setY(20);
+                }
             } else if (state == State.MENU) {
                 //position home window
                 homeWindow.setX((viewX / 2) - homeWindow.getWidth() / 2);

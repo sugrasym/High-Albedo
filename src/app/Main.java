@@ -36,7 +36,7 @@ import lib.AstralIO;
  */
 public class Main extends JFrame {
     //window size information
-
+    private boolean fullScreen;
     private int uiX = 0;
     private int uiY = 0;
     private int viewX = 0;
@@ -52,10 +52,11 @@ public class Main extends JFrame {
     }
 
     public void execute(boolean fullScreen, int wx, int wy) {
+        this.fullScreen = fullScreen;
         //create
         if (safe) {
             //initialize display
-            windowInit(fullScreen, wx, wy);
+            windowInit(wx, wy);
             //initialize engine
             engineInit();
             //add listeners
@@ -72,7 +73,7 @@ public class Main extends JFrame {
     /*
      * Initialize the window
      */
-    public final void windowInit(boolean fullScreen, int wx, int wy) {
+    public final void windowInit(int wx, int wy) {
         setVisible(false);
         //set properties
         System.setProperty("sun.java2d.transaccel", "True");
@@ -130,7 +131,7 @@ public class Main extends JFrame {
         while (bf == null) {
             bf = getBufferStrategy();
         }
-        engine = new Engine(bf, uiX, uiY, viewX, viewY);
+        engine = new Engine(bf, uiX, uiY, viewX, viewY, fullScreen);
     }
 
     /*
