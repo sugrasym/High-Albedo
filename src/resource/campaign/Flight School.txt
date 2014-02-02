@@ -1,0 +1,15 @@
+#entry point for the campaign
+
+[Node]
+name=CAMPAIGN_START
+advance=none
+next=Native Land
+[/Node]
+
+[Node]
+name=Native Land
+chapter=Jumphole Navigation
+objective=Fly to 'Native Land'
+body=Let's see if you can go to another system. Open up your property window with P and order your ship to fly to the 'Native Land Jumphole'.
+advance=ENTERSYSTEM::Native Land
+[/Node]

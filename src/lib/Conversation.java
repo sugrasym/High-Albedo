@@ -144,7 +144,7 @@ public class Conversation implements Serializable {
                 String[] split = choice.getStr().get(1).split("::");
                 if (split.length > 1) {
                     if (split[0].matches("START_CAMPAIGN")) {
-                        tmpCampaign = new Campaign(split[1]);
+                        tmpCampaign = new Campaign(owner.getUniverse(),split[1]);
                         owner.getUniverse().getPlayerCampaigns().add(tmpCampaign);
                     }
                 } else {

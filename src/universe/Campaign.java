@@ -20,23 +20,89 @@
 package universe;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import lib.Parser;
+import lib.Parser.Term;
 
 /**
  *
  * @author nwiehoff
  */
 public class Campaign implements Serializable {
+
     private String name;
-    
-    public Campaign(String name) {
+    private Parser script;
+    private Term node;
+    //universe
+    private Universe universe;
+
+    public Campaign(Universe universe, String name) {
+        this.universe = universe;
         this.name = name;
-        System.out.println("Starting campaign: "+name);
+        System.out.println("Starting campaign: " + name);
+        //load campaign script
+        script = new Parser("campaign/" + name + ".txt");
+        //locate the start of the campaign
+        node = findNode("CAMPAIGN_START");
+        if (node != null) {
+            //campaign started
+        } else {
+            messagePlayer("Error", "This campaign does not exist!");
+        }
     }
-    
+
+    private Term findNode(String name) {
+        ArrayList<Term> nodes = script.getTermsOfType("Node");
+        for (int a = 0; a < nodes.size(); a++) {
+            if (nodes.get(a).getValue("name").matches(name)) {
+                return nodes.get(a);
+            }
+        }
+        return null;
+    }
+
+    private void messagePlayer(String name, String body) {
+        universe.playerShip.composeMessage(universe.playerShip, name, body, null);
+    }
+
     public void periodicUpdate(double tpf) {
-        //TODO
+        if (node != null) {
+            //check to see if we can advance
+            String advance = node.getValue("advance");
+            if (advance.matches("none")) {
+                //automatically advance to next node
+                String next = node.getValue("next");
+                advance(next);
+            } else if (advance.matches("END")) {
+                //this is the end of the campaign
+                node = null;
+                messagePlayer("Campaign Complete", "Congratulations! You've finished '" + name + "'");
+            }
+        }
     }
-    
+
+    private void advance(String next) {
+        Term tmp = findNode(next);
+        if (tmp != null) {
+            node = tmp;
+            //display the chapter message
+            String chapter = node.getValue("chapter");
+            String objective = node.getValue("objective");
+            String body = node.getValue("body");
+            //compose
+            String main = chapter + " /br/ /br/ ";
+            if (body != null) {
+                main += objective + " /br/ /br/ " + body;
+            } else {
+                main += objective;
+            }
+            //send
+            messagePlayer(chapter, main);
+        } else {
+            messagePlayer("Error", "Unexpected end of story.");
+        }
+    }
+
     public String getName() {
         return name;
     }
