@@ -33,4 +33,22 @@ call0=CURRENT_STATION::makeMortal()
 call1=SPAWNSHIP::PirateAmbush::The Archers,Native Land,-4439.0,11587.0,Pirate Raider,Archer Pirate,PATROL
 call2=SPAWNSHIP::PirateAmbush::The Archers,Native Land,-4439.0,11700.0,Pirate Raider,Archer Pirate,PATROL
 advance=NONEALIVE::PirateAmbush
+next=Friendly Face
+[/Node]
+
+[Node]
+name=Friendly Face
+chapter=Run Away
+objective=Fly to 'Friendly Face'
+body=Ok, that was a little more dangerous than expected. Lets get out of here!
+advance=ENTERSYSTEM::Friendly Face
+next=CAMPAIGN_END
+[/Node]
+
+[Node]
+name=CAMPAIGN_END
+chapter=Good Enough
+objective=Fly Safe.
+body=Yeah, you're good enough. Fly safe!
+advance=END
 [/Node]

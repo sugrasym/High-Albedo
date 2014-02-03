@@ -115,6 +115,38 @@ public class Campaign implements Serializable {
                                 //not yet
                             }
                         }
+                    } else if (condition.equals("NONEALIVE")) {
+                        //triggered when no ship/station of a certain group is left alive
+                        String group = parameter;
+                        boolean foundOne = false;
+                        //iterate through all entities to check groups
+                        for (int a = 0; a < universe.getSystems().size(); a++) {
+                            if (!foundOne) {
+                                ArrayList<Entity> ships = universe.getSystems().get(a).getShipList();
+                                ArrayList<Entity> stations = universe.getSystems().get(a).getStationList();
+                                for (int b = 0; b < ships.size(); b++) {
+                                    Ship tmp = (Ship) ships.get(b);
+                                    if (tmp.getGroup().equals(group)) {
+                                        foundOne = true;
+                                        break;
+                                    }
+                                }
+                                for (int b = 0; b < stations.size(); b++) {
+                                    Ship tmp = (Ship) stations.get(b);
+                                    if (tmp.getGroup().equals(group)) {
+                                        foundOne = true;
+                                        break;
+                                    }
+                                }
+                            } else {
+                                //no point
+                            }
+                        }
+                        //check to see if we found one
+                        if (!foundOne) {
+                            //trigger reached
+                            next();
+                        }
                     }
                 }
             }
@@ -155,8 +187,7 @@ public class Campaign implements Serializable {
                     do2FieldFunction(arr);
                 } else if (arr.length == 3) {
                     do3FieldFunction(arr);
-                }
-                else if (arr.length == 4) {
+                } else if (arr.length == 4) {
                     do4FieldFunction(arr);
                 }
                 //increment
@@ -190,7 +221,7 @@ public class Campaign implements Serializable {
         String action = arr[0].trim();
         String param1 = arr[1].trim();
         String param2 = arr[2].trim();
-        if(action.matches("SPAWNSHIP")) {
+        if (action.matches("SPAWNSHIP")) {
             //the group name
             String group = param1;
             //split param2 into details
@@ -218,21 +249,21 @@ public class Campaign implements Serializable {
             Faction myFaction = new Faction(faction);
             //setup behavior
             Behavior behavior = Behavior.NONE;
-            if(behave.equals("PATROL")) {
+            if (behave.equals("PATROL")) {
                 behavior = Behavior.PATROL;
-            } else if(behave.equals("SECTOR_TRADE")) {
+            } else if (behave.equals("SECTOR_TRADE")) {
                 behavior = Behavior.SECTOR_TRADE;
-            } else if(behave.equals("UNIVERSE_TRADE")) {
+            } else if (behave.equals("UNIVERSE_TRADE")) {
                 behavior = Behavior.UNIVERSE_TRADE;
-            } else if(behave.equals("TEST")) {
+            } else if (behave.equals("TEST")) {
                 behavior = Behavior.TEST;
             }
             //spawn ship
             //spawnShip(Faction faction, SolarSystem system, Point2D.Double loc, String loadout, String name, Behavior behavior)
-            universe.getGod().spawnShip(myFaction, system, new Point2D.Double(x,y), load, name, behavior,group);
+            universe.getGod().spawnShip(myFaction, system, new Point2D.Double(x, y), load, name, behavior, group);
         }
     }
-    
+
     private void do4FieldFunction(String[] arr) {
         //type::system::entity::method
         String type = arr[0];
