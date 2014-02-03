@@ -89,11 +89,15 @@ public class Campaign implements Serializable {
             messagePlayer("Campaign Complete", "Congratulations! You've finished '" + name + "'");
             //stop campaign by removing reference
             universe.getPlayerCampaigns().remove(this);
+            //store campaign in the completed campaigns list
+            universe.getCompletedCampaigns().add(this);
         } else if (advance.equals("SILENT_END")) {
             //this is the end of the campaign, but doesn't say anything
             node = null;
             //stop campaign by removing reference
             universe.getPlayerCampaigns().remove(this);
+            //store campaign in the completed campaigns list
+            universe.getCompletedCampaigns().add(this);
         } else {
             //these are the more complex ones which have parameters
             String[] split = advance.split("::");
