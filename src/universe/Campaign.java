@@ -20,10 +20,13 @@
 package universe;
 
 import celestial.Ship.Ship;
+import celestial.Ship.Ship.Behavior;
 import celestial.Ship.Station;
 import engine.Entity;
+import java.awt.geom.Point2D;
 import java.io.Serializable;
 import java.util.ArrayList;
+import lib.Faction;
 import lib.Parser;
 import lib.Parser.Term;
 
@@ -150,7 +153,10 @@ public class Campaign implements Serializable {
                 String[] arr = function.split("::");
                 if (arr.length == 2) {
                     do2FieldFunction(arr);
-                } else if (arr.length == 4) {
+                } else if (arr.length == 3) {
+                    do3FieldFunction(arr);
+                }
+                else if (arr.length == 4) {
                     do4FieldFunction(arr);
                 }
                 //increment
@@ -179,6 +185,54 @@ public class Campaign implements Serializable {
         }
     }
 
+    private void do3FieldFunction(String[] arr) {
+        //action::param1::details
+        String action = arr[0].trim();
+        String param1 = arr[1].trim();
+        String param2 = arr[2].trim();
+        if(action.matches("SPAWNSHIP")) {
+            //the group name
+            String group = param1;
+            //split param2 into details
+            //The Archers,Native Land,-5439.0,11587.0,Pirate Raider,Archer Pirate,BEHAVIOR_PATROL
+            String[] split = param2.split(",");
+            String faction = split[0];
+            String sys = split[1];
+            String sx = split[2];
+            String sy = split[3];
+            String load = split[4];
+            String name = split[5];
+            String behave = split[6];
+            //find the correct system
+            SolarSystem system = null;
+            for (int x = 0; x < universe.getSystems().size(); x++) {
+                if (universe.getSystems().get(x).getName().equals(sys)) {
+                    system = universe.getSystems().get(x);
+                    break;
+                }
+            }
+            //generate coordinates
+            double x = Double.parseDouble(sx);
+            double y = Double.parseDouble(sy);
+            //setup faction
+            Faction myFaction = new Faction(faction);
+            //setup behavior
+            Behavior behavior = Behavior.NONE;
+            if(behave.equals("PATROL")) {
+                behavior = Behavior.PATROL;
+            } else if(behave.equals("SECTOR_TRADE")) {
+                behavior = Behavior.SECTOR_TRADE;
+            } else if(behave.equals("UNIVERSE_TRADE")) {
+                behavior = Behavior.UNIVERSE_TRADE;
+            } else if(behave.equals("TEST")) {
+                behavior = Behavior.TEST;
+            }
+            //spawn ship
+            //spawnShip(Faction faction, SolarSystem system, Point2D.Double loc, String loadout, String name, Behavior behavior)
+            universe.getGod().spawnShip(myFaction, system, new Point2D.Double(x,y), load, name, behavior,group);
+        }
+    }
+    
     private void do4FieldFunction(String[] arr) {
         //type::system::entity::method
         String type = arr[0];

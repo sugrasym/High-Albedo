@@ -30,6 +30,7 @@ chapter=Pirates!
 objective=Defend Ageiran Shipyard 1
 body=Pirates! Press D to undock and go defend the station!
 call0=CURRENT_STATION::makeMortal()
-#TODO: SPAWN PIRATES
-advance=TODO WHEN PIRATES ARE DEAD
+call1=SPAWNSHIP::PirateAmbush::The Archers,Native Land,-4439.0,11587.0,Pirate Raider,Archer Pirate,PATROL
+call2=SPAWNSHIP::PirateAmbush::The Archers,Native Land,-4439.0,11700.0,Pirate Raider,Archer Pirate,PATROL
+advance=NONEALIVE::PirateAmbush
 [/Node]

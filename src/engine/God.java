@@ -660,6 +660,22 @@ public class God implements EngineElement {
         //report
         //System.out.println("Spawned " + loadout.getString() + " in " + system.getName() + " for " + faction.getName());
     }
+    
+    public void spawnShip(Faction faction, SolarSystem system, Point2D.Double loc, String loadout, String name, Behavior behavior, String group) {
+        //get a basic ship to work with
+        Ship tmp = makeShip(loadout, name, faction.getName());
+        //push coordinates
+        tmp.setX(loc.getX());
+        tmp.setY(loc.getY());
+        //push behavior
+        tmp.setBehavior(behavior);
+        //finalize
+        tmp.setCurrentSystem(system);
+        tmp.setGroup(group);
+        system.putEntityInSystem(tmp);
+        //report
+        //System.out.println("Spawned " + loadout.getString() + " in " + system.getName() + " for " + faction.getName());
+    }
 
     public void spawnStation(Faction faction, SolarSystem system, Point2D.Double loc, Binling loadout) {
         String name = loadout.getString() + " " + randomIDTag(5, basicSample);

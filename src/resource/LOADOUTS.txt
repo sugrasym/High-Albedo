@@ -515,3 +515,14 @@ name=Nightmare
 install=Howler/Howler/Howler/Howler/Howler/Howler
 cargo=Exotic Matter~1
 [/Loadout]
+
+########Flight School Campaign
+
+[Loadout]
+ship=Sparrow
+name=Pirate Raider
+install=PNBC/PNBC
+cargo=Astronaut~1/Consumer Goods~2/Salvage Software~1
+minCourage=0.87
+maxCourage=1.00
+[/Loadout]

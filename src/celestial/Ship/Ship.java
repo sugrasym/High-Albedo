@@ -126,6 +126,8 @@ public class Ship extends Celestial {
     //faction
     protected Faction myFaction;
     protected String faction;
+    //group
+    protected String group = "NONE";
     //timing and waiting
     private double waitTimer = 0;
     private double waitTimerLength = 0;
@@ -4184,6 +4186,14 @@ public class Ship extends Celestial {
         } else {
             //cannot be claimed
         }
+    }
+    
+    public String getGroup() {
+        return group;
+    }
+    
+    public void setGroup(String group) {
+        this.group = group;
     }
 
 }
