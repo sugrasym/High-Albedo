@@ -73,24 +73,101 @@ public class Campaign implements Serializable {
 
     public void periodicUpdate(double tpf) {
         if (node != null) {
-            //check to see if we can advance
-            String advance = node.getValue("advance");
-            if (advance.equals("none")) {
-                next();
-            } else if (advance.equals("END")) {
-                //this is the end of the campaign
-                node = null;
-                messagePlayer("Campaign Complete", "Congratulations! You've finished '" + name + "'");
-                //stop campaign by removing reference
-                universe.getPlayerCampaigns().remove(this);
-            } else if (advance.equals("SILENT_END")) {
-                //this is the end of the campaign, but doesn't say anything
-                node = null;
-                //stop campaign by removing reference
-                universe.getPlayerCampaigns().remove(this);
+            checkAdvance();
+            checkFailure();
+        }
+    }
+
+    private void checkAdvance() {
+        //check to see if we can advance
+        String advance = node.getValue("advance");
+        if (advance.equals("none")) {
+            next();
+        } else if (advance.equals("END")) {
+            //this is the end of the campaign
+            node = null;
+            messagePlayer("Campaign Complete", "Congratulations! You've finished '" + name + "'");
+            //stop campaign by removing reference
+            universe.getPlayerCampaigns().remove(this);
+        } else if (advance.equals("SILENT_END")) {
+            //this is the end of the campaign, but doesn't say anything
+            node = null;
+            //stop campaign by removing reference
+            universe.getPlayerCampaigns().remove(this);
+        } else {
+            //these are the more complex ones which have parameters
+            String[] split = advance.split("::");
+            //condition::parameter
+            if (split.length == 2) {
+                String condition = split[0].trim();
+                String parameter = split[1].trim();
+                if (condition.equals("ENTERSYSTEM")) {
+                    //triggered when the player is in a certain system
+                    if (universe.getPlayerShip().getCurrentSystem().getName().equals(parameter)) {
+                        //trigger reached
+                        next();
+                    } else {
+                        //not yet
+                    }
+                } else if (condition.equals("DOCK")) {
+                    //triggered when a player docks at a certain station
+                    Ship player = universe.getPlayerShip();
+                    if (player.isDocked()) {
+                        Station host = player.getPort().getParent();
+                        if (host.getName().equals(parameter)) {
+                            //trigger reached
+                            next();
+                        } else {
+                            //not yet
+                        }
+                    }
+                } else if (condition.equals("NONEALIVE")) {
+                    //triggered when no ship/station of a certain group is left alive
+                    String group = parameter;
+                    boolean foundOne = false;
+                    //iterate through all entities to check groups
+                    for (int a = 0; a < universe.getSystems().size(); a++) {
+                        if (!foundOne) {
+                            ArrayList<Entity> ships = universe.getSystems().get(a).getShipList();
+                            ArrayList<Entity> stations = universe.getSystems().get(a).getStationList();
+                            for (int b = 0; b < ships.size(); b++) {
+                                Ship tmp = (Ship) ships.get(b);
+                                if (tmp.getGroup().equals(group)) {
+                                    foundOne = true;
+                                    break;
+                                }
+                            }
+                            for (int b = 0; b < stations.size(); b++) {
+                                Ship tmp = (Ship) stations.get(b);
+                                if (tmp.getGroup().equals(group)) {
+                                    foundOne = true;
+                                    break;
+                                }
+                            }
+                        } else {
+                            //no point
+                        }
+                    }
+                    //check to see if we found one
+                    if (!foundOne) {
+                        //trigger reached
+                        next();
+                    }
+                }
+            }
+        }
+    }
+
+    private void checkFailure() {
+        //check to see if the mission has been failed
+        String failure = node.getValue("fail");
+        //not all nodes have failure conditions
+        if (failure != null) {
+            if (failure.equals("none")) {
+                //do nothing
             } else {
                 //these are the more complex ones which have parameters
-                String[] split = advance.split("::");
+                String[] split = failure.split("::");
                 //condition::parameter
                 if (split.length == 2) {
                     String condition = split[0].trim();
@@ -99,7 +176,7 @@ public class Campaign implements Serializable {
                         //triggered when the player is in a certain system
                         if (universe.getPlayerShip().getCurrentSystem().getName().equals(parameter)) {
                             //trigger reached
-                            next();
+                            fail();
                         } else {
                             //not yet
                         }
@@ -110,7 +187,7 @@ public class Campaign implements Serializable {
                             Station host = player.getPort().getParent();
                             if (host.getName().equals(parameter)) {
                                 //trigger reached
-                                next();
+                                fail();
                             } else {
                                 //not yet
                             }
@@ -145,7 +222,7 @@ public class Campaign implements Serializable {
                         //check to see if we found one
                         if (!foundOne) {
                             //trigger reached
-                            next();
+                            fail();
                         }
                     }
                 }
@@ -156,6 +233,12 @@ public class Campaign implements Serializable {
     private void next() {
         //automatically advance to next node
         String next = node.getValue("next");
+        advance(next);
+    }
+    
+    private void fail() {
+        //automatically advance to the failure node
+        String next = node.getValue("failure");
         advance(next);
     }
 

@@ -12,6 +12,8 @@ chapter=Jumphole Navigation
 objective=Fly to 'Native Land'
 body=Let's see if you can go to another system. Open up your property window with P and order your ship to fly to the 'Native Land Jumphole'.
 advance=ENTERSYSTEM::Native Land
+fail=ENTERSYSTEM::Cosmic Way
+failure=Wrong Hole
 next=Ageiran Shipyard
 [/Node]
 
@@ -51,4 +53,13 @@ chapter=Good Enough
 objective=Fly Safe.
 body=Yeah, you're good enough. Fly safe!
 advance=END
+[/Node]
+
+[Node]
+name=Wrong Hole
+chapter=Wrong Hole
+objective=Go back to The Highway and fly to Native Land
+body=Wrong way.
+advance=ENTERSYSTEM::Native Land
+next=Ageiran Shipyard
 [/Node]
