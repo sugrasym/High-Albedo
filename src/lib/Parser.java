@@ -119,7 +119,7 @@ public class Parser implements Serializable {
          */
         ArrayList<Term> tmp = new ArrayList<>();
         for (int a = 0; a < terms.size(); a++) {
-            if (terms.get(a).getName().matches(type)) {
+            if (terms.get(a).getName().equals(type)) {
                 tmp.add(terms.get(a));
             }
         }
@@ -163,7 +163,7 @@ public class Parser implements Serializable {
 
         public void setValue(String paramName, String value) {
             for (int a = 0; a < params.size(); a++) {
-                if (params.get(a).getName().matches(paramName)) {
+                if (params.get(a).getName().equals(paramName)) {
                     params.get(a).setValue(value);
                 }
             }
@@ -175,7 +175,7 @@ public class Parser implements Serializable {
         public String getValue(String paramName) {
             if (params != null && paramName != null) {
                 for (int a = 0; a < params.size(); a++) {
-                    if (params.get(a).getName().matches(paramName)) {
+                    if (params.get(a).getName().equals(paramName)) {
                         return params.get(a).getValue();
                     }
                 }

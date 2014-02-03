@@ -65,7 +65,7 @@ public class Faction implements Serializable {
         Parser tmp = Universe.getCache().getFactionCache();
         ArrayList<Term> comms = tmp.getTermsOfType("Comm");
         for (int a = 0; a < comms.size(); a++) {
-            if (comms.get(a).getValue("name").matches(name)) {
+            if (comms.get(a).getValue("name").equals(name)) {
                 /*
                  * Initialize contraband notifications
                  */
@@ -146,7 +146,7 @@ public class Faction implements Serializable {
         Parser tmp = Universe.getCache().getFactionCache();
         ArrayList<Term> factions = tmp.getTermsOfType("Faction");
         for (int a = 0; a < factions.size(); a++) {
-            if (factions.get(a).getValue("name").matches(name)) {
+            if (factions.get(a).getValue("name").equals(name)) {
                 Term tmp2 = factions.get(a);
                 {
                     ArrayList<Param> vals = tmp2.getParams();
@@ -192,7 +192,7 @@ public class Faction implements Serializable {
 
     public boolean isContraband(String item) {
         for (int a = 0; a < contraband.size(); a++) {
-            if (contraband.get(a).matches(item)) {
+            if (contraband.get(a).equals(item)) {
                 return true;
             }
         }
@@ -230,7 +230,7 @@ public class Faction implements Serializable {
                 //make sure they aren't neutral
                 if (tmpStanding != 0) {
                     //make sure it's not this faction
-                    if (!tmpName.matches(name) && !tmpName.matches(mod.getName())) {
+                    if (!tmpName.equals(name) && !tmpName.equals(mod.getName())) {
                         //make sure they aren't -10 or +10 to this faction
                         double lS = getStanding(tmpName);
                         if (lS > PERMA_RED && lS < PERMA_GREEN) {
@@ -274,7 +274,7 @@ public class Faction implements Serializable {
     }
 
     public void setStanding(String faction, double value) {
-        if (!faction.matches(name)) {
+        if (!faction.equals(name)) {
             if (value < PERMA_RED) {
                 value = PERMA_RED;
             } else if (value > PERMA_GREEN) {
@@ -283,7 +283,7 @@ public class Faction implements Serializable {
             if (standings != null) {
                 for (int a = 0; a < standings.size(); a++) {
                     Binling test = standings.get(a);
-                    if (test.getString().matches(faction)) {
+                    if (test.getString().equals(faction)) {
                         test.setDouble(value);
                     }
                 }

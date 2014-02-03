@@ -59,7 +59,7 @@ public class SuperFaction extends Faction {
             initSovHosts();
         }
         //check music
-        if (isEmpire() || name.matches("Neutral")) {
+        if (isEmpire() || name.equals("Neutral")) {
             initAmbientMusic();
             initDangerMusic();
         }
@@ -71,7 +71,7 @@ public class SuperFaction extends Faction {
         ArrayList<Term> terms = sParse.getTermsOfType("Stations");
         Term stat = null;
         for (int a = 0; a < terms.size(); a++) {
-            if (terms.get(a).getValue("name").matches(getName())) {
+            if (terms.get(a).getValue("name").equals(getName())) {
                 stat = terms.get(a);
             }
         }
@@ -98,7 +98,7 @@ public class SuperFaction extends Faction {
         ArrayList<Term> terms = sParse.getTermsOfType("Music");
         Term muse = null;
         for (int a = 0; a < terms.size(); a++) {
-            if (terms.get(a).getValue("name").matches(getName())) {
+            if (terms.get(a).getValue("name").equals(getName())) {
                 muse = terms.get(a);
             }
         }
@@ -123,7 +123,7 @@ public class SuperFaction extends Faction {
         ArrayList<Term> terms = sParse.getTermsOfType("Music");
         Term muse = null;
         for (int a = 0; a < terms.size(); a++) {
-            if (terms.get(a).getValue("name").matches(getName())) {
+            if (terms.get(a).getValue("name").equals(getName())) {
                 muse = terms.get(a);
             }
         }
@@ -149,7 +149,7 @@ public class SuperFaction extends Faction {
         ArrayList<Term> terms = sParse.getTermsOfType("Loadout");
         Term stat = null;
         for (int a = 0; a < terms.size(); a++) {
-            if (terms.get(a).getValue("name").matches(getName())) {
+            if (terms.get(a).getValue("name").equals(getName())) {
                 stat = terms.get(a);
             }
         }
@@ -210,7 +210,7 @@ public class SuperFaction extends Faction {
          */
         ArrayList<SolarSystem> systems = universe.getSystems();
         for (int a = 0; a < systems.size(); a++) {
-            if (systems.get(a).getOwner().matches(getName())) {
+            if (systems.get(a).getOwner().equals(getName())) {
                 sov.add(systems.get(a));
             }
         }
@@ -255,7 +255,7 @@ public class SuperFaction extends Faction {
 
     private boolean canSpawnIn(SolarSystem get) {
         for (int a = 0; a < getHosts().size(); a++) {
-            if (get.getOwner().matches(getHosts().get(a))) {
+            if (get.getOwner().equals(getHosts().get(a))) {
                 return true;
             }
         }

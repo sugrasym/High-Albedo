@@ -116,7 +116,7 @@ public class Conversation implements Serializable {
         //does this bindling have additional params?
         if (choice.getStr().size() > 1) {
             //is this a mission offer?
-            if (choice.getStr().get(1).matches("MISSION")) {
+            if (choice.getStr().get(1).equals("MISSION")) {
                 //generate a mission
                 tmpMission = new Mission(owner);
                 if (tmpMission.getBriefing() != null) {
@@ -126,12 +126,12 @@ public class Conversation implements Serializable {
                 } else {
                     currentNode = findNode("END");
                 }
-            } else if (choice.getStr().get(1).matches("START_MISSION")) {
+            } else if (choice.getStr().get(1).equals("START_MISSION")) {
                 //assign generated mission
                 if (tmpMission != null) {
                     owner.getUniverse().getPlayerMissions().add(tmpMission);
                 }
-            } else if (choice.getStr().get(1).matches("RUMOR")) {
+            } else if (choice.getStr().get(1).equals("RUMOR")) {
                 //get a rumor
                 if (owner.getMyFaction().getRumorList().size() > 0) {
                     String pick = owner.getMyFaction().getRumorList().get(rnd.nextInt(owner.getMyFaction().getRumorList().size()));
@@ -143,7 +143,7 @@ public class Conversation implements Serializable {
                 //these are the more complex options
                 String[] split = choice.getStr().get(1).split("::");
                 if (split.length > 1) {
-                    if (split[0].matches("START_CAMPAIGN")) {
+                    if (split[0].equals("START_CAMPAIGN")) {
                         tmpCampaign = new Campaign(owner.getUniverse(),split[1]);
                         owner.getUniverse().getPlayerCampaigns().add(tmpCampaign);
                     }
@@ -172,7 +172,7 @@ public class Conversation implements Serializable {
     }
 
     public boolean isDone() {
-        if (currentNode.getName().matches("END")) {
+        if (currentNode.getName().equals("END")) {
             return true;
         } else {
             return currentNode.getChoices().isEmpty();
@@ -181,7 +181,7 @@ public class Conversation implements Serializable {
 
     private AstralMessage findNode(String startNode) {
         for (int a = 0; a < nodes.size(); a++) {
-            if (nodes.get(a).getName().matches(startNode)) {
+            if (nodes.get(a).getName().equals(startNode)) {
                 return nodes.get(a);
             }
         }
