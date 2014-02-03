@@ -210,7 +210,7 @@ public class Ship extends Celestial {
         String last = "";
         {
             for (int a = 0; a < fg.size(); a++) {
-                if (fg.get(a).getValue("name").matches("Generic")) {
+                if (fg.get(a).getValue("name").equals("Generic")) {
                     Param pick = fg.get(a).getParams().get(rnd.nextInt(fg.get(a).getParams().size() - 1) + 1);
                     first = pick.getValue();
                     break;
@@ -218,7 +218,7 @@ public class Ship extends Celestial {
             }
 
             for (int a = 0; a < lg.size(); a++) {
-                if (lg.get(a).getValue("name").matches("Generic")) {
+                if (lg.get(a).getValue("name").equals("Generic")) {
                     Param pick = lg.get(a).getParams().get(rnd.nextInt(lg.get(a).getParams().size() - 1) + 1);
                     last = pick.getValue();
                     break;
@@ -303,7 +303,7 @@ public class Ship extends Celestial {
         Term relevant = null;
         for (int a = 0; a < terms.size(); a++) {
             String termName = terms.get(a).getValue("type");
-            if (termName.matches(getType())) {
+            if (termName.equals(getType())) {
                 //get the stats we want
                 relevant = terms.get(a);
                 //and end
@@ -402,9 +402,9 @@ public class Ship extends Celestial {
             state = State.DYING;
             System.out.println(getName() + " was destroyed in " + currentSystem.getName() + " by " + lastBlow.getName());
             //did the player destroy this ship?
-            if (lastBlow.getFaction().matches(PLAYER_FACTION)) {
+            if (lastBlow.getFaction().equals(PLAYER_FACTION)) {
                 //adjust the player's standings accordingly
-                if (!faction.matches("Neutral")) {
+                if (!faction.equals("Neutral")) {
                     getUniverse().getPlayerShip().getMyFaction().derivedModification(myFaction, -1.0);
                 }
             }
@@ -491,7 +491,7 @@ public class Ship extends Celestial {
                 }
             }
             //bail code
-            if (!faction.matches(PLAYER_FACTION)) {
+            if (!faction.equals(PLAYER_FACTION)) {
                 //player ships do not bail
                 checkBail();
             }
@@ -1235,7 +1235,7 @@ public class Ship extends Celestial {
                         ArrayList<String> sample = new ArrayList<>();
                         for (int a = 0; a < consumed.size(); a++) {
                             for (int b = 0; b < produced.size(); b++) {
-                                if (consumed.get(a).matches(produced.get(b))) {
+                                if (consumed.get(a).equals(produced.get(b))) {
                                     sample.add(consumed.get(a));
                                     break;
                                 }
@@ -1452,7 +1452,7 @@ public class Ship extends Celestial {
                         ArrayList<String> sample = new ArrayList<>();
                         for (int a = 0; a < consumed.size(); a++) {
                             for (int b = 0; b < produced.size(); b++) {
-                                if (consumed.get(a).matches(produced.get(b))) {
+                                if (consumed.get(a).equals(produced.get(b))) {
                                     sample.add(consumed.get(a));
                                     break;
                                 }
@@ -1504,7 +1504,7 @@ public class Ship extends Celestial {
                                 //start trading
                                 cmdDock(buyFromStation);
                             } else {
-                                if (faction.matches(PLAYER_FACTION)) {
+                                if (faction.equals(PLAYER_FACTION)) {
                                     dockAtFriendlyStationInSystem();
                                 } else {
                                     /*
@@ -1661,7 +1661,7 @@ public class Ship extends Celestial {
                             ArrayList<String> sample = new ArrayList<>();
                             for (int a = 0; a < consumed.size(); a++) {
                                 for (int b = 0; b < produced.size(); b++) {
-                                    if (consumed.get(a).matches(produced.get(b))) {
+                                    if (consumed.get(a).equals(produced.get(b))) {
                                         sample.add(consumed.get(a));
                                         break;
                                     }
@@ -1882,7 +1882,7 @@ public class Ship extends Celestial {
                             ArrayList<String> sample = new ArrayList<>();
                             for (int a = 0; a < consumed.size(); a++) {
                                 for (int b = 0; b < produced.size(); b++) {
-                                    if (consumed.get(a).matches(produced.get(b))) {
+                                    if (consumed.get(a).equals(produced.get(b))) {
                                         sample.add(consumed.get(a));
                                         break;
                                     }
@@ -1981,7 +1981,7 @@ public class Ship extends Celestial {
                             //how much does the homebase need?
                             int needQ = 0;
                             for (int v = 0; v < homeBase.getStationBuying().size(); v++) {
-                                if (homeBase.getStationBuying().get(v).getName().matches(workingWare.getName())) {
+                                if (homeBase.getStationBuying().get(v).getName().equals(workingWare.getName())) {
                                     int have = homeBase.getStationBuying().get(v).getQuantity();
                                     int store = homeBase.getStationBuying().get(v).getStore();
                                     needQ = store - have;
@@ -2514,7 +2514,7 @@ public class Ship extends Celestial {
          * Only used for detecting contraband being carried by the
          * player.
          */
-        if (ship.getFaction().matches(PLAYER_FACTION)) {
+        if (ship.getFaction().equals(PLAYER_FACTION)) {
             if (scanForContraband) {
                 ArrayList<Item> sc = ship.getCargoBay();
                 for (int a = 0; a < sc.size(); a++) {
@@ -2701,7 +2701,7 @@ public class Ship extends Celestial {
         }
         //see if it's being beaten on by the player
         if (shield / maxShield < PLAYER_AGGRO_SHIELD) {
-            if (!faction.matches(PLAYER_FACTION)) {
+            if (!faction.equals(PLAYER_FACTION)) {
                 if (lastBlow == getUniverse().getPlayerShip()) {
                     if (closest != null) {
                         double distClosest = distanceTo(closest);
@@ -3382,9 +3382,9 @@ public class Ship extends Celestial {
             String group = item.getGroup();
             for (int a = 0; a < cargoBay.size(); a++) {
                 Item tmp = cargoBay.get(a);
-                if (iname.matches(tmp.getName())) {
-                    if (itype.matches(tmp.getType())) {
-                        if (group.matches(tmp.getGroup())) {
+                if (iname.equals(tmp.getName())) {
+                    if (itype.equals(tmp.getType())) {
+                        if (group.equals(tmp.getGroup())) {
                             count += tmp.getQuantity();
                         }
                     }
@@ -3425,7 +3425,7 @@ public class Ship extends Celestial {
 
     public boolean hasInCargo(String item) {
         for (int a = 0; a < cargoBay.size(); a++) {
-            if (cargoBay.get(a).getName().matches(item)) {
+            if (cargoBay.get(a).getName().equals(item)) {
                 return true;
             }
         }
@@ -3434,7 +3434,7 @@ public class Ship extends Celestial {
 
     public boolean hasGroupInCargo(String group) {
         for (int a = 0; a < cargoBay.size(); a++) {
-            if (cargoBay.get(a).getGroup().matches(group)) {
+            if (cargoBay.get(a).getGroup().equals(group)) {
                 return true;
             }
         }
@@ -3477,8 +3477,8 @@ public class Ship extends Celestial {
                  */
                 if (getType() != null) {
                     try {
-                        if (test.getType().matches("cannon") || test.getType().matches("missile")
-                                || test.getType().matches("battery") || test.getType().matches("turret")) {
+                        if (test.getType().equals("cannon") || test.getType().equals("missile")
+                                || test.getType().equals("battery") || test.getType().equals("turret")) {
                             Weapon wep = new Weapon(arr[a]);
                             fit(wep);
                         }
@@ -3502,7 +3502,7 @@ public class Ship extends Celestial {
             if (equipment.getQuantity() == 1) {
                 if (hardpoints.get(a).isEmpty()) {
                     if (hardpoints.get(a).getSize() >= equipment.getVolume()) {
-                        if (hardpoints.get(a).getType().matches(equipment.getType())) {
+                        if (hardpoints.get(a).getType().equals(equipment.getType())) {
                             hardpoints.get(a).mount(equipment);
                             //is this a weapon?
                             Weapon wep = (Weapon) equipment;
@@ -3536,7 +3536,7 @@ public class Ship extends Celestial {
 
     public void fireActiveTurrets(Entity target) {
         for (int a = 0; a < hardpoints.size(); a++) {
-            if (hardpoints.get(a).getType().matches("turret") || hardpoints.get(a).getType().matches("battery")) {
+            if (hardpoints.get(a).getType().equals("turret") || hardpoints.get(a).getType().equals("battery")) {
                 hardpoints.get(a).activate(target);
             }
         }
@@ -3544,7 +3544,7 @@ public class Ship extends Celestial {
 
     public void fireActiveGuns(Entity target) {
         for (int a = 0; a < hardpoints.size(); a++) {
-            if (hardpoints.get(a).getType().matches("cannon") || hardpoints.get(a).getType().matches("missile")) {
+            if (hardpoints.get(a).getType().equals("cannon") || hardpoints.get(a).getType().equals("missile")) {
                 hardpoints.get(a).activate(target);
             }
         }
@@ -3876,7 +3876,7 @@ public class Ship extends Celestial {
                 //make sure it doesn't already contain this noise
                 boolean safe = true;
                 for (int a = 0; a < soundQue.size(); a++) {
-                    if (soundQue.get(a).getName().matches(name)) {
+                    if (soundQue.get(a).getName().equals(name)) {
                         safe = false;
                         break;
                     }
@@ -3986,7 +3986,7 @@ public class Ship extends Celestial {
          * player's current ship.
          */
         message.setWasSent(true);
-        if (faction.matches(PLAYER_FACTION)) {
+        if (faction.equals(PLAYER_FACTION)) {
             stopSound(notifyMessage);
             playSound(notifyMessage);
             if (this == getUniverse().getPlayerShip()) {
@@ -4138,9 +4138,9 @@ public class Ship extends Celestial {
         cmdAbortDock();
         //standing loss, not as bad as actually destroying the ship
         System.out.println(getName() + " bailed in " + currentSystem.getName());
-        if (lastBlow.getFaction().matches(PLAYER_FACTION)) {
+        if (lastBlow.getFaction().equals(PLAYER_FACTION)) {
             //adjust the player's standings accordingly
-            if (!faction.matches("Neutral")) {
+            if (!faction.equals("Neutral")) {
                 getUniverse().getPlayerShip().getMyFaction().derivedModification(myFaction, -0.5);
             }
         }

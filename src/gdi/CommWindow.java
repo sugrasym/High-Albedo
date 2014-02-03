@@ -122,7 +122,7 @@ public class CommWindow extends AstralWindow {
                     a = 0;
                 }
                 int len = words[a].length();
-                if (cursor < lineWidth && !words[a].matches("/br/")) {
+                if (cursor < lineWidth && !words[a].equals("/br/")) {
                     if (cursor + len <= lineWidth) {
                         tmp += " " + words[a];
                         cursor += len;
@@ -140,7 +140,7 @@ public class CommWindow extends AstralWindow {
                     messageDisplay.addToList(tmp);
                     tmp = "";
                     cursor = 0;
-                    if (!words[a].matches("/br/")) {
+                    if (!words[a].equals("/br/")) {
                         a--;
                     }
                 }

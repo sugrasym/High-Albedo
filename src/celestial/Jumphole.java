@@ -87,11 +87,11 @@ public class Jumphole extends Planet {
         //find the out link
         for (int a = 0; a < universe.getSystems().size(); a++) {
             SolarSystem curr = universe.getSystems().get(a);
-            if (curr.getName().matches(outSysTmp)) {
+            if (curr.getName().equals(outSysTmp)) {
                 for (int b = 0; b < curr.getEntities().size(); b++) {
                     Entity entity = curr.getEntities().get(b);
                     if (entity instanceof Jumphole) {
-                        if (entity.getName().matches(outGateTmp)) {
+                        if (entity.getName().equals(outGateTmp)) {
                             outGate = (Jumphole) entity;
                             outGate.linkWithPartner(this);
                         }

@@ -141,7 +141,7 @@ public class Weapon extends Equipment {
         Parser.Term relevant = null;
         for (int a = 0; a < terms.size(); a++) {
             String termName = terms.get(a).getValue("name");
-            if (termName.matches(getName())) {
+            if (termName.equals(getName())) {
                 //get the stats we want
                 relevant = terms.get(a);
                 //and end
@@ -203,7 +203,7 @@ public class Weapon extends Equipment {
     }
 
     private boolean hasTarget() {
-        if (getType().matches("missile") || getType().matches("battery") || getType().matches("turret")) {
+        if (getType().equals("missile") || getType().equals("battery") || getType().equals("turret")) {
             if (host.getTarget() != null) {
                 return host.distanceTo(host.getTarget()) <= range
                         && host.getTarget().getState() == State.ALIVE;
@@ -219,7 +219,7 @@ public class Weapon extends Equipment {
         if (enabled) {
             if (hasAmmo() && hasTarget()) {
                 double theta = host.getTheta();
-                if (getType().matches(Item.TYPE_TURRET) || getType().matches(Item.TYPE_BATTERY)) {
+                if (getType().equals(Item.TYPE_TURRET) || getType().equals(Item.TYPE_BATTERY)) {
                     if (host.getTarget() != null) {
                         return turretFire(theta);
                     }
@@ -246,9 +246,9 @@ public class Weapon extends Equipment {
             ArrayList<Item> cargo = host.getCargoBay();
             for (int a = 0; a < cargo.size(); a++) {
                 Item tmp = cargo.get(a);
-                if (tmp.getName().matches(ammoType.getName())) {
-                    if (tmp.getGroup().matches(ammoType.getGroup())) {
-                        if (tmp.getType().matches(ammoType.getType())) {
+                if (tmp.getName().equals(ammoType.getName())) {
+                    if (tmp.getGroup().equals(ammoType.getGroup())) {
+                        if (tmp.getType().equals(ammoType.getType())) {
                             if (tmp.getQuantity() > 1) {
                                 tmp.setQuantity(tmp.getQuantity() - 1);
                             } else {

@@ -110,16 +110,16 @@ public class Mission implements Serializable {
         }
         //determine mission type
         String rawType = pick.getValue("type");
-        if (rawType.matches("DESTROY_STATION")) {
+        if (rawType.equals("DESTROY_STATION")) {
             missionType = Type.DESTROY_STATION;
         }
-        if (rawType.matches("BOUNTY_HUNT")) {
+        if (rawType.equals("BOUNTY_HUNT")) {
             missionType = Type.BOUNTY_HUNT;
         }
-        if (rawType.matches("WARE_DELIVERY")) {
+        if (rawType.equals("WARE_DELIVERY")) {
             missionType = Type.WARE_DELIVERY;
         }
-        if (rawType.matches("ESCORT_ME")) {
+        if (rawType.equals("ESCORT_ME")) {
             missionType = Type.ESCORT_ME;
         }
         //store briefing
@@ -168,7 +168,7 @@ public class Mission implements Serializable {
         ArrayList<Item> choices = new ArrayList<>();
         for (int a = 0; a < wares.size(); a++) {
             Item test = new Item(wares.get(a).getValue("name"));
-            if (test.getType().matches("commodity")) {
+            if (test.getType().equals("commodity")) {
                 choices.add(test);
             }
         }
@@ -194,7 +194,7 @@ public class Mission implements Serializable {
                 ArrayList<Entity> lStat = agent.getUniverse().getSystems().get(a).getStationList();
                 for (int v = 0; v < lStat.size(); v++) {
                     Ship test = (Ship) lStat.get(v);
-                    if (test.getFaction().matches(agent.getFaction()) && test.getState() == State.ALIVE) {
+                    if (test.getFaction().equals(agent.getFaction()) && test.getState() == State.ALIVE) {
                         stations.add(lStat.get(v));
                     }
                 }
@@ -230,7 +230,7 @@ public class Mission implements Serializable {
         ArrayList<String> badStandings = new ArrayList<>();
         ArrayList<Binling> raw = agent.getMyFaction().getStandings();
         for (int a = 0; a < raw.size(); a++) {
-            if (!raw.get(a).getString().matches("Player") && !raw.get(a).getString().matches("Entities")) {
+            if (!raw.get(a).getString().equals("Player") && !raw.get(a).getString().equals("Entities")) {
                 if (raw.get(a).getDouble() < 0) {
                     badStandings.add(raw.get(a).getString());
                 }
@@ -250,7 +250,7 @@ public class Mission implements Serializable {
                 ArrayList<Entity> lStat = agent.getUniverse().getSystems().get(a).getStationList();
                 for (int v = 0; v < lStat.size(); v++) {
                     Ship test = (Ship) lStat.get(v);
-                    if (test.getFaction().matches(pick) && test.getState() == State.ALIVE) {
+                    if (test.getFaction().equals(pick) && test.getState() == State.ALIVE) {
                         Station tmp = (Station) test;
                         if (!tmp.isImmortal()) {
                             options.add(lStat.get(v));
@@ -289,7 +289,7 @@ public class Mission implements Serializable {
         ArrayList<String> badStandings = new ArrayList<>();
         ArrayList<Binling> raw = agent.getMyFaction().getStandings();
         for (int a = 0; a < raw.size(); a++) {
-            if (!raw.get(a).getString().matches("Player") && !raw.get(a).getString().matches("Entities")) {
+            if (!raw.get(a).getString().equals("Player") && !raw.get(a).getString().equals("Entities")) {
                 if (raw.get(a).getDouble() < 0) {
                     badStandings.add(raw.get(a).getString());
                 }
@@ -309,7 +309,7 @@ public class Mission implements Serializable {
                 ArrayList<Entity> lStat = agent.getUniverse().getSystems().get(a).getShipList();
                 for (int v = 0; v < lStat.size(); v++) {
                     Ship test = (Ship) lStat.get(v);
-                    if (test.getFaction().matches(pick) && test.getState() == State.ALIVE) {
+                    if (test.getFaction().equals(pick) && test.getState() == State.ALIVE) {
                         options.add(lStat.get(v));
                     }
                 }
@@ -445,7 +445,7 @@ public class Mission implements Serializable {
                         ArrayList<Item> bay = test.getCargoBay();
                         for (int b = 0; b < bay.size(); b++) {
                             Item t = bay.get(b);
-                            if (t.getName().matches(deliver.getName())) {
+                            if (t.getName().equals(deliver.getName())) {
                                 if (t.getQuantity() == deliver.getQuantity()) {
                                     bay.remove(b);
                                     return true;
@@ -484,7 +484,7 @@ public class Mission implements Serializable {
                 return false;
             } else {
                 Ship test = (Ship) targets.get(a);
-                if (test.getLastBlow().getFaction().matches("Player")) {
+                if (test.getLastBlow().getFaction().equals("Player")) {
                     //this is good news
                 } else {
                     //someone else got it first

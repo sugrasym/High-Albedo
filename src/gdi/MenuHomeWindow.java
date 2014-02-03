@@ -113,34 +113,34 @@ public class MenuHomeWindow extends AstralWindow {
 
     private void parseCommand(String command) {
         if (mainList.isVisible()) {
-            if (command.matches("New Game")) {
+            if (command.equals("New Game")) {
                 setVisible(false);
                 engine.suicide();
                 engine.newGame();
                 engine.start();
-            } else if (command.matches("Load Quicksave")) {
+            } else if (command.equals("Load Quicksave")) {
                 setVisible(false);
                 engine.start();
                 engine.load("quicksave");
-            } else if (command.matches("Load Game")) {
+            } else if (command.equals("Load Game")) {
                 mainList.setVisible(false);
                 saveList.setVisible(false);
                 settingList.setVisible(false);
                 populateLoadGameList();
                 gameList.setVisible(true);
-            } else if (command.matches("Save Game")) {
+            } else if (command.equals("Save Game")) {
                 mainList.setVisible(false);
                 gameList.setVisible(false);
                 settingList.setVisible(false);
                 populateSaveGameList();
                 saveList.setVisible(true);
-            } else if (command.matches("Settings")) {
+            } else if (command.equals("Settings")) {
                 mainList.setVisible(false);
                 saveList.setVisible(false);
                 gameList.setVisible(false);
                 populateSettingList();
                 settingList.setVisible(true);
-            } else if (command.matches("Resume")) {
+            } else if (command.equals("Resume")) {
                 engine.menu();
             }
         } else if (gameList.isVisible()) {
@@ -178,7 +178,7 @@ public class MenuHomeWindow extends AstralWindow {
                     String[] arr = command.split(":");
                     if (arr.length == 2) {
                         String set = arr[0];
-                        if (set.matches("Planet Detail")) {
+                        if (set.equals("Planet Detail")) {
                             int curr = Integer.parseInt(arr[1].trim());
                             int pick = 0;
                             //find current in array
@@ -194,11 +194,11 @@ public class MenuHomeWindow extends AstralWindow {
                             getUniverse().getSettings().RENDER_SIZE = getUniverse().getSettings().RENDER_SIZE_OPTS[pick];
                             //refresh
                             populateSettingList();
-                        } else if (set.matches("Enable Sound Effects")) {
+                        } else if (set.equals("Enable Sound Effects")) {
                             boolean curr = Boolean.parseBoolean(arr[1].trim());
                             getUniverse().getSettings().SOUND_EFFECTS = !curr;
                             populateSettingList();
-                        } else if (set.matches("Enable Music")) {
+                        } else if (set.equals("Enable Music")) {
                             boolean curr = Boolean.parseBoolean(arr[1].trim());
                             getUniverse().getSettings().MUSIC = !curr;
                             populateSettingList();

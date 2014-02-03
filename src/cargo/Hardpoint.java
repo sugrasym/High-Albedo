@@ -53,7 +53,7 @@ public class Hardpoint implements Serializable {
 
     public final void mount(Equipment equipment) {
         if (equipment.getVolume() <= getSize()) {
-            if (equipment.getType().matches(type) || equipment == empty) {
+            if (equipment.getType().equals(type) || equipment == empty) {
                 setMounted(equipment);
                 getMounted().mount(host, this);
             }
@@ -70,7 +70,7 @@ public class Hardpoint implements Serializable {
     }
 
     public boolean isEmpty() {
-        return getMounted().getName().matches("NOTHING");
+        return getMounted().getName().equals("NOTHING");
     }
 
     public double getR() {
@@ -119,7 +119,7 @@ public class Hardpoint implements Serializable {
     }
 
     public boolean notNothing() {
-        return !mounted.getName().matches("NOTHING");
+        return !mounted.getName().equals("NOTHING");
     }
 
     public String getType() {

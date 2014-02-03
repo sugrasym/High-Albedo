@@ -161,7 +161,7 @@ public class StarMapWindow extends AstralWindow {
                         tfx.fillRect((int) rx - 2, (int) ry - 2, 4, 4);
                         tfx.setColor(Color.GREEN);
                     } else {
-                        if (systems.get(a).getOwner().matches("Player")) {
+                        if (systems.get(a).getOwner().equals("Player")) {
                             tfx.setColor(Color.MAGENTA);
                         } else {
                             tfx.setColor(Color.GRAY);

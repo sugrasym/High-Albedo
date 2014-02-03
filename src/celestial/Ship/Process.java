@@ -50,7 +50,7 @@ public class Process implements Serializable {
         Parser.Term relevant = null;
         for (int a = 0; a < terms.size(); a++) {
             String termName = terms.get(a).getValue("name");
-            if (termName.matches(processName)) {
+            if (termName.equals(processName)) {
                 //get the stats we want
                 relevant = terms.get(a);
                 //and end
@@ -70,7 +70,7 @@ public class Process implements Serializable {
                     //see if the station has this registered as a product
                     boolean needed = true;
                     for (int b = 0; b < stationSelling.size(); b++) {
-                        if (stationSelling.get(b).getName().matches(p.getName())) {
+                        if (stationSelling.get(b).getName().equals(p.getName())) {
                             //yep it does
                             needed = false;
                             break;
@@ -95,7 +95,7 @@ public class Process implements Serializable {
                     //see if the station has this registered as a resource
                     boolean needed = true;
                     for (int b = 0; b < stationBuying.size(); b++) {
-                        if (stationBuying.get(b).getName().matches(p.getName())) {
+                        if (stationBuying.get(b).getName().equals(p.getName())) {
                             //yep it does
                             needed = false;
                             break;
@@ -125,7 +125,7 @@ public class Process implements Serializable {
             boolean hasResources = true;
             for (int a = 0; a < resources.size(); a++) {
                 for (int b = 0; b < stationBuying.size(); b++) {
-                    if (resources.get(a).getName().matches(stationBuying.get(b).getName())) {
+                    if (resources.get(a).getName().equals(stationBuying.get(b).getName())) {
                         if (stationBuying.get(b).getQuantity() >= resources.get(a).getQuantity()) {
                             //ok
                         } else {
@@ -138,7 +138,7 @@ public class Process implements Serializable {
             if (hasResources) {
                 for (int a = 0; a < resources.size(); a++) {
                     for (int b = 0; b < stationBuying.size(); b++) {
-                        if (resources.get(a).getName().matches(stationBuying.get(b).getName())) {
+                        if (resources.get(a).getName().equals(stationBuying.get(b).getName())) {
                             stationBuying.get(b).setQuantity(stationBuying.get(b).getQuantity() - resources.get(a).getQuantity());
                             break;
                         }
@@ -155,7 +155,7 @@ public class Process implements Serializable {
             if (canDeliver()) {
                 for (int a = 0; a < products.size(); a++) {
                     for (int b = 0; b < stationSelling.size(); b++) {
-                        if (products.get(a).getName().matches(stationSelling.get(b).getName())) {
+                        if (products.get(a).getName().equals(stationSelling.get(b).getName())) {
                             //deliver
                             stationSelling.get(b).setQuantity(stationSelling.get(b).getQuantity() + products.get(a).getQuantity());
                             break;
@@ -175,7 +175,7 @@ public class Process implements Serializable {
             for (int a = 0; a < products.size(); a++) {
                 //check each station's selling list
                 for (int b = 0; b < stationSelling.size(); b++) {
-                    if (products.get(a).getName().matches(stationSelling.get(b).getName())) {
+                    if (products.get(a).getName().equals(stationSelling.get(b).getName())) {
                         //determine if there is room for delivery
                         int stored = stationSelling.get(b).getQuantity();
                         int max = stationSelling.get(b).getStore();

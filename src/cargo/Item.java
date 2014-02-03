@@ -59,7 +59,7 @@ public class Item implements Serializable {
         Term relevant = null;
         for (int a = 0; a < terms.size(); a++) {
             String termName = terms.get(a).getValue("name");
-            if (termName.matches(getName())) {
+            if (termName.equals(getName())) {
                 //get the stats we want
                 relevant = terms.get(a);
                 //and end

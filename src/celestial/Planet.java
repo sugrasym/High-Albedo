@@ -76,7 +76,7 @@ public class Planet extends Celestial {
             //debug background
             gfx.setColor(Color.PINK);
             gfx.fillRect(0, 0, getUniverse().getSettings().RENDER_SIZE, getUniverse().getSettings().RENDER_SIZE);
-            if (texture.getValue("group").matches("rock")) {
+            if (texture.getValue("group").equals("rock")) {
                 /*
                  * The procedural planet generator in the com package gets to do
                  * all the heavy lifting and we just read the output.
@@ -97,17 +97,17 @@ public class Planet extends Celestial {
                 //setup palette
                 TerrainPalette palette = null;
                 String pal = texture.getValue("palette");
-                if (pal.matches("Earth")) {
+                if (pal.equals("Earth")) {
                     palette = new EarthPalette(info);
-                } else if (pal.matches("Mars")) {
+                } else if (pal.equals("Mars")) {
                     palette = new MarsPalette(info);
-                } else if (pal.matches("Hospitable")) {
+                } else if (pal.equals("Hospitable")) {
                     palette = new HospitablePalette(info);
-                } else if (pal.matches("Strange")) {
+                } else if (pal.equals("Strange")) {
                     palette = new StrangePalette(info);
-                } else if (pal.matches("Lava")) {
+                } else if (pal.equals("Lava")) {
                     palette = new LavaPalette(info);
-                } else if (pal.matches("Alien")) {
+                } else if (pal.equals("Alien")) {
                     palette = new AlienPalette(info);
                 }
                 //call the procedural planet generator
@@ -116,7 +116,7 @@ public class Planet extends Celestial {
                 gfx.drawImage(plan.getDebugImageMap(PlanetGenerator.MAP_COLOR), 0, 0, null);
                 //store texture
                 raw_tex = tmp;
-            } else if (texture.getValue("group").matches("doublegas")) {
+            } else if (texture.getValue("group").equals("doublegas")) {
                 Random sRand = new Random(seed);
                 /*
                  * My gas giants are conservative. They have a color and brightness
@@ -168,7 +168,7 @@ public class Planet extends Celestial {
                 }
                 //store
                 raw_tex = tmp;
-            } else if (texture.getValue("group").matches("singlegas")) {
+            } else if (texture.getValue("group").equals("singlegas")) {
                 Random sRand = new Random(seed);
                 //setup stroke
                 int range = (int) (0.007 * getUniverse().getSettings().RENDER_SIZE);

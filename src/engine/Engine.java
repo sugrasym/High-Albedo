@@ -341,7 +341,7 @@ public class Engine {
                 }
             }
             if (!danger) {
-                if (ambientTrack.matches(playerShip.getCurrentSystem().getAmbientMusic()) && isAmbient) {
+                if (ambientTrack.equals(playerShip.getCurrentSystem().getAmbientMusic()) && isAmbient) {
                     //do nothing
                 } else {
                     //stop current track
@@ -359,7 +359,7 @@ public class Engine {
                     isAmbient = true;
                 }
             } else if (danger) {
-                if (dangerTrack.matches(playerShip.getCurrentSystem().getDangerMusic()) && !isAmbient) {
+                if (dangerTrack.equals(playerShip.getCurrentSystem().getDangerMusic()) && !isAmbient) {
                     //do nothing
                 } else {
                     //stop current track
@@ -1066,7 +1066,7 @@ public class Engine {
                  */
                 //backplate
                 if (lastPlate != null && playerShip != null) {
-                    if (lastPlate.matches(playerShip.getCurrentSystem().getBack())) {
+                    if (lastPlate.equals(playerShip.getCurrentSystem().getBack())) {
                         f.drawImage(backplate, 0, 0, null);
                     } else {
                         element.generateBackdrop();
@@ -1366,7 +1366,7 @@ public class Engine {
                         int tw = ship.getWidth();
                         int th = ship.getHeight();
                         int standing = ship.getStandingsToMe(playerShip);
-                        if (!ship.getFaction().matches("Player")) {
+                        if (!ship.getFaction().equals("Player")) {
                             if (standing >= 3) {
                                 f.setColor(Color.GREEN);
                             } else if (standing <= -3) {

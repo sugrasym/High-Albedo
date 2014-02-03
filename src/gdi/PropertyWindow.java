@@ -609,7 +609,7 @@ public class PropertyWindow extends AstralWindow {
                     a = 0;
                 }
                 int len = words[a].length();
-                if (cursor < lineWidth && !words[a].matches("/br/")) {
+                if (cursor < lineWidth && !words[a].equals("/br/")) {
                     if (cursor + len <= lineWidth) {
                         tmp += " " + words[a];
                         cursor += len;
@@ -627,7 +627,7 @@ public class PropertyWindow extends AstralWindow {
                     infoList.addToList(tmp);
                     tmp = "";
                     cursor = 0;
-                    if (!words[a].matches("/br/")) {
+                    if (!words[a].equals("/br/")) {
                         a--;
                     }
                 }
@@ -749,34 +749,34 @@ public class PropertyWindow extends AstralWindow {
     private void parseCommand(String command) {
         if (command != null && mode == Mode.NONE) {
             Ship selected = (Ship) propertyList.getItemAtIndex(propertyList.getIndex());
-            if (command.matches(CMD_SWITCH)) {
+            if (command.equals(CMD_SWITCH)) {
                 /*
                  * Switch to another ship.
                  */ ship.getUniverse().setPlayerShip(selected);
-            } else if (command.matches(CMD_NONE)) {
+            } else if (command.equals(CMD_NONE)) {
                 //abort current behavior
                 selected.setBehavior(Behavior.NONE);
                 selected.setAutopilot(Autopilot.NONE);
                 selected.cmdAbortDock();
-            } else if (command.matches(CMD_TRADE)) {
+            } else if (command.equals(CMD_TRADE)) {
                 selected.setBehavior(Behavior.SECTOR_TRADE);
-            } else if (command.matches(CMD_UTRADE)) {
+            } else if (command.equals(CMD_UTRADE)) {
                 selected.setBehavior(Behavior.UNIVERSE_TRADE);
-            } else if (command.matches(CMD_PATROL)) {
+            } else if (command.equals(CMD_PATROL)) {
                 selected.setBehavior(Behavior.PATROL);
-            } else if (command.matches(CMD_MOVEFUNDS)) {
+            } else if (command.equals(CMD_MOVEFUNDS)) {
                 mode = Mode.WAITING_FOR_CREDITS;
                 showInput("0");
-            } else if (command.matches(CMD_RENAME)) {
+            } else if (command.equals(CMD_RENAME)) {
                 mode = Mode.WAITING_FOR_NAME;
                 showInput(selected.getName());
-            } else if (command.matches(CMD_UNDOCK)) {
+            } else if (command.equals(CMD_UNDOCK)) {
                 selected.cmdUndock();
-            } else if (command.matches(CMD_TRADEWITH)) {
+            } else if (command.equals(CMD_TRADEWITH)) {
                 mode = Mode.WAITING_FOR_TRADE;
                 trader.setVisible(true);
                 tmp = selected;
-            } else if (command.matches(CMD_DOCK)) {
+            } else if (command.equals(CMD_DOCK)) {
                 ArrayList<Object> choice = new ArrayList<>();
                 choice.add("--Select Station To Dock At--");
                 choice.add(" ");
@@ -790,11 +790,11 @@ public class PropertyWindow extends AstralWindow {
                 } else {
                     mode = Mode.NONE;
                 }
-            } else if (command.matches(CMD_REMOTECARGO)) {
+            } else if (command.equals(CMD_REMOTECARGO)) {
                 mode = Mode.WAITING_FOR_CARGO;
                 cargo.setVisible(true);
                 tmp = selected;
-            } else if (command.matches(CMD_ATTACK)) {
+            } else if (command.equals(CMD_ATTACK)) {
                 mode = Mode.WAITING_FOR_ATTACK;
                 ArrayList<Object> choice = new ArrayList<>();
                 choice.add("--Select Target To Attack--");
@@ -809,9 +809,9 @@ public class PropertyWindow extends AstralWindow {
                 } else {
                     mode = Mode.NONE;
                 }
-            } else if (command.matches(CMD_DESTRUCT)) {
+            } else if (command.equals(CMD_DESTRUCT)) {
                 selected.setState(State.DYING);
-            } else if (command.matches(CMD_FLYTO)) {
+            } else if (command.equals(CMD_FLYTO)) {
                 ArrayList<Object> choice = new ArrayList<>();
                 choice.add("--Select Target To Fly To--");
                 choice.add(" ");
@@ -825,7 +825,7 @@ public class PropertyWindow extends AstralWindow {
                 } else {
                     mode = Mode.NONE;
                 }
-            } else if (command.matches(CMD_FOLLOW)) {
+            } else if (command.equals(CMD_FOLLOW)) {
                 ArrayList<Object> choice = new ArrayList<>();
                 choice.add("--Select Target To Follow--");
                 choice.add(" ");
@@ -839,9 +839,9 @@ public class PropertyWindow extends AstralWindow {
                 } else {
                     mode = Mode.NONE;
                 }
-            } else if (command.matches(CMD_ALLSTOP)) {
+            } else if (command.equals(CMD_ALLSTOP)) {
                 selected.cmdAllStop();
-            } else if (command.matches(CMD_JUMP)) {
+            } else if (command.equals(CMD_JUMP)) {
                 ArrayList<Object> choice = new ArrayList<>();
                 choice.add("--Select Target System--");
                 choice.add(" ");
@@ -857,9 +857,9 @@ public class PropertyWindow extends AstralWindow {
                 } else {
                     mode = Mode.NONE;
                 }
-            } else if (command.matches(CMD_CLEARHOME)) {
+            } else if (command.equals(CMD_CLEARHOME)) {
                 selected.clearHomeBase();
-            } else if (command.matches(CMD_SETHOME)) {
+            } else if (command.equals(CMD_SETHOME)) {
                 ArrayList<Object> choice = new ArrayList<>();
                 choice.add("--Select Home Base In System--");
                 choice.add(" ");
@@ -875,9 +875,9 @@ public class PropertyWindow extends AstralWindow {
                 } else {
                     mode = Mode.NONE;
                 }
-            } else if (command.matches(CMD_SUPPLYHOME)) {
+            } else if (command.equals(CMD_SUPPLYHOME)) {
                 selected.setBehavior(Behavior.SUPPLY_HOMEBASE);
-            } else if (command.matches(CMD_REPRESENTHOME)) {
+            } else if (command.equals(CMD_REPRESENTHOME)) {
                 selected.setBehavior(Behavior.REPRESENT_HOMEBASE);
             }
         }

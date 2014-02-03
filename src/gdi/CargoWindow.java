@@ -161,7 +161,7 @@ public class CargoWindow extends AstralWindow {
                 a = 0;
             }
             int len = words[a].length();
-            if (cursor < lineWidth && !words[a].matches("/br/")) {
+            if (cursor < lineWidth && !words[a].equals("/br/")) {
                 if (cursor + len <= lineWidth) {
                     tmp += " " + words[a];
                     cursor += len;
@@ -179,7 +179,7 @@ public class CargoWindow extends AstralWindow {
                 propertyList.addToList(tmp);
                 tmp = "";
                 cursor = 0;
-                if (!words[a].matches("/br/")) {
+                if (!words[a].equals("/br/")) {
                     a--;
                 }
             }
@@ -205,7 +205,7 @@ public class CargoWindow extends AstralWindow {
             /*
              * Options for sov papers
              */
-            if (selected.getGroup().matches("sovtransfer")) {
+            if (selected.getGroup().equals("sovtransfer")) {
                 if (!ship.isDocked()) {
                     optionList.addToList("--Setup--");
                     optionList.addToList(CMD_CLAIMSOV);
@@ -216,14 +216,14 @@ public class CargoWindow extends AstralWindow {
              * Options for stations
              */
             //determine if this is a station
-            if (selected.getGroup().matches("constructionkit")) {
+            if (selected.getGroup().equals("constructionkit")) {
                 if (!ship.isDocked()) {
                     optionList.addToList("--Setup--");
                     optionList.addToList(CMD_DEPLOY);
                     optionList.addToList(" ");
                 }
             }
-            if (selected.getGroup().matches("repairkit")) {
+            if (selected.getGroup().equals("repairkit")) {
                 optionList.addToList("--Setup--");
                 optionList.addToList(CMD_USEPASTE);
                 optionList.addToList(" ");
@@ -231,7 +231,7 @@ public class CargoWindow extends AstralWindow {
             /*
              * Options for cannons
              */
-            if (selected.getType().matches(Item.TYPE_CANNON)) {
+            if (selected.getType().equals(Item.TYPE_CANNON)) {
                 optionList.addToList("--Setup--");
                 optionList.addToList(CMD_ASSEMBLE);
                 optionList.addToList(" ");
@@ -239,7 +239,7 @@ public class CargoWindow extends AstralWindow {
             /*
              * Options for missiles
              */
-            if (selected.getType().matches(Item.TYPE_MISSILE)) {
+            if (selected.getType().equals(Item.TYPE_MISSILE)) {
                 optionList.addToList("--Setup--");
                 optionList.addToList(CMD_ASSEMBLE);
                 optionList.addToList(" ");
@@ -247,7 +247,7 @@ public class CargoWindow extends AstralWindow {
             /*
              * Options for turret
              */
-            if (selected.getType().matches(Item.TYPE_TURRET)) {
+            if (selected.getType().equals(Item.TYPE_TURRET)) {
                 optionList.addToList("--Setup--");
                 optionList.addToList(CMD_ASSEMBLE);
                 optionList.addToList(" ");
@@ -255,7 +255,7 @@ public class CargoWindow extends AstralWindow {
             /*
              * Options for battery
              */
-            if (selected.getType().matches(Item.TYPE_BATTERY)) {
+            if (selected.getType().equals(Item.TYPE_BATTERY)) {
                 optionList.addToList("--Setup--");
                 optionList.addToList(CMD_ASSEMBLE);
                 optionList.addToList(" ");
@@ -287,30 +287,30 @@ public class CargoWindow extends AstralWindow {
 
     private void parseCommand(String command) {
         if (command != null) {
-            if (command.matches(CMD_TRASH)) {
+            if (command.equals(CMD_TRASH)) {
                 /*
                  * This command simply destroys an item.
                  */
                 Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
                 ship.removeFromCargoBay(selected);
-            } else if (command.matches(CMD_EJECT)) {
+            } else if (command.equals(CMD_EJECT)) {
                 Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
                 ship.ejectCargo(selected);
-            } else if (command.matches(CMD_UNMOUNT)) {
+            } else if (command.equals(CMD_UNMOUNT)) {
                 Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
                 Equipment tmp = (Equipment) selected;
                 ship.unfit(tmp);
-            } else if (command.matches(CMD_MOUNT)) {
+            } else if (command.equals(CMD_MOUNT)) {
                 Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
                 Equipment tmp = (Equipment) selected;
                 ship.fit(tmp);
-            } else if (command.matches(CMD_STACK)) {
+            } else if (command.equals(CMD_STACK)) {
                 Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
                 ArrayList<Item> cargoBay = ship.getCargoBay();
                 if (cargoBay.contains(selected)) {
                     stackItem(cargoBay, selected);
                 }
-            } else if (command.matches(CMD_SPLIT)) {
+            } else if (command.equals(CMD_SPLIT)) {
                 Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
                 ArrayList<Item> cargoBay = ship.getCargoBay();
                 if (cargoBay.contains(selected)) {
@@ -320,16 +320,16 @@ public class CargoWindow extends AstralWindow {
                         selected.setQuantity(selected.getQuantity() - 1);
                     }
                 }
-            } else if (command.matches(CMD_SPLITALL)) {
+            } else if (command.equals(CMD_SPLITALL)) {
                 ArrayList<Item> cargoBay = ship.getCargoBay();
                 Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
                 if (ship.hasInCargo(selected)) {
                     if (selected.getQuantity() > 1) {
                         for (int a = 0; a < cargoBay.size(); a++) {
                             Item tmp = cargoBay.get(a);
-                            if (tmp.getName().matches(selected.getName())) {
-                                if (tmp.getType().matches(selected.getType())) {
-                                    if (tmp.getGroup().matches(selected.getGroup())) {
+                            if (tmp.getName().equals(selected.getName())) {
+                                if (tmp.getType().equals(selected.getType())) {
+                                    if (tmp.getGroup().equals(selected.getGroup())) {
                                         cargoBay.remove(tmp);
                                     }
                                 }
@@ -341,7 +341,7 @@ public class CargoWindow extends AstralWindow {
                         }
                     }
                 }
-            } else if (command.matches(CMD_ASSEMBLE)) {
+            } else if (command.equals(CMD_ASSEMBLE)) {
                 Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
                 if (selected.getQuantity() == 1) {
                     Weapon tmp = new Weapon(selected.getName());
@@ -353,7 +353,7 @@ public class CargoWindow extends AstralWindow {
                         ship.addToCargoBay(selected);
                     }
                 }
-            } else if (command.matches(CMD_PACKAGE)) {
+            } else if (command.equals(CMD_PACKAGE)) {
                 Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
                 if (selected.getQuantity() == 1) {
                     Equipment tmp = (Equipment) selected;
@@ -366,7 +366,7 @@ public class CargoWindow extends AstralWindow {
                         ship.addToCargoBay(selected);
                     }
                 }
-            } else if (command.matches(CMD_DEPLOY)) {
+            } else if (command.equals(CMD_DEPLOY)) {
                 Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
                 if (selected.getQuantity() == 1) {
                     //deploy the station
@@ -420,16 +420,16 @@ public class CargoWindow extends AstralWindow {
                         ret.clearWares();
                     }
                 }
-            } else if (command.matches(CMD_CLAIMSOV)) {
+            } else if (command.equals(CMD_CLAIMSOV)) {
                 Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
                 if (selected.getQuantity() == 1) {
-                    if (!ship.getCurrentSystem().getOwner().matches("Neutral")) {
+                    if (!ship.getCurrentSystem().getOwner().equals("Neutral")) {
                         //count stations
                         int count = 0;
                         ArrayList<Entity> stationList = ship.getCurrentSystem().getStationList();
                         for (int a = 0; a < stationList.size(); a++) {
                             Station test = (Station) stationList.get(a);
-                            if (test.getFaction().matches("Player")) {
+                            if (test.getFaction().equals("Player")) {
                                 count++;
                             }
                         }
@@ -455,7 +455,7 @@ public class CargoWindow extends AstralWindow {
                                 + "Paralegal: Beyond the Law", null);
                     }
                 }
-            } else if (command.matches(CMD_USEPASTE)) {
+            } else if (command.equals(CMD_USEPASTE)) {
                 Item selected = (Item) cargoList.getItemAtIndex(cargoList.getIndex());
                 for (int a = 0; a < selected.getQuantity(); a++) {
                     //if the hp of the ship is less than the max, use a unit of paste
@@ -481,9 +481,9 @@ public class CargoWindow extends AstralWindow {
             for (int a = 0; a < cargoBay.size(); a++) {
                 Item tmp = cargoBay.get(a);
                 if (tmp != selected) {
-                    if (selected.getName().matches(tmp.getName())) {
-                        if (selected.getGroup().matches(tmp.getGroup())) {
-                            if (selected.getType().matches(tmp.getType())) {
+                    if (selected.getName().equals(tmp.getName())) {
+                        if (selected.getGroup().equals(tmp.getGroup())) {
+                            if (selected.getType().equals(tmp.getType())) {
                                 tmp.setQuantity(selected.getQuantity() + tmp.getQuantity());
                                 cargoBay.remove(selected);
                                 break;

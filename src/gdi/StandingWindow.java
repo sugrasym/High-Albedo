@@ -139,7 +139,7 @@ public class StandingWindow extends AstralWindow {
             infoList.addToList(" ");
             for (int a = 0; a < selected.getStandings().size(); a++) {
                 if (selected.getStandings().get(a).getDouble() > 0) {
-                    if (!selected.getStandings().get(a).getString().matches(PLAYER_FACTION)) {
+                    if (!selected.getStandings().get(a).getString().equals(PLAYER_FACTION)) {
                         infoList.addToList(selected.getStandings().get(a).getString());
                     }
                 }
@@ -149,7 +149,7 @@ public class StandingWindow extends AstralWindow {
             infoList.addToList(" ");
             for (int a = 0; a < selected.getStandings().size(); a++) {
                 if (selected.getStandings().get(a).getDouble() < 0) {
-                    if (!selected.getStandings().get(a).getString().matches(PLAYER_FACTION)) {
+                    if (!selected.getStandings().get(a).getString().equals(PLAYER_FACTION)) {
                         infoList.addToList(selected.getStandings().get(a).getString());
                     }
                 }
@@ -159,7 +159,7 @@ public class StandingWindow extends AstralWindow {
             infoList.addToList(" ");
             for (int a = 0; a < selected.getStandings().size(); a++) {
                 if (selected.getStandings().get(a).getDouble() < HOSTILE_STANDING) {
-                    if (!selected.getStandings().get(a).getString().matches(PLAYER_FACTION)) {
+                    if (!selected.getStandings().get(a).getString().equals(PLAYER_FACTION)) {
                         infoList.addToList(selected.getStandings().get(a).getString());
                     }
                 }
@@ -194,7 +194,7 @@ public class StandingWindow extends AstralWindow {
                     a = 0;
                 }
                 int len = words[a].length();
-                if (cursor < lineWidth && !words[a].matches("/br/")) {
+                if (cursor < lineWidth && !words[a].equals("/br/")) {
                     if (cursor + len <= lineWidth) {
                         tmp += " " + words[a];
                         cursor += len;
@@ -212,7 +212,7 @@ public class StandingWindow extends AstralWindow {
                     infoList.addToList(tmp);
                     tmp = "";
                     cursor = 0;
-                    if (!words[a].matches("/br/")) {
+                    if (!words[a].equals("/br/")) {
                         a--;
                     }
                 }
@@ -229,7 +229,7 @@ public class StandingWindow extends AstralWindow {
             int index = factionList.getIndex();
             Binling tmp = (Binling) factionList.getItemAtIndex(index);
             //build the superfaction
-            if (tmp.getString().matches(PLAYER_FACTION)) {
+            if (tmp.getString().equals(PLAYER_FACTION)) {
                 viewing = ship.getUniverse().getPlayerShip().getMyFaction();
             } else {
                 viewing = new Faction(tmp.getString());

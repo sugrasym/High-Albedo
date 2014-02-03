@@ -106,7 +106,7 @@ public class Station extends Ship {
         if (!isImmortal()) {
             super.dying();
             //is this a player station?
-            if (faction.matches("Player")) {
+            if (faction.equals("Player")) {
                 //did it need an asteroid?
                 if (needAsteroid) {
                 //lets avoid the X3R problem and put the asteroid back
@@ -164,7 +164,7 @@ public class Station extends Ship {
         Parser.Term relevant = null;
         for (int a = 0; a < terms.size(); a++) {
             String termName = terms.get(a).getValue("type");
-            if (termName.matches(getType())) {
+            if (termName.equals(getType())) {
                 //get the stats we want
                 relevant = terms.get(a);
                 //and end
@@ -201,7 +201,7 @@ public class Station extends Ship {
     public boolean buysWare(Item ware) {
         {
             for (int a = 0; a < stationBuying.size(); a++) {
-                if (stationBuying.get(a).getName().matches(ware.getName())) {
+                if (stationBuying.get(a).getName().equals(ware.getName())) {
                     return true;
                 }
             }
@@ -212,7 +212,7 @@ public class Station extends Ship {
     public boolean sellsWare(Item ware) {
         {
             for (int a = 0; a < stationSelling.size(); a++) {
-                if (stationSelling.get(a).getName().matches(ware.getName())) {
+                if (stationSelling.get(a).getName().equals(ware.getName())) {
                     return true;
                 }
             }
@@ -228,7 +228,7 @@ public class Station extends Ship {
         //get the right commodity
         boolean found = false;
         for (int a = 0; a < stationBuying.size(); a++) {
-            if (stationBuying.get(a).getName().matches(item.getName())) {
+            if (stationBuying.get(a).getName().equals(item.getName())) {
                 max = stationBuying.get(a).getMaxPrice();
                 min = stationBuying.get(a).getMinPrice();
                 q = stationBuying.get(a).getQuantity();
@@ -239,7 +239,7 @@ public class Station extends Ship {
         }
         if (!found) {
             for (int a = 0; a < stationSelling.size(); a++) {
-                if (stationSelling.get(a).getName().matches(item.getName())) {
+                if (stationSelling.get(a).getName().equals(item.getName())) {
                     max = stationSelling.get(a).getMaxPrice();
                     min = stationSelling.get(a).getMinPrice();
                     q = stationSelling.get(a).getQuantity();
@@ -271,7 +271,7 @@ public class Station extends Ship {
             Item rel = null;
             //validate the item is available
             for (int a = 0; a < stationSelling.size(); a++) {
-                if (stationSelling.get(a).getName().matches(item.getName())) {
+                if (stationSelling.get(a).getName().equals(item.getName())) {
                     //make sure there is something available
                     if (stationSelling.get(a).getQuantity() > 0) {
                         rel = stationSelling.get(a);
@@ -283,7 +283,7 @@ public class Station extends Ship {
                 //validate the player can cover the charge
                 if (ship.getCash() - price >= 0) {
                     //branch based on regular item or ship
-                    if (rel.getType().matches("ship")) {
+                    if (rel.getType().equals("ship")) {
                         /*
                          * This one is a little more complicated.
                          */
@@ -346,7 +346,7 @@ public class Station extends Ship {
             Item rel = null;
             //validate the item is in the cargo bay
             for (int a = 0; a < ship.getCargoBay().size(); a++) {
-                if (ship.getCargoBay().get(a).getName().matches(item.getName())) {
+                if (ship.getCargoBay().get(a).getName().equals(item.getName())) {
                     rel = ship.getCargoBay().get(a);
                     break;
                 }
@@ -356,7 +356,7 @@ public class Station extends Ship {
                 for (int a = 0; a < getStationBuying().size(); a++) {
                     //make sure station can cover it
                     if (getCash() - price >= 0) {
-                        if (rel.getName().matches(getStationBuying().get(a).getName())) {
+                        if (rel.getName().equals(getStationBuying().get(a).getName())) {
                             getStationBuying().get(a).setQuantity(getStationBuying().get(a).getQuantity() + 1);
                             //remove from cargo
                             ship.removeFromCargoBay(rel);

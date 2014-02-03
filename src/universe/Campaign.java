@@ -188,7 +188,7 @@ public class Campaign implements Serializable {
         if (type.equals("STATION")) {
             //working with a space station
             for (int x = 0; x < universe.getSystems().size(); x++) {
-                if (universe.getSystems().get(x).getName().matches(system)) {
+                if (universe.getSystems().get(x).getName().equals(system)) {
                     SolarSystem sys = universe.getSystems().get(x);
                     for (int b = 0; b < sys.getEntities().size(); b++) {
                         Entity working = sys.getEntities().get(b);

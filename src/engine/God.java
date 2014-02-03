@@ -516,8 +516,8 @@ public class God implements EngineElement {
             for (int a = 0; a < stations.size(); a++) {
                 Station tmp = (Station) stations.get(a);
                 if (tmp.getState() == Ship.State.ALIVE) {
-                    if (tmp.getFaction().matches(faction.getName())) {
-                        if (tmp.getType().matches(type)) {
+                    if (tmp.getFaction().equals(faction.getName())) {
+                        if (tmp.getType().equals(type)) {
                             count++;
                         }
                     }
@@ -537,8 +537,8 @@ public class God implements EngineElement {
             for (int a = 0; a < ships.size(); a++) {
                 Ship tmp = (Ship) ships.get(a);
                 if (tmp.getState() == Ship.State.ALIVE) {
-                    if (tmp.getFaction().matches(faction.getName())) {
-                        if (tmp.getTemplate().matches(loadout)) {
+                    if (tmp.getFaction().equals(faction.getName())) {
+                        if (tmp.getTemplate().equals(loadout)) {
                             count++;
                         }
                     }
@@ -557,7 +557,7 @@ public class God implements EngineElement {
             ArrayList<Entity> ships = system.getShipList();
             for (int a = 0; a < ships.size(); a++) {
                 Ship tmp = (Ship) ships.get(a);
-                if (tmp.getFaction().matches(faction.getName())) {
+                if (tmp.getFaction().equals(faction.getName())) {
                     if (tmp.getBehavior() == behavior) {
                         count++;
                     }
@@ -591,7 +591,7 @@ public class God implements EngineElement {
                 Parser lParse = Universe.getCache().getLoadoutCache();
                 ArrayList<Term> lods = lParse.getTermsOfType("Loadout");
                 for (int a = 0; a < lods.size(); a++) {
-                    if (lods.get(a).getValue("name").matches(template)) {
+                    if (lods.get(a).getValue("name").equals(template)) {
                         //get terms
                         cargo = lods.get(a).getValue("cargo");
                         install = lods.get(a).getValue("install");

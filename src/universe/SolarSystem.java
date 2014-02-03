@@ -91,28 +91,28 @@ public class SolarSystem implements Entity, Serializable {
          */
         ArrayList<Term> stars = parse.getTermsOfType("Star");
         for (int a = 0; a < stars.size(); a++) {
-            if (stars.get(a).getValue("system").matches(getName())) {
+            if (stars.get(a).getValue("system").equals(getName())) {
                 //this planet needs to be created and stored
                 putEntityInSystem(makeStar(stars.get(a)));
             }
         }
         ArrayList<Term> planets = parse.getTermsOfType("Planet");
         for (int a = 0; a < planets.size(); a++) {
-            if (planets.get(a).getValue("system").matches(getName())) {
+            if (planets.get(a).getValue("system").equals(getName())) {
                 //this planet needs to be created and stored
                 putEntityInSystem(makePlanet(planets.get(a)));
             }
         }
         ArrayList<Term> asteroids = parse.getTermsOfType("Asteroid");
         for (int a = 0; a < asteroids.size(); a++) {
-            if (asteroids.get(a).getValue("system").matches(getName())) {
+            if (asteroids.get(a).getValue("system").equals(getName())) {
                 //this asteroid needs to be created and stored
                 putEntityInSystem(makeAsteroid(asteroids.get(a)));
             }
         }
         ArrayList<Term> ships = parse.getTermsOfType("Ship");
         for (int a = 0; a < ships.size(); a++) {
-            if (ships.get(a).getValue("system").matches(getName())) {
+            if (ships.get(a).getValue("system").equals(getName())) {
                 //this planet needs to be created and stored
                 putEntityInSystem(makeShip(ships.get(a)));
             }
@@ -120,7 +120,7 @@ public class SolarSystem implements Entity, Serializable {
         
         ArrayList<Term> stations = parse.getTermsOfType("Station");
         for (int a = 0; a < stations.size(); a++) {
-            if (stations.get(a).getValue("system").matches(getName())) {
+            if (stations.get(a).getValue("system").equals(getName())) {
                 //this planet needs to be created and stored
                 putEntityInSystem(makeStation(stations.get(a)));
             }
@@ -128,7 +128,7 @@ public class SolarSystem implements Entity, Serializable {
         
         ArrayList<Term> jumpholes = parse.getTermsOfType("Jumphole");
         for (int a = 0; a < jumpholes.size(); a++) {
-            if (jumpholes.get(a).getValue("system").matches(getName())) {
+            if (jumpholes.get(a).getValue("system").equals(getName())) {
                 //this planet needs to be created and stored
                 putEntityInSystem(makeJumphole(jumpholes.get(a)));
             }
@@ -146,7 +146,7 @@ public class SolarSystem implements Entity, Serializable {
             Term tex = null;
             ArrayList<Term> list = tmp.getTermsOfType("Star");
             for (int a = 0; a < list.size(); a++) {
-                if (list.get(a).getValue("name").matches(texture)) {
+                if (list.get(a).getValue("name").equals(texture)) {
                     tex = list.get(a);
                     break;
                 }
@@ -193,7 +193,7 @@ public class SolarSystem implements Entity, Serializable {
             Term tex = null;
             ArrayList<Term> list = tmp.getTermsOfType("Planet");
             for (int a = 0; a < list.size(); a++) {
-                if (list.get(a).getValue("name").matches(texture)) {
+                if (list.get(a).getValue("name").equals(texture)) {
                     tex = list.get(a);
                     break;
                 }
@@ -228,7 +228,7 @@ public class SolarSystem implements Entity, Serializable {
                 Parser lParse = Universe.getCache().getUniverseCache();
                 ArrayList<Term> lods = lParse.getTermsOfType("Loadout");
                 for (int a = 0; a < lods.size(); a++) {
-                    if (lods.get(a).getValue("name").matches(template)) {
+                    if (lods.get(a).getValue("name").equals(template)) {
                         //get terms
                         cargo = lods.get(a).getValue("cargo");
                         install = lods.get(a).getValue("install");
@@ -251,7 +251,7 @@ public class SolarSystem implements Entity, Serializable {
             //put it in the right system next to the start object
             if (near != null) {
                 for (int b = 0; b < entities.size(); b++) {
-                    if (entities.get(b).getName().matches(near)) {
+                    if (entities.get(b).getName().equals(near)) {
                         ret.setX(entities.get(b).getX() + rnd.nextInt(12800) - 6400);
                         ret.setY(entities.get(b).getY() + rnd.nextInt(12800) - 6400);
                         break;
@@ -292,7 +292,7 @@ public class SolarSystem implements Entity, Serializable {
             //put it in the right system next to the start object
             if (near != null) {
                 for (int b = 0; b < entities.size(); b++) {
-                    if (entities.get(b).getName().matches(near)) {
+                    if (entities.get(b).getName().equals(near)) {
                         ret.setX(entities.get(b).getX() + rnd.nextInt(2000) - 1000);
                         ret.setY(entities.get(b).getY() + rnd.nextInt(2000) - 1000);
                         break;
@@ -363,7 +363,7 @@ public class SolarSystem implements Entity, Serializable {
         if (entity instanceof Station) {
             stationList.add(entity);
             Station test = (Station) entity;
-            if (test.getFaction().matches("Player")) {
+            if (test.getFaction().equals("Player")) {
                 //yep, add it to the global list
                 universe.getPlayerProperty().add(entity);
             }
@@ -372,7 +372,7 @@ public class SolarSystem implements Entity, Serializable {
             //is this player owned?
             if (!(entity instanceof Projectile)) {
                 Ship test = (Ship) entity;
-                if (test.getFaction().matches("Player")) {
+                if (test.getFaction().equals("Player")) {
                     //yep, add it to the global list
                     universe.getPlayerProperty().add(entity);
                 }
@@ -566,7 +566,7 @@ public class SolarSystem implements Entity, Serializable {
                     if (!entities.contains(universe.getPlayerShip())) {
                         Ship test = (Ship) entities.get(a);
                         //don't do OOS checks on player property obviously
-                        if (!test.getFaction().matches(universe.getPlayerShip().getFaction())) {
+                        if (!test.getFaction().equals(universe.getPlayerShip().getFaction())) {
                             //remove entities the player can't see that are out of fuel
                             double fuelPercent = test.getFuel() / test.getMaxFuel();
                             if (fuelPercent < 0.03) {
@@ -629,12 +629,12 @@ public class SolarSystem implements Entity, Serializable {
     }
     
     private void updateSov() {
-        if (owner.matches("Player")) {
+        if (owner.equals("Player")) {
             //count player's stations
             int count = 0;
             for (int a = 0; a < stationList.size(); a++) {
                 Station test = (Station) stationList.get(a);
-                if (test.getFaction().matches("Player")) {
+                if (test.getFaction().equals("Player")) {
                     count++;
                 }
             }

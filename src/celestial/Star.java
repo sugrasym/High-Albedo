@@ -48,7 +48,7 @@ public class Star extends Planet {
         gfx.setClip(circle);
         gfx.clip(circle);
         //get logical texture
-        if (getTexture().getValue("group").matches("basic")) {
+        if (getTexture().getValue("group").equals("basic")) {
             //get the asset
             String asset = getTexture().getValue("asset");
             try {

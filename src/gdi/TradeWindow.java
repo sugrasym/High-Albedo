@@ -56,7 +56,7 @@ public class TradeWindow extends AstralWindow {
         ArrayList<Term> types = shipParser.getTermsOfType("Ship");
         Term test = null;
         for (int a = 0; a < types.size(); a++) {
-            if (types.get(a).getValue("type").matches(selected.getName())) {
+            if (types.get(a).getValue("type").equals(selected.getName())) {
                 test = types.get(a);
                 break;
             }
@@ -106,7 +106,7 @@ public class TradeWindow extends AstralWindow {
         ArrayList<Term> types = weaponParser.getTermsOfType("Weapon");
         Term test = null;
         for (int a = 0; a < types.size(); a++) {
-            if (types.get(a).getValue("name").matches(selected.getName())) {
+            if (types.get(a).getValue("name").equals(selected.getName())) {
                 test = types.get(a);
                 break;
             }
@@ -372,14 +372,14 @@ public class TradeWindow extends AstralWindow {
 
     private void parseCommand(String command) {
         if (command != null) {
-            if (command.matches("Sell")) {
+            if (command.equals("Sell")) {
                 //get item
                 /*int index = lastFocus.getIndex();
                  Item selected = (Item) lastFocus.getItemAtIndex(index);
                  docked.sell(ship, selected, 1);*/
                 showInput();
                 action = Behavior.WAITING_TO_SELL;
-            } else if (command.matches("Buy")) {
+            } else if (command.equals("Buy")) {
                 /*int index = lastFocus.getIndex();
                  Item selected = (Item) lastFocus.getItemAtIndex(index);
                  docked.buy(ship, selected, 1);*/
@@ -424,7 +424,7 @@ public class TradeWindow extends AstralWindow {
                 a = 0;
             }
             int len = words[a].length();
-            if (cursor < lineWidth && !words[a].matches("/br/")) {
+            if (cursor < lineWidth && !words[a].equals("/br/")) {
                 if (cursor + len <= lineWidth) {
                     tmp += " " + words[a];
                     cursor += len;
@@ -442,7 +442,7 @@ public class TradeWindow extends AstralWindow {
                 propertyList.addToList(tmp);
                 tmp = "";
                 cursor = 0;
-                if (!words[a].matches("/br/")) {
+                if (!words[a].equals("/br/")) {
                     a--;
                 }
             }

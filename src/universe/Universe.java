@@ -87,7 +87,7 @@ public class Universe implements Serializable {
             String target = thisSystem.getValue("sky");
             ArrayList<Term> backs = Universe.getCache().getSkyCache().getTermsOfType("Skybox");
             for (int a = 0; a < backs.size(); a++) {
-                if (backs.get(a).getValue("name").matches(target)) {
+                if (backs.get(a).getValue("name").equals(target)) {
                     back = backs.get(a).getValue("asset");
                     break;
                 }
@@ -129,11 +129,11 @@ public class Universe implements Serializable {
             player.setCash(Long.parseLong(cash));
             //put it in the right system next to the start object
             for (int a = 0; a < systems.size(); a++) {
-                if (systems.get(a).getName().matches(system)) {
+                if (systems.get(a).getName().equals(system)) {
                     systems.get(a).putEntityInSystem(player);
                     if (near != null) {
                         for (int b = 0; b < systems.get(a).getEntities().size(); b++) {
-                            if (systems.get(a).getEntities().get(b).getName().matches(near)) {
+                            if (systems.get(a).getEntities().get(b).getName().equals(near)) {
                                 player.setX(systems.get(a).getEntities().get(b).getX());
                                 player.setY(systems.get(a).getEntities().get(b).getY());
                                 break;

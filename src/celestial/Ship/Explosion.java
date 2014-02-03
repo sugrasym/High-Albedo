@@ -71,7 +71,7 @@ public class Explosion extends Ship {
         Parser.Term relevant = null;
         for (int a = 0; a < terms.size(); a++) {
             String termName = terms.get(a).getValue("type");
-            if (termName.matches(getType())) {
+            if (termName.equals(getType())) {
                 //get the stats we want
                 relevant = terms.get(a);
                 //and end
