@@ -19,6 +19,7 @@
  */
 package universe;
 
+import celestial.Celestial;
 import celestial.Ship.Ship;
 import celestial.Ship.Ship.Behavior;
 import celestial.Ship.Station;
@@ -312,7 +313,7 @@ public class Campaign implements Serializable {
             //the group name
             String group = param1;
             //split param2 into details
-            //The Archers,Native Land,-5439.0,11587.0,Pirate Raider,Archer Pirate,BEHAVIOR_PATROL
+            //The Archers,Native Land,-5439.0,11587.0,Pirate Raider,Archer Pirate,PATROL
             String[] split = param2.split(",");
             String faction = split[0];
             String sys = split[1];
@@ -382,15 +383,53 @@ public class Campaign implements Serializable {
             /*
              * This block is dedicated to handling functions that modify the current player ship
              */
-            if(param1.equals("SETSTANDING")) {
+            if (param1.equals("SETSTANDING")) {
                 String[] split = param2.split(",");
                 String fact = split[0].trim();
                 String sRaw = split[1].trim();
                 double standing = Double.parseDouble(sRaw);
                 universe.getPlayerShip().getMyFaction().setStanding(fact, standing);
-            } else if(param1.equals("ADDCASH")) {
+            } else if (param1.equals("ADDCASH")) {
                 long mod = Long.parseLong(param2.trim());
                 universe.getPlayerShip().setCash(universe.getPlayerShip().getCash() + mod);
+            }
+        } else if (action.equals("COMMGROUP")) {
+            /*
+             * Dedicated to sending orders to a group of ships
+             */
+            String group = param1;
+            //split to find orders
+            String[] split = param2.split(",");
+            String command = split[0];
+            //find ships in this group
+            for (int a = 0; a < universe.getSystems().size(); a++) {
+                ArrayList<Entity> ships = universe.getSystems().get(a).getShipList();
+                for (int b = 0; b < ships.size(); b++) {
+                    Ship tmp = (Ship) ships.get(b);
+                    if (tmp.getGroup().equals(group)) {
+                        if (command.equals("FLYTO")) {
+                            String target = split[1].trim();
+                            String sRange = split[2].trim();
+                            //fly to only works in the current system the object is in
+                            Celestial flyToTarget = null;
+                            double flyToRange = Double.parseDouble(sRange);
+                            //find the target in system
+                            for(int x = 0; x < tmp.getCurrentSystem().getEntities().size(); x++) {
+                                Entity test = tmp.getCurrentSystem().getEntities().get(x);
+                                if(test instanceof Celestial) {
+                                    Celestial cel = (Celestial) test;
+                                    if(cel.getName().equals(target)) {
+                                        flyToTarget = cel;
+                                    }
+                                }
+                            }
+                            //if we found it, go there
+                            if(flyToTarget != null) {
+                                tmp.cmdFlyToCelestial(flyToTarget, flyToRange);
+                            }
+                        }
+                    }
+                }
             }
         }
     }

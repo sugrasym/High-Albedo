@@ -15,6 +15,8 @@ advance=ENTERSYSTEM::Native Land
 fail=ENTERSYSTEM::Cosmic Way
 failure=Wrong Hole
 next=Ageiran Shipyard
+#call0=SPAWNSHIP::TestGroup::Neutral,The Highway,18476.0,9025.0,ITC Fleet Hyena,Test Ship,NONE
+#call1=COMMGROUP::TestGroup::FLYTO,Ageiran Solar Power Plant 22,500
 [/Node]
 
 [Node]
@@ -68,3 +70,4 @@ next=Ageiran Shipyard
 #call0=SPAWNSTATION::TestGroup::ITC,The Highway,18476.0,6025.0,ITC Power Converter,Rogue ITC Station
 #call0=PLAYER::SETSTANDING::Ageiran Federation,-8
 #call0=PLAYER::ADDCASH::12345
+#call0=COMMGROUP::TestGroup::FLYTO,Ageiran Solar Power Plant 22,500
