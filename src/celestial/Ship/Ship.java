@@ -755,7 +755,15 @@ public class Ship extends Celestial {
                         }
                     }
                 } else {
-                    cmdAllStop();
+                    //determine if this is a system we could jump to
+                    SolarSystem targetSystem = flyToTarget.getCurrentSystem();
+                    if (canJump(targetSystem)) {
+                        //jump to follow target
+                        cmdJump(targetSystem);
+                    } else {
+                        //abort follow
+                        cmdAllStop();
+                    }
                 }
             } else {
                 autopilot = Autopilot.NONE;
@@ -803,7 +811,15 @@ public class Ship extends Celestial {
                         Logger.getLogger(Ship.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } else {
-                    cmdAllStop();
+                    //determine if this is a system we could jump to
+                    SolarSystem targetSystem = flyToTarget.getCurrentSystem();
+                    if (canJump(targetSystem)) {
+                        //jump to reach target
+                        cmdJump(targetSystem);
+                    } else {
+                        //abort follow
+                        cmdAllStop();
+                    }
                 }
             } else {
                 autopilot = Autopilot.NONE;
@@ -3936,7 +3952,7 @@ public class Ship extends Celestial {
         double ty = destination.getY();
         double dist = magnitude((cx - tx), (cy - ty));
         //fuel cost is linear
-        double fuelCost = dist * 50;
+        double fuelCost = dist * 25;
         return fuelCost;
     }
 
@@ -4187,11 +4203,11 @@ public class Ship extends Celestial {
             //cannot be claimed
         }
     }
-    
+
     public String getGroup() {
         return group;
     }
-    
+
     public void setGroup(String group) {
         this.group = group;
     }

@@ -76,6 +76,10 @@ public class Jumphole extends Planet {
         //update bound
         getBounds().clear();
         getBounds().add(new Rectangle((int) getX() - getDiameter() / 4, (int) getY() - getDiameter() / 4, getDiameter() / 2, getDiameter() / 2));
+        //guarantee link
+        if(outGate == null) {
+            createLink(out);
+        }
     }
 
     public void createLink(String out) {

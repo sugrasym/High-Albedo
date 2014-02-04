@@ -1,10 +1,11 @@
 #New Game Smell
 [NewGame]
-ship=Cab
+ship=Crow
 near='Gomez 15'
 system=The Highway
-cash=50000
+cash=500000
 install=ERPC/ERPC
+cargo=Jumpdrive~1
 faction=Player
 [/NewGame]
 
