@@ -388,6 +388,9 @@ public class Campaign implements Serializable {
                 String sRaw = split[1].trim();
                 double standing = Double.parseDouble(sRaw);
                 universe.getPlayerShip().getMyFaction().setStanding(fact, standing);
+            } else if(param1.equals("ADDCASH")) {
+                long mod = Long.parseLong(param2.trim());
+                universe.getPlayerShip().setCash(universe.getPlayerShip().getCash() + mod);
             }
         }
     }

@@ -67,3 +67,4 @@ next=Ageiran Shipyard
 ########Field Notes
 #call0=SPAWNSTATION::TestGroup::ITC,The Highway,18476.0,6025.0,ITC Power Converter,Rogue ITC Station
 #call0=PLAYER::SETSTANDING::Ageiran Federation,-8
+#call0=PLAYER::ADDCASH::12345
