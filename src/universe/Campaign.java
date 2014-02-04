@@ -239,7 +239,7 @@ public class Campaign implements Serializable {
         String next = node.getValue("next");
         advance(next);
     }
-    
+
     private void fail() {
         //automatically advance to the failure node
         String next = node.getValue("failure");
@@ -308,7 +308,7 @@ public class Campaign implements Serializable {
         String action = arr[0].trim();
         String param1 = arr[1].trim();
         String param2 = arr[2].trim();
-        if (action.matches("SPAWNSHIP")) {
+        if (action.equals("SPAWNSHIP")) {
             //the group name
             String group = param1;
             //split param2 into details
@@ -350,7 +350,7 @@ public class Campaign implements Serializable {
             //spawn ship
             //spawnShip(Faction faction, SolarSystem system, Point2D.Double loc, String loadout, String name, Behavior behavior)
             universe.getGod().spawnShip(myFaction, system, new Point2D.Double(x, y), load, name, behavior, group);
-        } else if (action.matches("SPAWNSTATION")) {
+        } else if (action.equals("SPAWNSTATION")) {
             //the group name
             String group = param1;
             //split param2 into details
@@ -378,6 +378,17 @@ public class Campaign implements Serializable {
             //spawn station
             //spawnStation(Faction faction, SolarSystem system, Point2D.Double loc, String type, String name)
             universe.getGod().spawnStation(myFaction, system, new Point2D.Double(x, y), load, name, group);
+        } else if (action.equals("PLAYER")) {
+            /*
+             * This block is dedicated to handling functions that modify the current player ship
+             */
+            if(param1.equals("SETSTANDING")) {
+                String[] split = param2.split(",");
+                String fact = split[0].trim();
+                String sRaw = split[1].trim();
+                double standing = Double.parseDouble(sRaw);
+                universe.getPlayerShip().getMyFaction().setStanding(fact, standing);
+            }
         }
     }
 
