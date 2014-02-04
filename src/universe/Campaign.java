@@ -350,6 +350,34 @@ public class Campaign implements Serializable {
             //spawn ship
             //spawnShip(Faction faction, SolarSystem system, Point2D.Double loc, String loadout, String name, Behavior behavior)
             universe.getGod().spawnShip(myFaction, system, new Point2D.Double(x, y), load, name, behavior, group);
+        } else if (action.matches("SPAWNSTATION")) {
+            //the group name
+            String group = param1;
+            //split param2 into details
+            //SPAWNSTATION::TestGroup::ITC,The Highway,-4439.0,11587.0,ITC Power Converter,Rogue ITC Station
+            String[] split = param2.split(",");
+            String faction = split[0];
+            String sys = split[1];
+            String sx = split[2];
+            String sy = split[3];
+            String load = split[4];
+            String name = split[5];
+            //find the correct system
+            SolarSystem system = null;
+            for (int x = 0; x < universe.getSystems().size(); x++) {
+                if (universe.getSystems().get(x).getName().equals(sys)) {
+                    system = universe.getSystems().get(x);
+                    break;
+                }
+            }
+            //generate coordinates
+            double x = Double.parseDouble(sx);
+            double y = Double.parseDouble(sy);
+            //setup faction
+            Faction myFaction = new Faction(faction);
+            //spawn station
+            //spawnStation(Faction faction, SolarSystem system, Point2D.Double loc, String type, String name)
+            universe.getGod().spawnStation(myFaction, system, new Point2D.Double(x, y), load, name, group);
         }
     }
 
