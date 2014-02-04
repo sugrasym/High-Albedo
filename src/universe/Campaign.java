@@ -344,6 +344,8 @@ public class Campaign implements Serializable {
                 behavior = Behavior.UNIVERSE_TRADE;
             } else if (behave.equals("TEST")) {
                 behavior = Behavior.TEST;
+            } else if (behave.equals("NONE")) {
+                behavior = Behavior.NONE;
             }
             //spawn ship
             //spawnShip(Faction faction, SolarSystem system, Point2D.Double loc, String loadout, String name, Behavior behavior)
