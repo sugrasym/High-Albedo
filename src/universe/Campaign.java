@@ -374,6 +374,9 @@ public class Campaign implements Serializable {
                         if (command.equals("FOLLOW")) {
                             parseFollow(split, tmp);
                         }
+                        if (command.equals("BEHAVE")) {
+                            parseBehave(split, tmp);
+                        }
                     }
                 }
             }
@@ -474,20 +477,20 @@ public class Campaign implements Serializable {
         Celestial flyToTarget = null;
         double flyToRange = Double.parseDouble(sRange);
         //find the target in system
-        for(int x = 0; x < tmp.getCurrentSystem().getEntities().size(); x++) {
+        for (int x = 0; x < tmp.getCurrentSystem().getEntities().size(); x++) {
             Entity test = tmp.getCurrentSystem().getEntities().get(x);
-            if(test instanceof Celestial) {
+            if (test instanceof Celestial) {
                 Celestial cel = (Celestial) test;
-                if(cel.getName().equals(target)) {
+                if (cel.getName().equals(target)) {
                     flyToTarget = cel;
                     break;
                 }
             }
         }
         //if we found it, go there
-        if(flyToTarget != null) {
+        if (flyToTarget != null) {
             tmp.cmdFlyToCelestial(flyToTarget, flyToRange);
-        } else if(target.equals("PLAYER")) {
+        } else if (target.equals("PLAYER")) {
             tmp.cmdFlyToCelestial(universe.getPlayerShip(), flyToRange);
         }
     }
@@ -499,22 +502,41 @@ public class Campaign implements Serializable {
         Ship followTarget = null;
         double followRange = Double.parseDouble(sRange);
         //find the target in system
-        for(int x = 0; x < tmp.getCurrentSystem().getEntities().size(); x++) {
+        for (int x = 0; x < tmp.getCurrentSystem().getEntities().size(); x++) {
             Entity test = tmp.getCurrentSystem().getEntities().get(x);
-            if(test instanceof Ship) {
+            if (test instanceof Ship) {
                 Ship cel = (Ship) test;
-                if(cel.getName().equals(target)) {
+                if (cel.getName().equals(target)) {
                     followTarget = cel;
                     break;
                 }
             }
         }
         //if we found it, go there
-        if(followTarget != null) {
+        if (followTarget != null) {
             tmp.cmdFollowShip(followTarget, followRange);
-        } else if(target.equals("PLAYER")) {
+        } else if (target.equals("PLAYER")) {
             tmp.cmdFollowShip(universe.getPlayerShip(), followRange);
         }
+    }
+
+    private void parseBehave(String[] split, Ship tmp) {
+        String behave = split[1].trim();
+        //determine correct new behavior
+        Behavior behavior = Behavior.NONE;
+        if (behave.equals("PATROL")) {
+            behavior = Behavior.PATROL;
+        } else if (behave.equals("SECTOR_TRADE")) {
+            behavior = Behavior.SECTOR_TRADE;
+        } else if (behave.equals("UNIVERSE_TRADE")) {
+            behavior = Behavior.UNIVERSE_TRADE;
+        } else if (behave.equals("TEST")) {
+            behavior = Behavior.TEST;
+        } else if (behave.equals("NONE")) {
+            behavior = Behavior.NONE;
+        }
+        //set behavior
+        tmp.setBehavior(behavior);
     }
 
     private void do4FieldFunction(String[] arr) {
