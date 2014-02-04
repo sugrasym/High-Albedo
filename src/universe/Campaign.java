@@ -85,20 +85,9 @@ public class Campaign implements Serializable {
         if (advance.equals("none")) {
             next();
         } else if (advance.equals("END")) {
-            //this is the end of the campaign
-            node = null;
-            messagePlayer("Campaign Complete", "Congratulations! You've finished '" + name + "'");
-            //stop campaign by removing reference
-            universe.getPlayerCampaigns().remove(this);
-            //store campaign in the completed campaigns list
-            universe.getCompletedCampaigns().add(this);
+            checkEndAdvance();
         } else if (advance.equals("SILENT_END")) {
-            //this is the end of the campaign, but doesn't say anything
-            node = null;
-            //stop campaign by removing reference
-            universe.getPlayerCampaigns().remove(this);
-            //store campaign in the completed campaigns list
-            universe.getCompletedCampaigns().add(this);
+            checkSilentEndAdvance();
         } else {
             //these are the more complex ones which have parameters
             String[] split = advance.split("::");
@@ -107,60 +96,91 @@ public class Campaign implements Serializable {
                 String condition = split[0].trim();
                 String parameter = split[1].trim();
                 if (condition.equals("ENTERSYSTEM")) {
-                    //triggered when the player is in a certain system
-                    if (universe.getPlayerShip().getCurrentSystem().getName().equals(parameter)) {
-                        //trigger reached
-                        next();
-                    } else {
-                        //not yet
-                    }
+                    checkEnterSystemAdvance(parameter);
                 } else if (condition.equals("DOCK")) {
-                    //triggered when a player docks at a certain station
-                    Ship player = universe.getPlayerShip();
-                    if (player.isDocked()) {
-                        Station host = player.getPort().getParent();
-                        if (host.getName().equals(parameter)) {
-                            //trigger reached
-                            next();
-                        } else {
-                            //not yet
-                        }
-                    }
+                    checkDockAdvance(parameter);
                 } else if (condition.equals("NONEALIVE")) {
-                    //triggered when no ship/station of a certain group is left alive
-                    String group = parameter;
-                    boolean foundOne = false;
-                    //iterate through all entities to check groups
-                    for (int a = 0; a < universe.getSystems().size(); a++) {
-                        if (!foundOne) {
-                            ArrayList<Entity> ships = universe.getSystems().get(a).getShipList();
-                            ArrayList<Entity> stations = universe.getSystems().get(a).getStationList();
-                            for (int b = 0; b < ships.size(); b++) {
-                                Ship tmp = (Ship) ships.get(b);
-                                if (tmp.getGroup().equals(group)) {
-                                    foundOne = true;
-                                    break;
-                                }
-                            }
-                            for (int b = 0; b < stations.size(); b++) {
-                                Ship tmp = (Ship) stations.get(b);
-                                if (tmp.getGroup().equals(group)) {
-                                    foundOne = true;
-                                    break;
-                                }
-                            }
-                        } else {
-                            //no point
-                        }
-                    }
-                    //check to see if we found one
-                    if (!foundOne) {
-                        //trigger reached
-                        next();
-                    }
+                    checkNoneAliveAdvance(parameter);
                 }
             }
         }
+    }
+
+    private void checkNoneAliveAdvance(String parameter) {
+        //triggered when no ship/station of a certain group is left alive
+        String group = parameter;
+        boolean foundOne = false;
+        //iterate through all entities to check groups
+        for (int a = 0; a < universe.getSystems().size(); a++) {
+            if (!foundOne) {
+                ArrayList<Entity> ships = universe.getSystems().get(a).getShipList();
+                ArrayList<Entity> stations = universe.getSystems().get(a).getStationList();
+                for (int b = 0; b < ships.size(); b++) {
+                    Ship tmp = (Ship) ships.get(b);
+                    if (tmp.getGroup().equals(group)) {
+                        foundOne = true;
+                        break;
+                    }
+                }
+                for (int b = 0; b < stations.size(); b++) {
+                    Ship tmp = (Ship) stations.get(b);
+                    if (tmp.getGroup().equals(group)) {
+                        foundOne = true;
+                        break;
+                    }
+                }
+            } else {
+                //no point
+            }
+        }
+        //check to see if we found one
+        if (!foundOne) {
+            //trigger reached
+            next();
+        }
+    }
+
+    private void checkDockAdvance(String parameter) {
+        //triggered when a player docks at a certain station
+        Ship player = universe.getPlayerShip();
+        if (player.isDocked()) {
+            Station host = player.getPort().getParent();
+            if (host.getName().equals(parameter)) {
+                //trigger reached
+                next();
+            } else {
+                //not yet
+            }
+        }
+    }
+
+    private void checkEnterSystemAdvance(String parameter) {
+        //triggered when the player is in a certain system
+        if (universe.getPlayerShip().getCurrentSystem().getName().equals(parameter)) {
+            //trigger reached
+            next();
+        } else {
+            //not yet
+        }
+    }
+
+    private void checkSilentEndAdvance() {
+        //this is the end of the campaign, but doesn't say anything
+        node = null;
+        //stop campaign by removing reference
+        universe.getPlayerCampaigns().remove(this);
+        //store campaign in the completed campaigns list
+        universe.getCompletedCampaigns().add(this);
+    }
+
+    private void checkEndAdvance() {
+        //this is the end of the campaign
+        node = null;
+        messagePlayer("Campaign Complete", "Congratulations! You've finished '" + name + "'");
+        //stop campaign by removing reference
+        universe.getPlayerCampaigns().remove(this);
+        //store campaign in the completed campaigns list
+        universe.getCompletedCampaigns().add(this);
     }
 
     private void checkFailure() {
@@ -178,60 +198,72 @@ public class Campaign implements Serializable {
                     String condition = split[0].trim();
                     String parameter = split[1].trim();
                     if (condition.equals("ENTERSYSTEM")) {
-                        //triggered when the player is in a certain system
-                        if (universe.getPlayerShip().getCurrentSystem().getName().equals(parameter)) {
-                            //trigger reached
-                            fail();
-                        } else {
-                            //not yet
-                        }
+                        checkEnterSystemFail(parameter);
                     } else if (condition.equals("DOCK")) {
-                        //triggered when a player docks at a certain station
-                        Ship player = universe.getPlayerShip();
-                        if (player.isDocked()) {
-                            Station host = player.getPort().getParent();
-                            if (host.getName().equals(parameter)) {
-                                //trigger reached
-                                fail();
-                            } else {
-                                //not yet
-                            }
-                        }
+                        checkDockFail(parameter);
                     } else if (condition.equals("NONEALIVE")) {
-                        //triggered when no ship/station of a certain group is left alive
-                        String group = parameter;
-                        boolean foundOne = false;
-                        //iterate through all entities to check groups
-                        for (int a = 0; a < universe.getSystems().size(); a++) {
-                            if (!foundOne) {
-                                ArrayList<Entity> ships = universe.getSystems().get(a).getShipList();
-                                ArrayList<Entity> stations = universe.getSystems().get(a).getStationList();
-                                for (int b = 0; b < ships.size(); b++) {
-                                    Ship tmp = (Ship) ships.get(b);
-                                    if (tmp.getGroup().equals(group)) {
-                                        foundOne = true;
-                                        break;
-                                    }
-                                }
-                                for (int b = 0; b < stations.size(); b++) {
-                                    Ship tmp = (Ship) stations.get(b);
-                                    if (tmp.getGroup().equals(group)) {
-                                        foundOne = true;
-                                        break;
-                                    }
-                                }
-                            } else {
-                                //no point
-                            }
-                        }
-                        //check to see if we found one
-                        if (!foundOne) {
-                            //trigger reached
-                            fail();
-                        }
+                        checkNoneAliveFail(parameter);
                     }
                 }
             }
+        }
+    }
+
+    private void checkNoneAliveFail(String parameter) {
+        //triggered when no ship/station of a certain group is left alive
+        String group = parameter;
+        boolean foundOne = false;
+        //iterate through all entities to check groups
+        for (int a = 0; a < universe.getSystems().size(); a++) {
+            if (!foundOne) {
+                ArrayList<Entity> ships = universe.getSystems().get(a).getShipList();
+                ArrayList<Entity> stations = universe.getSystems().get(a).getStationList();
+                for (int b = 0; b < ships.size(); b++) {
+                    Ship tmp = (Ship) ships.get(b);
+                    if (tmp.getGroup().equals(group)) {
+                        foundOne = true;
+                        break;
+                    }
+                }
+                for (int b = 0; b < stations.size(); b++) {
+                    Ship tmp = (Ship) stations.get(b);
+                    if (tmp.getGroup().equals(group)) {
+                        foundOne = true;
+                        break;
+                    }
+                }
+            } else {
+                //no point
+            }
+        }
+        //check to see if we found one
+        if (!foundOne) {
+            //trigger reached
+            fail();
+        }
+    }
+
+    private void checkDockFail(String parameter) {
+        //triggered when a player docks at a certain station
+        Ship player = universe.getPlayerShip();
+        if (player.isDocked()) {
+            Station host = player.getPort().getParent();
+            if (host.getName().equals(parameter)) {
+                //trigger reached
+                fail();
+            } else {
+                //not yet
+            }
+        }
+    }
+
+    private void checkEnterSystemFail(String parameter) {
+        //triggered when the player is in a certain system
+        if (universe.getPlayerShip().getCurrentSystem().getName().equals(parameter)) {
+            //trigger reached
+            fail();
+        } else {
+            //not yet
         }
     }
 
@@ -310,88 +342,17 @@ public class Campaign implements Serializable {
         String param1 = arr[1].trim();
         String param2 = arr[2].trim();
         if (action.equals("SPAWNSHIP")) {
-            //the group name
-            String group = param1;
-            //split param2 into details
-            //The Archers,Native Land,-5439.0,11587.0,Pirate Raider,Archer Pirate,PATROL
-            String[] split = param2.split(",");
-            String faction = split[0];
-            String sys = split[1];
-            String sx = split[2];
-            String sy = split[3];
-            String load = split[4];
-            String name = split[5];
-            String behave = split[6];
-            //find the correct system
-            SolarSystem system = null;
-            for (int x = 0; x < universe.getSystems().size(); x++) {
-                if (universe.getSystems().get(x).getName().equals(sys)) {
-                    system = universe.getSystems().get(x);
-                    break;
-                }
-            }
-            //generate coordinates
-            double x = Double.parseDouble(sx);
-            double y = Double.parseDouble(sy);
-            //setup faction
-            Faction myFaction = new Faction(faction);
-            //setup behavior
-            Behavior behavior = Behavior.NONE;
-            if (behave.equals("PATROL")) {
-                behavior = Behavior.PATROL;
-            } else if (behave.equals("SECTOR_TRADE")) {
-                behavior = Behavior.SECTOR_TRADE;
-            } else if (behave.equals("UNIVERSE_TRADE")) {
-                behavior = Behavior.UNIVERSE_TRADE;
-            } else if (behave.equals("TEST")) {
-                behavior = Behavior.TEST;
-            } else if (behave.equals("NONE")) {
-                behavior = Behavior.NONE;
-            }
-            //spawn ship
-            //spawnShip(Faction faction, SolarSystem system, Point2D.Double loc, String loadout, String name, Behavior behavior)
-            universe.getGod().spawnShip(myFaction, system, new Point2D.Double(x, y), load, name, behavior, group);
+            parseSpawnShip(param1, param2);
         } else if (action.equals("SPAWNSTATION")) {
-            //the group name
-            String group = param1;
-            //split param2 into details
-            //SPAWNSTATION::TestGroup::ITC,The Highway,-4439.0,11587.0,ITC Power Converter,Rogue ITC Station
-            String[] split = param2.split(",");
-            String faction = split[0];
-            String sys = split[1];
-            String sx = split[2];
-            String sy = split[3];
-            String load = split[4];
-            String name = split[5];
-            //find the correct system
-            SolarSystem system = null;
-            for (int x = 0; x < universe.getSystems().size(); x++) {
-                if (universe.getSystems().get(x).getName().equals(sys)) {
-                    system = universe.getSystems().get(x);
-                    break;
-                }
-            }
-            //generate coordinates
-            double x = Double.parseDouble(sx);
-            double y = Double.parseDouble(sy);
-            //setup faction
-            Faction myFaction = new Faction(faction);
-            //spawn station
-            //spawnStation(Faction faction, SolarSystem system, Point2D.Double loc, String type, String name)
-            universe.getGod().spawnStation(myFaction, system, new Point2D.Double(x, y), load, name, group);
+            parseSpawnStation(param1, param2);
         } else if (action.equals("PLAYER")) {
             /*
              * This block is dedicated to handling functions that modify the current player ship
              */
             if (param1.equals("SETSTANDING")) {
-                String[] split = param2.split(",");
-                String fact = split[0].trim();
-                String sRaw = split[1].trim();
-                double standing = Double.parseDouble(sRaw);
-                universe.getPlayerShip().getMyFaction().setStanding(fact, standing);
+                setPlayerStanding(param2);
             } else if (param1.equals("ADDCASH")) {
-                long mod = Long.parseLong(param2.trim());
-                universe.getPlayerShip().setCash(universe.getPlayerShip().getCash() + mod);
+                givePlayerCash(param2);
             }
         } else if (action.equals("COMMGROUP")) {
             /*
@@ -408,56 +369,151 @@ public class Campaign implements Serializable {
                     Ship tmp = (Ship) ships.get(b);
                     if (tmp.getGroup().equals(group)) {
                         if (command.equals("FLYTO")) {
-                            String target = split[1].trim();
-                            String sRange = split[2].trim();
-                            //fly to only works in the current system the object is in
-                            Celestial flyToTarget = null;
-                            double flyToRange = Double.parseDouble(sRange);
-                            //find the target in system
-                            for(int x = 0; x < tmp.getCurrentSystem().getEntities().size(); x++) {
-                                Entity test = tmp.getCurrentSystem().getEntities().get(x);
-                                if(test instanceof Celestial) {
-                                    Celestial cel = (Celestial) test;
-                                    if(cel.getName().equals(target)) {
-                                        flyToTarget = cel;
-                                        break;
-                                    }
-                                }
-                            }
-                            //if we found it, go there
-                            if(flyToTarget != null) {
-                                tmp.cmdFlyToCelestial(flyToTarget, flyToRange);
-                            } else if(target.equals("PLAYER")) {
-                                tmp.cmdFlyToCelestial(universe.getPlayerShip(), flyToRange);
-                            }
+                            parseFlyTo(split, tmp);
                         }
                         if (command.equals("FOLLOW")) {
-                            String target = split[1].trim();
-                            String sRange = split[2].trim();
-                            //fly to only works in the current system the object is in
-                            Ship followTarget = null;
-                            double followRange = Double.parseDouble(sRange);
-                            //find the target in system
-                            for(int x = 0; x < tmp.getCurrentSystem().getEntities().size(); x++) {
-                                Entity test = tmp.getCurrentSystem().getEntities().get(x);
-                                if(test instanceof Ship) {
-                                    Ship cel = (Ship) test;
-                                    if(cel.getName().equals(target)) {
-                                        followTarget = cel;
-                                        break;
-                                    }
-                                }
-                            }
-                            //if we found it, go there
-                            if(followTarget != null) {
-                                tmp.cmdFollowShip(followTarget, followRange);
-                            } else if(target.equals("PLAYER")) {
-                                tmp.cmdFollowShip(universe.getPlayerShip(), followRange);
-                            }
+                            parseFollow(split, tmp);
                         }
                     }
                 }
             }
+        }
+    }
+
+    private void parseSpawnShip(String param1, String param2) throws NumberFormatException {
+        //the group name
+        String group = param1;
+        //split param2 into details
+        //The Archers,Native Land,-5439.0,11587.0,Pirate Raider,Archer Pirate,PATROL
+        String[] split = param2.split(",");
+        String faction = split[0];
+        String sys = split[1];
+        String sx = split[2];
+        String sy = split[3];
+        String load = split[4];
+        String name = split[5];
+        String behave = split[6];
+        //find the correct system
+        SolarSystem system = null;
+        for (int x = 0; x < universe.getSystems().size(); x++) {
+            if (universe.getSystems().get(x).getName().equals(sys)) {
+                system = universe.getSystems().get(x);
+                break;
+            }
+        }
+        //generate coordinates
+        double x = Double.parseDouble(sx);
+        double y = Double.parseDouble(sy);
+        //setup faction
+        Faction myFaction = new Faction(faction);
+        //setup behavior
+        Behavior behavior = Behavior.NONE;
+        if (behave.equals("PATROL")) {
+            behavior = Behavior.PATROL;
+        } else if (behave.equals("SECTOR_TRADE")) {
+            behavior = Behavior.SECTOR_TRADE;
+        } else if (behave.equals("UNIVERSE_TRADE")) {
+            behavior = Behavior.UNIVERSE_TRADE;
+        } else if (behave.equals("TEST")) {
+            behavior = Behavior.TEST;
+        } else if (behave.equals("NONE")) {
+            behavior = Behavior.NONE;
+        }
+        //spawn ship
+        //spawnShip(Faction faction, SolarSystem system, Point2D.Double loc, String loadout, String name, Behavior behavior)
+        universe.getGod().spawnShip(myFaction, system, new Point2D.Double(x, y), load, name, behavior, group);
+    }
+
+    private void parseSpawnStation(String param1, String param2) throws NumberFormatException {
+        //the group name
+        String group = param1;
+        //split param2 into details
+        //SPAWNSTATION::TestGroup::ITC,The Highway,-4439.0,11587.0,ITC Power Converter,Rogue ITC Station
+        String[] split = param2.split(",");
+        String faction = split[0];
+        String sys = split[1];
+        String sx = split[2];
+        String sy = split[3];
+        String load = split[4];
+        String name = split[5];
+        //find the correct system
+        SolarSystem system = null;
+        for (int x = 0; x < universe.getSystems().size(); x++) {
+            if (universe.getSystems().get(x).getName().equals(sys)) {
+                system = universe.getSystems().get(x);
+                break;
+            }
+        }
+        //generate coordinates
+        double x = Double.parseDouble(sx);
+        double y = Double.parseDouble(sy);
+        //setup faction
+        Faction myFaction = new Faction(faction);
+        //spawn station
+        //spawnStation(Faction faction, SolarSystem system, Point2D.Double loc, String type, String name)
+        universe.getGod().spawnStation(myFaction, system, new Point2D.Double(x, y), load, name, group);
+    }
+
+    private void givePlayerCash(String param2) throws NumberFormatException {
+        long mod = Long.parseLong(param2.trim());
+        universe.getPlayerShip().setCash(universe.getPlayerShip().getCash() + mod);
+    }
+
+    private void setPlayerStanding(String param2) throws NumberFormatException {
+        String[] split = param2.split(",");
+        String fact = split[0].trim();
+        String sRaw = split[1].trim();
+        double standing = Double.parseDouble(sRaw);
+        universe.getPlayerShip().getMyFaction().setStanding(fact, standing);
+    }
+
+    private void parseFlyTo(String[] split, Ship tmp) throws NumberFormatException {
+        String target = split[1].trim();
+        String sRange = split[2].trim();
+        //fly to only works in the current system the object is in
+        Celestial flyToTarget = null;
+        double flyToRange = Double.parseDouble(sRange);
+        //find the target in system
+        for(int x = 0; x < tmp.getCurrentSystem().getEntities().size(); x++) {
+            Entity test = tmp.getCurrentSystem().getEntities().get(x);
+            if(test instanceof Celestial) {
+                Celestial cel = (Celestial) test;
+                if(cel.getName().equals(target)) {
+                    flyToTarget = cel;
+                    break;
+                }
+            }
+        }
+        //if we found it, go there
+        if(flyToTarget != null) {
+            tmp.cmdFlyToCelestial(flyToTarget, flyToRange);
+        } else if(target.equals("PLAYER")) {
+            tmp.cmdFlyToCelestial(universe.getPlayerShip(), flyToRange);
+        }
+    }
+
+    private void parseFollow(String[] split, Ship tmp) throws NumberFormatException {
+        String target = split[1].trim();
+        String sRange = split[2].trim();
+        //fly to only works in the current system the object is in
+        Ship followTarget = null;
+        double followRange = Double.parseDouble(sRange);
+        //find the target in system
+        for(int x = 0; x < tmp.getCurrentSystem().getEntities().size(); x++) {
+            Entity test = tmp.getCurrentSystem().getEntities().get(x);
+            if(test instanceof Ship) {
+                Ship cel = (Ship) test;
+                if(cel.getName().equals(target)) {
+                    followTarget = cel;
+                    break;
+                }
+            }
+        }
+        //if we found it, go there
+        if(followTarget != null) {
+            tmp.cmdFollowShip(followTarget, followRange);
+        } else if(target.equals("PLAYER")) {
+            tmp.cmdFollowShip(universe.getPlayerShip(), followRange);
         }
     }
 
