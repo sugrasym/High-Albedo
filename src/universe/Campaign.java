@@ -420,12 +420,39 @@ public class Campaign implements Serializable {
                                     Celestial cel = (Celestial) test;
                                     if(cel.getName().equals(target)) {
                                         flyToTarget = cel;
+                                        break;
                                     }
                                 }
                             }
                             //if we found it, go there
                             if(flyToTarget != null) {
                                 tmp.cmdFlyToCelestial(flyToTarget, flyToRange);
+                            } else if(target.equals("PLAYER")) {
+                                tmp.cmdFlyToCelestial(universe.getPlayerShip(), flyToRange);
+                            }
+                        }
+                        if (command.equals("FOLLOW")) {
+                            String target = split[1].trim();
+                            String sRange = split[2].trim();
+                            //fly to only works in the current system the object is in
+                            Ship followTarget = null;
+                            double followRange = Double.parseDouble(sRange);
+                            //find the target in system
+                            for(int x = 0; x < tmp.getCurrentSystem().getEntities().size(); x++) {
+                                Entity test = tmp.getCurrentSystem().getEntities().get(x);
+                                if(test instanceof Ship) {
+                                    Ship cel = (Ship) test;
+                                    if(cel.getName().equals(target)) {
+                                        followTarget = cel;
+                                        break;
+                                    }
+                                }
+                            }
+                            //if we found it, go there
+                            if(followTarget != null) {
+                                tmp.cmdFollowShip(followTarget, followRange);
+                            } else if(target.equals("PLAYER")) {
+                                tmp.cmdFollowShip(universe.getPlayerShip(), followRange);
                             }
                         }
                     }
