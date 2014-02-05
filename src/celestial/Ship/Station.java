@@ -687,4 +687,9 @@ public class Station extends Ship {
         immortal = false;
         System.out.println(getName()+" is now mortal.");
     }
+    
+    public void makeImmortal() {
+        immortal = true;
+        System.out.println("WARNING: "+getName()+" is now immortal.");
+    }
 }

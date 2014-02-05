@@ -558,6 +558,9 @@ public class Campaign implements Serializable {
                                 if (method.equals("makeMortal()")) {
                                     //make this station mortal
                                     tmpStat.makeMortal();
+                                } else if (method.equals("makeImmortal()")) {
+                                    //make this station immortal
+                                    tmpStat.makeImmortal();
                                 }
                             }
                         }
