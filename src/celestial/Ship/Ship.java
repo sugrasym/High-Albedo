@@ -3952,7 +3952,7 @@ public class Ship extends Celestial {
         double ty = destination.getY();
         double dist = magnitude((cx - tx), (cy - ty));
         //fuel cost is linear
-        double fuelCost = dist * 25;
+        double fuelCost = dist * 50;
         return fuelCost;
     }
 
