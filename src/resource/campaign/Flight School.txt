@@ -77,3 +77,4 @@ next=Ageiran Shipyard
 #call0=COMMGROUP::TestGroup::DOCKAT,Ageiran Solar Power Plant 22
 #call0=COMMGROUP::TestGroup::UNDOCK
 #advance=TRIGGROUP::TestGroup::DOCKED,The Highway,Ageiran Solar Power Plant 22
+#advance=TRIGGROUP::TestGroup::GOTO,The Highway,Native Land Jumphole,1000

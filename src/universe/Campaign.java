@@ -132,6 +132,11 @@ public class Campaign implements Serializable {
                                         hit = true;
                                         break;
                                     }
+                                } else if (command.equals("GOTO")) {
+                                    if (checkGroupGotoAdvance(arr, tmp)) {
+                                        hit = true;
+                                        break;
+                                    }
                                 }
                             }
                         }
@@ -139,6 +144,54 @@ public class Campaign implements Serializable {
                 }
             }
         }
+    }
+
+    private boolean checkGroupGotoAdvance(String[] arr, Ship tmp) {
+        String lSys = arr[1].trim();
+        String lEnt = arr[2].trim();
+        String dist = arr[3].trim();
+        //parse distance
+        double distance = Double.parseDouble(dist);
+        //see if we are in the right system to check
+        if (tmp.getCurrentSystem().getName().equals(lSys)) {
+            //see if we are near this celestial
+            ArrayList<Entity> celestials = tmp.getCurrentSystem().getCelestialList();
+            Celestial pick = null;
+            for (int a = 0; a < celestials.size(); a++) {
+                if (celestials.get(a) instanceof Ship) {
+                    //make sure it isn't player owned. We don't want the player's named ships to confuse the script.
+                    Ship test = (Ship) celestials.get(a);
+                    if (test.getFaction().equals(universe.getPlayerShip().getFaction())) {
+                        //don't include this object
+                    } else {
+                        if (test.getName().equals(lEnt)) {
+                            pick = test;
+                            break;
+                        }
+                    }
+                } else if (celestials.get(a) instanceof Celestial) {
+                    Celestial test = (Celestial) celestials.get(a);
+                    if (test.getName().equals(lEnt)) {
+                        pick = test;
+                        break;
+                    }
+                }
+            }
+            //test distance
+            if (pick != null) {
+                double d = tmp.distanceTo(pick);
+                if (d <= distance) {
+                    //trigger reached
+                    next();
+                    return true;
+                } else {
+                    //sad christmas
+                }
+            }
+        } else {
+            //no point in testing further
+        }
+        return false;
     }
 
     private boolean checkGroupDockAdvance(String[] arr, Ship tmp) {
@@ -336,6 +389,11 @@ public class Campaign implements Serializable {
                                             hit = true;
                                             break;
                                         }
+                                    } else if (command.equals("GOTO")) {
+                                        if (checkGroupGotoFail(arr, tmp)) {
+                                            hit = true;
+                                            break;
+                                        }
                                     }
                                 }
                             }
@@ -344,6 +402,54 @@ public class Campaign implements Serializable {
                 }
             }
         }
+    }
+    
+    private boolean checkGroupGotoFail(String[] arr, Ship tmp) {
+        String lSys = arr[1].trim();
+        String lEnt = arr[2].trim();
+        String dist = arr[3].trim();
+        //parse distance
+        double distance = Double.parseDouble(dist);
+        //see if we are in the right system to check
+        if (tmp.getCurrentSystem().getName().equals(lSys)) {
+            //see if we are near this celestial
+            ArrayList<Entity> celestials = tmp.getCurrentSystem().getCelestialList();
+            Celestial pick = null;
+            for (int a = 0; a < celestials.size(); a++) {
+                if (celestials.get(a) instanceof Ship) {
+                    //make sure it isn't player owned. We don't want the player's named ships to confuse the script.
+                    Ship test = (Ship) celestials.get(a);
+                    if (test.getFaction().equals(universe.getPlayerShip().getFaction())) {
+                        //don't include this object
+                    } else {
+                        if (test.getName().equals(lEnt)) {
+                            pick = test;
+                            break;
+                        }
+                    }
+                } else if (celestials.get(a) instanceof Celestial) {
+                    Celestial test = (Celestial) celestials.get(a);
+                    if (test.getName().equals(lEnt)) {
+                        pick = test;
+                        break;
+                    }
+                }
+            }
+            //test distance
+            if (pick != null) {
+                double d = tmp.distanceTo(pick);
+                if (d <= distance) {
+                    //trigger reached
+                    fail();
+                    return true;
+                } else {
+                    //sad christmas
+                }
+            }
+        } else {
+            //no point in testing further
+        }
+        return false;
     }
 
     private void checkNoneAliveFail(String parameter) {
