@@ -142,9 +142,9 @@ public class Campaign implements Serializable {
                 }
             }
             //test distance
-            if(pick != null) {
+            if (pick != null) {
                 double d = player.distanceTo(pick);
-                if(d <= distance) {
+                if (d <= distance) {
                     //trigger reached
                     next();
                 } else {
@@ -427,9 +427,33 @@ public class Campaign implements Serializable {
                         if (command.equals("BEHAVE")) {
                             parseBehave(split, tmp);
                         }
+                        if (command.equals("DOCKAT")) {
+                            parseDockAt(split, tmp);
+                        }
                     }
                 }
             }
+        }
+    }
+
+    private void parseDockAt(String[] split, Ship tmp) {
+        String target = split[1].trim();
+        //fly to only works in the current system the object is in
+        Station dockTarget = null;
+        //find the target in system
+        for (int x = 0; x < tmp.getCurrentSystem().getEntities().size(); x++) {
+            Entity test = tmp.getCurrentSystem().getEntities().get(x);
+            if (test instanceof Station) {
+                Station stat = (Station) test;
+                if (stat.getName().equals(target)) {
+                    dockTarget = stat;
+                    break;
+                }
+            }
+        }
+        //if we found it, go there
+        if (dockTarget != null) {
+            tmp.cmdDock(dockTarget);
         }
     }
 
