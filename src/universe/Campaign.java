@@ -193,11 +193,16 @@ public class Campaign implements Serializable {
     private void checkDockAdvance(String parameter) {
         //triggered when a player docks at a certain station
         Ship player = universe.getPlayerShip();
+        String[] args = parameter.split(",");
+        String sys = args[0].trim();
+        String stn = args[1].trim();
         if (player.isDocked()) {
             Station host = player.getPort().getParent();
-            if (host.getName().equals(parameter)) {
-                //trigger reached
-                next();
+            if (host.getName().equals(stn)) {
+                if (host.getCurrentSystem().getName().equals(sys)) {
+                    //trigger reached
+                    next();
+                }
             } else {
                 //not yet
             }
@@ -296,11 +301,16 @@ public class Campaign implements Serializable {
     private void checkDockFail(String parameter) {
         //triggered when a player docks at a certain station
         Ship player = universe.getPlayerShip();
+        String[] args = parameter.split(",");
+        String sys = args[0].trim();
+        String stn = args[1].trim();
         if (player.isDocked()) {
             Station host = player.getPort().getParent();
-            if (host.getName().equals(parameter)) {
-                //trigger reached
-                fail();
+            if (host.getName().equals(stn)) {
+                if (host.getCurrentSystem().getName().equals(sys)) {
+                    //trigger reached
+                    fail();
+                }
             } else {
                 //not yet
             }
