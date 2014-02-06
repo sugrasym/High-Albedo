@@ -104,6 +104,46 @@ public class Campaign implements Serializable {
                 } else if (condition.equals("GOTO")) {
                     checkGotoAdvance(parameter);
                 }
+            } else if (split.length == 3) {
+                String condition = split[0].trim();
+                String param1 = split[1].trim();
+                String param2 = split[2].trim();
+                if (condition.equals("TRIGGROUP")) {
+                    /*
+                     * Dedicated to triggers involving a group of ships.
+                     * Triggered if even 1 ship meets the criteria.
+                     */
+                    String group = param1;
+                    //split to find orders
+                    String[] arr = param2.split(",");
+                    String command = arr[0];
+                    //find ships in this group
+                    for (int a = 0; a < universe.getSystems().size(); a++) {
+                        ArrayList<Entity> ships = universe.getSystems().get(a).getShipList();
+                        for (int b = 0; b < ships.size(); b++) {
+                            Ship tmp = (Ship) ships.get(b);
+                            if (tmp.getGroup().equals(group)) {
+                                if (command.equals("DOCKED")) {
+                                    checkGroupDockAdvance(arr, tmp);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private void checkGroupDockAdvance(String[] arr, Ship tmp) {
+        String sys = arr[1];
+        String stn = arr[2];
+        if(tmp.isDocked()) {
+            Station host = tmp.getPort().getParent();
+            if(host.getName().equals(stn)) {
+                if(host.getCurrentSystem().getName().equals(sys)) {
+                    //trigger reached
+                    next();
+                }
             }
         }
     }
@@ -440,10 +480,17 @@ public class Campaign implements Serializable {
                         if (command.equals("DOCKAT")) {
                             parseDockAt(split, tmp);
                         }
+                        if (command.equals("UNDOCK")) {
+                            parseUndock(split,tmp);
+                        }
                     }
                 }
             }
         }
+    }
+
+    private void parseUndock(String[] split, Ship tmp) {
+        tmp.cmdUndock();
     }
 
     private void parseDockAt(String[] split, Ship tmp) {
