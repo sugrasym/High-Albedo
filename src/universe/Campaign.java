@@ -101,8 +101,58 @@ public class Campaign implements Serializable {
                     checkDockAdvance(parameter);
                 } else if (condition.equals("NONEALIVE")) {
                     checkNoneAliveAdvance(parameter);
+                } else if (condition.equals("GOTO")) {
+                    checkGotoAdvance(parameter);
                 }
             }
+        }
+    }
+
+    private void checkGotoAdvance(String parameter) throws NumberFormatException {
+        String[] arr = parameter.split(",");
+        String lSys = arr[0].trim();
+        String lEnt = arr[1].trim();
+        String dist = arr[2].trim();
+        //parse distance
+        double distance = Double.parseDouble(dist);
+        //see if we are in the right system to check
+        Ship player = universe.getPlayerShip();
+        if (player.getCurrentSystem().getName().equals(lSys)) {
+            //see if we are near this celestial
+            ArrayList<Entity> celestials = player.getCurrentSystem().getCelestialList();
+            Celestial pick = null;
+            for (int a = 0; a < celestials.size(); a++) {
+                if (celestials.get(a) instanceof Ship) {
+                    //make sure it isn't player owned. We don't want the player's named ships to confuse the script.
+                    Ship test = (Ship) celestials.get(a);
+                    if (test.getFaction().equals(player.getFaction())) {
+                        //don't include this object
+                    } else {
+                        if (test.getName().equals(lEnt)) {
+                            pick = test;
+                            break;
+                        }
+                    }
+                } else if (celestials.get(a) instanceof Celestial) {
+                    Celestial test = (Celestial) celestials.get(a);
+                    if (test.getName().equals(lEnt)) {
+                        pick = test;
+                        break;
+                    }
+                }
+            }
+            //test distance
+            if(pick != null) {
+                double d = player.distanceTo(pick);
+                if(d <= distance) {
+                    //trigger reached
+                    next();
+                } else {
+                    //sad christmas
+                }
+            }
+        } else {
+            //no point in testing further
         }
     }
 

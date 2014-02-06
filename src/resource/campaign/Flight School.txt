@@ -73,3 +73,4 @@ next=Ageiran Shipyard
 #call0=COMMGROUP::TestGroup::FLYTO,Ageiran Solar Power Plant 22,500
 #call0=COMMGROUP::TestGroup::FOLLOW,PLAYER,100
 #call0=COMMGROUP::TestGroup::BEHAVE,PATROL
+#advance=GOTO::The Highway,Native Land Jumphole,1000
