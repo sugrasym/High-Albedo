@@ -118,13 +118,20 @@ public class Campaign implements Serializable {
                     String[] arr = param2.split(",");
                     String command = arr[0];
                     //find ships in this group
+                    boolean hit = false;
                     for (int a = 0; a < universe.getSystems().size(); a++) {
+                        if (hit) {
+                            break;
+                        }
                         ArrayList<Entity> ships = universe.getSystems().get(a).getShipList();
                         for (int b = 0; b < ships.size(); b++) {
                             Ship tmp = (Ship) ships.get(b);
                             if (tmp.getGroup().equals(group)) {
                                 if (command.equals("DOCKED")) {
-                                    checkGroupDockAdvance(arr, tmp);
+                                    if (checkGroupDockAdvance(arr, tmp)) {
+                                        hit = true;
+                                        break;
+                                    }
                                 }
                             }
                         }
@@ -134,18 +141,20 @@ public class Campaign implements Serializable {
         }
     }
 
-    private void checkGroupDockAdvance(String[] arr, Ship tmp) {
+    private boolean checkGroupDockAdvance(String[] arr, Ship tmp) {
         String sys = arr[1];
         String stn = arr[2];
-        if(tmp.isDocked()) {
+        if (tmp.isDocked()) {
             Station host = tmp.getPort().getParent();
-            if(host.getName().equals(stn)) {
-                if(host.getCurrentSystem().getName().equals(sys)) {
+            if (host.getName().equals(stn)) {
+                if (host.getCurrentSystem().getName().equals(sys)) {
                     //trigger reached
                     next();
+                    return true;
                 }
             }
         }
+        return false;
     }
 
     private void checkGotoAdvance(String parameter) throws NumberFormatException {
@@ -299,6 +308,39 @@ public class Campaign implements Serializable {
                     } else if (condition.equals("NONEALIVE")) {
                         checkNoneAliveFail(parameter);
                     }
+                } else if (split.length == 3) {
+                    String condition = split[0].trim();
+                    String param1 = split[1].trim();
+                    String param2 = split[2].trim();
+                    if (condition.equals("TRIGGROUP")) {
+                        /*
+                         * Dedicated to triggers involving a group of ships.
+                         * Triggered if even 1 ship meets the criteria.
+                         */
+                        String group = param1;
+                        //split to find orders
+                        String[] arr = param2.split(",");
+                        String command = arr[0];
+                        //find ships in this group
+                        boolean hit = false;
+                        for (int a = 0; a < universe.getSystems().size(); a++) {
+                            if (hit) {
+                                break;
+                            }
+                            ArrayList<Entity> ships = universe.getSystems().get(a).getShipList();
+                            for (int b = 0; b < ships.size(); b++) {
+                                Ship tmp = (Ship) ships.get(b);
+                                if (tmp.getGroup().equals(group)) {
+                                    if (command.equals("DOCKED")) {
+                                        if (checkGroupDockFail(arr, tmp)) {
+                                            hit = true;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -336,6 +378,22 @@ public class Campaign implements Serializable {
             //trigger reached
             fail();
         }
+    }
+
+    private boolean checkGroupDockFail(String[] arr, Ship tmp) {
+        String sys = arr[1];
+        String stn = arr[2];
+        if (tmp.isDocked()) {
+            Station host = tmp.getPort().getParent();
+            if (host.getName().equals(stn)) {
+                if (host.getCurrentSystem().getName().equals(sys)) {
+                    //trigger reached
+                    fail();
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     private void checkDockFail(String parameter) {
@@ -481,7 +539,7 @@ public class Campaign implements Serializable {
                             parseDockAt(split, tmp);
                         }
                         if (command.equals("UNDOCK")) {
-                            parseUndock(split,tmp);
+                            parseUndock(split, tmp);
                         }
                     }
                 }
