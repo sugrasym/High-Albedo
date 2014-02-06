@@ -137,12 +137,29 @@ public class Campaign implements Serializable {
                                         hit = true;
                                         break;
                                     }
+                                } else if (command.equals("ENTERSYSTEM")) {
+                                    if (checkGroupEnterSystemAdvance(arr, tmp)) {
+                                        hit = true;
+                                        break;
+                                    }
                                 }
                             }
                         }
                     }
                 }
             }
+        }
+    }
+
+    private boolean checkGroupEnterSystemAdvance(String[] arr, Ship tmp) {
+        //triggered when the player is in a certain system
+        if (tmp.getCurrentSystem().getName().equals(arr[1])) {
+            //trigger reached
+            next();
+            return true;
+        } else {
+            //not yet
+            return false;
         }
     }
 
@@ -394,6 +411,11 @@ public class Campaign implements Serializable {
                                             hit = true;
                                             break;
                                         }
+                                    } else if (command.equals("ENTERSYSTEM")) {
+                                        if (checkGroupEnterSystemFail(arr, tmp)) {
+                                            hit = true;
+                                            break;
+                                        }
                                     }
                                 }
                             }
@@ -404,6 +426,18 @@ public class Campaign implements Serializable {
         }
     }
     
+    private boolean checkGroupEnterSystemFail(String[] arr, Ship tmp) {
+        //triggered when the player is in a certain system
+        if (tmp.getCurrentSystem().getName().equals(arr[1])) {
+            //trigger reached
+            fail();
+            return true;
+        } else {
+            //not yet
+            return false;
+        }
+    }
+
     private boolean checkGroupGotoFail(String[] arr, Ship tmp) {
         String lSys = arr[1].trim();
         String lEnt = arr[2].trim();
