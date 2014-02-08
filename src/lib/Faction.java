@@ -54,7 +54,8 @@ public class Faction implements Serializable {
     private final ArrayList<String> neutralNotifications = new ArrayList<>();
     private final ArrayList<String> friendlyNotifications = new ArrayList<>();
     private final ArrayList<String> rumorList = new ArrayList<>();
-
+    private final ArrayList<String> campaignList = new ArrayList<>();
+    
     public Faction(String name) {
         this.name = name;
         init();
@@ -132,6 +133,20 @@ public class Faction implements Serializable {
                         //get station info
                         String ty = type.toString();
                         getRumorList().add(ty);
+                        //iterate
+                        x++;
+                    }
+                }
+                /*
+                 * Initialize campaign list
+                 */
+                {
+                    int x = 0;
+                    String type = "";
+                    while ((type = comms.get(a).getValue("campaign" + x)) != null) {
+                        //get station info
+                        String ty = type.toString();
+                        getCampaignList().add(ty);
                         //iterate
                         x++;
                     }
@@ -333,6 +348,10 @@ public class Faction implements Serializable {
 
     public ArrayList<String> getRumorList() {
         return rumorList;
+    }
+    
+    public ArrayList<String> getCampaignList() {
+        return campaignList;
     }
 
     public ArrayList<String> getHosts() {

@@ -189,6 +189,7 @@ public class Ship extends Celestial {
     //communications
     private ArrayList<AstralMessage> messages = new ArrayList<>();
     private Conversation conversation;
+    private boolean plotOffer = false;
     //media switches
     protected boolean thrusting = false;
     //sound que
@@ -4042,17 +4043,59 @@ public class Ship extends Celestial {
         int standings = getUniverse().getPlayerShip().getStandingsToMe(this);
         if (conversation == null) {
             if (standings > 2) {
+                if (!plotOffer) {
                 //on great terms
                 /*
-                 * Will offer rumors and missions
-                 */
-                //offer mission
-                ArrayList<String> choices = myFaction.getFriendlyNotifications();
-                if (choices.size() > 0) {
-                    String pick = choices.get(rnd.nextInt(choices.size()));
-                    conversation = new Conversation(this, "Hail", pick);
+                     * Will offer rumors and missions
+                     */
+                    //offer mission
+                    ArrayList<String> choices = myFaction.getFriendlyNotifications();
+                    if (choices.size() > 0) {
+                        String pick = choices.get(rnd.nextInt(choices.size()));
+                        conversation = new Conversation(this, "Hail", pick);
+                    } else {
+                        //nothing to say
+                    }
                 } else {
-                    //nothing to say
+                    //will offer plots
+                    ArrayList<String> choices = myFaction.getCampaignList();
+                    if (choices.size() > 0) {
+                        /*
+                         * Campaigns are offered in order per faction. The list
+                         * of campaigns the faction offers will be checked
+                         * against the completed ones and the first one that is
+                         * neither completed nor in progress will be offered.
+                         */
+                        String pick = null;
+                        for (int a = 0; a < choices.size(); a++) {
+                            boolean safe = true;
+                            //check to make sure this isn't completed
+                            for (int b = 0; b < getUniverse().getCompletedCampaigns().size(); b++) {
+                                if (getUniverse().getCompletedCampaigns().get(b).getName().equals(choices.get(a))) {
+                                    safe = false;
+                                }
+                            }
+                            //check to make sure this isn't in progress
+                            for (int b = 0; b < getUniverse().getPlayerCampaigns().size(); b++) {
+                                if (getUniverse().getPlayerCampaigns().get(b).getName().equals(choices.get(a))) {
+                                    safe = false;
+                                }
+                            }
+                            //determine if safe
+                            if (safe) {
+                                pick = choices.get(a);
+                                break;
+                            } else {
+                                //go to next one
+                            }
+                        }
+                        //attempt to start plot if found
+                        if (pick != null) {
+                            conversation = new Conversation(this, "Hail", pick);
+                        } else {
+                            //do not offer plot
+                        }
+                    }
                 }
             } else if (standings > -2) {
                 //on neutral terms
@@ -4210,6 +4253,14 @@ public class Ship extends Celestial {
 
     public void setGroup(String group) {
         this.group = group;
+    }
+
+    public boolean hasPlotOffer() {
+        return plotOffer;
+    }
+    
+    public void setPlotOffer(boolean plotOffer) {
+        this.plotOffer = plotOffer;
     }
 
 }

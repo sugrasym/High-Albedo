@@ -42,16 +42,16 @@ choice0=Continue/WelcomeMessage2
 name=WelcomeMessage2
 subject=Time
 body=It is possible to control the rate at which time passes. Using the keys 1-5, you can speed up or slow down time. /br/ /br/ 1 : 25% Speed /br/ /br/ 2 : 50% Speed  /br/ /br/ 3 : Normal  /br/ /br/ 4 : 200% Speed  /br/ /br/ 5 : 400% Speed
-choice0=Continue/WelcomeMessage3
+choice0=Finish/END
 [/Node]
 
-[Node]
-name=WelcomeMessage3
-subject=Flight School
-body=Go to flight school?
-choice0=No/START_CAMPAIGN::Flight School Cleanup
-choice1=Yes/START_CAMPAIGN::Flight School
-[/Node]
+#[Node]
+#name=WelcomeMessage3
+#subject=Flight School
+#body=Go to flight school?
+#choice0=No/START_CAMPAIGN::Flight School Cleanup
+#choice1=Yes/START_CAMPAIGN::Flight School
+#[/Node]
 
 #Friendly Greetings
 
@@ -1144,4 +1144,14 @@ name=GP-ERPC
 subject=ERPCs
 body=Extended Range Pulse Cannons deliver a little damage at a decent range, and refire fast. They're small enough to fit on any known fighter and they're really cheap. We sell them like crack.
 choice0=Good To Know/END
+[/Node]
+
+#Campaign Hooks
+
+[Node]
+name=Flight School
+subject=Flight School
+body=Go to flight school?
+choice0=No/START_CAMPAIGN::Flight School Cleanup
+choice1=Yes/START_CAMPAIGN::Flight School
 [/Node]

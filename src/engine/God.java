@@ -586,6 +586,7 @@ public class God implements EngineElement {
             String cargoScan = "false";
             String minCourage = null;
             String maxCourage = null;
+            boolean plotOffer = false;
             if (template != null) {
                 //load this template
                 Parser lParse = Universe.getCache().getLoadoutCache();
@@ -603,6 +604,11 @@ public class God implements EngineElement {
                         //bailing
                         minCourage = lods.get(a).getValue("minCourage");
                         maxCourage = lods.get(a).getValue("maxCourage");
+                        //plot offers
+                        String pOffer = lods.get(a).getValue("plotOffer");
+                        if (pOffer != null) {
+                            plotOffer = Boolean.parseBoolean(pOffer);
+                        }
                         break;
                     }
                 }
@@ -619,6 +625,7 @@ public class God implements EngineElement {
             ret.init(false);
             ret.addInitialCargo(cargo);
             ret.setScanForContraband(Boolean.parseBoolean(cargoScan));
+            ret.setPlotOffer(plotOffer);
             //bailing
             if (minCourage != null && maxCourage != null) {
                 double lowC = Double.parseDouble(minCourage);
@@ -660,7 +667,7 @@ public class God implements EngineElement {
         //report
         //System.out.println("Spawned " + loadout.getString() + " in " + system.getName() + " for " + faction.getName());
     }
-    
+
     public void spawnShip(Faction faction, SolarSystem system, Point2D.Double loc, String loadout, String name, Behavior behavior, String group) {
         //get a basic ship to work with
         Ship tmp = makeShip(loadout, name, faction.getName());
@@ -690,7 +697,7 @@ public class God implements EngineElement {
         //report
         System.out.println("Spawned " + loadout.getString() + " in " + system.getName() + " for " + faction.getName());
     }
-    
+
     public void spawnStation(Faction faction, SolarSystem system, Point2D.Double loc, String type, String name, String group) {
         //get a basic ship to work with
         Station tmp = makeStation(type, name, faction.getName());

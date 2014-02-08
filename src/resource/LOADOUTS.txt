@@ -220,6 +220,20 @@ install=PPG/PPG/PPG/PPG/PPG/PPG/PPG/PPG
 cargo=Jumpdrive~1/Astronaut~1000
 [/Loadout]
 
+########Ageiran Federation Lawful Agents
+
+[Loadout]
+ship=Sparrow
+name=Ageiran Agent
+install=Talon 1/Talon 1
+cargo=Astronaut~1
+cargoScan=true
+minCourage=0.98
+maxCourage=1.00
+#campaign offer
+plotOffer=true
+[/Loadout]
+
 ########Ageiran Federation Unlawful
 
 [Loadout]
