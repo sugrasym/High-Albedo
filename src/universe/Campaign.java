@@ -37,25 +37,59 @@ import lib.Parser.Term;
  */
 public class Campaign implements Serializable {
 
-    private String name;
+    private final String name;
     private Parser script;
     private Term node;
     //universe
-    private Universe universe;
+    private final Universe universe;
+    //start info
+    private final boolean running;
 
     public Campaign(Universe universe, String name) {
         this.universe = universe;
         this.name = name;
         System.out.println("Starting campaign: " + name);
+        if (canStart()) {
+            //campaign started
+            running = true;
+        } else {
+            //unable to start
+            running = false;
+            node = null;
+        }
+    }
+
+    private boolean canStart() {
         //load campaign script
         script = new Parser("campaign/" + name + ".txt");
         //locate the start of the campaign
         node = findNode("CAMPAIGN_START");
         if (node != null) {
-            //campaign started
+            //make sure this doesn't have any prerequesites
+            int a = 0;
+            String pre = null;
+            while ((pre = node.getValue("requires" + a)) != null) {
+                boolean safe = false;
+                //see if this campaign is completed
+                for(int b = 0; b < universe.getCompletedCampaigns().size(); b++) {
+                    if(universe.getCompletedCampaigns().get(b).getName().equals(pre)) {
+                        safe = true;
+                        break;
+                    }
+                }
+                if(safe) {
+                    //continue to next requirement
+                } else {
+                    //at least one not met
+                    messagePlayer("Not Yet", "You must complete the "+pre+" campaign before you can do this one.");
+                    return false;
+                }
+            }
         } else {
             messagePlayer("Error", "This campaign does not exist!");
+            return false;
         }
+        return true;
     }
 
     private Term findNode(String name) {
@@ -77,6 +111,10 @@ public class Campaign implements Serializable {
             checkAdvance();
             checkFailure();
         }
+    }
+    
+    public boolean isRunning() {
+        return running;
     }
 
     private void checkAdvance() {
@@ -425,7 +463,7 @@ public class Campaign implements Serializable {
             }
         }
     }
-    
+
     private boolean checkGroupEnterSystemFail(String[] arr, Ship tmp) {
         //triggered when the player is in a certain system
         if (tmp.getCurrentSystem().getName().equals(arr[1])) {

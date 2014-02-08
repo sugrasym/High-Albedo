@@ -1,8 +1,10 @@
 #entry point for the campaign
+#NOTE: This is a test campaign that isn't guaranteed playable and won't be called in Vanilla
 
 [Node]
 name=CAMPAIGN_START
 advance=none
+#requires0=Flight School Cleanup
 next=Native Land
 [/Node]
 

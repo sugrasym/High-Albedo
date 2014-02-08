@@ -113,17 +113,17 @@ public class Engine {
     //button state toggles
     private boolean allStopPressed = false;
     private boolean firing = false;
-
+    
     public HUD getHud() {
         return hud;
     }
-
+    
     public void setHud(HUD hud) {
         this.hud = hud;
     }
-
+    
     enum State {
-
+        
         MENU,
         RUNNING,
         PAUSED,
@@ -132,7 +132,7 @@ public class Engine {
     State state = State.MENU;
     //io
     AstralIO io = new AstralIO();
-
+    
     public Engine(BufferStrategy bf, int uiX, int uiY, int viewX, int viewY, boolean fullScreen) {
         //store graphics
         this.uiX = uiX;
@@ -148,7 +148,7 @@ public class Engine {
         //halt components
         stop();
     }
-
+    
     public void suicide() {
         /*
          * Cleans out everything! Yaay!
@@ -158,7 +158,7 @@ public class Engine {
         playerShip = null;
         state = State.PAUSED;
     }
-
+    
     public void resurrect() {
         /*
          * Brings the engine back to life after suicide called. This is used
@@ -169,23 +169,23 @@ public class Engine {
         }
         state = State.RUNNING;
     }
-
+    
     public void addEntity(Entity entity) {
         if (!entities.contains(entity)) {
             entities.add(entity);
         }
     }
-
+    
     public void removeEntity(Entity entity) {
         if (entities.contains(entity)) {
             entities.remove(entity);
         }
     }
-
+    
     public Universe getUniverse() {
         return universe;
     }
-
+    
     public void setUniverse(Universe universe) {
         this.universe = universe;
         //add this universe's systems to the entity list
@@ -216,7 +216,7 @@ public class Engine {
         state = State.RUNNING;
         hud.pack();
     }
-
+    
     public void load(String savePath) {
         try {
             String home = System.getProperty("user.home") + SAVE_GAME_DIR;
@@ -235,13 +235,13 @@ public class Engine {
             e.printStackTrace();
         }
     }
-
+    
     private void loadUniverse(Universe universe) {
         suicide();
         setUniverse(universe);
         resurrect();
     }
-
+    
     public void newGame() {
         //set loading state
         state = State.LOADING;
@@ -270,13 +270,13 @@ public class Engine {
      * Sound class, makes sense to put it here
      */
     public class SoundEngine implements EngineElement {
-
+        
         private Clip music;
         private SolarSystem lastSys;
         private String ambientTrack = "audio/music/Success and Failure.wav";
         private String dangerTrack = "audio/music/Committing.wav";
         boolean isAmbient = true;
-
+        
         public SoundEngine(Engine engine) {
             try {
                 music = AudioSystem.getClip();
@@ -291,7 +291,7 @@ public class Engine {
                 System.err.println("This likely means music is disabled.");
             }
         }
-
+        
         @Override
         public void periodicUpdate() {
             try {
@@ -315,7 +315,7 @@ public class Engine {
                 e.printStackTrace();
             }
         }
-
+        
         private void updateMusic() throws Exception {
             /*
              * See if the player has changed systems
@@ -378,7 +378,7 @@ public class Engine {
                 }
             }
         }
-
+        
         private void checkForSoundSignals() {
             /*
              * Ships have to request a sound be played. The sound engine will
@@ -438,11 +438,11 @@ public class Engine {
         StandingWindow standingWindow = new StandingWindow();
         PropertyWindow propertyWindow = new PropertyWindow();
         CommWindow commWindow = new CommWindow();
-
+        
         public HUD(Engine engine) {
             homeWindow = new MenuHomeWindow(engine);
         }
-
+        
         public void pack() {
             windows.clear();
             if (state == State.RUNNING) {
@@ -464,7 +464,7 @@ public class Engine {
                 homeWindow.setVisible(true);
             }
         }
-
+        
         public void render(Graphics f) {
             if (state == State.RUNNING) {
                 //position health window
@@ -514,7 +514,7 @@ public class Engine {
                 }
             }
         }
-
+        
         @Override
         public void periodicUpdate() {
             if (state == State.RUNNING) {
@@ -605,7 +605,7 @@ public class Engine {
                 }
             }
         }
-
+        
         public void handleMouseMovedEvent(MouseEvent me) {
             if (state != State.LOADING) {
                 //get mouse position in window
@@ -635,7 +635,7 @@ public class Engine {
                 }
             }
         }
-
+        
         public void handleMousePressedEvent(MouseEvent me) {
             if (state != State.LOADING) {
                 boolean windowIntercepted = false;
@@ -652,7 +652,7 @@ public class Engine {
                 }
             }
         }
-
+        
         public void handleMouseReleasedEvent(MouseEvent me) {
             if (state != State.LOADING) {
                 boolean windowIntercepted = false;
@@ -669,7 +669,7 @@ public class Engine {
                 }
             }
         }
-
+        
         public void handleMouseClickedEvent(MouseEvent me) {
             if (state != State.LOADING) {
                 checkFocusChanges();
@@ -699,7 +699,7 @@ public class Engine {
                 }
             }
         }
-
+        
         public void handleKeyTypedEvent(KeyEvent ke) {
             if (state != State.LOADING) {
                 boolean windowIntercepted = false;
@@ -716,7 +716,7 @@ public class Engine {
                 }
             }
         }
-
+        
         public void handleKeyPressedEvent(KeyEvent ke) {
             if (state != State.LOADING) {
                 boolean windowIntercepted = false;
@@ -761,7 +761,7 @@ public class Engine {
                 }
             }
         }
-
+        
         public void handleKeyReleasedEvent(KeyEvent ke) {
             if (state != State.LOADING) {
                 boolean windowIntercepted = false;
@@ -919,7 +919,7 @@ public class Engine {
     /*
      * Responsible for drawing and updating the universe.
      */
-
+    
     private class Element implements EngineElement {
         //timing
 
@@ -945,11 +945,11 @@ public class Engine {
                 }
             }
         });
-
+        
         public Element() {
             th.start();
         }
-
+        
         @Override
         public void periodicUpdate() {
             try {
@@ -965,16 +965,16 @@ public class Engine {
                 e.printStackTrace();
             }
         }
-
+        
         public void generateBackdrop() {
             //generate the backdrop
             createStars();
         }
-
+        
         private double getAspectRatio() {
             return ((double) viewX / (double) viewY);
         }
-
+        
         private void createStars() {
             if (state == State.RUNNING) {
                 if (playerShip != null) {
@@ -1095,7 +1095,7 @@ public class Engine {
                                     celestialList.get(a).render(f, dx, dy);
                                 }
                             }
-
+                            
                             for (int a = 0; a < asteroidList.size(); a++) {
                                 if (asteroidList.get(a).collideWith(view)) {
                                     asteroidList.get(a).render(f, dx, dy);
@@ -1164,7 +1164,7 @@ public class Engine {
                 } else {
                     element.generateBackdrop();
                 }
-
+                
             }
             Toolkit.getDefaultToolkit().sync();
             //render HUD
@@ -1223,8 +1223,12 @@ public class Engine {
                     universe.getPlayerMissions().get(a).periodicUpdate(tpf);
                 }
                 //update campaigns
-                for(int a = 0; a < universe.getPlayerCampaigns().size(); a++) {
-                    universe.getPlayerCampaigns().get(a).periodicUpdate(tpf);
+                for (int a = 0; a < universe.getPlayerCampaigns().size(); a++) {
+                    if (universe.getPlayerCampaigns().get(a).isRunning()) {
+                        universe.getPlayerCampaigns().get(a).periodicUpdate(tpf);
+                    } else {
+                        universe.getPlayerCampaigns().remove(universe.getPlayerCampaigns().get(a));
+                    }
                 }
             } else if (state == State.MENU) {
                 //update HUD
@@ -1233,7 +1237,7 @@ public class Engine {
                 //
             }
         }
-
+        
         private void god() {
             if (universe != null) {
                 if (universe.getGod() != null) {
@@ -1241,7 +1245,7 @@ public class Engine {
                 }
             }
         }
-
+        
         private void collissionTest(double tpf) throws Exception {
             /*
              * 1. Collissions are not tested on planets
@@ -1264,7 +1268,7 @@ public class Engine {
                 }
             }
         }
-
+        
         private void elasticCollision(Entity a, Entity b, double tpf) {
             //inform them of the collision for any special events
             if (!(a instanceof Explosion) && !(b instanceof Explosion)) {
@@ -1355,7 +1359,7 @@ public class Engine {
                 }
             }
         }
-
+        
         protected void renderIFFMarker(Ship ship) {
             if (!(ship instanceof Projectile) && ship != playerShip) {
                 if (!(ship instanceof Explosion)) {
@@ -1391,7 +1395,7 @@ public class Engine {
     public void setActivePlayerShip(Ship ship) {
         playerShip = ship;
     }
-
+    
     public Ship getActivePlayerShip() {
         return playerShip;
     }
