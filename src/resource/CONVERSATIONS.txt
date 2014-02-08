@@ -1155,3 +1155,11 @@ body=Go to flight school?
 choice0=No/START_CAMPAIGN::Flight School Cleanup
 choice1=Yes/START_CAMPAIGN::Flight School
 [/Node]
+
+[Node]
+name=Reluctant Patriot
+subject=Reluctant Patriot
+body=We've been looking for a volunteer patriot to help escort a convoy. We only need one more for the mission, want in?
+choice0=No/END
+choice1=Yes/START_CAMPAIGN::Reluctant Patriot
+[/Node]

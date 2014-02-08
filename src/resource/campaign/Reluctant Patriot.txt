@@ -1,0 +1,16 @@
+#entry point for the campaign
+
+[Node]
+name=CAMPAIGN_START
+advance=none
+next=Brash Pegasus
+[/Node]
+
+[Node]
+name=Brash Pegasus
+chapter="Agent Eileen"
+objective=Fly to 'Brash Pegasus'
+body=Eileen: Hey! You must be the freelancer our agent referred to me. I'm glad you can help because we've been having serious trouble getting an escort group for this transport. This mission should be easy, all you have to do is meet up with us in Brash Pegasus and help babysit a convoy. So get down here and join us ASAP.
+advance=ENTERSYSTEM::Brash Pegasus
+next=NODETODO
+[/Node]
