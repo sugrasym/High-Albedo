@@ -11,6 +11,76 @@ name=Brash Pegasus
 chapter="Agent Eileen"
 objective=Fly to 'Brash Pegasus'
 body=Eileen: Hey! You must be the freelancer our agent referred to me. I'm glad you can help because we've been having serious trouble getting an escort group for this transport. This mission should be easy, all you have to do is meet up with us in Brash Pegasus and help babysit a convoy. So get down here and join us ASAP.
+call0=SPAWNSTATION::ReluctantPatriotPlotBases::Ageiran Federation,Brash Pegasus,5600.0,-8000.0,Ageiran Customs Office,Federal Supply Base 1
+call1=STATION::Brash Pegasus::Federal Supply Base 1::makeImmortal()
 advance=ENTERSYSTEM::Brash Pegasus
-next=NODETODO
+next=GroupWithConvoy
+[/Node]
+
+[Node]
+name=GroupWithConvoy
+chapter="Brash Pegasus"
+objective=Meet Convoy at Federal Supply Base 1
+body=Eileen: We're transmitting you the location of the start of the convoy, meet us at Federal Supply Base 1 near Plant 'Arthur 15'.
+advance=GOTO::Brash Pegasus,Federal Supply Base 1,1000
+next=FirstConvoy0
+[/Node]
+
+[Node]
+name=FirstConvoy0
+chapter="Escort Duty"
+objective=Escort Convoy to Guiding Hand
+body=Eileen: There you are! Take up an escort position with the convoy. /br/ /br/ Naval Emu: Thanks for the help. We'll be going from Brash Pegasus to Friendly Face. First waypoint is Guiding Hand. The others have already scouted ahead and are waiting for us there.
+call0=SPAWNSHIP::RP-Freighter::Ageiran Federation,Brash Pegasus,5600.0,-8200.0,Federal Supply Emu,Naval Emu,NONE
+call1=COMMGROUP::RP-Freighter::FLYTO,Guiding Hand Jumphole,0
+advance=TRIGGROUP::RP-Freighter::ENTERSYSTEM,Guiding Hand
+fail=NONEALIVE::RP-Freighter
+failure=ConvoyDeadEnding
+next=FirstConvoy1
+[/Node]
+
+[Node]
+name=FirstConvoy1
+chapter="Good So Far"
+objective=Escort Convoy to Native Land
+body=Naval Emu: Looking good so far... Next stop is Native Land. From there we can cut over to Friendly Face. /br/ /br/ Convoy Escort: Naval Emu this is Escort Group, we are en route now. /br/ /br/ Naval Emu: Roger that.
+call0=SPAWNSHIP::RP-Escort::Ageiran Federation,Guiding Hand,-14000.0,-20000.0,Naval Crow,Convoy Escort,NONE
+call1=SPAWNSHIP::RP-Escort::Ageiran Federation,Guiding Hand,-14200.0,-20000.0,Naval Crow,Convoy Escort,NONE
+call2=COMMGROUP::RP-Freighter::FLYTO,Native Land Jumphole,0
+call3=COMMGROUP::RP-Escort::FOLLOW,Naval Emu,100
+advance=TRIGGROUP::RP-Freighter::GOTO,Guiding Hand,Native Land Jumphole,2000
+fail=NONEALIVE::RP-Freighter
+failure=ConvoyDeadEnding
+next=ConvoyAmbush
+
+[/Node]
+
+[Node]
+name=ConvoyAmbush
+chapter="Bushwackers"
+objective=Protect the Naval Emu
+body=Naval Emu: We've got Archers! All escorts arm weapons. /br/ /br/ Convoy Escort: Roger that, moving to intercept Archer raiders. /br/ /br/ Eileen: This is what you volunteered for, you'd better help out. Keep those raiders away from that transport!
+call0=SPAWNSHIP::PirateAmbush::The Archers,Guiding Hand,-17000.0,-20000.0,Pirate Raider,Archers' Vanguard,PATROL
+call1=SPAWNSHIP::PirateAmbush::The Archers,Guiding Hand,-17100.0,-20000.0,Pirate Raider,Archers' Vanguard,PATROL
+call2=COMMGROUP::RP-Escort::BEHAVE,PATROL
+advance=TRIGGROUP::RP-Freighter::ENTERSYSTEM,Native Land
+fail=NONEALIVE::RP-Freighter
+failure=ConvoyDeadEnding
+next=CAMPAIGN_END
+[/Node]
+
+[Node]
+name=CAMPAIGN_END
+chapter=The End
+objective=Become something.
+body=Yeah, you're good enough. Fly safe!
+advance=END
+[/Node]
+
+[Node]
+name=ConvoyDeadEnding
+chapter="Too Soon"
+objective=Fly safe.
+body=Eileen: Damn... I feel like there's more to this but without that transport we'll never know. Nothing we can do about it now. Thanks for helping.
+advance=END
 [/Node]
