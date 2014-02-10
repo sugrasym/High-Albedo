@@ -812,15 +812,8 @@ public class Ship extends Celestial {
                         Logger.getLogger(Ship.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } else {
-                    //determine if this is a system we could jump to
-                    SolarSystem targetSystem = flyToTarget.getCurrentSystem();
-                    if (canJump(targetSystem)) {
-                        //jump to reach target
-                        cmdJump(targetSystem);
-                    } else {
-                        //abort follow
-                        cmdAllStop();
-                    }
+                    //abort follow
+                    cmdAllStop();
                 }
             } else {
                 autopilot = Autopilot.NONE;
@@ -4258,7 +4251,7 @@ public class Ship extends Celestial {
     public boolean hasPlotOffer() {
         return plotOffer;
     }
-    
+
     public void setPlotOffer(boolean plotOffer) {
         this.plotOffer = plotOffer;
     }
