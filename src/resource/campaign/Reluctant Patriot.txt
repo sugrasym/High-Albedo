@@ -29,8 +29,8 @@ next=FirstConvoy0
 [Node]
 name=FirstConvoy0
 chapter="Escort Duty"
-objective=Escort Convoy to Guiding Hand
-body=Eileen: There you are! Take up an escort position with the convoy. /br/ /br/ Naval Emu: Thanks for the help. We'll be going from Brash Pegasus to Friendly Face. First waypoint is Guiding Hand. The others have already scouted ahead and are waiting for us there.
+objective=Escort Naval Emu to Guiding Hand
+body=Eileen: There you are! Take up an escort position with the Naval Emu. /br/ /br/ Naval Emu: Thanks for the help. We'll be going from Brash Pegasus to Friendly Face. First waypoint is Guiding Hand. The others have already scouted ahead and are waiting for us there.
 call0=SPAWNSHIP::RP-Freighter::Ageiran Federation,Brash Pegasus,5600.0,-8200.0,Federal Trade Emu,Naval Emu,NONE
 call1=COMMGROUP::RP-Freighter::FLYTO,Guiding Hand Jumphole,0
 advance=TRIGGROUP::RP-Freighter::ENTERSYSTEM,Guiding Hand
@@ -42,7 +42,7 @@ next=FirstConvoy1
 [Node]
 name=FirstConvoy1
 chapter="Good So Far"
-objective=Escort Convoy to Native Land
+objective=Escort Naval Emu to Native Land
 body=Naval Emu: Looking good so far... Next stop is Native Land. From there we can cut over to Friendly Face. /br/ /br/ Convoy Escort: Naval Emu this is Escort Group, we are en route now. /br/ /br/ Naval Emu: Roger that.
 call0=SPAWNSHIP::RP-Escort::Ageiran Federation,Guiding Hand,-14000.0,-20000.0,Naval Crow,Convoy Escort,NONE
 call1=SPAWNSHIP::RP-Escort::Ageiran Federation,Guiding Hand,-14200.0,-20000.0,Naval Crow,Convoy Escort,NONE
