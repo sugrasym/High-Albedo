@@ -19,6 +19,7 @@
 package celestial;
 
 import celestial.Ship.Ship;
+import celestial.Ship.Ship.Autopilot;
 import engine.Entity;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -77,7 +78,7 @@ public class Jumphole extends Planet {
         getBounds().clear();
         getBounds().add(new Rectangle((int) getX() - getDiameter() / 4, (int) getY() - getDiameter() / 4, getDiameter() / 2, getDiameter() / 2));
         //guarantee link
-        if(outGate == null) {
+        if (outGate == null) {
             createLink(out);
         }
     }
@@ -117,14 +118,34 @@ public class Jumphole extends Planet {
             }
             Ship tmp = (Ship) target;
             if (outGate != null) {
-                tmp.getCurrentSystem().pullEntityFromSystem(tmp);
-                tmp.setCurrentSystem(outGate.getCurrentSystem());
-                tmp.getCurrentSystem().putEntityInSystem(tmp);
-                double dT = Math.atan2(getX() - tmp.getX(), getY() - tmp.getY());
-                tmp.setX((outGate.getX() + outGate.getWidth() / 2) + outGate.getDiameter() * Math.cos(dT));
-                tmp.setY((outGate.getY() + outGate.getHeight() / 2) + outGate.getDiameter() * Math.sin(dT));
+                if (tmp.isPlotShip()) {
+                    /*
+                     * Plot ships accidentally flying through the wrong jumphole
+                     * will cause nothing but problems for the campaign scripts.
+                     *
+                     * A plot ship can only jump if it is trying to fly to the
+                     * jumphole it is coming in contact with.
+                     */
+                    Celestial flyTo = tmp.getFlyToTarget();
+                    if (tmp.getAutopilot() == Autopilot.FLY_TO_CELESTIAL) {
+                        if (flyTo == this) {
+                            jumpShip(tmp);
+                        }
+                    }
+                } else {
+                    jumpShip(tmp);
+                }
             }
         }
+    }
+
+    private void jumpShip(Ship tmp) {
+        tmp.getCurrentSystem().pullEntityFromSystem(tmp);
+        tmp.setCurrentSystem(outGate.getCurrentSystem());
+        tmp.getCurrentSystem().putEntityInSystem(tmp);
+        double dT = Math.atan2(getX() - tmp.getX(), getY() - tmp.getY());
+        tmp.setX((outGate.getX() + outGate.getWidth() / 2) + outGate.getDiameter() * Math.cos(dT));
+        tmp.setY((outGate.getY() + outGate.getHeight() / 2) + outGate.getDiameter() * Math.sin(dT));
     }
 
     public String getOut() {

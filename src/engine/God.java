@@ -668,7 +668,7 @@ public class God implements EngineElement {
         //System.out.println("Spawned " + loadout.getString() + " in " + system.getName() + " for " + faction.getName());
     }
 
-    public void spawnShip(Faction faction, SolarSystem system, Point2D.Double loc, String loadout, String name, Behavior behavior, String group) {
+    public void spawnShip(Faction faction, SolarSystem system, Point2D.Double loc, String loadout, String name, Behavior behavior, String group, boolean plotShip) {
         //get a basic ship to work with
         Ship tmp = makeShip(loadout, name, faction.getName());
         //push coordinates
@@ -679,6 +679,7 @@ public class God implements EngineElement {
         //finalize
         tmp.setCurrentSystem(system);
         tmp.setGroup(group);
+        tmp.setPlotShip(plotShip);
         system.putEntityInSystem(tmp);
         //report
         //System.out.println("Spawned " + loadout.getString() + " in " + system.getName() + " for " + faction.getName());
@@ -698,7 +699,7 @@ public class God implements EngineElement {
         System.out.println("Spawned " + loadout.getString() + " in " + system.getName() + " for " + faction.getName());
     }
 
-    public void spawnStation(Faction faction, SolarSystem system, Point2D.Double loc, String type, String name, String group) {
+    public void spawnStation(Faction faction, SolarSystem system, Point2D.Double loc, String type, String name, String group, boolean plotShip) {
         //get a basic ship to work with
         Station tmp = makeStation(type, name, faction.getName());
         //push coordinates
@@ -707,6 +708,7 @@ public class God implements EngineElement {
         //finalize
         tmp.setCurrentSystem(system);
         tmp.setGroup(group);
+        tmp.setPlotShip(plotShip);
         system.putEntityInSystem(tmp);
         //report
         System.out.println("Spawned " + type + " in " + system.getName() + " for " + faction.getName());

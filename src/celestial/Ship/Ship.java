@@ -128,6 +128,8 @@ public class Ship extends Celestial {
     protected String faction;
     //group
     protected String group = "NONE";
+    //plot ship switch
+    private boolean plotShip = false;
     //timing and waiting
     private double waitTimer = 0;
     private double waitTimerLength = 0;
@@ -4254,6 +4256,14 @@ public class Ship extends Celestial {
 
     public void setPlotOffer(boolean plotOffer) {
         this.plotOffer = plotOffer;
+    }
+
+    public boolean isPlotShip() {
+        return plotShip;
+    }
+
+    public void setPlotShip(boolean plotShip) {
+        this.plotShip = plotShip;
     }
 
 }
