@@ -65,6 +65,39 @@ call2=COMMGROUP::RP-Escort::BEHAVE,PATROL
 advance=TRIGGROUP::RP-Freighter::ENTERSYSTEM,Native Land
 fail=NONEALIVE::RP-Freighter
 failure=ConvoyDeadEnding
+next=FirstConvoy2
+[/Node]
+
+[Node]
+name=FirstConvoy2
+chapter="Hero Stuff"
+objective=Escort Naval Emu to Friendly Face
+body=Naval Emu: Calling all escorts! We are under attack by more Archers in Native Land. Need immediate assistance.
+call0=SPAWNSHIP::PirateAmbush::The Archers,Native Land,8050.0,-9700.0,Archers' Vanguard,Archer Pirate,PATROL
+call1=SPAWNSHIP::PirateAmbush::The Archers,Native Land,7950.0,-9700.0,Archers' Vanguard,Archer Pirate,PATROL
+call2=COMMGROUP::RP-Freighter::FLYTO,Friendly Face Jumphole,0
+advance=TRIGGROUP::RP-Freighter::ENTERSYSTEM,Friendly Face
+fail=NONEALIVE::RP-Freighter
+failure=ConvoyDeadEnding
+next=Brash Pegasus 2
+[/Node]
+
+[Node]
+name=Brash Pegasus 2
+chapter="Escort Complete"
+objective=Fly to 'Brash Pegasus'
+body=Naval Emu: Thanks for the help, not sure we could have made it without you. /br/ /br/ Eileen: I sure wasn't expecting that to happen, good thing we found some extra help. At least now I can make a case for increased patrols in this sector. In fact, you did so well that if you return to Brash Pegasus we might have another job for you.
+call0=COMMGROUP::RP-Freighter::BEHAVE,PATROL
+advance=ENTERSYSTEM::Brash Pegasus
+next=DockAtSupplyBase1
+[/Node]
+
+[Node]
+name=DockAtSupplyBase1
+chapter="Opportunity"
+objective=Dock at Federal Supply Base 1
+body=Eileen: Welcome back, dock at the supply base.
+advance=DOCK::Brash Pegasus,Federal Supply Base 1
 next=CAMPAIGN_END
 [/Node]
 
@@ -75,6 +108,8 @@ objective=Become something.
 body=Yeah, you're good enough. Fly safe!
 advance=END
 [/Node]
+
+######Failure Endings
 
 [Node]
 name=ConvoyDeadEnding
