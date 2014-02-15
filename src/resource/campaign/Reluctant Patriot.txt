@@ -106,6 +106,7 @@ name=CAMPAIGN_END
 chapter=The End
 objective=Become something.
 body=Yeah, you're good enough. Fly safe!
+call0=STATION::Brash Pegasus::Federal Supply Base 1::makeMortal()
 advance=END
 [/Node]
 
@@ -116,5 +117,6 @@ name=ConvoyDeadEnding
 chapter="Too Soon"
 objective=Fly safe.
 body=Eileen: Damn... I feel like there's more to this but without that transport we'll never know. Nothing we can do about it now. Thanks for helping.
+call0=STATION::Brash Pegasus::Federal Supply Base 1::makeMortal()
 advance=END
 [/Node]
