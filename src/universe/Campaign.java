@@ -45,6 +45,18 @@ public class Campaign implements Serializable {
     //start info
     private final boolean running;
 
+    //internal timing
+    private double tpf;
+    private enum TimerState {
+
+        NOTSET,
+        RUNNING,
+        STOPPED
+    };
+    private double timerMax;
+    private double timer;
+    private TimerState timerState = TimerState.NOTSET;
+
     public Campaign(Universe universe, String name) {
         this.universe = universe;
         this.name = name;
@@ -71,17 +83,17 @@ public class Campaign implements Serializable {
             while ((pre = node.getValue("requires" + a)) != null) {
                 boolean safe = false;
                 //see if this campaign is completed
-                for(int b = 0; b < universe.getCompletedCampaigns().size(); b++) {
-                    if(universe.getCompletedCampaigns().get(b).getName().equals(pre)) {
+                for (int b = 0; b < universe.getCompletedCampaigns().size(); b++) {
+                    if (universe.getCompletedCampaigns().get(b).getName().equals(pre)) {
                         safe = true;
                         break;
                     }
                 }
-                if(safe) {
+                if (safe) {
                     //continue to next requirement
                 } else {
                     //at least one not met
-                    messagePlayer("Not Yet", "You must complete the "+pre+" campaign before you can do this one.");
+                    messagePlayer("Not Yet", "You must complete the " + pre + " campaign before you can do this one.");
                     return false;
                 }
             }
@@ -107,12 +119,13 @@ public class Campaign implements Serializable {
     }
 
     public void periodicUpdate(double tpf) {
+        this.tpf = tpf;
         if (node != null) {
             checkAdvance();
             checkFailure();
         }
     }
-    
+
     public boolean isRunning() {
         return running;
     }
@@ -141,6 +154,8 @@ public class Campaign implements Serializable {
                     checkNoneAliveAdvance(parameter);
                 } else if (condition.equals("GOTO")) {
                     checkGotoAdvance(parameter);
+                } else if (condition.equals("WAIT")) {
+                    checkWaitAdvance(parameter);
                 }
             } else if (split.length == 3) {
                 String condition = split[0].trim();
@@ -187,6 +202,35 @@ public class Campaign implements Serializable {
                 }
             }
         }
+    }
+
+    private void checkWaitAdvance(String parameter) {
+        //set timer
+        if (timerState == TimerState.NOTSET) {
+            //reset timer
+            resetTimer();
+            //get time in seconds
+            timerMax = Double.parseDouble(parameter.trim());
+            //start clock
+            timerState = TimerState.RUNNING;
+        } else if (timerState == TimerState.STOPPED) {
+            //reset timer
+            resetTimer();
+            //trigger reached
+            next();
+        } else if (timerState == TimerState.RUNNING) {
+            timer += tpf;
+            if(timer >= timerMax) {
+                timerState = TimerState.STOPPED;
+            }
+        }
+    }
+
+    private void resetTimer() {
+        //reset
+        timerState = TimerState.NOTSET;
+        timer = 0;
+        timerMax = 0;
     }
 
     private boolean checkGroupEnterSystemAdvance(String[] arr, Ship tmp) {
