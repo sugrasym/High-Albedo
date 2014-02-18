@@ -6,6 +6,8 @@ advance=none
 next=Brash Pegasus
 [/Node]
 
+######Mission 1: Convoy Escort
+
 [Node]
 name=Brash Pegasus
 chapter="Agent Eileen"
@@ -100,6 +102,12 @@ body=Eileen: Welcome back, dock at the supply base.
 advance=DOCK::Brash Pegasus,Federal Supply Base 1
 next=CAMPAIGN_END
 [/Node]
+
+######Mission 2: TODO
+
+
+
+######The End
 
 [Node]
 name=CAMPAIGN_END
