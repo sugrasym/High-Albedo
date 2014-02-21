@@ -100,12 +100,37 @@ chapter="Opportunity"
 objective=Dock at Federal Supply Base 1
 body=Eileen: Welcome back, dock at the supply base.
 advance=DOCK::Brash Pegasus,Federal Supply Base 1
-next=CAMPAIGN_END
+next=Mission2Start
 [/Node]
 
 ######Mission 2: TODO
 
+[Node]
+name=Mission2Start
+chapter="Chief Walker"
+objective=Fly to 'Cadence'
+body=Eileen: You've demonstrated you can be helpful. As you've probably guessed, this command doesn't have the resources it needs. We are short staffed, lacking in equipment, and overworked keeping trade in this area safe. We are always looking for volunteers to help out, and you are promising. I want you to mee someone, this is Chief Walker. He has a project for you. /br/ /br/ Walker: We can save the formal introductions for later, there's work to do. As you know we currently occupy Cadence, a buffer zone between ITC controlled Grace and Brash Pegasus. Ever since capturing this system we have enjoyed relative calm in Brash Pegasus, as the ITC ceased their attempts to capture that system. /br/ /br/ Eileen: Chief, get to the useful part. /br/ /br/ Walker: We believe the ITC are trying to destabilize our control of Cadence by paying The Archers to harass military supply lines there. The Archer problem is getting out of control there, and due to current deployments we don't have the manpower to deal with it. We need to prove to the Navy that there is a connection between the ITC and The Archers, because they believe that piracy is a police issue and not our problem. If we can prove the ITC are involved, we'll have half the fleet ready to attack Grace in hours. We'll demand answers or else. /br/ /br/ Eileen: It seems likely they have a secret base in Grace, and we want you to find it. Since you're a freelancer I assume you can enter Grace freely and poke around. I can't really tell you what to look for, but you should report anything unusual. /br/ /br/ Walker: If you can locate proof of an Archer presence in Grace, Admiral Leeroy could be convinced to do something about it. /br/ /br/ Eileen: Good luck!
+advance=ENTERSYSTEM::Cadence
+next=Mission2EnteredCadence
+[/Node]
 
+[Node]
+name=Mission2EnteredCadence
+chapter="Haystack"
+objective=Fly to 'Grace'
+body=Walker: Keep going, you're almost there. Remember, we don't need much evidence just something reasonable.
+advance=ENTERSYSTEM::Grace
+next=Mission2EnteredGrace
+[/Node]
+
+[Node]
+name=Mission2EnteredGrace
+chapter="Harrison 7"
+objective=Fly to 'Harrison 7'
+body=Walker: There is only one planet in Grace, a gas giant called Harrison 7. Check it out.
+advance=GOTO::Grace,'Harrison 7',1500
+next=CAMPAIGN_END
+[/Node]
 
 ######The End
 
