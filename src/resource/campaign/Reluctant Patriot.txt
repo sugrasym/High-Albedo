@@ -129,32 +129,14 @@ chapter="Harrison 7"
 objective=Fly to 'Harrison 7'
 body=Walker: There is only one planet in Grace, a gas giant called Harrison 7. Check it out.
 advance=GOTO::Grace,'Harrison 7',1500
-next=Mission2Ambush
-[/Node]
-
-[Node]
-name=Mission2Ambush
-chapter="Priority Target"
-objective=Fly to 'Brash Pegasus'
-body=Archer Chief: If you know what's good for you you'll leave. /br/ /br/ Walker: 3 Cainan transports with 6 Archers? The Archers are ignoring that convoy completely, that's not very pirate like. Very interesting, return to Brash Pegasus.
-call0=SPAWNSHIP::M2Ambush::The Archers,Grace,-18500.0,-21100.0,Archers' Vanguard,Archer Chief,PATROL
-call1=SPAWNSHIP::M2Ambush::The Archers,Grace,-18600.0,-21000.0,Archers' Vanguard,Archer Pirate,PATROL
-call2=SPAWNSHIP::M2Ambush::The Archers,Grace,-18750.0,-21200.0,Archers' Vanguard,Archer Pirate,PATROL
-call3=SPAWNSHIP::M2Ambush::The Archers,Grace,-18800.0,-21300.0,Archers' Vanguard,Archer Pirate,PATROL
-call4=SPAWNSHIP::M2Ambush::The Archers,Grace,-18700.0,-21400.0,Archers' Vanguard,Archer Pirate,PATROL
-call5=SPAWNSHIP::M2Ambush::The Archers,Grace,-18500.0,-21500.0,Archers' Vanguard,Archer Pirate,PATROL
-call6=SPAWNSHIP::M2Ambush::Caina Conglemerate,Grace,-18650.0,-21050.0,Royal Trade Gila,Cainan Transport,PATROL
-call7=SPAWNSHIP::M2Ambush::Caina Conglemerate,Grace,-18750.0,-21050.0,Royal Trade Gila,Cainan Transport,PATROL
-call8=SPAWNSHIP::M2Ambush::Caina Conglemerate,Grace,-18850.0,-21050.0,Royal Trade Gila,Cainan Transport,PATROL
-advance=ENTERSYSTEM::Brash Pegasus
 next=Mission2Waiting
 [/Node]
 
 [Node]
 name=Mission2Waiting
-chapter="Evidence?"
+chapter="Nothing to See"
 objective=Wait for orders.
-body=Walker: Why Cainan ships and not ITC? Something strange is going on. We're going to look at this, I'll contact you when we need you again. /br/ /br/ Eileen: In the mean time, you should probably take a look around and familiarize yourself with the area, find some work to do.
+body=Walker: Nothing interesting here, it was worth a shot. I guess it would be a little too convenient to find evidence that quickly. I'm going to confer with some better sources and find out what's going on. I'll contact you when I have something for you to do. /br/ /br/ Eileen: In the mean time, you should probably take a look around and familiarize yourself with the area, find some work to do.
 advance=WAIT::1800
 next=CAMPAIGN_END
 [/Node]
