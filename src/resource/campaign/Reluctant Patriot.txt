@@ -103,7 +103,7 @@ advance=DOCK::Brash Pegasus,Federal Supply Base 1
 next=Mission2Start
 [/Node]
 
-######Mission 2: TODO
+######Mission 2: Intel Gathering
 
 [Node]
 name=Mission2Start
@@ -138,6 +138,57 @@ chapter="Nothing to See"
 objective=Wait for orders.
 body=Walker: Nothing interesting here, it was worth a shot. I guess it would be a little too convenient to find evidence that quickly. I'm going to confer with some better sources and find out what's going on. I'll contact you when I have something for you to do. /br/ /br/ Eileen: In the mean time, you should probably take a look around and familiarize yourself with the area, find some work to do.
 advance=WAIT::1800
+next=Mission3Start
+[/Node]
+
+
+######Mission 3: Convoy Raid
+
+[Node]
+name=Mission3Start
+chapter="About Time"
+objective=Dock at Federal Supply Base 1
+body=Walker: If you're still interested in helping out, come back to the supply base in Brash Pegasus. We have a new mission for you.
+advance=DOCK::Brash Pegasus,Federal Supply Base 1
+next=Mission3Briefing
+[/Node]
+
+[Node]
+name=Mission3Briefing
+chapter="Reporting In"
+objective=Fly to Cadence
+body=Walker: Eileen is away at the moment so you're getting the briefing from me. We still don't know what is going on but we do have a target, we are going after an Archers' transport that is leaving Cadence and headed back to Grace. An Archers' transport moving into ITC space is suspicious and we aren't going to let that happen. The transport is currently in Cadence heading towards the Grace jumphole, if it reaches there we are out of luck because we don't have authorization to enter ITC space. You'll be joining a wing of fighters that will be intercepting them before they can make it to Grace. Good luck!
+advance=ENTERSYSTEM::Cadence
+next=Mission3Convoy
+[/Node]
+
+[Node]
+name=Mission3Convoy
+chapter="Interception"
+objective=Destroy Archers' transports and escorts
+body=Archer Transport: If you know what's good for you you'll leave. /br/br/ Walker: There they are! With Cainan escorts! Don't let them get into Grace.
+#group 1 spawned and ordered to fly to grace
+call0=SPAWNSHIP::ArcherConvoy::The Archers,Cadence,18000.0,20000.0,OFAF Trade Poltergeist,Archer Transport 1,NONE
+call1=SPAWNSHIP::ArcherConvoy::The Archers,Cadence,18500.0,20500.0,OFAF Trade Poltergeist,Archer Transport 2,NONE
+call2=COMMGROUP::ArcherConvoy::FLYTO,Grace Jumphole,0
+#group 2 spawned later to avoid flyto call
+call3=SPAWNSHIP::ArcherConvoy::Caina Conglemerate,Cadence,18200.0,19000.0,Air Force Gecko,Convoy Escort,PATROL
+call4=SPAWNSHIP::ArcherConvoy::The Archers,Cadence,18000.0,21000.0,Pirate Raider,Convoy Escort,PATROL
+call5=SPAWNSHIP::ArcherConvoy::Caina Conglemerate,Cadence,18300.0,19000.0,Air Force Gecko,Convoy Escort,PATROL
+call6=SPAWNSHIP::ArcherConvoy::The Archers,Cadence,18000.0,21200.0,Pirate Raider,Convoy Escort,PATROL
+#end group 2
+advance=NONEALIVE::ArcherConvoy
+fail=TRIGGROUP::ArcherConvoy::ENTERSYSTEM,Grace
+failure=ConvoyGraceEnding
+next=Mission3Waiting
+[/Node]
+
+[Node]
+name=Mission3Waiting
+chapter="Stand By"
+objective=Wait for orders.
+body=Walker: Great work! Now wait for Eileen to return from her consultation with the Orin and we'll have more work for you.
+advance=WAIT::2700
 next=CAMPAIGN_END
 [/Node]
 
@@ -159,6 +210,15 @@ name=ConvoyDeadEnding
 chapter="Too Soon"
 objective=Fly safe.
 body=Eileen: Damn... I feel like there's more to this but without that transport we'll never know. Nothing we can do about it now. Thanks for helping.
+call0=STATION::Brash Pegasus::Federal Supply Base 1::makeMortal()
+advance=END
+[/Node]
+
+[Node]
+name=ConvoyGraceEnding
+chapter="Too Soon"
+objective=Fly safe.
+body=Walker: Damn, they got away. Now we'll never know what's going on. Thanks for trying.
 call0=STATION::Brash Pegasus::Federal Supply Base 1::makeMortal()
 advance=END
 [/Node]
