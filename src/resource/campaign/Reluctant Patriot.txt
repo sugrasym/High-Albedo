@@ -293,6 +293,110 @@ call0=COMMGROUP::M4-Condor::DEPLOT
 call1=COMMGROUP::M4-Ageirans::DEPLOT
 call2=COMMGROUP::M4-Orin::DEPLOT
 advance=WAIT::2700
+next=Mission5Start
+[/Node]
+
+######Mission 5: UFO
+
+[Node]
+name=Mission5Start
+chapter="Urgent"
+objective=Dock at Federal Supply Base 1
+body=Eileen: We have an urgent mission, return immediately!
+advance=DOCK::Brash Pegasus,Federal Supply Base 1
+next=Mission5Briefing
+[/Node]
+
+[Node]
+name=Mission5Briefing
+chapter="Counterattack"
+objective=Destroy Entities
+body=Walker: While you were gone the ITC jumped some Lions into the surrounding systems and are making a mess, but that's not the biggest problem we have. There are reports of UFOs in Grace, and they might be entities. /br/ /br/ Eileen: Entities are a bigger concern for us because we've always suspected an ITC involvement with them, and their appearance now is... convenient. If they are entities, then who knows what this could lead to. Get down to Grace and help us seek and destroy all the UFOs in the system. We don't know exactly how many there are, or even where they are, but I bet you can do it. /br/ /br/ Walker: Good luck.
+#spawn ITC Lions
+call0=SPAWNSHIP::M5-Lion::ITC,Cadence,0,0,ITC Fleet Lion,ITC Fleet Lion,PATROL
+call1=SPAWNSHIP::M5-Lion::ITC,Guiding Hand,0,0,ITC Fleet Lion,ITC Fleet Lion,PATROL
+call2=SPAWNSHIP::M5-Lion::ITC,Friendly Face,0,0,ITC Fleet Lion,ITC Fleet Lion,PATROL
+#make them non-plot, I just want to make a mess
+call3=COMMGROUP::M5-Lion::DEPLOT
+#end spawn
+advance=ENTERSYSTEM::Grace
+next=Mission5Grace
+[/Node]
+
+[Node]
+name=Mission5Grace
+chapter="First Contact"
+objective=Destroy UFOs
+body=Walker: Entities! Don't let them get away!
+#spawn the Ageiran Fighter Task Force
+call0=SPAWNSHIP::M5-Ageirans::Ageiran Federation,Grace,38200.0,9900.0,Naval Crow,Naval Crow,PATROL
+call1=SPAWNSHIP::M5-Ageirans::Ageiran Federation,Grace,38400.0,9900.0,Naval Crow,Naval Crow,PATROL
+call2=SPAWNSHIP::M5-Ageirans::Ageiran Federation,Grace,38600.0,9900.0,Naval Crow,Naval Crow,PATROL
+call3=SPAWNSHIP::M5-Ageirans::Ageiran Federation,Grace,38800.0,9900.0,Naval Crow,Naval Crow,PATROL
+call4=SPAWNSHIP::M5-Ageirans::Ageiran Federation,Grace,39000.0,9900.0,Naval Robin,Naval Robin,PATROL
+call5=SPAWNSHIP::M5-Ageirans::Ageiran Federation,Grace,39200.0,9900.0,Naval Robin,Naval Robin,PATROL
+#spawn entities
+call6=SPAWNSHIP::M5-Entity::Entities,Grace,36200.0,8900.0,Terror,UFO?UxGATATAG,PATROL
+call7=SPAWNSHIP::M5-Entity::Entities,Grace,37200.0,8900.0,Terror,UFO?UxGATACAG,PATROL
+call8=SPAWNSHIP::M5-Entity::Entities,Grace,35200.0,8900.0,Terror,UFO?UxGATACAT,PATROL
+call9=SPAWNSHIP::M5-Entity::Entities,Grace,35250.0,8800.0,Terror,UFO?UxGATATAC,PATROL
+advance=NONEALIVE::M5-Entity
+next=Mission5FlyToStation
+[/Node]
+
+[Node]
+name=Mission5FlyToStation
+chapter="Inspection"
+objective=Fly to Ageiran Forward Installation
+body=Eileen: Good job! /br/ /br/ Walker: You're not done yet. We've setup a new forward installation near the star, I want you to fly there and make sure there aren't any entities hanging around.
+call0=SPAWNSTATION::ReluctantPatriotVolatilePlotBases::Ageiran Federation,Grace,2623.0,3133.0,Ageiran Customs Office,Ageiran Forward Installation
+advance=GOTO::Grace,Ageiran Forward Installation,1000
+fail=NONEALIVE::ReluctantPatriotVolatilePlotBases
+failure=GraceBaseDeadEnding
+next=Mission5Ambush
+[/Node]
+
+[Node]
+name=Mission5Ambush
+chapter="Present Danger"
+objective=Destroy UFOs
+body=Walker: Don't let the entities destroy that base! /br/ /br/ RS Bounty Hunter: There's the entities! Let's take them out! /br/ /br/ GP Security Raven: Yeeeehaaa!
+#spawn the joint task force
+call0=SPAWNSHIP::M5-JTF::Red Sky,Grace,2800,3500,RS Bounty Hunter,RS Bounty Hunter,PATROL
+call1=SPAWNSHIP::M5-JTF::Prism Exhuming,Grace,2900,3500,PE Security Cheetah,PE Security Cheetah,PATROL
+call2=SPAWNSHIP::M5-JTF::Prism Exhuming,Grace,2800,3600,PE Security Cheetah,PE Security Cheetah,PATROL
+call3=SPAWNSHIP::M5-JTF::Red Sky,Grace,3000,3500,RS Bounty Hunter,RS Bounty Hunter,PATROL
+call4=SPAWNSHIP::M5-JTF::Red Sky,Grace,2800,3700,RS Bounty Hunter,RS Bounty Hunter,PATROL
+call5=SPAWNSHIP::M5-JTF::Red Sky,Grace,3100,3500,RS Bounty Hunter,RS Bounty Hunter,PATROL
+call6=SPAWNSHIP::M5-JTF::Gunpower,Grace,2800,3800,GP Security Raven,GP Security Raven,PATROL
+call7=SPAWNSHIP::M5-JTF::Gunpower,Grace,3200,3500,GP Security Raven,GP Security Raven,PATROL
+call8=SPAWNSHIP::M5-JTF::Red Sky,Grace,2800,3900,RS Assassin,RS Assassin,PATROL
+call9=SPAWNSHIP::M5-JTF::Red Sky,Grace,3300,4000,RS Assassin,RS Assassin,PATROL
+call10=SPAWNSHIP::M5-JTF::Prism Exhuming,Grace,3400,3500,PE Security Cheetah,PE Security Cheetah,PATROL
+call11=SPAWNSHIP::M5-JTF::Prism Exhuming,Grace,2800,4100,PE Security Cheetah,PE Security Cheetah,PATROL
+#spawn entities
+call12=SPAWNSHIP::M5-Entity::Entities,Grace,2750.0,3000.0,Terror,UFO?UxTAGACATA,PATROL
+call13=SPAWNSHIP::M5-Entity::Entities,Grace,2850.0,3100.0.0,Terror,UFO?UxTAGAGATA,PATROL
+call14=SPAWNSHIP::M5-Entity::Entities,Grace,2950.0,3200.0,Terror,UFO?UxTAGACAAG,PATROL
+call15=SPAWNSHIP::M5-Entity::Entities,Grace,3050.0,3300.0,Terror,UFO?UxTAGACAAT,PATROL
+call16=SPAWNSHIP::M5-Entity::Entities,Grace,2950.0,3200.0,Terror,UFO?UxCATATAGA,PATROL
+call17=SPAWNSHIP::M5-Entity::Entities,Grace,2950.0,3400.0,Terror,UFO?UxCATACATA,PATROL
+call18=SPAWNSHIP::M5-Entity::Entities,Grace,2950.0,3600.0,Terror,UFO?UxCATAGATA,PATROL
+call19=SPAWNSHIP::M5-Entity::Entities,Grace,3950.0,3800.0,Terror,UFO?UxCATAGATT,PATROL
+advance=NONEALIVE::M5-Entity
+fail=NONEALIVE::ReluctantPatriotVolatilePlotBases
+failure=GraceBaseDeadEnding
+next=Mission5Waiting
+[/Node]
+
+[Node]
+name=Mission5Waiting
+chapter="At Ease"
+objective=Wait for orders.
+body=Eileen: Who are you guys? /br/ /br/ RS Bounty Hunter: We're Red Sky, we heard there were entities around, and that's what we do with entities. /br/ /br/ Walker: I think you know the drill by now, we'll contact you when we have something to offer.
+#de-plot the NPCs we spawned so they don't dissappear for weird reasons
+call0=COMMGROUP::M5-JTF::DEPLOT
+advance=WAIT::2700
 next=CAMPAIGN_END
 [/Node]
 
@@ -323,6 +427,15 @@ name=ConvoyGraceEnding
 chapter="Too Soon"
 objective=Fly safe.
 body=Walker: Damn, they got away. Now we'll never know what's going on. Thanks for trying.
+call0=STATION::Brash Pegasus::Federal Supply Base 1::makeMortal()
+advance=END
+[/Node]
+
+[Node]
+name=GraceBaseDeadEnding
+chapter="Too Soon"
+objective=Fly safe.
+body=Eileen: Without that base it seems unlikely we can hold Grace, this was for nothing. Hopefully it doesn't get too out of hand. Good luck. /br/ /br/ 0xC01031: The world is saved.
 call0=STATION::Brash Pegasus::Federal Supply Base 1::makeMortal()
 advance=END
 [/Node]

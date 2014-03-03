@@ -696,6 +696,22 @@ width=180
 height=180
 [/Ship]
 
+[Ship]
+type=Entity
+accel=35
+turning=5
+shield=6400
+shieldRecharge=25
+hull=300
+fuel=256000
+mass=75
+sensor=5000
+cargo=2500
+hardpoint=cannon,900,0,0
+width=50
+height=50
+[/Ship]
+
 #########Special########
 #Naming Scheme: Snark
 #########

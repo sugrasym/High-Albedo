@@ -530,6 +530,13 @@ install=Howler/Howler/Howler/Howler/Howler/Howler
 cargo=Exotic Matter~1
 [/Loadout]
 
+[Loadout]
+ship=Entity
+name=Terror
+install=Howler
+cargo=Exotic Matter~1
+[/Loadout]
+
 ########Flight School Campaign
 
 [Loadout]
