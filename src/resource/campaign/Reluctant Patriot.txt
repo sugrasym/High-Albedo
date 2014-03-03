@@ -228,22 +228,24 @@ call1=PLAYER::SETSTANDING::Caina Conglemerate,-8
 #spawn the station
 call2=SPAWNSTATION::M4-R1::ITC,Grace,2623.0,3133.0,ITC Power Converter,ITC Solar Research Station
 #spawn the Ageiran Fighter Task Force
-call3=SPAWNSHIP::M4-Ageirans::Ageiran Federation,Grace,42000.0,-24300.0,Naval Crow,Naval Crow,PATROL
-call4=SPAWNSHIP::M4-Ageirans::Ageiran Federation,Grace,42200.0,-24300.0,Naval Crow,Naval Crow,PATROL
-call5=SPAWNSHIP::M4-Ageirans::Ageiran Federation,Grace,42400.0,-24300.0,Naval Crow,Naval Crow,PATROL
-call6=SPAWNSHIP::M4-Ageirans::Ageiran Federation,Grace,42600.0,-24300.0,Naval Crow,Naval Crow,PATROL
-call7=SPAWNSHIP::M4-Ageirans::Ageiran Federation,Grace,42800.0,-24300.0,Naval Crow,Naval Crow,PATROL
-call8=SPAWNSHIP::M4-Ageirans::Ageiran Federation,Grace,43000.0,-24300.0,Naval Crow,Naval Crow,PATROL
-call9=SPAWNSHIP::M4-Ageirans::Ageiran Federation,Grace,42000.0,-24300.0,Naval Raven,Naval Raven,PATROL
-call10=SPAWNSHIP::M4-Ageirans::Ageiran Federation,Grace,42200.0,-24500.0,Naval Raven,Naval Raven,PATROL
-call11=SPAWNSHIP::M4-Ageirans::Ageiran Federation,Grace,42400.0,-24700.0,Naval Raven,Naval Raven,PATROL
-call12=SPAWNSHIP::M4-Ageirans::Ageiran Federation,Grace,42600.0,-24000.0,Naval Raven,Naval Raven,PATROL
-call13=SPAWNSHIP::M4-Ageirans::Ageiran Federation,Grace,42800.0,-25100.0,Naval Raven,Naval Raven,PATROL
-call14=SPAWNSHIP::M4-Ageirans::Ageiran Federation,Grace,43000.0,-25300.0,Naval Raven,Naval Raven,PATROL
+call3=SPAWNSHIP::M4-Ageirans::Ageiran Federation,Grace,38200.0,9900.0,Naval Crow,Naval Crow,PATROL
+call4=SPAWNSHIP::M4-Ageirans::Ageiran Federation,Grace,38400.0,9900.0,Naval Crow,Naval Crow,PATROL
+call5=SPAWNSHIP::M4-Ageirans::Ageiran Federation,Grace,38600.0,9900.0,Naval Crow,Naval Crow,PATROL
+call6=SPAWNSHIP::M4-Ageirans::Ageiran Federation,Grace,38800.0,9900.0,Naval Crow,Naval Crow,PATROL
+call7=SPAWNSHIP::M4-Ageirans::Ageiran Federation,Grace,39000.0,9900.0,Naval Crow,Naval Crow,PATROL
+call8=SPAWNSHIP::M4-Ageirans::Ageiran Federation,Grace,39200.0,9900.0,Naval Crow,Naval Crow,PATROL
+call9=SPAWNSHIP::M4-Ageirans::Ageiran Federation,Grace,39400.0,9900.0,Naval Raven,Naval Raven,PATROL
+call10=SPAWNSHIP::M4-Ageirans::Ageiran Federation,Grace,38200.0,10900.0,Naval Raven,Naval Raven,PATROL
+call11=SPAWNSHIP::M4-Ageirans::Ageiran Federation,Grace,38200.0,11000.0,Naval Raven,Naval Raven,PATROL
+call12=SPAWNSHIP::M4-Ageirans::Ageiran Federation,Grace,38200.0,11100.0,Naval Raven,Naval Raven,PATROL
+call13=SPAWNSHIP::M4-Ageirans::Ageiran Federation,Grace,38200.0,11200.0,Naval Robin,Naval Robin,PATROL
+call14=SPAWNSHIP::M4-Ageirans::Ageiran Federation,Grace,38200.0,11300.0,Naval Robin,Naval Robin,PATROL
 #spawn the Ageiran Condor
-call15=SPAWNSHIP::M4-Condor::Ageiran Federation,Grace,42000.0,-23300.0,Naval Condor,Naval Condor,PATROL
+call15=SPAWNSHIP::M4-Condor::Ageiran Federation,Grace,36200.0,8900.0,Naval Condor,Naval Condor,PATROL
+call16=SPAWNSHIP::M4-Condor::Ageiran Federation,Grace,37200.0,8900.0,Naval Condor,Naval Condor,PATROL
+call17=SPAWNSHIP::M4-Condor::Ageiran Federation,Grace,35200.0,8900.0,Naval Condor,Naval Condor,PATROL
 #order the capital towards the station, they should auto-attack once in range
-call16=COMMGROUP::M4-Condor::FLYTO,ITC Solar Research Station,1000
+call18=COMMGROUP::M4-Condor::FLYTO,ITC Solar Research Station,1000
 advance=NONEALIVE::M4-R1
 next=Mission4SecondStation
 [/Node]
@@ -257,11 +259,11 @@ body=Walker: There's only one planet in Grace, that's where the second station i
 call0=PLAYER::SETSTANDING::ITC,-8
 call1=PLAYER::SETSTANDING::Caina Conglemerate,-8
 #spawn the station
-call2=SPAWNSTATION::M4-R2::ITC,Grace,2623.0,3133.0,ITC Power Converter,ITC Solar Research Station
+call2=SPAWNSTATION::M4-R2::ITC,Grace,-18000.0,-21310.0,ITC Power Converter,ITC Planetary Research Station
 #spawn the Orin Fighter Task Force
 call3=SPAWNSHIP::M4-Orin::Orin Federation,Grace,0,0,OFAF Phantasm,OFAF Phantasm,PATROL
-call4=SPAWNSHIP::M4-Orin::Orin Federation,Grace,100,100,OFAF Phantasm,OFAF Phantasm,PATROL
-call5=SPAWNSHIP::M4-Orin::Orin Federation,Grace,200,100,OFAF Phantasm,OFAF Phantasm,PATROL
+call4=SPAWNSHIP::M4-Orin::Orin Federation,Grace,100,100,OFAF Spectre,OFAF Spectre,PATROL
+call5=SPAWNSHIP::M4-Orin::Orin Federation,Grace,200,100,OFAF Spectre,OFAF Spectre,PATROL
 call6=SPAWNSHIP::M4-Orin::Orin Federation,Grace,300,100,OFAF Phantasm,OFAF Phantasm,PATROL
 call7=SPAWNSHIP::M4-Orin::Orin Federation,Grace,400,100,OFAF Phantasm,OFAF Phantasm,PATROL
 call8=SPAWNSHIP::M4-Orin::Orin Federation,Grace,500,100,OFAF Phantasm,OFAF Phantasm,PATROL
@@ -269,10 +271,14 @@ call9=SPAWNSHIP::M4-Orin::Orin Federation,Grace,600,100,OFAF Banshee,OFAF Banshe
 call10=SPAWNSHIP::M4-Orin::Orin Federation,Grace,700,100,OFAF Banshee,OFAF Banshee,PATROL
 call11=SPAWNSHIP::M4-Orin::Orin Federation,Grace,800,100,OFAF Banshee,OFAF Banshee,PATROL
 call12=SPAWNSHIP::M4-Orin::Orin Federation,Grace,900,100,OFAF Banshee,OFAF Banshee,PATROL
-call13=SPAWNSHIP::M4-Orin::Orin Federation,Grace,1000,100,OFAF Banshee,OFAF Banshee,PATROL
-call14=SPAWNSHIP::M4-Orin::Orin Federation,Grace,1100,100,OFAF Banshee,OFAF Banshee,PATROL
+call13=SPAWNSHIP::M4-Orin::Orin Federation,Grace,1000,100,OFAF Spectre,OFAF Spectre,PATROL
+call14=SPAWNSHIP::M4-Orin::Orin Federation,Grace,1100,100,OFAF Spectre,OFAF Spectre,PATROL
+#spawn the Ageiran Condor
+call15=SPAWNSHIP::M4-Condor::Ageiran Federation,Grace,36200.0,8900.0,Naval Condor,Naval Condor,PATROL
+call16=SPAWNSHIP::M4-Condor::Ageiran Federation,Grace,37200.0,8900.0,Naval Condor,Naval Condor,PATROL
+call17=SPAWNSHIP::M4-Condor::Ageiran Federation,Grace,35200.0,8900.0,Naval Condor,Naval Condor,PATROL
 #order the capital towards the station, they should auto-attack once in range
-call15=COMMGROUP::M4-Condor::FLYTO,ITC Planetary Research Station,1000
+call18=COMMGROUP::M4-Condor::FLYTO,ITC Planetary Research Station,500
 advance=NONEALIVE::M4-R2
 next=Mission4Waiting
 [/Node]
