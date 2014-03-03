@@ -194,6 +194,95 @@ chapter="Stand By"
 objective=Wait for orders.
 body=Walker: Great work! Now wait for Eileen to return from her consultation with the Orin and we'll have more work for you.
 advance=WAIT::2700
+next=Mission4Start
+[/Node]
+
+######Mission 4: Grace Invasion
+
+[Node]
+name=Mission4Start
+chapter="About Time"
+objective=Dock at Federal Supply Base 1
+body=Eileen: I've got big news, come on back to the supply base.
+advance=DOCK::Brash Pegasus,Federal Supply Base 1
+next=Mission4Briefing
+[/Node]
+
+[Node]
+name=Mission4Briefing
+chapter="Admiral Leeroy"
+objective=Fly to Grace
+body=Leeroy: Alright everyone listen up! I have been informed that the Cainans have been paying The Archers to attack us in Brash Pegasus. Obviously, we will not stand for this. I am pleased to announce that I have authorization to lead a massive attack on Grace to demand answers. Our target will be 2 ITC research installations in Grace. One located near the star, one located near the planet. Apparently those installations are what this is all about. /br/ /br/ Eileen: I'm a civilian so let me tell you that we aren't sure what is going on, but the answer is in Grace. Admiral Leeroy feels this is the best option to get answers, and you're welcome to come along. /br/ /br/ Walker: If you want to help just meet us in Grace as soon as possible, this is going to happen quickly.
+advance=ENTERSYSTEM::Grace
+next=Mission4Grace
+[/Node]
+
+[Node]
+name=Mission4Grace
+chapter="Massive Attack"
+objective=Destroy ITC Solar Research Station
+body=Walker: Those fighters are going to spread out, but that Condor is going to the solar research station.
+#set player standings to make this hard
+call0=PLAYER::SETSTANDING::ITC,-8
+call1=PLAYER::SETSTANDING::Caina Conglemerate,-8
+#spawn the station
+call2=SPAWNSTATION::M4-R1::ITC,Grace,2623.0,3133.0,ITC Power Converter,ITC Solar Research Station
+#spawn the Ageiran Fighter Task Force
+call3=SPAWNSHIP::M4-Ageirans::Ageiran Federation,Grace,42000.0,-24300.0,Naval Crow,Naval Crow,PATROL
+call4=SPAWNSHIP::M4-Ageirans::Ageiran Federation,Grace,42200.0,-24300.0,Naval Crow,Naval Crow,PATROL
+call5=SPAWNSHIP::M4-Ageirans::Ageiran Federation,Grace,42400.0,-24300.0,Naval Crow,Naval Crow,PATROL
+call6=SPAWNSHIP::M4-Ageirans::Ageiran Federation,Grace,42600.0,-24300.0,Naval Crow,Naval Crow,PATROL
+call7=SPAWNSHIP::M4-Ageirans::Ageiran Federation,Grace,42800.0,-24300.0,Naval Crow,Naval Crow,PATROL
+call8=SPAWNSHIP::M4-Ageirans::Ageiran Federation,Grace,43000.0,-24300.0,Naval Crow,Naval Crow,PATROL
+call9=SPAWNSHIP::M4-Ageirans::Ageiran Federation,Grace,42000.0,-24300.0,Naval Raven,Naval Raven,PATROL
+call10=SPAWNSHIP::M4-Ageirans::Ageiran Federation,Grace,42200.0,-24500.0,Naval Raven,Naval Raven,PATROL
+call11=SPAWNSHIP::M4-Ageirans::Ageiran Federation,Grace,42400.0,-24700.0,Naval Raven,Naval Raven,PATROL
+call12=SPAWNSHIP::M4-Ageirans::Ageiran Federation,Grace,42600.0,-24000.0,Naval Raven,Naval Raven,PATROL
+call13=SPAWNSHIP::M4-Ageirans::Ageiran Federation,Grace,42800.0,-25100.0,Naval Raven,Naval Raven,PATROL
+call14=SPAWNSHIP::M4-Ageirans::Ageiran Federation,Grace,43000.0,-25300.0,Naval Raven,Naval Raven,PATROL
+#spawn the Ageiran Condor
+call15=SPAWNSHIP::M4-Condor::Ageiran Federation,Grace,42000.0,-23300.0,Naval Condor,Naval Condor,PATROL
+#order the capital towards the station, they should auto-attack once in range
+call16=COMMGROUP::M4-Condor::FLYTO,ITC Solar Research Station,1000
+advance=NONEALIVE::M4-R1
+next=Mission4SecondStation
+[/Node]
+
+[Node]
+name=Mission4SecondStation
+chapter="One To Go"
+objective=Destroy ITC Planetary Research Station
+body=Walker: There's only one planet in Grace, that's where the second station is.
+#set player standings to make this hard
+call0=PLAYER::SETSTANDING::ITC,-8
+call1=PLAYER::SETSTANDING::Caina Conglemerate,-8
+#spawn the station
+call2=SPAWNSTATION::M4-R2::ITC,Grace,2623.0,3133.0,ITC Power Converter,ITC Solar Research Station
+#spawn the Orin Fighter Task Force
+call3=SPAWNSHIP::M4-Orin::Orin Federation,Grace,0,0,OFAF Phantasm,OFAF Phantasm,PATROL
+call4=SPAWNSHIP::M4-Orin::Orin Federation,Grace,100,100,OFAF Phantasm,OFAF Phantasm,PATROL
+call5=SPAWNSHIP::M4-Orin::Orin Federation,Grace,200,100,OFAF Phantasm,OFAF Phantasm,PATROL
+call6=SPAWNSHIP::M4-Orin::Orin Federation,Grace,300,100,OFAF Phantasm,OFAF Phantasm,PATROL
+call7=SPAWNSHIP::M4-Orin::Orin Federation,Grace,400,100,OFAF Phantasm,OFAF Phantasm,PATROL
+call8=SPAWNSHIP::M4-Orin::Orin Federation,Grace,500,100,OFAF Phantasm,OFAF Phantasm,PATROL
+call9=SPAWNSHIP::M4-Orin::Orin Federation,Grace,600,100,OFAF Banshee,OFAF Banshee,PATROL
+call10=SPAWNSHIP::M4-Orin::Orin Federation,Grace,700,100,OFAF Banshee,OFAF Banshee,PATROL
+call11=SPAWNSHIP::M4-Orin::Orin Federation,Grace,800,100,OFAF Banshee,OFAF Banshee,PATROL
+call12=SPAWNSHIP::M4-Orin::Orin Federation,Grace,900,100,OFAF Banshee,OFAF Banshee,PATROL
+call13=SPAWNSHIP::M4-Orin::Orin Federation,Grace,1000,100,OFAF Banshee,OFAF Banshee,PATROL
+call14=SPAWNSHIP::M4-Orin::Orin Federation,Grace,1100,100,OFAF Banshee,OFAF Banshee,PATROL
+#order the capital towards the station, they should auto-attack once in range
+call15=COMMGROUP::M4-Condor::FLYTO,ITC Planetary Research Station,1000
+advance=NONEALIVE::M4-R2
+next=Mission4Waiting
+[/Node]
+
+[Node]
+name=Mission4Waiting
+chapter="Break"
+objective=Wait for orders.
+body=Eileen: That was probably a lot more than you signed up for, I'll let you know when you can help again.
+advance=WAIT::2700
 next=CAMPAIGN_END
 [/Node]
 
