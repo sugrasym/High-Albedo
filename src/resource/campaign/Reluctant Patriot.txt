@@ -288,6 +288,10 @@ name=Mission4Waiting
 chapter="Break"
 objective=Wait for orders.
 body=Eileen: That was probably a lot more than you signed up for, I'll let you know when you can help again.
+#de-plot the NPCs we spawned so they don't dissappear for weird reasons
+call0=COMMGROUP::M4-Condor::DEPLOT
+call1=COMMGROUP::M4-Ageirans::DEPLOT
+call2=COMMGROUP::M4-Orin::DEPLOT
 advance=WAIT::2700
 next=CAMPAIGN_END
 [/Node]

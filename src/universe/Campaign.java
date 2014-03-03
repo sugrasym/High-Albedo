@@ -36,7 +36,7 @@ import lib.Parser.Term;
  * @author nwiehoff
  */
 public class Campaign implements Serializable {
-
+    
     private final String name;
     private Parser script;
     private Term node;
@@ -47,8 +47,9 @@ public class Campaign implements Serializable {
 
     //internal timing
     private double tpf;
-    private enum TimerState {
 
+    private enum TimerState {
+        
         NOTSET,
         RUNNING,
         STOPPED
@@ -56,7 +57,7 @@ public class Campaign implements Serializable {
     private double timerMax;
     private double timer;
     private TimerState timerState = TimerState.NOTSET;
-
+    
     public Campaign(Universe universe, String name) {
         this.universe = universe;
         this.name = name;
@@ -70,7 +71,7 @@ public class Campaign implements Serializable {
             node = null;
         }
     }
-
+    
     private boolean canStart() {
         //load campaign script
         script = new Parser("campaign/" + name + ".txt");
@@ -103,7 +104,7 @@ public class Campaign implements Serializable {
         }
         return true;
     }
-
+    
     private Term findNode(String name) {
         ArrayList<Term> nodes = script.getTermsOfType("Node");
         for (int a = 0; a < nodes.size(); a++) {
@@ -113,11 +114,11 @@ public class Campaign implements Serializable {
         }
         return null;
     }
-
+    
     private void messagePlayer(String name, String body) {
         universe.playerShip.composeMessage(universe.playerShip, name, body, null);
     }
-
+    
     public void periodicUpdate(double tpf) {
         this.tpf = tpf;
         if (node != null) {
@@ -125,11 +126,11 @@ public class Campaign implements Serializable {
             checkFailure();
         }
     }
-
+    
     public boolean isRunning() {
         return running;
     }
-
+    
     private void checkAdvance() {
         //check to see if we can advance
         String advance = node.getValue("advance");
@@ -203,7 +204,7 @@ public class Campaign implements Serializable {
             }
         }
     }
-
+    
     private void checkWaitAdvance(String parameter) {
         //set timer
         if (timerState == TimerState.NOTSET) {
@@ -220,19 +221,19 @@ public class Campaign implements Serializable {
             next();
         } else if (timerState == TimerState.RUNNING) {
             timer += tpf;
-            if(timer >= timerMax) {
+            if (timer >= timerMax) {
                 timerState = TimerState.STOPPED;
             }
         }
     }
-
+    
     private void resetTimer() {
         //reset
         timerState = TimerState.NOTSET;
         timer = 0;
         timerMax = 0;
     }
-
+    
     private boolean checkGroupEnterSystemAdvance(String[] arr, Ship tmp) {
         //triggered when the player is in a certain system
         if (tmp.getCurrentSystem().getName().equals(arr[1])) {
@@ -244,7 +245,7 @@ public class Campaign implements Serializable {
             return false;
         }
     }
-
+    
     private boolean checkGroupGotoAdvance(String[] arr, Ship tmp) {
         String lSys = arr[1].trim();
         String lEnt = arr[2].trim();
@@ -292,7 +293,7 @@ public class Campaign implements Serializable {
         }
         return false;
     }
-
+    
     private boolean checkGroupDockAdvance(String[] arr, Ship tmp) {
         String sys = arr[1];
         String stn = arr[2];
@@ -308,7 +309,7 @@ public class Campaign implements Serializable {
         }
         return false;
     }
-
+    
     private void checkGotoAdvance(String parameter) throws NumberFormatException {
         String[] arr = parameter.split(",");
         String lSys = arr[0].trim();
@@ -356,7 +357,7 @@ public class Campaign implements Serializable {
             //no point in testing further
         }
     }
-
+    
     private void checkNoneAliveAdvance(String parameter) {
         //triggered when no ship/station of a certain group is left alive
         String group = parameter;
@@ -390,7 +391,7 @@ public class Campaign implements Serializable {
             next();
         }
     }
-
+    
     private void checkDockAdvance(String parameter) {
         //triggered when a player docks at a certain station
         Ship player = universe.getPlayerShip();
@@ -409,7 +410,7 @@ public class Campaign implements Serializable {
             }
         }
     }
-
+    
     private void checkEnterSystemAdvance(String parameter) {
         //triggered when the player is in a certain system
         if (universe.getPlayerShip().getCurrentSystem().getName().equals(parameter)) {
@@ -419,7 +420,7 @@ public class Campaign implements Serializable {
             //not yet
         }
     }
-
+    
     private void checkSilentEndAdvance() {
         //this is the end of the campaign, but doesn't say anything
         node = null;
@@ -428,7 +429,7 @@ public class Campaign implements Serializable {
         //store campaign in the completed campaigns list
         universe.getCompletedCampaigns().add(this);
     }
-
+    
     private void checkEndAdvance() {
         //this is the end of the campaign
         node = null;
@@ -438,7 +439,7 @@ public class Campaign implements Serializable {
         //store campaign in the completed campaigns list
         universe.getCompletedCampaigns().add(this);
     }
-
+    
     private void checkFailure() {
         //check to see if the mission has been failed
         String failure = node.getValue("fail");
@@ -507,7 +508,7 @@ public class Campaign implements Serializable {
             }
         }
     }
-
+    
     private boolean checkGroupEnterSystemFail(String[] arr, Ship tmp) {
         //triggered when the player is in a certain system
         if (tmp.getCurrentSystem().getName().equals(arr[1])) {
@@ -519,7 +520,7 @@ public class Campaign implements Serializable {
             return false;
         }
     }
-
+    
     private boolean checkGroupGotoFail(String[] arr, Ship tmp) {
         String lSys = arr[1].trim();
         String lEnt = arr[2].trim();
@@ -567,7 +568,7 @@ public class Campaign implements Serializable {
         }
         return false;
     }
-
+    
     private void checkNoneAliveFail(String parameter) {
         //triggered when no ship/station of a certain group is left alive
         String group = parameter;
@@ -601,7 +602,7 @@ public class Campaign implements Serializable {
             fail();
         }
     }
-
+    
     private boolean checkGroupDockFail(String[] arr, Ship tmp) {
         String sys = arr[1];
         String stn = arr[2];
@@ -617,7 +618,7 @@ public class Campaign implements Serializable {
         }
         return false;
     }
-
+    
     private void checkDockFail(String parameter) {
         //triggered when a player docks at a certain station
         Ship player = universe.getPlayerShip();
@@ -636,7 +637,7 @@ public class Campaign implements Serializable {
             }
         }
     }
-
+    
     private void checkEnterSystemFail(String parameter) {
         //triggered when the player is in a certain system
         if (universe.getPlayerShip().getCurrentSystem().getName().equals(parameter)) {
@@ -646,19 +647,19 @@ public class Campaign implements Serializable {
             //not yet
         }
     }
-
+    
     private void next() {
         //automatically advance to next node
         String next = node.getValue("next");
         advance(next);
     }
-
+    
     private void fail() {
         //automatically advance to the failure node
         String next = node.getValue("failure");
         advance(next);
     }
-
+    
     private void advance(String next) {
         Term tmp = findNode(next);
         if (tmp != null) {
@@ -697,7 +698,7 @@ public class Campaign implements Serializable {
             messagePlayer("Error", "Unexpected end of story.");
         }
     }
-
+    
     private void do2FieldFunction(String[] arr) {
         //object::method
         String object = arr[0].trim();
@@ -715,7 +716,7 @@ public class Campaign implements Serializable {
             }
         }
     }
-
+    
     private void do3FieldFunction(String[] arr) {
         //action::param1::details
         String action = arr[0].trim();
@@ -763,16 +764,23 @@ public class Campaign implements Serializable {
                         if (command.equals("UNDOCK")) {
                             parseUndock(split, tmp);
                         }
+                        if (command.equals("DEPLOT")) {
+                            parseDeplot(split, tmp);
+                        }
                     }
                 }
             }
         }
     }
-
+    
+    private void parseDeplot(String[] split, Ship tmp) {
+        tmp.setPlotShip(false);
+    }
+    
     private void parseUndock(String[] split, Ship tmp) {
         tmp.cmdUndock();
     }
-
+    
     private void parseDockAt(String[] split, Ship tmp) {
         String target = split[1].trim();
         //fly to only works in the current system the object is in
@@ -793,7 +801,7 @@ public class Campaign implements Serializable {
             tmp.cmdDock(dockTarget);
         }
     }
-
+    
     private void parseSpawnShip(String param1, String param2) throws NumberFormatException {
         //the group name
         String group = param1;
@@ -837,7 +845,7 @@ public class Campaign implements Serializable {
         //spawnShip(Faction faction, SolarSystem system, Point2D.Double loc, String loadout, String name, Behavior behavior)
         universe.getGod().spawnShip(myFaction, system, new Point2D.Double(x, y), load, name, behavior, group, true);
     }
-
+    
     private void parseSpawnStation(String param1, String param2) throws NumberFormatException {
         //the group name
         String group = param1;
@@ -867,12 +875,12 @@ public class Campaign implements Serializable {
         //spawnStation(Faction faction, SolarSystem system, Point2D.Double loc, String type, String name)
         universe.getGod().spawnStation(myFaction, system, new Point2D.Double(x, y), load, name, group, true);
     }
-
+    
     private void givePlayerCash(String param2) throws NumberFormatException {
         long mod = Long.parseLong(param2.trim());
         universe.getPlayerShip().setCash(universe.getPlayerShip().getCash() + mod);
     }
-
+    
     private void setPlayerStanding(String param2) throws NumberFormatException {
         String[] split = param2.split(",");
         String fact = split[0].trim();
@@ -880,7 +888,7 @@ public class Campaign implements Serializable {
         double standing = Double.parseDouble(sRaw);
         universe.getPlayerShip().getMyFaction().setStanding(fact, standing);
     }
-
+    
     private void parseFlyTo(String[] split, Ship tmp) throws NumberFormatException {
         String target = split[1].trim();
         String sRange = split[2].trim();
@@ -905,7 +913,7 @@ public class Campaign implements Serializable {
             tmp.cmdFlyToCelestial(universe.getPlayerShip(), flyToRange);
         }
     }
-
+    
     private void parseFollow(String[] split, Ship tmp) throws NumberFormatException {
         String target = split[1].trim();
         String sRange = split[2].trim();
@@ -930,7 +938,7 @@ public class Campaign implements Serializable {
             tmp.cmdFollowShip(universe.getPlayerShip(), followRange);
         }
     }
-
+    
     private void parseBehave(String[] split, Ship tmp) {
         String behave = split[1].trim();
         //determine correct new behavior
@@ -949,7 +957,7 @@ public class Campaign implements Serializable {
         //set behavior
         tmp.setBehavior(behavior);
     }
-
+    
     private void do4FieldFunction(String[] arr) {
         //type::system::entity::method
         String type = arr[0];
@@ -980,7 +988,7 @@ public class Campaign implements Serializable {
             }
         }
     }
-
+    
     public String getName() {
         return name;
     }
