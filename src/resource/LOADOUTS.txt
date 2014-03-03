@@ -534,7 +534,7 @@ cargo=Exotic Matter~1
 ship=Entity
 name=Terror
 install=Howler
-cargo=Exotic Matter~1
+cargo=Repair Paste~1
 [/Loadout]
 
 ########Flight School Campaign
