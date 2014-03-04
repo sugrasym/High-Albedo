@@ -387,6 +387,44 @@ body=Eileen: Who are you guys? /br/ /br/ RS Bounty Hunter: We're Red Sky, we hea
 #de-plot the NPCs we spawned so they don't dissappear for weird reasons
 call0=COMMGROUP::M5-JTF::DEPLOT
 advance=WAIT::2700
+next=Mission6Start
+[/Node]
+
+######Mission 6: Red Sky Offer
+#This isn't so much a mission as a chance for the player to pick how they want the story to end.
+
+[Node]
+name=Mission6Start
+chapter="Red Sky Offer"
+objective=Choose an Allegiance
+body=Eileen: You've done well so far, but I think we have one more job for you. Come on back to Federal Supply Base 1 in Brash Pegasus if you're interested. /br/ /br/ Otakar: Listen up. You met me when we were fighting the entities in Grace earlier today. You handled yourself pretty well, so I'm going to make you a special offer. If you want to learn what is really going on, come to Red Sky Logistics Center in Dull Edge. Beware that if you show yourself you're committed. I promise it's worth it.
+call0=SPAWNSTATION::ReluctantPatriotPlotBases::Red Sky,Dull Edge,500,-2500,Red Sky Regional HQ,Red Sky Logistics Center
+call1=STATION::Dull Edge::Red Sky Logistics Center::makeImmortal()
+advance=DOCK::Brash Pegasus,Federal Supply Base 1
+fail=DOCK::Dull Edge,Red Sky Logistics Center
+failure=Mission7bBriefing
+next=Mission7aBriefing
+[/Node]
+
+######Mission 7a: Research Extraction
+
+[Node]
+name=Mission7aBriefing
+chapter="One More Convoy"
+objective=Fly To 'Grace'
+body=TODO
+advance=ENTERSYSTEM::Grace
+next=CAMPAIGN_END
+[/Node]
+
+######Mission 7b: Destroy The Transport
+
+[Node]
+name=Mission7bBriefing
+chapter="Getting Deeper"
+objective=Fly To 'Grace'
+body=TODO
+advance=ENTERSYSTEM::Grace
 next=CAMPAIGN_END
 [/Node]
 
@@ -425,7 +463,7 @@ advance=END
 name=GraceBaseDeadEnding
 chapter="Too Soon"
 objective=Fly safe.
-body=Eileen: Without that base it seems unlikely we can hold Grace, this was for nothing. Hopefully it doesn't get too out of hand. Good luck. /br/ /br/ 0xC01031: The world is saved.
+body=Eileen: Without that base it seems unlikely we can hold Grace, this was for nothing. Hopefully it doesn't get too out of hand. Good luck. /br/ /br/ Otakar: The world is saved.
 call0=STATION::Brash Pegasus::Federal Supply Base 1::makeMortal()
 advance=END
 [/Node]
