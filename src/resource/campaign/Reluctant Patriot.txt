@@ -386,6 +386,7 @@ objective=Wait for orders.
 body=Eileen: Who are you guys? /br/ /br/ RS Bounty Hunter: We're Red Sky, we heard there were entities around, and that's what we do with entities. /br/ /br/ Walker: I think you know the drill by now, we'll contact you when we have something to offer.
 #de-plot the NPCs we spawned so they don't dissappear for weird reasons
 call0=COMMGROUP::M5-JTF::DEPLOT
+call1=STATION::Grace::Ageiran Forward Installation::makeImmortal()
 advance=WAIT::2700
 next=Mission6Start
 [/Node]
@@ -412,9 +413,72 @@ next=Mission7aBriefing
 name=Mission7aBriefing
 chapter="One More Convoy"
 objective=Fly To 'Grace'
-body=TODO
+body=Eileen: Welcome back! /br/ /br/ Walker: We're closing down operations in Grace, apparently we got what we needed and are pulling back. But first we are going to provide escort for a captured ITC transport back into Ageiran space. Don't ask because I don't know what's in it, but it needs to make it safely back to this base. You will meet the transport in Grace at the forward installation. /br/ /br/  Eileen: Naturally we'll have some forces there, you're just helping us along. Good luck!
 advance=ENTERSYSTEM::Grace
-next=CAMPAIGN_END
+next=Mission7aEnterGrace
+[/Node]
+
+[Node]
+name=Mission7aEnterGrace
+chapter="Company"
+objective=Fly to Ageiran Forward Installation
+body=Walker: You're going to have to get through them.
+#spawn the Cainan fighter ambush
+call0=SPAWNSHIP::M7a-Cainans::Caina Conglemerate,Grace,38200.0,9900.0,Air Force Gecko,Air Force Gecko,PATROL
+call1=SPAWNSHIP::M7a-Cainans::Caina Conglemerate,Grace,38400.0,9900.0,Air Force Gecko,Air Force Gecko,PATROL
+call2=SPAWNSHIP::M7a-Cainans::Caina Conglemerate,Grace,38600.0,9900.0,Naval Monitor,Naval Monitor,PATROL
+call3=SPAWNSHIP::M7a-Cainans::Caina Conglemerate,Grace,38800.0,9900.0,Naval Monitor,Naval Monitor,PATROL
+advance=GOTO::Grace,Ageiran Forward Installation,500
+next=Mission7aReachStation
+[/Node]
+
+[Node]
+name=Mission7aReachStation
+chapter="Wildabeast"
+objective=Escort Wildabeast to Cadence
+body=Walker: There's the captured transport, make sure it gets back to Brash Pegasus safely.
+#spawn wildabeast
+call0=SPAWNSHIP::M7a-Convoy::Orin Federation,Grace,3950.0,3800.0,ITC Trade Wildabeast,Wildabeast,NONE
+#order it to fly to Cadence
+call1=COMMGROUP::M7a-Convoy::FLYTO,Cadence Jumphole,0
+#spawn some 'escorts'
+call2=SPAWNSHIP::M7a-Escorts::Ageiran Federation,Grace,3750.0,3000.0,Naval Crow,Naval Crow,PATROL
+call3=SPAWNSHIP::M7a-Escorts::Ageiran Federation,Grace,3850.0,3100.0,Naval Raven,Naval Raven,PATROL
+call4=SPAWNSHIP::M7a-Escorts::Ageiran Federation,Grace,3950.0,3200.0,Naval Crow,Naval Crow,PATROL
+fail=NONEALIVE::M7a-Convoy
+failure=WildabeastDeadEnd
+advance=TRIGGROUP::M7a-Convoy::ENTERSYSTEM,Cadence
+next=Mission7aEnterCadence
+[/Node]
+
+[Node]
+name=Mission7aEnterCadence
+chapter="Cadence"
+objective=Escort Wildabeast to Brash Pegasus
+body=Walker: One more jump, just one more.
+call0=COMMGROUP::M7a-Convoy::FLYTO,Brash Pegasus Jumphole,0
+#spawn 2 ITC fighters
+call1=SPAWNSHIP::M7a-ITC::ITC,Cadence,17000.0,20000.0,ITC Fleet Cheetah,ITC Fleet Cheetah,PATROL
+call2=SPAWNSHIP::M7a-ITC::ITC,Cadence,17200.0,20000.0,ITC Fleet Cheetah,ITC Fleet Cheetah,PATROL
+#spawn 2 Ageiran Fighters
+call3=SPAWNSHIP::M7a-Escorts::Ageiran Federation,Cadence,17000.0,20500.0,Naval Raven,Naval Raven,PATROL
+call4=SPAWNSHIP::M7a-Escorts::Ageiran Federation,Cadence,17200.0,20500.0,Naval Crow,Naval Crow,PATROL
+advance=TRIGGROUP::M7a-Convoy::ENTERSYSTEM,Brash Pegasus
+fail=NONEALIVE::M7a-Convoy
+failure=WildabeastDeadEnd
+next=Mission7aEnterBrashPegasus
+[/Node]
+
+[Node]
+name=Mission7aEnterBrashPegasus
+chapter="End In Sight"
+objective=Escort Wildabeast to Federal Supply Base 1
+body=Walker: This is the last leg of the mission, that transport needs to make it safely to Federal Supply Base 1.
+call0=COMMGROUP::M7a-Convoy::FLYTO,Federal Supply Base 1,100
+fail=NONEALIVE::M7a-Convoy
+failure=WildabeastDeadEnd
+advance=TRIGGROUP::M7a-Convoy::GOTO,Brash Pegasus,Federal Supply Base 1,500
+next=Mission7aEnding
 [/Node]
 
 ######Mission 7b: Destroy The Transport
@@ -436,6 +500,20 @@ chapter=The End
 objective=Become something.
 body=Yeah, you're good enough. Fly safe!
 call0=STATION::Brash Pegasus::Federal Supply Base 1::makeMortal()
+advance=END
+[/Node]
+
+######Success Endings
+
+[Node]
+name=Mission7aEnding
+chapter="The End"
+objective=Fly safe.
+body=Walker: You've come through again! Great work. /br /br/ Eileen: You've been handy through this incident, I think it's time you got something. How about 500,000 credits? I'm sure you can put this to good use.
+call0=STATION::Brash Pegasus::Federal Supply Base 1::makeMortal()
+call1=STATION::Grace::Ageiran Forward Installation::makeMortal()
+call2=STATION::Dull Edge::Red Sky Logistics Center::makeMortal()
+call3=PLAYER::ADDCASH::500000
 advance=END
 [/Node]
 
@@ -465,5 +543,16 @@ chapter="Too Soon"
 objective=Fly safe.
 body=Eileen: Without that base it seems unlikely we can hold Grace, this was for nothing. Hopefully it doesn't get too out of hand. Good luck. /br/ /br/ Otakar: The world is saved.
 call0=STATION::Brash Pegasus::Federal Supply Base 1::makeMortal()
+advance=END
+[/Node]
+
+[Node]
+name=WildabeastDeadEnd
+chapter="Too Soon"
+objective=Fly safe.
+body=Walker: That's the end of that. You gave it your best, it just wasn't good enough. /br/ /br/ Otakar: It really was for the best.
+call0=STATION::Brash Pegasus::Federal Supply Base 1::makeMortal()
+call1=STATION::Grace::Ageiran Forward Installation::makeMortal()
+call2=STATION::Dull Edge::Red Sky Logistics Center::makeMortal()
 advance=END
 [/Node]
