@@ -485,11 +485,29 @@ next=Mission7aEnding
 
 [Node]
 name=Mission7bBriefing
-chapter="Getting Deeper"
-objective=Fly To 'Grace'
-body=TODO
-advance=ENTERSYSTEM::Grace
-next=CAMPAIGN_END
+chapter="The Truth"
+objective=Fly To 'Brash Pegasus' and Destroy The Captured Transport
+body=Otakar: Thanks for coming. You won't be disappointed. Clearly, since you've gone along with the Ageiran Navy without any pay or compensation, you are in this for some sort of adventure or maybe because you are trying to make a difference. You're making one by dooming us all. The research outposts you helped destroy were a pair involved in a wormhole experiment. The ITC have been trying to recreate a stable artificial wormhole for decades but haven't succeeded yet. The Orin Federation knew the ITC were involved in some kind of secret project but did not know what kind of project. The Cainans had already been paying Archers to bully naval forces in Brash Pegasus and Cadence, and the Orin knew this was their chance to get the Ageirans to back an attack on Grace. Once in control of Grace, the Orin would learn what the ITC were experimenting with. Grace is a unique place, with only 1 planet around that star. This binary pair is important in the experiment, something the Orin did not realize until they learned of the wormhole experiments. Knowing they could not hold Grace forever, they packed up the work and planned to take it back to Ageiran space for safe keeping while they located an appropriate testing area in their own space. The Ageirans are pawns, as are the Cainans, in the real struggle for control of the wormhole experiments between the ITC and Orin. We would be less concerned if the Ageirans had the prototype, but the Orin are unpredictable and their possession of it is unacceptable. We need you to destroy the transport carrying the experiments before it can reach the Federal Supply Base in Brash Pegasus. By the time you get to Brash Pegasus it will already be approaching the station from the Cadence jumphole. I know this is going to be tricky, but hopefully they won't see you coming. You wanted a chance to make a difference, make it a good one.
+#set player standings to make this hard
+call0=PLAYER::SETSTANDING::ITC,-8
+call1=PLAYER::SETSTANDING::Caina Conglemerate,-8
+call2=PLAYER::SETSTANDING::Ageiran Federation,-8
+call3=PLAYER::SETSTANDING::Orin Federation,-8
+advance=ENTERSYSTEM::Brash Pegasus
+next=Mission7bEnterBrashPegasus
+[/Node]
+
+[Node]
+name=Mission7bEnterBrashPegasus
+chapter="End In Sight"
+objective=Prevent Captured Transport From Reaching Federal Supply Base 1
+body=Walker: Wow, the freelancer came back. You're never getting to that transport, traitor!
+call0=SPAWNSHIP::M7b-Convoy:Orin Federation,Brash Pegasus,-5000.0,-6000.0,ITC Trade Wildabeast,Captured Transport,NONE
+call1=COMMGROUP::M7b-Convoy::FLYTO,Federal Supply Base 1,100
+fail=TRIGGROUP::M7b-Convoy::GOTO,Brash Pegasus,Federal Supply Base 1,500
+failure=WorstEnding
+advance=NONEALIVE::M7b-Convoy
+next=Mission7bEnding
 [/Node]
 
 ######The End
@@ -514,6 +532,23 @@ call0=STATION::Brash Pegasus::Federal Supply Base 1::makeMortal()
 call1=STATION::Grace::Ageiran Forward Installation::makeMortal()
 call2=STATION::Dull Edge::Red Sky Logistics Center::makeMortal()
 call3=PLAYER::ADDCASH::500000
+advance=END
+[/Node]
+
+[Node]
+name=Mission7bEnding
+chapter="The End"
+objective=Fly safe.
+body=Otakar: Good work, you've prevented lots of problems down the line. I've put in a good word and your standings with the ITC and Cainans should be fixed. You should probably make a run for their space.
+call0=STATION::Brash Pegasus::Federal Supply Base 1::makeMortal()
+call1=STATION::Grace::Ageiran Forward Installation::makeMortal()
+call2=STATION::Dull Edge::Red Sky Logistics Center::makeMortal()
+call3=PLAYER::ADDCASH::500000
+#set player standings to make this hard
+call4=PLAYER::SETSTANDING::ITC,8
+call5=PLAYER::SETSTANDING::Caina Conglemerate,8
+call6=PLAYER::SETSTANDING::Ageiran Federation,-8
+call7=PLAYER::SETSTANDING::Orin Federation,-8
 advance=END
 [/Node]
 
@@ -554,5 +589,21 @@ body=Walker: That's the end of that. You gave it your best, it just wasn't good 
 call0=STATION::Brash Pegasus::Federal Supply Base 1::makeMortal()
 call1=STATION::Grace::Ageiran Forward Installation::makeMortal()
 call2=STATION::Dull Edge::Red Sky Logistics Center::makeMortal()
+advance=END
+[/Node]
+
+[Node]
+name=WorstEnding
+chapter="The End"
+objective=Run
+body=This is a pretty bad situation.
+call0=STATION::Brash Pegasus::Federal Supply Base 1::makeMortal()
+call1=STATION::Grace::Ageiran Forward Installation::makeMortal()
+call2=STATION::Dull Edge::Red Sky Logistics Center::makeMortal()
+#set player standings to make this hard
+call3=PLAYER::SETSTANDING::ITC,-8
+call4=PLAYER::SETSTANDING::Caina Conglemerate,-8
+call5=PLAYER::SETSTANDING::Ageiran Federation,-8
+call6=PLAYER::SETSTANDING::Orin Federation,-8
 advance=END
 [/Node]
