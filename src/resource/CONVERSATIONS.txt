@@ -42,7 +42,7 @@ choice0=Continue/WelcomeMessage2
 name=WelcomeMessage2
 subject=Time
 body=It is possible to control the rate at which time passes. Using the keys 1-5, you can speed up or slow down time. /br/ /br/ 1 : 25% Speed /br/ /br/ 2 : 50% Speed  /br/ /br/ 3 : Normal  /br/ /br/ 4 : 200% Speed  /br/ /br/ 5 : 400% Speed
-choice0=Finish/WelcomeMessage3
+#choice0=Finish/WelcomeMessage3
 [/Node]
 
 [Node]
