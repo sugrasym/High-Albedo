@@ -93,12 +93,12 @@ public class GreetingWindow extends javax.swing.JFrame {
         jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("High Albedo: Twisted Skies Settings");
+        setTitle("High Albedo: Dark Frontier (Development) Settings");
         setResizable(false);
 
-        jLabel1.setText("High Albedo: Twisted Skies");
+        jLabel1.setText("High Albedo: Dark Frontier (Development)");
 
-        jLabel2.setText("v1.4");
+        jLabel2.setText("v2.0");
 
         windowGroup.add(fullScreenButton);
         fullScreenButton.setText("Full Screen");
@@ -168,7 +168,7 @@ public class GreetingWindow extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(yResBox, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel2)
                     .addComponent(controlButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

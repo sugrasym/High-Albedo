@@ -38,12 +38,12 @@ public class MenuHomeWindow extends AstralWindow {
     private void generate() {
         setFocused(true);
         //a nice color
-        backColor = windowGrey;
+        backColor = windowBlue;
         //setup dimensions
         setWidth(800);
         setHeight(600);
         //setup logo label
-        logoLabel.setText("High Albedo: Twisted Skies");
+        logoLabel.setText("High Albedo: Dark Frontier");
         logoLabel.setFont(new Font("Monospaced", Font.PLAIN, 36));
         logoLabel.setX(0);
         logoLabel.setY(0);
