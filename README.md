@@ -37,7 +37,7 @@ Art Goals
 
 UI Goals
 --------
-* Make the UI hover-to-focus instead of click-to-focus because it makes the UI hard to use in combat.
+* Make the UI hover-to-focus instead of click-to-focus because it makes the UI hard to use in combat. - IN PROGRESS
 * Remappable controls.
 * Allow ships to be grouped into wings which can be ordered as a unit.
 * Allow the player to command ships they own that are visible on their screen using an RTS style interface with drag selection.
@@ -49,6 +49,7 @@ UI Goals
 * Make the UI able to scale with extremely high resolution displays such as retina.
 * Mission progress indicator. Right now mission progress must be remembered or reconstructed through messages.
 * Add a loading screen.
+* Game over screen when you die, and don't exit save if you're dead.
 
 Performance / Tuning Goals
 --------------------------

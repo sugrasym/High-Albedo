@@ -96,7 +96,7 @@ public class Engine {
     private final int viewY; //height of frame
     private double sX;
     private double sY;
-    private boolean windowed; //whether or not the application is windowed
+    private final boolean windowed; //whether or not the application is windowed
     //game entities
     ArrayList<Entity> entities;
     private Universe universe;
@@ -608,6 +608,7 @@ public class Engine {
 
         public void handleMouseMovedEvent(MouseEvent me) {
             if (state != State.LOADING) {
+                checkFocusChanges();
                 //get mouse position in window
                 double absX = me.getX();
                 double absY = me.getY();
@@ -672,7 +673,6 @@ public class Engine {
 
         public void handleMouseClickedEvent(MouseEvent me) {
             if (state != State.LOADING) {
-                checkFocusChanges();
                 boolean windowIntercepted = false;
                 for (int a = 0; a < windows.size(); a++) {
                     if (windows.get(a).isFocused() && windows.get(a).isVisible()) {
