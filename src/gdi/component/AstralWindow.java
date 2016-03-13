@@ -115,17 +115,14 @@ public class AstralWindow extends AstralComponent {
 
     @Override
     public void handleMouseClickedEvent(MouseEvent me) {
-        /*
-         * Mouse position selects focus, determine what to select
-         */
         if (visible) {
-            Rectangle mRect = new Rectangle(getScaledMouseX(me) - x, getScaledMouseY(me) - y, 1, 1);
+            //change focus based on mouse position
+            updateFocus(me);
+            
+            //pass through event
             for (int a = 0; a < components.size(); a++) {
-                if (components.get(a).intersects(mRect)) {
-                    components.get(a).setFocused(true);
+                if (components.get(a).isFocused()) {
                     components.get(a).handleMouseClickedEvent(me);
-                } else {
-                    components.get(a).setFocused(false);
                 }
             }
         }
@@ -156,13 +153,25 @@ public class AstralWindow extends AstralComponent {
     @Override
     public void handleMouseMovedEvent(MouseEvent me) {
         if (visible) {
-            /*
-             * Mouse position selects focus, determine what to select
-             */
+            //change focus based on mouse position
+            updateFocus(me);
+            
+            //pass through event
             for (int a = 0; a < components.size(); a++) {
                 if (components.get(a).isFocused()) {
                     components.get(a).handleMouseMovedEvent(me);
                 }
+            }
+        }
+    }
+
+    private void updateFocus(MouseEvent me) {
+        Rectangle mRect = new Rectangle(getScaledMouseX(me) - x, getScaledMouseY(me) - y, 1, 1);
+        for (int a = 0; a < components.size(); a++) {
+            if (components.get(a).intersects(mRect)) {
+                components.get(a).setFocused(true);
+            } else {
+                components.get(a).setFocused(false);
             }
         }
     }

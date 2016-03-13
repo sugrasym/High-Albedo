@@ -37,7 +37,7 @@ Art Goals
 
 UI Goals
 --------
-* Make the UI hover-to-focus instead of click-to-focus because it makes the UI hard to use in combat. - IN PROGRESS
+* Make the UI hover-to-focus instead of click-to-focus because it makes the UI hard to use in combat. - COMPLETED
 * Remappable controls.
 * Allow ships to be grouped into wings which can be ordered as a unit.
 * Allow the player to command ships they own that are visible on their screen using an RTS style interface with drag selection.
