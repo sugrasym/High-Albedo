@@ -49,10 +49,10 @@ UI Goals
 * Make the UI able to scale with extremely high resolution displays such as retina.
 * Mission progress indicator. Right now mission progress must be remembered or reconstructed through messages.
 * Add a loading screen.
-* Game over screen when you die, and don't exit save if you're dead.
+* Game over screen when you die (IN PROGRESS), and don't exit save if you're dead (COMPLETED).
 
 Performance / Tuning Goals
 --------------------------
 * Optimization pass of existing code.
 * Take more advantage of multi threading in the simulation.
-* Fix the temporary freeze (sometimes >30 seconds) that occurs when a procedural planet sprite is being generated. -- IN PROGRESS
+* Fix the temporary freeze (sometimes >30 seconds) that occurs when a procedural planet sprite is being generated. -- COMPLETED
