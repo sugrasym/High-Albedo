@@ -21,10 +21,14 @@ import java.util.concurrent.Semaphore;
  * Set of function to optimize long process on multicore architecture
  *
  * @author Yacine Petitprez
+ * 
+ * NOTE: I've modified this code so that it always leaves 2 cores free.
+ * It also schedules low. This is for in-game performance reasons.
+ * - Nathan Wiehoff
  */
 public final class MultiThreadUtil {
 
-    public final static int PROCESSORS_COUNT = Runtime.getRuntime().availableProcessors();
+    public final static int PROCESSORS_COUNT = Math.max(Runtime.getRuntime().availableProcessors() - 2, 1);
     /**
      * Provide a fast disable optimizations below
      *
@@ -67,16 +71,14 @@ public final class MultiThreadUtil {
 
                 final ForRunnable thisLoop = loop.copy();
 
-                Thread t = new Thread(new Runnable() {
-                    public void run() {
-                        for (int i = tstart; i < tend; i++) {
-                            thisLoop.run(i);
-                        }
-
-                        s.release();
+                Thread t = new Thread(() -> {
+                    for (int i1 = tstart; i1 < tend; i1++) {
+                        thisLoop.run(i1);
                     }
+                    s.release();
                 });
 
+                t.setPriority(Thread.MIN_PRIORITY);
                 t.start();
                 Thread.yield();
             }
