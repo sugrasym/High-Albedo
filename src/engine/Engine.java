@@ -227,9 +227,14 @@ public class Engine {
             ObjectInputStream ois = new ObjectInputStream(fis);
             everything = (AstralIO.Everything) ois.readObject();
             //unpack universe
-            Universe universe = everything.getUniverse();
+            Universe _universe = everything.getUniverse();
             //restore transient objects
-            loadUniverse(universe);
+            loadUniverse(_universe);
+            //destroy any cached graphics
+            for(int a = 0; a < universe.getSystems().size(); a++) {
+                SolarSystem s = universe.getSystems().get(a);
+                s.disposeGraphics();
+            }
             System.out.println("Quickload Complete.");
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -246,16 +251,14 @@ public class Engine {
         //set loading state
         state = State.LOADING;
         //spawn universe in new thread
-        Thread s = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                universe = new Universe();
-                setUniverse(universe);
-                //send welcome message
-                Conversation welcome = new Conversation(universe.getPlayerShip(), "Introduction", "WelcomeMessage0");
-                universe.getPlayerShip().setConversation(welcome);
-            }
+        Thread s = new Thread(() -> {
+            universe = new Universe();
+            setUniverse(universe);
+            //send welcome message
+            Conversation welcome = new Conversation(universe.getPlayerShip(), "Introduction", "WelcomeMessage0");
+            universe.getPlayerShip().setConversation(welcome);
         });
+        s.setPriority(Thread.MAX_PRIORITY);
         s.start();
     }
 

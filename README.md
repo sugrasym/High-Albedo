@@ -4,13 +4,13 @@ The readme on the master / Twisted-Skies branch covers the basics of what High A
 
 Dark Frontier
 -------------
-"High Albedo: Dark Frontier" will eventually be the sequal to Twisted Skies. The goal is to add new features, improve graphics, and make the user experience nicer.
+"High Albedo: Dark Frontier" will eventually be the sequel to Twisted Skies. The goal is to add new features, improve graphics, and make the user experience nicer.
 
 This readme will contain a list of goals for Dark Frontier. They will be marked complete when they are completed.
 
 Gameplay Goals
 ---------------
-* Frontier space. Frontier systems aren't always connected and their connections move at random as jumpholes appear and dissapear unlike the static jumpholes connecting settled space.
+* Frontier space. Frontier systems aren't always connected and their connections move at random as jumpholes appear and disappear unlike the static jumpholes connecting settled space.
 * Carriers. These new ships will allow fighters to dock with them, and transport them quickly using their jump drive. Carriers will come in different sizes, including capital ship varieties. Fighters will be assigned to a carrier, which will automatically control its own wings.
 * Beam weapons. There are currently no beam weapons, and the engine does not support them.
 * AI difficulty variations. Right now everyone is an ace pilot.
@@ -55,4 +55,4 @@ Performance / Tuning Goals
 --------------------------
 * Optimization pass of existing code.
 * Take more advantage of multi threading in the simulation.
-* Fix the temporary freeze (sometimes >30 seconds) that occurrs when a procedural planet sprite is being generated.
+* Fix the temporary freeze (sometimes >30 seconds) that occurs when a procedural planet sprite is being generated. -- IN PROGRESS

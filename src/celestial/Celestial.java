@@ -68,7 +68,7 @@ public class Celestial implements Serializable, Entity {
     public void disposeGraphics() {
         //
     }
-
+    
     @Override
     public void informOfCollisionWith(Entity target) {
         throw new UnsupportedOperationException("Not supported yet.");

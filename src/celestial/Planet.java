@@ -48,6 +48,7 @@ public class Planet extends Celestial {
     protected int diameter;
     protected transient Image raw_tex;
     private final ArrayList<Rectangle> bound = new ArrayList<>();
+    private transient boolean rendering = false;
 
     public Planet(String name, Term texture, int diameter) {
         setName(name);
@@ -60,173 +61,198 @@ public class Planet extends Celestial {
         state = State.ALIVE;
     }
 
+    public boolean hasGraphics() {
+        return (rendering || raw_tex != null);
+    }
+
+    public boolean isRendering() {
+        return rendering;
+    }
+
     @Override
     public void initGraphics() {
-        /*
-         * Load the image for this planet and scale it
-         */
-        try {
-            BufferedImage tmp = new BufferedImage(getUniverse().getSettings().RENDER_SIZE, getUniverse().getSettings().RENDER_SIZE, BufferedImage.TYPE_INT_ARGB);
-            //get graphics
-            Shape circle = new Ellipse2D.Float(0, 0, getUniverse().getSettings().RENDER_SIZE, getUniverse().getSettings().RENDER_SIZE);
-            Graphics2D gfx = (Graphics2D) tmp.getGraphics();
-            //only draw inside the circle
-            gfx.setClip(circle);
-            gfx.clip(circle);
-            //debug background
-            gfx.setColor(Color.PINK);
-            gfx.fillRect(0, 0, getUniverse().getSettings().RENDER_SIZE, getUniverse().getSettings().RENDER_SIZE);
-            if (texture.getValue("group").equals("rock")) {
+        //don't init more than once
+        if (hasGraphics()) {
+            return;
+        } else {
+            rendering = true;
+            //do rendering on a separate thread in order to avoid lockup
+            Runnable task = () -> {
                 /*
-                 * The procedural planet generator in the com package gets to do
-                 * all the heavy lifting and we just read the output.
+                 * Load the image for this planet and scale it
                  */
-                //setup RNG
-                Random sRand = new Random(seed);
-                //create planet info
-                PlanetInformation info = new PlanetInformation();
-                info.setDaytime(360);
-                info.setEquatorTemperature(sRand.nextInt(100));
-                info.setPoleTemperature(sRand.nextInt(Math.max(info.getEquatorTemperature(), 1)) - 50);
-                info.setRadius(diameter / 2);
-                info.setWaterInPercent(sRand.nextFloat());
-                info.setHeightFactor(sRand.nextFloat());
-                info.setSeed(seed);
-                info.setHumidity(sRand.nextFloat());
-                info.setSmoothness(sRand.nextInt(3) + 7);
-                //setup palette
-                TerrainPalette palette = null;
-                String pal = texture.getValue("palette");
-                if (pal.equals("Earth")) {
-                    palette = new EarthPalette(info);
-                } else if (pal.equals("Mars")) {
-                    palette = new MarsPalette(info);
-                } else if (pal.equals("Hospitable")) {
-                    palette = new HospitablePalette(info);
-                } else if (pal.equals("Strange")) {
-                    palette = new StrangePalette(info);
-                } else if (pal.equals("Lava")) {
-                    palette = new LavaPalette(info);
-                } else if (pal.equals("Alien")) {
-                    palette = new AlienPalette(info);
+                try {
+                    System.out.println("Starting rendering for planet " + toString());
+                    BufferedImage tmp = new BufferedImage(getUniverse().getSettings().RENDER_SIZE, getUniverse().getSettings().RENDER_SIZE, BufferedImage.TYPE_INT_ARGB);
+                    //get graphics
+                    Shape circle = new Ellipse2D.Float(0, 0, getUniverse().getSettings().RENDER_SIZE, getUniverse().getSettings().RENDER_SIZE);
+                    Graphics2D gfx = (Graphics2D) tmp.getGraphics();
+                    //only draw inside the circle
+                    gfx.setClip(circle);
+                    gfx.clip(circle);
+                    //debug background
+                    gfx.setColor(Color.PINK);
+                    gfx.fillRect(0, 0, getUniverse().getSettings().RENDER_SIZE, getUniverse().getSettings().RENDER_SIZE);
+                    switch (texture.getValue("group")) {
+                        case "rock": {
+                            /*
+                             * The procedural planet generator in the com package gets to do
+                             * all the heavy lifting and we just read the output.
+                             */
+                            //setup RNG
+                            Random sRand = new Random(seed);
+                            //create planet info
+                            PlanetInformation info = new PlanetInformation();
+                            info.setDaytime(360);
+                            info.setEquatorTemperature(sRand.nextInt(100));
+                            info.setPoleTemperature(sRand.nextInt(Math.max(info.getEquatorTemperature(), 1)) - 50);
+                            info.setRadius(diameter / 2);
+                            info.setWaterInPercent(sRand.nextFloat());
+                            info.setHeightFactor(sRand.nextFloat());
+                            info.setSeed(seed);
+                            info.setHumidity(sRand.nextFloat());
+                            info.setSmoothness(sRand.nextInt(3) + 7);
+                            //setup palette
+                            TerrainPalette palette = null;
+                            String pal = texture.getValue("palette");
+                            if (pal.equals("Earth")) {
+                                palette = new EarthPalette(info);
+                            } else if (pal.equals("Mars")) {
+                                palette = new MarsPalette(info);
+                            } else if (pal.equals("Hospitable")) {
+                                palette = new HospitablePalette(info);
+                            } else if (pal.equals("Strange")) {
+                                palette = new StrangePalette(info);
+                            } else if (pal.equals("Lava")) {
+                                palette = new LavaPalette(info);
+                            } else if (pal.equals("Alien")) {
+                                palette = new AlienPalette(info);
+                            }       //call the procedural planet generator
+                            PlanetGenerator plan = new ContinentalGenerator(2 * getUniverse().getSettings().RENDER_SIZE, getUniverse().getSettings().RENDER_SIZE, info, palette);
+                            //paint texture
+                            gfx.drawImage(plan.getDebugImageMap(PlanetGenerator.MAP_COLOR), 0, 0, null);
+                            //store texture
+                            raw_tex = tmp;
+                            break;
+                        }
+                        case "doublegas": {
+                            Random sRand = new Random(seed);
+                            /*
+                             * My gas giants are conservative. They have a color and brightness
+                             * which is held constant while bands are drawn varying the saturation.
+                             *
+                             * Two passes are made. The first draws primary bands, which define the
+                             * overall look. The second does secondary bands which help de-alias
+                             * the planet.
+                             */
+                            //setup stroke
+                            int range = (int) (0.007 * getUniverse().getSettings().RENDER_SIZE);
+                            int min = (int) (0.01 * range) + 1;
+                            gfx.setStroke(new WobblyStroke(sRand.nextInt(range) + min, sRand.nextInt(range) + min, seed));
+                            //determine band count
+                            int bands = sRand.nextInt(75) + 25;
+                            int bandHeight = (getUniverse().getSettings().RENDER_SIZE / bands);
+                            //pick sat and val
+                            float sat = sRand.nextFloat();
+                            float value = sRand.nextFloat();
+                            if (value < 0.45f) {
+                                value = 0.45f;
+                            }       //pick a hue
+                            float hue = sRand.nextFloat();
+                            //draw a baseplate
+                            gfx.setColor(new Color(Color.HSBtoRGB(hue, sat, value)));
+                            gfx.fillRect(0, 0, getUniverse().getSettings().RENDER_SIZE, getUniverse().getSettings().RENDER_SIZE);
+                            //pass 1, big bands
+                            for (int a = 0; a < bands; a++) {
+                                //vary saturation
+                                sat = sRand.nextFloat();
+                                //draw a band
+                                Color raw = new Color(Color.HSBtoRGB(hue, sat, value));
+                                Color col = new Color(raw.getRed(), raw.getGreen(), raw.getBlue(), 64);
+                                gfx.setColor(col);
+                                gfx.drawRect(0, sRand.nextInt(getUniverse().getSettings().RENDER_SIZE), getUniverse().getSettings().RENDER_SIZE, bandHeight);
+                            }       //pick a hue
+                            hue = sRand.nextFloat();
+                            //pass 2, small secondary bands
+                            for (int a = 0; a < bands * 4; a++) {
+                                //vary saturation
+                                sat = sRand.nextFloat();
+                                //draw a band
+                                Color raw = new Color(Color.HSBtoRGB(hue, sat, value));
+                                Color col = new Color(raw.getRed(), raw.getGreen(), raw.getBlue(), 16);
+                                gfx.setColor(col);
+                                gfx.drawRect(0, sRand.nextInt(getUniverse().getSettings().RENDER_SIZE), getUniverse().getSettings().RENDER_SIZE, bandHeight);
+                            }       //store
+                            raw_tex = tmp;
+                            break;
+                        }
+                        case "singlegas": {
+                            Random sRand = new Random(seed);
+                            //setup stroke
+                            int range = (int) (0.007 * getUniverse().getSettings().RENDER_SIZE);
+                            int min = (int) (0.125 * range) + 1;
+                            gfx.setStroke(new WobblyStroke(sRand.nextInt(range) + min, sRand.nextInt(range) + min, seed));
+                            /*
+                             * My gas giants are conservative. They have a color and brightness
+                             * which is held constant while bands are drawn varying the saturation.
+                             *
+                             * Two passes are made. The first draws primary bands, which define the
+                             * overall look. The second does secondary bands which help de-alias
+                             * the planet.
+                             */
+                            //determine band count
+                            int bands = sRand.nextInt(75) + 25;
+                            int bandHeight = (getUniverse().getSettings().RENDER_SIZE / bands);
+                            //pick sat and val
+                            float sat = sRand.nextFloat();
+                            float value = sRand.nextFloat();
+                            if (value < 0.45f) {
+                                value = 0.45f;
+                            }       //pick a hue
+                            float hue = sRand.nextFloat();
+                            //draw a baseplate
+                            gfx.setColor(new Color(Color.HSBtoRGB(hue, sat, value)));
+                            gfx.fillRect(0, 0, getUniverse().getSettings().RENDER_SIZE, getUniverse().getSettings().RENDER_SIZE);
+                            //pass 1, big bands
+                            for (int a = 0; a < bands; a++) {
+                                //vary saturation
+                                sat = sRand.nextFloat();
+                                //draw a band
+                                Color raw = new Color(Color.HSBtoRGB(hue, sat, value));
+                                Color col = new Color(raw.getRed(), raw.getGreen(), raw.getBlue(), 64);
+                                gfx.setColor(col);
+                                gfx.drawRect(0, sRand.nextInt(getUniverse().getSettings().RENDER_SIZE), getUniverse().getSettings().RENDER_SIZE, bandHeight);
+                            }       //pass 2, small secondary bands
+                            for (int a = 0; a < bands * 4; a++) {
+                                //vary saturation
+                                sat = sRand.nextFloat();
+                                //draw a band
+                                Color raw = new Color(Color.HSBtoRGB(hue, sat, value));
+                                Color col = new Color(raw.getRed(), raw.getGreen(), raw.getBlue(), 16);
+                                gfx.setColor(col);
+                                gfx.drawRect(0, sRand.nextInt(getUniverse().getSettings().RENDER_SIZE), getUniverse().getSettings().RENDER_SIZE, bandHeight);
+                            }       //store
+                            raw_tex = tmp;
+                            break;
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    rendering = false;
                 }
-                //call the procedural planet generator
-                PlanetGenerator plan = new ContinentalGenerator(2 * getUniverse().getSettings().RENDER_SIZE, getUniverse().getSettings().RENDER_SIZE, info, palette);
-                //paint texture
-                gfx.drawImage(plan.getDebugImageMap(PlanetGenerator.MAP_COLOR), 0, 0, null);
-                //store texture
-                raw_tex = tmp;
-            } else if (texture.getValue("group").equals("doublegas")) {
-                Random sRand = new Random(seed);
-                /*
-                 * My gas giants are conservative. They have a color and brightness
-                 * which is held constant while bands are drawn varying the saturation.
-                 * 
-                 * Two passes are made. The first draws primary bands, which define the
-                 * overall look. The second does secondary bands which help de-alias
-                 * the planet.
-                 */
-                //setup stroke
-                int range = (int) (0.007 * getUniverse().getSettings().RENDER_SIZE);
-                int min = (int) (0.01 * range) + 1;
-                gfx.setStroke(new WobblyStroke(sRand.nextInt(range) + min, sRand.nextInt(range) + min, seed));
-                //determine band count
-                int bands = sRand.nextInt(75) + 25;
-                int bandHeight = (getUniverse().getSettings().RENDER_SIZE / bands);
-                //pick sat and val
-                float sat = sRand.nextFloat();
-                float value = sRand.nextFloat();
-                if (value < 0.45f) {
-                    value = 0.45f;
-                }
-                //pick a hue
-                float hue = sRand.nextFloat();
-                //draw a baseplate
-                gfx.setColor(new Color(Color.HSBtoRGB(hue, sat, value)));
-                gfx.fillRect(0, 0, getUniverse().getSettings().RENDER_SIZE, getUniverse().getSettings().RENDER_SIZE);
-                //pass 1, big bands
-                for (int a = 0; a < bands; a++) {
-                    //vary saturation
-                    sat = sRand.nextFloat();
-                    //draw a band
-                    Color raw = new Color(Color.HSBtoRGB(hue, sat, value));
-                    Color col = new Color(raw.getRed(), raw.getGreen(), raw.getBlue(), 64);
-                    gfx.setColor(col);
-                    gfx.drawRect(0, sRand.nextInt(getUniverse().getSettings().RENDER_SIZE), getUniverse().getSettings().RENDER_SIZE, bandHeight);
-                }
-                //pick a hue
-                hue = sRand.nextFloat();
-                //pass 2, small secondary bands
-                for (int a = 0; a < bands * 4; a++) {
-                    //vary saturation
-                    sat = sRand.nextFloat();
-                    //draw a band
-                    Color raw = new Color(Color.HSBtoRGB(hue, sat, value));
-                    Color col = new Color(raw.getRed(), raw.getGreen(), raw.getBlue(), 16);
-                    gfx.setColor(col);
-                    gfx.drawRect(0, sRand.nextInt(getUniverse().getSettings().RENDER_SIZE), getUniverse().getSettings().RENDER_SIZE, bandHeight);
-                }
-                //store
-                raw_tex = tmp;
-            } else if (texture.getValue("group").equals("singlegas")) {
-                Random sRand = new Random(seed);
-                //setup stroke
-                int range = (int) (0.007 * getUniverse().getSettings().RENDER_SIZE);
-                int min = (int) (0.125 * range) + 1;
-                gfx.setStroke(new WobblyStroke(sRand.nextInt(range) + min, sRand.nextInt(range) + min, seed));
-                /*
-                 * My gas giants are conservative. They have a color and brightness
-                 * which is held constant while bands are drawn varying the saturation.
-                 * 
-                 * Two passes are made. The first draws primary bands, which define the
-                 * overall look. The second does secondary bands which help de-alias
-                 * the planet.
-                 */
-                //determine band count
-                int bands = sRand.nextInt(75) + 25;
-                int bandHeight = (getUniverse().getSettings().RENDER_SIZE / bands);
-                //pick sat and val
-                float sat = sRand.nextFloat();
-                float value = sRand.nextFloat();
-                if (value < 0.45f) {
-                    value = 0.45f;
-                }
-                //pick a hue
-                float hue = sRand.nextFloat();
-                //draw a baseplate
-                gfx.setColor(new Color(Color.HSBtoRGB(hue, sat, value)));
-                gfx.fillRect(0, 0, getUniverse().getSettings().RENDER_SIZE, getUniverse().getSettings().RENDER_SIZE);
-                //pass 1, big bands
-                for (int a = 0; a < bands; a++) {
-                    //vary saturation
-                    sat = sRand.nextFloat();
-                    //draw a band
-                    Color raw = new Color(Color.HSBtoRGB(hue, sat, value));
-                    Color col = new Color(raw.getRed(), raw.getGreen(), raw.getBlue(), 64);
-                    gfx.setColor(col);
-                    gfx.drawRect(0, sRand.nextInt(getUniverse().getSettings().RENDER_SIZE), getUniverse().getSettings().RENDER_SIZE, bandHeight);
-                }
-                //pass 2, small secondary bands
-                for (int a = 0; a < bands * 4; a++) {
-                    //vary saturation
-                    sat = sRand.nextFloat();
-                    //draw a band
-                    Color raw = new Color(Color.HSBtoRGB(hue, sat, value));
-                    Color col = new Color(raw.getRed(), raw.getGreen(), raw.getBlue(), 16);
-                    gfx.setColor(col);
-                    gfx.drawRect(0, sRand.nextInt(getUniverse().getSettings().RENDER_SIZE), getUniverse().getSettings().RENDER_SIZE, bandHeight);
-                }
-                //store
-                raw_tex = tmp;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+            };
+
+            Thread th = new Thread(task);
+            th.setPriority(Thread.MIN_PRIORITY);
+            th.start();
         }
     }
 
     @Override
     public void disposeGraphics() {
         raw_tex = null;
+        rendering = false;
     }
 
     @Override
@@ -243,11 +269,15 @@ public class Planet extends Celestial {
 
     @Override
     public void render(Graphics f, double dx, double dy) {
+        Graphics2D s = (Graphics2D) (f);
         if (raw_tex != null) {
-            Graphics2D s = (Graphics2D) (f);
             s.drawImage(raw_tex, (int) (getX() - dx), (int) (getY() - dy), getDiameter(), getDiameter(), null);
         } else {
+            //start deferred rendering
             initGraphics();
+            //draw placeholder graphics
+            s.setColor(Color.PINK);
+            s.fillOval((int) (getX() - dx), (int) (getY() - dy), getDiameter(), getDiameter());
         }
     }
 
