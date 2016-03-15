@@ -3070,14 +3070,14 @@ public class Ship extends Celestial {
             //draw the buffer onto the main frame
             g.drawImage(tex, (int) (getX() - dx), (int) (getY() - dy), null);
             //draw the bounds
-            for (int a = 0; a < getBounds().size(); a++) {
+            /*for (int a = 0; a < getBounds().size(); a++) {
                 double bx = getBounds().get(a).x;
                 double by = getBounds().get(a).y;
                 int bw = getBounds().get(a).width;
                 int bh = getBounds().get(a).height;
                 g.setColor(Color.PINK);
                 g.drawRect((int) (bx - dx), (int) (by - dy), bw, bh);
-            }
+            }*/
         } else {
             initGraphics();
         }

@@ -803,7 +803,8 @@ public class PropertyWindow extends AstralWindow {
                 ArrayList<Ship> sh = selected.getShipsInSensorRange();
                 //exclude projectiles
                 for (int a = 0; a < sh.size(); a++) {
-                    if (!(sh.get(a) instanceof Projectile)) {
+                    if (!(sh.get(a) instanceof Projectile) && 
+                            !(sh.get(a) instanceof Explosion)) {
                         choice.add(sh.get(a));
                     }
                 }
