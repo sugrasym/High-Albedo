@@ -115,6 +115,7 @@ public class Ship extends Celestial {
     //raw loadout
     protected String equip = "";
     private String template = "";
+    private boolean initialized = false;
     //info
     private boolean alternateString = false;
     //texture and type
@@ -303,9 +304,14 @@ public class Ship extends Celestial {
     }
 
     protected void initStats() {
+        //don't initialize multiple times
+        if (initialized) {
+            return;
+        }
         /*
          * Loads the stats for this ship from the ships file.
          */
+        initialized = true;
         //create parser
         Parser parse = Universe.getCache().getShipCache();
         //get the term with this ship's type

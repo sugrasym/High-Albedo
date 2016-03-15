@@ -218,7 +218,7 @@ public class SolarSystem implements Entity, Serializable {
         {
             String ship = shipTerm.getValue("ship");
             String near = shipTerm.getValue("near");
-            String name = shipTerm.getValue("name");
+            String _name = shipTerm.getValue("name");
             String install = shipTerm.getValue("install");
             String faction = shipTerm.getValue("faction");
             String cargo = shipTerm.getValue("cargo");
@@ -239,7 +239,7 @@ public class SolarSystem implements Entity, Serializable {
             }
 
             //create player
-            ret = new Ship(name, ship);
+            ret = new Ship(_name, ship);
             if (template != null) {
                 ret.setTemplate(template);
             }
@@ -248,6 +248,10 @@ public class SolarSystem implements Entity, Serializable {
             ret.setFaction(faction);
             ret.init(false);
             ret.addInitialCargo(cargo);
+            //zero out cash for starting player ships
+            if(faction.equals("Player")) {
+                ret.setCash(0);
+            }
             //put it in the right system next to the start object
             if (near != null) {
                 for (int b = 0; b < entities.size(); b++) {

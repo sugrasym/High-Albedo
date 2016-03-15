@@ -116,7 +116,11 @@ public class Explosion extends Ship {
     
     @Override
     public boolean quickCollideWith(Rectangle target) {
-        return true;
+        if (width != 0 && height != 0) {
+            return new Rectangle((int) getX(), (int) getY(), getWidth(), getHeight()).intersects(target);
+        } else {
+            return new Rectangle((int) getX(), (int) getY(), 50, 50).intersects(target);
+        }
     }
 
     @Override

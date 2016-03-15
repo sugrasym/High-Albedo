@@ -27,6 +27,7 @@ import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import lib.FastMath;
 import universe.Universe;
@@ -80,9 +81,9 @@ public class Projectile extends Ship {
                 exp.setX((getX() + getWidth() / 2) - exp.getWidth() / 2 + dx);
                 exp.setY((getY() + getHeight() / 2) - exp.getHeight() / 2 + dy);
                 //calculate speed
-                double speed = rnd.nextInt(40) + 50;
-                double pdx = speed * Math.cos(dT);
-                double pdy = speed * Math.sin(dT);
+                double _speed = rnd.nextInt(40) + 50;
+                double pdx = _speed * Math.cos(dT);
+                double pdy = _speed * Math.sin(dT);
                 //add to host vector
                 exp.setVx(-getVx() / 8 + pdx);
                 exp.setVy(-getVy() / 8 + pdy);
@@ -107,6 +108,21 @@ public class Projectile extends Ship {
     }
 
     @Override
+    public boolean quickCollideWith(Rectangle target) {
+        if (width != 0 && height != 0) {
+            return new Rectangle((int) getX(), (int) getY(), getWidth(), getHeight()).intersects(target);
+        } else {
+            return new Rectangle((int) getX(), (int) getY(), 50, 50).intersects(target);
+        }
+    }
+
+    @Override
+    public ArrayList<Rectangle> getBound() {
+        updateBound();
+        return bound;
+    }
+
+    @Override
     protected void fightTarget() {
         /*
          * Modified routine for use by missiles
@@ -115,7 +131,7 @@ public class Projectile extends Ship {
             //attack
             if (getTarget().getState() == State.ALIVE) {
                 double distance = distanceTo(target);
-                double range = -10000000;
+                double _range = -10000000;
                 //fire thrusters based on range
                 fireRearThrusters();
                 double enemyX = getFireLeadX();
@@ -136,7 +152,7 @@ public class Projectile extends Ship {
                             rotatePlus();
                         }
                     }
-                } else if (distance <= range) {
+                } else if (distance <= _range) {
                     fireActiveGuns(target);
                 }
             } else {

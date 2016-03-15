@@ -1,6 +1,6 @@
 #New Game Smell
 [NewGame]
-ship=Cab
+ship=Sparrow
 near='Gomez 15'
 system=The Highway
 cash=50000
@@ -9,13 +9,23 @@ faction=Player
 [/NewGame]
 
 [Ship]
-name=Your Cab
+name=Test Condor
 system=The Highway
 ship=Condor
 near='Gomez 15'
 faction=Player
-cash=50000
-install=ERPC/ERPC
+cargo=Jumpdrive
+install=HGPC/HGPC/HGPC/HGPC/HGPC/HGPC/HGPC/HGPC
+[/Ship]
+
+[Ship]
+name=Test Sparrow
+system=The Highway
+ship=Sparrow
+near='Gomez 15'
+faction=Player
+cargo=Jumpdrive
+install=PNBC/PNBC
 [/Ship]
 
 ########

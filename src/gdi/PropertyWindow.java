@@ -23,6 +23,7 @@ import cargo.Hardpoint;
 import cargo.Item;
 import celestial.Celestial;
 import celestial.Ship.Explosion;
+import celestial.Ship.Projectile;
 import celestial.Ship.Ship;
 import celestial.Ship.Ship.Autopilot;
 import celestial.Ship.Ship.Behavior;
@@ -800,8 +801,11 @@ public class PropertyWindow extends AstralWindow {
                 choice.add("--Select Target To Attack--");
                 choice.add(" ");
                 ArrayList<Ship> sh = selected.getShipsInSensorRange();
+                //exclude projectiles
                 for (int a = 0; a < sh.size(); a++) {
-                    choice.add(sh.get(a));
+                    if (!(sh.get(a) instanceof Projectile)) {
+                        choice.add(sh.get(a));
+                    }
                 }
                 if (sh.size() > 0) {
                     showInputList(choice);

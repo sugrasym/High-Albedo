@@ -79,11 +79,13 @@ public class Celestial implements Serializable, Entity {
         //do a simple rectangular test before the full test
         if (target instanceof Celestial) {
             Celestial tgt = (Celestial) target;
-            Rectangle bnd1 = new Rectangle((int) x, (int) y, (int) width, (int) height);
-            Rectangle bnd2 = new Rectangle((int) tgt.getX(), (int) tgt.getY(), (int) tgt.getWidth(), (int) tgt.getHeight());
-            
+            Rectangle bnd1 = new Rectangle((int) x, (int) y,
+                    (int) Math.max(getWidth(), 50), (int) Math.max(getHeight(), 50));
+            Rectangle bnd2 = new Rectangle((int) tgt.getX(), (int) tgt.getY(),
+                    (int) Math.max(tgt.getWidth(), 50), (int) Math.max(tgt.getHeight(), 50));
+
             //they can't collide
-            if(!bnd1.intersects(bnd2)) {
+            if (!bnd1.intersects(bnd2)) {
                 return false;
             }
         }

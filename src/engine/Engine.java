@@ -231,7 +231,7 @@ public class Engine {
             //restore transient objects
             loadUniverse(_universe);
             //destroy any cached graphics
-            for(int a = 0; a < universe.getSystems().size(); a++) {
+            for (int a = 0; a < universe.getSystems().size(); a++) {
                 SolarSystem s = universe.getSystems().get(a);
                 s.disposeGraphics();
             }
@@ -511,10 +511,14 @@ public class Engine {
                 homeWindow.setY((viewY / 2) - homeWindow.getHeight() / 2);
             }
             //render
-            for (int a = windows.size() - 1; a >= 0; a--) {
-                if (windows.get(a).isVisible()) {
-                    windows.get(a).render(f);
+            try {
+                for (int a = windows.size() - 1; a >= 0; a--) {
+                    if (windows.get(a).isVisible()) {
+                        windows.get(a).render(f);
+                    }
                 }
+            } catch (Exception ex) {
+                System.out.println("An error ocurred while rendering windows.");
             }
         }
 
@@ -554,9 +558,13 @@ public class Engine {
                     commWindow.update(playerShip);
                 }
                 //update
-                for (int a = 0; a < windows.size(); a++) {
-                    windows.get(a).setUIScaling(sX, sY, viewX, viewY, uiX, uiY);
-                    windows.get(a).periodicUpdate();
+                try {
+                    for (int a = 0; a < windows.size(); a++) {
+                        windows.get(a).setUIScaling(sX, sY, viewX, viewY, uiX, uiY);
+                        windows.get(a).periodicUpdate();
+                    }
+                } catch (Exception ex) {
+                    System.out.println("Error while updating windows");
                 }
             } else if (state == State.MENU) {
                 homeWindow.setUIScaling(sX, sY, viewX, viewY, uiX, uiY);
