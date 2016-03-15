@@ -18,7 +18,6 @@
 package app;
 
 import engine.Engine;
-import engine.Entity;
 import engine.Entity.State;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;

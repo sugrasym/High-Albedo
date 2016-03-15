@@ -21,6 +21,7 @@ import engine.Entity;
 import java.awt.AlphaComposite;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
@@ -100,6 +101,22 @@ public class Explosion extends Ship {
         if (elapsed >= lifeLimit) {
             state = State.DYING;
         }
+    }
+
+    @Override
+    protected void updateBound() {
+        bound.clear();
+
+        if (width != 0 && height != 0) {
+            bound.add(new Rectangle((int) getX(), (int) getY(), getWidth(), getHeight()));
+        } else {
+            bound.add(new Rectangle((int) getX(), (int) getY(), 50, 50));
+        }
+    }
+    
+    @Override
+    public boolean quickCollideWith(Rectangle target) {
+        return true;
     }
 
     @Override

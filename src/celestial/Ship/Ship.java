@@ -199,6 +199,8 @@ public class Ship extends Celestial {
     //sound effects
     private transient Soundling engineLoop;
     private transient Soundling notifyMessage;
+    //optimization of collission testing
+    private double last_theta;
 
     public Ship(String name, String type) {
         setName(name);
@@ -272,6 +274,9 @@ public class Ship extends Celestial {
                 //engine loop
                 engineLoop = new Soundling("engineLoop", "audio/effects/engine loop.wav", true);
                 notifyMessage = new Soundling("notifyMessage", "audio/effects/notify message.wav", false);
+                //update bound
+                bound.clear();
+                updateBound();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -3026,6 +3031,8 @@ public class Ship extends Celestial {
     @Override
     public void render(Graphics g, double dx, double dy) {
         if (tex != null) {
+            //cache theta
+            last_theta = theta;
             //setup the buffer's graphics
             Graphics2D f = tex.createGraphics();
             //clear the buffer
@@ -3056,21 +3063,21 @@ public class Ship extends Celestial {
              g.drawRect((int) (tmp2.getX() - dx), (int) (tmp2.getY() - dy), (int) tmp2.getWidth(), (int) tmp2.getHeight());*/
             //draw the buffer onto the main frame
             g.drawImage(tex, (int) (getX() - dx), (int) (getY() - dy), null);
+            //draw the bounds
+            for (int a = 0; a < getBounds().size(); a++) {
+                double bx = getBounds().get(a).x;
+                double by = getBounds().get(a).y;
+                int bw = getBounds().get(a).width;
+                int bh = getBounds().get(a).height;
+                g.setColor(Color.PINK);
+                g.drawRect((int) (bx - dx), (int) (by - dy), bw, bh);
+            }
         } else {
             initGraphics();
         }
     }
 
     protected void drawHealthBars(Graphics g, double dx, double dy) {
-        /*//draw the bounds
-         for (int a = 0; a < getBounds().size(); a++) {
-         double bx = getBounds().get(a).x;
-         double by = getBounds().get(a).y;
-         int bw = getBounds().get(a).width;
-         int bh = getBounds().get(a).height;
-         g.setColor(Color.PINK);
-         g.drawRect((int) (bx - dx), (int) (by - dy), bw, bh);
-         }*/
         //draw health bars
         double hullPercent = hull / maxHull;
         double shieldPercent = shield / maxShield;
@@ -3160,7 +3167,9 @@ public class Ship extends Celestial {
     }
 
     public ArrayList<Rectangle> getBound() {
-        updateBound();
+        if (vx != 0 || vy != 0 || last_theta != theta || bound.isEmpty()) {
+            updateBound();
+        }
         return bound;
     }
 
@@ -3200,10 +3209,32 @@ public class Ship extends Celestial {
 
     protected void updateBound() {
         bound.clear();
-        if (width != 0 && height != 0) {
-            bound.add(new Rectangle((int) getX(), (int) getY(), getWidth(), getHeight()));
+
+        if (tex != null) {
+            //calculate dynamic bounds
+            int w = tex.getWidth();
+            int h = tex.getHeight();
+            int s = Math.max(6, w / 20);
+            for (int _y = 0; _y < h; _y += s) {
+                for (int _x = 0; _x < w; _x += s) {
+                    //skip alpha pixels
+                    if ((tex.getRGB(_x, _y) & 0xFF000000) != 0xFF000000) {
+                        continue;
+                    } else {
+                        //convert to a rectangle
+                        int ax = (int) (x + _x);
+                        int ay = (int) (y + _y);
+                        bound.add(new Rectangle(ax - s, ay - s, s * 2, s * 2));
+                    }
+                }
+            }
         } else {
-            bound.add(new Rectangle((int) getX(), (int) getY(), 50, 50));
+            //do rectangle detection
+            if (width != 0 && height != 0) {
+                bound.add(new Rectangle((int) getX(), (int) getY(), getWidth(), getHeight()));
+            } else {
+                bound.add(new Rectangle((int) getX(), (int) getY(), 50, 50));
+            }
         }
     }
 

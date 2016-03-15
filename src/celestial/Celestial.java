@@ -68,7 +68,7 @@ public class Celestial implements Serializable, Entity {
     public void disposeGraphics() {
         //
     }
-    
+
     @Override
     public void informOfCollisionWith(Entity target) {
         throw new UnsupportedOperationException("Not supported yet.");
@@ -76,6 +76,19 @@ public class Celestial implements Serializable, Entity {
 
     @Override
     public boolean collideWith(Entity target) {
+        //do a simple rectangular test before the full test
+        if (target instanceof Celestial) {
+            Celestial tgt = (Celestial) target;
+            Rectangle bnd1 = new Rectangle((int) x, (int) y, (int) width, (int) height);
+            Rectangle bnd2 = new Rectangle((int) tgt.getX(), (int) tgt.getY(), (int) tgt.getWidth(), (int) tgt.getHeight());
+            
+            //they can't collide
+            if(!bnd1.intersects(bnd2)) {
+                return false;
+            }
+        }
+
+        //the full bounds check
         try {
             ArrayList<Rectangle> myBox = getBounds();
             ArrayList<Rectangle> targBox = target.getBounds();
@@ -271,5 +284,11 @@ public class Celestial implements Serializable, Entity {
     @Override
     public String toString() {
         return name;
+    }
+
+    @Override
+    public boolean quickCollideWith(Rectangle target) {
+        Rectangle bnd = new Rectangle((int) x, (int) y, (int) width, (int) height);
+        return target.intersects(bnd);
     }
 }

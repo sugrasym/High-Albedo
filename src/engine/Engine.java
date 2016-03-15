@@ -1132,7 +1132,7 @@ public class Engine {
                              */
                             for (int a = 0; a < shipList.size(); a++) {
                                 if (shipList.get(a).getState() != Entity.State.DEAD) {
-                                    if (shipList.get(a).collideWith(view)) {
+                                    if (shipList.get(a).quickCollideWith(view)) {
                                         if (shipList.get(a) == playerShip.getTarget()) {
                                             renderTargetMarker();
                                         } else {
@@ -1151,7 +1151,7 @@ public class Engine {
                              * Render jumpholes last
                              */
                             for (int a = 0; a < jumpholeList.size(); a++) {
-                                if (jumpholeList.get(a).collideWith(view)) {
+                                if (jumpholeList.get(a).quickCollideWith(view)) {
                                     jumpholeList.get(a).render(f, dx, dy);
                                 }
                             }

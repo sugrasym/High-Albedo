@@ -18,7 +18,7 @@ Gameplay Goals
 * More complex NPC interactions / standings.
 * Mobile mining (aka mining with guns) on asteroids that haven't had a mine built.
 * Wider variety of asteroids and minerals, ideally revamping the economy to require all of them.
-* Improved collision detection. I want as close to pixel-perfect as possible.
+* Improved collision detection. I want as close to pixel-perfect as possible. - IN PROGRESS
 * Additional campaigns. This is subject to further design.
 * Additional factions.
 
@@ -55,4 +55,4 @@ Performance / Tuning Goals
 --------------------------
 * Optimization pass of existing code.
 * Take more advantage of multi threading in the simulation.
-* Fix the temporary freeze (sometimes >30 seconds) that occurs when a procedural planet sprite is being generated. -- COMPLETED
+* Fix the temporary freeze (sometimes >30 seconds) that occurs when a procedural planet sprite is being generated. - COMPLETED

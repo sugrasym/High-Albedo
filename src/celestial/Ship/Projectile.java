@@ -24,6 +24,7 @@ import cargo.Weapon;
 import engine.Entity;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
@@ -91,6 +92,17 @@ public class Projectile extends Ship {
                 //deploy
                 getCurrentSystem().putEntityInSystem(exp);
             }
+        }
+    }
+
+    @Override
+    protected void updateBound() {
+        bound.clear();
+
+        if (width != 0 && height != 0) {
+            bound.add(new Rectangle((int) getX(), (int) getY(), getWidth(), getHeight()));
+        } else {
+            bound.add(new Rectangle((int) getX(), (int) getY(), 50, 50));
         }
     }
 

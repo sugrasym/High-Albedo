@@ -21,6 +21,7 @@ package celestial.Ship;
 
 import cargo.Item;
 import engine.Entity;
+import java.awt.Rectangle;
 import java.util.Random;
 
 /**
@@ -49,6 +50,17 @@ public class CargoPod extends Ship {
         elapsed += tpf;
         if (elapsed >= lifeLimit) {
             state = State.DYING;
+        }
+    }
+
+    @Override
+    protected void updateBound() {
+        bound.clear();
+
+        if (width != 0 && height != 0) {
+            bound.add(new Rectangle((int) getX(), (int) getY(), getWidth(), getHeight()));
+        } else {
+            bound.add(new Rectangle((int) getX(), (int) getY(), 50, 50));
         }
     }
 

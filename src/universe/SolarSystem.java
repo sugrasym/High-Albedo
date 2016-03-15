@@ -697,4 +697,9 @@ public class SolarSystem implements Entity, Serializable {
             universe.getDiscoveredSpace().add(this);
         }
     }
+
+    @Override
+    public boolean quickCollideWith(Rectangle target) {
+        return false;
+    }
 }

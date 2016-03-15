@@ -8,6 +8,15 @@ install=ERPC/ERPC
 faction=Player
 [/NewGame]
 
+[Ship]
+name=Your Cab
+system=The Highway
+ship=Condor
+near='Gomez 15'
+faction=Player
+cash=50000
+install=ERPC/ERPC
+[/Ship]
 
 ########
 
