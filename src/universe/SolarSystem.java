@@ -69,14 +69,14 @@ public class SolarSystem implements Entity, Serializable {
     private final Universe universe;
     //for making cleanup more efficient
     private boolean hasGraphics = false;
-    
+
     public SolarSystem(Universe universe, String name, Parser parse) {
         this.name = name; //needed for lookup
         this.universe = universe;
         //generate
         generateSystem(parse);
     }
-    
+
     private void generateSystem(Parser parse) {
         /*
          * Adds all member objects. Member objects are any object that is
@@ -117,7 +117,7 @@ public class SolarSystem implements Entity, Serializable {
                 putEntityInSystem(makeShip(ships.get(a)));
             }
         }
-        
+
         ArrayList<Term> stations = parse.getTermsOfType("Station");
         for (int a = 0; a < stations.size(); a++) {
             if (stations.get(a).getValue("system").equals(getName())) {
@@ -125,7 +125,7 @@ public class SolarSystem implements Entity, Serializable {
                 putEntityInSystem(makeStation(stations.get(a)));
             }
         }
-        
+
         ArrayList<Term> jumpholes = parse.getTermsOfType("Jumphole");
         for (int a = 0; a < jumpholes.size(); a++) {
             if (jumpholes.get(a).getValue("system").equals(getName())) {
@@ -134,7 +134,7 @@ public class SolarSystem implements Entity, Serializable {
             }
         }
     }
-    
+
     private Star makeStar(Term starTerm) {
         Star star = null;
         {
@@ -164,7 +164,7 @@ public class SolarSystem implements Entity, Serializable {
         }
         return star;
     }
-    
+
     private Asteroid makeAsteroid(Term asteroidTerm) {
         Asteroid asteroid = null;
         {
@@ -181,7 +181,7 @@ public class SolarSystem implements Entity, Serializable {
         }
         return asteroid;
     }
-    
+
     private Planet makePlanet(Term planetTerm) {
         Planet planet = null;
         {
@@ -211,14 +211,14 @@ public class SolarSystem implements Entity, Serializable {
         }
         return planet;
     }
-    
+
     private Ship makeShip(Term shipTerm) {
         Ship ret = null;
         Random rnd = new Random();
         {
             String ship = shipTerm.getValue("ship");
             String near = shipTerm.getValue("near");
-            String name = shipTerm.getValue("name");
+            String _name = shipTerm.getValue("name");
             String install = shipTerm.getValue("install");
             String faction = shipTerm.getValue("faction");
             String cargo = shipTerm.getValue("cargo");
@@ -239,7 +239,7 @@ public class SolarSystem implements Entity, Serializable {
             }
 
             //create player
-            ret = new Ship(name, ship);
+            ret = new Ship(_name, ship);
             if (template != null) {
                 ret.setTemplate(template);
             }
@@ -248,6 +248,10 @@ public class SolarSystem implements Entity, Serializable {
             ret.setFaction(faction);
             ret.init(false);
             ret.addInitialCargo(cargo);
+            //zero out cash for starting player ships
+            if(faction.equals("Player")) {
+                ret.setCash(0);
+            }
             //put it in the right system next to the start object
             if (near != null) {
                 for (int b = 0; b < entities.size(); b++) {
@@ -276,7 +280,7 @@ public class SolarSystem implements Entity, Serializable {
         }
         return ret;
     }
-    
+
     private Station makeStation(Term shipTerm) {
         Station ret = null;
         Random rnd = new Random();
@@ -315,13 +319,13 @@ public class SolarSystem implements Entity, Serializable {
             }
             if (immortal != null) {
                 ret.setImmortal(Boolean.parseBoolean(immortal));
-                System.out.println("Warning: "+ret.getName()+" is immortal! It is probably a plot object, call makeMortal() asap!");
+                System.out.println("Warning: " + ret.getName() + " is immortal! It is probably a plot object, call makeMortal() asap!");
             }
             ret.setCurrentSystem(this);
         }
         return ret;
     }
-    
+
     private Jumphole makeJumphole(Term planetTerm) {
         Jumphole ret = null;
         {
@@ -338,15 +342,15 @@ public class SolarSystem implements Entity, Serializable {
         }
         return ret;
     }
-    
+
     public ArrayList<Entity> getEntities() {
         return entities;
     }
-    
+
     public void setEntities(ArrayList<Entity> celestials) {
         this.entities = celestials;
     }
-    
+
     public void putEntityInSystem(Entity entity) {
         entities.add(entity);
         if (entity instanceof Asteroid) {
@@ -383,7 +387,7 @@ public class SolarSystem implements Entity, Serializable {
             celestialList.add(entity);
         }
     }
-    
+
     public void pullEntityFromSystem(Entity entity) {
         entities.remove(entity);
         stationList.remove(entity);
@@ -394,25 +398,46 @@ public class SolarSystem implements Entity, Serializable {
         //remove from global list
         universe.getPlayerProperty().remove(entity);
     }
-    
+
     @Override
     public void init(boolean loadedGame) {
         for (int a = 0; a < entities.size(); a++) {
             entities.get(a).init(loadedGame);
         }
     }
-    
+
     public void initGraphics() {
+        Planet closestPlanet = null;
+        double closestDistance = Double.POSITIVE_INFINITY;
         for (int a = 0; a < entities.size(); a++) {
-            if (entities.get(a) instanceof Celestial) {
-                Celestial tmp = (Celestial) entities.get(a);
-                tmp.initGraphics();
+            if (entities.get(a) instanceof Planet) {
+                /*
+                 * For performance reasons we do deferred rendering of each
+                 * planet. The closer the planet to the player, the sooner it
+                 * gets rendered.
+                 */
+                Planet p = (Planet) entities.get(a);
+                if (!p.hasGraphics() || p.isRendering()) {
+                    //calculate distance
+                    double d = universe.getPlayerShip().distanceTo(p);
+                    if (d < closestDistance) {
+                        closestDistance = d;
+                        closestPlanet = p;
+                    }
+                }
             }
         }
-        //mark system as having graphics
-        hasGraphics = true;
+
+        //start rendering on closest planet
+        if (closestPlanet != null) {
+            closestPlanet.initGraphics();
+            //System.out.println("deferred rendering " + closestPlanet.toString());
+        }
+
+        //mark system as having graphics if it has all planets rendered
+        hasGraphics = closestPlanet == null;
     }
-    
+
     public void disposeGraphics() {
         for (int a = 0; a < entities.size(); a++) {
             if (entities.get(a) instanceof Celestial) {
@@ -423,138 +448,138 @@ public class SolarSystem implements Entity, Serializable {
         //mark system as not having graphics
         hasGraphics = false;
     }
-    
+
     @Override
     public void periodicUpdate(double tpf) {
         updateEntities(tpf);
         updateSov();
     }
-    
+
     @Override
     public void render(Graphics f, double dx, double dy) {
         //please never call this, talk to the entities directly.
     }
-    
+
     @Override
     public State getState() {
         return State.ALIVE;
     }
-    
+
     @Override
     public ArrayList<Rectangle> getBounds() {
         return new ArrayList<>();
     }
-    
+
     @Override
     public boolean collideWith(Entity target) {
         return false;
     }
-    
+
     @Override
     public boolean collideWith(Rectangle target) {
         return false;
     }
-    
+
     @Override
     public double getX() {
         return x;
     }
-    
+
     @Override
     public double getY() {
         return y;
     }
-    
+
     @Override
     public void setX(double x) {
         this.x = (int) x;
     }
-    
+
     @Override
     public void setY(double y) {
         this.y = (int) y;
     }
-    
+
     @Override
     public String getName() {
         return name;
     }
-    
+
     @Override
     public void setName(String name) {
         this.name = name;
     }
-    
+
     @Override
     public void informOfCollisionWith(Entity target) {
         //?!
     }
-    
+
     public ArrayList<Entity> getCelestialList() {
         return celestialList;
     }
-    
+
     public ArrayList<Entity> getStationList() {
         return stationList;
     }
-    
+
     public ArrayList<Entity> getShipList() {
         return shipList;
     }
-    
+
     public String getBack() {
         return back;
     }
-    
+
     public void setBack(String back) {
         this.back = back;
     }
-    
+
     public ArrayList<Entity> getJumpholeList() {
         return jumpholeList;
     }
-    
+
     public void setJumpholeList(ArrayList<Entity> jumpholeList) {
         this.jumpholeList = jumpholeList;
     }
-    
+
     public Universe getUniverse() {
         return universe;
     }
-    
+
     public String getOwner() {
         return owner;
     }
-    
+
     public void setOwner(String owner) {
         this.owner = owner;
     }
-    
+
     public String getAmbientMusic() {
         return ambientMusic;
     }
-    
+
     public void setAmbientMusic(String ambientMusic) {
         this.ambientMusic = ambientMusic;
     }
-    
+
     public String getDangerMusic() {
         return dangerMusic;
     }
-    
+
     public void setDangerMusic(String dangerMusic) {
         this.dangerMusic = dangerMusic;
     }
-    
+
     @Override
     public String toString() {
         return name + ", " + owner;
     }
-    
+
     public ArrayList<Entity> getAsteroidList() {
         return asteroidList;
     }
-    
+
     private void updateEntities(double tpf) {
         for (int a = 0; a < entities.size(); a++) {
             entities.get(a).periodicUpdate(tpf);
@@ -623,11 +648,13 @@ public class SolarSystem implements Entity, Serializable {
                 System.out.println("System " + getName() + " disposed graphics.");
             }
         } else {
-            //system must have graphics if the player is inside it
-            hasGraphics = true;
+            //start deferred rendering
+            if (!hasGraphics && universe.playerShip.getState() == State.ALIVE) {
+                initGraphics();
+            }
         }
     }
-    
+
     private void updateSov() {
         if (owner.equals("Player")) {
             //count player's stations
@@ -664,7 +691,7 @@ public class SolarSystem implements Entity, Serializable {
             //do nothing
         }
     }
-    
+
     private void discover() {
         //add to discovered list if needed
         if (universe.getDiscoveredSpace().contains(this)) {
@@ -673,5 +700,10 @@ public class SolarSystem implements Entity, Serializable {
             //add to discovered space
             universe.getDiscoveredSpace().add(this);
         }
+    }
+
+    @Override
+    public boolean quickCollideWith(Rectangle target) {
+        return false;
     }
 }

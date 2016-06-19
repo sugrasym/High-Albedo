@@ -96,7 +96,7 @@ public class Engine {
     private final int viewY; //height of frame
     private double sX;
     private double sY;
-    private boolean windowed; //whether or not the application is windowed
+    private final boolean windowed; //whether or not the application is windowed
     //game entities
     ArrayList<Entity> entities;
     private Universe universe;
@@ -227,9 +227,14 @@ public class Engine {
             ObjectInputStream ois = new ObjectInputStream(fis);
             everything = (AstralIO.Everything) ois.readObject();
             //unpack universe
-            Universe universe = everything.getUniverse();
+            Universe _universe = everything.getUniverse();
             //restore transient objects
-            loadUniverse(universe);
+            loadUniverse(_universe);
+            //destroy any cached graphics
+            for (int a = 0; a < universe.getSystems().size(); a++) {
+                SolarSystem s = universe.getSystems().get(a);
+                s.disposeGraphics();
+            }
             System.out.println("Quickload Complete.");
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -246,16 +251,14 @@ public class Engine {
         //set loading state
         state = State.LOADING;
         //spawn universe in new thread
-        Thread s = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                universe = new Universe();
-                setUniverse(universe);
-                //send welcome message
-                Conversation welcome = new Conversation(universe.getPlayerShip(), "Introduction", "WelcomeMessage0");
-                universe.getPlayerShip().setConversation(welcome);
-            }
+        Thread s = new Thread(() -> {
+            universe = new Universe();
+            setUniverse(universe);
+            //send welcome message
+            Conversation welcome = new Conversation(universe.getPlayerShip(), "Introduction", "WelcomeMessage0");
+            universe.getPlayerShip().setConversation(welcome);
         });
+        s.setPriority(Thread.MAX_PRIORITY);
         s.start();
     }
 
@@ -508,10 +511,14 @@ public class Engine {
                 homeWindow.setY((viewY / 2) - homeWindow.getHeight() / 2);
             }
             //render
-            for (int a = windows.size() - 1; a >= 0; a--) {
-                if (windows.get(a).isVisible()) {
-                    windows.get(a).render(f);
+            try {
+                for (int a = windows.size() - 1; a >= 0; a--) {
+                    if (windows.get(a).isVisible()) {
+                        windows.get(a).render(f);
+                    }
                 }
+            } catch (Exception ex) {
+                System.out.println("An error ocurred while rendering windows.");
             }
         }
 
@@ -551,9 +558,13 @@ public class Engine {
                     commWindow.update(playerShip);
                 }
                 //update
-                for (int a = 0; a < windows.size(); a++) {
-                    windows.get(a).setUIScaling(sX, sY, viewX, viewY, uiX, uiY);
-                    windows.get(a).periodicUpdate();
+                try {
+                    for (int a = 0; a < windows.size(); a++) {
+                        windows.get(a).setUIScaling(sX, sY, viewX, viewY, uiX, uiY);
+                        windows.get(a).periodicUpdate();
+                    }
+                } catch (Exception ex) {
+                    System.out.println("Error while updating windows");
                 }
             } else if (state == State.MENU) {
                 homeWindow.setUIScaling(sX, sY, viewX, viewY, uiX, uiY);
@@ -608,6 +619,7 @@ public class Engine {
 
         public void handleMouseMovedEvent(MouseEvent me) {
             if (state != State.LOADING) {
+                checkFocusChanges();
                 //get mouse position in window
                 double absX = me.getX();
                 double absY = me.getY();
@@ -672,7 +684,6 @@ public class Engine {
 
         public void handleMouseClickedEvent(MouseEvent me) {
             if (state != State.LOADING) {
-                checkFocusChanges();
                 boolean windowIntercepted = false;
                 for (int a = 0; a < windows.size(); a++) {
                     if (windows.get(a).isFocused() && windows.get(a).isVisible()) {
@@ -1129,7 +1140,7 @@ public class Engine {
                              */
                             for (int a = 0; a < shipList.size(); a++) {
                                 if (shipList.get(a).getState() != Entity.State.DEAD) {
-                                    if (shipList.get(a).collideWith(view)) {
+                                    if (shipList.get(a).quickCollideWith(view)) {
                                         if (shipList.get(a) == playerShip.getTarget()) {
                                             renderTargetMarker();
                                         } else {
@@ -1148,7 +1159,7 @@ public class Engine {
                              * Render jumpholes last
                              */
                             for (int a = 0; a < jumpholeList.size(); a++) {
-                                if (jumpholeList.get(a).collideWith(view)) {
+                                if (jumpholeList.get(a).quickCollideWith(view)) {
                                     jumpholeList.get(a).render(f, dx, dy);
                                 }
                             }

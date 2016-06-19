@@ -31,6 +31,6 @@ public class SettingsManager implements Serializable {
     public boolean SOUND_EFFECTS = true;
     public boolean MUSIC = true;
     //list of possible settings
-    public final int[] RENDER_SIZE_OPTS = {1024, 2048, 4096};
+    public final int[] RENDER_SIZE_OPTS = {512, 1024, 2048, 4096};
 
 }

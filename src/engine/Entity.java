@@ -53,6 +53,8 @@ public interface Entity {
     public boolean collideWith(Entity target);
 
     public boolean collideWith(Rectangle target);
+    
+    public boolean quickCollideWith(Rectangle target);
 
     public void informOfCollisionWith(Entity target);
     /*

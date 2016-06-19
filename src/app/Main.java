@@ -18,6 +18,7 @@
 package app;
 
 import engine.Engine;
+import engine.Entity.State;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.event.KeyAdapter;
@@ -35,7 +36,9 @@ import lib.AstralIO;
  * @author Nathan Wiehoff
  */
 public class Main extends JFrame {
+
     //window size information
+
     private boolean fullScreen;
     private int uiX = 0;
     private int uiY = 0;
@@ -220,20 +223,24 @@ public class Main extends JFrame {
     }
 
     private void exitSave() {
-        try {
-            /*
-             * Saves game upon exit just in case you didn't mean to do that.
-             */
-            AstralIO io = new AstralIO();
-            engine.stop();
-            System.out.println("Starting Exitsave.");
-            io.saveGame(engine.getUniverse(), "autosave");
-            System.out.println("Exitsave Complete.");
-        } catch (Exception ex) {
-            //escape closes the program always
-            setVisible(false);
-            dispose();
-            System.exit(0);
+        if (engine.getActivePlayerShip().getState() == State.ALIVE) {
+            try {
+                /*
+                 * Saves game upon exit just in case you didn't mean to do that.
+                 */
+                AstralIO io = new AstralIO();
+                engine.stop();
+                System.out.println("Starting Exitsave.");
+                io.saveGame(engine.getUniverse(), "autosave");
+                System.out.println("Exitsave Complete.");
+            } catch (Exception ex) {
+                //escape closes the program always
+                setVisible(false);
+                dispose();
+                System.exit(0);
+            }
+        } else {
+            System.out.println("Not exit saving, player is dead.");
         }
     }
 

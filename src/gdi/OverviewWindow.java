@@ -224,7 +224,7 @@ public class OverviewWindow extends AstralWindow {
         }
 
         protected void doSensorShip(Graphics2D gfx, double ex, double ey) {
-            gfx.setColor(amber);
+            gfx.setColor(whiteForeground);
             gfx.drawRect((int) ex + (width / 2) - 2, (int) ey + (height / 2) - 2, 4, 4);
         }
 
@@ -301,7 +301,7 @@ public class OverviewWindow extends AstralWindow {
     }
 
     private void generate() {
-        backColor = windowGrey;
+        backColor = windowBlue;
         //size this window
         width = 300;
         height = 300;

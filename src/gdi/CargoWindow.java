@@ -59,7 +59,7 @@ public class CargoWindow extends AstralWindow {
     }
 
     private void generate() {
-        backColor = windowGrey;
+        backColor = windowBlue;
         //size this window
         width = 500;
         height = 400;

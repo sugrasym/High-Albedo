@@ -135,7 +135,7 @@ public class EquipmentWindow extends AstralWindow {
     }
 
     private void generate() {
-        backColor = windowGrey;
+        backColor = windowBlue;
         //size this window
         width = 300;
         height = 300;
@@ -255,7 +255,7 @@ public class EquipmentWindow extends AstralWindow {
                 gfx.setColor(Color.BLUE);
                 gfx.drawOval(0, 0, width, height);
                 //draw border
-                gfx.setColor(amber);
+                gfx.setColor(whiteForeground);
                 gfx.drawRect(0, 0, width - 1, height - 1);
             }
             f.drawImage(frame, getX(), getY(), width, height, null);

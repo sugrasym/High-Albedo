@@ -42,7 +42,7 @@ public class CommWindow extends AstralWindow {
     }
 
     private void generate() {
-        backColor = windowGrey;
+        backColor = windowBlue;
         //size this window
         width = 300;
         height = 300;

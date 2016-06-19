@@ -76,6 +76,21 @@ public class Celestial implements Serializable, Entity {
 
     @Override
     public boolean collideWith(Entity target) {
+        //do a simple rectangular test before the full test
+        if (target instanceof Celestial) {
+            Celestial tgt = (Celestial) target;
+            Rectangle bnd1 = new Rectangle((int) x, (int) y,
+                    (int) Math.max(getWidth(), 50), (int) Math.max(getHeight(), 50));
+            Rectangle bnd2 = new Rectangle((int) tgt.getX(), (int) tgt.getY(),
+                    (int) Math.max(tgt.getWidth(), 50), (int) Math.max(tgt.getHeight(), 50));
+
+            //they can't collide
+            if (!bnd1.intersects(bnd2)) {
+                return false;
+            }
+        }
+
+        //the full bounds check
         try {
             ArrayList<Rectangle> myBox = getBounds();
             ArrayList<Rectangle> targBox = target.getBounds();
@@ -271,5 +286,11 @@ public class Celestial implements Serializable, Entity {
     @Override
     public String toString() {
         return name;
+    }
+
+    @Override
+    public boolean quickCollideWith(Rectangle target) {
+        Rectangle bnd = new Rectangle((int) x, (int) y, (int) width, (int) height);
+        return target.intersects(bnd);
     }
 }
