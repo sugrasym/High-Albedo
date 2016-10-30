@@ -57,6 +57,9 @@ public class God implements EngineElement {
         this.universe = universe;
         //generate lists
         initFactions();
+
+        //initialize frontier space if needed
+        initFrontier();
     }
 
     private void initFactions() {
@@ -709,5 +712,42 @@ public class God implements EngineElement {
         system.putEntityInSystem(tmp);
         //report
         System.out.println("Spawned " + type + " in " + system.getName() + " for " + faction.getName());
+    }
+
+    /*
+    * Frontier Space
+     */
+    private void initFrontier() {
+        //check if there is already frontier space
+        if (universe.getFrontierSpace().isEmpty()) {
+            //initialize frontier space
+            /*
+            * Although everyone will have the same settled systems, I'd like the
+            * frontier systems to be different each time you create a new game.
+            * This will make sure they are something you can always go explore.
+             */
+
+            int count = (int) (new Random().nextDouble() * (Universe.MAX_FRONTIER_SYSTEMS
+                    - Universe.MIN_FRONTIER_SYSTEMS)) + Universe.MIN_FRONTIER_SYSTEMS;
+
+            for (int a = 0; a < count; a++) {
+                System.out.println("Generating frontier system " + (a + 1) + "/" + count);
+                universe.getSystems().add(FrontierUtil.randomFrontierSystem(universe));
+            }
+        }
+    }
+
+    private static class FrontierUtil {
+
+        private static final Random RND = new Random();
+
+        public static SolarSystem randomFrontierSystem(Universe universe) {
+            SolarSystem system = new SolarSystem(universe, "TODO - Name");
+            system.setSystemType(SolarSystem.Type.FRONTIER);
+            system.setOwner("Frontier");
+
+            //todo: generate frontier systems
+            return system;
+        }
     }
 }

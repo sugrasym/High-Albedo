@@ -45,9 +45,15 @@ import lib.Parser.Term;
  * @author Nathan Wiehoff
  */
 public class SolarSystem implements Entity, Serializable {
-    //this system
 
+    public enum Type {
+        SETTLED,
+        FRONTIER
+    }
+
+    //this system
     protected String name;
+    private Type systemType;
     double x;
     double y;
     //music
@@ -73,8 +79,17 @@ public class SolarSystem implements Entity, Serializable {
     public SolarSystem(Universe universe, String name, Parser parse) {
         this.name = name; //needed for lookup
         this.universe = universe;
+        this.systemType = Type.SETTLED; //default to settled space
         //generate
         generateSystem(parse);
+    }
+    
+    public SolarSystem(Universe universe, String name) {
+        this.name = name; //needed for lookup
+        this.universe = universe;
+        this.systemType = Type.SETTLED; //default to settled space
+        
+        //note: you'll have to add celestials to this system
     }
 
     private void generateSystem(Parser parse) {
@@ -648,9 +663,11 @@ public class SolarSystem implements Entity, Serializable {
                 System.out.println("System " + getName() + " disposed graphics.");
             }
         } else //start deferred rendering
-         if (!hasGraphics && universe.playerShip.getState() == State.ALIVE) {
+        {
+            if (!hasGraphics && universe.playerShip.getState() == State.ALIVE) {
                 initGraphics();
             }
+        }
     }
 
     private void updateSov() {
@@ -703,5 +720,13 @@ public class SolarSystem implements Entity, Serializable {
     @Override
     public boolean quickCollideWith(Rectangle target) {
         return false;
+    }
+
+    public Type getSystemType() {
+        return systemType;
+    }
+
+    public void setSystemType(Type systemType) {
+        this.systemType = systemType;
     }
 }

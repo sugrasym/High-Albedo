@@ -25,6 +25,7 @@ import engine.ResourceCache;
 import engine.SettingsManager;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 import lib.Parser;
 import lib.Parser.Term;
 
@@ -33,6 +34,9 @@ import lib.Parser.Term;
  * @author Nathan Wiehoff
  */
 public class Universe implements Serializable {
+
+    public static final int MAX_FRONTIER_SYSTEMS = 200;
+    public static final int MIN_FRONTIER_SYSTEMS = 80;
 
     private ArrayList<SolarSystem> systems = new ArrayList<>();
     private SettingsManager settings;
@@ -214,5 +218,17 @@ public class Universe implements Serializable {
 
     public ArrayList<Campaign> getCompletedCampaigns() {
         return completedCampaigns;
+    }
+
+    public ArrayList<SolarSystem> getSettledSpace() {
+        return (ArrayList<SolarSystem>) getSystems().stream()
+                .filter((system) -> system.getSystemType() == SolarSystem.Type.SETTLED)
+                .collect(Collectors.toList());
+    }
+
+    public ArrayList<SolarSystem> getFrontierSpace() {
+        return (ArrayList<SolarSystem>) getSystems().stream()
+                .filter((system) -> system.getSystemType() == SolarSystem.Type.FRONTIER)
+                .collect(Collectors.toList());
     }
 }
