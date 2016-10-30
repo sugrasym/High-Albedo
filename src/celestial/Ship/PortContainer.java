@@ -20,11 +20,11 @@ import java.awt.Rectangle;
 import java.io.Serializable;
 
 public class PortContainer implements Serializable {
+
     /*
      * Represents a docking port in a way that allows the port to be aware of
      * the size of the ship, and allows a ship to be aware of 
      */
-
     private final double x;
     private final double y;
     private final int width;

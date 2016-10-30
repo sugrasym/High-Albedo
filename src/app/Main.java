@@ -12,7 +12,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-/*
+ /*
  *
  */
 package app;
@@ -38,7 +38,6 @@ import lib.AstralIO;
 public class Main extends JFrame {
 
     //window size information
-
     private boolean fullScreen;
     private int uiX = 0;
     private int uiY = 0;

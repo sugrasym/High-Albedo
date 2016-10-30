@@ -27,9 +27,9 @@ public class Randomizer3D2 {
 
     private final static int TABSIZE = 4096;
     private final static int TABSIZE_MINUS_1 = TABSIZE - 1;
-    private static int[] tab = new int[TABSIZE];
-    private static float[] tab2 = new float[TABSIZE];
-    private int seed;
+    private static final int[] TAB = new int[TABSIZE];
+    private static final float[] TAB2 = new float[TABSIZE];
+    private final int seed;
 
     public Randomizer3D2(int seed) {
         this.seed = seed;
@@ -39,8 +39,8 @@ public class Randomizer3D2 {
         Random r = new Random(12345);
 
         for (int i = 0; i < TABSIZE; i++) {
-            tab[i] = r.nextInt(TABSIZE);
-            tab2[i] = r.nextFloat();
+            TAB[i] = r.nextInt(TABSIZE);
+            TAB2[i] = r.nextFloat();
         }
     }
 
@@ -50,6 +50,6 @@ public class Randomizer3D2 {
     }
 
     public float getPointRandom(int x, int y, int z) {
-        return tab2[  tab[(seed ^ x) & TABSIZE_MINUS_1] ^ tab[y & TABSIZE_MINUS_1] ^ tab[z & TABSIZE_MINUS_1]];
+        return TAB2[TAB[(seed ^ x) & TABSIZE_MINUS_1] ^ TAB[y & TABSIZE_MINUS_1] ^ TAB[z & TABSIZE_MINUS_1]];
     }
 }

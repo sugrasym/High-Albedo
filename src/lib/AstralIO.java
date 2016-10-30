@@ -13,7 +13,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
+ /*
  * Reads/writes file data. Nuff said. Nathan Wiehoff, masternerdguy@yahoo.com
  */
 package lib;
@@ -162,11 +162,11 @@ public class AstralIO implements Serializable {
     }
 
     public class Everything implements Serializable {
+
         /*
          * This class contains everything in the universe in a temporary container
          * useful for serialization.
          */
-
         protected Universe universe;
 
         public Everything(Universe universe) {

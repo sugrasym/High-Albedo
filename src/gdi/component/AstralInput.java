@@ -13,7 +13,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
+ /*
  * Input box for asking the player things.
  */
 package gdi.component;
@@ -36,16 +36,20 @@ public class AstralInput extends AstralLabel {
 
     @Override
     public void handleKeyReleasedEvent(KeyEvent ke) {
-        if (ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-            if (getText().length() > 0) {
-                setText(getText().substring(0, getText().length() - 1));
-            }
-        } else if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-            //return
-            setVisible(false);
-            setCanReturn(true);
-        } else {
-            setText(getText() + ke.getKeyChar());
+        switch (ke.getKeyCode()) {
+            case KeyEvent.VK_BACK_SPACE:
+                if (getText().length() > 0) {
+                    setText(getText().substring(0, getText().length() - 1));
+                }
+                break;
+            case KeyEvent.VK_ENTER:
+                //return
+                setVisible(false);
+                setCanReturn(true);
+                break;
+            default:
+                setText(getText() + ke.getKeyChar());
+                break;
         }
     }
 

@@ -13,7 +13,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
+ /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -136,7 +136,7 @@ public class Projectile extends Ship {
                 fireRearThrusters();
                 double enemyX = getFireLeadX();
                 double enemyY = getFireLeadY();
-                double desired = 0;
+                double desired;
                 if (currentSystem != getUniverse().getPlayerShip().getCurrentSystem()) {
                     desired = FastMath.atan2(enemyY, enemyX);
                 } else {

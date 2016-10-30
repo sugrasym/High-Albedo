@@ -19,10 +19,10 @@ import java.awt.Color;
 
 public class UniformTerrainRange implements TerrainRange {
 
-    private float m_factor;
-    private int m_min_h, m_max_h;
-    private Color m_diffuse;
-    private Color m_specular;
+    private final float m_factor;
+    private final int m_min_h, m_max_h;
+    private final Color m_diffuse;
+    private final Color m_specular;
 
     public UniformTerrainRange(int minHeight, int maxHeight, float factor, Color diffuse, Color specular) {
         m_factor = factor;
@@ -32,7 +32,7 @@ public class UniformTerrainRange implements TerrainRange {
         m_max_h = maxHeight;
     }
 
-    //@Override
+    @Override
     public float getFactor(int x, int y, int height, int slope,
             float temperature) {
         if (height > m_min_h && height < m_max_h) {
@@ -42,12 +42,12 @@ public class UniformTerrainRange implements TerrainRange {
         }
     }
 
-    //@Override
+    @Override
     public Color getTerrainColor() {
         return m_diffuse;
     }
 
-    //@Override
+    @Override
     public Color getTerrainSpecular() {
         return m_specular;
     }

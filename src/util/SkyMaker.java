@@ -13,7 +13,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
+ /*
  * Program for automatically taking the plates found in the resource directory
  * and generating a sky file for them. It can also read in an old universe file
  * and replace all the skies with new ones.
@@ -33,12 +33,12 @@ import lib.Parser.Term;
  * @author nwiehoff
  */
 public class SkyMaker {
-    
+
     String inputDirectory;
     String inputUniverse;
     String outputFile;
     String outputUniverse;
-    
+
     public SkyMaker() {
         if (skyFileSetup()) {
             //this string will hold the final product
@@ -99,9 +99,9 @@ public class SkyMaker {
             }
             //rebuild the output universe file
             String uOut = "";
-            for (int a = 0; a < uSplit.length; a++) {
-                uOut += uSplit[a] + "\n";
-                if (uSplit[a].contains("[/")) {
+            for (String s : uSplit) {
+                uOut += s + "\n";
+                if (s.contains("[/")) {
                     uOut += "\n";
                 } else {
                     //do nothing
@@ -113,7 +113,7 @@ public class SkyMaker {
             System.out.println("Aborted.");
         }
     }
-    
+
     private boolean skyFileSetup() {
         Scanner scan = new Scanner(System.in);
         System.out.print("Input directory: ");
@@ -128,7 +128,7 @@ public class SkyMaker {
         String pick = scan.nextLine();
         return pick.trim().toUpperCase().matches("Y");
     }
-    
+
     private boolean universeFileSetup() {
         Scanner scan = new Scanner(System.in);
         System.out.print("Input universe: ");
@@ -143,7 +143,7 @@ public class SkyMaker {
         String pick = scan.nextLine();
         return pick.trim().toUpperCase().matches("Y");
     }
-    
+
     public static void main(String[] args) {
         new SkyMaker();
     }

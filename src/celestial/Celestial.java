@@ -13,7 +13,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
+ /*
  * Basic class that represents a generic celestial object. It should NEVER EVER
  * be used directly, instead it should be extended.
  */
@@ -131,14 +131,20 @@ public class Celestial implements Serializable, Entity {
     @Override
     public void periodicUpdate(double tpf) {
         this.tpf = tpf;
-        if (state == State.ALIVE) {
-            alive();
-        } else if (state == State.DYING) {
-            dying();
-        } else if (state == State.DEAD) {
-            dead(); //and why is this being updated?
-        } else {
-            throw new UnsupportedOperationException(getName() + " is in an undefined state.");
+        if (null != state) {
+            switch (state) {
+                case ALIVE:
+                    alive();
+                    break;
+                case DYING:
+                    dying();
+                    break;
+                case DEAD:
+                    dead(); //and why is this being updated?
+                    break;
+                default:
+                    throw new UnsupportedOperationException(getName() + " is in an undefined state.");
+            }
         }
     }
 

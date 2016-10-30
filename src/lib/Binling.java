@@ -18,13 +18,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Binling implements Serializable {
+
     /*
      * Class for storing strings paired with a double. It is capable
      * of storing as many strings as you like. For compatibility
      * with the original binling the getStr() and setStr() methods work
      * the same as before.
      */
-
     private final ArrayList<String> str = new ArrayList<>();
     private double num;
 

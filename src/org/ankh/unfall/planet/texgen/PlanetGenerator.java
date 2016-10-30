@@ -29,9 +29,9 @@ public abstract class PlanetGenerator {
     protected int[] m_specularMap;
     protected int[] m_colorMap;
     protected int[] m_normalMap;
-    private PlanetInformation m_informations;
-    private TerrainPalette m_palette;
-    private int m_width, m_height;
+    private final PlanetInformation m_informations;
+    private final TerrainPalette m_palette;
+    private final int m_width, m_height;
     /* Constants to generate every map at once. */
     public final static int MAP_COLOR = 0x1;
     public final static int MAP_SPECULAR = 0x2;
@@ -173,8 +173,6 @@ public abstract class PlanetGenerator {
 
     /**
      * Color map generation
-     *
-     * @return the color map data formatted as A8R8G8B8
      */
     protected void generateColorAndSpecularMap() {
 

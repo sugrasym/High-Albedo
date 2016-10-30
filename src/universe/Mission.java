@@ -13,7 +13,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
+ /*
  * Represents a mission the player has been assigned by an NPC.
  */
 package universe;
@@ -124,17 +124,25 @@ public class Mission implements Serializable {
         }
         //store briefing
         briefing = pick.getValue("briefing");
-        //build more based on type
-        if (missionType == Type.DESTROY_STATION) {
-            buildDestroyStation();
-        } else if (missionType == Type.BOUNTY_HUNT) {
-            buildBountyHunt();
-        } else if (missionType == Type.WARE_DELIVERY) {
-            buildWareDelivery();
-        } else if (missionType == Type.ESCORT_ME) {
-            buildEscortMe();
-        } else {
-            preAbort();
+        if (null != missionType) //build more based on type
+        {
+            switch (missionType) {
+                case DESTROY_STATION:
+                    buildDestroyStation();
+                    break;
+                case BOUNTY_HUNT:
+                    buildBountyHunt();
+                    break;
+                case WARE_DELIVERY:
+                    buildWareDelivery();
+                    break;
+                case ESCORT_ME:
+                    buildEscortMe();
+                    break;
+                default:
+                    preAbort();
+                    break;
+            }
         }
     }
 
@@ -400,16 +408,21 @@ public class Mission implements Serializable {
     }
 
     private boolean missionComplete() {
-        if (missionType == Type.DESTROY_STATION) {
-            return checkDestroyStation();
-        } else if (missionType == Type.BOUNTY_HUNT) {
-            return checkBountyHunt();
-        } else if (missionType == Type.WARE_DELIVERY) {
-            return checkWareDelivery();
-        } else if (missionType == Type.ESCORT_ME) {
-            return checkEscortMe();
+        if (null != missionType) {
+            switch (missionType) {
+                case DESTROY_STATION:
+                    return checkDestroyStation();
+                case BOUNTY_HUNT:
+                    return checkBountyHunt();
+                case WARE_DELIVERY:
+                    return checkWareDelivery();
+                case ESCORT_ME:
+                    return checkEscortMe();
+                default:
+                    break;
+            }
         }
-        //undefinded
+        //undefined
         return true;
     }
 

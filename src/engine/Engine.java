@@ -12,7 +12,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-/*
+ /*
  * Game engine.
  */
 package engine;
@@ -298,20 +298,24 @@ public class Engine {
         @Override
         public void periodicUpdate() {
             try {
-                if (state == State.RUNNING) {
-                    if (universe.getSettings().MUSIC) {
-                        updateMusic();
-                    } else {
-                        if (music.isRunning()) {
-                            music.stop();
-                        }
+                if (null != state) {
+                    switch (state) {
+                        case RUNNING:
+                            if (universe.getSettings().MUSIC) {
+                                updateMusic();
+                            } else if (music.isRunning()) {
+                                music.stop();
+                            }
+                            if (universe.getSettings().SOUND_EFFECTS) {
+                                checkForSoundSignals();
+                            }
+                            break;
+                        case MENU:
+                            break;
+                        //do nothing
+                        default:
+                            break;
                     }
-                    if (universe.getSettings().SOUND_EFFECTS) {
-                        checkForSoundSignals();
-                    }
-                } else if (state == State.MENU) {
-                } else {
-                    //do nothing
                 }
             } catch (Exception e) {
                 System.out.println("Audio engine encountered a problem.");
@@ -524,52 +528,59 @@ public class Engine {
 
         @Override
         public void periodicUpdate() {
-            if (state == State.RUNNING) {
-                //push hud changes
-                if (healthWindow.isVisible()) {
-                    healthWindow.updateHealth((playerShip.getShield() / playerShip.getMaxShield()),
-                            (playerShip.getHull() / playerShip.getMaxHull()));
+            if (null != state) {
+                switch (state) {
+                    case RUNNING:
+                        //push hud changes
+                        if (healthWindow.isVisible()) {
+                            healthWindow.updateHealth((playerShip.getShield() / playerShip.getMaxShield()),
+                                    (playerShip.getHull() / playerShip.getMaxHull()));
+                        }
+                        if (fuelWindow.isVisible()) {
+                            fuelWindow.updateFuel(playerShip.getFuel() / playerShip.getMaxFuel());
+                        }
+                        if (overviewWindow.isVisible()) {
+                            overviewWindow.updateOverview(playerShip, dilation);
+                        }
+                        if (equipmentWindow.isVisible()) {
+                            equipmentWindow.update(playerShip);
+                        }
+                        if (cargoWindow.isVisible()) {
+                            cargoWindow.update(playerShip);
+                        }
+                        if (tradeWindow.isVisible()) {
+                            tradeWindow.update(playerShip);
+                        }
+                        if (starMapWindow.isVisible()) {
+                            starMapWindow.updateMap(universe);
+                        }
+                        if (standingWindow.isVisible()) {
+                            standingWindow.update(playerShip);
+                        }
+                        if (propertyWindow.isVisible()) {
+                            propertyWindow.update(playerShip);
+                        }
+                        if (commWindow.isVisible()) {
+                            commWindow.update(playerShip);
+                        }   //update
+                        try {
+                            for (int a = 0; a < windows.size(); a++) {
+                                windows.get(a).setUIScaling(sX, sY, viewX, viewY, uiX, uiY);
+                                windows.get(a).periodicUpdate();
+                            }
+                        } catch (Exception ex) {
+                            System.out.println("Error while updating windows");
+                        }
+                        break;
+                    case MENU:
+                        homeWindow.setUIScaling(sX, sY, viewX, viewY, uiX, uiY);
+                        break;
+                    //TODO: Loading screen
+                    case LOADING:
+                        break;
+                    default:
+                        break;
                 }
-                if (fuelWindow.isVisible()) {
-                    fuelWindow.updateFuel(playerShip.getFuel() / playerShip.getMaxFuel());
-                }
-                if (overviewWindow.isVisible()) {
-                    overviewWindow.updateOverview(playerShip, dilation);
-                }
-                if (equipmentWindow.isVisible()) {
-                    equipmentWindow.update(playerShip);
-                }
-                if (cargoWindow.isVisible()) {
-                    cargoWindow.update(playerShip);
-                }
-                if (tradeWindow.isVisible()) {
-                    tradeWindow.update(playerShip);
-                }
-                if (starMapWindow.isVisible()) {
-                    starMapWindow.updateMap(universe);
-                }
-                if (standingWindow.isVisible()) {
-                    standingWindow.update(playerShip);
-                }
-                if (propertyWindow.isVisible()) {
-                    propertyWindow.update(playerShip);
-                }
-                if (commWindow.isVisible()) {
-                    commWindow.update(playerShip);
-                }
-                //update
-                try {
-                    for (int a = 0; a < windows.size(); a++) {
-                        windows.get(a).setUIScaling(sX, sY, viewX, viewY, uiX, uiY);
-                        windows.get(a).periodicUpdate();
-                    }
-                } catch (Exception ex) {
-                    System.out.println("Error while updating windows");
-                }
-            } else if (state == State.MENU) {
-                homeWindow.setUIScaling(sX, sY, viewX, viewY, uiX, uiY);
-            } else if (state == State.LOADING) {
-                //TODO: Loading screen
             }
         }
 
@@ -745,24 +756,33 @@ public class Engine {
                      * In-space
                      */
                     if (!playerShip.isDocked()) {
-                        if (ke.getKeyCode() == KeyEvent.VK_UP) {
-                            playerShip.setThrustRear(true);
-                        } else if (ke.getKeyCode() == KeyEvent.VK_DOWN) {
-                            playerShip.setThrustForward(true);
-                        } else if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
-                            playerShip.setRotatePlus(true);
-                        } else if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
-                            playerShip.setRotateMinus(true);
-                        } else if (ke.getKeyCode() == KeyEvent.VK_HOME) {
-                            playerShip.setAutopilot(Ship.Autopilot.NONE);
-                            playerShip.setBehavior(Ship.Behavior.NONE);
-                            if (playerShip.getPort() != null) {
-                                playerShip.getPort().setClient(null);
-                                playerShip.setPort(null);
-                            }
-                            allStopPressed = true;
-                        } else if (ke.getKeyCode() == KeyEvent.VK_SPACE) {
-                            firing = true;
+                        switch (ke.getKeyCode()) {
+                            case KeyEvent.VK_UP:
+                                playerShip.setThrustRear(true);
+                                break;
+                            case KeyEvent.VK_DOWN:
+                                playerShip.setThrustForward(true);
+                                break;
+                            case KeyEvent.VK_RIGHT:
+                                playerShip.setRotatePlus(true);
+                                break;
+                            case KeyEvent.VK_LEFT:
+                                playerShip.setRotateMinus(true);
+                                break;
+                            case KeyEvent.VK_HOME:
+                                playerShip.setAutopilot(Ship.Autopilot.NONE);
+                                playerShip.setBehavior(Ship.Behavior.NONE);
+                                if (playerShip.getPort() != null) {
+                                    playerShip.getPort().setClient(null);
+                                    playerShip.setPort(null);
+                                }
+                                allStopPressed = true;
+                                break;
+                            case KeyEvent.VK_SPACE:
+                                firing = true;
+                                break;
+                            default:
+                                break;
                         }
                     } else {
                         /*
@@ -776,29 +796,33 @@ public class Engine {
         public void handleKeyReleasedEvent(KeyEvent ke) {
             if (state != State.LOADING) {
                 boolean windowIntercepted = false;
-                if (ke.getKeyCode() == KeyEvent.VK_F1) {
-                    menu();
-                } else if (ke.getKeyCode() == KeyEvent.VK_F5) {
-                    //defocus all windows
-                    for (int a = 0; a < windows.size(); a++) {
-                        windows.get(a).setFocused(false);
-                    }
-                } else if (ke.getKeyCode() == KeyEvent.VK_F6) {
-                    //defocus all windows and hide them
-                    for (int a = 0; a < windows.size(); a++) {
-                        windows.get(a).setFocused(false);
-                        windows.get(a).setVisible(false);
-                    }
-                    //show these since they are always visible
-                    healthWindow.setVisible(true);
-                    fuelWindow.setVisible(true);
-                } else {
-                    for (int a = 0; a < windows.size(); a++) {
-                        if (windows.get(a).isFocused() && windows.get(a).isVisible()) {
-                            windows.get(a).handleKeyReleasedEvent(ke);
-                            windowIntercepted = true;
+                switch (ke.getKeyCode()) {
+                    case KeyEvent.VK_F1:
+                        menu();
+                        break;
+                    case KeyEvent.VK_F5:
+                        //defocus all windows
+                        for (int a = 0; a < windows.size(); a++) {
+                            windows.get(a).setFocused(false);
                         }
-                    }
+                        break;
+                    case KeyEvent.VK_F6:
+                        //defocus all windows and hide them
+                        for (int a = 0; a < windows.size(); a++) {
+                            windows.get(a).setFocused(false);
+                            windows.get(a).setVisible(false);
+                        }   //show these since they are always visible
+                        healthWindow.setVisible(true);
+                        fuelWindow.setVisible(true);
+                        break;
+                    default:
+                        for (int a = 0; a < windows.size(); a++) {
+                            if (windows.get(a).isFocused() && windows.get(a).isVisible()) {
+                                windows.get(a).handleKeyReleasedEvent(ke);
+                                windowIntercepted = true;
+                            }
+                        }
+                        break;
                 }
                 /*
                  * Now game logic
@@ -808,54 +832,69 @@ public class Engine {
                      * In-space
                      */
                     if (!playerShip.isDocked()) {
-                        if (ke.getKeyCode() == KeyEvent.VK_UP) {
-                            playerShip.setThrustRear(false);
-                        } else if (ke.getKeyCode() == KeyEvent.VK_DOWN) {
-                            playerShip.setThrustForward(false);
-                        } else if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
-                            playerShip.setRotatePlus(false);
-                        } else if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
-                            playerShip.setRotateMinus(false);
-                        } else if (ke.getKeyCode() == KeyEvent.VK_HOME) {
-                            allStopPressed = false;
-                        }/*
+                        switch (ke.getKeyCode()) {
+                            case KeyEvent.VK_UP:
+                                playerShip.setThrustRear(false);
+                                break;
+                            case KeyEvent.VK_DOWN:
+                                playerShip.setThrustForward(false);
+                                break;
+                            case KeyEvent.VK_RIGHT:
+                                playerShip.setRotatePlus(false);
+                                break;
+                            case KeyEvent.VK_LEFT:
+                                playerShip.setRotateMinus(false);
+                                break;
+                            /*
                          * weapon keys
-                         */ else if (ke.getKeyCode() == KeyEvent.VK_SPACE) {
-                            firing = false;
-                        } /*
+                             */
+                            case KeyEvent.VK_HOME:
+                                allStopPressed = false;
+                                break;
+                            /*
                          * targeting keys
-                         */ else if (ke.getKeyCode() == KeyEvent.VK_R) {
-                            playerShip.targetNearestHostileShip();
-                        } else if (ke.getKeyCode() == KeyEvent.VK_F) {
-                            playerShip.targetNearestFriendlyShip();
-                        } else if (ke.getKeyCode() == KeyEvent.VK_V) {
-                            playerShip.targetNearestNeutralShip();
-                        }/*
+                             */
+                            case KeyEvent.VK_SPACE:
+                                firing = false;
+                                break;
+                            case KeyEvent.VK_R:
+                                playerShip.targetNearestHostileShip();
+                                break;
+                            case KeyEvent.VK_F:
+                                playerShip.targetNearestFriendlyShip();
+                                break;
+                            /*
                          * comms keys
-                         */ else if (ke.getKeyCode() == KeyEvent.VK_D) {
-                            playerShip.cmdDock(playerShip.getTarget());
-                        } else if (ke.getKeyCode() == KeyEvent.VK_H) {
-                            if (playerShip.getTarget() != null) {
-                                playerShip.getTarget().hail();
-                                commWindow.setVisible(true);
-                            }
-                        } else if (ke.getKeyCode() == KeyEvent.VK_Z) {
-                            if (playerShip.getTarget() != null) {
-                                if (playerShip.getTarget().isBailed()) {
-                                    if (playerShip.hasSalvageSoftware()) {
-                                        //claim the ship
-                                        playerShip.getTarget().claim(playerShip);
+                             */
+                            case KeyEvent.VK_V:
+                                playerShip.targetNearestNeutralShip();
+                                break;
+                            case KeyEvent.VK_D:
+                                playerShip.cmdDock(playerShip.getTarget());
+                                break;
+                            case KeyEvent.VK_H:
+                                if (playerShip.getTarget() != null) {
+                                    playerShip.getTarget().hail();
+                                    commWindow.setVisible(true);
+                                }
+                                break;
+                            case KeyEvent.VK_Z:
+                                if (playerShip.getTarget() != null) {
+                                    if (playerShip.getTarget().isBailed()) {
+                                        if (playerShip.hasSalvageSoftware()) {
+                                            //claim the ship
+                                            playerShip.getTarget().claim(playerShip);
+                                        }
                                     }
                                 }
-                            }
+                                break;
+                            default:
+                                break;
                         }
-                    } else {
-                        /*
+                    } else /*
                          * docked
-                         */
-                        if (ke.getKeyCode() == KeyEvent.VK_D) {
-                            playerShip.cmdUndock();
-                        }
+                     */ if (ke.getKeyCode() == KeyEvent.VK_D) {
+                        playerShip.cmdUndock();
                     }
                     /*
                      * The following commands are independent of being docked or not. Use with
@@ -929,10 +968,10 @@ public class Engine {
             }
         }
     }
+
     /*
      * Responsible for drawing and updating the universe.
      */
-
     private class Element implements EngineElement {
         //timing
 
@@ -945,16 +984,13 @@ public class Engine {
         Image backplate;
         String lastPlate;
         //the thread thing
-        Thread th = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true) {
-                    try {
-                        periodicUpdate();
-                        //Thread.sleep(5);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+        Thread th = new Thread(() -> {
+            while (true) {
+                try {
+                    periodicUpdate();
+                    //Thread.sleep(5);
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
         });
@@ -994,7 +1030,7 @@ public class Engine {
                     //determine aspect ratio
                     double aspect = getAspectRatio();
                     //determine whether we are closer to 16x9/16x10 or 4x3
-                    String plateGroup = "";
+                    String plateGroup;
                     if (Math.abs(aspect - STD) < Math.abs(aspect - WIDE)) {
                         //aproximately std ratio
                         plateGroup = "std";
@@ -1378,10 +1414,10 @@ public class Engine {
                 if (!(ship instanceof Explosion)) {
                     if (!(ship instanceof Station)) {
                         //draw a marker to indicate standings
-                        int tx = (int) (ship.getX() - dx);
-                        int ty = (int) (ship.getY() - dy);
-                        int tw = ship.getWidth();
-                        int th = ship.getHeight();
+                        int _tx = (int) (ship.getX() - dx);
+                        int _ty = (int) (ship.getY() - dy);
+                        int _tw = ship.getWidth();
+                        int _th = ship.getHeight();
                         int standing = ship.getStandingsToMe(playerShip);
                         if (!ship.getFaction().equals("Player")) {
                             if (standing >= 3) {
@@ -1395,7 +1431,7 @@ public class Engine {
                             f.setColor(Color.MAGENTA);
                         }
                         f.setStroke(new BasicStroke(2));
-                        f.drawOval(tx, ty, tw, th);
+                        f.drawOval(_tx, _ty, _tw, _th);
                     }
                 }
             }

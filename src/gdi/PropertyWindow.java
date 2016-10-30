@@ -13,7 +13,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
+ /*
  * Allows the management of a player's property.
  * Nathan Wiehoff
  */
@@ -186,188 +186,212 @@ public class PropertyWindow extends AstralWindow {
     }
 
     private void behave(Ship selected) {
-        if (mode == Mode.NONE) {
-            //do nothing
-        } else if (mode == Mode.WAITING_FOR_CREDITS) {
-            if (input.canReturn()) {
-                Ship player = ship.getUniverse().getPlayerShip();
-                try {
-                    int val = Integer.parseInt(input.getText());
-                    if (val > 0) {
-                        //we are pushing
-                        long source = player.getCash();
-                        if (source >= val) {
-                            selected.setCash(selected.getCash() + val);
-                            player.setCash(player.getCash() - val);
-                        } else {
-                            //insufficient credits
-                        }
-                    } else {
-                        //we are pulling
-                        long source = selected.getCash();
-                        long tfr = -val;
-                        if (source >= tfr) {
-                            player.setCash(player.getCash() + tfr);
-                            selected.setCash(selected.getCash() - tfr);
-                        } else {
-                            //insufficient credits
+        if (null != mode) {
+            switch (mode) {
+                //do nothing
+                case NONE:
+                    break;
+                case WAITING_FOR_CREDITS:
+                    if (input.canReturn()) {
+                        Ship player = ship.getUniverse().getPlayerShip();
+                        try {
+                            int val = Integer.parseInt(input.getText());
+                            if (val > 0) {
+                                //we are pushing
+                                long source = player.getCash();
+                                if (source >= val) {
+                                    selected.setCash(selected.getCash() + val);
+                                    player.setCash(player.getCash() - val);
+                                } else {
+                                    //insufficient credits
+                                }
+                            } else {
+                                //we are pulling
+                                long source = selected.getCash();
+                                long tfr = -val;
+                                if (source >= tfr) {
+                                    player.setCash(player.getCash() + tfr);
+                                    selected.setCash(selected.getCash() - tfr);
+                                } else {
+                                    //insufficient credits
+                                }
+                            }
+                            //hide it
+                            input.setVisible(false);
+                            //normal mode
+                            mode = Mode.NONE;
+                        } catch (Exception e) {
+                            System.out.println("Malformed input");
+                            //normal mode
+                            mode = Mode.NONE;
                         }
                     }
-                    //hide it
-                    input.setVisible(false);
-                    //normal mode
-                    mode = Mode.NONE;
-                } catch (Exception e) {
-                    System.out.println("Malformed input");
-                    //normal mode
-                    mode = Mode.NONE;
+                    break;
+                case WAITING_FOR_NAME:
+                    try {
+                        if (input.canReturn()) {
+                            //get name
+                            String nm = input.getText();
+                            //push
+                            selected.setName(nm);
+                            //normal mode
+                            mode = Mode.NONE;
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Malformed input");
+                        //normal mode
+                        mode = Mode.NONE;
+                    }
+                    break;
+                case WAITING_FOR_STATION: {
+                    Object raw = inputList.getItemAtIndex(inputList.getIndex());
+                    if (raw instanceof Station) {
+                        //grab it
+                        Station pick = (Station) raw;
+                        //order docking
+                        selected.cmdAbortDock();
+                        selected.cmdDock(pick);
+                        //hide it
+                        hideInputList();
+                        //normal mode
+                        mode = Mode.NONE;
+                    } else {
+                        //probably selected some info text
+                    }
+                    break;
                 }
-            }
-        } else if (mode == Mode.WAITING_FOR_NAME) {
-            try {
-                if (input.canReturn()) {
-                    //get name
-                    String nm = input.getText();
-                    //push
-                    selected.setName(nm);
-                    //normal mode
-                    mode = Mode.NONE;
+                case WAITING_FOR_ATTACK: {
+                    Object raw = inputList.getItemAtIndex(inputList.getIndex());
+                    if (raw instanceof Ship) {
+                        //grab it
+                        Ship pick = (Ship) raw;
+                        //order attack
+                        selected.cmdFightTarget(pick);
+                        //hide it
+                        hideInputList();
+                        //normal mode
+                        mode = Mode.NONE;
+                    } else {
+                        //probably selected some info text
+                    }
+                    break;
                 }
-            } catch (Exception e) {
-                System.out.println("Malformed input");
-                //normal mode
-                mode = Mode.NONE;
-            }
-        } else if (mode == Mode.WAITING_FOR_STATION) {
-            Object raw = inputList.getItemAtIndex(inputList.getIndex());
-            if (raw instanceof Station) {
-                //grab it
-                Station pick = (Station) raw;
-                //order docking
-                selected.cmdAbortDock();
-                selected.cmdDock(pick);
-                //hide it
-                hideInputList();
-                //normal mode
-                mode = Mode.NONE;
-            } else {
-                //probably selected some info text
-            }
-        } else if (mode == Mode.WAITING_FOR_ATTACK) {
-            Object raw = inputList.getItemAtIndex(inputList.getIndex());
-            if (raw instanceof Ship) {
-                //grab it
-                Ship pick = (Ship) raw;
-                //order attack
-                selected.cmdFightTarget(pick);
-                //hide it
-                hideInputList();
-                //normal mode
-                mode = Mode.NONE;
-            } else {
-                //probably selected some info text
-            }
-        } else if (mode == Mode.WAITING_FOR_CELESTIAL) {
-            Object raw = inputList.getItemAtIndex(inputList.getIndex());
-            if (raw instanceof Celestial) {
-                //grab it
-                Celestial pick = (Celestial) raw;
-                //store celestial
-                selected.setFlyToTarget(pick);
-                //hide it
-                hideInputList();
-                //show the next step
-                showInput("1000");
-                //get range
-                mode = Mode.WAITING_FOR_CELESTIAL_RANGE;
-            } else {
-                //probably selected some info text
-            }
-        } else if (mode == Mode.WAITING_FOR_CELESTIAL_RANGE) {
-            try {
-                if (input.canReturn()) {
-                    //get input
-                    String nm = input.getText();
-                    Double range = Double.parseDouble(nm);
-                    //start command
-                    selected.cmdFlyToCelestial(selected.getFlyToTarget(), range);
-                    //normal mode
-                    mode = Mode.NONE;
+                case WAITING_FOR_CELESTIAL: {
+                    Object raw = inputList.getItemAtIndex(inputList.getIndex());
+                    if (raw instanceof Celestial) {
+                        //grab it
+                        Celestial pick = (Celestial) raw;
+                        //store celestial
+                        selected.setFlyToTarget(pick);
+                        //hide it
+                        hideInputList();
+                        //show the next step
+                        showInput("1000");
+                        //get range
+                        mode = Mode.WAITING_FOR_CELESTIAL_RANGE;
+                    } else {
+                        //probably selected some info text
+                    }
+                    break;
                 }
-            } catch (Exception e) {
-                System.out.println("Malformed input");
-                //normal mode
-                mode = Mode.NONE;
-            }
-        } else if (mode == Mode.WAITING_FOR_FOLLOW) {
-            Object raw = inputList.getItemAtIndex(inputList.getIndex());
-            if (raw instanceof Ship) {
-                //grab it
-                Ship pick = (Ship) raw;
-                //store celestial
-                selected.setFlyToTarget(pick);
-                //hide it
-                hideInputList();
-                //show the next step
-                showInput("100");
-                //get range
-                mode = Mode.WAITING_FOR_FOLLOW_RANGE;
-            } else {
-                //probably selected some info text
-            }
-        } else if (mode == Mode.WAITING_FOR_FOLLOW_RANGE) {
-            try {
-                if (input.canReturn()) {
-                    //get input
-                    String nm = input.getText();
-                    Double range = Double.parseDouble(nm);
-                    //start command
-                    selected.cmdFollowShip((Ship) selected.getFlyToTarget(), range);
-                    //normal mode
-                    mode = Mode.NONE;
+                case WAITING_FOR_CELESTIAL_RANGE:
+                    try {
+                        if (input.canReturn()) {
+                            //get input
+                            String nm = input.getText();
+                            Double range = Double.parseDouble(nm);
+                            //start command
+                            selected.cmdFlyToCelestial(selected.getFlyToTarget(), range);
+                            //normal mode
+                            mode = Mode.NONE;
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Malformed input");
+                        //normal mode
+                        mode = Mode.NONE;
+                    }
+                    break;
+                case WAITING_FOR_FOLLOW: {
+                    Object raw = inputList.getItemAtIndex(inputList.getIndex());
+                    if (raw instanceof Ship) {
+                        //grab it
+                        Ship pick = (Ship) raw;
+                        //store celestial
+                        selected.setFlyToTarget(pick);
+                        //hide it
+                        hideInputList();
+                        //show the next step
+                        showInput("100");
+                        //get range
+                        mode = Mode.WAITING_FOR_FOLLOW_RANGE;
+                    } else {
+                        //probably selected some info text
+                    }
+                    break;
                 }
-            } catch (Exception e) {
-                System.out.println("Malformed input");
-                //normal mode
-                mode = Mode.NONE;
-            }
-        } else if (mode == Mode.WAITING_FOR_TRADE) {
-            if (!visible) {
-                mode = Mode.NONE;
-            } else {
-                trader.update(tmp);
-            }
-        } else if (mode == Mode.WAITING_FOR_CARGO) {
-            if (!visible) {
-                mode = Mode.NONE;
-            } else {
-                cargo.update(tmp);
-            }
-        } else if (mode == Mode.WAITING_FOR_JUMP) {
-            Object raw = inputList.getItemAtIndex(inputList.getIndex());
-            if (raw instanceof SolarSystem) {
-                //grab it
-                SolarSystem pick = (SolarSystem) raw;
-                //store celestial
-                selected.cmdJump(pick);
-                //hide it
-                hideInputList();
-                //normal mode
-                mode = Mode.NONE;
-            } else {
-                //probably selected some info text
-            }
-        } else if (mode == Mode.WAITING_FOR_BASE) {
-            Object raw = inputList.getItemAtIndex(inputList.getIndex());
-            if (raw instanceof Station) {
-                //grab it
-                Station pick = (Station) raw;
-                //set base
-                selected.setHomeBase(pick);
-                //hide it
-                hideInputList();
-                //normal mode
-                mode = Mode.NONE;
+                case WAITING_FOR_FOLLOW_RANGE:
+                    try {
+                        if (input.canReturn()) {
+                            //get input
+                            String nm = input.getText();
+                            Double range = Double.parseDouble(nm);
+                            //start command
+                            selected.cmdFollowShip((Ship) selected.getFlyToTarget(), range);
+                            //normal mode
+                            mode = Mode.NONE;
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Malformed input");
+                        //normal mode
+                        mode = Mode.NONE;
+                    }
+                    break;
+                case WAITING_FOR_TRADE:
+                    if (!visible) {
+                        mode = Mode.NONE;
+                    } else {
+                        trader.update(tmp);
+                    }
+                    break;
+                case WAITING_FOR_CARGO:
+                    if (!visible) {
+                        mode = Mode.NONE;
+                    } else {
+                        cargo.update(tmp);
+                    }
+                    break;
+                case WAITING_FOR_JUMP: {
+                    Object raw = inputList.getItemAtIndex(inputList.getIndex());
+                    if (raw instanceof SolarSystem) {
+                        //grab it
+                        SolarSystem pick = (SolarSystem) raw;
+                        //store celestial
+                        selected.cmdJump(pick);
+                        //hide it
+                        hideInputList();
+                        //normal mode
+                        mode = Mode.NONE;
+                    } else {
+                        //probably selected some info text
+                    }
+                    break;
+                }
+                case WAITING_FOR_BASE: {
+                    Object raw = inputList.getItemAtIndex(inputList.getIndex());
+                    if (raw instanceof Station) {
+                        //grab it
+                        Station pick = (Station) raw;
+                        //set base
+                        selected.setHomeBase(pick);
+                        //hide it
+                        hideInputList();
+                        //normal mode
+                        mode = Mode.NONE;
+                    }
+                    break;
+                }
+                default:
+                    break;
             }
         }
     }
@@ -400,23 +424,13 @@ public class PropertyWindow extends AstralWindow {
              * Then stations.
              */
             //sort
-            Collections.sort(pShips, new Comparator<Ship>() {
-                @Override
-                public int compare(Ship left, Ship right) {
-                    return left.getName().compareTo(right.getName());
-                }
-            });
+            Collections.sort(pShips, (Ship left, Ship right) -> left.getName().compareTo(right.getName()));
             //add
             for (int a = 0; a < pShips.size(); a++) {
                 logicalPropertyList.add(pShips.get(a));
             }
             //sort
-            Collections.sort(pStats, new Comparator<Ship>() {
-                @Override
-                public int compare(Ship left, Ship right) {
-                    return left.getName().compareTo(right.getName());
-                }
-            });
+            Collections.sort(pStats, (Ship left, Ship right) -> left.getName().compareTo(right.getName()));
             //add
             for (int a = 0; a < pStats.size(); a++) {
                 logicalPropertyList.add(pStats.get(a));
@@ -463,9 +477,9 @@ public class PropertyWindow extends AstralWindow {
                 infoList.addToList(" ");
                 infoList.addToList("--Cargo--");
                 infoList.addToList(" ");
-                ArrayList<Item> cargo = selected.getCargoBay();
-                for (int a = 0; a < cargo.size(); a++) {
-                    infoList.addToList(cargo.get(a));
+                ArrayList<Item> _cargo = selected.getCargoBay();
+                for (int a = 0; a < _cargo.size(); a++) {
+                    infoList.addToList(_cargo.get(a));
                 }
                 infoList.addToList(" ");
                 //more
@@ -511,65 +525,87 @@ public class PropertyWindow extends AstralWindow {
                 infoList.addToList("Waypoint:     " + selected.getFlyToTarget().getName());
             }
             if (selected.getPort() != null) {
-                if (selected.getAutopilot() == Autopilot.DOCK_STAGE1) {
-                    infoList.addToList("Docking At:   " + selected.getPort().getParent().getName());
-                } else if (selected.getAutopilot() == Autopilot.DOCK_STAGE2) {
-                    infoList.addToList("Docking At:   " + selected.getPort().getParent().getName());
-                } else if (selected.getAutopilot() == Autopilot.DOCK_STAGE3) {
-                    infoList.addToList("Docking At:   " + selected.getPort().getParent().getName());
+                if (null != selected.getAutopilot()) {
+                    switch (selected.getAutopilot()) {
+                        case DOCK_STAGE1:
+                            infoList.addToList("Docking At:   " + selected.getPort().getParent().getName());
+                            break;
+                        case DOCK_STAGE2:
+                            infoList.addToList("Docking At:   " + selected.getPort().getParent().getName());
+                            break;
+                        case DOCK_STAGE3:
+                            infoList.addToList("Docking At:   " + selected.getPort().getParent().getName());
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
-            /*
+
+            if (null != selected.getBehavior()) /*
              * More behavior info
-             */
-            if (selected.getBehavior() == Behavior.PATROL) {
-                //what are we flying to?
-                if (selected.getTarget() != null) {
-                    infoList.addToList("Attacking:    " + selected.getTarget().getName());
-                } else {
-                    infoList.addToList("NO AIM");
-                }
-            } else if (selected.getBehavior() == Behavior.SECTOR_TRADE) {
-                Station start = selected.getBuyFromStation();
-                Station end = selected.getSellToStation();
-                Item ware = selected.getWorkingWare();
-                if (start != null && end != null && ware != null) {
-                    infoList.addToList("Ware:         " + selected.getWorkingWare().getName());
-                    infoList.addToList("From:         " + start.getName());
-                    infoList.addToList("To:           " + end.getName());
-                }
-            } else if (selected.getBehavior() == Behavior.UNIVERSE_TRADE) {
-                Station start = selected.getBuyFromStation();
-                Station end = selected.getSellToStation();
-                Item ware = selected.getWorkingWare();
-                if (start != null && end != null && ware != null) {
-                    infoList.addToList("Ware:         " + selected.getWorkingWare().getName());
-                    infoList.addToList("From:         " + start.getName());
-                    infoList.addToList("              " + start.getCurrentSystem());
-                    infoList.addToList("To:           " + end.getName());
-                    infoList.addToList("              " + end.getCurrentSystem());
-                }
-            } else if (selected.getBehavior() == Behavior.SUPPLY_HOMEBASE) {
-                Station start = selected.getBuyFromStation();
-                Station end = selected.getSellToStation();
-                Item ware = selected.getWorkingWare();
-                if (start != null && end != null && ware != null) {
-                    infoList.addToList("Ware:         " + selected.getWorkingWare().getName());
-                    infoList.addToList("From:         " + start.getName());
-                    infoList.addToList("              " + start.getCurrentSystem());
-                    infoList.addToList("To:           " + end.getName());
-                    infoList.addToList("              " + end.getCurrentSystem());
-                }
-            } else if (selected.getBehavior() == Behavior.REPRESENT_HOMEBASE) {
-                Station start = selected.getBuyFromStation();
-                Station end = selected.getSellToStation();
-                Item ware = selected.getWorkingWare();
-                if (start != null && end != null && ware != null) {
-                    infoList.addToList("Ware:         " + selected.getWorkingWare().getName());
-                    infoList.addToList("From:         " + start.getName());
-                    infoList.addToList("              " + start.getCurrentSystem());
-                    infoList.addToList("To:           " + end.getName());
-                    infoList.addToList("              " + end.getCurrentSystem());
+             */ {
+                switch (selected.getBehavior()) {
+                    case PATROL:
+                        //what are we flying to?
+                        if (selected.getTarget() != null) {
+                            infoList.addToList("Attacking:    " + selected.getTarget().getName());
+                        } else {
+                            infoList.addToList("NO AIM");
+                        }
+                        break;
+                    case SECTOR_TRADE: {
+                        Station start = selected.getBuyFromStation();
+                        Station end = selected.getSellToStation();
+                        Item ware = selected.getWorkingWare();
+                        if (start != null && end != null && ware != null) {
+                            infoList.addToList("Ware:         " + selected.getWorkingWare().getName());
+                            infoList.addToList("From:         " + start.getName());
+                            infoList.addToList("To:           " + end.getName());
+                        }
+                        break;
+                    }
+                    case UNIVERSE_TRADE: {
+                        Station start = selected.getBuyFromStation();
+                        Station end = selected.getSellToStation();
+                        Item ware = selected.getWorkingWare();
+                        if (start != null && end != null && ware != null) {
+                            infoList.addToList("Ware:         " + selected.getWorkingWare().getName());
+                            infoList.addToList("From:         " + start.getName());
+                            infoList.addToList("              " + start.getCurrentSystem());
+                            infoList.addToList("To:           " + end.getName());
+                            infoList.addToList("              " + end.getCurrentSystem());
+                        }
+                        break;
+                    }
+                    case SUPPLY_HOMEBASE: {
+                        Station start = selected.getBuyFromStation();
+                        Station end = selected.getSellToStation();
+                        Item ware = selected.getWorkingWare();
+                        if (start != null && end != null && ware != null) {
+                            infoList.addToList("Ware:         " + selected.getWorkingWare().getName());
+                            infoList.addToList("From:         " + start.getName());
+                            infoList.addToList("              " + start.getCurrentSystem());
+                            infoList.addToList("To:           " + end.getName());
+                            infoList.addToList("              " + end.getCurrentSystem());
+                        }
+                        break;
+                    }
+                    case REPRESENT_HOMEBASE: {
+                        Station start = selected.getBuyFromStation();
+                        Station end = selected.getSellToStation();
+                        Item ware = selected.getWorkingWare();
+                        if (start != null && end != null && ware != null) {
+                            infoList.addToList("Ware:         " + selected.getWorkingWare().getName());
+                            infoList.addToList("From:         " + start.getName());
+                            infoList.addToList("              " + start.getCurrentSystem());
+                            infoList.addToList("To:           " + end.getName());
+                            infoList.addToList("              " + end.getCurrentSystem());
+                        }
+                        break;
+                    }
+                    default:
+                        break;
                 }
             }
         }
@@ -603,7 +639,7 @@ public class PropertyWindow extends AstralWindow {
             //fill
             int lineWidth = (((infoList.getWidth() - 10) / (infoList.getFont().getSize())));
             int cursor = 0;
-            String tmp = "";
+            String _tmp = "";
             String[] words = description.split(" ");
             for (int a = 0; a < words.length; a++) {
                 if (a < 0) {
@@ -612,28 +648,26 @@ public class PropertyWindow extends AstralWindow {
                 int len = words[a].length();
                 if (cursor < lineWidth && !words[a].equals("/br/")) {
                     if (cursor + len <= lineWidth) {
-                        tmp += " " + words[a];
+                        _tmp += " " + words[a];
                         cursor += len;
+                    } else if (lineWidth > len) {
+                        infoList.addToList(_tmp);
+                        _tmp = "";
+                        cursor = 0;
+                        a--;
                     } else {
-                        if (lineWidth > len) {
-                            infoList.addToList(tmp);
-                            tmp = "";
-                            cursor = 0;
-                            a--;
-                        } else {
-                            tmp += "[LEN!]";
-                        }
+                        _tmp += "[LEN!]";
                     }
                 } else {
-                    infoList.addToList(tmp);
-                    tmp = "";
+                    infoList.addToList(_tmp);
+                    _tmp = "";
                     cursor = 0;
                     if (!words[a].equals("/br/")) {
                         a--;
                     }
                 }
             }
-            infoList.addToList(tmp.toString());
+            infoList.addToList(_tmp);
         }
     }
 
@@ -750,140 +784,170 @@ public class PropertyWindow extends AstralWindow {
     private void parseCommand(String command) {
         if (command != null && mode == Mode.NONE) {
             Ship selected = (Ship) propertyList.getItemAtIndex(propertyList.getIndex());
-            if (command.equals(CMD_SWITCH)) {
-                /*
-                 * Switch to another ship.
-                 */ ship.getUniverse().setPlayerShip(selected);
-            } else if (command.equals(CMD_NONE)) {
-                //abort current behavior
-                selected.setBehavior(Behavior.NONE);
-                selected.setAutopilot(Autopilot.NONE);
-                selected.cmdAbortDock();
-            } else if (command.equals(CMD_TRADE)) {
-                selected.setBehavior(Behavior.SECTOR_TRADE);
-            } else if (command.equals(CMD_UTRADE)) {
-                selected.setBehavior(Behavior.UNIVERSE_TRADE);
-            } else if (command.equals(CMD_PATROL)) {
-                selected.setBehavior(Behavior.PATROL);
-            } else if (command.equals(CMD_MOVEFUNDS)) {
-                mode = Mode.WAITING_FOR_CREDITS;
-                showInput("0");
-            } else if (command.equals(CMD_RENAME)) {
-                mode = Mode.WAITING_FOR_NAME;
-                showInput(selected.getName());
-            } else if (command.equals(CMD_UNDOCK)) {
-                selected.cmdUndock();
-            } else if (command.equals(CMD_TRADEWITH)) {
-                mode = Mode.WAITING_FOR_TRADE;
-                trader.setVisible(true);
-                tmp = selected;
-            } else if (command.equals(CMD_DOCK)) {
-                ArrayList<Object> choice = new ArrayList<>();
-                choice.add("--Select Station To Dock At--");
-                choice.add(" ");
-                ArrayList<Station> st = selected.getFriendlyStationsInSystem();
-                for (int a = 0; a < st.size(); a++) {
-                    choice.add(st.get(a));
-                }
-                if (st.size() > 0) {
-                    showInputList(choice);
-                    mode = Mode.WAITING_FOR_STATION;
-                } else {
-                    mode = Mode.NONE;
-                }
-            } else if (command.equals(CMD_REMOTECARGO)) {
-                mode = Mode.WAITING_FOR_CARGO;
-                cargo.setVisible(true);
-                tmp = selected;
-            } else if (command.equals(CMD_ATTACK)) {
-                mode = Mode.WAITING_FOR_ATTACK;
-                ArrayList<Object> choice = new ArrayList<>();
-                choice.add("--Select Target To Attack--");
-                choice.add(" ");
-                ArrayList<Ship> sh = selected.getShipsInSensorRange();
-                //exclude projectiles
-                for (int a = 0; a < sh.size(); a++) {
-                    if (!(sh.get(a) instanceof Projectile) && 
-                            !(sh.get(a) instanceof Explosion)) {
-                        choice.add(sh.get(a));
+            switch (command) {
+                case CMD_SWITCH:
+                    /*
+                    * Switch to another ship.
+                     */ ship.getUniverse().setPlayerShip(selected);
+                    break;
+                case CMD_NONE:
+                    //abort current behavior
+                    selected.setBehavior(Behavior.NONE);
+                    selected.setAutopilot(Autopilot.NONE);
+                    selected.cmdAbortDock();
+                    break;
+                case CMD_TRADE:
+                    selected.setBehavior(Behavior.SECTOR_TRADE);
+                    break;
+                case CMD_UTRADE:
+                    selected.setBehavior(Behavior.UNIVERSE_TRADE);
+                    break;
+                case CMD_PATROL:
+                    selected.setBehavior(Behavior.PATROL);
+                    break;
+                case CMD_MOVEFUNDS:
+                    mode = Mode.WAITING_FOR_CREDITS;
+                    showInput("0");
+                    break;
+                case CMD_RENAME:
+                    mode = Mode.WAITING_FOR_NAME;
+                    showInput(selected.getName());
+                    break;
+                case CMD_UNDOCK:
+                    selected.cmdUndock();
+                    break;
+                case CMD_TRADEWITH:
+                    mode = Mode.WAITING_FOR_TRADE;
+                    trader.setVisible(true);
+                    tmp = selected;
+                    break;
+                case CMD_DOCK: {
+                    ArrayList<Object> choice = new ArrayList<>();
+                    choice.add("--Select Station To Dock At--");
+                    choice.add(" ");
+                    ArrayList<Station> st = selected.getFriendlyStationsInSystem();
+                    for (int a = 0; a < st.size(); a++) {
+                        choice.add(st.get(a));
                     }
+                    if (st.size() > 0) {
+                        showInputList(choice);
+                        mode = Mode.WAITING_FOR_STATION;
+                    } else {
+                        mode = Mode.NONE;
+                    }
+                    break;
                 }
-                if (sh.size() > 0) {
-                    showInputList(choice);
+                case CMD_REMOTECARGO:
+                    mode = Mode.WAITING_FOR_CARGO;
+                    cargo.setVisible(true);
+                    tmp = selected;
+                    break;
+                case CMD_ATTACK: {
                     mode = Mode.WAITING_FOR_ATTACK;
-                } else {
-                    mode = Mode.NONE;
+                    ArrayList<Object> choice = new ArrayList<>();
+                    choice.add("--Select Target To Attack--");
+                    choice.add(" ");
+                    ArrayList<Ship> sh = selected.getShipsInSensorRange();
+                    //exclude projectiles
+                    for (int a = 0; a < sh.size(); a++) {
+                        if (!(sh.get(a) instanceof Projectile)
+                                && !(sh.get(a) instanceof Explosion)) {
+                            choice.add(sh.get(a));
+                        }
+                    }
+                    if (sh.size() > 0) {
+                        showInputList(choice);
+                        mode = Mode.WAITING_FOR_ATTACK;
+                    } else {
+                        mode = Mode.NONE;
+                    }
+                    break;
                 }
-            } else if (command.equals(CMD_DESTRUCT)) {
-                selected.setState(State.DYING);
-            } else if (command.equals(CMD_FLYTO)) {
-                ArrayList<Object> choice = new ArrayList<>();
-                choice.add("--Select Target To Fly To--");
-                choice.add(" ");
-                ArrayList<Entity> jhp = selected.getCurrentSystem().getJumpholeList();
-                for (int a = 0; a < jhp.size(); a++) {
-                    choice.add(jhp.get(a));
+                case CMD_DESTRUCT:
+                    selected.setState(State.DYING);
+                    break;
+                case CMD_FLYTO: {
+                    ArrayList<Object> choice = new ArrayList<>();
+                    choice.add("--Select Target To Fly To--");
+                    choice.add(" ");
+                    ArrayList<Entity> jhp = selected.getCurrentSystem().getJumpholeList();
+                    for (int a = 0; a < jhp.size(); a++) {
+                        choice.add(jhp.get(a));
+                    }
+                    if (jhp.size() > 0) {
+                        showInputList(choice);
+                        mode = Mode.WAITING_FOR_CELESTIAL;
+                    } else {
+                        mode = Mode.NONE;
+                    }
+                    break;
                 }
-                if (jhp.size() > 0) {
-                    showInputList(choice);
-                    mode = Mode.WAITING_FOR_CELESTIAL;
-                } else {
-                    mode = Mode.NONE;
-                }
-            } else if (command.equals(CMD_FOLLOW)) {
-                ArrayList<Object> choice = new ArrayList<>();
-                choice.add("--Select Target To Follow--");
-                choice.add(" ");
-                ArrayList<Ship> sh = selected.getShipsInSensorRange();
-                for (int a = 0; a < sh.size(); a++) {
-                    choice.add(sh.get(a));
-                }
-                if (sh.size() > 0) {
-                    showInputList(choice);
-                    mode = Mode.WAITING_FOR_FOLLOW;
-                } else {
-                    mode = Mode.NONE;
-                }
-            } else if (command.equals(CMD_ALLSTOP)) {
-                selected.cmdAllStop();
-            } else if (command.equals(CMD_JUMP)) {
-                ArrayList<Object> choice = new ArrayList<>();
-                choice.add("--Select Target System--");
-                choice.add(" ");
-                ArrayList<SolarSystem> sh = ship.getUniverse().getDiscoveredSpace();
-                for (int a = 0; a < sh.size(); a++) {
-                    if (ship.canJump(sh.get(a))) {
+                case CMD_FOLLOW: {
+                    ArrayList<Object> choice = new ArrayList<>();
+                    choice.add("--Select Target To Follow--");
+                    choice.add(" ");
+                    ArrayList<Ship> sh = selected.getShipsInSensorRange();
+                    for (int a = 0; a < sh.size(); a++) {
                         choice.add(sh.get(a));
                     }
-                }
-                if (sh.size() > 0) {
-                    showInputList(choice);
-                    mode = Mode.WAITING_FOR_JUMP;
-                } else {
-                    mode = Mode.NONE;
-                }
-            } else if (command.equals(CMD_CLEARHOME)) {
-                selected.clearHomeBase();
-            } else if (command.equals(CMD_SETHOME)) {
-                ArrayList<Object> choice = new ArrayList<>();
-                choice.add("--Select Home Base In System--");
-                choice.add(" ");
-                ArrayList<Entity> stat = selected.getCurrentSystem().getStationList();
-                for (int a = 0; a < stat.size(); a++) {
-                    if (selected.getUniverse().getPlayerProperty().contains(stat.get(a))) {
-                        choice.add(stat.get(a));
+                    if (sh.size() > 0) {
+                        showInputList(choice);
+                        mode = Mode.WAITING_FOR_FOLLOW;
+                    } else {
+                        mode = Mode.NONE;
                     }
+                    break;
                 }
-                if (stat.size() > 0) {
-                    showInputList(choice);
-                    mode = Mode.WAITING_FOR_BASE;
-                } else {
-                    mode = Mode.NONE;
+                case CMD_ALLSTOP:
+                    selected.cmdAllStop();
+                    break;
+                case CMD_JUMP: {
+                    ArrayList<Object> choice = new ArrayList<>();
+                    choice.add("--Select Target System--");
+                    choice.add(" ");
+                    ArrayList<SolarSystem> sh = ship.getUniverse().getDiscoveredSpace();
+                    for (int a = 0; a < sh.size(); a++) {
+                        if (ship.canJump(sh.get(a))) {
+                            choice.add(sh.get(a));
+                        }
+                    }
+                    if (sh.size() > 0) {
+                        showInputList(choice);
+                        mode = Mode.WAITING_FOR_JUMP;
+                    } else {
+                        mode = Mode.NONE;
+                    }
+                    break;
                 }
-            } else if (command.equals(CMD_SUPPLYHOME)) {
-                selected.setBehavior(Behavior.SUPPLY_HOMEBASE);
-            } else if (command.equals(CMD_REPRESENTHOME)) {
-                selected.setBehavior(Behavior.REPRESENT_HOMEBASE);
+                case CMD_CLEARHOME:
+                    selected.clearHomeBase();
+                    break;
+                case CMD_SETHOME: {
+                    ArrayList<Object> choice = new ArrayList<>();
+                    choice.add("--Select Home Base In System--");
+                    choice.add(" ");
+                    ArrayList<Entity> stat = selected.getCurrentSystem().getStationList();
+                    for (int a = 0; a < stat.size(); a++) {
+                        if (selected.getUniverse().getPlayerProperty().contains(stat.get(a))) {
+                            choice.add(stat.get(a));
+                        }
+                    }
+                    if (stat.size() > 0) {
+                        showInputList(choice);
+                        mode = Mode.WAITING_FOR_BASE;
+                    } else {
+                        mode = Mode.NONE;
+                    }
+                    break;
+                }
+                case CMD_SUPPLYHOME:
+                    selected.setBehavior(Behavior.SUPPLY_HOMEBASE);
+                    break;
+                case CMD_REPRESENTHOME:
+                    selected.setBehavior(Behavior.REPRESENT_HOMEBASE);
+                    break;
+                default:
+                    break;
             }
         }
     }

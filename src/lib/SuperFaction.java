@@ -13,7 +13,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
+ /*
  * Extended version of the faction class for use by God when repairing and
  * maintaining the universe.
  */
@@ -44,11 +44,11 @@ public class SuperFaction extends Faction {
     //music list
     private final ArrayList<String> ambientMusic = new ArrayList<>();
     private final ArrayList<String> dangerMusic = new ArrayList<>();
+
     /*
      * Like a faction, except it stores information about loadout types,
      * station types, etc that god needs.
      */
-
     public SuperFaction(Universe universe, String name) {
         super(name);
         this.universe = universe;
@@ -78,7 +78,7 @@ public class SuperFaction extends Faction {
         if (stat != null) {
             //get types of stations
             int a = 0;
-            String type = "";
+            String type;
             while ((type = stat.getValue("station" + a)) != null) {
                 //get station info
                 String ty = type.split(",")[0];
@@ -105,10 +105,10 @@ public class SuperFaction extends Faction {
         if (muse != null) {
             //get types of stations
             int a = 0;
-            String type = "";
+            String type;
             while ((type = muse.getValue("ambient" + a)) != null) {
                 //store
-                getAmbientMusic().add(type.toString());
+                getAmbientMusic().add(type);
                 //iterate
                 a++;
             }
@@ -130,10 +130,10 @@ public class SuperFaction extends Faction {
         if (muse != null) {
             //get types of stations
             int a = 0;
-            String type = "";
+            String type;
             while ((type = muse.getValue("danger" + a)) != null) {
                 //store
-                getDangerMusic().add(type.toString());
+                getDangerMusic().add(type);
                 //iterate
                 a++;
             }
@@ -159,7 +159,7 @@ public class SuperFaction extends Faction {
              */
             {
                 int a = 0;
-                String type = "";
+                String type;
                 while ((type = stat.getValue("patrol" + a)) != null) {
                     //get patrol info
                     String ty = type.split(",")[0];
@@ -174,7 +174,7 @@ public class SuperFaction extends Faction {
              */
             {
                 int a = 0;
-                String type = "";
+                String type;
                 while ((type = stat.getValue("trader" + a)) != null) {
                     //get trader info
                     String ty = type.split(",")[0];
@@ -189,7 +189,7 @@ public class SuperFaction extends Faction {
              */
             {
                 int a = 0;
-                String type = "";
+                String type;
                 while ((type = stat.getValue("merchant" + a)) != null) {
                     //get taxie info
                     String ty = type.split(",")[0];

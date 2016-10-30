@@ -32,6 +32,7 @@ public class WobblyStroke implements Stroke {
         rnd = new Random(seed);
     }
 
+    @Override
     public Shape createStrokedShape(Shape shape) {
         GeneralPath result = new GeneralPath();
         shape = new BasicStroke(10).createStrokedShape(shape);
@@ -41,7 +42,6 @@ public class WobblyStroke implements Stroke {
         float lastX = 0, lastY = 0;
         float thisX = 0, thisY = 0;
         int type = 0;
-        boolean first = false;
         float next = 0;
 
         while (!it.isDone()) {
@@ -51,7 +51,6 @@ public class WobblyStroke implements Stroke {
                     moveX = lastX = randomize(points[0]);
                     moveY = lastY = randomize(points[1]);
                     result.moveTo(moveX, moveY);
-                    first = true;
                     next = 0;
                     break;
 
@@ -77,7 +76,6 @@ public class WobblyStroke implements Stroke {
                         }
                     }
                     next -= distance;
-                    first = false;
                     lastX = thisX;
                     lastY = thisY;
                     break;

@@ -30,9 +30,8 @@ public class VoronoiDiagram implements Cloneable {
     @Override
     protected VoronoiDiagram clone() {
         VoronoiDiagram vd = new VoronoiDiagram(this.width, this.height, this.m_power);
-        vd.coefs = new ArrayList<Float>(this.coefs);
-
-        vd.voronoiPoints = new ArrayList<Point>(this.voronoiPoints);
+        vd.coefs = new ArrayList<>(this.coefs);
+        vd.voronoiPoints = new ArrayList<>(this.voronoiPoints);
 
         return vd;
     }
@@ -108,7 +107,7 @@ public class VoronoiDiagram implements Cloneable {
             toCompare = p;
         }
 
-        //@Override
+        @Override
         public int compare(Point o1, Point o2) {
             float d1 = o1.distanceSquared(toCompare);
             float d2 = o2.distanceSquared(toCompare);

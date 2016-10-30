@@ -23,7 +23,7 @@ package org.ankh.unfall.planet.texgen;
 public class Randomizer3D {
 
     private final static float INV_0X10000 = 1.f / 0x10000;
-    private int seed;
+    private final int seed;
 
     public Randomizer3D(int seed) {
         this.seed = seed;
@@ -31,17 +31,17 @@ public class Randomizer3D {
     /*
      * Knuth & Lewis generator
      */
-    private final static int a = 1664525;
-    private final static int b = 1013904223;
+    private final static int A = 1664525;
+    private final static int B = 1013904223;
 
     /**
      * Linear congruence on X
      *
-     * @param xthe congruence function's seed.
+     * @param x
      * @return
      */
     public int turn(int x) {
-        return (a * x) + b;
+        return (A * x) + B;
     }
 
     public float getPointRandom(int x, int y) {

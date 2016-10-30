@@ -13,7 +13,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
+ /*
  * It's kind of big
  */
 package universe;
@@ -36,7 +36,7 @@ public class Universe implements Serializable {
 
     private ArrayList<SolarSystem> systems = new ArrayList<>();
     private SettingsManager settings;
-    private static final transient ResourceCache cache;
+    private static final transient ResourceCache CACHE;
     private transient God god;
     //player globals
     protected Ship playerShip;
@@ -47,7 +47,7 @@ public class Universe implements Serializable {
     private final ArrayList<SolarSystem> discoveredSpace = new ArrayList<>();
 
     static {
-        cache = new ResourceCache();
+        CACHE = new ResourceCache();
     }
 
     public Universe() {
@@ -73,7 +73,7 @@ public class Universe implements Serializable {
     }
 
     private SolarSystem makeSystem(Parser parse, Term thisSystem) {
-        SolarSystem system = null;
+        SolarSystem system;
         {
             String name = thisSystem.getValue("name");
             String owner = thisSystem.getValue("owner");
@@ -111,7 +111,7 @@ public class Universe implements Serializable {
     }
 
     private void makePlayer(Term start) {
-        Ship player = null;
+        Ship player;
         {
             //get params
             String ship = start.getValue("ship");
@@ -172,7 +172,7 @@ public class Universe implements Serializable {
     }
 
     public static ResourceCache getCache() {
-        return cache;
+        return CACHE;
     }
 
     public God getGod() {

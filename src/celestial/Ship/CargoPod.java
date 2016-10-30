@@ -13,7 +13,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
+ /*
  * This cargo pod will float around in space and contain something that may or may
  * not be worth collecting.
  */
@@ -80,11 +80,7 @@ public class CargoPod extends Ship {
 
     @Override
     public String toString() {
-        String ret = "";
-        {
-            ret = (int) (100 - (elapsed / lifeLimit) * 100.0) + "% (" + type + ") - " + name + ", " + faction;
-        }
-        return ret;
+        return (int) (100 - (elapsed / lifeLimit) * 100.0) + "% (" + type + ") - " + name + ", " + faction;
     }
 
     public Item getWare() {

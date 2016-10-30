@@ -12,7 +12,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-/*
+ /*
  * Displays a map of the universe.
  */
 package gdi;
@@ -200,13 +200,20 @@ public class StarMapWindow extends AstralWindow {
     public void handleKeyReleasedEvent(KeyEvent ke) {
         /*
          * navmap keys
-         */ if (ke.getKeyCode() == KeyEvent.VK_END) {
-            incrementMode();
-        } else if (ke.getKeyCode() == KeyEvent.VK_HOME) {
-            decrementMode();
-        } else if (ke.getKeyCode() == KeyEvent.VK_UP) {
-            offset.y += 20;
-            offset.x += 0;
+         */
+        switch (ke.getKeyCode()) {
+            case KeyEvent.VK_END:
+                incrementMode();
+                break;
+            case KeyEvent.VK_HOME:
+                decrementMode();
+                break;
+            case KeyEvent.VK_UP:
+                offset.y += 20;
+                offset.x += 0;
+                break;
+            default:
+                break;
         }
         if (ke.getKeyCode() == KeyEvent.VK_DOWN) {
             offset.y -= 20;

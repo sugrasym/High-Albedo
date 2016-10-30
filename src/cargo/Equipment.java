@@ -13,7 +13,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
+ /*
  * Equipment is a framwork class for things that can be mounted to hard points.
  */
 package cargo;
@@ -94,7 +94,7 @@ public class Equipment extends Item implements Serializable {
 
     @Override
     public String toString() {
-        String ret = "";
+        String ret;
         if (enabled) {
             //return cooldown status
             double percentCooled = activationTimer / coolDown;

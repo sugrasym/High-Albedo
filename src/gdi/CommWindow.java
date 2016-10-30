@@ -13,7 +13,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
+ /*
  * Allows communication between NPCs and the player.
  * Nathan Wiehoff
  */
@@ -112,7 +112,7 @@ public class CommWindow extends AstralWindow {
             messageDisplay.addToList("--Message--");
             messageDisplay.addToList(" ");
             //
-            String description = working.getMessage().toString();
+            String description = working.getMessage();
             int lineWidth = (((messageDisplay.getWidth() - 1) / (messageDisplay.getFont().getSize())));
             int cursor = 0;
             String tmp = "";
@@ -126,15 +126,13 @@ public class CommWindow extends AstralWindow {
                     if (cursor + len <= lineWidth) {
                         tmp += " " + words[a];
                         cursor += len;
+                    } else if (lineWidth > len) {
+                        messageDisplay.addToList(tmp);
+                        tmp = "";
+                        cursor = 0;
+                        a--;
                     } else {
-                        if (lineWidth > len) {
-                            messageDisplay.addToList(tmp);
-                            tmp = "";
-                            cursor = 0;
-                            a--;
-                        } else {
-                            tmp += "[LEN!]";
-                        }
+                        tmp += "[LEN!]";
                     }
                 } else {
                     messageDisplay.addToList(tmp);
@@ -145,7 +143,7 @@ public class CommWindow extends AstralWindow {
                     }
                 }
             }
-            messageDisplay.addToList(tmp.toString());
+            messageDisplay.addToList(tmp);
         }
     }
 

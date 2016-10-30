@@ -32,7 +32,7 @@ import org.ankh.unfall.system.thread.MultiThreadUtil;
 public class ContinentalGenerator extends PlanetGenerator {
 
     private Random m_random;
-    private final static float[] m_voronoi_vectors = new float[]{
+    private final static float[] M_VORONOI_VECTORS = new float[]{
         8.5f,
         -3,
         1
@@ -64,7 +64,7 @@ public class ContinentalGenerator extends PlanetGenerator {
             this.heightmap = heightmap;
         }
 
-        //@Override
+        @Override
         public ForRunnable copy() {
             ForHeightMap copy = new ForHeightMap();
 
@@ -105,7 +105,7 @@ public class ContinentalGenerator extends PlanetGenerator {
             diagram.addPoint(x, y);
         }
 
-        for (float vector : m_voronoi_vectors) {
+        for (float vector : M_VORONOI_VECTORS) {
             diagram.addVector(vector);
         }
 
@@ -177,7 +177,7 @@ public class ContinentalGenerator extends PlanetGenerator {
     private void addSource(int x, int y, Set<Integer> visited, int maxiteration) {
 
         if (visited == null) {
-            visited = new HashSet<Integer>();
+            visited = new HashSet<>();
         }
 
         int xm1 = x - 1;

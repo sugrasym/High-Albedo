@@ -13,7 +13,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
+ /*
  * Displays the contents of a station your ship is currently docked at and allows
  * you to buy and sell to the station.
  */
@@ -70,8 +70,8 @@ public class TradeWindow extends AstralWindow {
             if (hpRaw != null) {
                 //show info on loadout possibilities
                 String[] arr = hpRaw.split("/");
-                for (int a = 0; a < arr.length; a++) {
-                    String[] det = arr[a].split(",");
+                for (String s : arr) {
+                    String[] det = s.split(",");
                     String hpType = det[0];
                     String hpSize = det[1];
                     String txt = hpType + " size " + hpSize;
@@ -300,53 +300,59 @@ public class TradeWindow extends AstralWindow {
     }
 
     private void behave() {
-        if (action == Behavior.NONE) {
-            //do nothing
-        } else if (action == Behavior.WAITING_TO_BUY) {
-            //check if a value was returned
-            try {
-                if (input.canReturn()) {
-                    int val = Integer.parseInt(input.getText());
-                    if (val > 0) {
-                        //perform trade
-                        int index = lastFocus.getIndex();
-                        Item selected = (Item) lastFocus.getItemAtIndex(index);
-                        docked.buy(ship, selected, val);
+        if (null != action) {
+            switch (action) {
+                //do nothing
+                case NONE:
+                    break;
+                case WAITING_TO_BUY:
+                    //check if a value was returned
+                    try {
+                        if (input.canReturn()) {
+                            int val = Integer.parseInt(input.getText());
+                            if (val > 0) {
+                                //perform trade
+                                int index = lastFocus.getIndex();
+                                Item selected = (Item) lastFocus.getItemAtIndex(index);
+                                docked.buy(ship, selected, val);
+                            }
+                            //hide it
+                            input.setVisible(false);
+                            //normal mode
+                            action = Behavior.NONE;
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Malformed input");
+                        //normal mode
+                        action = Behavior.NONE;
                     }
-                    //hide it
-                    input.setVisible(false);
-                    //normal mode
-                    action = Behavior.NONE;
-                }
-            } catch (Exception e) {
-                System.out.println("Malformed input");
-                //normal mode
-                action = Behavior.NONE;
-            }
-        } else if (action == Behavior.WAITING_TO_SELL) {
-            //check if a value was returned
-            try {
-                if (input.canReturn()) {
-                    int val = Integer.parseInt(input.getText());
-                    if (val > 0) {
-                        //perform trade
-                        int index = lastFocus.getIndex();
-                        Item selected = (Item) lastFocus.getItemAtIndex(index);
-                        docked.sell(ship, selected, val);
+                    break;
+                case WAITING_TO_SELL:
+                    //check if a value was returned
+                    try {
+                        if (input.canReturn()) {
+                            int val = Integer.parseInt(input.getText());
+                            if (val > 0) {
+                                //perform trade
+                                int index = lastFocus.getIndex();
+                                Item selected = (Item) lastFocus.getItemAtIndex(index);
+                                docked.sell(ship, selected, val);
+                            }
+                            //hide it
+                            input.setVisible(false);
+                            //normal mode
+                            action = Behavior.NONE;
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Malformed input");
+                        //normal mode
+                        action = Behavior.NONE;
                     }
-                    //hide it
-                    input.setVisible(false);
-                    //normal mode
-                    action = Behavior.NONE;
-                }
-            } catch (Exception e) {
-                System.out.println("Malformed input");
-                //normal mode
-                action = Behavior.NONE;
+                    break;
+                //unreachable
+                default:
+                    break;
             }
-
-        } else {
-            //unreachable
         }
     }
 
@@ -428,15 +434,13 @@ public class TradeWindow extends AstralWindow {
                 if (cursor + len <= lineWidth) {
                     tmp += " " + words[a];
                     cursor += len;
+                } else if (lineWidth > len) {
+                    propertyList.addToList(tmp);
+                    tmp = "";
+                    cursor = 0;
+                    a--;
                 } else {
-                    if (lineWidth > len) {
-                        propertyList.addToList(tmp);
-                        tmp = "";
-                        cursor = 0;
-                        a--;
-                    } else {
-                        tmp += "[LEN!]";
-                    }
+                    tmp += "[LEN!]";
                 }
             } else {
                 propertyList.addToList(tmp);
@@ -447,7 +451,7 @@ public class TradeWindow extends AstralWindow {
                 }
             }
         }
-        propertyList.addToList(tmp.toString());
+        propertyList.addToList(tmp);
         appendShipDetails(selected);
         appendWeaponDetails(selected);
     }

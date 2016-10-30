@@ -177,7 +177,7 @@ public class OverviewWindow extends AstralWindow {
             ex /= range;
             ey /= range;
             ex *= width / 2;
-            ey *= height / 2;;
+            ey *= height / 2;
             //determine whether to draw the name based on range
             double fuzz = 1.0 - rnd.nextDouble() * 0.1f;
             double view = PLANET_AIM_LIMIT * sensorShip.getSensor() * fuzz;
@@ -263,11 +263,9 @@ public class OverviewWindow extends AstralWindow {
                 if (showStationNames) {
                     gfx.drawString(entities.get(a).getName(), (int) ex + (width / 2), (int) ey + (height / 2) - 1);
                 }
-            } else {
-                if (showShipNames) {
-                    if (!(entities.get(a) instanceof Projectile)) {
-                        gfx.drawString(entities.get(a).getName(), (int) ex + (width / 2) - 1, (int) ey + (height / 2) - 1);
-                    }
+            } else if (showShipNames) {
+                if (!(entities.get(a) instanceof Projectile)) {
+                    gfx.drawString(entities.get(a).getName(), (int) ex + (width / 2) - 1, (int) ey + (height / 2) - 1);
                 }
             }
         }
@@ -279,7 +277,7 @@ public class OverviewWindow extends AstralWindow {
              * - show the point on the map where you could be fully stopped at your current velocity
              * - allow you to "lock" a vector in red and keep it there for your own uses.
              */
-            /*
+ /*
              * These two lines represent the vector of your velocity and the vector
              * of your direction. They will simplify navigation in 2D space.
              */
@@ -415,14 +413,22 @@ public class OverviewWindow extends AstralWindow {
     public void handleKeyReleasedEvent(KeyEvent ke) {
         /*
          * navmap keys
-         */ if (ke.getKeyCode() == KeyEvent.VK_END) {
-            incrementMode();
-        } else if (ke.getKeyCode() == KeyEvent.VK_HOME) {
-            decrementMode();
-        } else if (ke.getKeyCode() == KeyEvent.VK_PAGE_DOWN) {
-            setShowShipNames(!isShowShipNames());
-        } else if (ke.getKeyCode() == KeyEvent.VK_PAGE_UP) {
-            setShowStationNames(!isShowStationNames());
+         */
+        switch (ke.getKeyCode()) {
+            case KeyEvent.VK_END:
+                incrementMode();
+                break;
+            case KeyEvent.VK_HOME:
+                decrementMode();
+                break;
+            case KeyEvent.VK_PAGE_DOWN:
+                setShowShipNames(!isShowShipNames());
+                break;
+            case KeyEvent.VK_PAGE_UP:
+                setShowStationNames(!isShowStationNames());
+                break;
+            default:
+                break;
         }
     }
 }

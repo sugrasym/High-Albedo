@@ -13,7 +13,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
+ /*
  * This is the method by which ships can move between solar systems.
  */
 package celestial;

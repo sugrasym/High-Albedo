@@ -13,7 +13,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
+ /*
  * Hardpoints are the locations where equipment is mounted.
  */
 package cargo;

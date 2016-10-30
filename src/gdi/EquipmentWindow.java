@@ -13,7 +13,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
+ /*
  * Window for displaying the status of a ship's equipment.
  */
 package gdi;
@@ -98,16 +98,12 @@ public class EquipmentWindow extends AstralWindow {
                 Station st = (Station) tmp;
                 if (ship.isDocked()) {
                     commInfo.setText("Press D To Launch");
+                } else if (ship.getPort() != null) {
+                    commInfo.setText("Request Accepted");
+                } else if (st.canDock(ship)) {
+                    commInfo.setText("Press D For Docking");
                 } else {
-                    if (ship.getPort() != null) {
-                        commInfo.setText("Request Accepted");
-                    } else {
-                        if (st.canDock(ship)) {
-                            commInfo.setText("Press D For Docking");
-                        } else {
-                            commInfo.setText("Docking Denied");
-                        }
-                    }
+                    commInfo.setText("Docking Denied");
                 }
             } else if (tmp instanceof Ship && !ship.isDocked()) {
                 if (tmp.isBailed()) {

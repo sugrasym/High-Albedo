@@ -13,7 +13,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
+ /*
  * A space station
  */
 package celestial.Ship;
@@ -109,8 +109,8 @@ public class Station extends Ship {
             if (faction.equals("Player")) {
                 //did it need an asteroid?
                 if (needAsteroid) {
-                //lets avoid the X3R problem and put the asteroid back
-                /*
+                    //lets avoid the X3R problem and put the asteroid back
+                    /*
                      * For those who don't know, the X3R problem was a somewhat frustrating bug in X3R where
                      * the destruction of an asteroid mine would permanently remove the asteroid. It would
                      * never respawn. This meant universal conquests would end up removing vital resources
@@ -139,7 +139,7 @@ public class Station extends Ship {
             state = State.ALIVE;
             shield = maxShield;
             hull = maxHull;
-            System.out.println(getName()+" was killed but was brought back because it is immortal.");
+            System.out.println(getName() + " was killed but was brought back because it is immortal.");
         }
     }
 
@@ -252,8 +252,8 @@ public class Station extends Ship {
         //calculate price
         int d = max - min;
         float per = (float) q / (float) s;
-        int x = (int) (d * (1 - per));
-        int price = min + x;
+        int _x = (int) (d * (1 - per));
+        int price = min + _x;
         if (price < min) {
             price = min;
         } else if (price > max) {
@@ -320,19 +320,16 @@ public class Station extends Ship {
                             //make sure it doesn't have funds
                             newShip.setCash(0);
                         }
-                    } else {
-                        /*
+                    } else /*
                          * This is pretty simple
-                         */
-                        //attempt transfer of item
-                        if (ship.addToCargoBay(tmp)) {
+                     */ //attempt transfer of item
+                     if (ship.addToCargoBay(tmp)) {
                             //decrement stocks
                             rel.setQuantity(rel.getQuantity() - 1);
                             //transfer funds
                             ship.setCash(ship.getCash() - price);
                             setCash(getCash() + price);
                         }
-                    }
                 }
             }
         }
@@ -396,8 +393,8 @@ public class Station extends Ship {
             String complex = relevant.getValue("rectBound");
             if (complex != null) {
                 String[] arr = complex.split("/");
-                for (int a = 0; a < arr.length; a++) {
-                    String[] re = arr[a].split(",");
+                for (String s : arr) {
+                    String[] re = s.split(",");
                     int bx0 = Integer.parseInt(re[0]);
                     int by0 = Integer.parseInt(re[1]);
                     int bx1 = Integer.parseInt(re[2]);
@@ -423,8 +420,8 @@ public class Station extends Ship {
             String complex = relevant.getValue("dock");
             if (complex != null) {
                 String[] arr = complex.split("/");
-                for (int a = 0; a < arr.length; a++) {
-                    String[] re = arr[a].split(",");
+                for (String s : arr) {
+                    String[] re = s.split(",");
                     int bx0 = Integer.parseInt(re[0]);
                     int by0 = Integer.parseInt(re[1]);
                     int bx1 = Integer.parseInt(re[2]);
@@ -446,11 +443,9 @@ public class Station extends Ship {
             String raw = relevant.getValue("process");
             if (raw != null) {
                 String[] arr = raw.split("/");
-                for (int a = 0; a < arr.length; a++) {
-                    Process p = new Process(this, arr[a], stationSelling, stationBuying);
-                    if (p != null) {
-                        processes.add(p);
-                    }
+                for (String s : arr) {
+                    Process p = new Process(this, s, stationSelling, stationBuying);
+                    processes.add(p);
                 }
             }
         }
@@ -578,7 +573,7 @@ public class Station extends Ship {
 
     @Override
     public String toString() {
-        String ret = "";
+        String ret;
         {
             if (!isAlternateString()) {
                 /*
@@ -678,18 +673,18 @@ public class Station extends Ship {
     public boolean isImmortal() {
         return immortal;
     }
-    
+
     public void setImmortal(boolean immortal) {
         this.immortal = immortal;
     }
 
     public void makeMortal() {
         immortal = false;
-        System.out.println(getName()+" is now mortal.");
+        System.out.println(getName() + " is now mortal.");
     }
-    
+
     public void makeImmortal() {
         immortal = true;
-        System.out.println("WARNING: "+getName()+" is now immortal.");
+        System.out.println("WARNING: " + getName() + " is now immortal.");
     }
 }

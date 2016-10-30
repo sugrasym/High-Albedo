@@ -13,7 +13,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
+ /*
  * Solar systems are a collection of planets and other celestials in a convenient
  * package. It provides zoning for the universe.
  */
@@ -136,7 +136,7 @@ public class SolarSystem implements Entity, Serializable {
     }
 
     private Star makeStar(Term starTerm) {
-        Star star = null;
+        Star star;
         {
             //extract terms
             String pName = starTerm.getValue("name");
@@ -166,7 +166,7 @@ public class SolarSystem implements Entity, Serializable {
     }
 
     private Asteroid makeAsteroid(Term asteroidTerm) {
-        Asteroid asteroid = null;
+        Asteroid asteroid;
         {
             String pName = asteroidTerm.getValue("name");
             double px = Double.parseDouble(asteroidTerm.getValue("x"));
@@ -183,7 +183,7 @@ public class SolarSystem implements Entity, Serializable {
     }
 
     private Planet makePlanet(Term planetTerm) {
-        Planet planet = null;
+        Planet planet;
         {
             //extract terms
             String pName = planetTerm.getValue("name");
@@ -213,7 +213,7 @@ public class SolarSystem implements Entity, Serializable {
     }
 
     private Ship makeShip(Term shipTerm) {
-        Ship ret = null;
+        Ship ret;
         Random rnd = new Random();
         {
             String ship = shipTerm.getValue("ship");
@@ -249,7 +249,7 @@ public class SolarSystem implements Entity, Serializable {
             ret.init(false);
             ret.addInitialCargo(cargo);
             //zero out cash for starting player ships
-            if(faction.equals("Player")) {
+            if (faction.equals("Player")) {
                 ret.setCash(0);
             }
             //put it in the right system next to the start object
@@ -282,16 +282,16 @@ public class SolarSystem implements Entity, Serializable {
     }
 
     private Station makeStation(Term shipTerm) {
-        Station ret = null;
+        Station ret;
         Random rnd = new Random();
         {
             String ship = shipTerm.getValue("ship");
             String near = shipTerm.getValue("near");
-            String name = shipTerm.getValue("name");
+            String _name = shipTerm.getValue("name");
             String faction = shipTerm.getValue("faction");
             String immortal = shipTerm.getValue("immortal");
             //create player
-            ret = new Station(name, ship);
+            ret = new Station(_name, ship);
             ret.setFaction(faction);
             //put it in the right system next to the start object
             if (near != null) {
@@ -327,7 +327,7 @@ public class SolarSystem implements Entity, Serializable {
     }
 
     private Jumphole makeJumphole(Term planetTerm) {
-        Jumphole ret = null;
+        Jumphole ret;
         {
             String pName = planetTerm.getValue("name");
             String out = planetTerm.getValue("out");
@@ -647,12 +647,10 @@ public class SolarSystem implements Entity, Serializable {
                 disposeGraphics();
                 System.out.println("System " + getName() + " disposed graphics.");
             }
-        } else {
-            //start deferred rendering
-            if (!hasGraphics && universe.playerShip.getState() == State.ALIVE) {
+        } else //start deferred rendering
+         if (!hasGraphics && universe.playerShip.getState() == State.ALIVE) {
                 initGraphics();
             }
-        }
     }
 
     private void updateSov() {

@@ -13,7 +13,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
+ /*
  * Extensible framework for in-game items.
  * Nathan Wiehoff, masternerdguy@yahoo.com
  */

@@ -13,7 +13,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
+ /*
  * Now for some meat. This class represents a cannon.
  */
 package cargo;
@@ -312,7 +312,7 @@ public class Weapon extends Equipment {
         //use any ammo
         useAmmo();
         //create projectile
-        String tName = "";
+        String tName;
         if (ammoType != null) {
             tName = ammoType.getName();
         } else {
@@ -381,10 +381,8 @@ public class Weapon extends Equipment {
         if (fireEffect != null) {
             if (!fireEffect.isPlaying()) {
                 host.playSound(fireEffect);
-            } else {
-                if (!loopFireEffect) {
-                    fireEffect.play();
-                }
+            } else if (!loopFireEffect) {
+                fireEffect.play();
             }
         }
         //reset timer
@@ -396,7 +394,7 @@ public class Weapon extends Equipment {
         //use any ammo
         useAmmo();
         //create projectile
-        String tName = "";
+        String tName;
         if (ammoType != null) {
             tName = ammoType.getName();
         } else {
@@ -458,10 +456,8 @@ public class Weapon extends Equipment {
         if (fireEffect != null) {
             if (!fireEffect.isPlaying()) {
                 host.playSound(fireEffect);
-            } else {
-                if (!loopFireEffect) {
-                    fireEffect.play();
-                }
+            } else if (!loopFireEffect) {
+                fireEffect.play();
             }
         }
         //reset timer

@@ -32,7 +32,8 @@ public class ColorMixer {
             this.c = c;
         }
     }
-    private List<Pair> color_list = new ArrayList<Pair>();
+
+    private final List<Pair> color_list = new ArrayList<>();
 
     public void attachColor(Color c, float weight) {
         color_list.add(new Pair(c, weight));

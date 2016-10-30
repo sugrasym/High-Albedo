@@ -13,7 +13,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
+ /*
  * A list is a, well, list of objects. You can select from the list, scroll
  * the list, and all kinds of neat stuff.
  */
@@ -102,11 +102,17 @@ public class AstralList extends AstralComponent {
 
     @Override
     public void periodicUpdate() {
-        if (scrollDirection == 0) {
-        } else if (scrollDirection == -1) {
-            scrollUp();
-        } else if (scrollDirection == 1) {
-            scrollDown();
+        switch (scrollDirection) {
+            case 0:
+                break;
+            case -1:
+                scrollUp();
+                break;
+            case 1:
+                scrollDown();
+                break;
+            default:
+                break;
         }
         if (listContents.size() < scrollPosition) {
             scrollPosition = listContents.size();
@@ -139,7 +145,6 @@ public class AstralList extends AstralComponent {
         if (index < listContents.size() && index > -1) {
             return listContents.get(index);
         } else {
-            index = 0;
             return null;
         }
     }

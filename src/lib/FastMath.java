@@ -13,7 +13,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
+ /*
  * Uses look up tables and is therefore significantly faster than the Math.atan2
  * implementation.
  * 
@@ -30,7 +30,7 @@ public class FastMath {
     private static final int ATAN2_DIM = (int) Math.sqrt(ATAN2_COUNT);
     private static final float INV_ATAN2_DIM_MINUS_1 = 1.0f / (ATAN2_DIM - 1);
     private static final float DEG = 180.0f / (float) Math.PI;
-    private static final float[] atan2 = new float[ATAN2_COUNT];
+    private static final float[] ATAN2 = new float[ATAN2_COUNT];
 
     static {
         for (int i = 0; i < ATAN2_DIM; i++) {
@@ -38,14 +38,11 @@ public class FastMath {
                 float x0 = (float) i / ATAN2_DIM;
                 float y0 = (float) j / ATAN2_DIM;
 
-                atan2[j * ATAN2_DIM + i] = (float) Math.atan2(y0, x0);
+                ATAN2[j * ATAN2_DIM + i] = (float) Math.atan2(y0, x0);
             }
         }
     }
 
-    /**
-     * ATAN2
-     */
     public static float atan2Deg(float y, float x) {
         return FastMath.atan2(y, x) * DEG;
     }
@@ -89,6 +86,6 @@ public class FastMath {
         int xi = (int) (x * invDiv);
         int yi = (int) (y * invDiv);
 
-        return (atan2[yi * ATAN2_DIM + xi] + add) * mul;
+        return (ATAN2[yi * ATAN2_DIM + xi] + add) * mul;
     }
 }

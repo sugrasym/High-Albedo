@@ -13,7 +13,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
+ /*
  * Pairs a sound with additional information about the clip
  */
 package lib;
@@ -84,12 +84,9 @@ public class Soundling {
         }
 
         private void stop() {
-            Thread s = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    clip.stop();
-                    playing = false;
-                }
+            Thread s = new Thread(() -> {
+                clip.stop();
+                playing = false;
             });
             s.start();
         }
@@ -100,12 +97,9 @@ public class Soundling {
         }
 
         private void loop() {
-            Thread s = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    clip.loop();
-                    playing = true;
-                }
+            Thread s = new Thread(() -> {
+                clip.loop();
+                playing = true;
             });
             s.start();
         }

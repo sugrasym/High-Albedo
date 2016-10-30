@@ -63,7 +63,7 @@ public abstract class TerrainPalette implements Cloneable {
      * @param informations
      */
     public TerrainPalette(PlanetInformation informations) {
-        colorRanges = new LinkedList<TerrainRange>();
+        colorRanges = new LinkedList<>();
         mixer = new ColorMixer();
         infos = informations;
     }
@@ -91,16 +91,16 @@ public abstract class TerrainPalette implements Cloneable {
      */
     public Colors getPointColor(ColorMixer mixer, int x, int y, int height, int slope, float temp) {
 
-        for (TerrainRange range : colorRanges) {
+        colorRanges.stream().forEach((range) -> {
             mixer.attachColor(range.getTerrainColor(), range.getFactor(x, y, height, slope, temp));
-        }
+        });
 
         Color terrain = mixer.getMixedColor();
         mixer.clear();
 
-        for (TerrainRange range : colorRanges) {
+        colorRanges.stream().forEach((range) -> {
             mixer.attachColor(range.getTerrainSpecular(), range.getFactor(x, y, height, slope, temp));
-        }
+        });
 
         Color specular = mixer.getMixedColor();
 

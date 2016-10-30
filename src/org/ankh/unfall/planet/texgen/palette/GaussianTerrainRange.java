@@ -20,16 +20,16 @@ import java.awt.Color;
 public class GaussianTerrainRange implements TerrainRange {
 
     //Height
-    private int m_minh, m_maxh; //Maximum height
-    private float m_mediumh, m_varianceh;
+    private final int m_minh, m_maxh; //Maximum height
+    private final float m_mediumh, m_varianceh;
     //Slope
-    private int m_mins, m_maxs;
-    private float m_mediums, m_variances;
+    private final int m_mins, m_maxs;
+    private final float m_mediums, m_variances;
     //Temp in Kelvin!!!
-    private int m_mint, m_maxt;
-    private float m_mediumt, m_variancet;
-    private Color m_color_terrain;
-    private Color m_color_specular;
+    private final int m_mint, m_maxt;
+    private final float m_mediumt, m_variancet;
+    private final Color m_color_terrain;
+    private final Color m_color_specular;
 
     public GaussianTerrainRange(int m_minh, int m_maxh, float m_mediumh,
             float m_varianceh, int m_mins, int m_maxs, float m_mediums,
@@ -55,8 +55,8 @@ public class GaussianTerrainRange implements TerrainRange {
         this.m_color_specular = m_color_specular;
     }
 
+    @Override
     public float getFactor(int x, int y, int height, int slope, float temperature) {
-
         if (m_maxh != -1 && height > m_maxh) {
             return 0;
         }
@@ -77,7 +77,6 @@ public class GaussianTerrainRange implements TerrainRange {
         if (m_mint != -1 && temperature < m_mint) {
             return 0;
         }
-
 
         /* Min/Max value clipping */
         float mhsqr = 0.0f, mssqr = 0.0f, mtsqr = 0.0f;
@@ -100,12 +99,12 @@ public class GaussianTerrainRange implements TerrainRange {
         return (float) (Math.exp(-(mhsqr + mssqr + mtsqr)));
     }
 
-    //@Override
+    @Override
     public Color getTerrainColor() {
         return m_color_terrain;
     }
 
-    //@Override
+    @Override
     public Color getTerrainSpecular() {
         return m_color_specular;
     }

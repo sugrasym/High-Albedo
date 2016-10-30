@@ -13,7 +13,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
+ /*
  * Contains a list of all sprites (THAT ARE NOT GENERATED ON THE FLY) for
  * easy retrieval.
  */
@@ -250,11 +250,11 @@ public class ResourceCache {
     }
 
     private class Spriteling {
+
         /*
          * Simple structure for linking a sprite to its name so it can be
          * easily referenced.
          */
-
         private final String name;
         private final Image sprite;
         private final int hash;

@@ -13,7 +13,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
+ /*
  * Responsible for keeping the universe active. Specifically,
  * 1. Manage patrols and traders - spawn replacements as needed
  * 2. Manage stations - spawn replacements as needed
@@ -80,15 +80,12 @@ public class God implements EngineElement {
             //store time
             lastFrame = System.nanoTime();
             //update
-            Thread s = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    checkStations();
-                    checkPatrols();
-                    checkTraders();
-                    checkMerchants();
-                    System.out.println("God cycled.");
-                }
+            Thread s = new Thread(() -> {
+                checkStations();
+                checkPatrols();
+                checkTraders();
+                checkMerchants();
+                System.out.println("God cycled.");
             });
             s.start();
         }
@@ -191,7 +188,7 @@ public class God implements EngineElement {
             }
             //do they meet the required density?
             for (int a = 0; a < count.length; a++) {
-                double density = 0;
+                double density;
                 //calculate density based on entity type
                 if (faction.isEmpire()) {
                     density = 1 + faction.getStations().get(a).getDouble() * faction.getSov().size();
@@ -202,8 +199,8 @@ public class God implements EngineElement {
                 //System.out.println(faction.getStations().get(a).getString() + " " + count[a]);
                 while (count[a] < density) {
                     //celestials
-                    Celestial host = null;
-                    SolarSystem pick = null;
+                    Celestial host;
+                    SolarSystem pick;
                     //branch based on entity type
                     if (faction.isEmpire()) {
                         //pick a system this faction owns
@@ -290,8 +287,8 @@ public class God implements EngineElement {
                 double density = faction.getMerchants().get(a).getDouble();
                 //System.out.println(faction.getMerchants().get(a).getString() + " " + count[a]);
                 while (count[a] < density) {
-                    Celestial host = null;
-                    SolarSystem pick = null;
+                    Celestial host;
+                    SolarSystem pick;
                     if (faction.isEmpire()) {
                         //pick a system this faction owns
                         ArrayList<SolarSystem> sov = faction.getSov();
@@ -377,8 +374,8 @@ public class God implements EngineElement {
                 double density = faction.getTraders().get(a).getDouble();
                 //System.out.println(faction.getTraders().get(a).getString() + " " + count[a]);
                 while (count[a] < density) {
-                    Celestial host = null;
-                    SolarSystem pick = null;
+                    Celestial host;
+                    SolarSystem pick;
                     if (faction.isEmpire()) {
                         //pick a system this faction owns
                         ArrayList<SolarSystem> sov = faction.getSov();
@@ -464,8 +461,8 @@ public class God implements EngineElement {
                 double density = faction.getPatrols().get(a).getDouble();
                 //System.out.println(faction.getPatrols().get(a).getString() + " " + count[a]);
                 while (count[a] < density) {
-                    Celestial host = null;
-                    SolarSystem pick = null;
+                    Celestial host;
+                    SolarSystem pick;
                     if (faction.isEmpire()) {
                         //pick a system this faction owns
                         ArrayList<SolarSystem> sov = faction.getSov();
@@ -578,7 +575,7 @@ public class God implements EngineElement {
         /*
          * Generates a ship from a template.
          */
-        Ship ret = null;
+        Ship ret;
         {
             String cargo = "";
             String install = "";

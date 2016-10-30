@@ -13,7 +13,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
+ /*
  * Program for automatically converting a set of images into widescreen and
  * standard backplates.
  */
@@ -35,10 +35,10 @@ import javax.swing.ImageIcon;
  */
 public class PlateMaker {
 
-    private static final int wideX = 1920;
-    private static final int wideY = 1080;
-    private static final int stdX = 1280;
-    private static final int stdY = 1024;
+    private static final int WIDE_X = 1920;
+    private static final int WIDE_Y = 1080;
+    private static final int STD_X = 1280;
+    private static final int STD_Y = 1024;
 
     private String name;
     private String inputDirectory;
@@ -74,13 +74,13 @@ public class PlateMaker {
                     Graphics z = buff.getGraphics();
                     z.drawImage(ico, 0, 0, null);
                     //create the std subsection
-                    int sx = (ico.getWidth(null) / 2) - (stdX / 2);
-                    int sy = (ico.getHeight(null) / 2) - (stdY / 2);
-                    BufferedImage std = buff.getSubimage(sx, sy, stdX, stdY);
+                    int sx = (ico.getWidth(null) / 2) - (STD_X / 2);
+                    int sy = (ico.getHeight(null) / 2) - (STD_Y / 2);
+                    BufferedImage std = buff.getSubimage(sx, sy, STD_X, STD_Y);
                     //create the wide subsection
-                    int wx = (ico.getWidth(null) / 2) - (wideX / 2);
-                    int wy = (ico.getHeight(null) / 2) - (wideY / 2);
-                    BufferedImage wide = buff.getSubimage(wx, wy, wideX, wideY);
+                    int wx = (ico.getWidth(null) / 2) - (WIDE_X / 2);
+                    int wy = (ico.getHeight(null) / 2) - (WIDE_Y / 2);
+                    BufferedImage wide = buff.getSubimage(wx, wy, WIDE_X, WIDE_Y);
                     //save the std image
                     File stdOut = new File(stdPath + name + a + ".png");
                     ImageIO.write(std, "png", stdOut);

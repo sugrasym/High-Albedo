@@ -12,7 +12,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-/*
+ /*
  * A unit used for an explosion effect.
  */
 package celestial.Ship;
@@ -113,7 +113,7 @@ public class Explosion extends Ship {
             bound.add(new Rectangle((int) getX(), (int) getY(), 50, 50));
         }
     }
-    
+
     @Override
     public boolean quickCollideWith(Rectangle target) {
         if (width != 0 && height != 0) {

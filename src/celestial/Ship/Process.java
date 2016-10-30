@@ -13,7 +13,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
+ /*
  * A manufacturing process that takes an input and returns an output
  * on a schedule.
  */
@@ -88,9 +88,9 @@ public class Process implements Serializable {
             String resource = relevant.getValue("resource");
             if (resource != null) {
                 String[] rArr = resource.split("/");
-                for (int a = 0; a < rArr.length; a++) {
-                    Item p = new Item(rArr[a].split(",")[0]);
-                    p.setQuantity(Integer.parseInt(rArr[a].split(",")[1]));
+                for (String rs : rArr) {
+                    Item p = new Item(rs.split(",")[0]);
+                    p.setQuantity(Integer.parseInt(rs.split(",")[1]));
                     resources.add(p);
                     //see if the station has this registered as a resource
                     boolean needed = true;
@@ -103,7 +103,7 @@ public class Process implements Serializable {
                     }
                     if (needed) {
                         //add it to the resource table so it can be bought
-                        Item p2 = new Item(rArr[a].split(",")[0]);
+                        Item p2 = new Item(rs.split(",")[0]);
                         p2.setQuantity(0);
                         stationBuying.add(p2);
                     }
@@ -150,9 +150,8 @@ public class Process implements Serializable {
 
             //increment timer
             timer += tpf;
-        } else {
-            //process complete, deliver products and reset
-            if (canDeliver()) {
+        } else //process complete, deliver products and reset
+         if (canDeliver()) {
                 for (int a = 0; a < products.size(); a++) {
                     for (int b = 0; b < stationSelling.size(); b++) {
                         if (products.get(a).getName().equals(stationSelling.get(b).getName())) {
@@ -166,7 +165,6 @@ public class Process implements Serializable {
             } else {
                 //no room for product delivery, stalled
             }
-        }
     }
 
     public boolean canDeliver() {

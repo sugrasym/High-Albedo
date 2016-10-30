@@ -13,7 +13,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
+ /*
  * Maps a set of likes and dislikes to a celestial. Useful for starting fights
  * and restricting docking.
  * 
@@ -55,7 +55,7 @@ public class Faction implements Serializable {
     private final ArrayList<String> friendlyNotifications = new ArrayList<>();
     private final ArrayList<String> rumorList = new ArrayList<>();
     private final ArrayList<String> campaignList = new ArrayList<>();
-    
+
     public Faction(String name) {
         this.name = name;
         init();
@@ -72,10 +72,10 @@ public class Faction implements Serializable {
                  */
                 {
                     int x = 0;
-                    String type = "";
+                    String type;
                     while ((type = comms.get(a).getValue("contraband" + x)) != null) {
                         //get station info
-                        String ty = type.toString();
+                        String ty = type;
                         contrabandNotifications.add(ty);
                         //iterate
                         x++;
@@ -86,10 +86,10 @@ public class Faction implements Serializable {
                  */
                 {
                     int x = 0;
-                    String type = "";
+                    String type;
                     while ((type = comms.get(a).getValue("hate" + x)) != null) {
                         //get station info
-                        String ty = type.toString();
+                        String ty = type;
                         hateNotifications.add(ty);
                         //iterate
                         x++;
@@ -100,10 +100,10 @@ public class Faction implements Serializable {
                  */
                 {
                     int x = 0;
-                    String type = "";
+                    String type;
                     while ((type = comms.get(a).getValue("neut" + x)) != null) {
                         //get station info
-                        String ty = type.toString();
+                        String ty = type;
                         neutralNotifications.add(ty);
                         //iterate
                         x++;
@@ -114,10 +114,10 @@ public class Faction implements Serializable {
                  */
                 {
                     int x = 0;
-                    String type = "";
+                    String type;
                     while ((type = comms.get(a).getValue("love" + x)) != null) {
                         //get station info
-                        String ty = type.toString();
+                        String ty = type;
                         getFriendlyNotifications().add(ty);
                         //iterate
                         x++;
@@ -128,10 +128,10 @@ public class Faction implements Serializable {
                  */
                 {
                     int x = 0;
-                    String type = "";
+                    String type;
                     while ((type = comms.get(a).getValue("rumor" + x)) != null) {
                         //get station info
-                        String ty = type.toString();
+                        String ty = type;
                         getRumorList().add(ty);
                         //iterate
                         x++;
@@ -142,10 +142,10 @@ public class Faction implements Serializable {
                  */
                 {
                     int x = 0;
-                    String type = "";
+                    String type;
                     while ((type = comms.get(a).getValue("campaign" + x)) != null) {
                         //get station info
-                        String ty = type.toString();
+                        String ty = type;
                         getCampaignList().add(ty);
                         //iterate
                         x++;
@@ -349,7 +349,7 @@ public class Faction implements Serializable {
     public ArrayList<String> getRumorList() {
         return rumorList;
     }
-    
+
     public ArrayList<String> getCampaignList() {
         return campaignList;
     }

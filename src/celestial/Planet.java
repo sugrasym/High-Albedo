@@ -115,19 +115,28 @@ public class Planet extends Celestial {
                             //setup palette
                             TerrainPalette palette = null;
                             String pal = texture.getValue("palette");
-                            if (pal.equals("Earth")) {
-                                palette = new EarthPalette(info);
-                            } else if (pal.equals("Mars")) {
-                                palette = new MarsPalette(info);
-                            } else if (pal.equals("Hospitable")) {
-                                palette = new HospitablePalette(info);
-                            } else if (pal.equals("Strange")) {
-                                palette = new StrangePalette(info);
-                            } else if (pal.equals("Lava")) {
-                                palette = new LavaPalette(info);
-                            } else if (pal.equals("Alien")) {
-                                palette = new AlienPalette(info);
-                            }       //call the procedural planet generator
+                            switch (pal) {
+                                case "Earth":
+                                    palette = new EarthPalette(info);
+                                    break;
+                                case "Mars":
+                                    palette = new MarsPalette(info);
+                                    break;
+                                case "Hospitable":
+                                    palette = new HospitablePalette(info);
+                                    break;
+                                case "Strange":
+                                    palette = new StrangePalette(info);
+                                    break;
+                                case "Lava":
+                                    palette = new LavaPalette(info);
+                                    break;
+                                case "Alien":
+                                    palette = new AlienPalette(info);
+                                    break;
+                                default:
+                                    break;
+                            }
                             PlanetGenerator plan = new ContinentalGenerator(2 * getUniverse().getSettings().RENDER_SIZE, getUniverse().getSettings().RENDER_SIZE, info, palette);
                             //paint texture
                             gfx.drawImage(plan.getDebugImageMap(PlanetGenerator.MAP_COLOR), 0, 0, null);

@@ -118,7 +118,7 @@ public class AstralWindow extends AstralComponent {
         if (visible) {
             //change focus based on mouse position
             updateFocus(me);
-            
+
             //pass through event
             for (int a = 0; a < components.size(); a++) {
                 if (components.get(a).isFocused()) {
@@ -155,7 +155,7 @@ public class AstralWindow extends AstralComponent {
         if (visible) {
             //change focus based on mouse position
             updateFocus(me);
-            
+
             //pass through event
             for (int a = 0; a < components.size(); a++) {
                 if (components.get(a).isFocused()) {

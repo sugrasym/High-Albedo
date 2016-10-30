@@ -28,7 +28,7 @@ import org.ankh.unfall.system.thread.ForRunnable;
  */
 public class ColorForRunnable implements ForRunnable {
 
-    private ColorMixer mixer = new ColorMixer();
+    private final ColorMixer mixer;
     private TerrainPalette palette;
     private int[] heightMap;
     private int[] specMap;
@@ -51,9 +51,11 @@ public class ColorForRunnable implements ForRunnable {
     }
 
     private ColorForRunnable() {
+        this.mixer = new ColorMixer();
     }
 
     public ColorForRunnable(TerrainPalette palette, PlanetInformation infos, int height, int width, int[] heightMap, int[] specMap, int[] colMap) {
+        this.mixer = new ColorMixer();
         this.infos = infos;
 
         this.palette = palette;
@@ -75,7 +77,7 @@ public class ColorForRunnable implements ForRunnable {
         }
     }
 
-    //@Override
+    @Override
     public ForRunnable copy() {
         ColorForRunnable copie = new ColorForRunnable();
 
@@ -97,16 +99,16 @@ public class ColorForRunnable implements ForRunnable {
         return copie;
     }
 
-    //@Override
+    @Override
     public void run(int index) {
         int x = index & widthm1;
         int y = index >> shift;
 
-        int height = heightMap[index];
+        int _height = heightMap[index];
         int slope = getSlope(x, y);
-        float temp = getTemperature(y, height);
+        float temp = getTemperature(y, _height);
 
-        Colors colors = palette.getPointColor(mixer, x, y, height, slope, temp);
+        Colors colors = palette.getPointColor(mixer, x, y, _height, slope, temp);
 
         specMap[index] = colors.getSpecular().getRGB() | 0xFF000000;
         colMap[index] = colors.getTerrain().getRGB() | 0xFF000000;

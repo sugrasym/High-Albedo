@@ -13,7 +13,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
+ /*
  * A health bar, progress bar, or any other kind of variable color bar you need.
  */
 package gdi.component;

@@ -12,7 +12,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-/*
+ /*
  * Reusable interface for game entities
  */
 package engine;
@@ -33,19 +33,19 @@ public interface Entity {
         DYING,
         DEAD
     }
+
     /*
      * Initialization and updating
      */
-
     public void init(boolean loadedGame);
 
     public void periodicUpdate(double tpf);
 
     public void render(Graphics f, double dx, double dy);
+
     /*
      * State information
      */
-
     public State getState();
 
     public ArrayList<Rectangle> getBounds();
@@ -53,14 +53,14 @@ public interface Entity {
     public boolean collideWith(Entity target);
 
     public boolean collideWith(Rectangle target);
-    
+
     public boolean quickCollideWith(Rectangle target);
 
     public void informOfCollisionWith(Entity target);
+
     /*
      * Position information
      */
-
     public double getX();
 
     public double getY();
@@ -68,10 +68,10 @@ public interface Entity {
     public void setX(double x);
 
     public void setY(double y);
+
     /*
      * Name....
      */
-
     public String getName();
 
     public void setName(String name);

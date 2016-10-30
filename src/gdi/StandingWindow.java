@@ -13,7 +13,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
+ /*
  * Allows the standings of the player to be viewed.
  * Nathan Wiehoff
  */
@@ -169,7 +169,7 @@ public class StandingWindow extends AstralWindow {
                 infoList.addToList("--Contraband--");
                 infoList.addToList(" ");
                 for (int a = 0; a < selected.getContraband().size(); a++) {
-                    infoList.addToList(selected.getContraband().get(a).toString());
+                    infoList.addToList(selected.getContraband().get(a));
                 }
             }
         }
@@ -198,15 +198,13 @@ public class StandingWindow extends AstralWindow {
                     if (cursor + len <= lineWidth) {
                         tmp += " " + words[a];
                         cursor += len;
+                    } else if (lineWidth > len) {
+                        infoList.addToList(tmp);
+                        tmp = "";
+                        cursor = 0;
+                        a--;
                     } else {
-                        if (lineWidth > len) {
-                            infoList.addToList(tmp);
-                            tmp = "";
-                            cursor = 0;
-                            a--;
-                        } else {
-                            tmp += "[LEN!]";
-                        }
+                        tmp += "[LEN!]";
                     }
                 } else {
                     infoList.addToList(tmp);
@@ -217,7 +215,7 @@ public class StandingWindow extends AstralWindow {
                     }
                 }
             }
-            infoList.addToList(tmp.toString());
+            infoList.addToList(tmp);
         }
     }
 

@@ -13,7 +13,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
+ /*
  * System for managing "conversations" between the player and NPCs. It is not
  * a messaging system for use by NPCs to talk to other NPCs.
  */
@@ -82,7 +82,7 @@ public class Conversation implements Serializable {
             //generate binlings
             ArrayList<Binling> cho = new ArrayList<>();
             int v = 0;
-            String type = "";
+            String type;
             while ((type = list.get(a).getValue("choice" + v)) != null) {
                 //get station info
                 String msg = type.split("/")[0];
@@ -116,40 +116,45 @@ public class Conversation implements Serializable {
         //does this bindling have additional params?
         if (choice.getStr().size() > 1) {
             //is this a mission offer?
-            if (choice.getStr().get(1).equals("MISSION")) {
-                //generate a mission
-                tmpMission = new Mission(owner);
-                if (tmpMission.getBriefing() != null) {
-                    //append mission body
-                    String body = makeMissionDescription(tmpMission);
-                    currentNode.setMessage(currentNode.getMessage().replace("<#MISSION>", body));
-                } else {
-                    currentNode = findNode("END");
-                }
-            } else if (choice.getStr().get(1).equals("START_MISSION")) {
-                //assign generated mission
-                if (tmpMission != null) {
-                    owner.getUniverse().getPlayerMissions().add(tmpMission);
-                }
-            } else if (choice.getStr().get(1).equals("RUMOR")) {
-                //get a rumor
-                if (owner.getMyFaction().getRumorList().size() > 0) {
-                    String pick = owner.getMyFaction().getRumorList().get(rnd.nextInt(owner.getMyFaction().getRumorList().size()));
-                    currentNode = findNode(pick);
-                } else {
-                    currentNode = findNode("END");
-                }
-            } else {
-                //these are the more complex options
-                String[] split = choice.getStr().get(1).split("::");
-                if (split.length > 1) {
-                    if (split[0].equals("START_CAMPAIGN")) {
-                        tmpCampaign = new Campaign(owner.getUniverse(),split[1]);
-                        owner.getUniverse().getPlayerCampaigns().add(tmpCampaign);
+            switch (choice.getStr().get(1)) {
+                case "MISSION":
+                    //generate a mission
+                    tmpMission = new Mission(owner);
+                    if (tmpMission.getBriefing() != null) {
+                        //append mission body
+                        String body = makeMissionDescription(tmpMission);
+                        currentNode.setMessage(currentNode.getMessage().replace("<#MISSION>", body));
+                    } else {
+                        currentNode = findNode("END");
                     }
-                } else {
-                    //I got nothing
-                }
+                    break;
+                case "START_MISSION":
+                    //assign generated mission
+                    if (tmpMission != null) {
+                        owner.getUniverse().getPlayerMissions().add(tmpMission);
+                    }
+                    break;
+                case "RUMOR":
+                    //get a rumor
+                    if (owner.getMyFaction().getRumorList().size() > 0) {
+                        String pick = owner.getMyFaction().getRumorList().get(rnd.nextInt(owner.getMyFaction().getRumorList().size()));
+                        currentNode = findNode(pick);
+                    } else {
+                        currentNode = findNode("END");
+                    }
+                    break;
+                default:
+                    //these are the more complex options
+                    String[] split = choice.getStr().get(1).split("::");
+                    if (split.length > 1) {
+                        if (split[0].equals("START_CAMPAIGN")) {
+                            tmpCampaign = new Campaign(owner.getUniverse(), split[1]);
+                            owner.getUniverse().getPlayerCampaigns().add(tmpCampaign);
+                        }
+                    } else {
+                        //I got nothing
+                    }
+                    break;
             }
         } else {
             //nope

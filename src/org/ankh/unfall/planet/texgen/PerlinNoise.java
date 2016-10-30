@@ -22,9 +22,9 @@ package org.ankh.unfall.planet.texgen;
  */
 public class PerlinNoise {
 
-    private int m_layerCount;
-    private int m_width, m_height;
-    private Randomizer3D2 randomizer;
+    private final int m_layerCount;
+    private final int m_width, m_height;
+    private final Randomizer3D2 randomizer;
 
     private float getLayers(int x, int y, int layer) {
         int heightm1 = (m_height >> layer) - 1;

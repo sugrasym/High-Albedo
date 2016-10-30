@@ -13,7 +13,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
+ /*
  * A space ship!
  */
 package celestial.Ship;
@@ -524,20 +524,26 @@ public class Ship extends Celestial {
         try {
             if (getAutopilot() == Autopilot.NONE) {
                 //do nothing
-            } else {
-                if (autopilot == Autopilot.FLY_TO_CELESTIAL) {
-                    //call components
-                    autopilotFlyToBlock();
-                } else if (autopilot == Autopilot.WAIT) {
-                    autopilotWaitBlock();
-                } else if (autopilot == Autopilot.FOLLOW) {
-                    autopilotFollowBlock();
-                } else if (autopilot == Autopilot.ALL_STOP) {
-                    autopilotAllStopBlock();
-                } else {
-                    autopilotFightingBlock();
-                    autopilotDockingBlock();
-                    autopilotUndockingBlock();
+            } else if (null != autopilot) {
+                switch (autopilot) {
+                    case FLY_TO_CELESTIAL:
+                        //call components
+                        autopilotFlyToBlock();
+                        break;
+                    case WAIT:
+                        autopilotWaitBlock();
+                        break;
+                    case FOLLOW:
+                        autopilotFollowBlock();
+                        break;
+                    case ALL_STOP:
+                        autopilotAllStopBlock();
+                        break;
+                    default:
+                        autopilotFightingBlock();
+                        autopilotDockingBlock();
+                        autopilotUndockingBlock();
+                        break;
                 }
             }
         } catch (Exception e) {
@@ -548,16 +554,21 @@ public class Ship extends Celestial {
     }
 
     protected boolean isExemptFromAvoidance() {
-        if (getAutopilot() == Autopilot.DOCK_STAGE2) {
-            return true;
-        } else if (getAutopilot() == Autopilot.DOCK_STAGE3) {
-            return true;
-        } else if (getAutopilot() == Autopilot.UNDOCK_STAGE1) {
-            return true;
-        } else if (getAutopilot() == Autopilot.UNDOCK_STAGE2) {
-            return true;
-        } else if (getAutopilot() == Autopilot.ATTACK_TARGET) {
-            return true;
+        if (null != getAutopilot()) {
+            switch (getAutopilot()) {
+                case DOCK_STAGE2:
+                    return true;
+                case DOCK_STAGE3:
+                    return true;
+                case UNDOCK_STAGE1:
+                    return true;
+                case UNDOCK_STAGE2:
+                    return true;
+                case ATTACK_TARGET:
+                    return true;
+                default:
+                    break;
+            }
         }
         return false;
     }
@@ -570,8 +581,8 @@ public class Ship extends Celestial {
             double cx = getCenterX();
             double cy = getCenterY();
             //solution distances
-            double solPlus = 0;
-            double solMinus = 0;
+            double solPlus;
+            double solMinus;
             //predict future location
             double fT = getTheta() + Math.PI / 2;
             double tdx = accel * Math.cos(fT);
@@ -635,8 +646,8 @@ public class Ship extends Celestial {
 
     public Line2D getDodgeLine() {
         double iT = theta;
-        double dx = 0;
-        double dy = 0;
+        double dx;
+        double dy;
         //generate differences
         dx = -4 * Math.abs(getWidth()) * Math.cos(iT);
         dy = -4 * Math.abs(getHeight()) * Math.sin(iT);
@@ -761,12 +772,10 @@ public class Ship extends Celestial {
                     double dist = distanceTo(flyToTarget);
                     if (dist < (autopilotRange) + (getWidth() * 2)) {
                         decelerate();
+                    } else if (dist > (autopilotRange) + (getWidth() * 6)) {
+                        moveToPositionWithHold(flyToTarget.getX(), flyToTarget.getY(), getFollowHold());
                     } else {
-                        if (dist > (autopilotRange) + (getWidth() * 6)) {
-                            moveToPositionWithHold(flyToTarget.getX(), flyToTarget.getY(), getFollowHold());
-                        } else {
-                            //wait
-                        }
+                        //wait
                     }
                 } else {
                     //determine if this is a system we could jump to
@@ -794,7 +803,7 @@ public class Ship extends Celestial {
                         cmdAllStop();
                     } else {
                         //determine correct hold to use
-                        double hold = 0;
+                        double hold;
                         if (dist <= getFlightHold()) {
                             hold = dist;
                         } else {
@@ -835,77 +844,85 @@ public class Ship extends Celestial {
     }
 
     protected void autopilotUndockingBlock() {
-        if (getAutopilot() == Autopilot.UNDOCK_STAGE1) {
-            /*
-             * get out of the docking port.
-             */
-            double lx = x - port.getAlignX();
-            double ly = y - port.getAlignY();
-            //setup nav parameters
-            double dist;
-            double desired;
-            double speed = magnitude(vx, vy);
-            double hold = accel;
-            //pick the right axis and calculate angle
-            if (lx > ly) {
-                dist = magnitude((lx), 0);
-                desired = FastMath.atan2(0, lx);
-            } else {
-                dist = magnitude(0, (ly));
-                desired = FastMath.atan2(ly, 0);
-            }
-            //turn towards desired angle
-            desired = (desired + 2.0 * Math.PI) % (2.0 * Math.PI);
-            if (Math.abs(theta - desired) > turning * tpf) {
-                if (theta - desired > 0) {
-                    rotateMinus();
-                } else if (theta - desired < 0) {
-                    rotatePlus();
-                }
-            } else {
-                theta = desired;
-                if (dist < hold) {
-                    decelerate();
-                    if (speed == 0) {
-                        setAutopilot(Autopilot.UNDOCK_STAGE2);
+        if (null != getAutopilot()) {
+            switch (getAutopilot()) {
+                case UNDOCK_STAGE1: {
+                    /*
+                * get out of the docking port.
+                     */
+                    double lx = x - port.getAlignX();
+                    double ly = y - port.getAlignY();
+                    //setup nav parameters
+                    double dist;
+                    double desired;
+                    double speed = magnitude(vx, vy);
+                    double hold = accel;
+                    //pick the right axis and calculate angle
+                    if (lx > ly) {
+                        dist = magnitude((lx), 0);
+                        desired = FastMath.atan2(0, lx);
+                    } else {
+                        dist = magnitude(0, (ly));
+                        desired = FastMath.atan2(ly, 0);
+                    }       //turn towards desired angle
+                    desired = (desired + 2.0 * Math.PI) % (2.0 * Math.PI);
+                    if (Math.abs(theta - desired) > turning * tpf) {
+                        if (theta - desired > 0) {
+                            rotateMinus();
+                        } else if (theta - desired < 0) {
+                            rotatePlus();
+                        }
+                    } else {
+                        theta = desired;
+                        if (dist < hold) {
+                            decelerate();
+                            if (speed == 0) {
+                                setAutopilot(Autopilot.UNDOCK_STAGE2);
+                            }
+                        } else if (speed > hold) {
+                            //we're getting further from the goal, slow down
+                            decelerate();
+                        } else if (speed <= hold) {
+                            fireRearThrusters(); //accelerate
+                        }
                     }
-                } else {
-                    if (speed > hold) {
-                        //we're getting further from the goal, slow down
-                        decelerate();
-                    } else if (speed <= hold) {
-                        fireRearThrusters(); //accelerate
+                    break;
+                }
+                case UNDOCK_STAGE2: {
+                    /*
+                * align down the line so that we can thrust out of the dock
+                     */
+                    double ax = x - port.getAlignX();
+                    double ay = y - port.getAlignY();
+                    //
+                    double desired = FastMath.atan2(ay, ax);
+                    desired = (desired + 2.0 * Math.PI) % (2.0 * Math.PI);
+                    if (Math.abs(theta - desired) > turning * tpf) {
+                        if (theta - desired > 0) {
+                            rotateMinus();
+                        } else if (theta - desired < 0) {
+                            rotatePlus();
+                        }
+                    } else {
+                        theta = desired;
+                        autopilot = Autopilot.UNDOCK_STAGE3;
                     }
+                    break;
                 }
-            }
-        } else if (getAutopilot() == Autopilot.UNDOCK_STAGE2) {
-            /*
-             * align down the line so that we can thrust out of the dock
-             */
-            double ax = x - port.getAlignX();
-            double ay = y - port.getAlignY();
-            //
-            double desired = FastMath.atan2(ay, ax);
-            desired = (desired + 2.0 * Math.PI) % (2.0 * Math.PI);
-            if (Math.abs(theta - desired) > turning * tpf) {
-                if (theta - desired > 0) {
-                    rotateMinus();
-                } else if (theta - desired < 0) {
-                    rotatePlus();
+                case UNDOCK_STAGE3: {
+                    double ax = x - port.getAlignX();
+                    double ay = y - port.getAlignY();
+                    double dist = magnitude((ax), (ay));
+                    double speed = magnitude(vx, vy);
+                    fireRearThrusters();
+                    if (dist > 1000 || (speed > dist)) {
+                        autopilot = Autopilot.NONE;
+                        port = null;
+                    }
+                    break;
                 }
-            } else {
-                theta = desired;
-                autopilot = Autopilot.UNDOCK_STAGE3;
-            }
-        } else if (getAutopilot() == Autopilot.UNDOCK_STAGE3) {
-            double ax = x - port.getAlignX();
-            double ay = y - port.getAlignY();
-            double dist = magnitude((ax), (ay));
-            double speed = magnitude(vx, vy);
-            fireRearThrusters();
-            if (dist > 1000 || (speed > dist)) {
-                autopilot = Autopilot.NONE;
-                port = null;
+                default:
+                    break;
             }
         }
     }
@@ -958,159 +975,163 @@ public class Ship extends Celestial {
     }
 
     protected void autopilotDockingBlock() {
-        if (getAutopilot() == Autopilot.DOCK_STAGE1) {
-            /*
-             * The goal of stage 1 is to get permission to dock, get a docking port, and to get to the
-             * location of the docking align for that port, and then stop the ship.
-             */
-            //make sure we have a flyToTarget
-            if (flyToTarget != null) {
-                //make sure it is a station
-                if (flyToTarget instanceof Station && flyToTarget.getState() == State.ALIVE) {
-                    //make sure we can actually dock there
-                    Station tmp = (Station) flyToTarget;
-                    if (tmp.canDock(this) && tmp.getCurrentSystem() == currentSystem) {
-                        if (port == null) {
-                            //get the docking port to use
-                            port = tmp.requestDockPort(this);
-                        } else {
-                            //get the docking align
-                            double ax = x - port.getAlignX();
-                            double ay = y - port.getAlignY();
-                            double dist = magnitude((ax), (ay));
-                            double speed = magnitude(vx, vy);
-                            double hold = 0;
-                            //calculate hold
-                            if (dist > 500) {
-                                hold = accel * 3;
-                            } else {
-                                hold = width / 2;
-                            }
-                            //
-                            double desired = FastMath.atan2(ay, ax);
-                            desired = (desired + 2.0 * Math.PI) % (2.0 * Math.PI);
-                            if (Math.abs(theta - desired) > turning * tpf) {
-                                if (theta - desired > 0) {
-                                    rotateMinus();
-                                } else if (theta - desired < 0) {
-                                    rotatePlus();
-                                }
-                            } else {
-                                if (dist < hold) {
-                                    if (speed == 0 && dist < width) {
-                                        setAutopilot(Autopilot.DOCK_STAGE2);
-                                    } else {
-                                        decelerate();
-                                    }
+        if (null != getAutopilot()) {
+            switch (getAutopilot()) {
+                case DOCK_STAGE1:
+                    /*
+                * The goal of stage 1 is to get permission to dock, get a docking port, and to get to the
+                * location of the docking align for that port, and then stop the ship.
+                     */
+                    //make sure we have a flyToTarget
+                    if (flyToTarget != null) {
+                        //make sure it is a station
+                        if (flyToTarget instanceof Station && flyToTarget.getState() == State.ALIVE) {
+                            //make sure we can actually dock there
+                            Station tmp = (Station) flyToTarget;
+                            if (tmp.canDock(this) && tmp.getCurrentSystem() == currentSystem) {
+                                if (port == null) {
+                                    //get the docking port to use
+                                    port = tmp.requestDockPort(this);
                                 } else {
-                                    boolean canAccel = true;
-                                    //this is damage control - it deals with bad initial velocities and out of control spirals
-                                    //check x axis
-                                    double dPx = 0;
-                                    double d1x = magnitude(ax, 0);
-                                    double d2x = magnitude((x + vx) - (port.getAlignX() + flyToTarget.getVx()), 0);
-                                    dPx = d2x - d1x;
-                                    if (dPx > 0) {
-                                        //we're getting further from the goal, slow down
-                                        decelX();
-                                        canAccel = false;
+                                    //get the docking align
+                                    double ax = x - port.getAlignX();
+                                    double ay = y - port.getAlignY();
+                                    double dist = magnitude((ax), (ay));
+                                    double speed = magnitude(vx, vy);
+                                    double hold = 0;
+                                    //calculate hold
+                                    if (dist > 500) {
+                                        hold = accel * 3;
+                                    } else {
+                                        hold = width / 2;
                                     }
-                                    //check y axis
-                                    double dPy = 0;
-                                    double d1y = magnitude(0, ay);
-                                    double d2y = magnitude(0, (y + vy) - (port.getAlignY() + flyToTarget.getVy()));
-                                    dPy = d2y - d1y;
-                                    if (dPy > 0) {
-                                        //we're getting further from the goal, slow down
-                                        decelY();
-                                        canAccel = false;
-                                    }
-                                    //accel if needed
-                                    if (canAccel && speed < hold) {
-                                        fireRearThrusters();
+                                    //
+                                    double desired = FastMath.atan2(ay, ax);
+                                    desired = (desired + 2.0 * Math.PI) % (2.0 * Math.PI);
+                                    if (Math.abs(theta - desired) > turning * tpf) {
+                                        if (theta - desired > 0) {
+                                            rotateMinus();
+                                        } else if (theta - desired < 0) {
+                                            rotatePlus();
+                                        }
+                                    } else if (dist < hold) {
+                                        if (speed == 0 && dist < width) {
+                                            setAutopilot(Autopilot.DOCK_STAGE2);
+                                        } else {
+                                            decelerate();
+                                        }
+                                    } else {
+                                        boolean canAccel = true;
+                                        //this is damage control - it deals with bad initial velocities and out of control spirals
+                                        //check x axis
+                                        double dPx = 0;
+                                        double d1x = magnitude(ax, 0);
+                                        double d2x = magnitude((x + vx) - (port.getAlignX() + flyToTarget.getVx()), 0);
+                                        dPx = d2x - d1x;
+                                        if (dPx > 0) {
+                                            //we're getting further from the goal, slow down
+                                            decelX();
+                                            canAccel = false;
+                                        }
+                                        //check y axis
+                                        double dPy = 0;
+                                        double d1y = magnitude(0, ay);
+                                        double d2y = magnitude(0, (y + vy) - (port.getAlignY() + flyToTarget.getVy()));
+                                        dPy = d2y - d1y;
+                                        if (dPy > 0) {
+                                            //we're getting further from the goal, slow down
+                                            decelY();
+                                            canAccel = false;
+                                        }
+                                        //accel if needed
+                                        if (canAccel && speed < hold) {
+                                            fireRearThrusters();
+                                        }
                                     }
                                 }
+                            } else {
+                                cmdAbortDock();
                             }
+                        } else {
+                            cmdAbortDock();
                         }
                     } else {
                         cmdAbortDock();
                     }
-                } else {
-                    cmdAbortDock();
-                }
-            } else {
-                cmdAbortDock();
-            }
-        } else if (getAutopilot() == Autopilot.DOCK_STAGE2) {
-            /*
-             * The goal of this docking stage is to align towards the docking port, but so that
-             * only one axis is used in the alignment. Thrust is then applied and the ship moves
-             * along a single axis until it is near the port on that axis. It then transfers
-             * control to stage 3.
-             */
-            //determine which axis is further away
-            double lx = x - port.getPortX();
-            double ly = y - port.getPortY();
-            //setup nav parameters
-            double dist;
-            double desired;
-            double speed = magnitude(vx, vy);
-            double hold = accel * 2;
-            //pick the right axis and calculate angle
-            if (lx > ly) {
-                dist = magnitude((lx), 0);
-                desired = FastMath.atan2(0, lx);
-            } else {
-                dist = magnitude(0, (ly));
-                desired = FastMath.atan2(ly, 0);
-            }
-            //turn towards desired angle
-            desired = (desired + 2.0 * Math.PI) % (2.0 * Math.PI);
-            if (Math.abs(theta - desired) > turning * tpf) {
-                if (theta - desired > 0) {
-                    rotateMinus();
-                } else if (theta - desired < 0) {
-                    rotatePlus();
-                }
-            } else {
-                theta = desired;
-                if (dist < hold) {
-                    decelerate();
-                    if (speed == 0) {
-                        setAutopilot(Autopilot.DOCK_STAGE3);
+                    break;
+                case DOCK_STAGE2: {
+                    /*
+                * The goal of this docking stage is to align towards the docking port, but so that
+                * only one axis is used in the alignment. Thrust is then applied and the ship moves
+                * along a single axis until it is near the port on that axis. It then transfers
+                * control to stage 3.
+                     */
+                    //determine which axis is further away
+                    double lx = x - port.getPortX();
+                    double ly = y - port.getPortY();
+                    //setup nav parameters
+                    double dist;
+                    double desired;
+                    double speed = magnitude(vx, vy);
+                    double hold = accel * 2;
+                    //pick the right axis and calculate angle
+                    if (lx > ly) {
+                        dist = magnitude((lx), 0);
+                        desired = FastMath.atan2(0, lx);
+                    } else {
+                        dist = magnitude(0, (ly));
+                        desired = FastMath.atan2(ly, 0);
+                    }       //turn towards desired angle
+                    desired = (desired + 2.0 * Math.PI) % (2.0 * Math.PI);
+                    if (Math.abs(theta - desired) > turning * tpf) {
+                        if (theta - desired > 0) {
+                            rotateMinus();
+                        } else if (theta - desired < 0) {
+                            rotatePlus();
+                        }
+                    } else {
+                        theta = desired;
+                        if (dist < hold) {
+                            decelerate();
+                            if (speed == 0) {
+                                setAutopilot(Autopilot.DOCK_STAGE3);
+                            }
+                        } else if (speed > hold) {
+                            //we're getting further from the goal, slow down
+                            decelerate();
+                        } else if (speed <= hold) {
+                            fireRearThrusters(); //accelerate
+                        }
                     }
-                } else {
-                    if (speed > hold) {
-                        //we're getting further from the goal, slow down
-                        decelerate();
-                    } else if (speed <= hold) {
-                        fireRearThrusters(); //accelerate
+                    break;
+                }
+                case DOCK_STAGE3: {
+                    double lx = x - port.getPortX();
+                    double ly = y - port.getPortY();
+                    //setup nav parameters
+                    double desired;
+                    //pick the right axis and calculate angle
+                    desired = FastMath.atan2(ly, lx);
+                    //turn towards desired angle
+                    desired = (desired + 2.0 * Math.PI) % (2.0 * Math.PI);
+                    if (Math.abs(theta - desired) > turning * tpf) {
+                        if (theta - desired > 0) {
+                            rotateMinus();
+                        } else if (theta - desired < 0) {
+                            rotatePlus();
+                        }
+                    } else {
+                        theta = desired;
+                        if (docked) {
+                            setAutopilot(Autopilot.NONE);
+                        } else {
+                            fireRearThrusters(); //accelerate
+                        }
                     }
+                    break;
                 }
-            }
-
-        } else if (getAutopilot() == Autopilot.DOCK_STAGE3) {
-            double lx = x - port.getPortX();
-            double ly = y - port.getPortY();
-            //setup nav parameters
-            double desired;
-            //pick the right axis and calculate angle
-            desired = FastMath.atan2(ly, lx);
-            //turn towards desired angle
-            desired = (desired + 2.0 * Math.PI) % (2.0 * Math.PI);
-            if (Math.abs(theta - desired) > turning * tpf) {
-                if (theta - desired > 0) {
-                    rotateMinus();
-                } else if (theta - desired < 0) {
-                    rotatePlus();
-                }
-            } else {
-                theta = desired;
-                if (docked) {
-                    setAutopilot(Autopilot.NONE);
-                } else {
-                    fireRearThrusters(); //accelerate
-                }
+                default:
+                    break;
             }
         }
     }
@@ -1125,44 +1146,56 @@ public class Ship extends Celestial {
          */
         //shield percent
         double shieldPercent = 100 * (shield / maxShield);
-        //behavior blocks
-        if (getBehavior() == Behavior.NONE) {
-            //do nothing
-        } else if (getBehavior() == Behavior.TEST) {
-            behaviorTest();
-        } else if (getBehavior() == Behavior.PATROL) {
-            behaviorPatrol();
-        } else if (getBehavior() == Behavior.SECTOR_TRADE) {
-            //give this thing a chance of fighting back against hostiles
-            if (shieldPercent > 75) {
-                behaviorSectorTrade();
-            } else {
-                behaviorPatrol();
-            }
-        } else if (getBehavior() == Behavior.UNIVERSE_TRADE) {
-            //give this thing a chance of fighting back against hostiles
-            if (shieldPercent > 75) {
-                behaviorUniverseTrade();
-            } else if (shieldPercent > 40) {
-                behaviorPatrol();
-            } else {
-                tryJumpRetreat();
-            }
-        } else if (getBehavior() == Behavior.SUPPLY_HOMEBASE) {
-            if (shieldPercent > 75) {
-                behaviorSupplyHomeBase();
-            } else if (shieldPercent > 40) {
-                behaviorPatrol();
-            } else {
-                tryJumpRetreat();
-            }
-        } else if (getBehavior() == Behavior.REPRESENT_HOMEBASE) {
-            if (shieldPercent > 75) {
-                behaviorRepresentHomeBase();
-            } else if (shieldPercent > 40) {
-                behaviorPatrol();
-            } else {
-                tryJumpRetreat();
+        if (null != getBehavior()) //behavior blocks
+        {
+            switch (getBehavior()) {
+                //do nothing
+                case NONE:
+                    break;
+                case TEST:
+                    behaviorTest();
+                    break;
+                case PATROL:
+                    behaviorPatrol();
+                    break;
+                case SECTOR_TRADE:
+                    //give this thing a chance of fighting back against hostiles
+                    if (shieldPercent > 75) {
+                        behaviorSectorTrade();
+                    } else {
+                        behaviorPatrol();
+                    }
+                    break;
+                case UNIVERSE_TRADE:
+                    //give this thing a chance of fighting back against hostiles
+                    if (shieldPercent > 75) {
+                        behaviorUniverseTrade();
+                    } else if (shieldPercent > 40) {
+                        behaviorPatrol();
+                    } else {
+                        tryJumpRetreat();
+                    }
+                    break;
+                case SUPPLY_HOMEBASE:
+                    if (shieldPercent > 75) {
+                        behaviorSupplyHomeBase();
+                    } else if (shieldPercent > 40) {
+                        behaviorPatrol();
+                    } else {
+                        tryJumpRetreat();
+                    }
+                    break;
+                case REPRESENT_HOMEBASE:
+                    if (shieldPercent > 75) {
+                        behaviorRepresentHomeBase();
+                    } else if (shieldPercent > 40) {
+                        behaviorPatrol();
+                    } else {
+                        tryJumpRetreat();
+                    }
+                    break;
+                default:
+                    break;
             }
         }
     }
@@ -1239,7 +1272,7 @@ public class Ship extends Celestial {
                         for (int a = 0; a < friendly.size(); a++) {
                             ArrayList<Item> made = friendly.get(a).getStationSelling();
                             for (int b = 0; b < made.size(); b++) {
-                                String ware = made.get(b).getName().toString();
+                                String ware = made.get(b).getName();
                                 if (!produced.contains(ware)) {
                                     produced.add(ware);
                                 }
@@ -1250,7 +1283,7 @@ public class Ship extends Celestial {
                         for (int a = 0; a < friendly.size(); a++) {
                             ArrayList<Item> made = friendly.get(a).getStationBuying();
                             for (int b = 0; b < made.size(); b++) {
-                                String ware = made.get(b).getName().toString();
+                                String ware = made.get(b).getName();
                                 if (!consumed.contains(ware)) {
                                     consumed.add(ware);
                                 }
@@ -1332,24 +1365,21 @@ public class Ship extends Celestial {
                         leaveSystem();
                     }
                 }
-            } else {
-                if (autopilot == Autopilot.NONE && (fuel / maxFuel) <= TRADER_REFUEL_PERCENT) {
-                    //dock at the nearest friendly station
-                    Station near = getNearestFriendlyStationInSystem();
-                    if (near != null) {
-                        cmdDock(near);
-                        System.out.println(getName() + " [UT] is low on fuel and docking at "
-                                + near.getName() + " (" + (int) (100 * (fuel / maxFuel)) + "%)");
-                    } else {
-                        leaveSystem();
-                    }
+            } else if (autopilot == Autopilot.NONE && (fuel / maxFuel) <= TRADER_REFUEL_PERCENT) {
+                //dock at the nearest friendly station
+                Station near = getNearestFriendlyStationInSystem();
+                if (near != null) {
+                    cmdDock(near);
+                    System.out.println(getName() + " [UT] is low on fuel and docking at "
+                            + near.getName() + " (" + (int) (100 * (fuel / maxFuel)) + "%)");
                 } else {
-                    //wait;
+                    leaveSystem();
                 }
+            } else {
+                //wait;
             }
-        } else {
-            //setup wait
-            if (autopilot == Autopilot.NONE && port != null) {
+        } else //setup wait
+         if (autopilot == Autopilot.NONE && port != null) {
                 //restore fuel
                 fuel = maxFuel;
                 //do buying and selling
@@ -1421,7 +1451,6 @@ public class Ship extends Celestial {
             } else {
                 //do nothing
             }
-        }
     }
 
     protected void behaviorSectorTrade() {
@@ -1456,7 +1485,7 @@ public class Ship extends Celestial {
                         for (int a = 0; a < friendly.size(); a++) {
                             ArrayList<Item> made = friendly.get(a).getStationSelling();
                             for (int b = 0; b < made.size(); b++) {
-                                String ware = made.get(b).getName().toString();
+                                String ware = made.get(b).getName();
                                 if (!produced.contains(ware)) {
                                     produced.add(ware);
                                 }
@@ -1467,7 +1496,7 @@ public class Ship extends Celestial {
                         for (int a = 0; a < friendly.size(); a++) {
                             ArrayList<Item> made = friendly.get(a).getStationBuying();
                             for (int b = 0; b < made.size(); b++) {
-                                String ware = made.get(b).getName().toString();
+                                String ware = made.get(b).getName();
                                 if (!consumed.contains(ware)) {
                                     consumed.add(ware);
                                 }
@@ -1528,16 +1557,14 @@ public class Ship extends Celestial {
                                 workingWare = bestWare;
                                 //start trading
                                 cmdDock(buyFromStation);
+                            } else if (faction.equals(PLAYER_FACTION)) {
+                                dockAtFriendlyStationInSystem();
                             } else {
-                                if (faction.equals(PLAYER_FACTION)) {
-                                    dockAtFriendlyStationInSystem();
-                                } else {
-                                    /*
+                                /*
                                      * I honestly don't give a damn if some random NPC trader dies.
                                      * It probably keeps the universe more interesting.
-                                     */
-                                    leaveSystem();
-                                }
+                                 */
+                                leaveSystem();
                             }
                         } else {
                             //maybe profit awaits us elsewhere
@@ -1548,80 +1575,76 @@ public class Ship extends Celestial {
                         leaveSystem();
                     }
                 }
-            } else {
-                if (autopilot == Autopilot.NONE && (fuel / maxFuel) <= TRADER_REFUEL_PERCENT) {
-                    //dock at the nearest friendly station
-                    Station near = getNearestFriendlyStationInSystem();
-                    if (near != null) {
-                        cmdDock(near);
-                        System.out.println(getName() + " [ST] is low on fuel and docking at "
-                                + near.getName() + " (" + (int) (100 * (fuel / maxFuel)) + "%)");
-                    } else {
-                        leaveSystem();
-                    }
+            } else if (autopilot == Autopilot.NONE && (fuel / maxFuel) <= TRADER_REFUEL_PERCENT) {
+                //dock at the nearest friendly station
+                Station near = getNearestFriendlyStationInSystem();
+                if (near != null) {
+                    cmdDock(near);
+                    System.out.println(getName() + " [ST] is low on fuel and docking at "
+                            + near.getName() + " (" + (int) (100 * (fuel / maxFuel)) + "%)");
                 } else {
-                    //wait;
+                    leaveSystem();
                 }
+            } else {
+                //wait;
             }
+        } else if (autopilot == Autopilot.NONE && port != null) {
+            //restore fuel
+            fuel = maxFuel;
+            //do buying and selling
+            Station curr = port.getParent();
+            if (curr == buyFromStation) {
+                //make sure the price is still ok
+                if ((curr.getPrice(workingWare) <= buyFromPrice) && (sellToStation.getPrice(workingWare) >= sellToPrice)) {
+                    //how much of the ware can we carry
+                    int maxQ = (int) (cargo - getBayUsed()) / Math.max(1, (int) workingWare.getVolume());
+                    //how much can we carry if we want to follow reserve rules
+                    int q = (int) ((1 - TRADER_RESERVE_PERCENT) * maxQ);
+                    //buy as much as we can carry
+                    curr.buy(this, workingWare, q);
+                    System.out.println(getName() + " bought " + getNumInCargoBay(workingWare)
+                            + " " + workingWare.getName() + " from " + curr.getName());
+                } else {
+                    //abort trading operation
+                    abortTrade();
+                    System.out.println(getName() + " aborted trading operation (Bad buy price)");
+                }
+                //wait
+                double diff = MAX_WAIT_TIME - MIN_WAIT_TIME;
+                double delt = rnd.nextDouble() * diff;
+                cmdWait(MIN_WAIT_TIME + delt);
+            } else if (curr == sellToStation) {
+                if (curr.getPrice(workingWare) >= sellToPrice) {
+                    //try to dump all our wares at this price
+                    int q = getNumInCargoBay(workingWare);
+                    curr.sell(this, workingWare, q);
+                    System.out.println(getName() + " sold " + (q - getNumInCargoBay(workingWare))
+                            + " " + workingWare.getName() + " to " + curr.getName());
+                } else {
+                    //System.out.println(getName() + " did not sell (Bad sell price)");
+                }
+                //wait
+                if (getNumInCargoBay(workingWare) == 0) {
+                    double diff = MAX_WAIT_TIME - MIN_WAIT_TIME;
+                    double delt = rnd.nextDouble() * diff;
+                    cmdWait(MIN_WAIT_TIME + delt);
+                } else {
+                    //not everything sold yet
+                }
+            } else {
+                //wait
+                double diff = MAX_WAIT_TIME - MIN_WAIT_TIME;
+                double delt = rnd.nextDouble() * diff;
+                cmdWait(MIN_WAIT_TIME + delt);
+            }
+        } else if (autopilot == Autopilot.WAITED) {
+            //finally undock
+            cmdUndock();
+        } else if (port == null) {
+            abortTrade();
+            cmdUndock();
         } else {
-            if (autopilot == Autopilot.NONE && port != null) {
-                //restore fuel
-                fuel = maxFuel;
-                //do buying and selling
-                Station curr = port.getParent();
-                if (curr == buyFromStation) {
-                    //make sure the price is still ok
-                    if ((curr.getPrice(workingWare) <= buyFromPrice) && (sellToStation.getPrice(workingWare) >= sellToPrice)) {
-                        //how much of the ware can we carry
-                        int maxQ = (int) (cargo - getBayUsed()) / Math.max(1, (int) workingWare.getVolume());
-                        //how much can we carry if we want to follow reserve rules
-                        int q = (int) ((1 - TRADER_RESERVE_PERCENT) * maxQ);
-                        //buy as much as we can carry
-                        curr.buy(this, workingWare, q);
-                        System.out.println(getName() + " bought " + getNumInCargoBay(workingWare)
-                                + " " + workingWare.getName() + " from " + curr.getName());
-                    } else {
-                        //abort trading operation
-                        abortTrade();
-                        System.out.println(getName() + " aborted trading operation (Bad buy price)");
-                    }
-                    //wait
-                    double diff = MAX_WAIT_TIME - MIN_WAIT_TIME;
-                    double delt = rnd.nextDouble() * diff;
-                    cmdWait(MIN_WAIT_TIME + delt);
-                } else if (curr == sellToStation) {
-                    if (curr.getPrice(workingWare) >= sellToPrice) {
-                        //try to dump all our wares at this price
-                        int q = getNumInCargoBay(workingWare);
-                        curr.sell(this, workingWare, q);
-                        System.out.println(getName() + " sold " + (q - getNumInCargoBay(workingWare))
-                                + " " + workingWare.getName() + " to " + curr.getName());
-                    } else {
-                        //System.out.println(getName() + " did not sell (Bad sell price)");
-                    }
-                    //wait
-                    if (getNumInCargoBay(workingWare) == 0) {
-                        double diff = MAX_WAIT_TIME - MIN_WAIT_TIME;
-                        double delt = rnd.nextDouble() * diff;
-                        cmdWait(MIN_WAIT_TIME + delt);
-                    } else {
-                        //not everything sold yet
-                    }
-                } else {
-                    //wait
-                    double diff = MAX_WAIT_TIME - MIN_WAIT_TIME;
-                    double delt = rnd.nextDouble() * diff;
-                    cmdWait(MIN_WAIT_TIME + delt);
-                }
-            } else if (autopilot == Autopilot.WAITED) {
-                //finally undock
-                cmdUndock();
-            } else if (port == null) {
-                abortTrade();
-                cmdUndock();
-            } else {
 
-            }
         }
     }
 
@@ -1665,7 +1688,7 @@ public class Ship extends Celestial {
                             {
                                 ArrayList<Item> made = homeBase.getStationSelling();
                                 for (int b = 0; b < made.size(); b++) {
-                                    String ware = made.get(b).getName().toString();
+                                    String ware = made.get(b).getName();
                                     if (!produced.contains(ware)) {
                                         produced.add(ware);
                                     }
@@ -1676,7 +1699,7 @@ public class Ship extends Celestial {
                             for (int a = 0; a < friendly.size(); a++) {
                                 ArrayList<Item> made = friendly.get(a).getStationBuying();
                                 for (int b = 0; b < made.size(); b++) {
-                                    String ware = made.get(b).getName().toString();
+                                    String ware = made.get(b).getName();
                                     if (!consumed.contains(ware)) {
                                         consumed.add(ware);
                                     }
@@ -1753,24 +1776,21 @@ public class Ship extends Celestial {
                             dockAtFriendlyStationInSystem();
                         }
                     }
-                } else {
-                    if (autopilot == Autopilot.NONE && (fuel / maxFuel) <= TRADER_REFUEL_PERCENT) {
-                        //dock at the nearest friendly station
-                        Station near = getNearestFriendlyStationInSystem();
-                        if (near != null) {
-                            cmdDock(near);
-                            System.out.println(getName() + " [HR] is low on fuel and docking at "
-                                    + near.getName() + " (" + (int) (100 * (fuel / maxFuel)) + "%)");
-                        } else {
-                            leaveSystem();
-                        }
+                } else if (autopilot == Autopilot.NONE && (fuel / maxFuel) <= TRADER_REFUEL_PERCENT) {
+                    //dock at the nearest friendly station
+                    Station near = getNearestFriendlyStationInSystem();
+                    if (near != null) {
+                        cmdDock(near);
+                        System.out.println(getName() + " [HR] is low on fuel and docking at "
+                                + near.getName() + " (" + (int) (100 * (fuel / maxFuel)) + "%)");
                     } else {
-                        //wait;
+                        leaveSystem();
                     }
+                } else {
+                    //wait;
                 }
-            } else {
-                //setup wait
-                if (autopilot == Autopilot.NONE && port != null) {
+            } else //setup wait
+             if (autopilot == Autopilot.NONE && port != null) {
                     //restore fuel
                     fuel = maxFuel;
                     //do buying and selling
@@ -1842,7 +1862,6 @@ public class Ship extends Celestial {
                 } else {
                     //do nothing
                 }
-            }
         } else {
             setBehavior(Behavior.NONE);
         }
@@ -1888,7 +1907,7 @@ public class Ship extends Celestial {
                             for (int a = 0; a < friendly.size(); a++) {
                                 ArrayList<Item> made = friendly.get(a).getStationSelling();
                                 for (int b = 0; b < made.size(); b++) {
-                                    String ware = made.get(b).getName().toString();
+                                    String ware = made.get(b).getName();
                                     if (!produced.contains(ware)) {
                                         produced.add(ware);
                                     }
@@ -1898,7 +1917,7 @@ public class Ship extends Celestial {
                             ArrayList<String> consumed = new ArrayList<>();
                             ArrayList<Item> made = homeBase.getStationBuying();
                             for (int b = 0; b < made.size(); b++) {
-                                String ware = made.get(b).getName().toString();
+                                String ware = made.get(b).getName();
                                 if (!consumed.contains(ware)) {
                                     consumed.add(ware);
                                 }
@@ -1974,24 +1993,21 @@ public class Ship extends Celestial {
                             dockAtFriendlyStationInSystem();
                         }
                     }
-                } else {
-                    if (autopilot == Autopilot.NONE && (fuel / maxFuel) <= TRADER_REFUEL_PERCENT) {
-                        //dock at the nearest friendly station
-                        Station near = getNearestFriendlyStationInSystem();
-                        if (near != null) {
-                            cmdDock(near);
-                            System.out.println(getName() + " [HS] is low on fuel and docking at "
-                                    + near.getName() + " (" + (int) (100 * (fuel / maxFuel)) + "%)");
-                        } else {
-                            leaveSystem();
-                        }
+                } else if (autopilot == Autopilot.NONE && (fuel / maxFuel) <= TRADER_REFUEL_PERCENT) {
+                    //dock at the nearest friendly station
+                    Station near = getNearestFriendlyStationInSystem();
+                    if (near != null) {
+                        cmdDock(near);
+                        System.out.println(getName() + " [HS] is low on fuel and docking at "
+                                + near.getName() + " (" + (int) (100 * (fuel / maxFuel)) + "%)");
                     } else {
-                        //wait;
+                        leaveSystem();
                     }
+                } else {
+                    //wait;
                 }
-            } else {
-                //setup wait
-                if (autopilot == Autopilot.NONE && port != null) {
+            } else //setup wait
+             if (autopilot == Autopilot.NONE && port != null) {
                     //restore fuel
                     fuel = maxFuel;
                     //do buying and selling
@@ -2076,7 +2092,6 @@ public class Ship extends Celestial {
                 } else {
                     //do nothing
                 }
-            }
         } else {
             //exit, no home base
             setBehavior(Behavior.NONE);
@@ -2139,7 +2154,7 @@ public class Ship extends Celestial {
                          * fly to celestials as well.
                          */
                         double pick = rnd.nextFloat();
-                        Celestial near = null;
+                        Celestial near;
                         if (currentSystem.getStationList().size() < 4) {
                             if (pick <= 0.5) {
                                 near = getRandomStationInSystem();
@@ -2160,12 +2175,10 @@ public class Ship extends Celestial {
                 } else {
                     //wait
                 }
-            } else {
-                //fight current target
-                if ((target.getStandingsToMe(this) < HOSTILE_STANDING) || scanForContraband(target) || target == lastBlow) {
+            } else //fight current target
+             if ((target.getStandingsToMe(this) < HOSTILE_STANDING) || scanForContraband(target) || target == lastBlow) {
                     cmdFightTarget(target);
                 }
-            }
         } else {
             //restore fuel
             fuel = maxFuel;
@@ -2225,48 +2238,46 @@ public class Ship extends Celestial {
             } else if (theta - desired < 0) {
                 rotatePlus();
             }
+        } else if ((dist < hold) && hold != Double.POSITIVE_INFINITY) {
+            decelerate();
+            if (speed == 0) {
+                //disable autopilot destination reached
+                autopilot = Autopilot.NONE;
+            }
         } else {
-            if ((dist < hold) && hold != Double.POSITIVE_INFINITY) {
-                decelerate();
-                if (speed == 0) {
-                    //disable autopilot destination reached
-                    autopilot = Autopilot.NONE;
-                }
-            } else {
-                boolean canAccel = true;
-                //this is damage control - it deals with bad initial velocities and out of control spirals
-                double d2x = 0;
-                double d2y = 0;
-                d2x = magnitude((getCenterX() + vx) - (tx), 0);
-                d2y = magnitude(0, (getCenterY() + vy) - (ty));
-                //check x axis
-                double dPx = 0;
-                double d1x = magnitude(ax, 0);
-                dPx = d2x - d1x;
-                if (dPx > 0) {
-                    //we're getting further from the goal, slow down
-                    decelX();
-                    canAccel = false;
-                }
-                //check y axis
-                double dPy = 0;
-                double d1y = magnitude(0, ay);
-                dPy = d2y - d1y;
-                if (dPy > 0) {
-                    //we're getting further from the goal, slow down
-                    decelY();
-                    canAccel = false;
-                }
-                //accel if needed
-                if (canAccel && speed < hold) {
-                    fireRearThrusters();
-                }
+            boolean canAccel = true;
+            //this is damage control - it deals with bad initial velocities and out of control spirals
+            double d2x;
+            double d2y;
+            d2x = magnitude((getCenterX() + vx) - (tx), 0);
+            d2y = magnitude(0, (getCenterY() + vy) - (ty));
+            //check x axis
+            double dPx;
+            double d1x = magnitude(ax, 0);
+            dPx = d2x - d1x;
+            if (dPx > 0) {
+                //we're getting further from the goal, slow down
+                decelX();
+                canAccel = false;
+            }
+            //check y axis
+            double dPy;
+            double d1y = magnitude(0, ay);
+            dPy = d2y - d1y;
+            if (dPy > 0) {
+                //we're getting further from the goal, slow down
+                decelY();
+                canAccel = false;
+            }
+            //accel if needed
+            if (canAccel && speed < hold) {
+                fireRearThrusters();
             }
         }
     }
 
     public Station getBestDropOff(ArrayList<SolarSystem> systems, Item ware) {
-        Station ret = null;
+        Station ret;
         {
             Station bStation = null;
             int bPrice = 0;
@@ -2295,7 +2306,7 @@ public class Ship extends Celestial {
     }
 
     public Station getBestPickup(ArrayList<SolarSystem> systems, Item ware) {
-        Station ret = null;
+        Station ret;
         {
             Station bStation = null;
             int bPrice = 0;
@@ -2324,7 +2335,7 @@ public class Ship extends Celestial {
     }
 
     public Station getRandomStationInSystem() {
-        Station ret = null;
+        Station ret;
         {
             ArrayList<Entity> stations = currentSystem.getStationList();
             if (stations.size() > 0) {
@@ -2337,7 +2348,7 @@ public class Ship extends Celestial {
     }
 
     public Celestial getRandomCelestialInSystem() {
-        Celestial ret = null;
+        Celestial ret;
         {
             ArrayList<Entity> celestials = currentSystem.getCelestialList();
             if (celestials.size() > 0) {
@@ -2350,7 +2361,7 @@ public class Ship extends Celestial {
     }
 
     public Jumphole getRandomJumpholeInSystem() {
-        Jumphole ret = null;
+        Jumphole ret;
         {
             ArrayList<Entity> jumpHoles = currentSystem.getJumpholeList();
             if (jumpHoles.size() > 0) {
@@ -2408,7 +2419,7 @@ public class Ship extends Celestial {
     }
 
     public Station getNearestFriendlyStationInSystem() {
-        Station ret = null;
+        Station ret;
         {
             ArrayList<Entity> stations = currentSystem.getStationList();
             if (stations.size() > 0) {
@@ -2814,7 +2825,7 @@ public class Ship extends Celestial {
                         /*
                          * The enemy is out of weapons range and needs to be approached
                          */
-                        double dP = 0;
+                        double dP;
                         double d1 = magnitude(x - target.getX(), y - target.getY());
                         double d2 = magnitude((x + vx) - (target.getX() + target.getVx()), (y + vy) - (target.getY() + target.getVy()));
                         dP = d2 - d1;
@@ -2830,7 +2841,7 @@ public class Ship extends Celestial {
                 double enemyY = getFireLeadY();
                 /*double enemyX = (getX()) - (target.getX() + target.getWidth() / 2) + (vx - target.getVx());
                  double enemyY = (getY()) - (target.getY() + target.getHeight() / 2) + (vy - target.getVy());*/
-                double desired = 0;
+                double desired;
                 if (currentSystem != getUniverse().getPlayerShip().getCurrentSystem()) {
                     desired = FastMath.atan2(enemyY, enemyX);
                 } else {
@@ -3234,14 +3245,12 @@ public class Ship extends Celestial {
                     }
                 }
             }
-        } else {
-            //do rectangle detection
-            if (width != 0 && height != 0) {
+        } else //do rectangle detection
+         if (width != 0 && height != 0) {
                 bound.add(new Rectangle((int) getX(), (int) getY(), getWidth(), getHeight()));
             } else {
                 bound.add(new Rectangle((int) getX(), (int) getY(), 50, 50));
             }
-        }
     }
 
     public boolean addToCargoBay(Item item) {
@@ -3253,7 +3262,7 @@ public class Ship extends Celestial {
             for (int a = 0; a < cargoBay.size(); a++) {
                 used += cargoBay.get(a).getVolume();
             }
-            double fVol = 0;
+            double fVol;
             if (cargoBay.contains(item)) {
                 fVol = item.getVolume() / item.getQuantity();
             } else {
@@ -3456,8 +3465,8 @@ public class Ship extends Celestial {
     public void addInitialCargo(String cargo) {
         if (cargo != null) {
             String[] stuff = cargo.split("/");
-            for (int a = 0; a < stuff.length; a++) {
-                String[] tb = stuff[a].split("~");
+            for (String s : stuff) {
+                String[] tb = s.split("~");
                 Item tmp = new Item(tb[0]);
                 int count = 1;
                 if (tb.length == 2) {
@@ -3521,8 +3530,8 @@ public class Ship extends Celestial {
         if (equip != null) {
             //equip player from install keyword
             String[] arr = equip.split("/");
-            for (int a = 0; a < arr.length; a++) {
-                Item test = new Item(arr[a]);
+            for (String s : arr) {
+                Item test = new Item(s);
                 /*
                  * Cannons and launchers are both in the weapon class
                  */
@@ -3530,7 +3539,7 @@ public class Ship extends Celestial {
                     try {
                         if (test.getType().equals("cannon") || test.getType().equals("missile")
                                 || test.getType().equals("battery") || test.getType().equals("turret")) {
-                            Weapon wep = new Weapon(arr[a]);
+                            Weapon wep = new Weapon(s);
                             fit(wep);
                         }
                     } catch (Exception e) {
@@ -3726,7 +3735,7 @@ public class Ship extends Celestial {
 
     @Override
     public String toString() {
-        String ret = "";
+        String ret;
         {
             if (!alternateString) {
                 /*
@@ -4076,8 +4085,8 @@ public class Ship extends Celestial {
         if (conversation == null) {
             if (standings > 2) {
                 if (!plotOffer) {
-                //on great terms
-                /*
+                    //on great terms
+                    /*
                      * Will offer rumors and missions
                      */
                     //offer mission
@@ -4267,7 +4276,7 @@ public class Ship extends Celestial {
             //make sure it won't be removed by setting bailed to false
             bailed = false;
             //store new faction
-            faction = claimant.getFaction().toString();
+            faction = claimant.getFaction();
             installFaction();
             //push and pull
             getCurrentSystem().pullEntityFromSystem(this);

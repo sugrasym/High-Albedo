@@ -13,7 +13,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
+ /*
  * Parses game world data from files. It is up to individual classes how to
  * interpret the data they get.
  * 
@@ -52,11 +52,11 @@ public class Parser implements Serializable {
         //loop through each element
         boolean grabbing = false;
         String tmp = "";
-        for (int a = 0; a < arr.length; a++) {
+        for (String s : arr) {
             /*
              * This segment is kind of nasty looking but actually simple.
              */
-            char[] line = arr[a].toCharArray();
+            char[] line = s.toCharArray();
             if (line.length >= 3) {
                 if (line[0] == '[' && line[line.length - 1] == ']') {
                     if (line[1] == '/') {
@@ -72,7 +72,7 @@ public class Parser implements Serializable {
                 }
             }
             if (grabbing) {
-                tmp += arr[a] + "\n";
+                tmp += s + "\n";
             }
         }
     }
@@ -83,7 +83,7 @@ public class Parser implements Serializable {
          * generate a Term object.
          */
         String[] arr = raw.split("\n");
-        Term term = null;
+        Term term;
         {
             //the first line should contain the term's name
             String name = arr[0].replace("[", "").replace("]", "");
@@ -130,10 +130,10 @@ public class Parser implements Serializable {
      * Container classes
      */
     public class Term implements Serializable {
+
         /*
          * Stores a term, which is a collection of params with a name.
          */
-
         private final ArrayList<Param> params = new ArrayList<>();
         private final String name;
 
@@ -200,12 +200,12 @@ public class Parser implements Serializable {
     }
 
     public class Param implements Serializable {
+
         /*
          * Stores a param, which is a parameter and its associated value.
          * They should be immutable. Why would you want to change the 
          * parameters you are currently loading?
          */
-
         private final String name;
         private String value;
 

@@ -21,10 +21,9 @@ import java.util.concurrent.Semaphore;
  * Set of function to optimize long process on multicore architecture
  *
  * @author Yacine Petitprez
- * 
- * NOTE: I've modified this code so that it always leaves 2 cores free.
- * It also schedules low. This is for in-game performance reasons.
- * - Nathan Wiehoff
+ *
+ * NOTE: I've modified this code so that it always leaves 2 cores free. It also
+ * schedules low. This is for in-game performance reasons. - Nathan Wiehoff
  */
 public final class MultiThreadUtil {
 
@@ -45,12 +44,12 @@ public final class MultiThreadUtil {
      *  }
      * </code> @param start
      *
+     * @param start
      * @param end
      * @param loop
      */
     public final static void multiFor(int start, int end, final ForRunnable loop) {
         if (PROCESSORS_COUNT <= 1 || DISABLE_MULTICORE) {
-
             for (int i = start; i < end; ++i) {
                 loop.run(i);
             }

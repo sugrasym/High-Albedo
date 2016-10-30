@@ -113,35 +113,44 @@ public class MenuHomeWindow extends AstralWindow {
 
     private void parseCommand(String command) {
         if (mainList.isVisible()) {
-            if (command.equals("New Game")) {
-                setVisible(false);
-                engine.suicide();
-                engine.newGame();
-                engine.start();
-            } else if (command.equals("Load Quicksave")) {
-                setVisible(false);
-                engine.start();
-                engine.load("quicksave");
-            } else if (command.equals("Load Game")) {
-                mainList.setVisible(false);
-                saveList.setVisible(false);
-                settingList.setVisible(false);
-                populateLoadGameList();
-                gameList.setVisible(true);
-            } else if (command.equals("Save Game")) {
-                mainList.setVisible(false);
-                gameList.setVisible(false);
-                settingList.setVisible(false);
-                populateSaveGameList();
-                saveList.setVisible(true);
-            } else if (command.equals("Settings")) {
-                mainList.setVisible(false);
-                saveList.setVisible(false);
-                gameList.setVisible(false);
-                populateSettingList();
-                settingList.setVisible(true);
-            } else if (command.equals("Resume")) {
-                engine.menu();
+            switch (command) {
+                case "New Game":
+                    setVisible(false);
+                    engine.suicide();
+                    engine.newGame();
+                    engine.start();
+                    break;
+                case "Load Quicksave":
+                    setVisible(false);
+                    engine.start();
+                    engine.load("quicksave");
+                    break;
+                case "Load Game":
+                    mainList.setVisible(false);
+                    saveList.setVisible(false);
+                    settingList.setVisible(false);
+                    populateLoadGameList();
+                    gameList.setVisible(true);
+                    break;
+                case "Save Game":
+                    mainList.setVisible(false);
+                    gameList.setVisible(false);
+                    settingList.setVisible(false);
+                    populateSaveGameList();
+                    saveList.setVisible(true);
+                    break;
+                case "Settings":
+                    mainList.setVisible(false);
+                    saveList.setVisible(false);
+                    gameList.setVisible(false);
+                    populateSettingList();
+                    settingList.setVisible(true);
+                    break;
+                case "Resume":
+                    engine.menu();
+                    break;
+                default:
+                    break;
             }
         } else if (gameList.isVisible()) {
             int index = gameList.getIndex();
@@ -178,30 +187,38 @@ public class MenuHomeWindow extends AstralWindow {
                     String[] arr = command.split(":");
                     if (arr.length == 2) {
                         String set = arr[0];
-                        if (set.equals("Planet Detail")) {
-                            int curr = Integer.parseInt(arr[1].trim());
-                            int pick = 0;
-                            //find current in array
-                            for (int a = 0; a < getUniverse().getSettings().RENDER_SIZE_OPTS.length; a++) {
-                                if (curr == getUniverse().getSettings().RENDER_SIZE_OPTS[a]) {
-                                    pick = a + 1;
-                                    break;
-                                }
+                        switch (set) {
+                            case "Planet Detail": {
+                                int curr = Integer.parseInt(arr[1].trim());
+                                int pick = 0;
+                                //find current in array
+                                for (int a = 0; a < getUniverse().getSettings().RENDER_SIZE_OPTS.length; a++) {
+                                    if (curr == getUniverse().getSettings().RENDER_SIZE_OPTS[a]) {
+                                        pick = a + 1;
+                                        break;
+                                    }
+                                }       //modulo
+                                pick %= getUniverse().getSettings().RENDER_SIZE_OPTS.length;
+                                //store
+                                getUniverse().getSettings().RENDER_SIZE = getUniverse().getSettings().RENDER_SIZE_OPTS[pick];
+                                //refresh
+                                populateSettingList();
+                                break;
                             }
-                            //modulo
-                            pick %= getUniverse().getSettings().RENDER_SIZE_OPTS.length;
-                            //store
-                            getUniverse().getSettings().RENDER_SIZE = getUniverse().getSettings().RENDER_SIZE_OPTS[pick];
-                            //refresh
-                            populateSettingList();
-                        } else if (set.equals("Enable Sound Effects")) {
-                            boolean curr = Boolean.parseBoolean(arr[1].trim());
-                            getUniverse().getSettings().SOUND_EFFECTS = !curr;
-                            populateSettingList();
-                        } else if (set.equals("Enable Music")) {
-                            boolean curr = Boolean.parseBoolean(arr[1].trim());
-                            getUniverse().getSettings().MUSIC = !curr;
-                            populateSettingList();
+                            case "Enable Sound Effects": {
+                                boolean curr = Boolean.parseBoolean(arr[1].trim());
+                                getUniverse().getSettings().SOUND_EFFECTS = !curr;
+                                populateSettingList();
+                                break;
+                            }
+                            case "Enable Music": {
+                                boolean curr = Boolean.parseBoolean(arr[1].trim());
+                                getUniverse().getSettings().MUSIC = !curr;
+                                populateSettingList();
+                                break;
+                            }
+                            default:
+                                break;
                         }
                     }
                 } catch (Exception e) {
@@ -292,9 +309,9 @@ public class MenuHomeWindow extends AstralWindow {
         String path = System.getProperty("user.home") + AstralIO.SAVE_GAME_DIR;
         File folder = new File(path);
         File[] listOfFiles = folder.listFiles();
-        for (int i = 0; i < listOfFiles.length; i++) {
-            if (listOfFiles[i].isFile()) {
-                list.addToList(listOfFiles[i].getName());
+        for (File f : listOfFiles) {
+            if (f.isFile()) {
+                list.addToList(f.getName());
             }
         }
     }

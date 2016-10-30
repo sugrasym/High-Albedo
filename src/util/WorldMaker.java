@@ -13,7 +13,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
+ /*
  * Program for generating universes. This allows decent looking, arbitrarily
  * large worlds to be made automatically, and then manaully tuned.
  */
@@ -322,12 +322,12 @@ public class WorldMaker {
 
     private void syslingTest() {
         ArrayList<Sysling> test = new ArrayList<>();
-        Random rnd = new Random(5);
+        Random _rnd = new Random(5);
         //make some syslings
         for (int a = 0; a < 50; a++) {
             String name = "Sysling " + a;
-            double sx = rnd.nextInt(1000) - 500;
-            double sy = rnd.nextInt(1000) - 500;
+            double sx = _rnd.nextInt(1000) - 500;
+            double sy = _rnd.nextInt(1000) - 500;
             test.add(new Sysling(name, new Point2D.Double(sx, sy)));
         }
         //make them find their buddy
@@ -472,7 +472,7 @@ public class WorldMaker {
         if (stat != null) {
             //get types of stations
             int a = 0;
-            String type = "";
+            String type;
             while ((type = stat.getValue("station" + a)) != null) {
                 //get station info
                 String ty = type.split(",")[0];
@@ -569,10 +569,10 @@ public class WorldMaker {
     }
 
     public class Statling {
+
         /*
          * Simple structure for storing a station template
          */
-
         private String name;
         private String type;
         private String owner;
@@ -609,10 +609,10 @@ public class WorldMaker {
     }
 
     public class Sysling {
+
         /*
          * Solar system template used for jump hole mapping.
          */
-
         private final Point2D.Double loc;
         private Sysling[] neighbors;
         private final ArrayList<Sysling> connections = new ArrayList<>();
@@ -627,9 +627,9 @@ public class WorldMaker {
             this.loc = loc;
             this.name = name;
             //pick neutral ambient music
-            ArrayList<String> ambientMusic = neutralFaction.getAmbientMusic();
-            if (ambientMusic.size() > 0) {
-                setAmbientMusic(ambientMusic.get(rnd.nextInt(ambientMusic.size())));
+            ArrayList<String> _ambientMusic = neutralFaction.getAmbientMusic();
+            if (_ambientMusic.size() > 0) {
+                setAmbientMusic(_ambientMusic.get(rnd.nextInt(_ambientMusic.size())));
             }
         }
 
@@ -719,11 +719,11 @@ public class WorldMaker {
     }
 
     public class Simpling {
+
         /*
          * Class used for storing the location and radius of an object for
          * the sole purpose of avoiding collisions.
          */
-
         private final Point2D.Float loc;
         private final float rad;
 

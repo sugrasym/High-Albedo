@@ -13,7 +13,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
+ /*
  * A complex, scripted, mission that the player can embark on. Has multiple
  * nodes involved.
  */
@@ -36,7 +36,7 @@ import lib.Parser.Term;
  * @author nwiehoff
  */
 public class Campaign implements Serializable {
-    
+
     private final String name;
     private Parser script;
     private Term node;
@@ -49,7 +49,7 @@ public class Campaign implements Serializable {
     private double tpf;
 
     private enum TimerState {
-        
+
         NOTSET,
         RUNNING,
         STOPPED
@@ -57,7 +57,7 @@ public class Campaign implements Serializable {
     private double timerMax;
     private double timer;
     private TimerState timerState = TimerState.NOTSET;
-    
+
     public Campaign(Universe universe, String name) {
         this.universe = universe;
         this.name = name;
@@ -71,7 +71,7 @@ public class Campaign implements Serializable {
             node = null;
         }
     }
-    
+
     private boolean canStart() {
         //load campaign script
         script = new Parser("campaign/" + name + ".txt");
@@ -80,7 +80,7 @@ public class Campaign implements Serializable {
         if (node != null) {
             //make sure this doesn't have any prerequesites
             int a = 0;
-            String pre = null;
+            String pre;
             while ((pre = node.getValue("requires" + a)) != null) {
                 boolean safe = false;
                 //see if this campaign is completed
@@ -104,7 +104,7 @@ public class Campaign implements Serializable {
         }
         return true;
     }
-    
+
     private Term findNode(String name) {
         ArrayList<Term> nodes = script.getTermsOfType("Node");
         for (int a = 0; a < nodes.size(); a++) {
@@ -114,11 +114,11 @@ public class Campaign implements Serializable {
         }
         return null;
     }
-    
+
     private void messagePlayer(String name, String body) {
         universe.playerShip.composeMessage(universe.playerShip, name, body, null);
     }
-    
+
     public void periodicUpdate(double tpf) {
         this.tpf = tpf;
         if (node != null) {
@@ -126,114 +126,142 @@ public class Campaign implements Serializable {
             checkFailure();
         }
     }
-    
+
     public boolean isRunning() {
         return running;
     }
-    
+
     private void checkAdvance() {
         //check to see if we can advance
         String advance = node.getValue("advance");
-        if (advance.equals("none")) {
-            next();
-        } else if (advance.equals("END")) {
-            checkEndAdvance();
-        } else if (advance.equals("SILENT_END")) {
-            checkSilentEndAdvance();
-        } else {
-            //these are the more complex ones which have parameters
-            String[] split = advance.split("::");
-            //condition::parameter
-            if (split.length == 2) {
-                String condition = split[0].trim();
-                String parameter = split[1].trim();
-                if (condition.equals("ENTERSYSTEM")) {
-                    checkEnterSystemAdvance(parameter);
-                } else if (condition.equals("DOCK")) {
-                    checkDockAdvance(parameter);
-                } else if (condition.equals("NONEALIVE")) {
-                    checkNoneAliveAdvance(parameter);
-                } else if (condition.equals("GOTO")) {
-                    checkGotoAdvance(parameter);
-                } else if (condition.equals("WAIT")) {
-                    checkWaitAdvance(parameter);
-                }
-            } else if (split.length == 3) {
-                String condition = split[0].trim();
-                String param1 = split[1].trim();
-                String param2 = split[2].trim();
-                if (condition.equals("TRIGGROUP")) {
-                    /*
-                     * Dedicated to triggers involving a group of ships.
-                     * Triggered if even 1 ship meets the criteria.
-                     */
-                    String group = param1;
-                    //split to find orders
-                    String[] arr = param2.split(",");
-                    String command = arr[0];
-                    //find ships in this group
-                    boolean hit = false;
-                    for (int a = 0; a < universe.getSystems().size(); a++) {
-                        if (hit) {
+        switch (advance) {
+            case "none":
+                next();
+                break;
+            case "END":
+                checkEndAdvance();
+                break;
+            case "SILENT_END":
+                checkSilentEndAdvance();
+                break;
+            default:
+                //these are the more complex ones which have parameters
+                String[] split = advance.split("::");
+                //condition::parameter
+                if (split.length == 2) {
+                    String condition = split[0].trim();
+                    String parameter = split[1].trim();
+                    switch (condition) {
+                        case "ENTERSYSTEM":
+                            checkEnterSystemAdvance(parameter);
                             break;
-                        }
-                        ArrayList<Entity> ships = universe.getSystems().get(a).getShipList();
-                        for (int b = 0; b < ships.size(); b++) {
-                            Ship tmp = (Ship) ships.get(b);
-                            if (tmp.getGroup().equals(group)) {
-                                if (command.equals("DOCKED")) {
-                                    if (checkGroupDockAdvance(arr, tmp)) {
-                                        hit = true;
-                                        break;
-                                    }
-                                } else if (command.equals("GOTO")) {
-                                    if (checkGroupGotoAdvance(arr, tmp)) {
-                                        hit = true;
-                                        break;
-                                    }
-                                } else if (command.equals("ENTERSYSTEM")) {
-                                    if (checkGroupEnterSystemAdvance(arr, tmp)) {
-                                        hit = true;
-                                        break;
+                        case "DOCK":
+                            checkDockAdvance(parameter);
+                            break;
+                        case "NONEALIVE":
+                            checkNoneAliveAdvance(parameter);
+                            break;
+                        case "GOTO":
+                            checkGotoAdvance(parameter);
+                            break;
+                        case "WAIT":
+                            checkWaitAdvance(parameter);
+                            break;
+                        default:
+                            break;
+                    }
+                } else if (split.length == 3) {
+                    String condition = split[0].trim();
+                    String param1 = split[1].trim();
+                    String param2 = split[2].trim();
+                    if (condition.equals("TRIGGROUP")) {
+                        /*
+                        * Dedicated to triggers involving a group of ships.
+                        * Triggered if even 1 ship meets the criteria.
+                         */
+                        String group = param1;
+                        //split to find orders
+                        String[] arr = param2.split(",");
+                        String command = arr[0];
+                        //find ships in this group
+                        boolean hit = false;
+                        for (int a = 0; a < universe.getSystems().size(); a++) {
+                            if (hit) {
+                                break;
+                            }
+                            ArrayList<Entity> ships = universe.getSystems().get(a).getShipList();
+                            OUTER:
+                            for (int b = 0; b < ships.size(); b++) {
+                                Ship tmp = (Ship) ships.get(b);
+                                if (tmp.getGroup().equals(group)) {
+                                    switch (command) {
+                                        case "DOCKED":
+                                            if (checkGroupDockAdvance(arr, tmp)) {
+                                                hit = true;
+                                                break OUTER;
+                                            }
+                                            break;
+                                        case "GOTO":
+                                            if (checkGroupGotoAdvance(arr, tmp)) {
+                                                hit = true;
+                                                break OUTER;
+                                            }
+                                            break;
+                                        case "ENTERSYSTEM":
+                                            if (checkGroupEnterSystemAdvance(arr, tmp)) {
+                                                hit = true;
+                                                break OUTER;
+                                            }
+                                            break;
+                                        default:
+                                            break;
                                     }
                                 }
                             }
                         }
                     }
                 }
-            }
+                break;
         }
     }
-    
+
     private void checkWaitAdvance(String parameter) {
-        //set timer
-        if (timerState == TimerState.NOTSET) {
-            //reset timer
-            resetTimer();
-            //get time in seconds
-            timerMax = Double.parseDouble(parameter.trim());
-            //start clock
-            timerState = TimerState.RUNNING;
-        } else if (timerState == TimerState.STOPPED) {
-            //reset timer
-            resetTimer();
-            //trigger reached
-            next();
-        } else if (timerState == TimerState.RUNNING) {
-            timer += tpf;
-            if (timer >= timerMax) {
-                timerState = TimerState.STOPPED;
+        if (null != timerState) //set timer
+        {
+            switch (timerState) {
+                case NOTSET:
+                    //reset timer
+                    resetTimer();
+                    //get time in seconds
+                    timerMax = Double.parseDouble(parameter.trim());
+                    //start clock
+                    timerState = TimerState.RUNNING;
+                    break;
+                case STOPPED:
+                    //reset timer
+                    resetTimer();
+                    //trigger reached
+                    next();
+                    break;
+                case RUNNING:
+                    timer += tpf;
+                    if (timer >= timerMax) {
+                        timerState = TimerState.STOPPED;
+                    }
+                    break;
+                default:
+                    break;
             }
         }
     }
-    
+
     private void resetTimer() {
         //reset
         timerState = TimerState.NOTSET;
         timer = 0;
         timerMax = 0;
     }
-    
+
     private boolean checkGroupEnterSystemAdvance(String[] arr, Ship tmp) {
         //triggered when the player is in a certain system
         if (tmp.getCurrentSystem().getName().equals(arr[1])) {
@@ -245,7 +273,7 @@ public class Campaign implements Serializable {
             return false;
         }
     }
-    
+
     private boolean checkGroupGotoAdvance(String[] arr, Ship tmp) {
         String lSys = arr[1].trim();
         String lEnt = arr[2].trim();
@@ -263,11 +291,9 @@ public class Campaign implements Serializable {
                     Ship test = (Ship) celestials.get(a);
                     if (test.getFaction().equals(universe.getPlayerShip().getFaction())) {
                         //don't include this object
-                    } else {
-                        if (test.getName().equals(lEnt)) {
-                            pick = test;
-                            break;
-                        }
+                    } else if (test.getName().equals(lEnt)) {
+                        pick = test;
+                        break;
                     }
                 } else if (celestials.get(a) instanceof Celestial) {
                     Celestial test = (Celestial) celestials.get(a);
@@ -293,7 +319,7 @@ public class Campaign implements Serializable {
         }
         return false;
     }
-    
+
     private boolean checkGroupDockAdvance(String[] arr, Ship tmp) {
         String sys = arr[1];
         String stn = arr[2];
@@ -309,7 +335,7 @@ public class Campaign implements Serializable {
         }
         return false;
     }
-    
+
     private void checkGotoAdvance(String parameter) throws NumberFormatException {
         String[] arr = parameter.split(",");
         String lSys = arr[0].trim();
@@ -329,11 +355,9 @@ public class Campaign implements Serializable {
                     Ship test = (Ship) celestials.get(a);
                     if (test.getFaction().equals(player.getFaction())) {
                         //don't include this object
-                    } else {
-                        if (test.getName().equals(lEnt)) {
-                            pick = test;
-                            break;
-                        }
+                    } else if (test.getName().equals(lEnt)) {
+                        pick = test;
+                        break;
                     }
                 } else if (celestials.get(a) instanceof Celestial) {
                     Celestial test = (Celestial) celestials.get(a);
@@ -357,7 +381,7 @@ public class Campaign implements Serializable {
             //no point in testing further
         }
     }
-    
+
     private void checkNoneAliveAdvance(String parameter) {
         //triggered when no ship/station of a certain group is left alive
         String group = parameter;
@@ -391,7 +415,7 @@ public class Campaign implements Serializable {
             next();
         }
     }
-    
+
     private void checkDockAdvance(String parameter) {
         //triggered when a player docks at a certain station
         Ship player = universe.getPlayerShip();
@@ -410,7 +434,7 @@ public class Campaign implements Serializable {
             }
         }
     }
-    
+
     private void checkEnterSystemAdvance(String parameter) {
         //triggered when the player is in a certain system
         if (universe.getPlayerShip().getCurrentSystem().getName().equals(parameter)) {
@@ -420,7 +444,7 @@ public class Campaign implements Serializable {
             //not yet
         }
     }
-    
+
     private void checkSilentEndAdvance() {
         //this is the end of the campaign, but doesn't say anything
         node = null;
@@ -429,7 +453,7 @@ public class Campaign implements Serializable {
         //store campaign in the completed campaigns list
         universe.getCompletedCampaigns().add(this);
     }
-    
+
     private void checkEndAdvance() {
         //this is the end of the campaign
         node = null;
@@ -439,7 +463,7 @@ public class Campaign implements Serializable {
         //store campaign in the completed campaigns list
         universe.getCompletedCampaigns().add(this);
     }
-    
+
     private void checkFailure() {
         //check to see if the mission has been failed
         String failure = node.getValue("fail");
@@ -454,12 +478,18 @@ public class Campaign implements Serializable {
                 if (split.length == 2) {
                     String condition = split[0].trim();
                     String parameter = split[1].trim();
-                    if (condition.equals("ENTERSYSTEM")) {
-                        checkEnterSystemFail(parameter);
-                    } else if (condition.equals("DOCK")) {
-                        checkDockFail(parameter);
-                    } else if (condition.equals("NONEALIVE")) {
-                        checkNoneAliveFail(parameter);
+                    switch (condition) {
+                        case "ENTERSYSTEM":
+                            checkEnterSystemFail(parameter);
+                            break;
+                        case "DOCK":
+                            checkDockFail(parameter);
+                            break;
+                        case "NONEALIVE":
+                            checkNoneAliveFail(parameter);
+                            break;
+                        default:
+                            break;
                     }
                 } else if (split.length == 3) {
                     String condition = split[0].trim();
@@ -481,24 +511,31 @@ public class Campaign implements Serializable {
                                 break;
                             }
                             ArrayList<Entity> ships = universe.getSystems().get(a).getShipList();
+                            OUTER:
                             for (int b = 0; b < ships.size(); b++) {
                                 Ship tmp = (Ship) ships.get(b);
                                 if (tmp.getGroup().equals(group)) {
-                                    if (command.equals("DOCKED")) {
-                                        if (checkGroupDockFail(arr, tmp)) {
-                                            hit = true;
+                                    switch (command) {
+                                        case "DOCKED":
+                                            if (checkGroupDockFail(arr, tmp)) {
+                                                hit = true;
+                                                break OUTER;
+                                            }
                                             break;
-                                        }
-                                    } else if (command.equals("GOTO")) {
-                                        if (checkGroupGotoFail(arr, tmp)) {
-                                            hit = true;
+                                        case "GOTO":
+                                            if (checkGroupGotoFail(arr, tmp)) {
+                                                hit = true;
+                                                break OUTER;
+                                            }
                                             break;
-                                        }
-                                    } else if (command.equals("ENTERSYSTEM")) {
-                                        if (checkGroupEnterSystemFail(arr, tmp)) {
-                                            hit = true;
+                                        case "ENTERSYSTEM":
+                                            if (checkGroupEnterSystemFail(arr, tmp)) {
+                                                hit = true;
+                                                break OUTER;
+                                            }
                                             break;
-                                        }
+                                        default:
+                                            break;
                                     }
                                 }
                             }
@@ -508,7 +545,7 @@ public class Campaign implements Serializable {
             }
         }
     }
-    
+
     private boolean checkGroupEnterSystemFail(String[] arr, Ship tmp) {
         //triggered when the player is in a certain system
         if (tmp.getCurrentSystem().getName().equals(arr[1])) {
@@ -520,7 +557,7 @@ public class Campaign implements Serializable {
             return false;
         }
     }
-    
+
     private boolean checkGroupGotoFail(String[] arr, Ship tmp) {
         String lSys = arr[1].trim();
         String lEnt = arr[2].trim();
@@ -538,11 +575,9 @@ public class Campaign implements Serializable {
                     Ship test = (Ship) celestials.get(a);
                     if (test.getFaction().equals(universe.getPlayerShip().getFaction())) {
                         //don't include this object
-                    } else {
-                        if (test.getName().equals(lEnt)) {
-                            pick = test;
-                            break;
-                        }
+                    } else if (test.getName().equals(lEnt)) {
+                        pick = test;
+                        break;
                     }
                 } else if (celestials.get(a) instanceof Celestial) {
                     Celestial test = (Celestial) celestials.get(a);
@@ -568,7 +603,7 @@ public class Campaign implements Serializable {
         }
         return false;
     }
-    
+
     private void checkNoneAliveFail(String parameter) {
         //triggered when no ship/station of a certain group is left alive
         String group = parameter;
@@ -602,7 +637,7 @@ public class Campaign implements Serializable {
             fail();
         }
     }
-    
+
     private boolean checkGroupDockFail(String[] arr, Ship tmp) {
         String sys = arr[1];
         String stn = arr[2];
@@ -618,7 +653,7 @@ public class Campaign implements Serializable {
         }
         return false;
     }
-    
+
     private void checkDockFail(String parameter) {
         //triggered when a player docks at a certain station
         Ship player = universe.getPlayerShip();
@@ -637,7 +672,7 @@ public class Campaign implements Serializable {
             }
         }
     }
-    
+
     private void checkEnterSystemFail(String parameter) {
         //triggered when the player is in a certain system
         if (universe.getPlayerShip().getCurrentSystem().getName().equals(parameter)) {
@@ -647,19 +682,19 @@ public class Campaign implements Serializable {
             //not yet
         }
     }
-    
+
     private void next() {
         //automatically advance to next node
         String next = node.getValue("next");
         advance(next);
     }
-    
+
     private void fail() {
         //automatically advance to the failure node
         String next = node.getValue("failure");
         advance(next);
     }
-    
+
     private void advance(String next) {
         Term tmp = findNode(next);
         if (tmp != null) {
@@ -679,17 +714,23 @@ public class Campaign implements Serializable {
             messagePlayer(chapter, main);
             //call any functions this node has
             int a = 0;
-            String function = null;
+            String function;
             while ((function = node.getValue("call" + a)) != null) {
                 System.out.println("Calling " + function);
                 //call this function
                 String[] arr = function.split("::");
-                if (arr.length == 2) {
-                    do2FieldFunction(arr);
-                } else if (arr.length == 3) {
-                    do3FieldFunction(arr);
-                } else if (arr.length == 4) {
-                    do4FieldFunction(arr);
+                switch (arr.length) {
+                    case 2:
+                        do2FieldFunction(arr);
+                        break;
+                    case 3:
+                        do3FieldFunction(arr);
+                        break;
+                    case 4:
+                        do4FieldFunction(arr);
+                        break;
+                    default:
+                        break;
                 }
                 //increment
                 a++;
@@ -698,7 +739,7 @@ public class Campaign implements Serializable {
             messagePlayer("Error", "Unexpected end of story.");
         }
     }
-    
+
     private void do2FieldFunction(String[] arr) {
         //object::method
         String object = arr[0].trim();
@@ -716,71 +757,78 @@ public class Campaign implements Serializable {
             }
         }
     }
-    
+
     private void do3FieldFunction(String[] arr) {
         //action::param1::details
         String action = arr[0].trim();
         String param1 = arr[1].trim();
         String param2 = arr[2].trim();
-        if (action.equals("SPAWNSHIP")) {
-            parseSpawnShip(param1, param2);
-        } else if (action.equals("SPAWNSTATION")) {
-            parseSpawnStation(param1, param2);
-        } else if (action.equals("PLAYER")) {
-            /*
-             * This block is dedicated to handling functions that modify the current player ship
-             */
-            if (param1.equals("SETSTANDING")) {
-                setPlayerStanding(param2);
-            } else if (param1.equals("ADDCASH")) {
-                givePlayerCash(param2);
-            }
-        } else if (action.equals("COMMGROUP")) {
-            /*
-             * Dedicated to sending orders to a group of ships
-             */
-            String group = param1;
-            //split to find orders
-            String[] split = param2.split(",");
-            String command = split[0];
-            //find ships in this group
-            for (int a = 0; a < universe.getSystems().size(); a++) {
-                ArrayList<Entity> ships = universe.getSystems().get(a).getShipList();
-                for (int b = 0; b < ships.size(); b++) {
-                    Ship tmp = (Ship) ships.get(b);
-                    if (tmp.getGroup().equals(group)) {
-                        if (command.equals("FLYTO")) {
-                            parseFlyTo(split, tmp);
-                        }
-                        if (command.equals("FOLLOW")) {
-                            parseFollow(split, tmp);
-                        }
-                        if (command.equals("BEHAVE")) {
-                            parseBehave(split, tmp);
-                        }
-                        if (command.equals("DOCKAT")) {
-                            parseDockAt(split, tmp);
-                        }
-                        if (command.equals("UNDOCK")) {
-                            parseUndock(split, tmp);
-                        }
-                        if (command.equals("DEPLOT")) {
-                            parseDeplot(split, tmp);
+        switch (action) {
+            case "SPAWNSHIP":
+                parseSpawnShip(param1, param2);
+                break;
+            case "SPAWNSTATION":
+                parseSpawnStation(param1, param2);
+                break;
+            case "PLAYER":
+                /*
+                * This block is dedicated to handling functions that modify the current player ship
+                 */
+                if (param1.equals("SETSTANDING")) {
+                    setPlayerStanding(param2);
+                } else if (param1.equals("ADDCASH")) {
+                    givePlayerCash(param2);
+                }
+                break;
+            case "COMMGROUP":
+                /*
+                * Dedicated to sending orders to a group of ships
+                 */
+                String group = param1;
+                //split to find orders
+                String[] split = param2.split(",");
+                String command = split[0];
+                //find ships in this group
+                for (int a = 0; a < universe.getSystems().size(); a++) {
+                    ArrayList<Entity> ships = universe.getSystems().get(a).getShipList();
+                    for (int b = 0; b < ships.size(); b++) {
+                        Ship tmp = (Ship) ships.get(b);
+                        if (tmp.getGroup().equals(group)) {
+                            if (command.equals("FLYTO")) {
+                                parseFlyTo(split, tmp);
+                            }
+                            if (command.equals("FOLLOW")) {
+                                parseFollow(split, tmp);
+                            }
+                            if (command.equals("BEHAVE")) {
+                                parseBehave(split, tmp);
+                            }
+                            if (command.equals("DOCKAT")) {
+                                parseDockAt(split, tmp);
+                            }
+                            if (command.equals("UNDOCK")) {
+                                parseUndock(split, tmp);
+                            }
+                            if (command.equals("DEPLOT")) {
+                                parseDeplot(split, tmp);
+                            }
                         }
                     }
                 }
-            }
+                break;
+            default:
+                break;
         }
     }
-    
+
     private void parseDeplot(String[] split, Ship tmp) {
         tmp.setPlotShip(false);
     }
-    
+
     private void parseUndock(String[] split, Ship tmp) {
         tmp.cmdUndock();
     }
-    
+
     private void parseDockAt(String[] split, Ship tmp) {
         String target = split[1].trim();
         //fly to only works in the current system the object is in
@@ -801,7 +849,7 @@ public class Campaign implements Serializable {
             tmp.cmdDock(dockTarget);
         }
     }
-    
+
     private void parseSpawnShip(String param1, String param2) throws NumberFormatException {
         //the group name
         String group = param1;
@@ -813,7 +861,7 @@ public class Campaign implements Serializable {
         String sx = split[2];
         String sy = split[3];
         String load = split[4];
-        String name = split[5];
+        String _name = split[5];
         String behave = split[6];
         //find the correct system
         SolarSystem system = null;
@@ -830,22 +878,30 @@ public class Campaign implements Serializable {
         Faction myFaction = new Faction(faction);
         //setup behavior
         Behavior behavior = Behavior.NONE;
-        if (behave.equals("PATROL")) {
-            behavior = Behavior.PATROL;
-        } else if (behave.equals("SECTOR_TRADE")) {
-            behavior = Behavior.SECTOR_TRADE;
-        } else if (behave.equals("UNIVERSE_TRADE")) {
-            behavior = Behavior.UNIVERSE_TRADE;
-        } else if (behave.equals("TEST")) {
-            behavior = Behavior.TEST;
-        } else if (behave.equals("NONE")) {
-            behavior = Behavior.NONE;
+        switch (behave) {
+            case "PATROL":
+                behavior = Behavior.PATROL;
+                break;
+            case "SECTOR_TRADE":
+                behavior = Behavior.SECTOR_TRADE;
+                break;
+            case "UNIVERSE_TRADE":
+                behavior = Behavior.UNIVERSE_TRADE;
+                break;
+            case "TEST":
+                behavior = Behavior.TEST;
+                break;
+            case "NONE":
+                behavior = Behavior.NONE;
+                break;
+            default:
+                break;
         }
         //spawn ship
         //spawnShip(Faction faction, SolarSystem system, Point2D.Double loc, String loadout, String name, Behavior behavior)
-        universe.getGod().spawnShip(myFaction, system, new Point2D.Double(x, y), load, name, behavior, group, true);
+        universe.getGod().spawnShip(myFaction, system, new Point2D.Double(x, y), load, _name, behavior, group, true);
     }
-    
+
     private void parseSpawnStation(String param1, String param2) throws NumberFormatException {
         //the group name
         String group = param1;
@@ -857,7 +913,7 @@ public class Campaign implements Serializable {
         String sx = split[2];
         String sy = split[3];
         String load = split[4];
-        String name = split[5];
+        String _name = split[5];
         //find the correct system
         SolarSystem system = null;
         for (int x = 0; x < universe.getSystems().size(); x++) {
@@ -873,14 +929,14 @@ public class Campaign implements Serializable {
         Faction myFaction = new Faction(faction);
         //spawn station
         //spawnStation(Faction faction, SolarSystem system, Point2D.Double loc, String type, String name)
-        universe.getGod().spawnStation(myFaction, system, new Point2D.Double(x, y), load, name, group, true);
+        universe.getGod().spawnStation(myFaction, system, new Point2D.Double(x, y), load, _name, group, true);
     }
-    
+
     private void givePlayerCash(String param2) throws NumberFormatException {
         long mod = Long.parseLong(param2.trim());
         universe.getPlayerShip().setCash(universe.getPlayerShip().getCash() + mod);
     }
-    
+
     private void setPlayerStanding(String param2) throws NumberFormatException {
         String[] split = param2.split(",");
         String fact = split[0].trim();
@@ -888,7 +944,7 @@ public class Campaign implements Serializable {
         double standing = Double.parseDouble(sRaw);
         universe.getPlayerShip().getMyFaction().setStanding(fact, standing);
     }
-    
+
     private void parseFlyTo(String[] split, Ship tmp) throws NumberFormatException {
         String target = split[1].trim();
         String sRange = split[2].trim();
@@ -913,7 +969,7 @@ public class Campaign implements Serializable {
             tmp.cmdFlyToCelestial(universe.getPlayerShip(), flyToRange);
         }
     }
-    
+
     private void parseFollow(String[] split, Ship tmp) throws NumberFormatException {
         String target = split[1].trim();
         String sRange = split[2].trim();
@@ -938,26 +994,34 @@ public class Campaign implements Serializable {
             tmp.cmdFollowShip(universe.getPlayerShip(), followRange);
         }
     }
-    
+
     private void parseBehave(String[] split, Ship tmp) {
         String behave = split[1].trim();
         //determine correct new behavior
         Behavior behavior = Behavior.NONE;
-        if (behave.equals("PATROL")) {
-            behavior = Behavior.PATROL;
-        } else if (behave.equals("SECTOR_TRADE")) {
-            behavior = Behavior.SECTOR_TRADE;
-        } else if (behave.equals("UNIVERSE_TRADE")) {
-            behavior = Behavior.UNIVERSE_TRADE;
-        } else if (behave.equals("TEST")) {
-            behavior = Behavior.TEST;
-        } else if (behave.equals("NONE")) {
-            behavior = Behavior.NONE;
+        switch (behave) {
+            case "PATROL":
+                behavior = Behavior.PATROL;
+                break;
+            case "SECTOR_TRADE":
+                behavior = Behavior.SECTOR_TRADE;
+                break;
+            case "UNIVERSE_TRADE":
+                behavior = Behavior.UNIVERSE_TRADE;
+                break;
+            case "TEST":
+                behavior = Behavior.TEST;
+                break;
+            case "NONE":
+                behavior = Behavior.NONE;
+                break;
+            default:
+                break;
         }
         //set behavior
         tmp.setBehavior(behavior);
     }
-    
+
     private void do4FieldFunction(String[] arr) {
         //type::system::entity::method
         String type = arr[0];
@@ -988,7 +1052,7 @@ public class Campaign implements Serializable {
             }
         }
     }
-    
+
     public String getName() {
         return name;
     }
