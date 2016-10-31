@@ -48,7 +48,11 @@ public class Jumphole extends Planet {
     @Override
     public void initGraphics() {
         try {
-            raw_tex = AstralIO.loadImage("planet/Jumphole.png");
+            if (outGate.getCurrentSystem().isFrontier()) {
+                raw_tex = AstralIO.loadImage("planet/Jumphole-Frontier.png");
+            } else {
+                raw_tex = AstralIO.loadImage("planet/Jumphole.png");
+            }
         } catch (NullPointerException | URISyntaxException ex) {
             Logger.getLogger(Jumphole.class.getName()).log(Level.SEVERE, null, ex);
         }

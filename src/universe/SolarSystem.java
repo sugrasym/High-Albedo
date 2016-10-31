@@ -83,12 +83,12 @@ public class SolarSystem implements Entity, Serializable {
         //generate
         generateSystem(parse);
     }
-    
+
     public SolarSystem(Universe universe, String name) {
         this.name = name; //needed for lookup
         this.universe = universe;
         this.systemType = Type.SETTLED; //default to settled space
-        
+
         //note: you'll have to add celestials to this system
     }
 
@@ -728,5 +728,13 @@ public class SolarSystem implements Entity, Serializable {
 
     public void setSystemType(Type systemType) {
         this.systemType = systemType;
+    }
+
+    public boolean isFrontier() {
+        return (getSystemType() == Type.FRONTIER);
+    }
+
+    public boolean isSettled() {
+        return (getSystemType() == Type.SETTLED);
     }
 }

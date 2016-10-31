@@ -222,13 +222,13 @@ public class Universe implements Serializable {
 
     public ArrayList<SolarSystem> getSettledSpace() {
         return (ArrayList<SolarSystem>) getSystems().stream()
-                .filter((system) -> system.getSystemType() == SolarSystem.Type.SETTLED)
+                .filter((system) -> system.isSettled())
                 .collect(Collectors.toList());
     }
 
     public ArrayList<SolarSystem> getFrontierSpace() {
         return (ArrayList<SolarSystem>) getSystems().stream()
-                .filter((system) -> system.getSystemType() == SolarSystem.Type.FRONTIER)
+                .filter((system) -> system.isFrontier())
                 .collect(Collectors.toList());
     }
 }
