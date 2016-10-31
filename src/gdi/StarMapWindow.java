@@ -117,59 +117,65 @@ public class StarMapWindow extends AstralWindow {
                 ArrayList<SolarSystem> systems = universe.getDiscoveredSpace(); //will show discovered space
                 //iterate through and draw an icon for each one
                 for (int a = 0; a < systems.size(); a++) {
-                    //compute offset
-                    int ox = getWidth() / 2;
-                    int oy = getHeight() / 2;
-                    ox += offset.x;
-                    oy += offset.y;
-                    //select font
-                    tfx.setFont(radarFont);
-                    //get position
-                    double sx = systems.get(a).getX();
-                    double sy = systems.get(a).getY();
-                    //zoom
-                    sx *= zoom;
-                    sy *= zoom;
-                    //compute final render position
-                    double rx = sx + ox;
-                    double ry = sy + oy;
-                    {
-                        //search system for jump holes
-                        ArrayList<Entity> cel = systems.get(a).getJumpholeList();
-                        for (int v = 0; v < cel.size(); v++) {
-                            if (cel.get(v) instanceof Jumphole) {
-                                Jumphole tmp = (Jumphole) cel.get(v);
-                                try {
-                                    //get exit system
-                                    SolarSystem exit = tmp.getOutGate().getCurrentSystem();
-                                    //figure out where it is on our map
-                                    double tx = (exit.getX() * zoom) + ox;
-                                    double ty = (exit.getY() * zoom) + oy;
-                                    //draw a line
-                                    gfx.setColor(Color.LIGHT_GRAY);
-                                    gfx.drawLine((int) rx, (int) ry, (int) tx, (int) ty);
-                                } catch (Exception e) {
-                                    System.out.println("Forcing " + tmp.getName() + " to link with partner");
-                                    tmp.createLink(tmp.getOut());
+                    //only render settled systems
+                    if (systems.get(a).isSettled()) {
+                        //compute offset
+                        int ox = getWidth() / 2;
+                        int oy = getHeight() / 2;
+                        ox += offset.x;
+                        oy += offset.y;
+                        //select font
+                        tfx.setFont(radarFont);
+                        //get position
+                        double sx = systems.get(a).getX();
+                        double sy = systems.get(a).getY();
+                        //zoom
+                        sx *= zoom;
+                        sy *= zoom;
+                        //compute final render position
+                        double rx = sx + ox;
+                        double ry = sy + oy;
+                        {
+                            //search system for jump holes
+                            ArrayList<Entity> cel = systems.get(a).getJumpholeList();
+                            for (int v = 0; v < cel.size(); v++) {
+                                if (cel.get(v) instanceof Jumphole) {
+                                    Jumphole tmp = (Jumphole) cel.get(v);
+                                    try {
+                                        //get exit system
+                                        SolarSystem exit = tmp.getOutGate().getCurrentSystem();
+                                        //only draw connections between settled systems
+                                        if (exit.isSettled()) {
+                                            //figure out where it is on our map
+                                            double tx = (exit.getX() * zoom) + ox;
+                                            double ty = (exit.getY() * zoom) + oy;
+                                            //draw a line
+                                            gfx.setColor(Color.LIGHT_GRAY);
+                                            gfx.drawLine((int) rx, (int) ry, (int) tx, (int) ty);
+                                        }
+                                    } catch (Exception e) {
+                                        System.out.println("Forcing " + tmp.getName() + " to link with partner");
+                                        tmp.createLink(tmp.getOut());
+                                    }
                                 }
                             }
                         }
-                    }
-                    //map
-                    if (systems.get(a) == universe.getPlayerShip().getCurrentSystem()) {
-                        tfx.setColor(whiteForeground);
-                        tfx.fillRect((int) rx - 2, (int) ry - 2, 4, 4);
-                        tfx.setColor(Color.GREEN);
-                    } else {
-                        if (systems.get(a).getOwner().equals("Player")) {
-                            tfx.setColor(Color.MAGENTA);
+                        //map
+                        if (systems.get(a) == universe.getPlayerShip().getCurrentSystem()) {
+                            tfx.setColor(whiteForeground);
+                            tfx.fillRect((int) rx - 2, (int) ry - 2, 4, 4);
+                            tfx.setColor(Color.GREEN);
                         } else {
-                            tfx.setColor(Color.GRAY);
+                            if (systems.get(a).getOwner().equals("Player")) {
+                                tfx.setColor(Color.MAGENTA);
+                            } else {
+                                tfx.setColor(Color.GRAY);
+                            }
+                            tfx.fillRect((int) rx - 2, (int) ry - 2, 4, 4);
+                            tfx.setColor(Color.WHITE);
                         }
-                        tfx.fillRect((int) rx - 2, (int) ry - 2, 4, 4);
-                        tfx.setColor(Color.WHITE);
+                        tfx.drawString(systems.get(a).getName(), (int) rx - 2, (int) ry - 2);
                     }
-                    tfx.drawString(systems.get(a).getName(), (int) rx - 2, (int) ry - 2);
                 }
             }
         }

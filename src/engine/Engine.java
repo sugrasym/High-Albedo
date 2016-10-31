@@ -1408,13 +1408,13 @@ public class Engine {
             //draw a marker around the player's target
             if (playerShip.getTarget() != null) {
                 if (!(playerShip.getTarget() instanceof Station)) {
-                    int tx = (int) (playerShip.getTarget().getX() - dx);
-                    int ty = (int) (playerShip.getTarget().getY() - dy);
-                    int tw = playerShip.getTarget().getWidth();
-                    int th = playerShip.getTarget().getHeight();
+                    int _tx = (int) (playerShip.getTarget().getX() - dx);
+                    int _ty = (int) (playerShip.getTarget().getY() - dy);
+                    int _tw = playerShip.getTarget().getWidth();
+                    int _th = playerShip.getTarget().getHeight();
                     f.setColor(Color.YELLOW);
                     f.setStroke(new BasicStroke(3));
-                    f.drawOval(tx, ty, tw, th);
+                    f.drawOval(_tx, _ty, _tw, _th);
                 }
             }
         }
