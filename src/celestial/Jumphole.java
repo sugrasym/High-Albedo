@@ -44,12 +44,14 @@ public class Jumphole extends Planet {
     private double phase = 1;
 
     //how much mass the jumphole can transport before collapse
-    private double flux = Double.POSITIVE_INFINITY;
-    private double maxFlux = Double.POSITIVE_INFINITY;
+    private double flux;
+    private double maxFlux;
 
     public Jumphole(String name, Universe universe) {
         super(name, null, 200);
         this.universe = universe;
+        flux = Double.MAX_VALUE;
+        maxFlux = Double.MAX_VALUE;
     }
 
     @Override
@@ -81,20 +83,10 @@ public class Jumphole extends Planet {
         //guarantee link
         if (outGate == null) {
             createLink(out);
-
-            //setup flux for frontier jumpholes
-            if (getCurrentSystem().isFrontier() || outGate.getCurrentSystem().isFrontier()) {
-                flux = maxFlux = (new Random().nextDouble()
-                        * (MAX_FRONTIER_FLUX - MIN_FRONTIER_FLUX))
-                        + MIN_FRONTIER_FLUX;
-
-                outGate.setFlux(getFlux());
-                outGate.setMaxFlux(getMaxFlux());
-            }
         }
 
         //update flux
-        phase += (2 * rnd.nextDouble() - 1) * tpf * (1 / getStability());
+        phase += ((1 + getStability()) * rnd.nextDouble() - 1) * tpf;
         if (phase > 1) {
             phase = rnd.nextDouble();
         } else if (phase < 0.5) {
@@ -103,7 +95,10 @@ public class Jumphole extends Planet {
 
         //update bound
         getBounds().clear();
-        getBounds().add(new Rectangle((int) getX() - getDiameter() / 4, (int) getY() - getDiameter() / 4, getDiameter() / 2, getDiameter() / 2));
+        getBounds().add(new Rectangle((int) getX() - getDiameter() / 4,
+                (int) getY() - getDiameter() / 4,
+                getDiameter() / 2,
+                getDiameter() / 2));
 
         //check stability
         if (getStability() <= 0) {
@@ -123,6 +118,9 @@ public class Jumphole extends Planet {
     }
 
     public void createLink(String out) {
+        if (outGate != null) {
+            return;
+        }
         /*
          * Locates this gate's partner in the target solar system.
          */

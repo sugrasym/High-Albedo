@@ -23,6 +23,8 @@ package engine;
 
 import celestial.Celestial;
 import celestial.Jumphole;
+import static celestial.Jumphole.MAX_FRONTIER_FLUX;
+import static celestial.Jumphole.MIN_FRONTIER_FLUX;
 import celestial.Ship.Ship;
 import celestial.Ship.Ship.Behavior;
 import celestial.Ship.Station;
@@ -109,7 +111,7 @@ public class God implements EngineElement {
         }
 
         //add missing ones
-        while (count < 20) {
+        while (count < 200) {
             //start is always frontier
             SolarSystem start = universe.getFrontierSpace()
                     .get(rnd.nextInt(universe.getFrontierSpace().size() - 1));
@@ -130,15 +132,31 @@ public class God implements EngineElement {
                         Jumphole jh1 = new Jumphole("Transient Jumphole", universe);
                         Jumphole jh2 = new Jumphole("Transient Jumphole", universe);
 
+                        jh1.setX((rnd.nextDouble() - 0.5) * 48000);
+                        jh1.setY((rnd.nextDouble() - 0.5) * 48000);
+
+                        jh2.setX((rnd.nextDouble() - 0.5) * 48000);
+                        jh2.setY((rnd.nextDouble() - 0.5) * 48000);
+
                         //create connection
                         jh1.setOutGate(jh2);
                         jh2.setOutGate(jh1);
+
+                        //setup flux for frontier jumpholes
+                        double flux = (new Random().nextDouble()
+                                * (MAX_FRONTIER_FLUX - MIN_FRONTIER_FLUX))
+                                + MIN_FRONTIER_FLUX;
+
+                        jh1.setFlux(flux);
+                        jh1.setMaxFlux(flux);
+
+                        jh2.setFlux(flux);
+                        jh2.setMaxFlux(flux);
 
                         //add to systems
                         start.putEntityInSystem(jh1);
                         end.putEntityInSystem(jh2);
 
-                        //debug message
                         System.out.println("Added transient jumphole "
                                 + start.getName() + " -> " + end.getName());
 
