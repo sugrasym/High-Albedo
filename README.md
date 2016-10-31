@@ -10,7 +10,7 @@ This readme will contain a list of goals for Dark Frontier. They will be marked 
 
 Gameplay Goals
 ---------------
-* Frontier space. Frontier systems aren't always connected and their connections move at random as jumpholes appear and disappear unlike the static jumpholes connecting settled space.
+* Frontier space. Frontier systems aren't always connected and their connections move at random as jumpholes appear and disappear unlike the static jumpholes connecting settled space (IN PROGRESS).
 * Carriers. These new ships will allow fighters to dock with them, and transport them quickly using their jump drive. Carriers will come in different sizes, including capital ship varieties. Fighters will be assigned to a carrier, which will automatically control its own wings.
 * Beam weapons. There are currently no beam weapons, and the engine does not support them.
 * AI difficulty variations. Right now everyone is an ace pilot.
