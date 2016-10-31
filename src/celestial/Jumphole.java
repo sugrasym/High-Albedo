@@ -34,11 +34,18 @@ import universe.Universe;
 
 public class Jumphole extends Planet {
 
+    public static final double MAX_FRONTIER_FLUX = 250000;
+    public static final double MIN_FRONTIER_FLUX = 250;
+
     private Jumphole outGate;
     private final Universe universe;
     protected String out = "n/n";
     private final Random rnd = new Random(1);
-    private double flux = 1;
+    private double phase = 1;
+
+    //how much mass the jumphole can transport before collapses
+    private double flux = Double.POSITIVE_INFINITY;
+    private double maxFlux = Double.POSITIVE_INFINITY;
 
     public Jumphole(String name, Universe universe) {
         super(name, null, 200);
@@ -61,7 +68,7 @@ public class Jumphole extends Planet {
     @Override
     public void render(Graphics f, double dx, double dy) {
         if (raw_tex != null) {
-            int size = (int) (2 * flux * diameter);
+            int size = (int) (2 * phase * diameter);
             Graphics2D s = (Graphics2D) (f);
             s.drawImage(raw_tex, (int) (getX() - dx) - (size / 2), (int) (getY() - dy) - (size / 2), size, size, null);
         } else {
@@ -71,20 +78,48 @@ public class Jumphole extends Planet {
 
     @Override
     public void alive() {
-        //update flux
-        flux += (2 * rnd.nextDouble() - 1) * tpf;
-        if (flux > 1) {
-            flux = rnd.nextDouble();
-        } else if (flux < 0.5) {
-            flux = rnd.nextDouble();
-        }
-        //update bound
-        getBounds().clear();
-        getBounds().add(new Rectangle((int) getX() - getDiameter() / 4, (int) getY() - getDiameter() / 4, getDiameter() / 2, getDiameter() / 2));
         //guarantee link
         if (outGate == null) {
             createLink(out);
+
+            //setup flux for frontier jumpholes
+            if (getCurrentSystem().isFrontier() || outGate.getCurrentSystem().isFrontier()) {
+                flux = maxFlux = (new Random().nextDouble()
+                        * (MAX_FRONTIER_FLUX - MIN_FRONTIER_FLUX))
+                        + MIN_FRONTIER_FLUX;
+
+                outGate.setFlux(getFlux());
+                outGate.setMaxFlux(getMaxFlux());
+            }
         }
+
+        //update flux
+        phase += (2 * rnd.nextDouble() - 1) * tpf * (1 / getStability());
+        if (phase > 1) {
+            phase = rnd.nextDouble();
+        } else if (phase < 0.5) {
+            phase = rnd.nextDouble();
+        }
+
+        //update bound
+        getBounds().clear();
+        getBounds().add(new Rectangle((int) getX() - getDiameter() / 4, (int) getY() - getDiameter() / 4, getDiameter() / 2, getDiameter() / 2));
+
+        //check stability
+        if (getStability() <= 0) {
+            //this jumphole has collapsed
+            setState(State.DYING);
+            outGate.setState(State.DYING);
+        }
+    }
+
+    @Override
+    public void dying() {
+        super.dying();
+
+        System.out.println("Jumphole " + getCurrentSystem().getName()
+                + " -> " + outGate.getCurrentSystem().getName()
+                + " has decayed.");
     }
 
     public void createLink(String out) {
@@ -150,6 +185,12 @@ public class Jumphole extends Planet {
         double dT = Math.atan2(getX() - tmp.getX(), getY() - tmp.getY());
         tmp.setX((outGate.getX() + outGate.getWidth() / 2) + outGate.getDiameter() * Math.cos(dT));
         tmp.setY((outGate.getY() + outGate.getHeight() / 2) + outGate.getDiameter() * Math.sin(dT));
+
+        //adjust stability for frontier jumpholes
+        if (getCurrentSystem().isFrontier() || outGate.getCurrentSystem().isFrontier()) {
+            //reduce the maximum throughput of the jumphole
+            setFlux(getFlux() - tmp.getMass());
+        }
     }
 
     public String getOut() {
@@ -166,5 +207,30 @@ public class Jumphole extends Planet {
 
     public void setOutGate(Jumphole outGate) {
         this.outGate = outGate;
+    }
+
+    public double getStability() {
+        if (getCurrentSystem().isFrontier() || outGate.getCurrentSystem().isFrontier()) {
+            return getFlux() / getMaxFlux();
+        } else {
+            //static jumpholes are always stable
+            return 1;
+        }
+    }
+
+    public double getFlux() {
+        return flux;
+    }
+
+    public void setFlux(double flux) {
+        this.flux = flux;
+    }
+
+    public double getMaxFlux() {
+        return maxFlux;
+    }
+
+    public void setMaxFlux(double maxFlux) {
+        this.maxFlux = maxFlux;
     }
 }
