@@ -34,8 +34,8 @@ import universe.Universe;
 
 public class Jumphole extends Planet {
 
-    public static final double MAX_FRONTIER_FLUX = 250000;
-    public static final double MIN_FRONTIER_FLUX = 250;
+    public static final double MAX_FRONTIER_FLUX = 2500;
+    public static final double MIN_FRONTIER_FLUX = 125;
 
     private Jumphole outGate;
     private final Universe universe;
@@ -115,6 +115,8 @@ public class Jumphole extends Planet {
         System.out.println("Jumphole " + getCurrentSystem().getName()
                 + " -> " + outGate.getCurrentSystem().getName()
                 + " has decayed.");
+        
+        setState(State.DEAD);
     }
 
     public void createLink(String out) {
