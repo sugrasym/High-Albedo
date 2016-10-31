@@ -149,9 +149,11 @@ public class God implements EngineElement {
 
                         jh1.setFlux(flux);
                         jh1.setMaxFlux(flux);
+                        jh1.setState(Entity.State.ALIVE);
 
                         jh2.setFlux(flux);
                         jh2.setMaxFlux(flux);
+                        jh2.setState(Entity.State.ALIVE);
 
                         //add to systems
                         start.putEntityInSystem(jh1);
