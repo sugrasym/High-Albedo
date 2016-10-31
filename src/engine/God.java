@@ -47,7 +47,7 @@ public class God implements EngineElement {
 
     private final Universe universe;
     private final ArrayList<Entity> entities;
-    
+
     private final ArrayList<SuperFaction> factions = new ArrayList<>();
     private final Random rnd = new Random();
     boolean firstRun = true;
@@ -112,9 +112,10 @@ public class God implements EngineElement {
             count += (int) universe.getSystems().get(a).getJumpholeList().stream()
                     .filter((jh) -> ((Jumphole) jh).getCurrentSystem().isFrontier()).count();
         }
+        count /= 2;
 
         //add missing ones
-        while (count < 200) {
+        while (count < 100) {
             //start is always frontier
             SolarSystem start = universe.getFrontierSpace()
                     .get(rnd.nextInt(universe.getFrontierSpace().size() - 1));
@@ -171,8 +172,7 @@ public class God implements EngineElement {
                 }
             }
         }
-        
-        
+
     }
 
     private void checkMerchants() {
@@ -811,7 +811,7 @@ public class God implements EngineElement {
             for (int a = 0; a < count; a++) {
                 System.out.println("Generating frontier system " + (a + 1) + "/" + count);
                 SolarSystem s = FrontierUtil.randomFrontierSystem(universe);
-                
+
                 universe.getSystems().add(s);
                 entities.add(s);
             }
