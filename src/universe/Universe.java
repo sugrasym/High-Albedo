@@ -179,19 +179,6 @@ public class Universe implements Serializable {
         return CACHE;
     }
 
-    public God getGod() {
-        if (god != null) {
-            return god;
-        } else {
-            god = new God(this);
-            return god;
-        }
-    }
-
-    public void setGod(God god) {
-        this.god = god;
-    }
-
     public ArrayList<Entity> getPlayerProperty() {
         return playerProperty;
     }
@@ -230,5 +217,13 @@ public class Universe implements Serializable {
         return (ArrayList<SolarSystem>) getSystems().stream()
                 .filter((system) -> system.isFrontier())
                 .collect(Collectors.toList());
+    }
+
+    public God getGod() {
+        return god;
+    }
+
+    public void setGod(God god) {
+        this.god = god;
     }
 }

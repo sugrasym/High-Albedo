@@ -46,6 +46,8 @@ import universe.Universe;
 public class God implements EngineElement {
 
     private final Universe universe;
+    private final ArrayList<Entity> entities;
+    
     private final ArrayList<SuperFaction> factions = new ArrayList<>();
     private final Random rnd = new Random();
     boolean firstRun = true;
@@ -56,8 +58,9 @@ public class God implements EngineElement {
     //timing
     private long lastFrame;
 
-    public God(Universe universe) {
+    public God(Universe universe, ArrayList<Entity> entities) {
         this.universe = universe;
+        this.entities = entities;
         //generate lists
         initFactions();
 
@@ -129,8 +132,8 @@ public class God implements EngineElement {
                             .anyMatch((jh) -> ((Jumphole) jh)
                                     .getOutGate().getCurrentSystem() == start)) {
                         //create jumpholes
-                        Jumphole jh1 = new Jumphole("Transient Jumphole", universe);
-                        Jumphole jh2 = new Jumphole("Transient Jumphole", universe);
+                        Jumphole jh1 = new Jumphole(end.getName() + " Jumphole", universe);
+                        Jumphole jh2 = new Jumphole(start.getName() + " Jumphole", universe);
 
                         jh1.setX((rnd.nextDouble() - 0.5) * 48000);
                         jh1.setY((rnd.nextDouble() - 0.5) * 48000);
@@ -168,6 +171,8 @@ public class God implements EngineElement {
                 }
             }
         }
+        
+        
     }
 
     private void checkMerchants() {
@@ -805,7 +810,10 @@ public class God implements EngineElement {
 
             for (int a = 0; a < count; a++) {
                 System.out.println("Generating frontier system " + (a + 1) + "/" + count);
-                universe.getSystems().add(FrontierUtil.randomFrontierSystem(universe));
+                SolarSystem s = FrontierUtil.randomFrontierSystem(universe);
+                
+                universe.getSystems().add(s);
+                entities.add(s);
             }
         }
     }

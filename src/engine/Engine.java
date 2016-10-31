@@ -85,6 +85,8 @@ public class Engine {
     //graphics and threading
     BufferStrategy bf;
     Element element;
+    //God
+    public God god;
     //HUD
     protected HUD hud = new HUD(this);
     //Sound
@@ -187,7 +189,12 @@ public class Engine {
     }
 
     public void setUniverse(Universe universe) {
+        //reset entity list and god
+        entities.clear();
+        god = null;
+
         this.universe = universe;
+        this.universe.setGod(null);
         //add this universe's systems to the entity list
         for (int a = 0; a < universe.getSystems().size(); a++) {
             entities.add(universe.getSystems().get(a));
@@ -1060,7 +1067,7 @@ public class Engine {
             } else if (state == State.MENU) {
                 double aspect = getAspectRatio();
                 //determine whether we are closer to 16x9/16x10 or 4x3
-                String plateGroup = "";
+                String plateGroup;
                 if (Math.abs(aspect - STD) < Math.abs(aspect - WIDE)) {
                     //aproximately std ratio
                     plateGroup = "std";
@@ -1289,9 +1296,12 @@ public class Engine {
 
         private void god() {
             if (universe != null) {
-                if (universe.getGod() != null) {
-                    universe.getGod().periodicUpdate();
+                if (god == null) {
+                    god = new God(getUniverse(), entities);
+                    universe.setGod(god);
                 }
+
+                god.periodicUpdate();
             }
         }
 
