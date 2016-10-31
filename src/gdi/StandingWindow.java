@@ -81,7 +81,11 @@ public class StandingWindow extends AstralWindow {
             logicalFactionList = sort(logicalFactionList);
             //add to display
             for (int a = 0; a < logicalFactionList.size(); a++) {
-                factionList.addToList(logicalFactionList.get(a));
+                //don't show the internal neutral and frontier factions
+                if (!"Neutral".equals(logicalFactionList.get(a).getString())
+                        && !"Frontier".equals(logicalFactionList.get(a).getString())) {
+                    factionList.addToList(logicalFactionList.get(a));
+                }
             }
             //display detailed information about the selected item
             int index = factionList.getIndex();

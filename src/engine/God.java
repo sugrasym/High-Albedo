@@ -746,7 +746,27 @@ public class God implements EngineElement {
             system.setSystemType(SolarSystem.Type.FRONTIER);
             system.setOwner("Frontier");
 
-            //todo: generate frontier systems
+            //set position
+            system.setX(RND.nextInt());
+            system.setY(RND.nextInt());
+
+            //set name
+            ArrayList<SolarSystem> frontier = universe.getFrontierSpace();
+            while (true) {
+                String n = "F" + RND.nextInt(5 * Universe.MAX_FRONTIER_SYSTEMS);
+                if (frontier.stream().anyMatch((l) -> l.getName().equals(n))) {
+                    continue;
+                } else {
+                    system.setName(n);
+                    break;
+                }
+            }
+
+            //set backplate
+            ArrayList<Term> backs = Universe.getCache().getSkyCache().getTermsOfType("Skybox");
+            system.setBack(backs.get(RND.nextInt(backs.size() - 1)).getValue("asset"));
+
+            //todo: add celestials
             return system;
         }
     }
