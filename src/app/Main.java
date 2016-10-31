@@ -160,12 +160,16 @@ public class Main extends JFrame {
 
             @Override
             public void keyReleased(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_F11) {
-                    quickSave();
-                } else if (ke.getKeyCode() == KeyEvent.VK_F12) {
-                    quickLoad();
-                } else {
-                    engine.getHud().handleKeyReleasedEvent(ke);
+                switch (ke.getKeyCode()) {
+                    case KeyEvent.VK_F11:
+                        quickSave();
+                        break;
+                    case KeyEvent.VK_F12:
+                        quickLoad();
+                        break;
+                    default:
+                        engine.getHud().handleKeyReleasedEvent(ke);
+                        break;
                 }
             }
         });
