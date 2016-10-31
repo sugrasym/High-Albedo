@@ -22,6 +22,7 @@
 package engine;
 
 import celestial.Celestial;
+import celestial.Jumphole;
 import celestial.Ship.Ship;
 import celestial.Ship.Ship.Behavior;
 import celestial.Ship.Station;
@@ -88,6 +89,7 @@ public class God implements EngineElement {
                 checkPatrols();
                 checkTraders();
                 checkMerchants();
+                checkFrontierJumpholes();
                 System.out.println("God cycled.");
             });
             s.start();
@@ -97,6 +99,57 @@ public class God implements EngineElement {
     /*
      * Hooks
      */
+    private void checkFrontierJumpholes() {
+        int count = 0;
+
+        //count current number of frontier jumpholes
+        for (int a = 0; a < universe.getSystems().size(); a++) {
+            count += (int) universe.getSystems().get(a).getJumpholeList().stream()
+                    .filter((jh) -> ((Jumphole) jh).getCurrentSystem().isFrontier()).count();
+        }
+
+        //add missing ones
+        while (count < 20) {
+            //start is always frontier
+            SolarSystem start = universe.getFrontierSpace()
+                    .get(rnd.nextInt(universe.getFrontierSpace().size() - 1));
+
+            //end can be any other system
+            SolarSystem end = universe.getSystems()
+                    .get(rnd.nextInt(universe.getSystems().size() - 1));
+
+            if (start != end) {
+                //make sure there are no existing paths
+                if (!start.getJumpholeList().stream()
+                        .anyMatch((jh) -> ((Jumphole) jh)
+                                .getOutGate().getCurrentSystem() == end)) {
+                    if (!end.getJumpholeList().stream()
+                            .anyMatch((jh) -> ((Jumphole) jh)
+                                    .getOutGate().getCurrentSystem() == start)) {
+                        //create jumpholes
+                        Jumphole jh1 = new Jumphole("Transient Jumphole", universe);
+                        Jumphole jh2 = new Jumphole("Transient Jumphole", universe);
+
+                        //create connection
+                        jh1.setOutGate(jh2);
+                        jh2.setOutGate(jh1);
+
+                        //add to systems
+                        start.putEntityInSystem(jh1);
+                        end.putEntityInSystem(jh2);
+
+                        //debug message
+                        System.out.println("Added transient jumphole "
+                                + start.getName() + " -> " + end.getName());
+
+                        //increment counter
+                        count++;
+                    }
+                }
+            }
+        }
+    }
+
     private void checkMerchants() {
         //iterate through each faction
         for (int a = 0; a < factions.size(); a++) {

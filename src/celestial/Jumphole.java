@@ -43,7 +43,7 @@ public class Jumphole extends Planet {
     private final Random rnd = new Random(1);
     private double phase = 1;
 
-    //how much mass the jumphole can transport before collapses
+    //how much mass the jumphole can transport before collapse
     private double flux = Double.POSITIVE_INFINITY;
     private double maxFlux = Double.POSITIVE_INFINITY;
 
