@@ -21,6 +21,7 @@ package celestial.Ship;
 import cargo.Item;
 import celestial.Asteroid;
 import java.awt.AlphaComposite;
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -546,6 +547,18 @@ public class Station extends Ship {
             drawHealthBars(g, dx, dy);
             //draw the buffer onto the main frame
             g.drawImage(tex, (int) (getX() - dx), (int) (getY() - dy), null);
+            if (Universe.DEBUG_RENDER) {
+                ((Graphics2D) (g)).setStroke(new BasicStroke(1));
+                //draw the bounds
+                for (int a = 0; a < getBounds().size(); a++) {
+                    double bx = getBounds().get(a).x;
+                    double by = getBounds().get(a).y;
+                    int bw = getBounds().get(a).width;
+                    int bh = getBounds().get(a).height;
+                    g.setColor(Color.PINK);
+                    g.drawRect((int) (bx - dx), (int) (by - dy), bw, bh);
+                }
+            }
         } else {
             initGraphics();
         }
@@ -553,15 +566,6 @@ public class Station extends Ship {
 
     @Override
     protected void drawHealthBars(Graphics g, double dx, double dy) {
-        /*//draw the bounds
-         for (int a = 0; a < getBounds().size(); a++) {
-         double bx = getBounds().get(a).x;
-         double by = getBounds().get(a).y;
-         int bw = getBounds().get(a).width;
-         int bh = getBounds().get(a).height;
-         g.setColor(Color.PINK);
-         g.drawRect((int) (bx - dx), (int) (by - dy), bw, bh);
-         }*/
         //draw health bars
         double hullPercent = hull / maxHull;
         double shieldPercent = shield / maxShield;
