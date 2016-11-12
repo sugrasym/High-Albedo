@@ -286,6 +286,7 @@ public class Engine {
         private String ambientTrack = "audio/music/Success and Failure.wav";
         private String dangerTrack = "audio/music/Committing.wav";
         boolean isAmbient = true;
+        boolean isEnabled = true;
 
         public SoundEngine(Engine engine) {
             try {
@@ -296,37 +297,41 @@ public class Engine {
                 music.open(stream);
                 //start
                 music.loop(Clip.LOOP_CONTINUOUSLY);
-            } catch (LineUnavailableException | UnsupportedAudioFileException | IOException ex) {
+            } catch (IOException | LineUnavailableException | UnsupportedAudioFileException | IllegalArgumentException ex) {
                 Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
-                System.err.println("This likely means music is disabled.");
+
+                System.err.println("Sound has been disabled due to this exception.");
+                isEnabled = false;
             }
         }
 
         @Override
         public void periodicUpdate() {
-            try {
-                if (null != state) {
-                    switch (state) {
-                        case RUNNING:
-                            if (universe.getSettings().MUSIC) {
-                                updateMusic();
-                            } else if (music.isRunning()) {
-                                music.stop();
-                            }
-                            if (universe.getSettings().SOUND_EFFECTS) {
-                                checkForSoundSignals();
-                            }
-                            break;
-                        case MENU:
-                            break;
-                        //do nothing
-                        default:
-                            break;
+            if (isEnabled) {
+                try {
+                    if (null != state) {
+                        switch (state) {
+                            case RUNNING:
+                                if (universe.getSettings().MUSIC) {
+                                    updateMusic();
+                                } else if (music.isRunning()) {
+                                    music.stop();
+                                }
+                                if (universe.getSettings().SOUND_EFFECTS) {
+                                    checkForSoundSignals();
+                                }
+                                break;
+                            case MENU:
+                                break;
+                            //do nothing
+                            default:
+                                break;
+                        }
                     }
+                } catch (Exception e) {
+                    System.out.println("Audio engine encountered a problem.");
+                    e.printStackTrace();
                 }
-            } catch (Exception e) {
-                System.out.println("Audio engine encountered a problem.");
-                e.printStackTrace();
             }
         }
 
