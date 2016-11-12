@@ -18,7 +18,7 @@ Gameplay Goals
 * More complex NPC interactions / standings.
 * Mobile mining (aka mining with guns) on asteroids that haven't had a mine built.
 * Wider variety of asteroids and minerals, ideally revamping the economy to require all of them.
-* Improved collision detection. I want as close to pixel-perfect as possible. - IN PROGRESS
+* Improved collision detection. I want as close to pixel-perfect as possible. - COMPLETED
 * Additional campaigns. This is subject to further design.
 * Additional factions.
 
