@@ -442,6 +442,12 @@ public class Mission implements Serializable {
     }
 
     private boolean checkEscortMe() {
+        Ship test = (Ship) escort;
+        if (test.getCurrentSystem() != agent.getUniverse()
+                .getPlayerShip().getCurrentSystem()) {
+            abortMission();
+        }
+
         return timer > endTimer;
     }
 
