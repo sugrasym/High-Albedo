@@ -31,7 +31,10 @@ import java.io.InputStreamReader;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.URISyntaxException;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.ConcurrentModificationException;
+import java.util.Date;
 import javax.swing.ImageIcon;
 import universe.Universe;
 
@@ -44,6 +47,7 @@ public class AstralIO implements Serializable {
     //saved game and setting locations
     public static final String SAVE_GAME_DIR = STORE_DIR + "saves/";
     public static final String CONFIG_FILE_LOC = STORE_DIR + "config";
+    public static final String LOG_DIR = STORE_DIR + "logs/";
 
     /*
      * Text
@@ -135,16 +139,29 @@ public class AstralIO implements Serializable {
     public static void setupGameDir() {
         String home = System.getProperty("user.home") + STORE_DIR;
         String saves = System.getProperty("user.home") + SAVE_GAME_DIR;
+        String logs = System.getProperty("user.home") + LOG_DIR;
+        
         //create the main folder
         File homeFolder = new File(home);
         if (!homeFolder.exists()) {
             homeFolder.mkdir();
         }
-        //create the subfolder
+        //create the save folder
         File saveFolder = new File(saves);
         if (!saveFolder.exists()) {
             saveFolder.mkdir();
         }
+
+        //create the log folder
+        File logFolder = new File(logs);
+        if (!logFolder.exists()) {
+            logFolder.mkdir();
+        }
+    }
+
+    public static String getLogPrefix() {
+        Format formatter = new SimpleDateFormat("yyyyMMdd HHmmss");
+        return System.getProperty("user.home") + LOG_DIR + formatter.format(new Date());
     }
 
     public void saveGame(Universe universe, String gameName) throws Exception {

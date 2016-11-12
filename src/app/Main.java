@@ -26,10 +26,18 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferStrategy;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import lib.AstralIO;
+import lib.AstralPrint;
+import lib.AstralStream;
 import universe.Universe;
 
 /**
@@ -52,6 +60,17 @@ public class Main extends JFrame {
     public Main() {
         super("High Albedo");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        //redirect console output to various endpoints in addition to console
+        try {
+            String prefix = AstralIO.getLogPrefix();
+
+            redirectOutput(prefix);
+            redirectError(prefix);
+        } catch (Exception e) {
+            System.out.println("Failed to redirect output.");
+            e.printStackTrace();
+        }
     }
 
     public void execute(boolean fullScreen, int wx, int wy) {
@@ -258,5 +277,27 @@ public class Main extends JFrame {
         engine.stop();
         engine.load("quicksave");
         engine.start();
+    }
+
+    private static void redirectOutput(String prefix) throws FileNotFoundException {
+        //setup outputs
+        AstralStream master = new AstralStream();
+        master.add(System.out);
+        master.add(new PrintStream(new File(prefix + "-output-log.txt")));
+        //todo: add stream for in-game console when implemented
+
+        //apply new stream
+        System.setOut(new AstralPrint(master));
+    }
+
+    private static void redirectError(String prefix) throws FileNotFoundException {
+        //setup outputs
+        AstralStream master = new AstralStream();
+        master.add(System.err);
+        master.add(new PrintStream(new File(prefix + "-error-log.txt")));
+        //todo: add stream for in-game console when implemented
+
+        //apply new stream
+        System.setErr(new AstralPrint(master));
     }
 }
