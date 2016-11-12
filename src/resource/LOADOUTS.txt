@@ -542,8 +542,8 @@ cargo=Repair Paste~1
 [Loadout]
 ship=Possessed Banshee
 name=Demons' Banshee
-install=ERPC/ERPC/Rocket Pod/Rocket Pod
-cargo=Rapid Rocket~294
+install=ERPC/ERPC/Howler Pod/Howler Pod
+cargo=Howler Pod Charge~85
 cargoScan=true
 minCourage=0.99
 maxCourage=1.00
@@ -552,8 +552,8 @@ maxCourage=1.00
 [Loadout]
 ship=Possessed Wraith
 name=Demons' Wraith
-install=ERPC/ERPC/Rocket Pod/Rocket Pod
-cargo=Rapid Rocket~400
+install=ERPC/ERPC/Howler Pod/Howler Pod
+cargo=Howler Pod Charge~145
 minCourage=0.99
 maxCourage=1.00
 [/Loadout]
@@ -561,8 +561,8 @@ maxCourage=1.00
 [Loadout]
 ship=Possessed Phantasm
 name=Demons' Phantasm
-install=ERPC/ERPC/Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod
-cargo=Rapid Rocket~600
+install=ERPC/ERPC/Howler Pod/Howler Pod/Rocket Pod/Rocket Pod
+cargo=Rapid Rocket~95/Howler Pod Charge~95
 minCourage=0.99
 maxCourage=1.00
 [/Loadout]
@@ -570,8 +570,8 @@ maxCourage=1.00
 [Loadout]
 ship=Possessed Poltergeist
 name=Demons' Poltergeist
-install=ERPC/ERPC/Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod
-cargo=Rapid Rocket~400
+install=ERPC/ERPC/Howler Pod/Howler Pod/Rocket Pod/Rocket Pod
+cargo=Rapid Rocket~700/Howler Pod Charge~95
 minCourage=0.99
 maxCourage=1.00
 [/Loadout]
@@ -580,7 +580,7 @@ maxCourage=1.00
 ship=Possessed Spectre
 name=Demons' Spectre
 install='Swarm' Capital Rocket Pod/'Swarm' Capital Rocket Pod/HGPC/HGPC
-cargo=Rapid Rocket~4800
+cargo=Rapid Rocket~1800
 [/Loadout]
 
 ########Flight School Campaign

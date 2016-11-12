@@ -666,6 +666,25 @@ accel=250
 turning=8
 [/Weapon]
 
+[Weapon]
+#weapon info
+name=Howler Pod
+type=missile
+#shell info
+damage=300
+range=950
+speed=1
+mass=1
+refire=0.3
+explosion=Green
+#make it a seeker
+guided=true
+#it uses ammo
+ammo=Howler Pod Charge
+accel=250
+turning=8
+[/Weapon]
+
 ########SPECIAL TEST WEAPONS########
 [Weapon]
 #weapon info

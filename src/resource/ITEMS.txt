@@ -1860,6 +1860,19 @@ store=2500
 description=Shell for use with a 'Orgullo Negro' cannon. When loaded into such a weapon this shell has impressive damage output and projection.
 [/Item]
 
+[Item]
+name=Howler Pod Charge
+type=commodity
+volume=1
+mass=1
+HP=100
+minPrice=3000
+maxPrice=12000
+group=ammo
+store=64
+description=Unarmed missile for use with a 'Howler Pod'.
+[/Item]
+
 ########Special########
 
 [Item]
@@ -1900,6 +1913,19 @@ maxPrice=7500000
 group=weapon
 store=6
 description=When the entities were encountered in deep space they fired an extremely lethal, guided, weapon nicknamed the 'Howler'. This weapon is extremely dangerous and any contact with an Entity should be avoided.
+[/Item]
+
+[Item]
+name=Howler Pod
+type=missile
+volume=1
+mass=1
+HP=25
+minPrice=500000
+maxPrice=7000000
+group=weapon
+store=12
+description=This unusual weapon fires charged particle rings with properties similar to the Howler, except much more powerful. However, this weapon's compact size means it requires charges to run.
 [/Item]
 
 ########Plot Commodities########
