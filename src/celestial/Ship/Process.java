@@ -151,20 +151,20 @@ public class Process implements Serializable {
             //increment timer
             timer += tpf;
         } else //process complete, deliver products and reset
-         if (canDeliver()) {
-                for (int a = 0; a < products.size(); a++) {
-                    for (int b = 0; b < stationSelling.size(); b++) {
-                        if (products.get(a).getName().equals(stationSelling.get(b).getName())) {
-                            //deliver
-                            stationSelling.get(b).setQuantity(stationSelling.get(b).getQuantity() + products.get(a).getQuantity());
-                            break;
-                        }
+        if (canDeliver()) {
+            for (int a = 0; a < products.size(); a++) {
+                for (int b = 0; b < stationSelling.size(); b++) {
+                    if (products.get(a).getName().equals(stationSelling.get(b).getName())) {
+                        //deliver
+                        stationSelling.get(b).setQuantity(stationSelling.get(b).getQuantity() + products.get(a).getQuantity());
+                        break;
                     }
                 }
-                timer = 0;
-            } else {
-                //no room for product delivery, stalled
             }
+            timer = 0;
+        } else {
+            //no room for product delivery, stalled
+        }
     }
 
     public boolean canDeliver() {

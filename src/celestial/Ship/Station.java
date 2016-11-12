@@ -323,13 +323,13 @@ public class Station extends Ship {
                     } else /*
                          * This is pretty simple
                      */ //attempt transfer of item
-                     if (ship.addToCargoBay(tmp)) {
-                            //decrement stocks
-                            rel.setQuantity(rel.getQuantity() - 1);
-                            //transfer funds
-                            ship.setCash(ship.getCash() - price);
-                            setCash(getCash() + price);
-                        }
+                    if (ship.addToCargoBay(tmp)) {
+                        //decrement stocks
+                        rel.setQuantity(rel.getQuantity() - 1);
+                        //transfer funds
+                        ship.setCash(ship.getCash() - price);
+                        setCash(getCash() + price);
+                    }
                 }
             }
         }

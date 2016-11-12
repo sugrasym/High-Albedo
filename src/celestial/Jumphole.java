@@ -115,7 +115,7 @@ public class Jumphole extends Planet {
         System.out.println("Jumphole " + getCurrentSystem().getName()
                 + " -> " + outGate.getCurrentSystem().getName()
                 + " has decayed.");
-        
+
         setState(State.DEAD);
     }
 

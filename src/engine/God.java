@@ -853,7 +853,7 @@ public class God implements EngineElement {
 
             //set size
             int size = (int) (WorldMaker.MIN_SYSTEM_SIZE + RND.nextFloat()
-                    * (WorldMaker.MAX_SYSTEM_SIZE - WorldMaker.MIN_SYSTEM_SIZE)) 
+                    * (WorldMaker.MAX_SYSTEM_SIZE - WorldMaker.MIN_SYSTEM_SIZE))
                     * 2;
 
             /*
@@ -882,23 +882,23 @@ public class God implements EngineElement {
                 Simpling si = (new WorldMaker()).new Simpling(loc, r);
                 s.setX(x);
                 s.setY(y);
-                
+
                 boolean safe = true;
-                for(int l = 0; l < objects.size(); l++) {
-                    if(objects.get(l).collideWith(si)) {
+                for (int l = 0; l < objects.size(); l++) {
+                    if (objects.get(l).collideWith(si)) {
                         //don't add
                         safe = false;
                         break;
                     }
                 }
-                
-                if(safe) {
+
+                if (safe) {
                     //add
                     objects.add(si);
                     system.putEntityInSystem(s);
                 }
             }
-            
+
             //add planets
             int numPlanets = RND.nextInt(WorldMaker.MAX_PLANETS_PER_SYSTEM - WorldMaker.MIN_PLANETS_PER_SYSTEM)
                     + WorldMaker.MIN_PLANETS_PER_SYSTEM;
@@ -921,23 +921,23 @@ public class God implements EngineElement {
                 Simpling si = (new WorldMaker()).new Simpling(loc, r);
                 p.setX(x);
                 p.setY(y);
-                
+
                 boolean safe = true;
-                for(int l = 0; l < objects.size(); l++) {
-                    if(objects.get(l).collideWith(si)) {
+                for (int l = 0; l < objects.size(); l++) {
+                    if (objects.get(l).collideWith(si)) {
                         //don't add
                         safe = false;
                         break;
                     }
                 }
-                
-                if(safe) {
+
+                if (safe) {
                     //add
                     objects.add(si);
                     system.putEntityInSystem(p);
                 }
             }
-            
+
             //add asteroids
             //add planets
             int numAsteroids = RND.nextInt(WorldMaker.MAX_ASTEROIDS_PER_SYSTEM - WorldMaker.MIN_ASTEROIDS_PER_SYSTEM)
@@ -956,17 +956,17 @@ public class God implements EngineElement {
                 Simpling si = (new WorldMaker()).new Simpling(loc, r);
                 as.setX(x);
                 as.setY(y);
-                
+
                 boolean safe = true;
-                for(int l = 0; l < objects.size(); l++) {
-                    if(objects.get(l).collideWith(si)) {
+                for (int l = 0; l < objects.size(); l++) {
+                    if (objects.get(l).collideWith(si)) {
                         //don't add
                         safe = false;
                         break;
                     }
                 }
-                
-                if(safe) {
+
+                if (safe) {
                     //add
                     objects.add(si);
                     system.putEntityInSystem(as);

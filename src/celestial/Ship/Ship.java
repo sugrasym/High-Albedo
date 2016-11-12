@@ -3074,7 +3074,7 @@ public class Ship extends Celestial {
                 drawHealthBars(g, dx, dy);
             }
             if (Universe.DEBUG_RENDER) {
-                ((Graphics2D)(g)).setStroke(new BasicStroke(1));
+                ((Graphics2D) (g)).setStroke(new BasicStroke(1));
                 //draw avoidance info
                 Line2D tmp = getDodgeLine();
                 g.setColor(Color.WHITE);
@@ -3085,7 +3085,7 @@ public class Ship extends Celestial {
             //draw the buffer onto the main frame
             g.drawImage(tex, (int) (getX() - dx), (int) (getY() - dy), null);
             if (Universe.DEBUG_RENDER) {
-                ((Graphics2D)(g)).setStroke(new BasicStroke(1));
+                ((Graphics2D) (g)).setStroke(new BasicStroke(1));
                 //draw the bounds
                 for (int a = 0; a < getBounds().size(); a++) {
                     double bx = getBounds().get(a).x;
