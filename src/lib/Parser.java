@@ -34,10 +34,12 @@ public class Parser implements Serializable {
     private final ArrayList<Term> terms = new ArrayList<>();
 
     public Parser(String file) {
-        //read the text
-        text = AstralIO.readFile(file, true);
-        //call the parser
-        parse();
+        if (file != null) {
+            //read the text
+            text = AstralIO.readFile(file, true);
+            //call the parser
+            parse();
+        }
     }
 
     /*

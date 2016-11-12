@@ -21,13 +21,15 @@
  */
 package engine;
 
+import celestial.Asteroid;
 import celestial.Celestial;
 import celestial.Jumphole;
-import static celestial.Jumphole.MAX_FRONTIER_FLUX;
-import static celestial.Jumphole.MIN_FRONTIER_FLUX;
+import celestial.Planet;
 import celestial.Ship.Ship;
 import celestial.Ship.Ship.Behavior;
 import celestial.Ship.Station;
+import celestial.Star;
+import java.awt.Point;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Random;
@@ -38,6 +40,8 @@ import lib.Parser.Term;
 import lib.SuperFaction;
 import universe.SolarSystem;
 import universe.Universe;
+import util.WorldMaker;
+import util.WorldMaker.Simpling;
 
 /**
  *
@@ -128,10 +132,10 @@ public class God implements EngineElement {
                 //make sure there are no existing paths
                 if (!start.getJumpholeList().stream()
                         .anyMatch((jh) -> ((Jumphole) jh)
-                                .getOutGate().getCurrentSystem() == end)) {
+                        .getOutGate().getCurrentSystem() == end)) {
                     if (!end.getJumpholeList().stream()
                             .anyMatch((jh) -> ((Jumphole) jh)
-                                    .getOutGate().getCurrentSystem() == start)) {
+                            .getOutGate().getCurrentSystem() == start)) {
                         //create jumpholes
                         Jumphole jh1 = new Jumphole(end.getName() + " Jumphole", universe);
                         Jumphole jh2 = new Jumphole(start.getName() + " Jumphole", universe);
@@ -148,8 +152,8 @@ public class God implements EngineElement {
 
                         //setup flux for frontier jumpholes
                         double flux = (new Random().nextDouble()
-                                * (MAX_FRONTIER_FLUX - MIN_FRONTIER_FLUX))
-                                + MIN_FRONTIER_FLUX;
+                                * (Jumphole.MAX_FRONTIER_FLUX - Jumphole.MIN_FRONTIER_FLUX))
+                                + Jumphole.MIN_FRONTIER_FLUX;
 
                         jh1.setFlux(flux);
                         jh1.setMaxFlux(flux);
@@ -847,7 +851,128 @@ public class God implements EngineElement {
             ArrayList<Term> backs = Universe.getCache().getSkyCache().getTermsOfType("Skybox");
             system.setBack(backs.get(RND.nextInt(backs.size() - 1)).getValue("asset"));
 
-            //todo: add celestials
+            //set size
+            int size = (int) (WorldMaker.MIN_SYSTEM_SIZE + RND.nextFloat()
+                    * (WorldMaker.MAX_SYSTEM_SIZE - WorldMaker.MIN_SYSTEM_SIZE)) 
+                    * 2;
+
+            /*
+             * Add Celestials
+             */
+            ArrayList<Simpling> objects = new ArrayList<>();
+
+            //add stars
+            int numStars = RND.nextInt(2) + 1;
+            for (int a = 0; a < numStars; a++) {
+                ArrayList<Term> stars = Universe.getCache().getPlanetCache().getTermsOfType("Star");
+                Term texture = stars.get(RND.nextInt(stars.size() - 1));
+
+                Star s = new Star(system.getName() + "a", texture,
+                        2 * WorldMaker.randomStarSize(WorldMaker.MAX_PLANET_SIZE, WorldMaker.MIN_PLANET_SIZE));
+                s.setState(Entity.State.ALIVE);
+                s.setSeed(RND.nextInt());
+
+                float r = s.getDiameter() / 2;
+
+                //generate position
+                int x = RND.nextInt(size * 2) - size;
+                int y = RND.nextInt(size * 2) - size;
+                Point.Float loc = new Point.Float(x, y);
+
+                Simpling si = (new WorldMaker()).new Simpling(loc, r);
+                s.setX(x);
+                s.setY(y);
+                
+                boolean safe = true;
+                for(int l = 0; l < objects.size(); l++) {
+                    if(objects.get(l).collideWith(si)) {
+                        //don't add
+                        safe = false;
+                        break;
+                    }
+                }
+                
+                if(safe) {
+                    //add
+                    objects.add(si);
+                    system.putEntityInSystem(s);
+                }
+            }
+            
+            //add planets
+            int numPlanets = RND.nextInt(WorldMaker.MAX_PLANETS_PER_SYSTEM - WorldMaker.MIN_PLANETS_PER_SYSTEM)
+                    + WorldMaker.MIN_PLANETS_PER_SYSTEM;
+            for (int a = 0; a < numPlanets; a++) {
+                ArrayList<Term> planets = Universe.getCache().getPlanetCache().getTermsOfType("Planet");
+                Term texture = planets.get(RND.nextInt(planets.size() - 1));
+
+                Planet p = new Planet(system.getName() + " P" + RND.nextInt(), texture,
+                        2 * WorldMaker.randomPlanetSize(WorldMaker.MAX_PLANET_SIZE, WorldMaker.MIN_PLANET_SIZE));
+                p.setState(Entity.State.ALIVE);
+                p.setSeed(RND.nextInt());
+
+                float r = p.getDiameter() / 2;
+
+                //generate position
+                int x = RND.nextInt(size * 2) - size;
+                int y = RND.nextInt(size * 2) - size;
+                Point.Float loc = new Point.Float(x, y);
+
+                Simpling si = (new WorldMaker()).new Simpling(loc, r);
+                p.setX(x);
+                p.setY(y);
+                
+                boolean safe = true;
+                for(int l = 0; l < objects.size(); l++) {
+                    if(objects.get(l).collideWith(si)) {
+                        //don't add
+                        safe = false;
+                        break;
+                    }
+                }
+                
+                if(safe) {
+                    //add
+                    objects.add(si);
+                    system.putEntityInSystem(p);
+                }
+            }
+            
+            //add asteroids
+            //add planets
+            int numAsteroids = RND.nextInt(WorldMaker.MAX_ASTEROIDS_PER_SYSTEM - WorldMaker.MIN_ASTEROIDS_PER_SYSTEM)
+                    + WorldMaker.MIN_ASTEROIDS_PER_SYSTEM;
+            for (int a = 0; a < numAsteroids; a++) {
+                Asteroid as = new Asteroid(system.getName() + " A" + RND.nextInt());
+                as.setState(Entity.State.ALIVE);
+
+                float r = as.getDiameter() / 2;
+
+                //generate position
+                int x = RND.nextInt(size * 2) - size;
+                int y = RND.nextInt(size * 2) - size;
+                Point.Float loc = new Point.Float(x, y);
+
+                Simpling si = (new WorldMaker()).new Simpling(loc, r);
+                as.setX(x);
+                as.setY(y);
+                
+                boolean safe = true;
+                for(int l = 0; l < objects.size(); l++) {
+                    if(objects.get(l).collideWith(si)) {
+                        //don't add
+                        safe = false;
+                        break;
+                    }
+                }
+                
+                if(safe) {
+                    //add
+                    objects.add(si);
+                    system.putEntityInSystem(as);
+                }
+            }
+
             return system;
         }
     }

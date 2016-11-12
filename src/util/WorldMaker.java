@@ -34,8 +34,20 @@ import universe.Universe;
  * @author nwiehoff
  */
 public class WorldMaker {
-    //sample
 
+    public static final int MIN_PLANETS_PER_SYSTEM = 1;
+    public static final int MAX_PLANETS_PER_SYSTEM = 10;
+    public static final int MIN_SYSTEMS = 90;
+    public static final int MAX_SYSTEMS = 150;
+    public static final int WORLD_SIZE = 1000;
+    public static final int MAX_SYSTEM_SIZE = 48000;
+    public static final int MIN_SYSTEM_SIZE = 16000;
+    public static final int MAX_PLANET_SIZE = 2000;
+    public static final int MIN_PLANET_SIZE = 900;
+    public static final int MIN_ASTEROIDS_PER_SYSTEM = 0;
+    public static final int MAX_ASTEROIDS_PER_SYSTEM = 100;
+
+    //sample
     private final char[] generic = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
         'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '1', '2',
         '3', '4', '5', '6', '7', '8', '9', '0'};
@@ -43,21 +55,26 @@ public class WorldMaker {
         "Kappa", "Lambda", "Mu", "Nu", "Xi", "Omicron", "Pi", "Rho", "Sigma", "Tau", "Upsilon", "Phi", "Chi",
         "Psi", "Omega"};
     //rng
-    Random rnd = new Random();
+    static Random rnd = new Random();
     //used names
     private final ArrayList<String> usedSystemNames = new ArrayList<>();
 
     public WorldMaker() {
-        //generate universe
-        String out = generate(1, 10, 90, 150, 1000, 16000, 48000, 900, 2000, 0, 100);
-        //save
-        AstralIO tmp = new AstralIO();
-        AstralIO.writeFile("/tmp/UNIVERSE.txt", out);
-        System.out.println(out);
+
     }
 
     public static void main(String[] args) {
-        new WorldMaker();
+        WorldMaker w = new WorldMaker();
+
+        //generate universe
+        String out = w.generate(MIN_PLANETS_PER_SYSTEM, MAX_PLANETS_PER_SYSTEM,
+                MIN_SYSTEMS, MAX_SYSTEMS, WORLD_SIZE,
+                MIN_SYSTEM_SIZE, MAX_SYSTEM_SIZE,
+                MIN_PLANET_SIZE, MAX_PLANET_SIZE,
+                MIN_ASTEROIDS_PER_SYSTEM, MAX_ASTEROIDS_PER_SYSTEM);
+        //save
+        AstralIO.writeFile("/tmp/UNIVERSE.txt", out);
+        System.out.println(out);
     }
 
     public final String generate(int minPlanetsPerSystem, int maxPlanetsPerSystem, int minSystems, int maxSystems,
@@ -99,9 +116,7 @@ public class WorldMaker {
                     double y = sys.getLoc().y;
                     String systemName = sys.getName();
                     //pick size
-                    int dRS = maxSystemSize - minSystemSize;
-                    int dRB = (int) (rnd.nextFloat() * dRS);
-                    int size = minSystemSize + dRB;
+                    int size = randomStarSize(maxSystemSize, minSystemSize);
                     //determine skybox
                     int pick = rnd.nextInt(skyTypes.size());
                     //add some randomization
@@ -123,9 +138,7 @@ public class WorldMaker {
                     //create a star in the relative center of the system
                     x = rnd.nextInt(size / 4) - size / 8;
                     y = rnd.nextInt(size / 4) - size / 8;
-                    int dR = maxPlanetSize - minPlanetSize;
-                    int dB = (int) (rnd.nextFloat() * dR);
-                    int r = minPlanetSize + dB;
+                    int r = randomStarSize(maxPlanetSize, minPlanetSize);
                     int seed = rnd.nextInt();
                     thisSystem
                             += "[Star]\n"
@@ -199,11 +212,7 @@ public class WorldMaker {
                         //generate position
                         x = rnd.nextInt(size * 2) - size;
                         y = rnd.nextInt(size * 2) - size;
-                        //generate the radius
-                        //pick size
-                        dRS = maxPlanetSize - minPlanetSize;
-                        dRB = (int) (rnd.nextFloat() * dRS);
-                        r = minPlanetSize + dRB;
+                        r = randomPlanetSize(maxPlanetSize, minPlanetSize);
                         //create a simpling for testing
                         Simpling test = new Simpling(new Point2D.Float((float) x, (float) y), r);
                         boolean safe = true;
@@ -245,9 +254,7 @@ public class WorldMaker {
                             //generate rotation
                             double theta = rnd.nextFloat() * 2.0 * Math.PI;
                             //pick size
-                            dRS = maxPlanetSize - minPlanetSize;
-                            dRB = (int) (rnd.nextFloat() * dRS);
-                            r = minPlanetSize + dRB;
+                            r = randomPlanetSize(maxPlanetSize, minPlanetSize);
                             //create a simpling for testing
                             Simpling test = new Simpling(new Point2D.Float((float) x, (float) y), r);
                             boolean safe = true;
@@ -320,27 +327,16 @@ public class WorldMaker {
         return ret;
     }
 
-    private void syslingTest() {
-        ArrayList<Sysling> test = new ArrayList<>();
-        Random _rnd = new Random(5);
-        //make some syslings
-        for (int a = 0; a < 50; a++) {
-            String name = "Sysling " + a;
-            double sx = _rnd.nextInt(1000) - 500;
-            double sy = _rnd.nextInt(1000) - 500;
-            test.add(new Sysling(name, new Point2D.Double(sx, sy)));
-        }
-        //make them find their buddy
-        for (int a = 0; a < test.size(); a++) {
-            test.get(a).sortBuddy(test);
-        }
-        //get a print out
-        Sysling t = test.get(0);
-        System.out.println("Mapping from " + t.getName());
-        for (int a = 0; a < test.size(); a++) {
-            Sysling _0th = t.findBuddy(test, a);
-            System.out.println(_0th.getName() + " " + _0th.distance(t));
-        }
+    public static int randomPlanetSize(int maxPlanetSize, int minPlanetSize) {
+        int dRS = maxPlanetSize - minPlanetSize;
+        int dRB = (int) (rnd.nextFloat() * dRS);
+        return minPlanetSize + dRB;
+    }
+
+    public static int randomStarSize(int maxPlanetSize, int minPlanetSize) {
+        int dR = maxPlanetSize - minPlanetSize;
+        int dB = (int) (rnd.nextFloat() * dR);
+        return minPlanetSize + dB;
     }
 
     private ArrayList<Sysling> makeSyslings(int numSystems, Random rnd, int worldSize) {
