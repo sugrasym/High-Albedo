@@ -571,7 +571,7 @@ maxCourage=1.00
 ship=Possessed Poltergeist
 name=Demons' Poltergeist
 install=ERPC/ERPC/Howler Pod/Howler Pod/Rocket Pod/Rocket Pod
-cargo=Rapid Rocket~700/Howler Pod Charge~95
+cargo=Rapid Rocket~700/Howler Pod Charge~700
 minCourage=0.99
 maxCourage=1.00
 [/Loadout]
