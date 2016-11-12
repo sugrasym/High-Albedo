@@ -537,6 +537,52 @@ install=Howler
 cargo=Repair Paste~1
 [/Loadout]
 
+########Demons
+
+[Loadout]
+ship=Possessed Banshee
+name=Demons' Banshee
+install=ERPC/ERPC/Rocket Pod/Rocket Pod
+cargo=Rapid Rocket~294
+cargoScan=true
+minCourage=0.99
+maxCourage=1.00
+[/Loadout]
+
+[Loadout]
+ship=Possessed Wraith
+name=Demons' Wraith
+install=ERPC/ERPC/Rocket Pod/Rocket Pod
+cargo=Rapid Rocket~400
+minCourage=0.99
+maxCourage=1.00
+[/Loadout]
+
+[Loadout]
+ship=Possessed Phantasm
+name=Demons' Phantasm
+install=ERPC/ERPC/Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod
+cargo=Rapid Rocket~600
+minCourage=0.99
+maxCourage=1.00
+[/Loadout]
+
+[Loadout]
+ship=Possessed Poltergeist
+name=Demons' Poltergeist
+install=ERPC/ERPC/Rocket Pod/Rocket Pod/Rocket Pod/Rocket Pod
+cargo=Rapid Rocket~400
+minCourage=0.99
+maxCourage=1.00
+[/Loadout]
+
+[Loadout]
+ship=Possessed Spectre
+name=Demons' Spectre
+install='Swarm' Capital Rocket Pod/'Swarm' Capital Rocket Pod/HGPC/HGPC
+cargo=Rapid Rocket~4800
+[/Loadout]
+
 ########Flight School Campaign
 
 [Loadout]

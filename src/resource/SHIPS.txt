@@ -712,6 +712,100 @@ width=50
 height=50
 [/Ship]
 
+#########Demons########
+#Naming Scheme: Possessed <OFAF NAME>
+#########
+
+#Frigates
+
+[Ship]
+type=Possessed Spectre
+accel=32
+turning=3.4
+shield=2810000
+shieldRecharge=8
+hull=2120000
+fuel=232000
+mass=11250
+sensor=6250
+cargo=2000
+hardpoint=battery,600,40,0.5/battery,600,40,5.78/turret,500,-20,3.14/turret,500,20,3.14
+width=140
+height=140
+[/Ship]
+
+#Transports
+ 
+[Ship]
+type=Possessed Poltergeist
+accel=25
+turning=2.2
+shield=850000
+shieldRecharge=1
+hull=2400
+fuel=110000
+mass=251
+sensor=3210
+cargo=1800
+hardpoint=missile,15,8,3.925/missile,15,-8,5.495/missile,15,4,3.925/missile,15,-4,5.495/cannon,8,2,3.925/cannon,8,-2,5.495
+width=50
+height=50
+[/Ship]
+
+#Light Fighters
+
+[Ship]
+type=Possessed Banshee
+accel=42
+turning=4.8
+shield=35000
+shieldRecharge=1
+hull=520
+fuel=82000
+mass=45
+sensor=5200
+cargo=90
+hardpoint=cannon,8,2,3.925/cannon,8,-2,5.495/missile,15,-8,5.495/missile,15,8,3.925
+width=50
+height=50
+[/Ship]
+
+#Medium Fighters
+
+[Ship]
+type=Possessed Wraith
+accel=37
+turning=4.6
+shield=82000
+shieldRecharge=1
+hull=600
+fuel=91000
+mass=75
+sensor=4300
+cargo=150
+hardpoint=cannon,8,2,3.925/cannon,8,-2,5.495/missile,15,-8,5.495/missile,15,8,3.925
+width=50
+height=50
+[/Ship]
+
+#Heavy Fighters
+
+[Ship]
+type=Possessed Phantasm
+accel=32
+turning=4.2
+shield=242600
+shieldRecharge=1
+hull=200
+fuel=61500
+mass=95
+sensor=4200
+cargo=200
+hardpoint=cannon,8,2,3.925/cannon,8,-2,5.495/missile,15,-8,5.495/missile,15,8,3.925/missile,15,-4,5.495/missile,15,4,3.925
+width=50
+height=50
+[/Ship]
+
 #########Special########
 #Naming Scheme: Snark
 #########
