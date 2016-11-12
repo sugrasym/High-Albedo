@@ -42,6 +42,7 @@ public class Universe implements Serializable {
     private SettingsManager settings;
     private static final transient ResourceCache CACHE;
     private transient God god;
+    public static transient boolean DEBUG_RENDER;
     //player globals
     protected Ship playerShip;
     private final ArrayList<Entity> playerProperty = new ArrayList<>();
@@ -52,6 +53,7 @@ public class Universe implements Serializable {
 
     static {
         CACHE = new ResourceCache();
+        DEBUG_RENDER = false;
     }
 
     public Universe() {

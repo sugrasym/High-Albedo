@@ -30,6 +30,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import lib.AstralIO;
+import universe.Universe;
 
 /**
  *
@@ -151,10 +152,16 @@ public class Main extends JFrame {
 
             @Override
             public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                    destroy();
-                } else {
-                    engine.getHud().handleKeyPressedEvent(ke);
+                switch (ke.getKeyCode()) {
+                    case KeyEvent.VK_ESCAPE:
+                        destroy();
+                        break;
+                    case KeyEvent.VK_F9:
+                        Universe.DEBUG_RENDER = !Universe.DEBUG_RENDER;
+                        break;
+                    default:
+                        engine.getHud().handleKeyPressedEvent(ke);
+                        break;
                 }
             }
 

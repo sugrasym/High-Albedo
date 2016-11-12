@@ -26,6 +26,7 @@ import celestial.Celestial;
 import celestial.Jumphole;
 import engine.Entity;
 import java.awt.AlphaComposite;
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -1379,78 +1380,78 @@ public class Ship extends Celestial {
                 //wait;
             }
         } else //setup wait
-         if (autopilot == Autopilot.NONE && port != null) {
-                //restore fuel
-                fuel = maxFuel;
-                //do buying and selling
-                Station curr = port.getParent();
-                if (curr == buyFromStation) {
-                    //make sure the price is still ok
-                    if ((curr.getPrice(workingWare) <= buyFromPrice)
-                            && (sellToStation.getPrice(workingWare) >= sellToPrice)
-                            && canJump(sellToStation.getCurrentSystem())) {
-                        //how much of the ware can we carry
-                        int maxQ = (int) (cargo - getBayUsed()) / Math.max(1, (int) workingWare.getVolume());
-                        //how much can we carry if we want to follow reserve rules
-                        int q = (int) ((1 - TRADER_RESERVE_PERCENT) * maxQ);
-                        //buy as much as we can carry
-                        curr.buy(this, workingWare, q);
-                        System.out.println(getName() + " bought " + getNumInCargoBay(workingWare)
-                                + " " + workingWare.getName() + " from " + curr.getName());
-                    } else {
-                        //abort trading operation
-                        abortTrade();
-                        System.out.println(getName() + " aborted trading operation.");
-                    }
-                    //wait
-                    double diff = MAX_WAIT_TIME - MIN_WAIT_TIME;
-                    double delt = rnd.nextDouble() * diff;
-                    cmdWait(MIN_WAIT_TIME + delt);
-                } else if (curr == sellToStation) {
-                    if (curr.getPrice(workingWare) >= sellToPrice) {
-                        //try to dump all our wares at this price
-                        int q = getNumInCargoBay(workingWare);
-                        curr.sell(this, workingWare, q);
-                        System.out.println(getName() + " sold " + (q - getNumInCargoBay(workingWare))
-                                + " " + workingWare.getName() + " to " + curr.getName());
-                    } else {
-                        //System.out.println(getName() + " did not sell (Bad sell price)");
-                    }
-                    //wait
-                    if (getNumInCargoBay(workingWare) == 0) {
-                        double diff = MAX_WAIT_TIME - MIN_WAIT_TIME;
-                        double delt = rnd.nextDouble() * diff;
-                        cmdWait(MIN_WAIT_TIME + delt);
-                    } else {
-                        //not everything sold yet
-                    }
+        if (autopilot == Autopilot.NONE && port != null) {
+            //restore fuel
+            fuel = maxFuel;
+            //do buying and selling
+            Station curr = port.getParent();
+            if (curr == buyFromStation) {
+                //make sure the price is still ok
+                if ((curr.getPrice(workingWare) <= buyFromPrice)
+                        && (sellToStation.getPrice(workingWare) >= sellToPrice)
+                        && canJump(sellToStation.getCurrentSystem())) {
+                    //how much of the ware can we carry
+                    int maxQ = (int) (cargo - getBayUsed()) / Math.max(1, (int) workingWare.getVolume());
+                    //how much can we carry if we want to follow reserve rules
+                    int q = (int) ((1 - TRADER_RESERVE_PERCENT) * maxQ);
+                    //buy as much as we can carry
+                    curr.buy(this, workingWare, q);
+                    System.out.println(getName() + " bought " + getNumInCargoBay(workingWare)
+                            + " " + workingWare.getName() + " from " + curr.getName());
                 } else {
-                    //wait
+                    //abort trading operation
+                    abortTrade();
+                    System.out.println(getName() + " aborted trading operation.");
+                }
+                //wait
+                double diff = MAX_WAIT_TIME - MIN_WAIT_TIME;
+                double delt = rnd.nextDouble() * diff;
+                cmdWait(MIN_WAIT_TIME + delt);
+            } else if (curr == sellToStation) {
+                if (curr.getPrice(workingWare) >= sellToPrice) {
+                    //try to dump all our wares at this price
+                    int q = getNumInCargoBay(workingWare);
+                    curr.sell(this, workingWare, q);
+                    System.out.println(getName() + " sold " + (q - getNumInCargoBay(workingWare))
+                            + " " + workingWare.getName() + " to " + curr.getName());
+                } else {
+                    //System.out.println(getName() + " did not sell (Bad sell price)");
+                }
+                //wait
+                if (getNumInCargoBay(workingWare) == 0) {
                     double diff = MAX_WAIT_TIME - MIN_WAIT_TIME;
                     double delt = rnd.nextDouble() * diff;
                     cmdWait(MIN_WAIT_TIME + delt);
+                } else {
+                    //not everything sold yet
                 }
-            } //finally undock when waiting is over
-            else if (autopilot == Autopilot.WAITED) {
-                if (getNumInCargoBay(workingWare) > 0) {
-                    cmdUndock();
-                    if (currentSystem != sellToStation.getCurrentSystem()) {
-                        /*
+            } else {
+                //wait
+                double diff = MAX_WAIT_TIME - MIN_WAIT_TIME;
+                double delt = rnd.nextDouble() * diff;
+                cmdWait(MIN_WAIT_TIME + delt);
+            }
+        } //finally undock when waiting is over
+        else if (autopilot == Autopilot.WAITED) {
+            if (getNumInCargoBay(workingWare) > 0) {
+                cmdUndock();
+                if (currentSystem != sellToStation.getCurrentSystem()) {
+                    /*
                          * Undocking might use too much fuel to reach our destination
                          * causing a failed trade run. Just jump right out of the gate.
-                         */
-                        autopilot = Autopilot.NONE;
-                        port = null;
-                    }
-                } else {
-                    cmdUndock();
+                     */
+                    autopilot = Autopilot.NONE;
+                    port = null;
                 }
-            } else if (port == null) {
-                abortTrade();
-                cmdUndock();
             } else {
-                //do nothing
+                cmdUndock();
             }
+        } else if (port == null) {
+            abortTrade();
+            cmdUndock();
+        } else {
+            //do nothing
+        }
     }
 
     protected void behaviorSectorTrade() {
@@ -1790,78 +1791,78 @@ public class Ship extends Celestial {
                     //wait;
                 }
             } else //setup wait
-             if (autopilot == Autopilot.NONE && port != null) {
-                    //restore fuel
-                    fuel = maxFuel;
-                    //do buying and selling
-                    Station curr = port.getParent();
-                    if (curr == buyFromStation) {
-                        //make sure the price is still ok
-                        if ((curr.getPrice(workingWare) <= buyFromPrice)
-                                && (sellToStation.getPrice(workingWare) >= sellToPrice)
-                                && canJump(sellToStation.getCurrentSystem())) {
-                            //how much of the ware can we carry
-                            int maxQ = (int) (cargo - getBayUsed()) / Math.max(1, (int) workingWare.getVolume());
-                            //how much can we carry if we want to follow reserve rules
-                            int q = (int) ((1 - TRADER_RESERVE_PERCENT) * maxQ);
-                            //buy as much as we can carry
-                            curr.buy(this, workingWare, q);
-                            System.out.println(getName() + " bought " + getNumInCargoBay(workingWare)
-                                    + " " + workingWare.getName() + " from " + curr.getName());
-                        } else {
-                            //abort trading operation
-                            abortTrade();
-                            System.out.println(getName() + " aborted trading operation.");
-                        }
-                        //wait
-                        double diff = MAX_WAIT_TIME - MIN_WAIT_TIME;
-                        double delt = rnd.nextDouble() * diff;
-                        cmdWait(MIN_WAIT_TIME + delt);
-                    } else if (curr == sellToStation) {
-                        if (curr.getPrice(workingWare) >= sellToPrice) {
-                            //try to dump all our wares at this price
-                            int q = getNumInCargoBay(workingWare);
-                            curr.sell(this, workingWare, q);
-                            System.out.println(getName() + " sold " + (q - getNumInCargoBay(workingWare))
-                                    + " " + workingWare.getName() + " to " + curr.getName());
-                        } else {
-                            //System.out.println(getName() + " did not sell (Bad sell price)");
-                        }
-                        //wait
-                        if (getNumInCargoBay(workingWare) == 0) {
-                            double diff = MAX_WAIT_TIME - MIN_WAIT_TIME;
-                            double delt = rnd.nextDouble() * diff;
-                            cmdWait(MIN_WAIT_TIME + delt);
-                        } else {
-                            //not everything sold yet
-                        }
+            if (autopilot == Autopilot.NONE && port != null) {
+                //restore fuel
+                fuel = maxFuel;
+                //do buying and selling
+                Station curr = port.getParent();
+                if (curr == buyFromStation) {
+                    //make sure the price is still ok
+                    if ((curr.getPrice(workingWare) <= buyFromPrice)
+                            && (sellToStation.getPrice(workingWare) >= sellToPrice)
+                            && canJump(sellToStation.getCurrentSystem())) {
+                        //how much of the ware can we carry
+                        int maxQ = (int) (cargo - getBayUsed()) / Math.max(1, (int) workingWare.getVolume());
+                        //how much can we carry if we want to follow reserve rules
+                        int q = (int) ((1 - TRADER_RESERVE_PERCENT) * maxQ);
+                        //buy as much as we can carry
+                        curr.buy(this, workingWare, q);
+                        System.out.println(getName() + " bought " + getNumInCargoBay(workingWare)
+                                + " " + workingWare.getName() + " from " + curr.getName());
                     } else {
-                        //wait
+                        //abort trading operation
+                        abortTrade();
+                        System.out.println(getName() + " aborted trading operation.");
+                    }
+                    //wait
+                    double diff = MAX_WAIT_TIME - MIN_WAIT_TIME;
+                    double delt = rnd.nextDouble() * diff;
+                    cmdWait(MIN_WAIT_TIME + delt);
+                } else if (curr == sellToStation) {
+                    if (curr.getPrice(workingWare) >= sellToPrice) {
+                        //try to dump all our wares at this price
+                        int q = getNumInCargoBay(workingWare);
+                        curr.sell(this, workingWare, q);
+                        System.out.println(getName() + " sold " + (q - getNumInCargoBay(workingWare))
+                                + " " + workingWare.getName() + " to " + curr.getName());
+                    } else {
+                        //System.out.println(getName() + " did not sell (Bad sell price)");
+                    }
+                    //wait
+                    if (getNumInCargoBay(workingWare) == 0) {
                         double diff = MAX_WAIT_TIME - MIN_WAIT_TIME;
                         double delt = rnd.nextDouble() * diff;
                         cmdWait(MIN_WAIT_TIME + delt);
+                    } else {
+                        //not everything sold yet
                     }
-                } //finally undock when waiting is over
-                else if (autopilot == Autopilot.WAITED) {
-                    if (getNumInCargoBay(workingWare) > 0) {
-                        cmdUndock();
-                        if (currentSystem != sellToStation.getCurrentSystem()) {
-                            /*
+                } else {
+                    //wait
+                    double diff = MAX_WAIT_TIME - MIN_WAIT_TIME;
+                    double delt = rnd.nextDouble() * diff;
+                    cmdWait(MIN_WAIT_TIME + delt);
+                }
+            } //finally undock when waiting is over
+            else if (autopilot == Autopilot.WAITED) {
+                if (getNumInCargoBay(workingWare) > 0) {
+                    cmdUndock();
+                    if (currentSystem != sellToStation.getCurrentSystem()) {
+                        /*
                              * Undocking might use too much fuel to reach our destination
                              * causing a failed trade run. Just jump right out of the gate.
-                             */
-                            autopilot = Autopilot.NONE;
-                            port = null;
-                        }
-                    } else {
-                        cmdUndock();
+                         */
+                        autopilot = Autopilot.NONE;
+                        port = null;
                     }
-                } else if (port == null) {
-                    abortTrade();
-                    cmdUndock();
                 } else {
-                    //do nothing
+                    cmdUndock();
                 }
+            } else if (port == null) {
+                abortTrade();
+                cmdUndock();
+            } else {
+                //do nothing
+            }
         } else {
             setBehavior(Behavior.NONE);
         }
@@ -2007,91 +2008,91 @@ public class Ship extends Celestial {
                     //wait;
                 }
             } else //setup wait
-             if (autopilot == Autopilot.NONE && port != null) {
-                    //restore fuel
-                    fuel = maxFuel;
-                    //do buying and selling
-                    Station curr = port.getParent();
-                    if (curr == buyFromStation) {
-                        //make sure the price is still ok
-                        if ((curr.getPrice(workingWare) <= buyFromPrice)
-                                && (sellToStation.getPrice(workingWare) >= sellToPrice)
-                                && canJump(sellToStation.getCurrentSystem())) {
-                            //how much of the ware can we carry
-                            int maxQ = (int) (cargo - getBayUsed()) / Math.max(1, (int) workingWare.getVolume());
-                            //how much does the homebase need?
-                            int needQ = 0;
-                            for (int v = 0; v < homeBase.getStationBuying().size(); v++) {
-                                if (homeBase.getStationBuying().get(v).getName().equals(workingWare.getName())) {
-                                    int have = homeBase.getStationBuying().get(v).getQuantity();
-                                    int store = homeBase.getStationBuying().get(v).getStore();
-                                    needQ = store - have;
-                                }
+            if (autopilot == Autopilot.NONE && port != null) {
+                //restore fuel
+                fuel = maxFuel;
+                //do buying and selling
+                Station curr = port.getParent();
+                if (curr == buyFromStation) {
+                    //make sure the price is still ok
+                    if ((curr.getPrice(workingWare) <= buyFromPrice)
+                            && (sellToStation.getPrice(workingWare) >= sellToPrice)
+                            && canJump(sellToStation.getCurrentSystem())) {
+                        //how much of the ware can we carry
+                        int maxQ = (int) (cargo - getBayUsed()) / Math.max(1, (int) workingWare.getVolume());
+                        //how much does the homebase need?
+                        int needQ = 0;
+                        for (int v = 0; v < homeBase.getStationBuying().size(); v++) {
+                            if (homeBase.getStationBuying().get(v).getName().equals(workingWare.getName())) {
+                                int have = homeBase.getStationBuying().get(v).getQuantity();
+                                int store = homeBase.getStationBuying().get(v).getStore();
+                                needQ = store - have;
                             }
-                            //don't get more than the station can use
-                            if (maxQ > needQ) {
-                                maxQ = needQ;
-                            }
-                            //how much can we carry if we want to follow reserve rules
-                            int q = (int) ((1 - TRADER_RESERVE_PERCENT) * maxQ);
-                            //buy as much as we can carry
-                            curr.buy(this, workingWare, q);
-                            System.out.println(getName() + " bought " + getNumInCargoBay(workingWare)
-                                    + " " + workingWare.getName() + " from " + curr.getName());
-                        } else {
-                            //abort trading operation
-                            abortTrade();
-                            System.out.println(getName() + " aborted trading operation.");
                         }
-                        //wait
-                        double diff = MAX_WAIT_TIME - MIN_WAIT_TIME;
-                        double delt = rnd.nextDouble() * diff;
-                        cmdWait(MIN_WAIT_TIME + delt);
-                    } else if (curr == sellToStation) {
-                        if (curr.getPrice(workingWare) >= sellToPrice) {
-                            //try to dump all our wares at this price
-                            int q = getNumInCargoBay(workingWare);
-                            curr.sell(this, workingWare, q);
-                            System.out.println(getName() + " sold " + (q - getNumInCargoBay(workingWare))
-                                    + " " + workingWare.getName() + " to " + curr.getName());
-                        } else {
-                            //System.out.println(getName() + " did not sell (Bad sell price)");
+                        //don't get more than the station can use
+                        if (maxQ > needQ) {
+                            maxQ = needQ;
                         }
-                        //wait
-                        if (getNumInCargoBay(workingWare) == 0) {
-                            double diff = MAX_WAIT_TIME - MIN_WAIT_TIME;
-                            double delt = rnd.nextDouble() * diff;
-                            cmdWait(MIN_WAIT_TIME + delt);
-                        } else {
-                            //not everything sold yet
-                        }
+                        //how much can we carry if we want to follow reserve rules
+                        int q = (int) ((1 - TRADER_RESERVE_PERCENT) * maxQ);
+                        //buy as much as we can carry
+                        curr.buy(this, workingWare, q);
+                        System.out.println(getName() + " bought " + getNumInCargoBay(workingWare)
+                                + " " + workingWare.getName() + " from " + curr.getName());
                     } else {
-                        //wait
+                        //abort trading operation
+                        abortTrade();
+                        System.out.println(getName() + " aborted trading operation.");
+                    }
+                    //wait
+                    double diff = MAX_WAIT_TIME - MIN_WAIT_TIME;
+                    double delt = rnd.nextDouble() * diff;
+                    cmdWait(MIN_WAIT_TIME + delt);
+                } else if (curr == sellToStation) {
+                    if (curr.getPrice(workingWare) >= sellToPrice) {
+                        //try to dump all our wares at this price
+                        int q = getNumInCargoBay(workingWare);
+                        curr.sell(this, workingWare, q);
+                        System.out.println(getName() + " sold " + (q - getNumInCargoBay(workingWare))
+                                + " " + workingWare.getName() + " to " + curr.getName());
+                    } else {
+                        //System.out.println(getName() + " did not sell (Bad sell price)");
+                    }
+                    //wait
+                    if (getNumInCargoBay(workingWare) == 0) {
                         double diff = MAX_WAIT_TIME - MIN_WAIT_TIME;
                         double delt = rnd.nextDouble() * diff;
                         cmdWait(MIN_WAIT_TIME + delt);
+                    } else {
+                        //not everything sold yet
                     }
-                } //finally undock when waiting is over
-                else if (autopilot == Autopilot.WAITED) {
-                    if (getNumInCargoBay(workingWare) > 0) {
-                        cmdUndock();
-                        if (currentSystem != sellToStation.getCurrentSystem()) {
-                            /*
+                } else {
+                    //wait
+                    double diff = MAX_WAIT_TIME - MIN_WAIT_TIME;
+                    double delt = rnd.nextDouble() * diff;
+                    cmdWait(MIN_WAIT_TIME + delt);
+                }
+            } //finally undock when waiting is over
+            else if (autopilot == Autopilot.WAITED) {
+                if (getNumInCargoBay(workingWare) > 0) {
+                    cmdUndock();
+                    if (currentSystem != sellToStation.getCurrentSystem()) {
+                        /*
                              * Undocking might use too much fuel to reach our destination
                              * causing a failed trade run. Just jump right out of the gate.
-                             */
-                            autopilot = Autopilot.NONE;
-                            port = null;
-                        }
-                    } else {
-                        cmdUndock();
+                         */
+                        autopilot = Autopilot.NONE;
+                        port = null;
                     }
-                } else if (port == null) {
-                    abortTrade();
-                    cmdUndock();
                 } else {
-                    //do nothing
+                    cmdUndock();
                 }
+            } else if (port == null) {
+                abortTrade();
+                cmdUndock();
+            } else {
+                //do nothing
+            }
         } else {
             //exit, no home base
             setBehavior(Behavior.NONE);
@@ -2176,9 +2177,9 @@ public class Ship extends Celestial {
                     //wait
                 }
             } else //fight current target
-             if ((target.getStandingsToMe(this) < HOSTILE_STANDING) || scanForContraband(target) || target == lastBlow) {
-                    cmdFightTarget(target);
-                }
+            if ((target.getStandingsToMe(this) < HOSTILE_STANDING) || scanForContraband(target) || target == lastBlow) {
+                cmdFightTarget(target);
+            }
         } else {
             //restore fuel
             fuel = maxFuel;
@@ -3072,23 +3073,29 @@ public class Ship extends Celestial {
             if (this != getUniverse().getPlayerShip()) {
                 drawHealthBars(g, dx, dy);
             }
-            //draw avoidance info
-            /*Line2D tmp = getDodgeLine();
-             g.setColor(Color.WHITE);
-             g.drawLine((int) (tmp.getX1() - dx), (int) (tmp.getY1() - dy), (int) (tmp.getX2() - dx), (int) (tmp.getY2() - dy));
-             Rectangle tmp2 = tmp.getBounds();
-             g.drawRect((int) (tmp2.getX() - dx), (int) (tmp2.getY() - dy), (int) tmp2.getWidth(), (int) tmp2.getHeight());*/
+            if (Universe.DEBUG_RENDER) {
+                ((Graphics2D)(g)).setStroke(new BasicStroke(1));
+                //draw avoidance info
+                Line2D tmp = getDodgeLine();
+                g.setColor(Color.WHITE);
+                g.drawLine((int) (tmp.getX1() - dx), (int) (tmp.getY1() - dy), (int) (tmp.getX2() - dx), (int) (tmp.getY2() - dy));
+                Rectangle tmp2 = tmp.getBounds();
+                g.drawRect((int) (tmp2.getX() - dx), (int) (tmp2.getY() - dy), (int) tmp2.getWidth(), (int) tmp2.getHeight());
+            }
             //draw the buffer onto the main frame
             g.drawImage(tex, (int) (getX() - dx), (int) (getY() - dy), null);
-            //draw the bounds
-            /*for (int a = 0; a < getBounds().size(); a++) {
-                double bx = getBounds().get(a).x;
-                double by = getBounds().get(a).y;
-                int bw = getBounds().get(a).width;
-                int bh = getBounds().get(a).height;
-                g.setColor(Color.PINK);
-                g.drawRect((int) (bx - dx), (int) (by - dy), bw, bh);
-            }*/
+            if (Universe.DEBUG_RENDER) {
+                ((Graphics2D)(g)).setStroke(new BasicStroke(1));
+                //draw the bounds
+                for (int a = 0; a < getBounds().size(); a++) {
+                    double bx = getBounds().get(a).x;
+                    double by = getBounds().get(a).y;
+                    int bw = getBounds().get(a).width;
+                    int bh = getBounds().get(a).height;
+                    g.setColor(Color.PINK);
+                    g.drawRect((int) (bx - dx), (int) (by - dy), bw, bh);
+                }
+            }
         } else {
             initGraphics();
         }
@@ -3246,11 +3253,11 @@ public class Ship extends Celestial {
                 }
             }
         } else //do rectangle detection
-         if (width != 0 && height != 0) {
-                bound.add(new Rectangle((int) getX(), (int) getY(), getWidth(), getHeight()));
-            } else {
-                bound.add(new Rectangle((int) getX(), (int) getY(), 50, 50));
-            }
+        if (width != 0 && height != 0) {
+            bound.add(new Rectangle((int) getX(), (int) getY(), getWidth(), getHeight()));
+        } else {
+            bound.add(new Rectangle((int) getX(), (int) getY(), 50, 50));
+        }
     }
 
     public boolean addToCargoBay(Item item) {
