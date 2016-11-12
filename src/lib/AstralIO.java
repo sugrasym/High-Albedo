@@ -140,7 +140,7 @@ public class AstralIO implements Serializable {
         String home = System.getProperty("user.home") + STORE_DIR;
         String saves = System.getProperty("user.home") + SAVE_GAME_DIR;
         String logs = System.getProperty("user.home") + LOG_DIR;
-        
+
         //create the main folder
         File homeFolder = new File(home);
         if (!homeFolder.exists()) {

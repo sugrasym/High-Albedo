@@ -65,10 +65,10 @@ public class God implements EngineElement {
     public God(Universe universe, ArrayList<Entity> entities) {
         this.universe = universe;
         this.entities = entities;
-        
+
         //initialize frontier space if needed
         initFrontier();
-        
+
         //generate lists
         initFactions();
     }
