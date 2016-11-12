@@ -597,11 +597,11 @@ patrol1=Terror,25
 
 [Loadout]
 name=Demons
-patrol0=Demons' Banshee,50
-patrol1=Demons' Wraith,40
-patrol2=Demons' Phantasm,30
-patrol3=Demons' Poltergeist,20
-patrol4=Demons' Spectre,10
+patrol0=Demons' Banshee,12
+patrol1=Demons' Wraith,10
+patrol2=Demons' Phantasm,7
+patrol3=Demons' Poltergeist,5
+patrol4=Demons' Spectre,3
 [/Loadout]
 
 [Loadout]
