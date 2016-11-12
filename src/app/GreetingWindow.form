@@ -107,7 +107,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="v2.0"/>
+        <Property name="text" type="java.lang.String" value="v2.0-Dev"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="fullScreenButton">

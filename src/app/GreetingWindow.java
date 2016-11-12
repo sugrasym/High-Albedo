@@ -98,7 +98,7 @@ public class GreetingWindow extends javax.swing.JFrame {
 
         jLabel1.setText("High Albedo: Dark Frontier (Development)");
 
-        jLabel2.setText("v2.0");
+        jLabel2.setText("v2.0-Dev");
 
         windowGroup.add(fullScreenButton);
         fullScreenButton.setText("Full Screen");
