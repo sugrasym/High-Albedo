@@ -3501,8 +3501,10 @@ public class Ship extends Celestial {
 
     public boolean hasGroupInCargo(String group) {
         for (int a = 0; a < cargoBay.size(); a++) {
-            if (cargoBay.get(a).getGroup().equals(group)) {
-                return true;
+            if (cargoBay.get(a).getGroup() != null) {
+                if (cargoBay.get(a).getGroup().equals(group)) {
+                    return true;
+                }
             }
         }
         return false;

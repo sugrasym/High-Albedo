@@ -1883,6 +1883,7 @@ mass=0
 HP=0
 minPrice=0
 maxPrice=0
+group=nothing
 store=1000
 description=Empty space.
 [/Item]

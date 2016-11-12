@@ -33,7 +33,7 @@ import lib.Parser.Term;
 import universe.Universe;
 
 public class TradeWindow extends AstralWindow {
-
+    
     private Ship ship;
     private Station docked;
     AstralLabel buyLabel = new AstralLabel();
@@ -100,7 +100,7 @@ public class TradeWindow extends AstralWindow {
             propertyList.addToList("Turning:      " + turn);
         }
     }
-
+    
     private void appendWeaponDetails(Item selected) {
         //add ship info
         ArrayList<Term> types = weaponParser.getTermsOfType("Weapon");
@@ -146,20 +146,20 @@ public class TradeWindow extends AstralWindow {
             }
         }
     }
-
+    
     private enum Behavior {
-
+        
         WAITING_TO_BUY,
         WAITING_TO_SELL,
         NONE
     };
     private Behavior action = Behavior.NONE;
-
+    
     public TradeWindow() {
         super();
         generate();
     }
-
+    
     private void generate() {
         backColor = windowBlue;
         //size this window
@@ -230,8 +230,12 @@ public class TradeWindow extends AstralWindow {
         addComponent(optionList);
         addComponent(input);
     }
-
+    
     public void update(Ship ship) {
+        if (input.isVisible()) {
+            input.setFocused(true);
+        }
+        
         this.ship = ship;
         if (ship.isDocked()) {
             docked = ship.getPort().getParent();
@@ -298,7 +302,7 @@ public class TradeWindow extends AstralWindow {
             docked = null;
         }
     }
-
+    
     private void behave() {
         if (null != action) {
             switch (action) {
@@ -355,7 +359,7 @@ public class TradeWindow extends AstralWindow {
             }
         }
     }
-
+    
     @Override
     public void handleMouseClickedEvent(MouseEvent me) {
         if (action == Behavior.NONE) {
@@ -375,7 +379,7 @@ public class TradeWindow extends AstralWindow {
             }
         }
     }
-
+    
     private void parseCommand(String command) {
         if (command != null) {
             if (command.equals("Sell")) {
@@ -394,13 +398,13 @@ public class TradeWindow extends AstralWindow {
             }
         }
     }
-
+    
     private void showInput() {
         input.setText("1");
         input.setVisible(true);
         input.setFocused(true);
     }
-
+    
     private void fillCommandLines(Item selected) {
         optionList.addToList("--Market--");
         optionList.addToList("Price: " + docked.getPrice(selected));
@@ -415,7 +419,7 @@ public class TradeWindow extends AstralWindow {
             optionList.addToList("Check Cargo Bay.");
         }
     }
-
+    
     private void fillDescriptionLines(Item selected) {
         /*
          * Fills in the item's description being aware of things like line breaking on spaces.

@@ -200,63 +200,67 @@ public class CargoWindow extends AstralWindow {
             }
             optionList.addToList(" ");
         } else {
-            /*
-             * Options for sov papers
-             */
-            if (selected.getGroup().equals("sovtransfer")) {
-                if (!ship.isDocked()) {
+            if (selected.getGroup() != null) {
+                /*
+                 * Options for sov papers
+                 */
+                if (selected.getGroup().equals("sovtransfer")) {
+                    if (!ship.isDocked()) {
+                        optionList.addToList("--Setup--");
+                        optionList.addToList(CMD_CLAIMSOV);
+                        optionList.addToList(" ");
+                    }
+                }
+                /*
+                 * Options for stations
+                 */
+                //determine if this is a station
+                if (selected.getGroup().equals("constructionkit")) {
+                    if (!ship.isDocked()) {
+                        optionList.addToList("--Setup--");
+                        optionList.addToList(CMD_DEPLOY);
+                        optionList.addToList(" ");
+                    }
+                }
+                if (selected.getGroup().equals("repairkit")) {
                     optionList.addToList("--Setup--");
-                    optionList.addToList(CMD_CLAIMSOV);
+                    optionList.addToList(CMD_USEPASTE);
                     optionList.addToList(" ");
                 }
             }
-            /*
-             * Options for stations
-             */
-            //determine if this is a station
-            if (selected.getGroup().equals("constructionkit")) {
-                if (!ship.isDocked()) {
+            if (selected.getType() != null) {
+                /*
+                 * Options for cannons
+                 */
+                if (selected.getType().equals(Item.TYPE_CANNON)) {
                     optionList.addToList("--Setup--");
-                    optionList.addToList(CMD_DEPLOY);
+                    optionList.addToList(CMD_ASSEMBLE);
                     optionList.addToList(" ");
                 }
-            }
-            if (selected.getGroup().equals("repairkit")) {
-                optionList.addToList("--Setup--");
-                optionList.addToList(CMD_USEPASTE);
-                optionList.addToList(" ");
-            }
-            /*
-             * Options for cannons
-             */
-            if (selected.getType().equals(Item.TYPE_CANNON)) {
-                optionList.addToList("--Setup--");
-                optionList.addToList(CMD_ASSEMBLE);
-                optionList.addToList(" ");
-            }
-            /*
-             * Options for missiles
-             */
-            if (selected.getType().equals(Item.TYPE_MISSILE)) {
-                optionList.addToList("--Setup--");
-                optionList.addToList(CMD_ASSEMBLE);
-                optionList.addToList(" ");
-            }
-            /*
-             * Options for turret
-             */
-            if (selected.getType().equals(Item.TYPE_TURRET)) {
-                optionList.addToList("--Setup--");
-                optionList.addToList(CMD_ASSEMBLE);
-                optionList.addToList(" ");
-            }
-            /*
-             * Options for battery
-             */
-            if (selected.getType().equals(Item.TYPE_BATTERY)) {
-                optionList.addToList("--Setup--");
-                optionList.addToList(CMD_ASSEMBLE);
-                optionList.addToList(" ");
+                /*
+                 * Options for missiles
+                 */
+                if (selected.getType().equals(Item.TYPE_MISSILE)) {
+                    optionList.addToList("--Setup--");
+                    optionList.addToList(CMD_ASSEMBLE);
+                    optionList.addToList(" ");
+                }
+                /*
+                 * Options for turret
+                 */
+                if (selected.getType().equals(Item.TYPE_TURRET)) {
+                    optionList.addToList("--Setup--");
+                    optionList.addToList(CMD_ASSEMBLE);
+                    optionList.addToList(" ");
+                }
+                /*
+                 * Options for battery
+                 */
+                if (selected.getType().equals(Item.TYPE_BATTERY)) {
+                    optionList.addToList("--Setup--");
+                    optionList.addToList(CMD_ASSEMBLE);
+                    optionList.addToList(" ");
+                }
             }
         }
         //for packaging and repackaging

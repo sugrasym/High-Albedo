@@ -397,6 +397,10 @@ public class PropertyWindow extends AstralWindow {
     }
 
     public void update(Ship ship) {
+        if (input.isVisible()) {
+            input.setFocused(true);
+        }
+
         setShip(ship);
         propertyList.clearList();
         infoList.clearList();
