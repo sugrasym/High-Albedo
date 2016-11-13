@@ -786,9 +786,9 @@ public class PropertyWindow extends AstralWindow {
             }
         }
     }
-    
+
     @Override
-        public void handleMouseMovedEvent(MouseEvent me) {
+    public void handleMouseMovedEvent(MouseEvent me) {
         if (trader.isVisible()) {
             //coordinate transform (windows expect to be the root of the tree)
             trader.setX(x + 20);
