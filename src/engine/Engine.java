@@ -460,6 +460,8 @@ public class Engine {
 
         public HUD(Engine engine) {
             homeWindow = new MenuHomeWindow(engine);
+            cargoWindow.generate();
+            tradeWindow.generate();
         }
 
         public void pack() {

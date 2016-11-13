@@ -139,11 +139,13 @@ public class PropertyWindow extends AstralWindow {
         trader.setY(20);
         trader.setWidth(width - 40);
         trader.setHeight(height - 40);
+        trader.generate();
         //setup private cargo window
         cargo.setX(20);
         cargo.setY(20);
         cargo.setWidth(width - 40);
         cargo.setHeight(height - 40);
+        cargo.generate();
         //pack
         addComponent(propertyList);
         addComponent(infoList);

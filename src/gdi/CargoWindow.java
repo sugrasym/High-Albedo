@@ -55,14 +55,14 @@ public class CargoWindow extends AstralWindow {
 
     public CargoWindow() {
         super();
-        generate();
-    }
-
-    private void generate() {
-        backColor = windowBlue;
+        
         //size this window
         width = 500;
         height = 400;
+    }
+
+    public void generate() {
+        backColor = windowBlue;
         setVisible(true);
         //setup the cargo list
         cargoList.setX(0);
