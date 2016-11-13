@@ -786,6 +786,28 @@ public class PropertyWindow extends AstralWindow {
             }
         }
     }
+    
+    @Override
+        public void handleMouseMovedEvent(MouseEvent me) {
+        if (trader.isVisible()) {
+            //coordinate transform (windows expect to be the root of the tree)
+            trader.setX(x + 20);
+            trader.setY(y + 20);
+            //handle as normal
+            trader.handleMouseMovedEvent(me);
+            //coordinate transform (put it back before anyone notices it moved)
+            trader.setX(20);
+            trader.setY(20);
+        } else if (cargo.isVisible()) {
+            cargo.setX(x + 20);
+            cargo.setY(y + 20);
+            cargo.handleMouseMovedEvent(me);
+            cargo.setX(20);
+            cargo.setY(20);
+        } else {
+            super.handleMouseMovedEvent(me);
+        }
+    }
 
     private void parseCommand(String command) {
         if (command != null && mode == Mode.NONE) {
