@@ -52,6 +52,7 @@ import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.net.ServerSocket;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -115,6 +116,10 @@ public class Engine {
     //button state toggles
     private boolean allStopPressed = false;
     private boolean firing = false;
+    //multiplayer
+    private boolean isServer = false;
+    private boolean isClient = false;
+    private boolean listening = false;
 
     public HUD getHud() {
         return hud;
@@ -135,7 +140,8 @@ public class Engine {
     //io
     AstralIO io = new AstralIO();
 
-    public Engine(BufferStrategy bf, int uiX, int uiY, int viewX, int viewY, boolean fullScreen) {
+    public Engine(BufferStrategy bf, int uiX, int uiY, int viewX, int viewY,
+            boolean fullScreen, boolean isServer, boolean isClient) {
         //store graphics
         this.uiX = uiX;
         this.uiY = uiY;
@@ -143,6 +149,8 @@ public class Engine {
         this.viewX = viewX;
         this.viewY = viewY;
         this.windowed = !fullScreen;
+        this.isClient = isClient;
+        this.isServer = isServer;
         //initialize entities
         entities = new ArrayList<>();
         //create components
@@ -257,13 +265,31 @@ public class Engine {
     public void newGame() {
         //set loading state
         state = State.LOADING;
+        //set network state
+        isServer = false;
+        isClient = false;
         //spawn universe in new thread
         Thread s = new Thread(() -> {
-            universe = new Universe();
+            universe = new Universe(false);
             setUniverse(universe);
             //send welcome message
             Conversation welcome = new Conversation(universe.getPlayerShip(), "Introduction", "WelcomeMessage0");
             universe.getPlayerShip().setConversation(welcome);
+        });
+        s.setPriority(Thread.MAX_PRIORITY);
+        s.start();
+    }
+
+    public void newServer() {
+        //set loading state
+        state = State.LOADING;
+        //set network state
+        isServer = true;
+        isClient = false;
+        //spawn universe in new thread
+        Thread s = new Thread(() -> {
+            universe = new Universe(true);
+            setUniverse(universe);
         });
         s.setPriority(Thread.MAX_PRIORITY);
         s.start();
@@ -1014,10 +1040,27 @@ public class Engine {
         @Override
         public void periodicUpdate() {
             try {
-                //game logic
-                logic();
-                //god
-                god();
+                if (universe != null) {
+                    //single player update
+                    if (!universe.isMultiplayer()) {
+                        //game logic
+                        logic();
+                        //god
+                        god();
+                    } else {
+                        //multiplayer update
+                        if (isServer) {
+                            //game logic
+                            logic();
+                            //god
+                            god();
+                            //listen for requests
+                            listen();
+                        } else if (isClient) {
+                            //todo:
+                        }
+                    }
+                }
                 //render final
                 render();
             } catch (IllegalStateException e) {
@@ -1307,6 +1350,22 @@ public class Engine {
                 }
 
                 god.periodicUpdate();
+            }
+        }
+
+        private void listen() {
+            if (!listening) {
+                Thread s = new Thread(() -> {
+                    try (ServerSocket serverSocket = new ServerSocket(6492)) {
+                        new ServerThread(serverSocket.accept()).start();
+                    } catch (IOException e) {
+                        System.err.println("Could not listen on port 6492");
+                        System.exit(-1);
+                    }
+                });
+                s.setPriority(Thread.MIN_PRIORITY);
+                s.start();
+                listening = true;
             }
         }
 

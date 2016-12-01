@@ -120,6 +120,12 @@ public class MenuHomeWindow extends AstralWindow {
                     engine.newGame();
                     engine.start();
                     break;
+                case "Host Server":
+                    setVisible(false);
+                    engine.suicide();
+                    engine.newServer();
+                    engine.start();
+                    break;
                 case "Load Quicksave":
                     setVisible(false);
                     engine.start();
@@ -240,6 +246,7 @@ public class MenuHomeWindow extends AstralWindow {
         mainList.addToList("Select an Option");
         mainList.addToList("");
         mainList.addToList("New Game");
+        mainList.addToList("Host Server");
         mainList.addToList("");
         //make sure there is a quicksave to load before showing this option
         File quickSaveFile = new File(System.getProperty("user.home") + SAVE_GAME_DIR + "/quicksave");

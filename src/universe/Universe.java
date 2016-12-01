@@ -43,20 +43,17 @@ public class Universe implements Serializable {
     private static final transient ResourceCache CACHE;
     private transient God god;
     public static transient boolean DEBUG_RENDER;
+    private final boolean isMultiplayer;
     //player globals
-    protected Ship playerShip;
-    private final ArrayList<Entity> playerProperty = new ArrayList<>();
-    private final ArrayList<Mission> playerMissions = new ArrayList<>();
-    private final ArrayList<Campaign> playerCampaigns = new ArrayList<>();
-    private final ArrayList<Campaign> completedCampaigns = new ArrayList<>();
-    private final ArrayList<SolarSystem> discoveredSpace = new ArrayList<>();
+    private Player localPlayer = new Player();
 
     static {
         CACHE = new ResourceCache();
         DEBUG_RENDER = false;
     }
 
-    public Universe() {
+    public Universe(boolean isMultiplayer) {
+        this.isMultiplayer = isMultiplayer;
         init();
     }
 
@@ -71,6 +68,7 @@ public class Universe implements Serializable {
         for (int a = 0; a < solars.size(); a++) {
             getSystems().add(makeSystem(parse, solars.get(a)));
         }
+
         //generate the player
         ArrayList<Term> games = parse.getTermsOfType("NewGame");
         System.out.println("Found " + games.size() + " games to read.");
@@ -157,7 +155,7 @@ public class Universe implements Serializable {
                 }
             }
             //store reference to player for quick access
-            playerShip = player;
+            getLocalPlayer().setPlayerShip(player);
         }
     }
 
@@ -170,11 +168,11 @@ public class Universe implements Serializable {
     }
 
     public Ship getPlayerShip() {
-        return playerShip;
+        return getLocalPlayer().getPlayerShip();
     }
 
     public void setPlayerShip(Ship playerShip) {
-        this.playerShip = playerShip;
+        getLocalPlayer().setPlayerShip(playerShip);
     }
 
     public static ResourceCache getCache() {
@@ -182,11 +180,11 @@ public class Universe implements Serializable {
     }
 
     public ArrayList<Entity> getPlayerProperty() {
-        return playerProperty;
+        return getLocalPlayer().getPlayerProperty();
     }
 
     public ArrayList<Mission> getPlayerMissions() {
-        return playerMissions;
+        return getLocalPlayer().getPlayerMissions();
     }
 
     public SettingsManager getSettings() {
@@ -198,15 +196,15 @@ public class Universe implements Serializable {
     }
 
     public ArrayList<SolarSystem> getDiscoveredSpace() {
-        return discoveredSpace;
+        return getLocalPlayer().getDiscoveredSpace();
     }
 
     public ArrayList<Campaign> getPlayerCampaigns() {
-        return playerCampaigns;
+        return getLocalPlayer().getPlayerCampaigns();
     }
 
     public ArrayList<Campaign> getCompletedCampaigns() {
-        return completedCampaigns;
+        return getLocalPlayer().getCompletedCampaigns();
     }
 
     public ArrayList<SolarSystem> getSettledSpace() {
@@ -227,5 +225,13 @@ public class Universe implements Serializable {
 
     public void setGod(God god) {
         this.god = god;
+    }
+
+    public boolean isMultiplayer() {
+        return isMultiplayer;
+    }
+
+    public Player getLocalPlayer() {
+        return localPlayer;
     }
 }

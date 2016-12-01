@@ -150,7 +150,8 @@ public class Main extends JFrame {
         while (bf == null) {
             bf = getBufferStrategy();
         }
-        engine = new Engine(bf, uiX, uiY, viewX, viewY, fullScreen);
+        engine = new Engine(bf, uiX, uiY, viewX, viewY, fullScreen,
+                false, false);
     }
 
     /*

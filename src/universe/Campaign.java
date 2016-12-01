@@ -116,7 +116,8 @@ public class Campaign implements Serializable {
     }
 
     private void messagePlayer(String name, String body) {
-        universe.playerShip.composeMessage(universe.playerShip, name, body, null);
+        universe.getLocalPlayer().getPlayerShip()
+                .composeMessage(universe.getLocalPlayer().getPlayerShip(), name, body, null);
     }
 
     public void periodicUpdate(double tpf) {

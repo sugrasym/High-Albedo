@@ -656,7 +656,8 @@ public class SolarSystem implements Entity, Serializable {
             }
         }
         //cleanup graphics if the player is not present
-        if (!entities.contains(universe.playerShip) && universe.playerShip.getState() == State.ALIVE) {
+        if (!entities.contains(universe.getLocalPlayer().getPlayerShip()) &&
+                universe.getLocalPlayer().getPlayerShip().getState() == State.ALIVE) {
             if (hasGraphics) {
                 //ony called when the system had graphics
                 disposeGraphics();
@@ -664,7 +665,8 @@ public class SolarSystem implements Entity, Serializable {
             }
         } else //start deferred rendering
         {
-            if (!hasGraphics && universe.playerShip.getState() == State.ALIVE) {
+            if (!hasGraphics && universe.getLocalPlayer().getPlayerShip()
+                    .getState() == State.ALIVE) {
                 initGraphics();
             }
         }
