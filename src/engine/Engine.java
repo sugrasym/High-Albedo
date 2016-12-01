@@ -317,13 +317,20 @@ public class Engine {
                 PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
                 BufferedReader in = new BufferedReader(
                         new InputStreamReader(socket.getInputStream()));) {
-
             try {
                 while (true) {
-                    String fromServer;
+                    String fromServer = in.readLine();
 
-                    while ((fromServer = in.readLine()) != null) {
+                    if (fromServer != null) {
+                        //fromServer = fromServer.substring(0, fromServer.length()-2);
                         System.out.println("Server: " + fromServer);
+
+                        if (fromServer.equals("clientId?")) {
+                            //send the client id
+                            //todo: real client id
+                            out.println("clientId:" + new Random().nextInt());
+                            out.flush();
+                        }
                     }
                 }
             } catch (IOException ex) {
@@ -1402,7 +1409,7 @@ public class Engine {
                 Thread s = new Thread(() -> {
                     while (true) {
                         try (ServerSocket serverSocket = new ServerSocket(6492)) {
-                            new ServerThread(serverSocket.accept()).start();
+                            new ServerThread(serverSocket.accept(), universe).start();
                         } catch (IOException e) {
                             System.err.println("Could not listen on port 6492");
                             System.exit(-1);
