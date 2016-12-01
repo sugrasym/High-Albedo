@@ -49,12 +49,17 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -293,6 +298,45 @@ public class Engine {
         });
         s.setPriority(Thread.MAX_PRIORITY);
         s.start();
+    }
+
+    public void joinServer() {
+        //set loading state
+        state = State.LOADING;
+        //set network state
+        isServer = false;
+        isClient = true;
+
+        //get a connection to the server
+        //todo: auto detect or ask for server info
+        String host = "127.0.0.1";
+        int port = 6492;
+
+        try (
+                Socket socket = new Socket(host, port);
+                PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+                BufferedReader in = new BufferedReader(
+                        new InputStreamReader(socket.getInputStream()));) {
+
+            try {
+                while (true) {
+                    String fromServer;
+
+                    while ((fromServer = in.readLine()) != null) {
+                        System.out.println("Server: " + fromServer);
+                    }
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (UnknownHostException e) {
+            System.err.println("Don't know about host " + host);
+            System.exit(1);
+        } catch (IOException e) {
+            System.err.println("Couldn't get I/O for the connection to "
+                    + host);
+            System.exit(1);
+        }
     }
 
     /*
@@ -1356,11 +1400,13 @@ public class Engine {
         private void listen() {
             if (!listening) {
                 Thread s = new Thread(() -> {
-                    try (ServerSocket serverSocket = new ServerSocket(6492)) {
-                        new ServerThread(serverSocket.accept()).start();
-                    } catch (IOException e) {
-                        System.err.println("Could not listen on port 6492");
-                        System.exit(-1);
+                    while (true) {
+                        try (ServerSocket serverSocket = new ServerSocket(6492)) {
+                            new ServerThread(serverSocket.accept()).start();
+                        } catch (IOException e) {
+                            System.err.println("Could not listen on port 6492");
+                            System.exit(-1);
+                        }
                     }
                 });
                 s.setPriority(Thread.MIN_PRIORITY);

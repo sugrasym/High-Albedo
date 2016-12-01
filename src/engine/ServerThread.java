@@ -21,6 +21,8 @@ public class ServerThread extends Thread {
                 new InputStreamReader(
                     socket.getInputStream()));
         ) {
+            out.write("you are connected!");
+            out.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
