@@ -310,7 +310,7 @@ public class Engine {
         //set network state
         isServer = false;
         isClient = true;
-        
+
         Thread tr = new Thread(() -> {
             //get a connection to the server
             //todo: auto detect or ask for server info
@@ -343,29 +343,7 @@ public class Engine {
                         }
 
                         if (!buffering) {
-                            if (fromServer.equals("clientId?")) {
-                                //send the client id
-                                //todo: real client id
-                                out.println("clientId:" + new Random().nextInt());
-                                out.flush();
-                            } else if (fromServer.startsWith("universe:")) {
-                                System.out.println("Received remote universe.");
-                                //unpack universe
-                                String us = fromServer.substring("universe:".length(), fromServer.length());
-                                Everything ev = (Everything) AstralIO.decompress(us);
-
-                                Universe _universe = ev.getUniverse();
-                                //restore transient objects
-                                loadUniverse(_universe);
-                                //destroy any cached graphics
-                                for (int a = 0; a < universe.getSystems().size(); a++) {
-                                    SolarSystem s = universe.getSystems().get(a);
-                                    s.disposeGraphics();
-                                }
-                                System.out.println("Remote universe loaded.");
-
-                                start();
-                            }
+                            handleMessagesFromServer(fromServer, out);
                         }
                     }
                 } catch (IOException ex) {
@@ -384,8 +362,34 @@ public class Engine {
                 System.exit(1);
             }
         });
-        
+
         tr.start();
+    }
+
+    private void handleMessagesFromServer(String fromServer, final PrintWriter out) throws IOException, ClassNotFoundException {
+        if (fromServer.equals("clientId?")) {
+            //send the client id
+            //todo: real client id
+            out.println("clientId:" + new Random().nextInt());
+            out.flush();
+        } else if (fromServer.startsWith("universe:")) {
+            System.out.println("Received remote universe.");
+            //unpack universe
+            String us = fromServer.substring("universe:".length(), fromServer.length());
+            Everything ev = (Everything) AstralIO.decompress(us);
+
+            Universe _universe = ev.getUniverse();
+            //restore transient objects
+            loadUniverse(_universe);
+            //destroy any cached graphics
+            for (int a = 0; a < universe.getSystems().size(); a++) {
+                SolarSystem s = universe.getSystems().get(a);
+                s.disposeGraphics();
+            }
+            System.out.println("Remote universe loaded.");
+
+            start();
+        }
     }
 
     /*

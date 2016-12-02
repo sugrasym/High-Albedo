@@ -1,19 +1,14 @@
 package engine;
 
 import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ConcurrentModificationException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.zip.GZIPOutputStream;
 import lib.AstralIO;
-import static lib.AstralIO.SAVE_GAME_DIR;
 import universe.Universe;
 
 public class ServerThread extends Thread {
@@ -56,67 +51,97 @@ public class ServerThread extends Thread {
                                 socket.getInputStream()));) {
             while (true) {
                 if (!connected) {
-                    System.out.println("new connection");
-                    //send connected message
-                    out.println("you are connected!");
-                    out.flush();
+                    initialConnection(out);
+                    askForClientId(out);
 
-                    //ask for client id
-                    System.out.println("requesting clientId");
-                    out.println("clientId?");
-                    out.flush();
                     connected = true;
                 } else {
                     String fromClient = in.readLine();
 
                     if (fromClient != null) {
                         if (fromClient.contains("clientId:")) {
-                            String id = getValue(fromClient);
-                            System.out.println("received clientId: " + id);
-
-                            //send the universe
-                            String u;
-                            try {
-                                u = serializeGame(universe);
-                                char[] arr = ("universe:"+u).toCharArray();
-                                
-                                out.println("BUFFER_START:");
-                                String toSend = "";
-                                int c = 0;
-                                for(int a = 0; a < arr.length; a++) {
-                                    toSend += arr[a];
-                                    c++;
-                                    
-                                    if(c == 64 || a + 1 >= arr.length) {
-                                        out.println(toSend);
-                                        out.flush();
-                                        toSend = "";
-                                        c = 0;
-                                    }
-                                }
-
-                                out.println(":BUFFER_STOP");
-                                out.flush();
-                            } catch (Exception ex) {
-                                Logger.getLogger(ServerThread.class.getName()).log(Level.SEVERE, null, ex);
-
-                                out.println("error!");
-                                out.flush();
-                            }
+                            respondToClientId(fromClient, out);
                         }
                     }
                 }
                 try {
-                    Thread.sleep(200);
+                    Thread.sleep(1);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(ServerThread.class.getName()).log(Level.SEVERE, null, ex);
 
-                    out.print("error!");
-                    out.flush();
+                    sendError(out);
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void sendError(final PrintWriter out) {
+        out.print("error!");
+        out.flush();
+    }
+
+    /*
+    * Responds to the client sending its ID by sending the current state
+    * of the host's universe for client initialization.
+     */
+    private void respondToClientId(String fromClient, final PrintWriter out) {
+        String id = getValue(fromClient);
+        System.out.println("received clientId: " + id);
+
+        //send the universe
+        String u;
+        try {
+            u = serializeGame(universe);
+            char[] arr = ("universe:" + u).toCharArray();
+
+            bufferedWrite(out, arr);
+        } catch (Exception ex) {
+            Logger.getLogger(ServerThread.class.getName()).log(Level.SEVERE, null, ex);
+
+            sendError(out);
+        }
+    }
+
+    /*
+    * Asks the client for its unique identifier.
+    * todo: match this up with an account
+     */
+    private void askForClientId(final PrintWriter out) {
+        //ask for client id
+        System.out.println("requesting clientId");
+        out.println("clientId?");
+        out.flush();
+    }
+
+    private void initialConnection(final PrintWriter out) {
+        System.out.println("new connection");
+        //send connected message
+        out.println("you are connected!");
+        out.flush();
+    }
+
+    /*
+    * Sends a large amount of data as a series of writes.
+     */
+    private void bufferedWrite(final PrintWriter out, char[] arr) {
+        out.println("BUFFER_START:");
+        String toSend = "";
+        int c = 0;
+        for (int a = 0; a < arr.length; a++) {
+            toSend += arr[a];
+            c++;
+
+            if (c == 64 || a + 1 >= arr.length) {
+                out.println(toSend);
+                out.flush();
+                toSend = "";
+                c = 0;
+            }
+        }
+
+        out.println(":BUFFER_STOP");
+        out.flush();
     }
 }
