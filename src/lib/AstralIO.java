@@ -21,6 +21,8 @@ package lib;
 import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
@@ -28,13 +30,17 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.URISyntaxException;
 import java.text.Format;
 import java.text.SimpleDateFormat;
+import java.util.Base64;
 import java.util.ConcurrentModificationException;
 import java.util.Date;
+import java.util.zip.GZIPInputStream;
+import java.util.zip.GZIPOutputStream;
 import javax.swing.ImageIcon;
 import universe.Universe;
 
@@ -176,6 +182,26 @@ public class AstralIO implements Serializable {
         } catch (ConcurrentModificationException e) {
             saveGame(universe, gameName);
         }
+    }
+
+    public static String compress(Object object) throws IOException {
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        GZIPOutputStream gzip = new GZIPOutputStream(bos);
+        ObjectOutputStream oos = new ObjectOutputStream(gzip);
+
+        oos.writeObject(object);
+
+        gzip.close();
+        String str = Base64.getUrlEncoder().encodeToString(bos.toByteArray());
+        return str;
+    }
+
+    public static Object decompress(String object) throws IOException, ClassNotFoundException {
+        ByteArrayInputStream bis = new ByteArrayInputStream(Base64.getUrlDecoder().decode(object));
+        GZIPInputStream gzip = new GZIPInputStream(bis);
+        ObjectInputStream ois = new ObjectInputStream(gzip);
+
+        return ois.readObject();
     }
 
     public class Everything implements Serializable {

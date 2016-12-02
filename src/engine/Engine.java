@@ -71,6 +71,7 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import lib.AstralIO;
+import lib.AstralIO.Everything;
 import static lib.AstralIO.SAVE_GAME_DIR;
 import lib.Conversation;
 import lib.Parser;
@@ -125,6 +126,9 @@ public class Engine {
     private boolean isServer = false;
     private boolean isClient = false;
     private boolean listening = false;
+    //multiplayer buffer
+    String buffer;
+    boolean buffering;
 
     public HUD getHud() {
         return hud;
@@ -306,44 +310,82 @@ public class Engine {
         //set network state
         isServer = false;
         isClient = true;
+        
+        Thread tr = new Thread(() -> {
+            //get a connection to the server
+            //todo: auto detect or ask for server info
+            String host = "localhost";
+            int port = 6492;
 
-        //get a connection to the server
-        //todo: auto detect or ask for server info
-        String host = "127.0.0.1";
-        int port = 6492;
-
-        try (
-                Socket socket = new Socket(host, port);
-                PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-                BufferedReader in = new BufferedReader(
-                        new InputStreamReader(socket.getInputStream()));) {
-            try {
-                while (true) {
-                    String fromServer = in.readLine();
-
-                    if (fromServer != null) {
-                        //fromServer = fromServer.substring(0, fromServer.length()-2);
+            try (
+                    Socket socket = new Socket(host, port);
+                    PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+                    BufferedReader in = new BufferedReader(
+                            new InputStreamReader(socket.getInputStream()));) {
+                try {
+                    while (true) {
+                        String fromServer = in.readLine();
                         System.out.println("Server: " + fromServer);
+                        if (fromServer.equals("BUFFER_START:")) {
+                            buffering = true;
+                            buffer = "";
 
-                        if (fromServer.equals("clientId?")) {
-                            //send the client id
-                            //todo: real client id
-                            out.println("clientId:" + new Random().nextInt());
-                            out.flush();
+                            continue;
+                        }
+
+                        if (fromServer.equals(":BUFFER_STOP")) {
+                            buffering = false;
+                            fromServer = buffer;
+                        }
+
+                        if (buffering) {
+                            buffer += fromServer;
+                        }
+
+                        if (!buffering) {
+                            if (fromServer.equals("clientId?")) {
+                                //send the client id
+                                //todo: real client id
+                                out.println("clientId:" + new Random().nextInt());
+                                out.flush();
+                            } else if (fromServer.startsWith("universe:")) {
+                                System.out.println("Received remote universe.");
+                                //unpack universe
+                                String us = fromServer.substring("universe:".length(), fromServer.length());
+                                Everything ev = (Everything) AstralIO.decompress(us);
+
+                                Universe _universe = ev.getUniverse();
+                                //restore transient objects
+                                loadUniverse(_universe);
+                                //destroy any cached graphics
+                                for (int a = 0; a < universe.getSystems().size(); a++) {
+                                    SolarSystem s = universe.getSystems().get(a);
+                                    s.disposeGraphics();
+                                }
+                                System.out.println("Remote universe loaded.");
+
+                                start();
+                            }
                         }
                     }
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                } catch (ClassNotFoundException ex) {
+                    ex.printStackTrace();
                 }
-            } catch (IOException ex) {
-                Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (UnknownHostException e) {
+                e.printStackTrace();
+                System.err.println("Don't know about host " + host);
+                System.exit(1);
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.err.println("Couldn't get I/O for the connection to "
+                        + host);
+                System.exit(1);
             }
-        } catch (UnknownHostException e) {
-            System.err.println("Don't know about host " + host);
-            System.exit(1);
-        } catch (IOException e) {
-            System.err.println("Couldn't get I/O for the connection to "
-                    + host);
-            System.exit(1);
-        }
+        });
+        
+        tr.start();
     }
 
     /*
@@ -1108,7 +1150,7 @@ public class Engine {
                             //listen for requests
                             listen();
                         } else if (isClient) {
-                            //todo:
+                            logic();
                         }
                     }
                 }
@@ -1348,12 +1390,14 @@ public class Engine {
             if (state == State.RUNNING && universe != null) {
                 //handle player events
                 handlePlayerEvents();
+
                 //collission test
                 try {
                     collissionTest(tpf);
                 } catch (Exception e) {
                     System.out.println("Collission tester dun goof'd");
                 }
+
                 //update game entities
                 for (int a = 0; a < entities.size(); a++) {
                     entities.get(a).periodicUpdate(tpf);
@@ -1362,6 +1406,7 @@ public class Engine {
                         entities.remove(a);
                     }
                 }
+
                 //update sound
                 sound.periodicUpdate();
                 //update hud
@@ -1373,16 +1418,22 @@ public class Engine {
                 pvy = playerShip.getVy();
                 //recover player ship
                 playerShip = universe.getPlayerShip();
-                //update player missions
-                for (int a = 0; a < universe.getPlayerMissions().size(); a++) {
-                    universe.getPlayerMissions().get(a).periodicUpdate(tpf);
+
+                if (!isClient) {
+                    //update player missions
+                    for (int a = 0; a < universe.getPlayerMissions().size(); a++) {
+                        universe.getPlayerMissions().get(a).periodicUpdate(tpf);
+                    }
                 }
-                //update campaigns
-                for (int a = 0; a < universe.getPlayerCampaigns().size(); a++) {
-                    if (universe.getPlayerCampaigns().get(a).isRunning()) {
-                        universe.getPlayerCampaigns().get(a).periodicUpdate(tpf);
-                    } else {
-                        universe.getPlayerCampaigns().remove(universe.getPlayerCampaigns().get(a));
+
+                if (!isClient) {
+                    //update campaigns
+                    for (int a = 0; a < universe.getPlayerCampaigns().size(); a++) {
+                        if (universe.getPlayerCampaigns().get(a).isRunning()) {
+                            universe.getPlayerCampaigns().get(a).periodicUpdate(tpf);
+                        } else {
+                            universe.getPlayerCampaigns().remove(universe.getPlayerCampaigns().get(a));
+                        }
                     }
                 }
             } else if (state == State.MENU) {
