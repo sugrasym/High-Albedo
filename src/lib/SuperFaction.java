@@ -14,7 +14,7 @@
  */
 
  /*
- * Extended version of the faction class for use by God when repairing and
+ * Extended version of the faction class for use by Life when repairing and
  * maintaining the universe.
  */
 package lib;
@@ -47,7 +47,7 @@ public class SuperFaction extends Faction {
 
     /*
      * Like a faction, except it stores information about loadout types,
-     * station types, etc that god needs.
+     * station types, etc that life needs.
      */
     public SuperFaction(Universe universe, String name) {
         super(name);

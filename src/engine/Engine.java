@@ -85,8 +85,8 @@ public class Engine {
     //graphics and threading
     BufferStrategy bf;
     Element element;
-    //God
-    public God god;
+    //Life
+    public Life life;
     //HUD
     protected HUD hud = new HUD(this);
     //Sound
@@ -189,12 +189,12 @@ public class Engine {
     }
 
     public void setUniverse(Universe universe) {
-        //reset entity list and god
+        //reset entity list and life
         entities.clear();
-        god = null;
+        life = null;
 
         this.universe = universe;
-        this.universe.setGod(null);
+        this.universe.setLife(null);
         //add this universe's systems to the entity list
         for (int a = 0; a < universe.getSystems().size(); a++) {
             entities.add(universe.getSystems().get(a));
@@ -1018,8 +1018,8 @@ public class Engine {
             try {
                 //game logic
                 logic();
-                //god
-                god();
+                //life
+                life();
                 //render final
                 render();
             } catch (IllegalStateException e) {
@@ -1301,14 +1301,14 @@ public class Engine {
             }
         }
 
-        private void god() {
+        private void life() {
             if (universe != null) {
-                if (god == null) {
-                    god = new God(getUniverse(), entities);
-                    universe.setGod(god);
+                if (life == null) {
+                    life = new Life(getUniverse(), entities);
+                    universe.setLife(life);
                 }
 
-                god.periodicUpdate();
+                life.periodicUpdate();
             }
         }
 

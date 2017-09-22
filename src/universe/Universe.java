@@ -20,7 +20,7 @@ package universe;
 
 import celestial.Ship.Ship;
 import engine.Entity;
-import engine.God;
+import engine.Life;
 import engine.ResourceCache;
 import engine.SettingsManager;
 import java.io.Serializable;
@@ -41,7 +41,7 @@ public class Universe implements Serializable {
     private ArrayList<SolarSystem> systems = new ArrayList<>();
     private SettingsManager settings;
     private static final transient ResourceCache CACHE;
-    private transient God god;
+    private transient Life life;
     public static transient boolean DEBUG_RENDER;
     //player globals
     protected Ship playerShip;
@@ -221,11 +221,11 @@ public class Universe implements Serializable {
                 .collect(Collectors.toList());
     }
 
-    public God getGod() {
-        return god;
+    public Life getLife() {
+        return life;
     }
 
-    public void setGod(God god) {
-        this.god = god;
+    public void setLife(Life life) {
+        this.life = life;
     }
 }

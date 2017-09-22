@@ -899,7 +899,7 @@ public class Campaign implements Serializable {
         }
         //spawn ship
         //spawnShip(Faction faction, SolarSystem system, Point2D.Double loc, String loadout, String name, Behavior behavior)
-        universe.getGod().spawnShip(myFaction, system, new Point2D.Double(x, y), load, _name, behavior, group, true);
+        universe.getLife().spawnShip(myFaction, system, new Point2D.Double(x, y), load, _name, behavior, group, true);
     }
 
     private void parseSpawnStation(String param1, String param2) throws NumberFormatException {
@@ -929,7 +929,7 @@ public class Campaign implements Serializable {
         Faction myFaction = new Faction(faction);
         //spawn station
         //spawnStation(Faction faction, SolarSystem system, Point2D.Double loc, String type, String name)
-        universe.getGod().spawnStation(myFaction, system, new Point2D.Double(x, y), load, _name, group, true);
+        universe.getLife().spawnStation(myFaction, system, new Point2D.Double(x, y), load, _name, group, true);
     }
 
     private void givePlayerCash(String param2) throws NumberFormatException {

@@ -47,7 +47,7 @@ import util.WorldMaker.Simpling;
  *
  * @author nwiehoff
  */
-public class God implements EngineElement {
+public class Life implements EngineElement {
 
     private final Universe universe;
     private final ArrayList<Entity> entities;
@@ -62,7 +62,7 @@ public class God implements EngineElement {
     //timing
     private long lastFrame;
 
-    public God(Universe universe, ArrayList<Entity> entities) {
+    public Life(Universe universe, ArrayList<Entity> entities) {
         this.universe = universe;
         this.entities = entities;
 
@@ -100,7 +100,7 @@ public class God implements EngineElement {
                 checkTraders();
                 checkMerchants();
                 checkFrontierJumpholes();
-                System.out.println("God cycled.");
+                System.out.println("Life cycled.");
             });
             s.start();
         }
